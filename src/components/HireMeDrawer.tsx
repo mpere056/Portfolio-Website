@@ -12,60 +12,73 @@ const contactDetails = [
 
 export default function HireMeDrawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const [copiedLabel, setCopiedLabel] = useState('');
+  const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
 
   const handleCopy = async (label: string, value: string) => {
     const success = await copyToClipboard(value);
     if (success) {
-      setCopiedLabel(label);
-      setTimeout(() => setCopiedLabel(''), 2000); // Reset after 2 seconds
+      setCopiedStates((prev) => ({ ...Object.fromEntries(Object.keys(prev).map(k => [k, false])), [label]: true }));
+      setTimeout(() => {
+        setCopiedStates((prev) => ({ ...prev, [label]: false }));
+      }, 2000);
     }
   };
 
   return (
     <>
-      <div className="fixed bottom-12 left-1/2 -translate-x-1/2">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-lg"
-        >
-          Hire Me
-        </button>
-      </div>
+      <motion.button
+        onClick={() => setIsOpen(true)}
+        className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold shadow-lg border border-white/20"
+        whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Hire Me
+      </motion.button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-end"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 z-40 flex items-end"
+            onClick={() => setIsOpen(false)}
           >
-            <div className="w-full bg-white text-gray-800 p-8 rounded-t-2xl">
-              <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+              className="w-full bg-gray-900 text-white p-8 rounded-t-3xl border-t border-gray-700"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="font-serif text-3xl font-medium mb-2">Contact Me</h2>
+              <p className="text-gray-400 mb-8">Get in touch via email or social media.</p>
               <div className="space-y-4">
                 {contactDetails.map(({ label, value }) => (
-                  <div key={label} className="flex justify-between items-center">
+                  <div key={label} className="flex justify-between items-center bg-white/5 p-4 rounded-xl">
                     <div>
-                      <p className="font-bold">{label}</p>
-                      <p>{value}</p>
+                      <p className="font-semibold text-gray-300">{label}</p>
+                      <p className="text-gray-400">{value}</p>
                     </div>
-                    <button
+                    <motion.button
                       onClick={() => handleCopy(label, value)}
-                      className="px-4 py-2 bg-gray-200 rounded-lg"
+                      className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium"
+                      whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      {copiedLabel === label ? 'Copied!' : 'Copy'}
-                    </button>
+                      {copiedStates[label] ? (
+                        <div className="flex items-center space-x-2">
+                          <span>✔</span>
+                          <span>Copied</span>
+                        </div>
+                      ) : (
+                        'Copy'
+                      )}
+                    </motion.button>
                   </div>
                 ))}
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="mt-8 w-full py-3 bg-red-500 text-white rounded-lg"
-              >
-                Close
-              </button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

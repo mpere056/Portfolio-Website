@@ -31,7 +31,7 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
         ))}
       </div>
       
-      <div className="absolute bottom-8 right-8 z-20">
+      <div className="absolute bottom-8 left-1/2 z-20">
         <HireMeDrawer />
       </div>
     </div>
