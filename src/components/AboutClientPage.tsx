@@ -4,19 +4,17 @@ import HireMeDrawer from '@/components/HireMeDrawer';
 import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import TimelineEntry from '@/components/TimelineEntry';
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import Background from '@/components/Background';
-
-const colors = [
-  '#2E0219', '#220126', '#140028', '#010023', '#02192E', '#012622', '#002814', '#232301',
-  '#2E1902', '#261101', '#280000', '#230114', '#19022E', '#110126', '#000028', '#012323'
-];
+import TimelineIndicator from './TimelineIndicator';
 
 interface AboutClientPageProps {
   entries: TimelineEntryType[];
 }
 
 export default function AboutClientPage({ entries }: AboutClientPageProps) {
+  const colors = useMemo(() => entries.map(entry => entry.color!), [entries]);
+
   return (
     <div className="h-screen w-screen relative">
       <Suspense fallback={null}>
@@ -24,14 +22,16 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
           <Background colors={colors} />
         </Canvas>
       </Suspense>
-      <div className="absolute inset-0 h-screen overflow-y-scroll snap-y snap-mandatory">
-        <h1 className="text-4xl font-bold mb-8 text-center pt-8 text-white">About Me</h1>
-        <div className="relative container mx-auto p-8">
-          <div className="border-l-2 border-gray-200 absolute h-full top-0 left-1/2 -translate-x-1/2"></div>
-          {entries.map((entry: TimelineEntryType, index) => (
-            <TimelineEntry key={entry.id} entry={entry} index={index} />
-          ))}
-        </div>
+
+      <TimelineIndicator entries={entries} />
+
+      <div className="absolute top-0 right-0 h-screen w-[calc(100%-6rem)] overflow-y-scroll snap-y snap-mandatory">
+        {entries.map((entry: TimelineEntryType, index) => (
+          <TimelineEntry key={entry.id} entry={entry} index={index} />
+        ))}
+      </div>
+      
+      <div className="absolute bottom-8 right-8 z-20">
         <HireMeDrawer />
       </div>
     </div>

@@ -5,6 +5,11 @@ import { glob } from 'glob';
 
 const TIMELINE_PATH = path.join(process.cwd(), 'src/content/about');
 
+const defaultColors = [
+  '#2E0219', '#220126', '#140028', '#010023', '#02192E', '#012622', '#002814', '#232301',
+  '#2E1902', '#261101', '#280000', '#230114', '#19022E', '#110126', '#000028', '#012323'
+];
+
 export interface TimelineEntry {
   id: string;
   from: string;
@@ -18,12 +23,14 @@ export interface TimelineEntry {
     poster?: string;
   };
   projectSlug?: string;
+  position?: 'left' | 'center';
+  color?: string;
 }
 
 export async function getTimelineEntries(): Promise<TimelineEntry[]> {
   const files = await glob('*.mdx', { cwd: TIMELINE_PATH });
 
-  const entries = files.map((file) => {
+  const entries = files.map((file, index) => {
     const filePath = path.join(TIMELINE_PATH, file);
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
@@ -31,6 +38,8 @@ export async function getTimelineEntries(): Promise<TimelineEntry[]> {
     return {
       ...data,
       body: content,
+      position: data.position || 'left',
+      color: data.color || defaultColors[index % defaultColors.length],
     } as TimelineEntry;
   });
 

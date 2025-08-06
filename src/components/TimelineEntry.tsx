@@ -5,6 +5,7 @@ import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { useTimelineStore } from '@/lib/store';
+import clsx from 'clsx';
 
 interface TimelineEntryProps {
   entry: TimelineEntryType;
@@ -43,10 +44,20 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
     }
   }, [inView, index, setActiveSection]);
 
+  const alignmentClasses = {
+    left: 'items-start text-left',
+    center: 'items-center text-center',
+  };
+  
+  const proseAlignmentClasses = {
+    left: '',
+    center: 'mx-auto',
+  };
+
   return (
-    <section ref={ref} className="h-screen w-full flex flex-col justify-center items-center snap-start font-sans">
+    <section ref={ref} className={clsx("h-screen w-full flex flex-col justify-center snap-start font-sans p-12", alignmentClasses[entry.position || 'left'])}>
       <motion.div
-        className="w-11/12 md:w-3/5 lg:w-2/5 text-center text-white"
+        className="w-full max-w-2xl text-white"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
@@ -60,7 +71,7 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
         <motion.p variants={itemVariants} className="text-lg text-gray-300 mb-8 leading-relaxed">
           {entry.summary}
         </motion.p>
-        <motion.div variants={itemVariants} className="prose prose-invert prose-lg mx-auto text-gray-400">
+        <motion.div variants={itemVariants} className={clsx("prose prose-invert prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
           {entry.body}
         </motion.div>
         {entry.media && (
