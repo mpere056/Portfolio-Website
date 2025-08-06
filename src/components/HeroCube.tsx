@@ -15,21 +15,19 @@ extend({ RoundedBoxGeometry })
 
 export default function HeroCube() {
   return (
-    <Canvas shadows gl={{ antialias: false }} camera={{ position: [0, 2, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
+    <Canvas shadows gl={{ antialias: false }} camera={{ position: [0, 2, 17], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
       <color attach="background" args={['#151520']} />
       <ambientLight intensity={Math.PI / 2} />
       <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={1} decay={0} intensity={2} castShadow />
       <Particles count={10000} displacement={1.2} visibility={6} intensity={2} />
       <EffectComposer>
-        <>
-          <N8AO aoRadius={1} intensity={1} />
-          <Bloom mipmapBlur luminanceThreshold={1} levels={7} intensity={1} />
-        </>
+        <N8AO aoRadius={1} intensity={1} />
+        <Bloom mipmapBlur luminanceThreshold={1} levels={7} intensity={1} />
       </EffectComposer>
       <OrbitControls autoRotate autoRotateSpeed={0.7} />
-      <NavPointer text="About Me" path="/about" position={[-4, 3, 4]} />
-      <NavPointer text="Projects" path="/projects" position={[4, -2, 4]} />
-      <NavPointer text="AI Chat" path="/chat" position={[-4, -2, -4]} />
+      <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
+      <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
+      <NavPointer text="AI Chat" path="/chat" position={[-2, -1.5, -2]} />
     </Canvas>
   )
 }
