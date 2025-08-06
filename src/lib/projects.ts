@@ -22,6 +22,7 @@ export interface Project {
   repoUrl?: string;
   liveUrl?: string;
   heroModel?: string;
+  cameraPosition?: [number, number, number];
   body: string;
 }
 
