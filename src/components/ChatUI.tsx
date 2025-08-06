@@ -27,8 +27,8 @@ export default function ChatUI() {
               className="flex justify-center items-center h-full"
             >
               <div className="text-center">
-                <h2 className="text-4xl font-bold">Hello</h2>
-                <p className="text-lg text-gray-400">What can I do for you?</p>
+                <h2 className="text-4xl font-bold">Hi, I&apos;m Mark</h2>
+                <p className="text-lg text-gray-400">What would you like to know about me?</p>
               </div>
             </motion.div>
           ) : (
