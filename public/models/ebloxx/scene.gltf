@@ -1,0 +1,259 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.2.cf7d3637)"
+    },
+    "extensionsUsed": [
+        "KHR_materials_volume",
+        "FB_ngon_encoding"
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 118854,
+            "type": "VEC3",
+            "max": [
+                16.510000228881837,
+                7.8897624015808109,
+                16.510000228881837
+            ],
+            "min": [
+                -18.96123504638672,
+                2.018061876296997,
+                -18.926349639892579
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 118854,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 118854,
+            "type": "VEC2",
+            "max": [
+                1.3780755996704102,
+                1.0
+            ],
+            "min": [
+                -0.28660133481025698,
+                -1.7262539863586426
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 118854,
+            "type": "SCALAR",
+            "max": [
+                118853
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 4278744,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 1426248,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 1426248,
+            "byteLength": 1426248,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 2852496,
+            "byteLength": 950832,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 3803328,
+            "byteLength": 475416,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "aiPlastic_MAT",
+            "pbrMetallicRoughness": {
+                "metallicFactor": 0.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "bloxx_geo",
+            "primitives": [
+                {
+                    "extensions": {
+                        "FB_ngon_encoding": {}
+                    },
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "bloxx_geo_$AssimpFbx$_RotationPivot",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.2256174087524415,
+                4.953912258148193,
+                -1.208174705505371,
+                1.0
+            ],
+            "children": [
+                2
+            ]
+        },
+        {
+            "name": "bloxx_geo_$AssimpFbx$_RotationPivotInverse",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.2256174087524415,
+                -4.953912258148193,
+                1.208174705505371,
+                1.0
+            ],
+            "children": [
+                3
+            ]
+        },
+        {
+            "name": "bloxx_geo_$AssimpFbx$_ScalingPivot",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                -1.2256174087524415,
+                4.953912258148193,
+                -1.208174705505371,
+                1.0
+            ],
+            "children": [
+                4
+            ]
+        },
+        {
+            "name": "bloxx_geo_$AssimpFbx$_ScalingPivotInverse",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.2256174087524415,
+                -4.953912258148193,
+                1.208174705505371,
+                1.0
+            ],
+            "children": [
+                5
+            ]
+        },
+        {
+            "name": "bloxx_geo",
+            "mesh": 0,
+            "extras": {
+                "UserProperties": "",
+                "IsNull": false,
+                "DefaultAttributeIndex": 0,
+                "InheritType": 1,
+                "RotationActive": true,
+                "ScalingMax": null,
+                "currentUVSet": "map1"
+            }
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
