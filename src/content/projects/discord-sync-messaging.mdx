@@ -1,0 +1,20 @@
+---
+slug: "discord-sync-messaging"
+name: "Discord Synchronized Messaging"
+year: "2021"
+headline: "Multi-bot relay that bypasses rate limits and animates text at ~20 FPS"
+summary: "Orchestrates bots to send and delete messages in a strict sequence, creating high-frame-rate text animations."
+more-info:
+  - "Developed master–worker architecture to coordinate timestamps across bots."
+tech:
+  - "Node.js"
+  - "discord.js"
+media:
+  - type: "gif"
+    src: "/images/discord-sync-demo.gif"
+repoUrl: "https://github.com/mpere056/Discord-Synchronized-Messaging"
+liveUrl: ""
+heroModel: "chatwave"
+cameraPosition: [40, 35, 45]
+---
+Each bot posts one frame then deletes it as the next bot posts; identical names and avatars make the swap invisible to users.

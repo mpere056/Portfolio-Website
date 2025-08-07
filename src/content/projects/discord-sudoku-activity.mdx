@@ -1,0 +1,24 @@
+---
+slug: "discord-sudoku-activity"
+name: "Discord Multiplayer Sudoku Activity"
+year: "2025"
+headline: "First real-time collaborative Sudoku built with Discord Activities"
+summary: "React-powered Activity that lets multiple users solve the same puzzle inside Discord, with secure game-state storage via Vercel proxy."
+responsibilities:
+  - "Reverse-engineered Discord Activity CSP limits; routed Supabase calls through Vercel serverless."
+  - "Built React grid UI with live cell-editing synced via websockets."
+  - "Packaged Activity manifest and deployment script for other devs."
+results:
+  - "Demonstrated a reusable serverless pattern for data-persistent Activities."
+  - "Enabled synchronous puzzling—missing in all existing single-player Sudoku Activities."
+tech:
+  - "React"
+  - "Vercel Functions"
+  - "Supabase"
+media: []
+repoUrl: "https://github.com/mpere056/Discord-Activity-Sudoku"
+liveUrl: ""
+heroModel: "sudokuboard"
+cameraPosition: [38, 30, 40]
+---
+Overcame Discord’s iframe restrictions by proxying every POST and GET through Vercel, keeping user data secure yet real-time.

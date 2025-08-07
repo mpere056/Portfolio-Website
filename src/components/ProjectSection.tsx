@@ -13,7 +13,10 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section id={project.slug} className="min-h-screen snap-start flex flex-col md:flex-row items-center justify-center relative overflow-hidden p-8 md:p-0">
+    <section
+      id={project.slug}
+      className="min-h-[110vh] md:min-h-[120vh] snap-start flex flex-col md:flex-row items-center justify-center relative overflow-hidden p-8 md:p-0"
+    >
       
       <motion.div
         className="relative md:absolute h-[40vh] md:h-[60%] w-full md:w-[30%] cursor-pointer"
@@ -56,7 +59,11 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
             <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4 text-center md:text-left">{project.name}</h2>
             <p className="text-gray-300 mb-6 text-center md:text-left">{project.summary}</p>
             <div className="prose prose-invert text-gray-400 text-center md:text-left">
-              <p>{project.body}</p>
+              <ul>
+                {project.moreInfo.map((point, index) => (
+                  <li key={index}>{point}</li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         )}

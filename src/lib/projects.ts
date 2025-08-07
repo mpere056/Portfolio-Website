@@ -11,8 +11,7 @@ export interface Project {
   year: string;
   headline: string;
   summary: string;
-  responsibilities: string[];
-  results: string[];
+  moreInfo: string[];
   tech: string[];
   media: {
     type: 'gif' | 'video' | 'image' | 'iframe';
@@ -34,10 +33,32 @@ export async function getProjects(): Promise<Project[]> {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
 
-    return {
-      ...data,
+    // Normalize frontmatter keys and provide safe defaults
+    const frontmatter = data as Record<string, unknown>;
+
+    const normalized: Project = {
+      slug: String(frontmatter.slug ?? ''),
+      name: String(frontmatter.name ?? ''),
+      year: String(frontmatter.year ?? ''),
+      headline: String(frontmatter.headline ?? ''),
+      summary: String(frontmatter.summary ?? ''),
+      moreInfo: (frontmatter.moreInfo as string[] | undefined)
+        ?? (frontmatter['more-info'] as string[] | undefined)
+        ?? [],
+      tech: (frontmatter.tech as string[] | undefined) ?? [],
+      media: (frontmatter.media as {
+        type: 'gif' | 'video' | 'image' | 'iframe';
+        src: string;
+        poster?: string;
+      }[] | undefined) ?? [],
+      repoUrl: frontmatter.repoUrl ? String(frontmatter.repoUrl) : undefined,
+      liveUrl: frontmatter.liveUrl ? String(frontmatter.liveUrl) : undefined,
+      heroModel: frontmatter.heroModel ? String(frontmatter.heroModel) : undefined,
+      cameraPosition: (frontmatter.cameraPosition as [number, number, number] | undefined),
       body: content,
-    } as Project;
+    };
+
+    return normalized;
   });
 
   return projects.sort((a, b) => parseInt(b.year) - parseInt(a.year));
