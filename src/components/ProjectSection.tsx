@@ -13,16 +13,19 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section id={project.slug} className="h-screen snap-start flex items-center justify-center relative overflow-hidden">
+    <section id={project.slug} className="min-h-screen snap-start flex flex-col md:flex-row items-center justify-center relative overflow-hidden p-8 md:p-0">
       
       <motion.div
-        className="absolute h-[60%] top-[10%] cursor-pointer w-[30%]"
+        className="relative md:absolute h-[40vh] md:h-[60%] w-full md:w-[30%] cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
         animate={{
           left: isExpanded ? '5%' : '50%',
           x: isExpanded ? '0%' : '-50%',
+          top: isExpanded ? '10%' : '10%',
+          y: isExpanded ? '0%' : '0%',
         }}
         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+        layout
       >
         {project.heroModel ? (
           <Suspense fallback={<div className="text-white w-full h-full flex items-center justify-center">Loading 3D model...</div>}>
@@ -44,15 +47,15 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            className="absolute w-[40%] p-12 text-white right-[5%] h-full flex flex-col justify-center"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
+            className="w-full md:w-[40%] mt-8 md:mt-0 md:absolute md:right-[5%] text-white p-4 md:p-12 h-auto md:h-full flex flex-col justify-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="font-serif text-5xl font-bold mb-4">{project.name}</h2>
-            <p className="text-gray-300 mb-6">{project.summary}</p>
-            <div className="prose prose-invert text-gray-400">
+            <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4 text-center md:text-left">{project.name}</h2>
+            <p className="text-gray-300 mb-6 text-center md:text-left">{project.summary}</p>
+            <div className="prose prose-invert text-gray-400 text-center md:text-left">
               <p>{project.body}</p>
             </div>
           </motion.div>

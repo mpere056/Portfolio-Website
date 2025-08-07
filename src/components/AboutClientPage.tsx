@@ -33,7 +33,7 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
         ))}
       </div>
       
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-[calc(50%+3rem)] z-20">
+      <div className="absolute bottom-8 left-1/2 z-20">
         <HireMeDrawer />
       </div>
     </div>
