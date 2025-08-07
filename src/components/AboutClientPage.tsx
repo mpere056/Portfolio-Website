@@ -23,15 +23,17 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
         </Canvas>
       </Suspense>
 
-      <TimelineIndicator entries={entries} />
-
-      <div className="absolute top-0 right-0 h-screen w-[calc(100%-6rem)] overflow-y-scroll snap-y snap-mandatory">
+      <div className="hidden md:block">
+        <TimelineIndicator entries={entries} />
+      </div>
+      
+      <div className="absolute inset-0 md:left-[6rem] md:w-[calc(100%-6rem)] h-screen overflow-y-scroll snap-y snap-mandatory">
         {entries.map((entry: TimelineEntryType, index) => (
           <TimelineEntry key={entry.id} entry={entry} index={index} />
         ))}
       </div>
       
-      <div className="absolute bottom-8 left-1/2 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-[calc(50%+3rem)] z-20">
         <HireMeDrawer />
       </div>
     </div>

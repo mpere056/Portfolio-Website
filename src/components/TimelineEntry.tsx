@@ -55,23 +55,23 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
   };
 
   return (
-    <section ref={ref} className={clsx("h-screen w-full flex flex-col justify-center snap-start font-sans p-12", alignmentClasses[entry.position || 'left'])}>
+    <section ref={ref} className={clsx("min-h-screen w-full flex flex-col justify-center snap-start font-sans p-8 md:p-12", alignmentClasses[entry.position || 'left'])}>
       <motion.div
         className="w-full max-w-2xl text-white"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <motion.p variants={itemVariants} className="text-base text-gray-400 mb-4 tracking-widest uppercase">
+        <motion.p variants={itemVariants} className="text-sm md:text-base text-gray-400 mb-4 tracking-widest uppercase">
           {entry.from}
         </motion.p>
-        <motion.h3 variants={itemVariants} className="font-serif text-5xl md:text-7xl font-medium mb-6">
+        <motion.h3 variants={itemVariants} className="font-serif text-4xl md:text-7xl font-medium mb-6">
           {entry.headline}
         </motion.h3>
-        <motion.p variants={itemVariants} className="text-lg text-gray-300 mb-8 leading-relaxed">
+        <motion.p variants={itemVariants} className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
           {entry.summary}
         </motion.p>
-        <motion.div variants={itemVariants} className={clsx("prose prose-invert prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
+        <motion.div variants={itemVariants} className={clsx("prose prose-invert md:prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
           {entry.body}
         </motion.div>
         {entry.media && (
