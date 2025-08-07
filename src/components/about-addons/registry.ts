@@ -13,6 +13,7 @@ import type { AddonCommonProps } from './types';
 export const addonImportMap: Record<string, () => Promise<{ default: ComponentType<AddonCommonProps> }>> = {
   // Initially empty; add entries above when addons are created.
   keyboard: () => import('./keyboard/KeyboardAddon'),
+  basketball: () => import('./basketball/BasketballAddon'),
 };
 
 

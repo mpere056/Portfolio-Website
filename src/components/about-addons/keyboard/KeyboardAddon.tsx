@@ -140,11 +140,11 @@ export default function KeyboardAddon({ entry }: AddonCommonProps) {
   const blackWidth = `calc((100% / ${whiteCount}) * 0.6)`; // ~60% of a white key
 
   return (
-    <div className="mx-auto w-full max-w-[520px]">
+    <div className="mx-auto w-full max-w-[720px]">
       <div className="mb-3 text-sm text-gray-300">Mini Piano · {entry.headline}</div>
       <div className="relative select-none rounded-xl border border-white/10 bg-black/10 p-3 shadow-xl backdrop-blur">
         {/* White keys */}
-        <div className="relative flex h-40 w-full">
+        <div className="relative flex h-44 w-full">
           {whiteKeys.map((key) => (
             <button
               key={key.midi}
@@ -158,9 +158,7 @@ export default function KeyboardAddon({ entry }: AddonCommonProps) {
               onMouseLeave={() => isActive(key.midi) && handleStop(key.midi)}
               onTouchStart={(e) => { e.preventDefault(); handleStart(key.midi); }}
               onTouchEnd={(e) => { e.preventDefault(); handleStop(key.midi); }}
-            >
-              <span className="absolute bottom-1 w-full text-center text-[10px] text-gray-500">{key.label.replace('4','')}</span>
-            </button>
+            />
           ))}
 
           {/* Black keys overlay */}
@@ -183,6 +181,15 @@ export default function KeyboardAddon({ entry }: AddonCommonProps) {
               onTouchEnd={(e) => { e.preventDefault(); handleStop(key.midi); }}
             />
           ))}
+
+          {/* Note labels aligned to white keys */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-1 z-10 grid grid-cols-8">
+            {whiteKeys.map((key) => (
+              <div key={key.midi} className="text-center text-[10px] text-gray-600">
+                {key.label.replace(/[0-9]/g, '')}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

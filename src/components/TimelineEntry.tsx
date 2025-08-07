@@ -55,44 +55,63 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
     center: 'mx-auto',
   };
 
+  const hasAddon = Boolean(entry.addon);
+  const useSideLayout = hasAddon && (entry.position !== 'center');
+
   return (
     <section ref={ref} className={clsx("min-h-screen w-full flex flex-col justify-center snap-start font-sans p-8 md:p-12", alignmentClasses[entry.position || 'left'])}>
-      <motion.div
-        className="w-full max-w-2xl text-white"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-      >
-        <motion.p variants={itemVariants} className="text-sm md:text-base text-gray-400 mb-4 tracking-widest uppercase">
-          {entry.from}
-        </motion.p>
-        <motion.h3 variants={itemVariants} className="font-serif text-4xl md:text-7xl font-medium mb-6">
-          {entry.headline}
-        </motion.h3>
-        <motion.p variants={itemVariants} className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
-          {entry.summary}
-        </motion.p>
-        <motion.div variants={itemVariants} className={clsx("prose prose-invert md:prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
-          {entry.body}
-        </motion.div>
-        {entry.media && (
-          <motion.div variants={itemVariants} className="mt-8">
-            {entry.media.type === 'image' && (
-              <motion.img
-                src={entry.media.src}
-                alt={entry.headline}
-                className="w-full h-auto rounded-lg shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-              />
-            )}
-          </motion.div>
+      <div
+        className={clsx(
+          "flex gap-8 md:gap-12",
+          useSideLayout ? 'flex-col md:flex-row md:items-start md:justify-between' : 'flex-col'
         )}
-      </motion.div>
-      {inView && entry.addon && (
-        <div className="mt-8 w-full max-w-3xl">
-          <AddonRenderer addonKey={entry.addon} entry={entry} />
-        </div>
-      )}
+      >
+        <motion.div
+          className={clsx(
+            "text-white",
+            useSideLayout ? 'w-full max-w-5xl flex-1 min-w-0' : 'w-full max-w-5xl mx-auto'
+          )}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          <motion.p variants={itemVariants} className="text-sm md:text-base text-gray-400 mb-4 tracking-widest uppercase">
+            {entry.from}
+          </motion.p>
+          <motion.h3 variants={itemVariants} className="font-serif text-4xl md:text-7xl font-medium mb-6">
+            {entry.headline}
+          </motion.h3>
+          <motion.p variants={itemVariants} className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
+            {entry.summary}
+          </motion.p>
+          <motion.div variants={itemVariants} className={clsx("prose prose-invert md:prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
+            {entry.body}
+          </motion.div>
+          {entry.media && (
+            <motion.div variants={itemVariants} className="mt-8">
+              {entry.media.type === 'image' && (
+                <motion.img
+                  src={entry.media.src}
+                  alt={entry.headline}
+                  className="w-full h-auto rounded-lg shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                />
+              )}
+            </motion.div>
+          )}
+        </motion.div>
+
+        {inView && entry.addon && (
+          <div className={clsx(
+            'w-full',
+            useSideLayout
+              ? 'md:self-start md:shrink-0 md:w-[560px] lg:w-[640px]'
+              : 'max-w-[640px] mx-auto'
+          )}>
+            <AddonRenderer addonKey={entry.addon} entry={entry} />
+          </div>
+        )}
+      </div>
     </section>
   );
 }
