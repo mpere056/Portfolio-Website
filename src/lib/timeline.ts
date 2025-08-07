@@ -25,6 +25,7 @@ export interface TimelineEntry {
   projectSlug?: string;
   position?: 'left' | 'center';
   color?: string;
+  addon?: string;
 }
 
 export async function getTimelineEntries(): Promise<TimelineEntry[]> {

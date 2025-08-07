@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { useTimelineStore } from '@/lib/store';
 import clsx from 'clsx';
+import AddonRenderer from '@/components/about-addons/AddonRenderer';
 
 interface TimelineEntryProps {
   entry: TimelineEntryType;
@@ -87,6 +88,11 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
           </motion.div>
         )}
       </motion.div>
+      {inView && entry.addon && (
+        <div className="mt-8 w-full max-w-3xl">
+          <AddonRenderer addonKey={entry.addon} entry={entry} />
+        </div>
+      )}
     </section>
   );
 }
