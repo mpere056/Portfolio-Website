@@ -282,7 +282,7 @@ function SceneContent() {
     const impulse = new THREE.Vector3().copy(horiz).multiplyScalar(strength);
     impulse.y = upward;
     applyImpulse(impulse);
-  }, [applyImpulse, tmp]);
+  }, [applyImpulse, tmp, ballRef]);
 
   return (
     <group>

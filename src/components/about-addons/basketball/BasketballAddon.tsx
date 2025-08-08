@@ -149,7 +149,7 @@ function SceneContent() {
     const impulse = new THREE.Vector3().copy(horizontal).multiplyScalar(strength);
     impulse.y = upward;
     applyImpulse(impulse);
-  }, [applyImpulse, tempV]);
+  }, [applyImpulse, tempV, ballRef]);
 
   const ballColor = '#ff7a1a';
 
