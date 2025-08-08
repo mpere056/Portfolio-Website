@@ -22,6 +22,7 @@ export interface Project {
   liveUrl?: string;
   heroModel?: string;
   cameraPosition?: [number, number, number];
+  modelRotation?: [number, number, number];
   body: string;
 }
 
@@ -55,6 +56,7 @@ export async function getProjects(): Promise<Project[]> {
       liveUrl: frontmatter.liveUrl ? String(frontmatter.liveUrl) : undefined,
       heroModel: frontmatter.heroModel ? String(frontmatter.heroModel) : undefined,
       cameraPosition: (frontmatter.cameraPosition as [number, number, number] | undefined),
+      modelRotation: (frontmatter.modelRotation as [number, number, number] | undefined),
       body: content,
     };
 

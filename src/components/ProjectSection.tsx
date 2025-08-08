@@ -24,8 +24,8 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
         animate={{
           left: isExpanded ? '5%' : '50%',
           x: isExpanded ? '0%' : '-50%',
-          top: isExpanded ? '10%' : '10%',
-          y: isExpanded ? '0%' : '0%',
+          top: '50%',
+          y: '-50%'
         }}
         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         layout
@@ -35,6 +35,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
             <ProjectModel 
               modelName={project.heroModel} 
               cameraPosition={project.cameraPosition}
+              modelRotation={project.modelRotation}
               enableZoom={false} 
               enablePan={false} 
               enableRotate={false} 
@@ -50,10 +51,10 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            className="w-full md:w-[40%] mt-8 md:mt-0 md:absolute md:right-[5%] text-white p-4 md:p-12 h-auto md:h-full flex flex-col justify-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+            className="w-full md:w-[40%] mt-8 md:mt-0 md:absolute md:right-[5%] md:top-1/2 md:-translate-y-[75%] text-white p-4 md:p-12 h-auto md:h-auto flex flex-col justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4 text-center md:text-left">{project.name}</h2>

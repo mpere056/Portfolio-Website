@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 interface ProjectModelProps {
   modelName: string;
   cameraPosition?: [number, number, number];
+  modelRotation?: [number, number, number];
   enableZoom?: boolean;
   enablePan?: boolean;
   enableRotate?: boolean;
@@ -21,6 +22,7 @@ function Model({ modelName }: { modelName: string }) {
 export default function ProjectModel({ 
   modelName, 
   cameraPosition = [20, 20, 15], 
+  modelRotation = [0.2, 0.5, 0],
   enableZoom = true, 
   enablePan = true, 
   enableRotate = true 
@@ -75,7 +77,7 @@ export default function ProjectModel({
           <ambientLight intensity={1.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
           <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-          <group rotation={[0.2, 0.5, 0]}>
+          <group rotation={modelRotation}>
             <Model modelName={modelName} />
           </group>
           <OrbitControls 
