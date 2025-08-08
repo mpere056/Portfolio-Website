@@ -14,6 +14,7 @@ export const addonImportMap: Record<string, () => Promise<{ default: ComponentTy
   // Initially empty; add entries above when addons are created.
   keyboard: () => import('./keyboard/KeyboardAddon'),
   basketball: () => import('./basketball/BasketballAddon'),
+  soccer: () => import('./soccer/SoccerAddon'),
 };
 
 
