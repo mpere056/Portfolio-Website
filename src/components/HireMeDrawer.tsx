@@ -6,8 +6,8 @@ import { copyToClipboard } from '@/lib/clipboard';
 
 const contactDetails = [
   { label: 'Email', value: 'marknperera@hotmail.com' },
-  { label: 'Discord', value: 'mark#1234' },
-  { label: 'X / Twitter', value: '@marknperera' },
+  { label: 'Discord', value: 'nipun' },
+  { label: 'X / Twitter', value: '@nipun056' },
 ];
 
 export default function HireMeDrawer() {

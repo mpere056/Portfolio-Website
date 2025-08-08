@@ -9,6 +9,7 @@ import type { Group } from 'three';
 interface ProjectPreviewProps {
   modelName?: string;
   cameraPosition?: [number, number, number];
+  modelOffset?: [number, number, number];
   className?: string;
 }
 
@@ -22,11 +23,13 @@ function SpinningGroup({ children }: { children: React.ReactNode }) {
   return <group ref={ref}>{children}</group>;
 }
 
-function GLTFPreview({ modelName }: { modelName: string }) {
+function GLTFPreview({ modelName, modelOffset = [0, 0, 0] as [number, number, number] }: { modelName: string; modelOffset?: [number, number, number] }) {
   const { scene } = useGLTF(`/models/${modelName}/scene.gltf`);
   return (
     <SpinningGroup>
-      <primitive object={scene} />
+      <group position={modelOffset}>
+        <primitive object={scene} />
+      </group>
     </SpinningGroup>
   );
 }
@@ -48,10 +51,11 @@ function FallbackPreview() {
   );
 }
 
-export default function ProjectPreview({ modelName, cameraPosition = [3, 3, 4], className }: ProjectPreviewProps) {
+export default function ProjectPreview({ modelName, cameraPosition = [3, 3, 4], modelOffset = [0, 0, 0], className }: ProjectPreviewProps) {
   const [available, setAvailable] = useState<'checking' | 'yes' | 'no'>('checking');
   const [isHovered, setIsHovered] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '200px 0px' });
+  const [canHover, setCanHover] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,15 +84,32 @@ export default function ProjectPreview({ modelName, cameraPosition = [3, 3, 4], 
   const shouldRenderCanvas = inView || isHovered;
 
   return (
-    <div ref={ref} className={className} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+    <div
+      ref={ref}
+      className={`${className ? className : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ touchAction: 'pan-y' }}
+    >
       {shouldRenderCanvas ? (
-        <Canvas dpr={[1, 2]} camera={{ position: cameraPosition, fov: 35 }}>
+        <Canvas
+          dpr={[1, 2]}
+          camera={{ position: cameraPosition, fov: 35 }}
+          style={{ pointerEvents: canHover ? 'auto' : 'none', touchAction: 'pan-y' }}
+          onCreated={() => {
+            // Detect hover capability once at mount
+            if (typeof window !== 'undefined' && window.matchMedia) {
+              const mq = window.matchMedia('(hover: hover)');
+              setCanHover(mq.matches);
+            }
+          }}
+        >
           <ambientLight intensity={1.2} />
           <directionalLight position={[3, 3, 2]} intensity={1} />
           <directionalLight position={[-3, -2, -2]} intensity={0.4} />
           <Suspense fallback={null}>
             {available === 'yes' ? (
-              <GLTFPreview modelName={modelName!} />
+              <GLTFPreview modelName={modelName!} modelOffset={modelOffset} />
             ) : (
               <FallbackPreview />
             )}

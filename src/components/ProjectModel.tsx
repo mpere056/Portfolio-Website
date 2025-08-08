@@ -9,9 +9,11 @@ interface ProjectModelProps {
   modelName: string;
   cameraPosition?: [number, number, number];
   modelRotation?: [number, number, number];
+  modelOffset?: [number, number, number];
   enableZoom?: boolean;
   enablePan?: boolean;
   enableRotate?: boolean;
+  prefetch?: boolean;
 }
 
 function Model({ modelName }: { modelName: string }) {
@@ -23,12 +25,24 @@ export default function ProjectModel({
   modelName, 
   cameraPosition = [20, 20, 15], 
   modelRotation = [0.2, 0.5, 0],
+  modelOffset = [0, 0, 0],
   enableZoom = true, 
   enablePan = true, 
-  enableRotate = true 
+  enableRotate = true,
+  prefetch = false 
 }: ProjectModelProps) {
   const [availability, setAvailability] = useState<'checking' | 'available' | 'missing'>('checking');
   const { ref, inView } = useInView({ threshold: 0.1, rootMargin: '200px 0px' });
+  const [canHover, setCanHover] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(hover: hover)');
+    const update = () => setCanHover(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     let isCancelled = false;
@@ -60,8 +74,10 @@ export default function ProjectModel({
     };
   }, [modelName]);
 
+  const shouldRender = availability === 'available' && (prefetch || inView);
+
   return (
-    <div ref={ref} className="w-full h-full">
+    <div ref={ref} className="w-full h-full" style={{ touchAction: 'pan-y' }}>
       {availability === 'checking' && (
         <div className="w-full h-full flex items-center justify-center text-gray-300/70 bg-black/20 rounded-md">
           Loading preview...
@@ -72,21 +88,23 @@ export default function ProjectModel({
           3D preview coming soon
         </div>
       )}
-      {availability === 'available' && inView && (
-        <Canvas dpr={[1, 2]} camera={{ position: cameraPosition, fov: 30 }}>
+      {shouldRender && (
+         <Canvas dpr={[1, 2]} camera={{ position: cameraPosition, fov: 30 }} style={{ touchAction: 'pan-y', pointerEvents: canHover ? 'auto' : 'none' }}>
           <ambientLight intensity={1.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
           <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-          <group rotation={modelRotation}>
+          <group rotation={modelRotation} position={modelOffset}>
             <Model modelName={modelName} />
           </group>
-          <OrbitControls 
-            enableZoom={enableZoom} 
-            enablePan={enablePan} 
-            enableRotate={enableRotate} 
-            autoRotate 
-            autoRotateSpeed={0.5}
-          />
+           {canHover && (
+             <OrbitControls 
+              enableZoom={enableZoom} 
+              enablePan={enablePan} 
+              enableRotate={enableRotate} 
+              autoRotate 
+              autoRotateSpeed={0.5}
+            />
+           )}
         </Canvas>
       )}
     </div>

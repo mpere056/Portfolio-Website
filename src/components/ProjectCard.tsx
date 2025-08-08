@@ -1,14 +1,25 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Project } from '@/lib/projects';
-import ProjectPreview from '@/components/ProjectPreview';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const [canHover, setCanHover] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(hover: hover)');
+    const update = () => setCanHover(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
   const scrollToProject = () => {
     const element = document.getElementById(project.slug);
     if (element) {
@@ -35,10 +46,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       style={{ transformStyle: 'preserve-3d', boxShadow: baseShadow }}
     >
       <div className="relative rounded-lg overflow-hidden border border-white/10" style={{ flexBasis: '58%' }}>
-        <ProjectPreview
-          modelName={project.heroModel}
-          cameraPosition={[3, 3, 4]}
-          className="absolute inset-0 filter blur-sm group-hover:blur-0 transition duration-300"
+        <Image
+          src={`/images/${project.heroModel ?? 'world_cube'}.png`}
+          alt={`${project.name} preview`}
+          fill
+          className={`object-cover ${canHover ? 'opacity-90 group-hover:opacity-100' : ''} transition-opacity duration-300`}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          priority={false}
         />
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
       </div>
