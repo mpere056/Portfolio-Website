@@ -2,7 +2,7 @@
 
 import * as THREE from 'three'
 import { useRef, useMemo } from 'react'
-import { Canvas, extend, useFrame } from '@react-three/fiber'
+import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Instances, Instance, useGLTF } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
 import { RoundedBoxGeometry } from 'three-stdlib'
@@ -15,9 +15,9 @@ extend({ RoundedBoxGeometry })
 
 export default function HeroCube() {
   return (
-    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-8, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
+    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
       <color attach="background" args={['#151520']} />
-      <ambientLight intensity={Math.PI / 2} />
+      <ambientLight intensity={0.18} />
       <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={1} decay={0} intensity={2} castShadow />
       <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
       <EffectComposer>
@@ -25,6 +25,7 @@ export default function HeroCube() {
         <Bloom mipmapBlur luminanceThreshold={1} levels={7} intensity={1} />
       </EffectComposer>
       <OrbitControls autoRotate autoRotateSpeed={0.7} />
+      <CursorLight />
       {/* Platform under the hero model */}
       <group>
         <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
@@ -124,4 +125,28 @@ function Particles({ count, displacement = 3, visibility = 6, intensity = 1 }: P
       ))}
     </Instances>
   )
+}
+
+function CursorLight() {
+  const lightRef = useRef<THREE.PointLight>(null)
+  const cursor = new THREE.Vector3()
+  const dir = new THREE.Vector3()
+  const platformCenter = new THREE.Vector3(0, -2.42, -0.5)
+
+  useFrame(({ pointer, camera }) => {
+    // Project cursor into world space similar to particles
+    cursor.set(pointer.x, pointer.y, 0.5).unproject(camera)
+    dir.copy(cursor).sub(camera.position).normalize()
+    cursor.add(dir.multiplyScalar(camera.position.length()))
+    if (lightRef.current) {
+      lightRef.current.position.set(cursor.x, cursor.y + 0.6, cursor.z)
+      // Stronger falloff relative to platform center distance
+      const d = cursor.distanceTo(platformCenter)
+      const intensity = THREE.MathUtils.clamp(18 / (0.4 + (d * d * 1.2)), 0.01, 12) // near → very bright, far → nearly off
+      lightRef.current.intensity = intensity
+    }
+  })
+
+  // Point light behaves like a soft spotlight; distance+decay makes farther regions darker
+  return <pointLight ref={lightRef} intensity={8} distance={3.8} decay={2.6} color={'#cfd6ff'} />
 }
