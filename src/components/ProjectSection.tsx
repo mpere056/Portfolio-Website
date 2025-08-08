@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '@/lib/projects';
 import ProjectModel from '@/components/ProjectModel';
@@ -11,6 +11,15 @@ interface ProjectSectionProps {
 
 export default function ProjectSection({ project }: ProjectSectionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   return (
     <section
@@ -19,14 +28,18 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
     >
       
       <motion.div
-        className="relative md:absolute h-[40vh] md:h-[60%] w-full md:w-[30%] cursor-pointer"
+        className="relative md:absolute h-[40vh] md:h-[60%] w-full md:w-[30%] cursor-pointer z-0"
         onClick={() => setIsExpanded(!isExpanded)}
-        animate={{
-          left: isExpanded ? '5%' : '50%',
-          x: isExpanded ? '0%' : '-50%',
-          top: '50%',
-          y: '-50%'
-        }}
+        animate={
+          isDesktop
+            ? {
+                left: isExpanded ? '5%' : '50%',
+                x: isExpanded ? '0%' : '-50%',
+                top: '50%',
+                y: '-50%',
+              }
+            : { x: 0, y: 0 }
+        }
         transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         layout
       >
@@ -51,7 +64,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            className="w-full md:w-[40%] mt-8 md:mt-0 md:absolute md:right-[5%] md:top-1/2 md:-translate-y-[75%] text-white p-4 md:p-12 h-auto md:h-auto flex flex-col justify-center"
+            className="relative z-10 w-full md:w-[40%] mt-8 md:mt-0 md:absolute md:right-[5%] md:top-1/2 md:-translate-y-[75%] text-white p-4 md:p-12 h-auto md:h-auto flex flex-col justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

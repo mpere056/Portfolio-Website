@@ -1,0 +1,4 @@
+@media (min-width: 480px) {
+  /* Tailwind lacks xs breakpoint by default; we rely on utility classes but ensure layout isn't cramped */
+}
+
