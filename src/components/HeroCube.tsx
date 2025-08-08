@@ -15,16 +15,27 @@ extend({ RoundedBoxGeometry })
 
 export default function HeroCube() {
   return (
-    <Canvas shadows gl={{ antialias: false }} camera={{ position: [0, 2, 17], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
+    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-8, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
       <color attach="background" args={['#151520']} />
       <ambientLight intensity={Math.PI / 2} />
       <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={1} decay={0} intensity={2} castShadow />
-      <Particles count={10000} displacement={1.2} visibility={6} intensity={2} />
+      <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
       <EffectComposer>
         <N8AO aoRadius={1} intensity={1} />
         <Bloom mipmapBlur luminanceThreshold={1} levels={7} intensity={1} />
       </EffectComposer>
       <OrbitControls autoRotate autoRotateSpeed={0.7} />
+      {/* Platform under the hero model */}
+      <group>
+        <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
+          <cylinderGeometry args={[2.5, 2.5, 0.2, 64]} />
+          <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
+        </mesh>
+        <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[2.5, 2.55, 64]} />
+          <meshBasicMaterial color="#312f6b" transparent opacity={0.15} side={THREE.DoubleSide} />
+        </mesh>
+      </group>
       <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
       <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
       <NavPointer text="AI Chat" path="/chat" position={[-2, -1.5, -2]} />
