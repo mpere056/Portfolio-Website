@@ -3,7 +3,7 @@
 import * as THREE from 'three'
 import { useRef, useMemo } from 'react'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Instances, Instance, useGLTF } from '@react-three/drei'
+import { OrbitControls, Instances, Instance, useGLTF, Stars } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
 import { RoundedBoxGeometry } from 'three-stdlib'
 import { motion } from "framer-motion";
@@ -16,13 +16,15 @@ extend({ RoundedBoxGeometry })
 export default function HeroCube() {
   return (
     <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
-      <color attach="background" args={['#151520']} />
+      <color attach="background" args={['#07070d']} />
+      {/* Subtle star field for space vibe */}
+      <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
       <ambientLight intensity={0.18} />
-      <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={1} decay={0} intensity={2} castShadow />
+      <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={3} decay={0} intensity={2} castShadow />
       <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
       <EffectComposer>
         <N8AO aoRadius={1} intensity={1} />
-        <Bloom mipmapBlur luminanceThreshold={1} levels={7} intensity={1} />
+        <Bloom mipmapBlur luminanceThreshold={0.3} levels={5} intensity={2} />
       </EffectComposer>
       <OrbitControls autoRotate autoRotateSpeed={0.7} />
       <CursorLight />
@@ -33,8 +35,8 @@ export default function HeroCube() {
           <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
         </mesh>
         <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[2.5, 2.55, 64]} />
-          <meshBasicMaterial color="#312f6b" transparent opacity={0.15} side={THREE.DoubleSide} />
+          <ringGeometry args={[2.5, 2.53, 64]} />
+          <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
         </mesh>
       </group>
       <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
