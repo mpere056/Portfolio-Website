@@ -7,6 +7,7 @@ const samplePrompts = [
   'What are your most impressive projects?',
   'What was your experience with the $100k GPT-4 mobile-app offer?',
   'Tell me about your journey into coding.',
+  'How does this AI chatbot work?'
 ];
 
 export default function ChatUI() {
@@ -74,6 +75,7 @@ export default function ChatUI() {
             onChange={handleInputChange}
           />
         </form>
+        <p className="mt-2 text-center text-xs text-gray-400">Answers may cite sources like (story-app), (2013-programming).</p>
       </div>
     </div>
   );
