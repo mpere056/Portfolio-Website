@@ -118,9 +118,10 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   }, [isDesktop]);
 
   return (
-    <div ref={containerRef} className="h-screen overflow-y-scroll bg-gray-900 text-white">
-      <header className="min-h-screen flex flex-col justify-center items-center mb-16 md:mb-32" data-snap-section>
-        <h1 className="text-4xl md:text-5xl font-serif mb-6 md:mb-8">Projects</h1>
+    <div ref={containerRef} className="h-screen overflow-y-scroll projects-bg bg-[#0a0a12] text-white">
+      <header className="min-h-screen flex flex-col justify-center items-center mb-16 md:mb-32 text-center" data-snap-section>
+        <h1 className="text-4xl md:text-6xl font-serif mb-2 md:mb-3">Projects</h1>
+        <p className="text-sm md:text-base text-white/60 max-w-xl md:max-w-2xl px-4 mb-6 md:mb-8">Scroll or click a card to explore details.</p>
         <div className="w-full max-w-6xl px-3 sm:px-6">
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {projects.map((project: Project) => (
@@ -128,7 +129,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
             ))}
           </div>
         </div>
-        <p className="mt-6 md:mt-8 text-gray-400 text-sm md:text-base">Click a project to jump to its details below</p>
+        <div className="mt-6 md:mt-8 h-px w-32 md:w-40 bg-gradient-to-r from-white/0 via-white/30 to-white/0" />
       </header>
       <main className="space-y-12 md:space-y-32 pb-20">
         {projects.map((project: Project) => (

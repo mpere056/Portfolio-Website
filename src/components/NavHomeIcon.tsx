@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function NavHomeIcon() {
   return (
-    <div className="fixed top-7 left-7 z-50">
+    <div className="fixed top-5 left-5 z-50">
       <Link href="/">
         <Image
           src="/images/me_logo.png"

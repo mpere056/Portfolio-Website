@@ -22,25 +22,27 @@ export default function HeroCube() {
       <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
       <ambientLight intensity={0.18} />
       <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={3} decay={0} intensity={2} castShadow />
-      <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
+      <HeroScaleGroup>
+        <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
+        {/* Platform under the hero model */}
+        <group>
+          <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
+            <cylinderGeometry args={[2.5, 2.5, 0.2, 64]} />
+            <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
+          </mesh>
+          <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[2.5, 2.53, 64]} />
+            <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
+          </mesh>
+          <PlatformImage src="/images/me_logo.png" />
+        </group>
+      </HeroScaleGroup>
       <EffectComposer>
         <N8AO aoRadius={1} intensity={1} />
         <Bloom mipmapBlur luminanceThreshold={0.3} levels={5} intensity={2} />
       </EffectComposer>
       <OrbitControls autoRotate autoRotateSpeed={0.7} />
       <CursorLight />
-      {/* Platform under the hero model */}
-      <group>
-        <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
-          <cylinderGeometry args={[2.5, 2.5, 0.2, 64]} />
-          <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
-        </mesh>
-        <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[2.5, 2.53, 64]} />
-          <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
-        </mesh>
-        <PlatformImage src="/images/me_logo.png" />
-      </group>
       <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
       <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
       <NavPointer path="/chat" position={[-2, -1.5, -2]}>
@@ -207,4 +209,17 @@ function ResponsiveCamera() {
     }
   }, [camera, size.width, size.height])
   return null
+}
+
+function HeroScaleGroup({ children }: { children: React.ReactNode }) {
+  const { size } = useThree()
+  // Scale up the hero/platform slightly on smaller screens without changing label positions
+  // Keep scale at 1 on desktops to preserve composition
+  let scale = 1
+  if (size.width < 640) scale = 1.50
+  else if (size.width < 768) scale = 1.25
+  else if (size.width < 1024) scale = 1.06
+  else scale = 1
+
+  return <group scale={scale}>{children}</group>
 }
