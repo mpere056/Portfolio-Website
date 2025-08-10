@@ -30,4 +30,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  @keyframes gradient-loop {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .animate-gradient {
+    animation: gradient-loop 3s linear infinite;
+    will-change: background-position;
+  }
 }

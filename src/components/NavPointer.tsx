@@ -5,12 +5,13 @@ import { useRouter } from 'next/navigation';
 import * as THREE from 'three';
 
 interface NavPointerProps {
-  text: string;
+  text?: string;
   path: string;
   position: [number, number, number];
+  children?: React.ReactNode;
 }
 
-export default function NavPointer({ text, path, position }: NavPointerProps) {
+export default function NavPointer({ text, path, position, children }: NavPointerProps) {
   const router = useRouter();
 
   // This vector points from the text back towards the center of the scene
@@ -31,7 +32,7 @@ export default function NavPointer({ text, path, position }: NavPointerProps) {
           className="cursor-pointer text-white p-2 whitespace-nowrap hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors"
           style={{ fontFamily: 'monospace', fontSize: '16px' }}
         >
-          {text}
+          {children ?? text}
         </div>
       </Html>
     </group>

@@ -41,7 +41,10 @@ export default function HeroCube() {
       </group>
       <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
       <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
-      <NavPointer text="AI Chat" path="/chat" position={[-2, -1.5, -2]} />
+      <NavPointer path="/chat" position={[-2, -1.5, -2]}>
+        <span>Ask Me Anything </span>
+        <span className="bg-[linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa)] bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">[AI]</span>
+      </NavPointer>
     </Canvas>
   )
 }
