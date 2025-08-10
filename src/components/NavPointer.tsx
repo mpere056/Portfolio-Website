@@ -29,8 +29,12 @@ export default function NavPointer({ text, path, position, children }: NavPointe
       <Html center>
         <div
           onClick={() => router.push(path)}
-          className="cursor-pointer text-white p-2 whitespace-nowrap hover:bg-white hover:bg-opacity-10 rounded-lg transition-colors"
-          style={{ fontFamily: 'monospace', fontSize: '16px' }}
+          className="cursor-pointer text-white whitespace-nowrap select-none font-mono
+                     px-2 py-1 md:px-3 md:py-1.5 lg:px-3 lg:py-1.5 xl:px-3.5 xl:py-2 2xl:px-3.5 2xl:py-2
+                     text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl
+                     rounded-lg border border-white/10 bg-white/0 hover:bg-white/10
+                     backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-200
+                     hover:-translate-y-0.5"
         >
           {children ?? text}
         </div>

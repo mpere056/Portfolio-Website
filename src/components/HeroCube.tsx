@@ -1,9 +1,9 @@
 'use client';
 
 import * as THREE from 'three'
-import { useRef, useMemo } from 'react'
+import { useRef, useMemo, useEffect } from 'react'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Instances, Instance, useGLTF, Stars } from '@react-three/drei'
+import { OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
 import { RoundedBoxGeometry } from 'three-stdlib'
 import { motion } from "framer-motion";
@@ -16,6 +16,7 @@ extend({ RoundedBoxGeometry })
 export default function HeroCube() {
   return (
     <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
+      <ResponsiveCamera />
       <color attach="background" args={['#07070d']} />
       {/* Subtle star field for space vibe */}
       <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
@@ -38,6 +39,7 @@ export default function HeroCube() {
           <ringGeometry args={[2.5, 2.53, 64]} />
           <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
         </mesh>
+        <PlatformImage src="/images/me_logo.png" />
       </group>
       <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
       <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
@@ -154,4 +156,55 @@ function CursorLight() {
 
   // Point light behaves like a soft spotlight; distance+decay makes farther regions darker
   return <pointLight ref={lightRef} intensity={8} distance={3.8} decay={2.6} color={'#cfd6ff'} />
+}
+
+interface PlatformImageProps { src: string }
+function PlatformImage({ src }: PlatformImageProps) {
+  const texture = useTexture(src)
+  const radius = 2.45
+  const segments = 128
+  return (
+    <mesh position={[0, -2.319, -0.5]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+      <circleGeometry args={[radius, segments]} />
+      <meshStandardMaterial map={texture} transparent opacity={0.05} roughness={1} metalness={0} />
+    </mesh>
+  )
+}
+
+function ResponsiveCamera() {
+  const { camera, size } = useThree()
+  useEffect(() => {
+    const w = size.width
+    const h = size.height
+    let fov = 25
+    let pos: [number, number, number] = [-15, 10, 20]
+
+    if (w >= 1440) {
+      // Large desktops: zoom in a bit for presence
+      fov = 22
+      pos = [-12, 8, 16]
+    } else if (w >= 1024) {
+      // Desktops: slightly closer than default
+      fov = 24
+      pos = [-14, 9, 18]
+    } else if (w < 640) {
+      // Small phones: zoom out to ensure labels fit
+      fov = 32
+      pos = [-20, 12, 26]
+    } else if (w < 768) {
+      // Phones/tablets: modest zoom out
+      fov = 28
+      pos = [-17, 11, 23]
+    }
+
+    const persp = camera as THREE.PerspectiveCamera
+    if (persp && typeof (persp as any).isPerspectiveCamera !== 'undefined') {
+      persp.fov = fov
+      persp.position.set(pos[0], pos[1], pos[2])
+      persp.updateProjectionMatrix()
+    } else {
+      camera.position.set(pos[0], pos[1], pos[2])
+    }
+  }, [camera, size.width, size.height])
+  return null
 }

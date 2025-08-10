@@ -12,6 +12,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Mark's Portfolio",
   description: "A portfolio website for Mark.",
+  icons: {
+    icon: "/images/me_logo.png",
+    shortcut: "/images/me_logo.png",
+    apple: "/images/me_logo.png",
+  },
 };
 
 export default function RootLayout({
