@@ -153,29 +153,53 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
             {/* Content card */}
             <div className="absolute inset-0 flex items-center justify-center p-4 md:p-10">
               <motion.div
-                className="relative w-full max-w-3xl bg-black/60 border border-white/10 rounded-2xl p-6 md:p-10 text-white shadow-2xl"
+                className="relative w-full max-w-3xl text-white"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 20, opacity: 0 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <button
-                  className="absolute top-4 right-4 text-white/60 hover:text-white text-sm md:text-base"
-                  onClick={handleClose}
-                  aria-label="Close"
-                >
-                  Close
-                </button>
-                <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4 text-center">{project.name}</h2>
-                <div className="text-gray-300 mb-6 text-center">
-                  {project.summary}
-                </div>
-                <div className="prose prose-invert text-gray-400 mx-auto">
-                  <ul>
-                    {project.moreInfo.map((point, index) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
+                {/* Frame + glow */}
+                <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-white/25 to-white/5 opacity-20 blur-sm" aria-hidden />
+                <div className="relative rounded-2xl bg-black/45 backdrop-blur-xl border border-white/10 p-6 md:p-10 shadow-2xl">
+                  {/* Corner brackets */}
+                  <div className="pointer-events-none absolute inset-0">
+                    <div className="absolute left-4 top-4 w-5 h-5 border-l border-t border-white/20" />
+                    <div className="absolute right-4 top-4 w-5 h-5 border-r border-t border-white/20" />
+                    <div className="absolute left-4 bottom-4 w-5 h-5 border-l border-b border-white/20" />
+                    <div className="absolute right-4 bottom-4 w-5 h-5 border-r border-b border-white/20" />
+                  </div>
+
+                  <button
+                    className="absolute top-4 right-4 text-xs md:text-sm uppercase tracking-widest text-white/70 hover:text-white/100 px-2 py-0.5 rounded border border-white/15 bg-white/5 hover:bg-white/10"
+                    onClick={handleClose}
+                    aria-label="Close"
+                  >
+                    Close
+                  </button>
+
+                  {/* Title */}
+                  <h2 className="font-serif text-3xl md:text-5xl font-bold text-center drop-shadow mb-3">
+                    {project.name}
+                  </h2>
+                  <div className="mx-auto h-px w-24 bg-gradient-to-r from-white/0 via-white/40 to-white/0 mb-6" />
+
+                  {/* Summary */}
+                  <p className="font-mono text-[13px] md:text-sm leading-7 text-white/85 whitespace-pre-line text-center md:text-left">
+                    {project.summary}
+                  </p>
+
+                  {/* Bullets */}
+                  {project.moreInfo?.length > 0 && (
+                    <ul className="mt-6 space-y-3 text-white/85">
+                      {project.moreInfo.map((point, index) => (
+                        <li key={index} className="flex gap-3 items-start text-sm md:text-base">
+                          <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-white/60" />
+                          <span className="font-mono leading-7">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </motion.div>
             </div>
