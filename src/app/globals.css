@@ -69,4 +69,41 @@ body {
     animation: gradient-loop 3s linear infinite;
     will-change: background-position;
   }
+  .text-gradient-violet {
+    background: linear-gradient(90deg, #a78bfa, #60a5fa, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dot-grid {
+    position: relative;
+  }
+  .dot-grid::after {
+    content: '';
+    position: absolute;
+    inset: -10% -5% -20% 40%;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 1.5px);
+    background-size: 18px 18px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  /* SaaS hero grid background */
+  .saas-hero-bg {
+    background-image:
+      radial-gradient(ellipse at 50% -20%, rgba(120, 100, 255, 0.25), transparent 40%),
+      radial-gradient(ellipse at 50% 120%, rgba(120, 100, 255, 0.12), transparent 40%),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      40px 40px,
+      40px 40px;
+    background-position:
+      center,
+      center,
+      0 0,
+      0 0;
+  }
 }
