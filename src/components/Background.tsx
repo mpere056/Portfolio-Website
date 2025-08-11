@@ -15,6 +15,8 @@ interface BackgroundProps {
      * the default `world_cube` texture will be used.
      */
     textures?: (string | undefined)[];
+    /** Optional per-section texture opacity (0..1). */
+    opacities?: (number | undefined)[];
 }
 
 function Stars(props: any) {
@@ -37,7 +39,7 @@ function Stars(props: any) {
     );
 }
 
-export default function Background({ colors, textures }: BackgroundProps) {
+export default function Background({ colors, textures, opacities }: BackgroundProps) {
     const groupRef = useRef<THREE.Group>(null!);
     const materialRef = useRef<THREE.MeshBasicMaterial>(null!);
 
@@ -58,6 +60,18 @@ export default function Background({ colors, textures }: BackgroundProps) {
     const textureUrls = useMemo(() => textureNames.map((n) => `/images/${n}.png`), [textureNames]);
     const loadedTextures = useLoader(THREE.TextureLoader, textureUrls) as unknown as THREE.Texture[];
     const activeTexture = loadedTextures[activeSection % loadedTextures.length];
+
+    const textureOpacities = useMemo(() => {
+        const targetLength = textureUrls.length;
+        if (!opacities || opacities.length === 0) return Array(targetLength).fill(0.07);
+        const norm = opacities.map((v) => {
+            if (typeof v !== 'number' || Number.isNaN(v)) return 0.07;
+            return Math.max(0, Math.min(1, v));
+        });
+        if (norm.length < targetLength) return norm.concat(Array(targetLength - norm.length).fill(0.07));
+        return norm.slice(0, targetLength);
+    }, [opacities, textureUrls.length]);
+    const activeOpacity = textureOpacities[activeSection % textureOpacities.length];
 
     // Derive fallback colors from textures if not explicitly provided
     const [derivedColors, setDerivedColors] = useState<(string | undefined)[]>(() => new Array(textureUrls.length).fill(undefined));
@@ -184,7 +198,7 @@ export default function Background({ colors, textures }: BackgroundProps) {
             {/* This slightly smaller sphere overlays the transparent texture on top. */}
             <mesh>
                 <sphereGeometry args={[14.9, 64, 64]} />
-                <meshBasicMaterial map={activeTexture} side={THREE.BackSide} transparent opacity={0.07} />
+                <meshBasicMaterial map={activeTexture} side={THREE.BackSide} transparent opacity={activeOpacity} />
             </mesh>
             <Stars />
         </group>

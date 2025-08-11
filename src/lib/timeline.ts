@@ -25,6 +25,8 @@ export interface TimelineEntry {
   addon?: string;
   /** Optional texture key (without extension) to override background sphere image */
   texture?: string;
+  /** Optional opacity for the background texture overlay (0..1). */
+  textureOpacity?: number;
 }
 
 export async function getTimelineEntries(): Promise<TimelineEntry[]> {
