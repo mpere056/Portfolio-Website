@@ -13,13 +13,14 @@ interface AboutClientPageProps {
 }
 
 export default function AboutClientPage({ entries }: AboutClientPageProps) {
-  const colors = useMemo(() => entries.map(entry => entry.color!), [entries]);
+  const colors = useMemo(() => entries.map(entry => entry.color as string | undefined), [entries]);
+  const textures = useMemo(() => entries.map(entry => entry.texture as string | undefined), [entries]);
 
   return (
     <div className="h-screen w-screen relative">
       <Suspense fallback={null}>
         <Canvas>
-          <Background colors={colors} />
+          <Background colors={colors} textures={textures} />
         </Canvas>
       </Suspense>
 

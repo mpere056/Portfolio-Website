@@ -141,7 +141,6 @@ export default function KeyboardAddon({ entry }: AddonCommonProps) {
 
   return (
     <div className="mx-auto w-full max-w-[720px]">
-      <div className="mb-3 text-sm text-gray-300">Mini Piano · {entry.headline}</div>
       <div className="relative select-none rounded-xl border border-white/10 bg-black/10 p-3 shadow-xl backdrop-blur">
         {/* White keys */}
         <div className="relative flex h-44 w-full">

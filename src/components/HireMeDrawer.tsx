@@ -32,7 +32,7 @@ export default function HireMeDrawer() {
         whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
         whileTap={{ scale: 0.95 }}
       >
-        Hire Me
+        Contact Me
       </motion.button>
       <AnimatePresence>
         {isOpen && (

@@ -10,7 +10,7 @@
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
 | **Narrative**     | Give hiring managers a clear, engaging story-arc of Mark’s life, skills, and impact.                                |
 | **Interactivity** | Keep users engaged via scroll-snapping sections, inline animations, and “peek-into-project” jumps.                  |
-| **Conversion**    | End with an unmistakable **Hire Me** CTA that copies contact details and nudges toward the AI Chat / Projects page. |
+| **Conversion**    | End with an unmistakable **Contact Me** CTA that copies contact details and nudges toward the AI Chat / Projects page. |
 | **Performance**   | 60 fps on mid-range mobile; lazy-load heavy media; accessibility compliant.                                         |
 
 ---

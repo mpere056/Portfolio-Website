@@ -5,10 +5,7 @@ import { glob } from 'glob';
 
 const TIMELINE_PATH = path.join(process.cwd(), 'src/content/about');
 
-const defaultColors = [
-  '#2E0219', '#220126', '#140028', '#010023', '#02192E', '#012622', '#002814', '#232301',
-  '#2E1902', '#261101', '#280000', '#230114', '#19022E', '#110126', '#000028', '#012323'
-];
+// Colors are optional per-entry; when missing, UI derives a color from the entry's texture
 
 export interface TimelineEntry {
   id: string;
@@ -26,6 +23,8 @@ export interface TimelineEntry {
   position?: 'left' | 'center';
   color?: string;
   addon?: string;
+  /** Optional texture key (without extension) to override background sphere image */
+  texture?: string;
 }
 
 export async function getTimelineEntries(): Promise<TimelineEntry[]> {
@@ -40,7 +39,7 @@ export async function getTimelineEntries(): Promise<TimelineEntry[]> {
       ...data,
       body: content,
       position: data.position || 'left',
-      color: data.color || defaultColors[index % defaultColors.length],
+      color: data.color as string | undefined,
     } as TimelineEntry;
   });
 
