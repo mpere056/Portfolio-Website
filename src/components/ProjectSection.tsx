@@ -151,7 +151,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
             </div>
 
             {/* Content card */}
-            <div className="absolute inset-0 flex items-center justify-center p-4 md:p-10">
+            <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4 md:p-10">
               <motion.div
                 className="relative w-full max-w-3xl text-white"
                 initial={{ y: 20, opacity: 0 }}
@@ -161,7 +161,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
               >
                 {/* Frame + glow */}
                 <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-white/25 to-white/5 opacity-20 blur-sm" aria-hidden />
-                <div className="relative rounded-2xl bg-black/45 backdrop-blur-xl border border-white/10 p-6 md:p-10 shadow-2xl">
+                <div className="relative rounded-2xl bg-black/45 backdrop-blur-xl border border-white/10 p-6 md:p-10 shadow-2xl max-h-[calc(100vh-1rem)] sm:max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] overflow-y-auto">
                   {/* Corner brackets */}
                   <div className="pointer-events-none absolute inset-0">
                     <div className="absolute left-4 top-4 w-5 h-5 border-l border-t border-white/20" />
@@ -170,13 +170,16 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
                     <div className="absolute right-4 bottom-4 w-5 h-5 border-r border-b border-white/20" />
                   </div>
 
-                  <button
-                    className="absolute top-4 right-4 text-xs md:text-sm uppercase tracking-widest text-white/70 hover:text-white/100 px-2 py-0.5 rounded border border-white/15 bg-white/5 hover:bg-white/10"
-                    onClick={handleClose}
-                    aria-label="Close"
-                  >
-                    Close
-                  </button>
+                  {/* Sticky header with close */}
+                  <div className="sticky top-0 -mx-6 md:-mx-10 px-6 md:px-10 py-3 bg-black/40 backdrop-blur border-b border-white/10 z-10 flex justify-end">
+                    <button
+                      className="text-xs md:text-sm uppercase tracking-widest text-white/80 hover:text-white px-2 py-0.5 rounded border border-white/15 bg-white/5 hover:bg-white/10"
+                      onClick={handleClose}
+                      aria-label="Close"
+                    >
+                      Close
+                    </button>
+                  </div>
 
                   {/* Title */}
                   <h2 className="font-serif text-3xl md:text-5xl font-bold text-center drop-shadow mb-3">
@@ -200,6 +203,17 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
                       ))}
                     </ul>
                   )}
+
+                  {/* Sticky bottom close on mobile for reachability */}
+                  <div className="sticky bottom-0 -mx-6 md:-mx-10 px-6 md:px-10 py-3 mt-6 bg-black/40 backdrop-blur border-t border-white/10 z-10 flex justify-center sm:hidden">
+                    <button
+                      className="text-xs uppercase tracking-widest text-white/80 hover:text-white px-3 py-1 rounded border border-white/15 bg-white/5 hover:bg-white/10"
+                      onClick={handleClose}
+                      aria-label="Close"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             </div>
