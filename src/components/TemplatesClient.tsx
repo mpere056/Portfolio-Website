@@ -27,9 +27,13 @@ export type TemplateVariantKey = VariantByTemplate[keyof VariantByTemplate];
 
 const ALL_TEMPLATES: TemplateDefinition[] = [
   {
-    key: 'saas', name: 'SaaS Startup', emoji: '🚀', accent: 'violet',
+    key: 'trades', name: 'Trades & Home Services', emoji: '🛠️', accent: 'sky',
     variants: [
       { key: 'landing', name: 'Landing' },
+      { key: 'services', name: 'Services (example)' },
+      { key: 'booking', name: 'Booking' },
+      { key: 'about', name: 'About' },
+      { key: 'locations', name: 'Locations (Postal Lookup)' },
     ],
   },
   {
@@ -53,13 +57,9 @@ const ALL_TEMPLATES: TemplateDefinition[] = [
     ],
   },
   {
-    key: 'trades', name: 'Trades & Home Services', emoji: '🛠️', accent: 'sky',
+    key: 'saas', name: 'SaaS Startup', emoji: '🚀', accent: 'violet',
     variants: [
       { key: 'landing', name: 'Landing' },
-      { key: 'services', name: 'Services (example)' },
-      { key: 'booking', name: 'Booking' },
-      { key: 'about', name: 'About' },
-      { key: 'locations', name: 'Locations (Postal Lookup)' },
     ],
   },
 ];
@@ -85,9 +85,8 @@ export default function TemplatesClient() {
   const [active, setActive] = useState<TemplateKey>(initialKey);
 
   const activeTemplate = useMemo(() => ALL_TEMPLATES.find(t => t.key === active)!, [active]);
-  const paramVariant = (searchParams?.get('v') as TemplateVariantKey | null) ?? null;
   const defaultVariant = activeTemplate.variants[0].key;
-  const [variant, setVariant] = useState<TemplateVariantKey>(paramVariant && activeTemplate.variants.some(v => v.key === paramVariant) ? paramVariant : defaultVariant);
+  const [variant, setVariant] = useState<TemplateVariantKey>(defaultVariant);
 
   // Keep URL in sync for template
   useEffect(() => {
@@ -122,12 +121,19 @@ export default function TemplatesClient() {
       <NavHomeIcon />
 
       <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 py-8 space-y-8">
-        <header className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold">Website Templates</h1>
-          <p className="text-white/70 max-w-2xl">Preview polished, mobile-first landing pages tailored for small to medium businesses. Pick a template below to preview.</p>
+        <header className="text-center">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Website Templates</h1>
+          <span className="block w-14 h-[3px] mx-auto bg-gradient-to-r from-sky-400 to-fuchsia-400 mt-3" />
+          <p className="text-white/95 max-w-3xl mx-auto leading-relaxed mt-3">
+            Need a clean, fast website? I design and build modern, responsive sites for businesses and creators.
+          </p>
+          <p className="text-white/90 mt-1">
+            Here are some examples of styles and layouts I can customize to your brand and goals.
+          </p>
+          <p className="text-white/60 mt-3">Select a template to preview.</p>
         </header>
 
-        <nav className="flex gap-2 overflow-x-auto py-2 pr-2 -ml-1">
+        <nav className="flex flex-wrap justify-center gap-2 overflow-x-auto py-2 pr-2 -ml-1">
           {ALL_TEMPLATES.map(t => {
             const isActive = t.key === active;
             return (
@@ -147,25 +153,7 @@ export default function TemplatesClient() {
           })}
         </nav>
 
-        {/* Secondary selector: variants for the current template */}
-        <nav className="flex gap-2 overflow-x-auto py-1 pr-2 -ml-1">
-          {activeTemplate.variants.map(v => {
-            const isActive = v.key === variant;
-            return (
-              <button
-                key={v.key}
-                type="button"
-                onClick={() => setVariant(v.key)}
-                className={`inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 md:px-3.5 md:py-2
-                           whitespace-nowrap backdrop-blur-sm shadow-sm transition-all duration-200
-                           ${isActive ? 'bg-white/12 border-white/20' : 'bg-white/[0.04] border-white/10 hover:bg-white/[0.08] hover:border-white/15'}`}
-                aria-pressed={isActive}
-              >
-                <span className="text-xs md:text-sm font-medium">{v.name}</span>
-              </button>
-            );
-          })}
-        </nav>
+        {/* Variant selector removed for now; default view shows the primary home/landing for each template. */}
 
         {getTemplateComponent(active, variant)}
       </main>
