@@ -7,13 +7,13 @@ import { useAudioStore } from '@/lib/store';
 
 interface AnalyzerHook {
   analyser: AnalyserNode | null;
-  dataArray: Uint8Array | null;
+  dataArray: Uint8Array<ArrayBuffer> | null;
 }
 
 function useAudioAnalyser(): AnalyzerHook {
   const audioEl = useAudioStore(s => s.audioEl);
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
-  const dataRef = useRef<Uint8Array | null>(null);
+  const dataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const ctxRef = useRef<AudioContext | null>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
   const connectedRef = useRef(false);
@@ -52,7 +52,7 @@ function useAudioAnalyser(): AnalyzerHook {
         } catch {}
 
         const bufferLength = analyserNode.frequencyBinCount;
-        dataRef.current = new Uint8Array(new ArrayBuffer(bufferLength));
+        dataRef.current = new Uint8Array(bufferLength) as unknown as Uint8Array<ArrayBuffer>;
         if (mounted) setAnalyser(analyserNode);
 
         cleanup = () => {
