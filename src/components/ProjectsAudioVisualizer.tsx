@@ -15,7 +15,7 @@ function useAudioAnalyser(): AnalyzerHook {
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
   const dataRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const ctxRef = useRef<AudioContext | null>(null);
-  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const sourceRef = useRef<AudioNode | null>(null);
   const connectedRef = useRef(false);
   const outConnectedRef = useRef(false);
 
@@ -25,14 +25,29 @@ function useAudioAnalyser(): AnalyzerHook {
     let cleanup: (() => void) | null = null;
     async function setup() {
       try {
+        console.log('[Visualizer] setup start');
         const ctx = ctxRef.current ?? new (window.AudioContext || (window as any).webkitAudioContext)();
         ctxRef.current = ctx;
         if (ctx.state !== 'running') await ctx.resume().catch(() => {});
 
-        // Avoid multiple connections for the same element
+        // Avoid multiple connections for the same element. Prefer captureStream to avoid
+        // binding the element to the AudioContext graph (prevents stuck playback on route changes).
         if (!sourceRef.current) {
           try { (audioEl as any).crossOrigin = 'anonymous'; } catch {}
-          sourceRef.current = ctx.createMediaElementSource(audioEl as HTMLMediaElement);
+          let node: AudioNode | null = null;
+          const anyEl: any = audioEl as any;
+          if (typeof anyEl.captureStream === 'function') {
+            try {
+              const stream: MediaStream | null = anyEl.captureStream();
+              if (stream) node = ctx.createMediaStreamSource(stream);
+            } catch {}
+          }
+          if (!node) {
+            // Fallback: use MediaElementSource (still safe if we disconnect/close on unmount)
+            node = ctx.createMediaElementSource(audioEl as HTMLMediaElement);
+          }
+          sourceRef.current = node;
+          console.log('[Visualizer] source node created via', (node as any)?.constructor?.name || 'unknown');
         }
 
         const analyserNode = ctx.createAnalyser();
@@ -41,14 +56,12 @@ function useAudioAnalyser(): AnalyzerHook {
 
         // Connect graph: element -> analyser (for data) and element -> destination (audible)
         try {
-          if (!connectedRef.current) {
+          if (!connectedRef.current && sourceRef.current) {
             sourceRef.current.connect(analyserNode);
             connectedRef.current = true;
+            console.log('[Visualizer] source connected to analyser');
           }
-          if (!outConnectedRef.current) {
-            sourceRef.current.connect(ctx.destination);
-            outConnectedRef.current = true;
-          }
+          // Do NOT connect to destination. The HTMLAudioElement already outputs audio.
         } catch {}
 
         const bufferLength = analyserNode.frequencyBinCount;
@@ -56,8 +69,13 @@ function useAudioAnalyser(): AnalyzerHook {
         if (mounted) setAnalyser(analyserNode);
 
         cleanup = () => {
+          console.log('[Visualizer] cleanup: disconnecting nodes');
           try { analyserNode.disconnect(); } catch {}
-          try { if (sourceRef.current && outConnectedRef.current) { sourceRef.current.disconnect(); outConnectedRef.current = false; } } catch {}
+          try { if (sourceRef.current) { sourceRef.current.disconnect(); } } catch {}
+          connectedRef.current = false;
+          outConnectedRef.current = false;
+          try { ctxRef.current && ctxRef.current.state === 'running' && ctxRef.current.suspend(); } catch {}
+          sourceRef.current = null;
         };
       } catch {
         // ignore
@@ -78,6 +96,7 @@ function useAudioAnalyser(): AnalyzerHook {
     window.addEventListener('keydown', onKey);
     document.addEventListener('visibilitychange', resumeOnInteract);
     return () => {
+      console.log('[Visualizer] unmount');
       mounted = false;
       audioEl.removeEventListener('play', onPlay);
       window.removeEventListener('pointerdown', onPointer);

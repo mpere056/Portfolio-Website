@@ -1,0 +1,11 @@
+Model Information:
+* title:	Kitsune Mask
+* source:	https://sketchfab.com/3d-models/kitsune-mask-cc027effc78844f6a3774ca0352a20f9
+* author:	fenixman12 (https://sketchfab.com/fenixman12)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Kitsune Mask" (https://sketchfab.com/3d-models/kitsune-mask-cc027effc78844f6a3774ca0352a20f9) by fenixman12 (https://sketchfab.com/fenixman12) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
