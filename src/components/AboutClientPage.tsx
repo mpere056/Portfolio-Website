@@ -39,7 +39,10 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
       </div>
       <SmoothSnapScroll containerRef={scrollRef as any} durationMs={1500} desktopMinWidth={1024} />
       
-      <div className="absolute bottom-8 left-1/2 z-20">
+      <div
+        className="fixed md:absolute left-1/2 -translate-x-1/2 z-20 md:bottom-8"
+        style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 1.5rem)' }}
+      >
         <HireMeDrawer />
       </div>
     </div>

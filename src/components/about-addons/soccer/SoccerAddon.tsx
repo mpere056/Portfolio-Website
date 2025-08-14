@@ -364,13 +364,21 @@ function SceneContent() {
 
 export default function SoccerAddon(_: AddonCommonProps) {
   return (
-    <div className="mx-auto w-full max-w-[640px]">
-      <div className="h-[380px] w-full overflow-hidden rounded-xl bg-transparent shadow-xl backdrop-blur">
-        <Canvas shadows gl={{ alpha: true, antialias: true }} camera={{ position: [2, 3, 5], fov: 45 }}>
+    <div className="mx-auto w-full max-w-[640px] px-2 sm:px-4">
+      <div className="h-[280px] sm:h-[320px] md:h-[380px] w-full overflow-hidden rounded-xl bg-transparent shadow-xl backdrop-blur">
+        <Canvas 
+          shadows 
+          gl={{ alpha: true, antialias: true }} 
+          camera={{ position: [2, 3, 5], fov: 45 }}
+          className="touch-manipulation"
+        >
           <SceneContent />
         </Canvas>
       </div>
-      <div className="mt-2 text-xs text-gray-400">Click near the ball to kick it into the goal.</div>
+      <div className="mt-2 text-xs text-gray-400 text-center">
+        <span className="hidden sm:inline">Click near the ball.</span>
+        <span className="sm:hidden">Tap near the ball.</span>
+      </div>
     </div>
   );
 }
