@@ -17,92 +17,163 @@ function useAudioAnalyser(): AnalyzerHook {
   const ctxRef = useRef<AudioContext | null>(null);
   const sourceRef = useRef<AudioNode | null>(null);
   const connectedRef = useRef(false);
-  const outConnectedRef = useRef(false);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    if (!audioEl) return;
+    if (!audioEl) {
+      // Clean up if audio element is removed
+      if (cleanupRef.current) {
+        cleanupRef.current();
+        cleanupRef.current = null;
+      }
+      return;
+    }
+
     let mounted = true;
-    let cleanup: (() => void) | null = null;
+    
     async function setup() {
       try {
-        console.log('[Visualizer] setup start');
-        const ctx = ctxRef.current ?? new (window.AudioContext || (window as any).webkitAudioContext)();
+        console.log('[Visualizer] setup start, audio playing:', !audioEl?.paused, 'currentTime:', audioEl?.currentTime);
+        
+        // Create isolated AudioContext for this visualizer
+        const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
         ctxRef.current = ctx;
-        if (ctx.state !== 'running') await ctx.resume().catch(() => {});
-
-        // Avoid multiple connections for the same element. Prefer captureStream to avoid
-        // binding the element to the AudioContext graph (prevents stuck playback on route changes).
-        if (!sourceRef.current) {
-          try { (audioEl as any).crossOrigin = 'anonymous'; } catch {}
-          let node: AudioNode | null = null;
-          const anyEl: any = audioEl as any;
-          if (typeof anyEl.captureStream === 'function') {
-            try {
-              const stream: MediaStream | null = anyEl.captureStream();
-              if (stream) node = ctx.createMediaStreamSource(stream);
-            } catch {}
-          }
-          if (!node) {
-            // Fallback: use MediaElementSource (still safe if we disconnect/close on unmount)
-            node = ctx.createMediaElementSource(audioEl as HTMLMediaElement);
-          }
-          sourceRef.current = node;
-          console.log('[Visualizer] source node created via', (node as any)?.constructor?.name || 'unknown');
+        
+        // Resume context if needed
+        if (ctx.state !== 'running') {
+          await ctx.resume().catch(() => {});
         }
 
+        let sourceNode: AudioNode | null = null;
+        let usingMediaElementSource = false;
+
+        // ALWAYS try captureStream first if available
+        try {
+          // Set crossOrigin to handle CORS issues
+          (audioEl as any).crossOrigin = 'anonymous';
+          
+          // Use captureStream which creates a copy of the audio without interfering
+          const stream = (audioEl as any).captureStream?.();
+          if (stream && stream.getAudioTracks().length > 0) {
+            // Check if the stream actually has audio
+            const audioTracks = stream.getAudioTracks();
+            if (audioTracks[0] && audioTracks[0].readyState === 'live') {
+              sourceNode = ctx.createMediaStreamSource(stream);
+              console.log('[Visualizer] source node created via MediaStreamAudioSourceNode');
+            }
+          }
+        } catch (e) {
+          console.log('[Visualizer] captureStream failed:', e);
+        }
+
+        // Only use MediaElementSource as last resort and only if audio is actually playing
+        if (!sourceNode && !audioEl?.paused && (audioEl?.currentTime ?? 0) > 0) {
+          try {
+            sourceNode = ctx.createMediaElementSource(audioEl as HTMLMediaElement);
+            usingMediaElementSource = true;
+            console.log('[Visualizer] source node created via MediaElementAudioSourceNode');
+            // IMPORTANT: When using MediaElementSource, we MUST connect to destination
+            // otherwise the audio element won't play sound
+            sourceNode.connect(ctx.destination);
+          } catch (e) {
+            console.log('[Visualizer] MediaElementSource creation failed:', e);
+            return;
+          }
+        }
+
+        if (!sourceNode) {
+          console.log('[Visualizer] No source node could be created - waiting for audio to play');
+          return;
+        }
+
+        sourceRef.current = sourceNode;
+
+        // Create analyser
         const analyserNode = ctx.createAnalyser();
-        analyserNode.fftSize = 2048; // 1024 bins for finer resolution
+        analyserNode.fftSize = 2048;
         analyserNode.smoothingTimeConstant = 0.65;
 
-        // Connect graph: element -> analyser (for data) and element -> destination (audible)
-        try {
-          if (!connectedRef.current && sourceRef.current) {
-            sourceRef.current.connect(analyserNode);
-            connectedRef.current = true;
-            console.log('[Visualizer] source connected to analyser');
-          }
-          // Do NOT connect to destination. The HTMLAudioElement already outputs audio.
-        } catch {}
+        // Connect source to analyser
+        sourceNode.connect(analyserNode);
+        connectedRef.current = true;
+        console.log('[Visualizer] source connected to analyser, using MediaElementSource:', usingMediaElementSource);
 
         const bufferLength = analyserNode.frequencyBinCount;
         dataRef.current = new Uint8Array(bufferLength) as unknown as Uint8Array<ArrayBuffer>;
-        if (mounted) setAnalyser(analyserNode);
+        
+        if (mounted) {
+          setAnalyser(analyserNode);
+        }
 
-        cleanup = () => {
+        // Store cleanup function
+        cleanupRef.current = () => {
           console.log('[Visualizer] cleanup: disconnecting nodes');
-          try { analyserNode.disconnect(); } catch {}
-          try { if (sourceRef.current) { sourceRef.current.disconnect(); } } catch {}
+          try {
+            analyserNode.disconnect();
+          } catch {}
+          try {
+            if (sourceNode) {
+              sourceNode.disconnect();
+            }
+          } catch {}
+          try {
+            if (ctx.state === 'running') {
+              ctx.close();
+            }
+          } catch {}
           connectedRef.current = false;
-          outConnectedRef.current = false;
-          try { ctxRef.current && ctxRef.current.state === 'running' && ctxRef.current.suspend(); } catch {}
           sourceRef.current = null;
+          ctxRef.current = null;
         };
-      } catch {
-        // ignore
+
+      } catch (error) {
+        console.log('[Visualizer] Setup error:', error);
       }
     }
-    setup();
 
-    function resumeOnInteract() {
-      const ctx = ctxRef.current;
-      if (!ctx) return;
-      if (ctx.state !== 'running') ctx.resume().catch(() => {});
-    }
-    const onPlay = () => resumeOnInteract();
-    const onPointer = () => resumeOnInteract();
-    const onKey = () => resumeOnInteract();
+    // DON'T setup immediately - wait for audio to start playing
+    // This prevents MediaElementSource from hijacking the audio element before it starts playing
+
+    // Listen for audio events to setup when safe
+    const onPlay = () => {
+      console.log('[Visualizer] audio play event, connected:', connectedRef.current);
+      // Always try to setup when audio starts playing
+      if (!connectedRef.current) {
+        console.log('[Visualizer] setting up on play event');
+        setup();
+      }
+    };
+
+    const onTimeUpdate = () => {
+      // Also try when audio is progressing (backup for play event)
+      if (!connectedRef.current && !audioEl?.paused && (audioEl?.currentTime ?? 0) > 0.1) {
+        console.log('[Visualizer] setting up on timeupdate event');
+        setup();
+      }
+    };
+
+    // Add event listeners
     audioEl.addEventListener('play', onPlay);
-    window.addEventListener('pointerdown', onPointer);
-    window.addEventListener('keydown', onKey);
-    document.addEventListener('visibilitychange', resumeOnInteract);
+    audioEl.addEventListener('timeupdate', onTimeUpdate);
+
+    // If audio is already playing, setup immediately
+    if (!audioEl?.paused && (audioEl?.currentTime ?? 0) > 0) {
+      console.log('[Visualizer] audio already playing, setting up immediately');
+      setup();
+    }
+
     return () => {
       console.log('[Visualizer] unmount');
       mounted = false;
+      
+      // Remove event listeners
       audioEl.removeEventListener('play', onPlay);
-      window.removeEventListener('pointerdown', onPointer);
-      window.removeEventListener('keydown', onKey);
-      document.removeEventListener('visibilitychange', resumeOnInteract);
-      if (cleanup) cleanup();
+      audioEl.removeEventListener('timeupdate', onTimeUpdate);
+      
+      if (cleanupRef.current) {
+        cleanupRef.current();
+        cleanupRef.current = null;
+      }
     };
   }, [audioEl]);
 
@@ -161,6 +232,11 @@ function ReactiveSphere() {
     const avg = sum / Math.max(1, endBin - startBin);
     const norm = avg / 255;
     const boosted = Math.pow(norm, 0.8);
+    
+    // Debug: Check if we're getting audio data
+    if (sum === 0 && Math.random() < 0.01) { // Log occasionally when no data
+      console.log('[Visualizer] No audio data detected, sum:', sum, 'avg:', avg);
+    }
     // Smooth amplitude
     ampRef.current = ampRef.current * 0.85 + boosted * 0.15;
 
