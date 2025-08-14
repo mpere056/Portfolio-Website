@@ -15,8 +15,8 @@ const buildGoogleGenAIPrompt = (messages: Message[]) => ({
 });
 
 const SYSTEM = (ctx: string) => `
-You are Mark Perera’s portfolio assistant.
-Answer in first person and ground responses strictly in the provided context. Cite relevant project/timeline slugs in parentheses (e.g., (story-app)). If the context is insufficient, say so briefly.
+You are Mark Perera's portfolio assistant.
+Answer in first person and ground responses strictly in the provided context. If the context is insufficient, say so briefly.
 
 CONTEXT:
 ${ctx}
