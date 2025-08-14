@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTimelineStore } from '@/lib/store';
 import clsx from 'clsx';
 import AddonRenderer from '@/components/about-addons/AddonRenderer';
@@ -45,6 +45,18 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
     }
   }, [inView, index, setActiveSection]);
 
+  // Process markdown text to handle line breaks
+  const processedBody = useMemo(() => {
+    // Handle different types of line breaks (Windows \r\n and Unix \n)
+    const paragraphs = entry.body
+      .trim() // Remove leading/trailing whitespace
+      .split(/\r?\n\s*\r?\n/) // Split on double line breaks (handles both \n\n and \r\n\r\n)
+      .filter(paragraph => paragraph.trim().length > 0) // Remove empty paragraphs
+      .map(paragraph => paragraph.replace(/\s+/g, ' ').trim()); // Normalize whitespace within paragraphs
+    
+    return paragraphs;
+  }, [entry.body]);
+
   const alignmentClasses = {
     left: 'items-start text-left',
     center: 'items-center text-center',
@@ -85,8 +97,18 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
           <motion.p variants={itemVariants} className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed">
             {entry.summary}
           </motion.p>
-          <motion.div variants={itemVariants} className={clsx("prose prose-invert md:prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
-            {entry.body}
+          <motion.div variants={itemVariants} className={clsx("text-gray-400 leading-relaxed", proseAlignmentClasses[entry.position || 'left'])}>
+            {processedBody.length > 1 ? (
+              processedBody.map((paragraph, idx) => (
+                <p key={idx} className="mb-2 last:mb-0 text-base md:text-lg">
+                  {paragraph}
+                </p>
+              ))
+            ) : (
+              <p className="text-base md:text-lg">
+                {entry.body}
+              </p>
+            )}
           </motion.div>
           {entry.media && !useSideLayout && (
             <motion.div variants={itemVariants} className="mt-8">
