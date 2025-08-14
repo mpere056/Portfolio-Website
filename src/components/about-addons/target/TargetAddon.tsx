@@ -294,7 +294,6 @@ export default function TargetAddon(_: AddonCommonProps) {
           </div>
 
           {/* Targets */}
-          {console.log('Rendering targets:', targets.length, targets)}
           {targets.map(target => (
             <div
               key={target.id}
