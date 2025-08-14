@@ -59,7 +59,7 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
   const useSideLayout = hasAddon && (entry.position !== 'center');
 
   return (
-    <section ref={ref} className={clsx("min-h-screen w-full flex flex-col justify-center snap-start font-sans p-8 md:p-12", alignmentClasses[entry.position || 'left'])}>
+    <section ref={ref} className={clsx("min-h-screen w-full flex flex-col justify-center snap-center md:snap-start font-sans p-8 md:p-12", alignmentClasses[entry.position || 'left'])}>
       <div
         className={clsx(
           "flex gap-8 md:gap-12",

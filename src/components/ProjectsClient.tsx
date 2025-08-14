@@ -12,6 +12,8 @@ interface ProjectsClientProps {
 export default function ProjectsClient({ projects }: ProjectsClientProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const downSfxRef = useRef<HTMLAudioElement | null>(null);
+  const upSfxRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -20,6 +22,42 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     update();
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Initialize scroll SFX once
+  useEffect(() => {
+    try {
+      if (!downSfxRef.current) {
+        const el = new Audio('/audio/scroll_fast.mp3');
+        el.preload = 'auto';
+        el.volume = 0.4;
+        // Fallback to scroll.mp3 if fast variant is missing
+        let triedFallback = false;
+        el.addEventListener('error', () => {
+          if (triedFallback) return;
+          triedFallback = true;
+          el.src = '/audio/scroll.mp3';
+          el.load();
+        });
+        downSfxRef.current = el;
+      }
+    } catch {}
+    try {
+      if (!upSfxRef.current) {
+        const el = new Audio('/audio/scroll_up.mp3');
+        el.preload = 'auto';
+        el.volume = 0.4;
+        // Fallback to scroll.mp3 if up variant is missing
+        let triedFallback = false;
+        el.addEventListener('error', () => {
+          if (triedFallback) return;
+          triedFallback = true;
+          el.src = '/audio/scroll.mp3';
+          el.load();
+        });
+        upSfxRef.current = el;
+      }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -47,13 +85,23 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
       return idx;
     }
 
-    function snapTo(index: number) {
+    function playSfx(direction: number) {
+      const el = direction > 0 ? downSfxRef.current : upSfxRef.current;
+      if (!el) return;
+      try {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+      } catch {}
+    }
+
+    function snapTo(index: number, direction?: number) {
       const container = containerRef.current ?? el;
       if (!container) { isAnimating = false; return; }
       const sections = getSections();
       const clamped = Math.max(0, Math.min(index, sections.length - 1));
       const target = sections[clamped];
       if (!target) return;
+      if (typeof direction === 'number') playSfx(direction);
       // custom smooth scroll with easing (speed ramp)
       const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const to = target.offsetTop;
@@ -100,7 +148,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
         const dir = deltaAccum > 0 ? 1 : -1;
         deltaAccum = 0;
         const cur = currentIndex();
-        snapTo(cur + dir);
+        snapTo(cur + dir, dir);
       }
     };
 
