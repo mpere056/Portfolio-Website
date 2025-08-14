@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import ProjectCard from '@/components/ProjectCard';
 import ProjectSection from '@/components/ProjectSection';
 import type { Project } from '@/lib/projects';
+import ProjectsAudioVisualizer from '@/components/ProjectsAudioVisualizer';
 
 interface ProjectsClientProps {
   projects: Project[];
@@ -166,8 +167,9 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   }, [isDesktop]);
 
   return (
-    <div ref={containerRef} className="h-screen overflow-y-scroll projects-bg bg-[#0a0a12] text-white">
-      <header className="min-h-screen flex flex-col justify-center items-center mb-16 md:mb-32 text-center" data-snap-section>
+    <div ref={containerRef} className="relative h-screen overflow-y-scroll projects-bg bg-[#0a0a12] text-white">
+      <ProjectsAudioVisualizer />
+      <header className="relative z-10 min-h-screen flex flex-col justify-center items-center mb-16 md:mb-32 text-center" data-snap-section>
         <h1 className="text-4xl md:text-6xl font-serif mb-2 md:mb-3">Projects</h1>
         <p className="text-sm md:text-base text-white/60 max-w-xl md:max-w-2xl px-4 mb-6 md:mb-8">Scroll or click a card to explore details.</p>
         <div className="w-full max-w-6xl px-3 sm:px-6">

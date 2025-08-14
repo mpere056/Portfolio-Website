@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useAudioStore } from '@/lib/store';
 
 function getTrackForPath(pathname: string): { src: string | null; label: string } {
   if (pathname === '/' || pathname === '') return { src: '/audio/home_page.mp3', label: 'Home page music' };
@@ -18,6 +19,7 @@ export default function GlobalAudio() {
   const [isMuted, setIsMuted] = useState(false);
   const [needsUserUnmute, setNeedsUserUnmute] = useState(false);
   const hasAttemptedRef = useRef(false);
+  const setAudioEl = useAudioStore(s => s.setAudioEl);
 
   // Load persisted preference
   useEffect(() => {
@@ -130,7 +132,7 @@ export default function GlobalAudio() {
     <div className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full bg-black/50 text-white backdrop-blur px-3 py-2 shadow-lg" onClick={() => {
       const el = audioRef.current; if (!el) return; if (el.paused) el.play().catch(() => {});
     }}>
-      <audio ref={audioRef} loop preload="auto" playsInline />
+      <audio ref={(el) => { audioRef.current = el; setAudioEl(el ?? null); }} loop preload="auto" playsInline />
       <button
         type="button"
         onClick={handleToggleMute}

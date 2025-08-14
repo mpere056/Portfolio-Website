@@ -18,6 +18,8 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
   const [showBackdrop, setShowBackdrop] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [fullScale, setFullScale] = useState(1.6);
+  const openSfxRef = useRef<HTMLAudioElement | null>(null);
+  const closeSfxRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
@@ -25,6 +27,26 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
     update();
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Preload open/close SFX
+  useEffect(() => {
+    try {
+      if (!openSfxRef.current) {
+        const el = new Audio('/audio/open_model.mp3');
+        el.preload = 'auto';
+        el.volume = 0.5;
+        openSfxRef.current = el;
+      }
+    } catch {}
+    try {
+      if (!closeSfxRef.current) {
+        const el = new Audio('/audio/close_model.mp3');
+        el.preload = 'auto';
+        el.volume = 0.5;
+        closeSfxRef.current = el;
+      }
+    } catch {}
   }, []);
 
   // Prefetch when the section is close to viewport using an IntersectionObserver
@@ -85,9 +107,21 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
   }, [isExpanded]);
 
   function handleClose() {
+    try { const el = closeSfxRef.current; if (el) { el.currentTime = 0; el.play().catch(() => {}); } } catch {}
     // hide backdrop first, then zoom out
     setShowBackdrop(false);
     setTimeout(() => setIsExpanded(false), 450);
+  }
+
+  function handleToggleExpand() {
+    setIsExpanded(prev => {
+      const next = !prev;
+      try {
+        const el = next ? openSfxRef.current : closeSfxRef.current;
+        if (el) { el.currentTime = 0; el.play().catch(() => {}); }
+      } catch {}
+      return next;
+    });
   }
 
   return (
@@ -101,7 +135,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
         className="relative h-[48vh] md:h-[65vh] w-[88vw] md:w-[42%] max-w-[780px] cursor-pointer z-0"
         style={{ margin: '0 auto' }}
         ref={wrapperRef}
-        onClick={() => setIsExpanded(prev => !prev)}
+        onClick={handleToggleExpand}
         animate={{ y: isExpanded ? 0 : -70, scale: isExpanded ? fullScale : 1, filter: isExpanded ? 'blur(1px)' : 'blur(0px)' }}
         transition={{ duration: 0.9, ease: [0.5, 1, 0.2, 1] }}
       >
