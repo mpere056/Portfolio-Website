@@ -52,7 +52,7 @@ function useAudioAnalyser(): AnalyzerHook {
         } catch {}
 
         const bufferLength = analyserNode.frequencyBinCount;
-        dataRef.current = new Uint8Array(bufferLength);
+        dataRef.current = new Uint8Array(new ArrayBuffer(bufferLength));
         if (mounted) setAnalyser(analyserNode);
 
         cleanup = () => {
