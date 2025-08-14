@@ -168,10 +168,24 @@ function ReactiveSphere() {
     posAttr.needsUpdate = true;
 
     const mat = mesh.material as THREE.MeshStandardMaterial;
-    const intensity = Math.min(1, 0.3 + ampRef.current * 1.2);
-    mat.emissive = new THREE.Color('#6da8ff');
-    mat.emissiveIntensity = intensity * 0.8;
-    mat.color.setHSL(0.62 - intensity * 0.1, 0.65, 0.55 + intensity * 0.2);
+    // Visual intensity mapping with threshold and expanded dynamic range
+    const vis = Math.min(1, Math.max(0, (ampRef.current - 0.08) / 0.92));
+    const i = Math.pow(vis, 1.35);
+    // Color ramp: deep purple → blue-cyan → near-white
+    const hueStart = 0.95;
+    const hueEnd = 0.58;
+    const satStart = 0.95;
+    const satEnd = 0.5;     // retain more color at peaks (less pure white)
+    const lightStart = 0.12;
+    const lightEnd = 0.4;   // slightly less bright at max
+    const hue = hueStart + (hueEnd - hueStart) * i;
+    const sat = satStart + (satEnd - satStart) * i;
+    const lig = lightStart + (lightEnd - lightStart) * i;
+    mat.color.setHSL(hue, sat, lig);
+    // Emissive grows only with higher intensity; no strong glow at low volumes
+    const glow = Math.max(0, i - 0.15);
+    mat.emissive.setHSL(hueEnd, 0.3, 0.20 + glow * 0.45);
+    mat.emissiveIntensity = glow * 0.70;
   });
 
   return (
