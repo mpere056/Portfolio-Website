@@ -56,12 +56,16 @@ export default function SmoothSnapScroll({
     }
 
     function getSections(): HTMLElement[] {
-      return Array.from(container.querySelectorAll('section')) as HTMLElement[];
+      const root = containerRef.current;
+      if (!root) return [];
+      return Array.from(root.querySelectorAll('section')) as HTMLElement[];
     }
 
     function getCurrentIndex(): number {
+      const root = containerRef.current;
+      if (!root) return 0;
       const sections = getSections();
-      const pos = container.scrollTop;
+      const pos = root.scrollTop;
       let bestIdx = 0;
       let bestDist = Infinity;
       sections.forEach((s, i) => {
@@ -76,20 +80,24 @@ export default function SmoothSnapScroll({
       isAnimating = true;
       playSfx(direction);
 
-      const startTop = container.scrollTop;
+      const root = containerRef.current;
+      if (!root) { isAnimating = false; return; }
+      const startTop = root.scrollTop;
       const delta = targetTop - startTop;
       const startTime = performance.now();
-      const prevSnap = (container as HTMLElement).style.scrollSnapType;
-      (container as HTMLElement).style.scrollSnapType = 'none';
+      const prevSnap = (root as HTMLElement).style.scrollSnapType;
+      (root as HTMLElement).style.scrollSnapType = 'none';
 
       function step(now: number) {
         const elapsed = now - startTime;
         const t = Math.min(1, elapsed / durationMs);
         const eased = easeInOutQuad(t);
-        container.scrollTop = startTop + delta * eased;
+        const curRoot = containerRef.current;
+        if (!curRoot) { isAnimating = false; return; }
+        curRoot.scrollTop = startTop + delta * eased;
         if (t < 1) requestAnimationFrame(step);
         else {
-          (container as HTMLElement).style.scrollSnapType = prevSnap;
+          (curRoot as HTMLElement).style.scrollSnapType = prevSnap;
           isAnimating = false;
         }
       }
