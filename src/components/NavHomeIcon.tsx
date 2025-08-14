@@ -16,7 +16,6 @@ export default function NavHomeIcon() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Me' },
     { href: '/projects', label: 'Projects' },
-    { href: '/templates', label: 'Website Templates' },
     { href: '/chat', label: 'Ask Me Anything [AI]' },
   ]), []);
 

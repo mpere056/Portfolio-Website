@@ -15,6 +15,7 @@ export const addonImportMap: Record<string, () => Promise<{ default: ComponentTy
   keyboard: () => import('./keyboard/KeyboardAddon'),
   basketball: () => import('./basketball/BasketballAddon'),
   soccer: () => import('./soccer/SoccerAddon'),
+  target: () => import('./target/TargetAddon'),
 };
 
 

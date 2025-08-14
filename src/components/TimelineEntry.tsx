@@ -56,7 +56,8 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
   };
 
   const hasAddon = Boolean(entry.addon);
-  const useSideLayout = hasAddon && (entry.position !== 'center');
+  const hasMedia = Boolean(entry.media);
+  const useSideLayout = (hasAddon || hasMedia) && (entry.position !== 'center');
 
   return (
     <section ref={ref} className={clsx("min-h-screen w-full flex flex-col justify-center snap-center md:snap-start font-sans p-8 md:p-12", alignmentClasses[entry.position || 'left'])}>
@@ -87,13 +88,13 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
           <motion.div variants={itemVariants} className={clsx("prose prose-invert md:prose-lg text-gray-400", proseAlignmentClasses[entry.position || 'left'])}>
             {entry.body}
           </motion.div>
-          {entry.media && (
+          {entry.media && !useSideLayout && (
             <motion.div variants={itemVariants} className="mt-8">
               {entry.media.type === 'image' && (
                 <motion.img
                   src={entry.media.src}
                   alt={entry.headline}
-                  className="w-full h-auto rounded-lg shadow-2xl"
+                  className="w-full max-w-md h-auto rounded-lg shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 />
               )}
@@ -101,14 +102,26 @@ export default function TimelineEntry({ entry, index }: TimelineEntryProps) {
           )}
         </motion.div>
 
-        {inView && entry.addon && (
+        {inView && (entry.addon || (entry.media && useSideLayout)) && (
           <div className={clsx(
             'w-full',
             useSideLayout
-              ? 'md:self-start md:shrink-0 md:w-[560px] lg:w-[640px]'
+              ? 'md:self-start md:shrink-0 md:w-[400px] lg:w-[640px]'
               : 'max-w-[640px] mx-auto'
           )}>
-            <AddonRenderer addonKey={entry.addon} entry={entry} />
+            {entry.addon && <AddonRenderer addonKey={entry.addon} entry={entry} />}
+            {entry.media && useSideLayout && (
+              <motion.div variants={itemVariants} className="mt-8 md:mt-0">
+                {entry.media.type === 'image' && (
+                  <motion.img
+                    src={entry.media.src}
+                    alt={entry.headline}
+                    className="w-full h-auto rounded-lg shadow-2xl"
+                    whileHover={{ scale: 1.02 }}
+                  />
+                )}
+              </motion.div>
+            )}
           </div>
         )}
       </div>
