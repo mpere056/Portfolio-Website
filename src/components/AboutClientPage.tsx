@@ -32,7 +32,7 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
         <TimelineIndicator entries={entries} />
       </div>
       
-      <div ref={scrollRef} className="absolute inset-0 md:left-[6rem] md:w-[calc(100%-6rem)] h-screen overflow-y-scroll snap-y snap-proximity md:snap-mandatory">
+      <div ref={scrollRef} className="absolute inset-0 md:left-[6rem] md:w-[calc(100%-6rem)] h-screen overflow-y-scroll snap-y snap-proximity md:snap-mandatory scrollbar-about">
         {entries.map((entry: TimelineEntryType, index) => (
           <TimelineEntry key={entry.id} entry={entry} index={index} />
         ))}

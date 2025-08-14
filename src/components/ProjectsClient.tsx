@@ -167,7 +167,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   }, [isDesktop]);
 
   return (
-    <div ref={containerRef} className="relative h-screen overflow-y-scroll projects-bg bg-[#0a0a12] text-white">
+    <div ref={containerRef} className="relative h-screen overflow-y-scroll projects-bg bg-[#0a0a12] text-white scrollbar-projects">
       <ProjectsAudioVisualizer />
       <header className="relative z-10 min-h-screen flex flex-col justify-center items-center mb-16 md:mb-32 text-center" data-snap-section>
         <h1 className="text-4xl md:text-6xl font-serif mb-2 md:mb-3">Projects</h1>

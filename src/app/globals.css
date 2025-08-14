@@ -44,6 +44,44 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  /* Custom scrollbars */
+  .scrollbar-projects {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(70, 4, 156, 0.493) transparent; /* indigo-ish thumb */
+  }
+  .scrollbar-projects::-webkit-scrollbar {
+    width: 10px;
+  }
+  .scrollbar-projects::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-projects::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(99,102,241,0.65), rgba(56,189,248,0.55));
+    border-radius: 9999px;
+    border: 2px solid rgba(10,10,18,0.85); /* blends with bg */
+  }
+  .scrollbar-projects::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(129,140,248,0.85), rgba(56,189,248,0.8));
+  }
+
+  .scrollbar-about {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(148,163,184,0.6) transparent; /* slate thumb */
+  }
+  .scrollbar-about::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-about::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-about::-webkit-scrollbar-thumb {
+    background: rgba(148,163,184,0.55);
+    border-radius: 9999px;
+    border: 2px solid rgba(7,7,13,0.85);
+  }
+  .scrollbar-about::-webkit-scrollbar-thumb:hover {
+    background: rgba(203,213,225,0.8);
+  }
   /* Projects page background */
   .projects-bg {
     background-image:
