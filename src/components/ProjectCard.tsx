@@ -41,7 +41,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <motion.button
       onClick={scrollToProject}
-      className="group w-full aspect-[4/5] sm:aspect-[5/6] bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] cursor-pointer p-3 sm:p-4 flex flex-col gap-3 border border-white/10 hover:border-white/20 transition-colors"
+      className="group w-full min-h-[320px] sm:min-h-[340px] bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] cursor-pointer p-3 sm:p-4 flex flex-col gap-3 border border-white/10 hover:border-white/20 transition-colors"
       whileHover={{ scale: 1.03, rotateX: -6, rotateY: 6, boxShadow: hoverShadow }}
       style={{ transformStyle: 'preserve-3d', boxShadow: baseShadow }}
     >
