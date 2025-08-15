@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { copyToClipboard } from '@/lib/clipboard';
 
@@ -13,75 +14,120 @@ const contactDetails = [
 export default function HireMeDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // Body scroll lock while open
+  useEffect(() => {
+    if (!mounted) return;
+    const prev = document.body.style.overflow;
+    if (isOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = prev;
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isOpen, mounted]);
+
+  // ESC to close
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen]);
 
   const handleCopy = async (label: string, value: string) => {
-    const success = await copyToClipboard(value);
-    if (success) {
-      setCopiedStates((prev) => ({ ...Object.fromEntries(Object.keys(prev).map(k => [k, false])), [label]: true }));
-      setTimeout(() => {
-        setCopiedStates((prev) => ({ ...prev, [label]: false }));
-      }, 2000);
-    }
+    const ok = await copyToClipboard(value);
+    if (!ok) return;
+    // reset all to false, then set the current one to true for 2s
+    setCopiedStates({}); // fast reset
+    setCopiedStates((prev) => ({ ...prev, [label]: true }));
+    setTimeout(() => {
+      setCopiedStates((prev) => ({ ...prev, [label]: false }));
+    }, 2000);
   };
+
+  const overlay = (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          key="contact-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          // Escape all stacking contexts by being rendered under <body> and very high z
+          className="fixed inset-0 z-[2147483647] flex items-center justify-center bg-black/60"
+          onClick={() => setIsOpen(false)}
+        >
+          <motion.div
+            key="sheet"
+            initial={{ y: 24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 24, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+            className="w-11/12 max-w-md bg-gray-900 text-white p-8 rounded-2xl border border-gray-700 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Contact Me"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <h2 className="font-serif text-3xl font-medium">Contact Me</h2>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 focus:outline-none"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <p className="text-gray-400 mb-6">Get in touch via email or social media.</p>
+            <div className="space-y-4">
+              {contactDetails.map(({ label, value }) => (
+                <div key={label} className="flex justify-between items-center bg-white/5 p-4 rounded-xl">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-300">{label}</p>
+                    <p className="text-gray-400 truncate">{value}</p>
+                  </div>
+                  <motion.button
+                    type="button"
+                    onClick={() => handleCopy(label, value)}
+                    className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium hover:bg-white/20"
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    {copiedStates[label] ? (
+                      <span className="inline-flex items-center gap-2">✔ <span>Copied</span></span>
+                    ) : (
+                      'Copy'
+                    )}
+                  </motion.button>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   return (
     <>
       <motion.button
+        type="button"
         onClick={() => setIsOpen(true)}
-        className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold shadow-lg border border-white/20"
-        whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+        className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold shadow-lg border border-white/20 hover:bg-white/20"
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         Contact Me
       </motion.button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-40 flex items-end"
-            onClick={() => setIsOpen(false)}
-          >
-            <motion.div
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              exit={{ y: '100%' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-              className="w-full bg-gray-900 text-white p-8 rounded-t-3xl border-t border-gray-700"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 className="font-serif text-3xl font-medium mb-2">Contact Me</h2>
-              <p className="text-gray-400 mb-8">Get in touch via email or social media.</p>
-              <div className="space-y-4">
-                {contactDetails.map(({ label, value }) => (
-                  <div key={label} className="flex justify-between items-center bg-white/5 p-4 rounded-xl">
-                    <div>
-                      <p className="font-semibold text-gray-300">{label}</p>
-                      <p className="text-gray-400">{value}</p>
-                    </div>
-                    <motion.button
-                      onClick={() => handleCopy(label, value)}
-                      className="px-4 py-2 bg-white/10 rounded-lg text-sm font-medium"
-                      whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {copiedStates[label] ? (
-                        <div className="flex items-center space-x-2">
-                          <span>✔</span>
-                          <span>Copied</span>
-                        </div>
-                      ) : (
-                        'Copy'
-                      )}
-                    </motion.button>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+      {/* Portal ensures we escape any parent stacking contexts */}
+      {mounted ? createPortal(overlay, document.body) : null}
     </>
   );
 }
