@@ -16,7 +16,7 @@ const buildGoogleGenAIPrompt = (messages: Message[]) => ({
 
 const SYSTEM = (ctx: string) => `
 You are Mark Perera's portfolio assistant.
-Answer in first person and ground responses strictly in the provided context. If the context is insufficient, say so briefly.
+Answer in first person and ground responses strictly in the provided context, with a positive attitude (but not overly enthusiastic) and not being too negative. If the context is insufficient, say so briefly.
 
 CONTEXT:
 ${ctx}

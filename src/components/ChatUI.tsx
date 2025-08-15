@@ -2,6 +2,7 @@
 
 import { useChat } from 'ai/react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LoadingDots from './LoadingDots'; // Import the new component
 
 const samplePrompts = [
   'Tell me about your journey into coding.',
@@ -11,7 +12,7 @@ const samplePrompts = [
 ];
 
 export default function ChatUI() {
-  const { messages, input, setInput, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat();
 
   const handlePromptClick = (prompt: string) => {
     setInput(prompt);
@@ -20,7 +21,7 @@ export default function ChatUI() {
   return (
     <div className="flex flex-col h-full w-full max-w-4xl mx-auto">
       <div className="flex-1 overflow-auto px-3 sm:px-4 py-2">
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {messages.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -33,29 +34,44 @@ export default function ChatUI() {
               </div>
             </motion.div>
           ) : (
-            messages.map(m => (
-              <motion.div
-                key={m.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex mb-3 sm:mb-4 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`p-3 sm:p-4 rounded-2xl max-w-[85%] sm:max-w-lg ${
-                    m.role === 'user' 
-                      ? 'bg-blue-500 text-white' 
-                      : 'bg-gray-700 text-white'
-                  }`}
+            <>
+              {messages.map(m => (
+                <motion.div
+                  key={m.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex mb-3 sm:mb-4 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <p className="font-bold mb-1 text-sm sm:text-base">
-                    {m.role === 'user' ? 'You' : 'Assistant'}
-                  </p>
-                  <p className="whitespace-pre-wrap text-sm sm:text-base leading-relaxed">
-                    {m.content}
-                  </p>
-                </div>
-              </motion.div>
-            ))
+                  <div
+                    className={`p-3 sm:p-4 rounded-2xl max-w-[85%] sm:max-w-lg ${
+                      m.role === 'user' 
+                        ? 'bg-blue-500 text-white' 
+                        : 'bg-gray-700 text-white'
+                    }`}
+                  >
+                    <p className="font-bold mb-1 text-sm sm:text-base">
+                      {m.role === 'user' ? 'You' : 'Assistant'}
+                    </p>
+                    <p className="whitespace-pre-wrap text-sm sm:text-base leading-relaxed">
+                      {m.content}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+              {/* Add loading indicator when the AI is thinking */}
+              {isLoading && messages[messages.length - 1]?.role === 'user' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex mb-3 sm:mb-4 justify-start"
+                >
+                  <div className="p-3 sm:p-4 rounded-2xl max-w-[85%] sm:max-w-lg bg-gray-700 text-white">
+                    <p className="font-bold mb-1 text-sm sm:text-base">Assistant</p>
+                    <LoadingDots />
+                  </div>
+                </motion.div>
+              )}
+            </>
           )}
         </AnimatePresence>
       </div>
