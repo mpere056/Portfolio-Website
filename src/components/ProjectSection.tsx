@@ -205,7 +205,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
                   </div>
 
                   {/* Sticky header with close */}
-                  <div className="sticky top-0 -mx-6 md:-mx-10 px-6 md:px-10 py-3 bg-black/40 backdrop-blur border-b border-white/10 z-10 flex justify-end">
+                  <div className="absolute top-0 right-0 p-6 md:p-10 z-10 hidden sm:flex">
                     <button
                       className="text-xs md:text-sm uppercase tracking-widest text-white/80 hover:text-white px-2 py-0.5 rounded border border-white/15 bg-white/5 hover:bg-white/10"
                       onClick={handleClose}

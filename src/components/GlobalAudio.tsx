@@ -297,7 +297,7 @@ export default function GlobalAudio() {
     <>
       {showPlayPrompt && (
         <div 
-          className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+          className="fixed inset-0 z-[1000] bg-black/30 backdrop-blur-sm flex items-center justify-center cursor-pointer"
           onClick={handlePlayPromptClick}
         >
           <div className="bg-black/70 text-white px-8 py-6 rounded-2xl backdrop-blur-xl border border-white/10 text-center shadow-2xl">

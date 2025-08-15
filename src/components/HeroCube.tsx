@@ -15,7 +15,7 @@ extend({ RoundedBoxGeometry })
 
 export default function HeroCube() {
   return (
-    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw' }}>
+    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw', zIndex: 0 }}>
       <ResponsiveCamera />
       <color attach="background" args={['#07070d']} />
       {/* Subtle star field for space vibe */}
