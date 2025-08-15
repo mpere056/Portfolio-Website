@@ -84,20 +84,30 @@ export default function GlobalAudio() {
       console.log('Audio state check:', state);
       
       const timeSinceRouteChange = Date.now() - routeChangeTimeRef.current;
-      const shouldShowPrompt = timeSinceRouteChange >= 3000; // Wait at least 3 seconds
+      const shouldShowPrompt = timeSinceRouteChange >= 2000; // Wait at least 2 seconds
       
       if (!shouldShowPrompt) {
-        console.log(`Waiting ${3000 - timeSinceRouteChange}ms more before checking if prompt needed`);
+        console.log(`Waiting ${2000 - timeSinceRouteChange}ms more before checking if prompt needed`);
         setShowPlayPrompt(false);
         return;
       }
       
       if (audio.paused) {
-        console.log('Audio is paused after 3s grace period, showing play prompt');
+        console.log('Audio is paused after 2s grace period, showing play prompt');
         setShowPlayPrompt(true);
       } else if (audio.currentTime === 0) {
-        console.log('Audio claims to be playing but currentTime is 0 after 3s grace period - likely stuck, showing prompt');
-        setShowPlayPrompt(true);
+        console.log('Audio claims to be playing but currentTime is 0 after 2s grace period - likely stuck.');
+        // Add an additional 1-second check before showing the prompt for stuck audio
+        setTimeout(() => {
+          if (audio.currentTime === 0 && !audio.paused) {
+            console.log('Audio still stuck at currentTime 0 after 1-second recheck, showing prompt');
+            setShowPlayPrompt(true);
+          } else if (audio.currentTime > 0) {
+            console.log('Audio started progressing during 1-second recheck, hiding prompt');
+            setShowPlayPrompt(false);
+            setNeedsUserUnmute(false);
+          }
+        }, 1000); // 1-second additional delay
       } else {
         console.log('Audio is playing properly, hiding play prompt');
         setShowPlayPrompt(false);
@@ -146,11 +156,11 @@ export default function GlobalAudio() {
     // Initial check with delay to ensure audio element is ready
     setTimeout(checkPlayState, 100);
     
-    // Set up a timer to check after the 3-second grace period
+    // Set up a timer to check after the 2-second grace period
     const graceTimer = setTimeout(() => {
-      console.log('3-second grace period ended, checking audio state');
+      console.log('2-second grace period ended, checking audio state');
       checkPlayState();
-    }, 3000);
+    }, 2000);
 
     return () => {
       audio.removeEventListener('play', onPlay);
@@ -220,10 +230,10 @@ export default function GlobalAudio() {
         setNeedsUserUnmute(false);
         if (!audio.muted) { try { localStorage.setItem('siteAudioConsent', 'true'); } catch {} }
         
-        // Check if audio is actually progressing after delays, but respect 3s grace period
+        // Check if audio is actually progressing after delays, but respect 2s grace period
         setTimeout(() => {
           const timeSinceRouteChange = Date.now() - routeChangeTimeRef.current;
-          if (timeSinceRouteChange < 3000) return; // Respect 3s grace period
+          if (timeSinceRouteChange < 2000) return; // Respect 2s grace period
           
           if (audio.paused) {
             console.log('Audio was paused shortly after play() succeeded - likely autoplay restriction');
@@ -232,25 +242,25 @@ export default function GlobalAudio() {
             console.log('Audio claims to be playing but currentTime is still 0 after grace period - likely resource restriction');
             setShowPlayPrompt(true);
           }
-        }, Math.max(800, 3000 - (Date.now() - routeChangeTimeRef.current)));
+        }, Math.max(800, 2000 - (Date.now() - routeChangeTimeRef.current)));
         
         // Final check after even longer delay
         setTimeout(() => {
           const timeSinceRouteChange = Date.now() - routeChangeTimeRef.current;
-          if (timeSinceRouteChange < 3000) return; // Respect 3s grace period
+          if (timeSinceRouteChange < 2000) return; // Respect 2s grace period
           
           if (!audio.paused && audio.currentTime === 0) {
             console.log('Audio still not progressing after grace period - definitely stuck, showing prompt');
             setShowPlayPrompt(true);
           }
-        }, Math.max(1500, 3000 - (Date.now() - routeChangeTimeRef.current)));
+        }, Math.max(1500, 2000 - (Date.now() - routeChangeTimeRef.current)));
       }).catch((error) => {
         console.log('Audio play failed in attemptPlay:', error);
         // Do not auto-mute; keep unmuted preference and wait for user gesture
         setNeedsUserUnmute(true);
         // Don't show prompt immediately - wait for grace period
         const timeSinceRouteChange = Date.now() - routeChangeTimeRef.current;
-        if (timeSinceRouteChange >= 3000) {
+        if (timeSinceRouteChange >= 2000) {
           setShowPlayPrompt(true);
         }
       });
