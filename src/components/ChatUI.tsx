@@ -4,9 +4,9 @@ import { useChat } from 'ai/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const samplePrompts = [
-  'What are your most impressive projects?',
-  'How did you get a $100k offer for a mobile app?',
   'Tell me about your journey into coding.',
+  'Did you have setbacks during university?',
+  'How did you get a $100k offer for a mobile app?',
   'How does this AI chatbot work?'
 ];
 
