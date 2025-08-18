@@ -137,7 +137,7 @@ export default function ProjectSection({ project }: ProjectSectionProps) {
         ref={wrapperRef}
         onClick={handleToggleExpand}
         animate={{ y: isExpanded ? 0 : -70, scale: isExpanded ? fullScale : 1, filter: isExpanded ? 'blur(1px)' : 'blur(0px)' }}
-        transition={{ duration: 0.9, ease: [0.5, 1, 0.2, 1] }}
+        transition={{ duration: 0.9, ease: [0.1, 0.5, 0.2, 1] }}
       >
         {project.heroModel ? (
           <Suspense fallback={<div className="text-white w-full h-full flex items-center justify-center">Loading 3D model...</div>}>
