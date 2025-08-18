@@ -13,8 +13,7 @@ export default function LoadingOverlay({ label = 'Loading...' }: LoadingOverlayP
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
     >
       <div className="flex flex-col items-center gap-3">
-        <div className="h-10 w-10 rounded-full border-2 border-white/20 border-t-white animate-spin" />
-        <p className="text-white/80 font-medium">{label}</p>
+        <p className="text-white/80 font-medium animate-pulse text-5xl">{label}</p>
       </div>
     </div>
   );
