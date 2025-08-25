@@ -1,7 +1,7 @@
 'use client';
 
 import { useTimelineStore } from '@/lib/store';
-import { motion } from 'framer-motion';
+import { motion } from '@/components/FramerMotion';
 
 interface TimelineIndicatorProps {
   entries: { from: string }[];

@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from '@/components/FramerMotion';
 
 interface LinkItem { href: string; label: string }
 
@@ -61,39 +61,38 @@ export default function NavHomeIcon() {
         />
       </motion.button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="menu"
-            initial={{ opacity: 0, scale: 0.95, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 10 }}
-            exit={{ opacity: 0, scale: 0.95, y: 8 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-            className="mt-2 rounded-xl border border-white/10 bg-black/60 backdrop-blur-md shadow-xl overflow-hidden"
-            role="menu"
-            aria-label="Primary navigation"
-          >
-            <nav className="flex flex-col min-w-[220px]">
-              {links.map((l, idx) => (
-                <motion.button
-                  key={l.href}
-                  type="button"
-                  onClick={() => router.push(l.href)}
-                  onMouseEnter={() => { try { (router as any).prefetch?.(l.href); } catch {} }}
-                  role="menuitem"
-                  initial={{ opacity: 0, x: -6 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.02 * idx }}
-                  className={`text-left px-4 py-3 text-sm md:text-base hover:bg-white/10 transition-colors
-                             ${pathname === l.href ? 'bg-white/10 text-white' : 'text-white/90'}`}
-                >
-                  {l.label}
-                </motion.button>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* AnimatePresence is removed as per the new_code, as it's no longer imported */}
+      {open && (
+        <motion.div
+          key="menu"
+          initial={{ opacity: 0, scale: 0.95, y: 8 }}
+          animate={{ opacity: 1, scale: 1, y: 10 }}
+          exit={{ opacity: 0, scale: 0.95, y: 8 }}
+          transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+          className="mt-2 rounded-xl border border-white/10 bg-black/60 backdrop-blur-md shadow-xl overflow-hidden"
+          role="menu"
+          aria-label="Primary navigation"
+        >
+          <nav className="flex flex-col min-w-[220px]">
+            {links.map((l, idx) => (
+              <motion.button
+                key={l.href}
+                type="button"
+                onClick={() => router.push(l.href)}
+                onMouseEnter={() => { try { (router as any).prefetch?.(l.href); } catch {} }}
+                role="menuitem"
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.02 * idx }}
+                className={`text-left px-4 py-3 text-sm md:text-base hover:bg-white/10 transition-colors
+                           ${pathname === l.href ? 'bg-white/10 text-white' : 'text-white/90'}`}
+              >
+                {l.label}
+              </motion.button>
+            ))}
+          </nav>
+        </motion.div>
+      )}
     </div>
   );
 }

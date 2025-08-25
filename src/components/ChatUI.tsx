@@ -1,7 +1,7 @@
 'use client';
 
 import { useChat } from 'ai/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/components/FramerMotion';
 import LoadingDots from './LoadingDots'; // Import the new component
 
 const samplePrompts = [

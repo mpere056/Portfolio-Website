@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import * as THREE from 'three'
 import { useRef, useMemo, useEffect } from 'react'
@@ -6,7 +6,7 @@ import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
 import { RoundedBoxGeometry } from 'three-stdlib'
-import { motion } from "framer-motion";
+import { motion } from '@/components/FramerMotion';
 import { easing } from 'maath'
 import NavPointer from './NavPointer';
 import { BufferGeometry } from 'three';

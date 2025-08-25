@@ -1,4 +1,8 @@
-import { motion } from 'framer-motion';
+"use client";
+
+import { useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { motion } from '@/components/FramerMotion';
 
 interface Props { variant: 'landing' }
 

@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, Suspense, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from '@/components/FramerMotion';
 import { Project } from '@/lib/projects';
 import ProjectModel from '@/components/ProjectModel';
 import Image from 'next/image';

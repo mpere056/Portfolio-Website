@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion } from '@/components/FramerMotion';
 import { useEffect, useState } from 'react';
 import { Project } from '@/lib/projects';
 import Image from 'next/image';

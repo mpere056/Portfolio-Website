@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+"use client";
+
+import { motion } from '@/components/FramerMotion';
 
 export default function LoadingDots() {
   const dotVariants = {
