@@ -4,7 +4,7 @@ import HireMeDrawer from '@/components/HireMeDrawer';
 import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import TimelineEntry from '@/components/TimelineEntry';
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useMemo, useRef } from 'react';
+import { Suspense, useMemo, useRef, useEffect } from 'react';
 import Background from '@/components/Background';
 import TimelineIndicator from './TimelineIndicator';
 import SmoothSnapScroll from './SmoothSnapScroll';
@@ -13,12 +13,101 @@ interface AboutClientPageProps {
   entries: TimelineEntryType[];
 }
 
+function easeInOutQuad(t: number): number {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
 export default function AboutClientPage({ entries }: AboutClientPageProps) {
   const colors = useMemo(() => entries.map(entry => entry.color as string | undefined), [entries]);
   const textures = useMemo(() => entries.map(entry => entry.texture as string | undefined), [entries]);
   const opacities = useMemo(() => entries.map(entry => entry.textureOpacity as number | undefined), [entries]);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const isAnimating = useRef(false);
+  const downSfxRef = useRef<HTMLAudioElement | null>(null);
+  const upSfxRef = useRef<HTMLAudioElement | null>(null);
+  const durationMs = 1500;
+
+  useEffect(() => {
+    // Initialize audio effects once on mount
+    if (!downSfxRef.current) {
+      try {
+        const el = new Audio('/audio/scroll.mp3');
+        el.preload = 'auto';
+        el.volume = 0.35;
+        downSfxRef.current = el;
+      } catch {}
+    }
+    if (!upSfxRef.current) {
+      try {
+        const el = new Audio('/audio/scroll_up.mp3');
+        el.preload = 'auto';
+        el.volume = 0.35;
+        upSfxRef.current = el;
+      } catch {}
+    }
+  }, []);
+
+  function playSfx(direction: number) {
+    const primary = direction > 0 ? downSfxRef.current : upSfxRef.current;
+    const fallback = downSfxRef.current;
+    const el = primary || fallback;
+    if (!el) return;
+    try {
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    } catch {}
+  }
+
+  const animateTo = (targetTop: number, direction: number) => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    playSfx(direction);
+
+    const root = scrollRef.current;
+    if (!root) {
+      isAnimating.current = false;
+      return;
+    }
+    const startTop = root.scrollTop;
+    const delta = targetTop - startTop;
+    const startTime = performance.now();
+    const prevSnap = (root as HTMLElement).style.scrollSnapType;
+    (root as HTMLElement).style.scrollSnapType = 'none';
+
+    function step(now: number) {
+      const elapsed = now - startTime;
+      const t = Math.min(1, elapsed / durationMs);
+      const eased = easeInOutQuad(t);
+      const curRoot = scrollRef.current;
+      if (!curRoot) {
+        isAnimating.current = false;
+        return;
+      }
+      curRoot.scrollTop = startTop + delta * eased;
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        (curRoot as HTMLElement).style.scrollSnapType = prevSnap;
+        isAnimating.current = false;
+      }
+    }
+
+    requestAnimationFrame(step);
+  };
+
+  const handleYearClick = (index: number) => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const sections = Array.from(scrollContainer.querySelectorAll('section')) as HTMLElement[];
+    if (sections[index]) {
+      const currentScrollTop = scrollContainer.scrollTop;
+      const targetScrollTop = sections[index].offsetTop;
+      const direction = targetScrollTop > currentScrollTop ? 1 : -1;
+      animateTo(targetScrollTop, direction);
+    }
+  };
 
   return (
     <div className="h-screen w-screen relative">
@@ -29,10 +118,10 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
       </Suspense>
 
       <div className="hidden md:block">
-        <TimelineIndicator entries={entries} />
+        <TimelineIndicator entries={entries} onYearClick={handleYearClick} />
       </div>
       
-      <div ref={scrollRef} className="absolute inset-0 md:left-[6rem] md:w-[calc(100%-6rem)] h-screen overflow-y-scroll snap-y snap-proximity md:snap-mandatory scrollbar-about">
+      <div ref={scrollRef} className="absolute inset-0 md:left-[12rem] md:w-[calc(100%-12rem)] h-screen overflow-y-scroll snap-y snap-proximity md:snap-mandatory scrollbar-about">
         {entries.map((entry: TimelineEntryType, index) => (
           <TimelineEntry key={entry.id} entry={entry} index={index} />
         ))}

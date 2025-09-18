@@ -2,38 +2,58 @@
 
 import { useTimelineStore } from '@/lib/store';
 import { motion } from '@/components/FramerMotion';
+import clsx from 'clsx';
 
 interface TimelineIndicatorProps {
-  entries: { from: string }[];
+  entries: { from: string, id: string }[];
+  onYearClick: (index: number) => void;
 }
 
-export default function TimelineIndicator({ entries }: TimelineIndicatorProps) {
+export default function TimelineIndicator({ entries, onYearClick }: TimelineIndicatorProps) {
   const activeSection = useTimelineStore((state) => state.activeSection);
-  const activeYear = entries[activeSection]?.from || '';
 
   return (
-    <div className="absolute top-0 left-0 h-full w-24 flex justify-center">
-      <div className="relative h-full w-px bg-gray-700">
+    <div className="absolute top-0 left-0 h-full w-48 flex justify-center">
+      <div className="relative h-full w-full">
+        {/* Line */}
+        <div className="absolute left-6 h-full w-px bg-gray-700" />
+
+        {/* Ball */}
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 flex items-center"
-          style={{ top: '10%' }}
+          className="absolute left-6 -translate-x-1/2 z-10"
           animate={{
-            top: `${10 + (activeSection / (entries.length - 1)) * 80}%`,
+            top: `calc(${10 + (activeSection / (entries.length - 1)) * 80}% + 18px)`,
           }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <div className="w-3 h-3 bg-white rounded-full" />
-          <motion.div
-            key={activeYear}
-            className="absolute left-6 text-white font-serif text-xl whitespace-nowrap"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {activeYear}
-          </motion.div>
         </motion.div>
+
+        {/* Years */}
+        <div className="absolute left-6 w-full z-20" style={{ height: '100%' }}>
+          {entries.map((entry, index) => (
+            <button
+              key={entry.id}
+              onClick={() => onYearClick(index)}
+              className="absolute border-0 bg-transparent text-left font-serif group py-2 pl-5 pr-8 hover:bg-gray-800/20 transition-colors z-30"
+              style={{
+                top: `calc(${10 + (index / (entries.length - 1)) * 80}% + 20px)`,
+                transform: 'translateY(-50%)',
+              }}
+            >
+              <div
+                className={clsx(
+                  'text-lg whitespace-nowrap transition-all duration-300 ease-in-out',
+                  activeSection === index
+                    ? 'text-white font-bold opacity-100'
+                    : 'text-gray-400 group-hover:text-white opacity-80 group-hover:opacity-100'
+                )}
+              >
+                {entry.from} - {entry.id}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
