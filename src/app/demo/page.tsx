@@ -40,7 +40,7 @@ function useNormalized(scene: THREE.Object3D | undefined, targetMax = 1.6): Norm
 }
 
 interface GuestItemProps {
-  modelName: 'kitsune' | 'dino' | 'sudoku';
+  modelName: 'kitsune' | 'dino' | 'discord_bot';
   parentMaxDim: number; // life_app local max dimension (pre-scale)
   position: [number, number, number]; // in life_app local space (pre-scale)
   rotation?: [number, number, number];
@@ -89,7 +89,7 @@ function GuestItem({ modelName, parentMaxDim, position, rotation = [0, 0, 0], is
   );
 }
 
-type ActiveKey = 'life_app' | 'kitsune' | 'dino' | 'sudoku';
+type ActiveKey = 'life_app' | 'kitsune' | 'dino' | 'discord_bot';
 
 function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveKey; clicked: string | null; onClick: (name: string) => void }) {
   const { scene: lifeScene } = useGLTF('/models/life_app_scene/scene.gltf');
@@ -109,7 +109,7 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
   // Refs for guests to allow camera focusing
   const kitsuneRef = useRef<THREE.Group>(null);
   const dinoRef = useRef<THREE.Group>(null);
-  const sudokuRef = useRef<THREE.Group>(null);
+  const discordBotRef = useRef<THREE.Group>(null);
 
   // Resolve anchors to host-local coordinates
   useEffect(() => {
@@ -146,7 +146,12 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
   const floorY = Math.max(0.02 * lifeMax, 0.02);
   const fallbackKitsune: [number, number, number] = [lifeSize.x * -0.08, floorY, lifeSize.z * 0.04];
   const fallbackDino: [number, number, number] = [lifeSize.x * 0.2, floorY, lifeSize.z * -0.02];
-  const fallbackSudoku: [number, number, number] = [lifeSize.x * 0.42, floorY, lifeSize.z * 0.02];
+  const fallbackDiscordBot: [number, number, number] = [lifeSize.x * 0.42, floorY, lifeSize.z * 0.02];
+
+  const getPosition = (anchor: THREE.Vector3 | null, fallback: [number, number, number], offset: { x?: number; y?: number; z?: number } = {}): [number, number, number] => {
+    const base = anchor ? [anchor.x, anchor.y, anchor.z] : fallback;
+    return [base[0] + (offset.x ?? 0), base[1] + (offset.y ?? 0), base[2] + (offset.z ?? 0)];
+  };
 
   return (
     <group
@@ -169,8 +174,8 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
       <GuestItem
         modelName="kitsune"
         parentMaxDim={lifeMax}
-        position={(anchorBath ? [anchorBath.x, anchorBath.y, anchorBath.z] : fallbackKitsune)}
-        rotation={[0, Math.PI * 0.2, 0]}
+        position={getPosition(anchorBath, fallbackKitsune, { y: 0.06 })}
+        rotation={[0, Math.PI * 0.75, 0]}
         isSelected={clicked === 'kitsune'}
         onClick={onClick}
         groupRef={kitsuneRef}
@@ -178,7 +183,7 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
       <GuestItem
         modelName="dino"
         parentMaxDim={lifeMax}
-        position={(anchorOpen ? [anchorOpen.x, anchorOpen.y, anchorOpen.z] : fallbackDino)}
+        position={getPosition(anchorOpen, fallbackDino)}
         rotation={[0, -Math.PI * 0.3, 0]}
         isSelected={clicked === 'dino'}
         onClick={onClick}
@@ -186,13 +191,13 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
         groupRef={dinoRef}
       />
       <GuestItem
-        modelName="sudoku"
+        modelName="discord_bot"
         parentMaxDim={lifeMax}
-        position={(anchorDoor ? [anchorDoor.x, anchorDoor.y, anchorDoor.z] : fallbackSudoku)}
+        position={getPosition(anchorDoor, fallbackDiscordBot, { x: 0.15 })}
         rotation={[0, Math.PI * 0.95, 0]}
-        isSelected={clicked === 'sudoku'}
+        isSelected={clicked === 'discord_bot'}
         onClick={onClick}
-        groupRef={sudokuRef}
+        groupRef={discordBotRef}
       />
 
       <FocusRig
@@ -200,22 +205,22 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
         lifeRef={lifeGltfRef}
         kitsuneRef={kitsuneRef}
         dinoRef={dinoRef}
-        sudokuRef={sudokuRef}
+        discordBotRef={discordBotRef}
       />
     </group>
   );
 }
 
-function FocusRig({ active, lifeRef, kitsuneRef, dinoRef, sudokuRef }: { active: ActiveKey; lifeRef: React.RefObject<THREE.Group>; kitsuneRef: React.RefObject<THREE.Group>; dinoRef: React.RefObject<THREE.Group>; sudokuRef: React.RefObject<THREE.Group> }) {
+function FocusRig({ active, lifeRef, kitsuneRef, dinoRef, discordBotRef }: { active: ActiveKey; lifeRef: React.RefObject<THREE.Group>; kitsuneRef: React.RefObject<THREE.Group>; dinoRef: React.RefObject<THREE.Group>; discordBotRef: React.RefObject<THREE.Group> }) {
   const { camera } = useThree();
-  const dir = useMemo(() => new THREE.Vector3(1, 0.32, 1).normalize(), []);
+  const dir = useMemo(() => new THREE.Vector3(1, 0.32, -1).normalize(), []);
   const tmpBox = useMemo(() => new THREE.Box3(), []);
   const tmpSphere = useMemo(() => new THREE.Sphere(), []);
   const target = useRef(new THREE.Vector3());
   const desired = useRef(new THREE.Vector3());
 
   useFrame((state, dt) => {
-    const obj = active === 'life_app' ? lifeRef.current : active === 'kitsune' ? kitsuneRef.current : active === 'dino' ? dinoRef.current : sudokuRef.current;
+    const obj = active === 'life_app' ? lifeRef.current : active === 'kitsune' ? kitsuneRef.current : active === 'dino' ? dinoRef.current : discordBotRef.current;
     if (!obj) return;
     tmpBox.setFromObject(obj);
     tmpBox.getBoundingSphere(tmpSphere);
@@ -283,7 +288,7 @@ function TimelineNav({ active, onJump }: { active: ActiveKey; onJump: (key: Acti
     { key: 'life_app', label: 'Life App' },
     { key: 'kitsune', label: 'Kitsune' },
     { key: 'dino', label: 'Dino' },
-    { key: 'sudoku', label: 'Sudoku' },
+    { key: 'discord_bot', label: 'Discord Bot' },
   ];
 
   return (
@@ -347,26 +352,26 @@ export default function DemoPage() {
   const { ref: sLife, inView: vLife } = useInView({ threshold: 0.7 });
   const { ref: sKitsune, inView: vKitsune } = useInView({ threshold: 0.7 });
   const { ref: sDino, inView: vDino } = useInView({ threshold: 0.7 });
-  const { ref: sSudoku, inView: vSudoku } = useInView({ threshold: 0.7 });
+  const { ref: sDiscordBot, inView: vDiscordBot } = useInView({ threshold: 0.7 });
 
   // Keep element refs to programmatically scroll
   const lifeSectionRef = useRef<HTMLDivElement | null>(null);
   const kitsuneSectionRef = useRef<HTMLDivElement | null>(null);
   const dinoSectionRef = useRef<HTMLDivElement | null>(null);
-  const sudokuSectionRef = useRef<HTMLDivElement | null>(null);
+  const discordBotSectionRef = useRef<HTMLDivElement | null>(null);
 
   // Compose refs (observer + our DOM ref)
   const setLifeRef = useCallback((node: HTMLDivElement | null) => { lifeSectionRef.current = node; (sLife as any)(node); }, [sLife]);
   const setKitsuneRef = useCallback((node: HTMLDivElement | null) => { kitsuneSectionRef.current = node; (sKitsune as any)(node); }, [sKitsune]);
   const setDinoRef = useCallback((node: HTMLDivElement | null) => { dinoSectionRef.current = node; (sDino as any)(node); }, [sDino]);
-  const setSudokuRef = useCallback((node: HTMLDivElement | null) => { sudokuSectionRef.current = node; (sSudoku as any)(node); }, [sSudoku]);
+  const setDiscordBotRef = useCallback((node: HTMLDivElement | null) => { discordBotSectionRef.current = node; (sDiscordBot as any)(node); }, [sDiscordBot]);
 
   useEffect(() => {
     if (vLife) setActive('life_app');
     else if (vKitsune) setActive('kitsune');
     else if (vDino) setActive('dino');
-    else if (vSudoku) setActive('sudoku');
-  }, [vLife, vKitsune, vDino, vSudoku]);
+    else if (vDiscordBot) setActive('discord_bot');
+  }, [vLife, vKitsune, vDino, vDiscordBot]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -393,7 +398,7 @@ export default function DemoPage() {
         ? kitsuneSectionRef.current
         : key === 'dino'
           ? dinoSectionRef.current
-          : sudokuSectionRef.current;
+          : discordBotSectionRef.current;
     node?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
@@ -474,7 +479,7 @@ export default function DemoPage() {
         <section ref={setLifeRef} style={{ height: '100dvh', scrollSnapAlign: 'start' }} />
         <section ref={setKitsuneRef} style={{ height: '100dvh', scrollSnapAlign: 'start' }} />
         <section ref={setDinoRef} style={{ height: '100dvh', scrollSnapAlign: 'start' }} />
-        <section ref={setSudokuRef} style={{ height: '100dvh', scrollSnapAlign: 'start' }} />
+        <section ref={setDiscordBotRef} style={{ height: '100dvh', scrollSnapAlign: 'start' }} />
       </div>
     </div>
   );
@@ -484,6 +489,6 @@ export default function DemoPage() {
 useGLTF.preload('/models/dino/scene.gltf');
 useGLTF.preload('/models/kitsune/scene.gltf');
 useGLTF.preload('/models/life_app_scene/scene.gltf');
-useGLTF.preload('/models/sudoku/scene.gltf');
+useGLTF.preload('/models/discord_bot/scene.gltf');
 
 
