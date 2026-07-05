@@ -1,0 +1,16 @@
+---
+slug: "why-discord-sudoku-needed-a-proxy"
+title: "Why Discord Sudoku Needed a Proxy"
+description: "A short technical note on building real-time shared puzzle state inside Discord Activity constraints."
+date: "2026-07-05"
+tags:
+  - "Discord"
+  - "Vercel"
+  - "Supabase"
+---
+
+Sudoku Together began with a small frustration: existing Sudoku activities let friends play Sudoku in Discord, but not always on the same puzzle together.
+
+The tricky part is that Discord Activities run inside a secure iframe. That is good for safety, but it means the client cannot casually connect to every external service the way a normal web app might.
+
+The solution was to route game-state reads and writes through a Vercel serverless proxy. The activity can stay within Discord's constraints while still keeping shared board state in Supabase.
