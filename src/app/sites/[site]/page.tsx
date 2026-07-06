@@ -97,7 +97,7 @@ function LifeInboxSite({ project }: { project: Project }) {
                 href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Life%20Inbox`}
                 className="rounded-md bg-[#17211c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#294236]"
               >
-                Ask Mark's AI
+                Ask Mark&apos;s AI
               </a>
               <a
                 href={`${portfolioOrigin}/projects#${project.slug}`}
@@ -286,7 +286,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
             href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Sudoku%20Together`}
             className="rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#86efac]/50 hover:text-[#bbf7d0]"
           >
-            Ask Mark's AI about it
+            Ask Mark&apos;s AI about it
           </a>
         </div>
       </section>
