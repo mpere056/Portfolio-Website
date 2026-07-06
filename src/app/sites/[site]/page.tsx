@@ -26,10 +26,8 @@ export async function generateMetadata({ params }: ProjectSitePageProps) {
     };
   }
 
-  const title = site.subdomain === 'lifeinbox' ? 'Life Inbox' : 'Sudoku Together';
-
   return {
-    title: `${title} | Mark Perera`,
+    title: `${site.name} | Mark Perera`,
     description: project.headline || project.summary,
   };
 }
@@ -42,6 +40,10 @@ export default async function ProjectSitePage({ params }: ProjectSitePageProps) 
   const project = projects.find((item) => item.slug === site.projectSlug);
   if (!project) notFound();
 
+  if (site.subdomain === 'dreamlife') {
+    return <DreamlifeSite project={project} />;
+  }
+
   if (site.subdomain === 'lifeinbox') {
     return <LifeInboxSite project={project} />;
   }
@@ -53,65 +55,50 @@ export default async function ProjectSitePage({ params }: ProjectSitePageProps) 
   notFound();
 }
 
-function LifeInboxSite({ project }: { project: Project }) {
+function DreamlifeSite({ project }: { project: Project }) {
   const loop = [
-    ['01', 'Capture', 'Drop a raw thought, ambition, worry, or plan into a space built for low-friction input.'],
-    ['02', 'Clarify', 'AI extracts the useful signal, asks better questions, and turns loose reflection into structure.'],
-    ['03', 'Commit', 'The output becomes a smaller next step, a calendar item, or a sharper vision to revisit later.'],
+    ['Vision', 'Generate three parallel futures: Current, Fallback, and Wild Card.'],
+    ['Explore', 'Capture daily entries, tomorrow plans, day reviews, and prompt responses.'],
+    ['Refine', 'Classify ideas and issues, then prototype changes with a conversational AI agent.'],
   ];
 
-  const moments = [
-    ['Morning Review', 'A short prompt turns yesterday, today, and long-range goals into one grounded direction.'],
-    ['Vision Pass', 'Big-picture writing becomes themes, tensions, and experiments instead of a forgotten note.'],
-    ['Decision Trace', 'The app keeps the reasoning visible so future plans can be adjusted instead of restarted.'],
-  ];
-
-  const metrics = [
-    ['4-tab', 'Vision, Explore, Refine, and daily action loop'],
-    ['$100k', 'Build offer generated from the prototype'],
-    ['AI-first', 'Extraction and helper pipeline built into the product'],
+  const outcomes = [
+    ['6-figure', 'Build offer created from the product prototype'],
+    ['3 paths', 'Life scenarios designed to make tradeoffs visible'],
+    ['4 tabs', 'Dashboard, Vision, Explore, and Refine mobile architecture'],
   ];
 
   return (
-    <main className="min-h-screen bg-[#f4f0e7] text-[#17211c]">
-      <section className="relative overflow-hidden border-b border-[#17211c]/10 bg-[#e6eadf]">
-        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(23,33,28,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(23,33,28,0.08)_1px,transparent_1px)] [background-size:44px_44px]" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f4f0e7] to-transparent" />
-        <SiteNav site="lifeinbox" brand="Life Inbox" textColor="text-[#17211c]" accentColor="border-[#17211c]/20" />
+    <main className="min-h-screen bg-[#fff3dc] text-[#22170d]">
+      <section className="relative overflow-hidden border-b border-[#22170d]/10 bg-[#ffdca8]">
+        <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,126,79,0.35),transparent_24%),linear-gradient(rgba(34,23,13,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,23,13,0.08)_1px,transparent_1px)] [background-size:100%_100%,100%_100%,44px_44px,44px_44px]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#fff3dc] to-transparent" />
+        <SiteNav site="dreamlife" brand="Dreamlife" textColor="text-[#22170d]" accentColor="border-[#22170d]/20" />
 
-        <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(420px,1.12fr)]">
+        <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1fr)]">
           <div>
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#47685a]">
-              AI life design workspace
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#8a4324]">
+              AI life design mobile app
             </p>
-            <h1 className="font-serif text-5xl font-semibold leading-[0.98] text-[#17211c] sm:text-6xl lg:text-7xl">
-              A calmer inbox for the life you are building.
+            <h1 className="font-serif text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+              Prototype the futures you keep daydreaming about.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#32433a]">
-              Life Inbox turns reflection, visioning, and AI-assisted planning into a practical loop: capture what matters, clarify the signal, and leave with a next step.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#5c4230]">
+              Dreamlife helps people explore possible lives through AI-generated story paths, daily reflection, highlight tagging, and conversational prototyping. This is the app that led to a six-figure build offer.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Life%20Inbox`}
-                className="rounded-md bg-[#17211c] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#294236]"
-              >
+              <a href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Dreamlife`} className="rounded-full bg-[#22170d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#3b2716]">
                 Ask Mark&apos;s AI
               </a>
-              <a
-                href="/blog"
-                className="rounded-md border border-[#17211c]/20 px-5 py-3 text-sm font-semibold text-[#17211c] transition hover:border-[#17211c]/40"
-              >
+              <a href="/blog" className="rounded-full border border-[#22170d]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#22170d]/40">
                 Read Build Notes
               </a>
             </div>
           </div>
 
-          <div className="relative min-h-[500px]">
-            <div className="absolute inset-x-8 bottom-2 top-12 rounded-[40px] bg-[#d5dfd2]" />
-            <div className="absolute inset-0 overflow-hidden rounded-lg border border-[#17211c]/10 bg-[#f8f5ef]/80 shadow-[0_30px_90px_rgba(23,33,28,0.18)]">
-              <div className="absolute left-5 top-5 z-10 rounded-md bg-[#17211c] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#f4f0e7]">
-                Prototype
-              </div>
+          <div className="relative min-h-[520px]">
+            <div className="absolute inset-x-12 bottom-0 top-14 rounded-[44px] bg-[#f9c780]" />
+            <div className="absolute inset-0 overflow-hidden rounded-[32px] border border-[#22170d]/10 bg-[#fffaf1]/80 shadow-[0_30px_90px_rgba(123,66,28,0.24)]">
               <ProjectPreview
                 modelName={project.heroModel}
                 cameraPosition={project.cardCameraPosition || project.cameraPosition}
@@ -119,81 +106,159 @@ function LifeInboxSite({ project }: { project: Project }) {
                 className="absolute inset-0"
               />
             </div>
-            <div className="absolute bottom-6 right-6 z-10 max-w-[240px] rounded-lg border border-[#17211c]/10 bg-[#fffaf2]/90 p-4 shadow-[0_18px_40px_rgba(23,33,28,0.14)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6a7d73]">Today&apos;s Signal</p>
-              <p className="mt-2 text-sm leading-6 text-[#32433a]">Turn the vague goal into a 20-minute experiment before lunch.</p>
+            <div className="absolute bottom-8 right-6 z-10 max-w-[260px] rounded-3xl border border-[#22170d]/10 bg-white/85 p-5 shadow-[0_18px_45px_rgba(123,66,28,0.18)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8a4324]">Prototype prompt</p>
+              <p className="mt-2 text-sm leading-6 text-[#5c4230]">What would change this week if the Wild Card path became slightly more real?</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-3">
-        {metrics.map(([value, label]) => (
-          <div key={value} className="border-t border-[#17211c]/20 pt-5">
-            <p className="font-serif text-5xl text-[#17211c]">{value}</p>
-            <p className="mt-2 text-sm leading-6 text-[#52665d]">{label}</p>
+        {outcomes.map(([value, label]) => (
+          <div key={value} className="rounded-[28px] border border-[#22170d]/10 bg-white/55 p-6">
+            <p className="font-serif text-5xl text-[#8a4324]">{value}</p>
+            <p className="mt-3 text-sm leading-6 text-[#5c4230]">{label}</p>
           </div>
         ))}
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.72fr_1fr]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6a7d73]">Product Loop</p>
-          <h2 className="mt-4 font-serif text-4xl leading-tight text-[#17211c] sm:text-5xl">
-            It behaves more like a thinking partner than a task list.
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8a4324]">Product Loop</p>
+          <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
+            A design-thinking engine for life choices.
           </h2>
-          <p className="mt-5 text-base leading-7 text-[#52665d]">
-            The app is structured around repeated passes through the same question: what deserves attention now?
+          <p className="mt-5 text-base leading-7 text-[#5c4230]">
+            Dreamlife is not just a journal. It gives raw reflection somewhere to go: into scenarios, tagged reactions, active ideas, and concrete experiments.
           </p>
         </div>
         <div className="grid gap-4">
-          {loop.map(([step, title, body]) => (
-            <article key={step} className="grid gap-4 rounded-lg border border-[#17211c]/10 bg-white/60 p-5 sm:grid-cols-[76px_1fr]">
-              <p className="font-serif text-4xl text-[#47685a]">{step}</p>
+          {loop.map(([title, body], index) => (
+            <article key={title} className="grid gap-4 rounded-[28px] border border-[#22170d]/10 bg-white/60 p-5 sm:grid-cols-[76px_1fr]">
+              <p className="font-serif text-4xl text-[#8a4324]">{String(index + 1).padStart(2, '0')}</p>
               <div>
-                <h3 className="font-serif text-2xl text-[#17211c]">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#52665d]">{body}</p>
+                <h3 className="font-serif text-2xl">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#5c4230]">{body}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#fffaf2] px-5 py-16 sm:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6a7d73]">Use Cases</p>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {moments.map(([title, body]) => (
-              <article key={title} className="rounded-lg border border-[#17211c]/10 bg-[#f4f0e7] p-6">
-                <h3 className="font-serif text-3xl text-[#17211c]">{title}</h3>
-                <p className="mt-4 text-sm leading-6 text-[#52665d]">{body}</p>
-              </article>
+      <ProjectFooter project={project} tone="warm" prompt="Tell me about Dreamlife" />
+    </main>
+  );
+}
+
+function LifeInboxSite({ project }: { project: Project }) {
+  const pipeline = [
+    ['Capture', 'Fast Android input for tasks, reminders, shopping items, journal notes, people, projects, and life areas.'],
+    ['Sync', 'SQLite dirty-flag sync moves changes through a private Fastify/PostgreSQL server.'],
+    ['Enrich', 'OpenRouter-backed analysis organizes raw entries while preserving privacy and reminder semantics.'],
+    ['Resurface', 'Today, reminders, lists, and suggestion actions make entries usable again.'],
+  ];
+
+  const checks = [
+    'App TypeScript and Jest suites passing in the source repo',
+    'Server TypeScript and Jest suites passing in the source repo',
+    'Android debug and release builds verified in the current workspace docs',
+    'Live VPS health and sync paths documented for iterative personal testing',
+  ];
+
+  return (
+    <main className="min-h-screen bg-[#eef3ef] text-[#0e1c18]">
+      <section className="relative overflow-hidden border-b border-[#0e1c18]/10 bg-[#dcebe4]">
+        <div className="absolute inset-0 [background-image:linear-gradient(120deg,rgba(14,28,24,0.08),transparent_34%),linear-gradient(rgba(14,28,24,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,28,24,0.07)_1px,transparent_1px)] [background-size:100%_100%,32px_32px,32px_32px]" />
+        <SiteNav site="lifeinbox" brand="LifeInbox" textColor="text-[#0e1c18]" accentColor="border-[#0e1c18]/20" />
+
+        <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,1fr)]">
+          <div>
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#356b5d]">
+              Local-first Android organizer
+            </p>
+            <h1 className="font-serif text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+              A trusted inbox for the messy stuff life throws at you.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#40534d]">
+              LifeInbox is a practical capture and organization system: local SQLite on Android, private sync, background AI enrichment, and reminder behavior tuned for actual daily use.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={project.repoUrl || `${portfolioOrigin}/projects#${project.slug}`} className="rounded-md bg-[#0e1c18] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d3c33]">
+                View Repository
+              </a>
+              <a href="/blog" className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
+                Read Field Notes
+              </a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="rounded-[28px] border border-[#0e1c18]/10 bg-[#07110e] p-4 shadow-[0_32px_90px_rgba(14,28,24,0.28)]">
+              <div className="rounded-2xl border border-white/10 bg-[#101d19] p-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4 text-white">
+                  <span className="text-sm font-semibold">Inbox Sync</span>
+                  <span className="rounded-full bg-emerald-300/15 px-3 py-1 text-xs font-semibold text-emerald-200">healthy</span>
+                </div>
+                <div className="grid gap-3 py-5">
+                  {['Reminder captured', 'AI enrichment merged', 'Projects pulled', 'Due reminders polled'].map((item, index) => (
+                    <div key={item} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/78">
+                      <span>{item}</span>
+                      <span className="font-mono text-xs text-emerald-200">0{index + 1}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-[300px] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                  <ProjectPreview
+                    modelName={project.heroModel}
+                    cameraPosition={project.cardCameraPosition || project.cameraPosition}
+                    modelOffset={project.cardModelOffset || project.modelOffset}
+                    className="h-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.75fr_1fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#356b5d]">System Shape</p>
+          <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
+            Built around data trust, not just capture speed.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-[#40534d]">
+            The source repo shows a project that has moved past prototype theatre into the hard parts: sync semantics, AI quality, timestamp safety, privacy handling, and reminder recovery.
+          </p>
+        </div>
+        <div className="grid gap-4">
+          {pipeline.map(([title, body]) => (
+            <article key={title} className="rounded-2xl border border-[#0e1c18]/10 bg-white/65 p-5">
+              <h3 className="font-serif text-2xl">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-[#40534d]">{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#0e1c18] px-5 py-16 text-white sm:px-8">
+        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.8fr_1fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-200">Verification Snapshot</p>
+            <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">The useful kind of boring.</h2>
+          </div>
+          <div className="grid gap-3">
+            {checks.map((check) => (
+              <div key={check} className="rounded-xl border border-white/10 bg-white/[0.05] p-4 text-sm leading-6 text-white/72">
+                {check}
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[#17211c]/10 bg-[#17211c] px-5 py-16 text-white sm:px-8">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#b9d6c6]">Build Notes</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">{project.headline}</h2>
-          </div>
-          <div className="space-y-6">
-            <p className="text-lg leading-8 text-white/70">{project.summary}</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
-                <span key={tech} className="rounded-md border border-white/10 bg-white/10 px-3 py-2 text-xs font-semibold text-white/80">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <a href={`${portfolioOrigin}/projects#${project.slug}`} className="inline-flex rounded-md bg-white px-5 py-3 text-sm font-semibold text-[#17211c] transition hover:bg-[#e6eadf]">
-              Portfolio Details
-            </a>
-          </div>
-        </div>
-      </section>
+      <ProjectFooter project={project} tone="green" prompt="Tell me about LifeInbox" />
     </main>
   );
 }
@@ -202,16 +267,10 @@ function SudokuTogetherSite({ project }: { project: Project }) {
   const cells = ['8', '', '', '4', '', '', '', '7', '', '', '2', '', '', '9', '', '', '', '5', '', '', '7', '', '', '3', '1', '', '', '4', '', '', '', '6', '', '', '', '', '', '9', '', '1', '', '5', '', '3', '', '', '', '', '', '2', '', '', '', '6', '', '', '1', '7', '', '', '9', '', '', '', '6', '', '', '', '4', '', '', '8', '', '3', '', '', '', '2', '', '', '1'];
 
   const architecture = [
-    ['Discord Activity', 'Players open the puzzle directly inside a voice-channel activity.'],
-    ['Vercel Proxy', 'Every state read and write moves through a serverless layer that fits iframe constraints.'],
-    ['Supabase State', 'Shared sessions keep the same board synchronized across players.'],
-  ];
-
-  const features = [
-    'Shared puzzle state for multiple Discord users',
-    'Vercel proxy layer for secure persistence',
-    'Supabase-backed game sessions',
-    'React interface built for Discord Activities',
+    ['Discord SDK', 'OAuth and activity state live inside the Embedded App SDK context.'],
+    ['Vercel API', 'The client talks to CSP-safe /.proxy/api routes instead of reaching the database directly.'],
+    ['Supabase', 'Game sessions, progression, coins, streaks, and shared board state persist in Postgres.'],
+    ['Polling Sync', 'Adaptive polling and version checks keep multiplayer play stable inside iframe limits.'],
   ];
 
   return (
@@ -224,26 +283,20 @@ function SudokuTogetherSite({ project }: { project: Project }) {
         <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.96fr)_minmax(380px,0.9fr)]">
           <div>
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#86efac]">
-              Multiplayer Discord Activity
+              Discord Activity + shared puzzle room
             </p>
             <h1 className="font-serif text-5xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl">
-              Solve the same Sudoku board with friends in Discord.
+              The Sudoku board finally belongs to everyone in the call.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Sudoku Together turns the Discord Activity iframe into a real shared puzzle room with synchronized board state, secure persistence, and a UI that feels native to a call with friends.
+              Sudoku Together is a React and Vite Discord Activity with solo and co-op play, daily puzzles, streaks, XP, coins, cosmetics, Supabase persistence, and multiplayer synchronization through a Vercel proxy.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={project.repoUrl || `${portfolioOrigin}/projects#${project.slug}`}
-                className="rounded-md bg-[#86efac] px-5 py-3 text-sm font-semibold text-[#081018] transition hover:bg-[#bbf7d0]"
-              >
+              <a href={project.repoUrl || `${portfolioOrigin}/projects#${project.slug}`} className="rounded-md bg-[#86efac] px-5 py-3 text-sm font-semibold text-[#081018] transition hover:bg-[#bbf7d0]">
                 View Code
               </a>
-              <a
-                href="/blog"
-                className="rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/40 hover:text-white"
-              >
-                Read Build Notes
+              <a href="/blog" className="rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/40 hover:text-white">
+                Read Dev Log
               </a>
             </div>
           </div>
@@ -257,7 +310,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
                     className={`grid place-items-center border-[#101820]/25 text-lg font-semibold text-[#101820] ${
                       value ? 'bg-[#eef6ff]' : 'bg-white'
                     } ${(index + 1) % 3 === 0 && (index + 1) % 9 !== 0 ? 'border-r-2' : 'border-r'} ${
-                      index >= 18 && index < 27 || index >= 45 && index < 54 ? 'border-b-2' : 'border-b'
+                      (index >= 18 && index < 27) || (index >= 45 && index < 54) ? 'border-b-2' : 'border-b'
                     }`}
                   >
                     {value}
@@ -266,9 +319,9 @@ function SudokuTogetherSite({ project }: { project: Project }) {
               </div>
             </div>
             <div className="mt-5 grid grid-cols-3 gap-3">
-              {['Mark', 'Friend', 'Proxy'].map((label, index) => (
+              {['Discord', 'Vercel', 'Supabase'].map((label, index) => (
                 <div key={label} className="rounded-md border border-white/10 bg-white/[0.06] px-3 py-3">
-                  <p className="text-xs uppercase tracking-[0.16em] text-white/40">Node {index + 1}</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-white/40">Layer {index + 1}</p>
                   <p className="mt-1 font-semibold text-white">{label}</p>
                 </div>
               ))}
@@ -289,16 +342,16 @@ function SudokuTogetherSite({ project }: { project: Project }) {
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#86efac]">Technical Problem</p>
           <h2 className="mt-4 font-serif text-4xl leading-tight text-white sm:text-5xl">
-            Discord iframes block the easy path.
+            Discord iframes make persistence a little spicy.
           </h2>
           <p className="mt-6 text-lg leading-8 text-white/70">
-            {project.moreInfo[3] || project.summary}
+            The Activity runs inside Discord constraints, so multiplayer state is routed through CSP-safe proxy endpoints. Serverless handlers own Supabase access, while the client focuses on board state, presence, progression, and game feel.
           </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {features.map((feature) => (
-              <div key={feature} className="rounded-lg border border-white/10 bg-white/[0.045] p-4">
-                <p className="text-sm leading-6 text-white/70">{feature}</p>
-              </div>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <span key={tech} className="rounded-md border border-[#86efac]/20 bg-[#86efac]/10 px-3 py-2 text-xs font-semibold text-[#bbf7d0]">
+                {tech}
+              </span>
             ))}
           </div>
         </div>
@@ -307,7 +360,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
       <section className="bg-[#0d1720] px-5 py-16 sm:px-8">
         <div className="mx-auto w-full max-w-7xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#86efac]">Session Architecture</p>
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 lg:grid-cols-4">
             {architecture.map(([title, body], index) => (
               <article key={title} className="rounded-lg border border-white/10 bg-white/[0.045] p-6">
                 <p className="font-serif text-5xl text-[#86efac]">{index + 1}</p>
@@ -319,27 +372,46 @@ function SudokuTogetherSite({ project }: { project: Project }) {
         </div>
       </section>
 
-      <section className="border-t border-white/10 px-5 py-16 sm:px-8">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/40">Stack</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
-                <span key={tech} className="rounded-md border border-[#86efac]/20 bg-[#86efac]/10 px-3 py-2 text-xs font-semibold text-[#bbf7d0]">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-          <a
-            href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Sudoku%20Together`}
-            className="rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#86efac]/50 hover:text-[#bbf7d0]"
-          >
-            Ask Mark&apos;s AI about it
-          </a>
-        </div>
-      </section>
+      <ProjectFooter project={project} tone="dark" prompt="Tell me about Sudoku Together" />
     </main>
+  );
+}
+
+function ProjectFooter({ project, tone, prompt }: { project: Project; tone: 'warm' | 'green' | 'dark'; prompt: string }) {
+  const isDark = tone === 'dark';
+  const isWarm = tone === 'warm';
+  const shell = isDark ? 'border-white/10 bg-[#081018] text-white' : isWarm ? 'border-[#22170d]/10 bg-[#22170d] text-white' : 'border-[#0e1c18]/10 bg-[#eef3ef] text-[#0e1c18]';
+  const muted = isDark ? 'text-white/70' : isWarm ? 'text-white/72' : 'text-[#40534d]';
+  const pill = isDark ? 'border-white/10 bg-white/10 text-white/80' : isWarm ? 'border-white/10 bg-white/10 text-white/80' : 'border-[#0e1c18]/10 bg-white/70 text-[#40534d]';
+  const button = isDark ? 'bg-white text-[#081018] hover:bg-[#bbf7d0]' : isWarm ? 'bg-white text-[#22170d] hover:bg-[#fff3dc]' : 'bg-[#0e1c18] text-white hover:bg-[#1d3c33]';
+
+  return (
+    <section className={`border-t px-5 py-16 sm:px-8 ${shell}`}>
+      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1fr_1fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] opacity-60">Build Notes</p>
+          <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">{project.headline}</h2>
+        </div>
+        <div className="space-y-6">
+          <p className={`text-lg leading-8 ${muted}`}>{project.summary}</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <span key={tech} className={`rounded-md border px-3 py-2 text-xs font-semibold ${pill}`}>
+                {tech}
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href={`${portfolioOrigin}/projects#${project.slug}`} className={`rounded-md px-5 py-3 text-sm font-semibold transition ${button}`}>
+              Portfolio Details
+            </a>
+            <a href={`${portfolioOrigin}/chat?prompt=${encodeURIComponent(prompt)}`} className={`rounded-md border px-5 py-3 text-sm font-semibold transition ${pill}`}>
+              Ask Mark&apos;s AI
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

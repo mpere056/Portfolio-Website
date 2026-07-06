@@ -1,0 +1,16 @@
+---
+slug: "local-first-capture-needs-trust"
+title: "Local-First Capture Needs Trust"
+description: "Why LifeInbox is less about another inbox UI and more about sync, reminders, timestamps, privacy, and AI enrichment that can be trusted."
+date: "2026-07-06"
+tags:
+  - "Android"
+  - "Sync"
+  - "AI"
+---
+
+LifeInbox is built for the kind of thoughts that arrive before they are organized. A reminder, a shopping item, a project note, or a private journal fragment should be quick to capture and safe to revisit.
+
+That pushes the architecture toward local-first Android storage. Entries land in SQLite, sync through dirty flags, and get enriched by a private Fastify and PostgreSQL server instead of depending on the network for every interaction.
+
+The harder work is trust. The current repo spends a lot of energy on timestamp semantics, privacy classification, reminder recovery, AI parsing, and deployment safety because an organizer only helps if the user believes it will not quietly lose or distort the important stuff.

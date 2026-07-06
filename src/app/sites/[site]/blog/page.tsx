@@ -10,67 +10,78 @@ interface BlogIndexPageProps {
 
 const portfolioOrigin = 'https://marknperera.ca';
 
+const SITE_COPY = {
+  dreamlife: {
+    label: 'Dreamlife',
+    title: 'Dreamlife Build Notes',
+    intro: 'Notes on life design, AI-guided reflection, scenario planning, and the product thinking behind the six-figure prototype.',
+    theme: 'warm',
+  },
+  lifeinbox: {
+    label: 'LifeInbox',
+    title: 'LifeInbox Field Notes',
+    intro: 'Implementation notes on local-first capture, sync, reminders, AI enrichment, and turning a personal Android organizer into trusted daily infrastructure.',
+    theme: 'green',
+  },
+  sudokutogether: {
+    label: 'Sudoku Together',
+    title: 'Sudoku Together Dev Log',
+    intro: 'Technical notes on Discord Activities, collaborative puzzle state, progression systems, and making Sudoku feel shared.',
+    theme: 'dark',
+  },
+} as const;
+
 export async function generateStaticParams() {
   return PROJECT_SITES.map((site) => ({ site: site.subdomain }));
 }
 
 export async function generateMetadata({ params }: BlogIndexPageProps) {
   const site = getProjectSiteBySubdomain(params.site);
-  if (!site) return { title: "Blog | Mark Perera" };
+  const copy = site ? SITE_COPY[site.subdomain as keyof typeof SITE_COPY] : undefined;
 
-  const title = site.subdomain === 'lifeinbox' ? 'Life Inbox Blog' : 'Sudoku Together Blog';
+  if (!site || !copy) {
+    return { title: 'Blog | Mark Perera' };
+  }
+
   return {
-    title: `${title} | Mark Perera`,
-    description: `Notes and build logs for ${title.replace(' Blog', '')}.`,
+    title: `${copy.title} | Mark Perera`,
+    description: copy.intro,
   };
 }
 
 export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
   const site = getProjectSiteBySubdomain(params.site);
-  if (!site) notFound();
+  const copy = site ? SITE_COPY[site.subdomain as keyof typeof SITE_COPY] : undefined;
+  if (!site || !copy) notFound();
 
   const posts = await getSiteBlogPosts(site.subdomain);
-  const isLifeInbox = site.subdomain === 'lifeinbox';
-  const title = isLifeInbox ? 'Life Inbox Field Notes' : 'Sudoku Together Dev Log';
-  const intro = isLifeInbox
-    ? 'Essays and build logs on life design, AI reflection loops, and turning a prototype into a useful personal system.'
-    : 'Technical notes on Discord Activities, collaborative puzzle state, and making Sudoku feel shared.';
+  const classes = getThemeClasses(copy.theme);
 
   return (
-    <main className={isLifeInbox ? 'min-h-screen bg-[#f4f0e7] text-[#17211c]' : 'min-h-screen bg-[#081018] text-white'}>
-      <BlogNav site={site.subdomain} isLifeInbox={isLifeInbox} />
-      <section className={isLifeInbox ? 'border-y border-[#17211c]/10 bg-[#e6eadf]' : 'border-y border-white/10 bg-[#0d1720]'}>
+    <main className={`min-h-screen ${classes.page}`}>
+      <BlogNav site={site.subdomain} label={copy.label} classes={classes} />
+      <section className={`border-y ${classes.hero}`}>
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1fr]">
           <div>
-            <p className={isLifeInbox ? 'text-sm font-semibold uppercase tracking-[0.2em] text-[#47685a]' : 'text-sm font-semibold uppercase tracking-[0.2em] text-[#86efac]'}>
-              Blog
-            </p>
-            <h1 className="mt-4 font-serif text-5xl font-semibold leading-tight sm:text-6xl">{title}</h1>
+            <p className={`text-sm font-semibold uppercase tracking-[0.2em] ${classes.accentText}`}>Blog</p>
+            <h1 className="mt-4 font-serif text-5xl font-semibold leading-tight sm:text-6xl">{copy.title}</h1>
           </div>
           <div className="lg:pt-10">
-            <p className={isLifeInbox ? 'max-w-2xl text-lg leading-8 text-[#52665d]' : 'max-w-2xl text-lg leading-8 text-white/70'}>
-              {intro}
-            </p>
+            <p className={`max-w-2xl text-lg leading-8 ${classes.bodyText}`}>{copy.intro}</p>
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-6xl gap-4 px-5 py-16 sm:px-8">
         {posts.length === 0 ? (
-          <div className={isLifeInbox ? 'rounded-lg border border-[#17211c]/10 bg-white/60 p-6' : 'rounded-lg border border-white/10 bg-white/[0.045] p-6'}>
-            <p className={isLifeInbox ? 'text-[#52665d]' : 'text-white/70'}>Posts are coming soon.</p>
+          <div className={`rounded-lg border p-6 ${classes.card}`}>
+            <p className={classes.bodyText}>Posts are coming soon.</p>
           </div>
         ) : (
           posts.map((post, index) => (
-            <a
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className={isLifeInbox ? 'grid gap-5 rounded-lg border border-[#17211c]/10 bg-white/60 p-6 transition hover:border-[#17211c]/25 md:grid-cols-[120px_1fr]' : 'grid gap-5 rounded-lg border border-white/10 bg-white/[0.045] p-6 transition hover:border-[#86efac]/35 md:grid-cols-[120px_1fr]'}
-            >
+            <a key={post.slug} href={`/blog/${post.slug}`} className={`grid gap-5 rounded-lg border p-6 transition md:grid-cols-[120px_1fr] ${classes.card}`}>
               <div>
-                <p className={isLifeInbox ? 'font-serif text-5xl text-[#47685a]' : 'font-serif text-5xl text-[#86efac]'}>
-                  {String(index + 1).padStart(2, '0')}
-                </p>
+                <p className={`font-serif text-5xl ${classes.accentText}`}>{String(index + 1).padStart(2, '0')}</p>
                 <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] opacity-60">{formatDate(post.date)}</p>
               </div>
               <div>
@@ -80,7 +91,7 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
                   ))}
                 </div>
                 <h2 className="mt-4 font-serif text-3xl sm:text-4xl">{post.title}</h2>
-                <p className={isLifeInbox ? 'mt-3 leading-7 text-[#52665d]' : 'mt-3 leading-7 text-white/70'}>{post.description}</p>
+                <p className={`mt-3 leading-7 ${classes.bodyText}`}>{post.description}</p>
               </div>
             </a>
           ))
@@ -90,28 +101,55 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
   );
 }
 
-function BlogNav({ site, isLifeInbox }: { site: string; isLifeInbox: boolean }) {
+function BlogNav({ site, label, classes }: { site: string; label: string; classes: ReturnType<typeof getThemeClasses> }) {
   return (
     <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
       <a href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
-        {site === 'lifeinbox' ? 'Life Inbox' : 'Sudoku Together'}
+        {label}
       </a>
       <div className="flex items-center gap-3 text-sm">
-        <a
-          href={portfolioOrigin}
-          className={isLifeInbox ? 'rounded-md border border-[#17211c]/20 px-3 py-2 opacity-75 transition hover:opacity-100' : 'rounded-md border border-white/20 px-3 py-2 opacity-75 transition hover:opacity-100'}
-        >
+        <a href={portfolioOrigin} className={`rounded-md border px-3 py-2 opacity-75 transition hover:opacity-100 ${classes.navBorder}`}>
           Mark
         </a>
-        <a
-          href="/blog"
-          className={isLifeInbox ? 'rounded-md border border-[#17211c]/20 px-3 py-2 opacity-75 transition hover:opacity-100' : 'rounded-md border border-white/20 px-3 py-2 opacity-75 transition hover:opacity-100'}
-        >
-          Blog
+        <a href={`https://${site}.marknperera.ca`} className={`rounded-md border px-3 py-2 opacity-75 transition hover:opacity-100 ${classes.navBorder}`}>
+          Home
         </a>
       </div>
     </nav>
   );
+}
+
+function getThemeClasses(theme: 'warm' | 'green' | 'dark') {
+  if (theme === 'dark') {
+    return {
+      page: 'bg-[#081018] text-white',
+      hero: 'border-white/10 bg-[#0d1720]',
+      card: 'border-white/10 bg-white/[0.045] hover:border-[#86efac]/35',
+      navBorder: 'border-white/20',
+      accentText: 'text-[#86efac]',
+      bodyText: 'text-white/70',
+    };
+  }
+
+  if (theme === 'warm') {
+    return {
+      page: 'bg-[#fff3dc] text-[#22170d]',
+      hero: 'border-[#22170d]/10 bg-[#ffdca8]',
+      card: 'border-[#22170d]/10 bg-white/60 hover:border-[#22170d]/25',
+      navBorder: 'border-[#22170d]/20',
+      accentText: 'text-[#8a4324]',
+      bodyText: 'text-[#5c4230]',
+    };
+  }
+
+  return {
+    page: 'bg-[#eef3ef] text-[#0e1c18]',
+    hero: 'border-[#0e1c18]/10 bg-[#dcebe4]',
+    card: 'border-[#0e1c18]/10 bg-white/65 hover:border-[#0e1c18]/25',
+    navBorder: 'border-[#0e1c18]/20',
+    accentText: 'text-[#356b5d]',
+    bodyText: 'text-[#40534d]',
+  };
 }
 
 function formatDate(value: string) {

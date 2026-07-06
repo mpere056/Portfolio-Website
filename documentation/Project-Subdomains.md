@@ -6,7 +6,8 @@ This app supports project microsites on subdomains of `marknperera.ca`.
 
 | Subdomain | Project |
 | --- | --- |
-| `lifeinbox.marknperera.ca` | AI Life Navigator |
+| `dreamlife.marknperera.ca` | Dreamlife |
+| `lifeinbox.marknperera.ca` | LifeInbox |
 | `sudokutogether.marknperera.ca` | Discord Multiplayer Sudoku Activity |
 
 ## How It Works
@@ -14,10 +15,12 @@ This app supports project microsites on subdomains of `marknperera.ca`.
 - `middleware.ts` detects known project subdomains on `marknperera.ca`.
 - Matching hosts are internally rewritten to `/sites/[subdomain]`.
 - `/sites/[subdomain]` loads the existing MDX project data and renders a standalone microsite page.
-- `lifeinbox` and `sudokutogether` currently have bespoke layouts.
+- `dreamlife`, `lifeinbox`, and `sudokutogether` currently have bespoke layouts.
 - Each site has a blog index at `/blog` and post pages at `/blog/[slug]`.
 - Blog posts live in `src/content/sites/[subdomain]/blog/*.mdx`.
 - The main portfolio routes continue to live at `marknperera.ca`.
+- Dreamlife is the life-design app that generated the six-figure build offer.
+- LifeInbox is a separate local-first Android organizer project.
 
 ## Deployment Checklist
 
@@ -33,7 +36,9 @@ The microsites can be tested directly by path:
 
 ```bash
 http://localhost:3000/sites/lifeinbox
+http://localhost:3000/sites/dreamlife
 http://localhost:3000/sites/sudokutogether
 http://localhost:3000/sites/lifeinbox/blog
+http://localhost:3000/sites/dreamlife/blog
 http://localhost:3000/sites/sudokutogether/blog
 ```

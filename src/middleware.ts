@@ -6,7 +6,12 @@ const RESERVED_SUBDOMAINS = new Set(['www', 'api']);
 const PROJECT_SUBDOMAINS = new Set(PROJECT_SITES.map((site) => site.subdomain));
 
 export function middleware(request: NextRequest) {
-  const hostname = request.nextUrl.hostname.toLowerCase();
+  const forwardedHost = request.headers.get('x-forwarded-host') ?? request.headers.get('host');
+  const hostname = (forwardedHost ?? request.nextUrl.hostname)
+    .split(',')[0]
+    .trim()
+    .split(':')[0]
+    .toLowerCase();
   const suffix = `.${ROOT_DOMAIN}`;
 
   if (request.nextUrl.pathname.startsWith('/sites/')) {

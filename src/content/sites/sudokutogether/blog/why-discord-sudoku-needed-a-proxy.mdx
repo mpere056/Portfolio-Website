@@ -13,4 +13,6 @@ Sudoku Together began with a small frustration: existing Sudoku activities let f
 
 The tricky part is that Discord Activities run inside a secure iframe. That is good for safety, but it means the client cannot casually connect to every external service the way a normal web app might.
 
-The solution was to route game-state reads and writes through a Vercel serverless proxy. The activity can stay within Discord's constraints while still keeping shared board state in Supabase.
+The solution was to route game-state reads and writes through Vercel serverless proxy routes. The activity can stay within Discord's constraints while still keeping shared board state, daily puzzle progress, XP, coins, streaks, and cosmetics in Supabase.
+
+The multiplayer layer then becomes a reliability problem: polling often enough to feel shared, version-checking updates so players do not overwrite each other, and keeping the React game surface responsive inside Discord's Activity runtime.
