@@ -48,7 +48,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className={isLifeInbox ? 'min-h-screen bg-[#f4f0e7] text-[#17211c]' : 'min-h-screen bg-[#081018] text-white'}>
-      <nav className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-5 sm:px-8">
+      <nav className="mx-auto flex w-full max-w-4xl items-center justify-between px-5 py-5 sm:px-8">
         <a href="/blog" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
           Back to Blog
         </a>
@@ -60,19 +60,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </a>
       </nav>
 
-      <article className="mx-auto w-full max-w-3xl px-5 pb-24 pt-12 sm:px-8">
-        <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] opacity-60">
-          <span>{formatDate(post.date)}</span>
-          {post.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+      <header className={isLifeInbox ? 'border-y border-[#17211c]/10 bg-[#e6eadf]' : 'border-y border-white/10 bg-[#0d1720]'}>
+        <div className="mx-auto w-full max-w-4xl px-5 py-14 sm:px-8">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] opacity-60">
+            <span>{formatDate(post.date)}</span>
+            {post.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+          <h1 className="mt-5 font-serif text-5xl font-semibold leading-tight sm:text-6xl">{post.title}</h1>
+          <p className={isLifeInbox ? 'mt-6 text-lg leading-8 text-[#52665d]' : 'mt-6 text-lg leading-8 text-white/70'}>
+            {post.description}
+          </p>
         </div>
-        <h1 className="mt-5 font-serif text-5xl font-semibold leading-tight sm:text-6xl">{post.title}</h1>
-        <p className={isLifeInbox ? 'mt-6 text-lg leading-8 text-[#52665d]' : 'mt-6 text-lg leading-8 text-white/70'}>
-          {post.description}
-        </p>
+      </header>
 
-        <div className={isLifeInbox ? 'mt-12 space-y-7 border-t border-[#17211c]/10 pt-10 text-lg leading-8 text-[#32433a]' : 'mt-12 space-y-7 border-t border-white/10 pt-10 text-lg leading-8 text-white/72'}>
+      <article className="mx-auto grid w-full max-w-4xl gap-10 px-5 pb-24 pt-12 sm:px-8 lg:grid-cols-[160px_1fr]">
+        <aside className={isLifeInbox ? 'border-t border-[#17211c]/10 pt-5 text-sm leading-6 text-[#52665d]' : 'border-t border-white/10 pt-5 text-sm leading-6 text-white/55'}>
+          <p className="font-semibold uppercase tracking-[0.16em] opacity-70">Filed under</p>
+          <div className="mt-4 flex flex-wrap gap-2 lg:flex-col">
+            {post.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </aside>
+        <div className={isLifeInbox ? 'space-y-7 text-lg leading-8 text-[#32433a]' : 'space-y-7 text-lg leading-8 text-white/72'}>
           {blocks.map((block) => (
             <p key={block}>{block}</p>
           ))}
