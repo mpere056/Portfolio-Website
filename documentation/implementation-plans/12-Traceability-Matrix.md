@@ -9,7 +9,7 @@ Last updated: 2026-07-13
 | Plan ID | `TRC` |
 | Status | Active planning control |
 | Upstream | Comprehensive Website Vision |
-| Downstream | Roadmap, execution backlog, all workstream plans |
+| Downstream | Roadmap, work packages, capability ledger, evidence registry, and all workstream plans |
 | Primary output | Proof that every confirmed vision item has an owner and validation path |
 
 ## Purpose
@@ -51,6 +51,19 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-29` | Studio waits for feedback | `09` | `STU-GATE-01` | No implementation beyond allowed preparation |
 | `V-30` | Anti-Resume backlog only | `10` | None | Recorded only, no detailed tasks |
 
+## Requirement To Capability Control
+
+`15-Capability-Coverage-Ledger.md` is the granular implementation layer beneath this matrix. Every capability row identifies one or more requirement IDs, `Platform`, or `Prototype`.
+
+Traceability is complete only when:
+
+- Every active requirement maps to at least one active capability.
+- Every active capability maps back to a requirement or a named platform necessity.
+- Capability weights do not imply requirement priority; they represent implementation breadth and visitor importance for progress rollups.
+- Requirement acceptance uses the combined evidence of all critical mapped capabilities, not the highest individual percentage.
+- Later, feedback-gated, and backlog requirements remain excluded from active progress denominators until promoted.
+- A requirement cannot be accepted while a critical mapped capability is blocked, unassessed, or missing required evidence.
+
 ## Workstream Dependency Matrix
 
 Legend: `R` means row requires column. `P` means partial or prototype dependency.
@@ -70,14 +83,14 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 
 | Roadmap phase | Required packages | Gate to exit |
 | --- | --- | --- |
-| Phase 0 Baseline | `BAS-01` to `BAS-04`, `ARC-01` | Baseline and contract decisions recorded |
-| Phase 1 Structural foundation | `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | IDs, schemas, graph, persistence, context validate |
+| Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-05`, `ARC-01` | Baseline, target-state capability audit, and stable-ID decisions recorded |
+| Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` | First Note, tour, AI shell, lighting prototype work together |
 | Phase 3 First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `QA-02` | One full vertical slice passes acceptance |
 | Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02` | Three flagship experiences and lighter projects coherent |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
 | Phase 6 Living operations | `LPS-03` to `LPS-05`, `QA-03` | Project states reviewed and disturbances reliable |
-| Experimental | `PXP-01` to `PXP-03` | Each prototype gets keep, revise, or remove decision |
+| Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |
 
 ## Acceptance Evidence Types
 
@@ -91,6 +104,8 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Manual creative review | Review checklist | Taste, discoverability, pacing |
 | Live verification | Route/status notes | Production and subdomains |
 | Decision record | `11-Decision-Register.md` | Prototype and scope gates |
+| Capability reconciliation | `15-Capability-Coverage-Ledger.md` | Partial implementation and rollups |
+| Package evidence record | `documentation/implementation-evidence/{PACKAGE-ID}.md` | Durable acceptance and release proof |
 
 ## Orphan Checks
 
@@ -101,6 +116,9 @@ Before a milestone starts:
 - Every cross-system package must reference an interface contract.
 - Every prototype must name the decision it will enable.
 - Every acceptance criterion must name evidence that can actually be collected.
+- Every active package must own at least one capability.
+- Every accepted capability dimension must point to accepted evidence.
+- Every partial capability must name its remaining gaps and next coherent increment.
 
 ## Change Process
 
@@ -111,3 +129,4 @@ When the vision changes:
 3. Update this requirement row.
 4. Add, remove, or change execution packages.
 5. Re-evaluate phase gates and downstream plans.
+6. Reconcile capability inventory, weights, and vectors before publishing a new progress rollup.

@@ -1,6 +1,6 @@
 # Projects Museum And Case Studies Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | Main projects route, project subdomains, guided tour, skill evidence |
 | Primary outputs | Museum registry, first vertical slice, three flagship experiences, smaller-project tiers |
 | Execution packages | `PRJ-01` through `PRJ-08` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-PRJ-*`, `CAP-LIB-*`, `CAP-SDK-*`, and `CAP-DRM-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

@@ -12,6 +12,7 @@ Last updated: 2026-07-13
 | Downstream | Every active implementation plan |
 | Primary outputs | Stable IDs, shared contracts, ownership boundaries, event vocabulary |
 | Execution packages | `ARC-01` through `ARC-05` |
+| Capability tracking | `CAP-ARC-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Purpose
 

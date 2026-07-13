@@ -1,6 +1,6 @@
 # About And Memory Depth Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | About route, tour destinations, skill evidence, semantic lighting |
 | Primary outputs | Event inspection, five reviewed consequence sets, memory-room decision, About easter eggs |
 | Execution packages | `ABT-01` through `ABT-04` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ABT-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

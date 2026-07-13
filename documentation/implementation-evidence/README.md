@@ -1,0 +1,122 @@
+# Implementation Evidence Registry
+
+Last updated: 2026-07-13
+
+## Purpose
+
+This folder stores durable summaries proving implementation, verification, review, and rollout claims made by the portfolio implementation plans.
+
+Evidence is not limited to passing tests. This project also requires factual content review, creative and interaction review, performance inspection, privacy checks, preview verification, and live route checks.
+
+## Evidence IDs
+
+Use:
+
+```text
+EV-{PACKAGE-ID}-{SEQUENCE}
+```
+
+Examples:
+
+- `EV-BAS-01-01`
+- `EV-EXP-03-02`
+- `EV-PRJ-04-07`
+
+Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
+
+## Evidence Status
+
+| Status | Meaning |
+| --- | --- |
+| `candidate` | Collected but not yet reviewed against the named criterion |
+| `accepted` | Reviewed and sufficient for the named claim |
+| `failed` | Demonstrates that the criterion did not pass; retain it with next action |
+| `superseded` | Was valid for an older contract, commit, content version, or release |
+| `expired` | External artifact is unavailable and its durable summary is insufficient for reuse |
+
+Never silently replace failed or superseded evidence. Add a new evidence ID and link the relationship.
+
+## Evidence Types
+
+| Type | Typical proof | Suitable dimensions |
+| --- | --- | --- |
+| `decision` | Approved record with alternatives and consequences | `S`, `A` |
+| `content-review` | Reviewed source list, factual changes, and approval | `C`, `Q` |
+| `contract` | Typecheck, fixtures, validators, and consumer proof | `A`, `T` |
+| `unit-test` | Command, commit, result, and relevant test names | `I`, `T` |
+| `integration-test` | Repeatable cross-system flow and result | `I`, `T` |
+| `browser-flow` | Steps, environment, browser, result, screenshots/video where useful | `I`, `T`, `Q` |
+| `visual-review` | Stable checkpoint images and review notes | `Q` |
+| `creative-review` | Taste, pacing, mystery, discoverability, and accuracy decision | `Q` |
+| `performance` | Baseline, target device, method, and comparison | `Q`, `R` |
+| `privacy-security` | Threat or data-flow review and test result | `A`, `T`, `R` |
+| `preview` | Deployment, commit, flags, routes, and gate result | `R` |
+| `production` | Live route checks, monitoring, and rollback readiness | `R` |
+
+## Registry
+
+| Evidence ID | Package | Capabilities | Type | Status | Commit/environment | Recorded | File |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| None yet | - | - | - | - | - | - | - |
+
+Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
+
+## Required Evidence Fields
+
+Every evidence item records:
+
+- Evidence ID.
+- Claim being supported.
+- Package and capability IDs.
+- Vision requirement or platform criterion.
+- Evidence type and status.
+- Date and reviewer.
+- Commit hash.
+- Environment, route, feature flags, browser, and device when relevant.
+- Exact command or repeatable manual steps.
+- Expected and actual result.
+- Artifact links or repository paths.
+- Known limitations and uncovered paths.
+- Follow-up, superseding, or rollback relationship.
+
+## Acceptance Rules
+
+- A passing command without the tested behavior named is insufficient.
+- A screenshot alone cannot prove interaction correctness.
+- A preview link alone is not durable evidence; summarize what was checked.
+- Creative acceptance must name what was reviewed, not only say it looks good.
+- Production evidence must identify the deployed commit and live routes.
+- Factual content acceptance names the source material or reviewer.
+- One evidence item may advance several dimensions only when it genuinely proves each claim.
+- Capability vector level `4` requires at least one accepted evidence item for that dimension.
+
+## Storage Rules
+
+- Keep concise durable summaries in this folder.
+- Keep small stable screenshots under `documentation/implementation-evidence/assets/` when they add review value.
+- Do not commit large videos, raw build caches, `.next`, local browser profiles, secrets, or private data.
+- Link external CI, Vercel, or video artifacts, but include enough summary for the record to remain useful if the link expires.
+- Use synthetic data for product demonstrations.
+- Redact tokens, account identifiers, private repository material, and visitor data.
+
+## Workflow
+
+1. Copy `_Package-Evidence-Template.md` to `{PACKAGE-ID}.md` when a package starts producing evidence.
+2. Add evidence items in sequence.
+3. Add each item to the registry table above.
+4. Link evidence IDs from capability detail records.
+5. Update dimension levels only after reviewing sufficiency.
+6. Reconcile package status, dashboard, and release outcome.
+7. Preserve failed and superseded items as implementation history.
+
+## Integrity Audit
+
+`QA-06` periodically checks:
+
+- Every referenced evidence ID exists.
+- Every accepted level `4` has accepted evidence.
+- Evidence package and capability IDs are valid.
+- Production evidence identifies a commit and route.
+- Preview-only proof is not represented as production rollout.
+- Superseded contracts trigger capability reassessment.
+- External links have durable summaries.

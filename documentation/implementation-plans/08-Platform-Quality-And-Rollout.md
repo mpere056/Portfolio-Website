@@ -1,6 +1,6 @@
 # Platform, Quality, And Rollout Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -11,7 +11,8 @@ Last updated: 2026-07-12
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md) and every active workstream |
 | Downstream | Preview deployments, production releases, rollback evidence |
 | Primary outputs | Baseline, feature flags, test harness, quality gates, privacy and rollout controls |
-| Execution packages | `BAS-*` and `QA-01` through `QA-05` in [Work Packages](13-Execution-Work-Packages.md) |
+| Execution packages | `BAS-*` and `QA-01` through `QA-06` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-BAS-*` and `CAP-QA-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 
@@ -300,6 +301,43 @@ For each milestone:
 - Keep commits focused by workstream.
 - Avoid committing generated `.next` or local Vercel state.
 
+## Progress And Evidence Operations
+
+`QA-06` keeps implementation status trustworthy while many features remain partially complete.
+
+### At Package Start
+
+- Create a package evidence file from `documentation/implementation-evidence/_Package-Evidence-Template.md`.
+- Name the package's capability IDs, owner, branch or task, safe exposure, and next checkpoint.
+- Reconcile existing capability vectors before changing them.
+
+### At Every Durable Increment
+
+- Update only dimensions actually changed by inspected work.
+- Name remaining gaps for every level `1` or `2`.
+- Register candidate or accepted evidence.
+- Keep implementation, automated verification, creative QA, and rollout visibly separate.
+
+### At Milestone Review
+
+- Recompute workstream and outcome rollups from capability weights.
+- Refuse a percentage if required dimensions remain unassessed.
+- Check every accepted level against the evidence registry.
+- Flag in-progress records older than 14 days for review.
+- Reopen packages invalidated by regressions, contract changes, or content changes.
+- Update the dashboard's reconciliation date and commit.
+
+### Tracking Integrity Checks
+
+- Every active package owns at least one capability.
+- Every active capability maps to a requirement or platform criterion.
+- Every evidence reference resolves to a registered item.
+- Every production rollout claim names a deployed commit and live route.
+- Every partial visitor-facing feature records its flag, fallback, and safe environment.
+- Package completion agrees with capability vectors and package exit evidence.
+
+Tracking quality is part of release quality. A feature whose true partial state cannot be explained is not ready for broader rollout.
+
 ## Cross-Plan Handoff
 
 At each phase gate, this plan provides:
@@ -323,3 +361,4 @@ A workstream is not ready for downstream reliance merely because its code compil
 - Error fallbacks preserve navigation.
 - Privacy boundaries are enforced.
 - Production promotion has a repeatable checklist.
+- Capability, package, evidence, and dashboard status remain reproducible and reconciled.

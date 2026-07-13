@@ -1,6 +1,6 @@
 # Experience Foundation Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | Home, [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md) |
 | Primary outputs | Depth controller, discovery store, First Note, tour, stimulation, disturbances |
 | Execution packages | `EXP-01` through `EXP-07` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-EXP-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

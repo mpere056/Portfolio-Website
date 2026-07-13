@@ -1,6 +1,6 @@
 # Knowledge Graph And Content Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md), semantic lighting, skill prototype |
 | Primary outputs | Shared loaders, schemas, graph compiler, reviewed subgraph, bounded queries |
 | Execution packages | `KG-01` through `KG-06` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-KG-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

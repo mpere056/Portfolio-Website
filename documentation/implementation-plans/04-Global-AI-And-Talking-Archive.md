@@ -1,6 +1,6 @@
 # Global AI And Talking Archive Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | Home, [Projects](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md), tour navigation |
 | Primary outputs | Global shell, context resolution, sources, archive cards, destination flow |
 | Execution packages | `AI-01` through `AI-05` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-AI-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

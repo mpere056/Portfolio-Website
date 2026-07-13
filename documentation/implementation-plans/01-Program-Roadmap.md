@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -13,6 +13,7 @@ Last updated: 2026-07-12
 | Primary outputs | Phase order, phase gates, vertical-slice sequence |
 | Execution source | [Work Packages](13-Execution-Work-Packages.md) |
 | Traceability | [Vision Matrix](12-Traceability-Matrix.md) |
+| Progress control | [Tracking Model](14-Implementation-Tracking-Model.md), [Capability Ledger](15-Capability-Coverage-Ledger.md), and [Dashboard](16-Progress-Dashboard.md) |
 
 ## Objective
 
@@ -56,7 +57,7 @@ Semantic lighting depends on the relationship graph. AI cards depend on stable o
 
 | Point in program | Critical path | Work that may safely proceed in parallel |
 | --- | --- | --- |
-| Baseline | `BAS-01`, `BAS-02`, `BAS-04` | Technical baseline, content inventory, runtime decision |
+| Baseline | `BAS-01`, `BAS-02`, `BAS-04`, then `BAS-05` | Technical baseline, content inventory, and runtime decision may overlap; capability reconciliation follows the first two |
 | Contracts | `ARC-01`, `ARC-02`, `ARC-03` | Quality harness design after shared types stabilize |
 | Structural foundation | `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` | Loader migration, persistence, AI context, lifecycle schema with contract coordination |
 | Exploration shell | `EXP-02` to `EXP-05`, `AI-02`, `AI-03`, `KG-05` | First Note, tour, global shell, graph queries after their direct dependencies pass |
@@ -77,14 +78,16 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 
 | Phase | Package groups |
 | --- | --- |
-| Phase 0 | `BAS-*`, `ARC-01` |
-| Phase 1 | `ARC-*`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
+| Phase 0 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-05`, `ARC-01` |
+| Phase 1 | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
 | Phase 2 | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` |
 | Phase 3 | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-02`, `LPS-03`, `QA-02` |
 | Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05` |
 | Phase 5 | `ABT-01` to `ABT-04` |
 | Phase 6 | `LPS-04`, `LPS-05`, `QA-03` |
 | Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
+
+`QA-06` runs across phases after `BAS-05`; it reconciles capability status, evidence, and dashboard summaries rather than forming a standalone release phase.
 
 ## Phase 0: Planning And Technical Baseline
 
@@ -101,14 +104,24 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 - Establish stable IDs for every content node that will participate in the graph.
 - Identify existing global providers and decide where discovery, stimulation, and AI state will live.
 - Document desktop browser targets for visual verification.
-- Add a feature-flag convention for unfinished systems.
+- Reconcile existing implementation against every active target capability without assuming similarity means completion.
 
 ### Exit Criteria
 
 - Baseline build passes.
 - Content inventory and ID policy are documented.
-- Feature-flag and state ownership decisions are recorded.
+- State ownership and stable-ID decisions are recorded.
+- Required active capability dimensions have been assessed and the first dashboard rollup is reproducible.
 - No visitor-facing behavior changes are required in this phase.
+
+## Milestone Progress Gate
+
+Every phase exit includes two views:
+
+1. **Acceptance gate:** required visitor and platform criteria pass with evidence.
+2. **Coverage snapshot:** capability vectors expose remaining specification, content, architecture, implementation, test, creative QA, and rollout gaps.
+
+A phase may ship a deliberately bounded outcome while later capabilities remain incomplete, but it may not hide required incomplete capabilities from the snapshot. Percentages never override a failed critical gate.
 
 ## Phase 1: Structural Foundation
 
@@ -125,6 +138,7 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 - Add a versioned local discovery-state store.
 - Define the global AI context contract.
 - Add stable destination descriptors for routes, objects, exhibits, and experience states.
+- Add the typed feature-flag convention after shared contracts exist.
 
 ### Exit Criteria
 

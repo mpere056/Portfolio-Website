@@ -1,6 +1,6 @@
 # Living Project State Plan
 
-Last updated: 2026-07-12
+Last updated: 2026-07-13
 
 ## Plan Metadata
 
@@ -12,6 +12,7 @@ Last updated: 2026-07-12
 | Downstream | [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [Global AI](04-Global-AI-And-Talking-Archive.md), disturbances, tour reasons |
 | Primary outputs | Lifecycle schema, reviewed classifications, state files, version policy, editorial workflow |
 | Execution packages | `LPS-01` through `LPS-05` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-LPS-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 

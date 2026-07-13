@@ -22,12 +22,17 @@ Every implementation session should name its package ID.
 
 - `ready`: dependencies and decisions are resolved.
 - `pending`: valid work, but an upstream package is incomplete.
+- `in-progress`: at least one owned capability is actively being implemented.
+- `implemented`: package deliverables exist, but verification or rollout evidence remains incomplete.
 - `decision-gated`: requires a recorded decision.
 - `feedback-gated`: requires Mark's feedback.
 - `prototype`: deliberately bounded experiment.
 - `later`: accepted but not near-term.
 - `backlog`: recorded without implementation detail.
 - `complete`: acceptance evidence exists.
+- `reopened`: previously complete work no longer satisfies a current contract or criterion.
+
+Capability vectors, lifecycle, health, and confidence live in `15-Capability-Coverage-Ledger.md`. Package status must agree with those rows but does not replace them.
 
 ## Baseline Packages
 
@@ -37,6 +42,7 @@ Every implementation session should name its package ID.
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | ready |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | ready |
+| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02` | Reconcile current code, content, tests, and live behavior against every active capability | No required active capability retains an unassessed dimension; audit evidence registered | pending |
 
 ## Architecture Packages
 
@@ -122,6 +128,7 @@ Every implementation session should name its package ID.
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | pending |
+| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted levels, or stale in-flight work | pending |
 
 ## Prototype Packages
 
@@ -148,10 +155,11 @@ Start only with packages that reduce uncertainty for everything else:
 1. `BAS-01` Technical baseline.
 2. `BAS-02` Content inventory.
 3. `BAS-04` Runtime maintenance decision.
-4. `ARC-01` Stable ID policy.
-5. `ARC-02` Shared contract types.
-6. `QA-01` Foundation test harness.
-7. `KG-01` Shared content loader parity.
+4. `BAS-05` Target-state implementation audit after `BAS-01` and `BAS-02`.
+5. `ARC-01` Stable ID policy.
+6. `ARC-02` Shared contract types.
+7. `QA-01` Foundation test harness.
+8. `KG-01` Shared content loader parity.
 
 Do not begin First Note visuals, global AI UI, museum redesign, or project demos before the shared identifiers and baseline are stable.
 
@@ -168,7 +176,26 @@ For every active package:
 - Feature flags and fallback behavior exist where needed.
 - Decision register is updated if a gate was resolved.
 - Traceability matrix points to the collected evidence.
+- Every owned capability has a reconciled vector, lifecycle, health, confidence, and next checkpoint.
+- Every partial dimension has a named gap; every accepted dimension has accepted evidence.
+- The package evidence file records what works, what remains, and safe exposure.
+- The progress dashboard reflects package status, blockers, risks, and outcome impact.
 - Commit and deployment scope remain focused.
+
+## Package Execution Record
+
+When a package starts, create `documentation/implementation-evidence/{PACKAGE-ID}.md` from the package evidence template and record:
+
+- Owned capability IDs.
+- Owner and branch or task reference.
+- Start date and next observable checkpoint.
+- Current behavior and named gaps.
+- Feature flag and safe-exposure state.
+- Evidence IDs as proof accumulates.
+- Capability vectors before and after each durable increment.
+- Completion, reopen, or pause decision.
+
+Package completion is a gate decision based on capabilities and evidence, not an automatic result of merging code.
 
 ## Backlog Rule
 
