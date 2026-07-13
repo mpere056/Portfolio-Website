@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `LTR` |
+| Status | Later, deferred, and backlog register |
+| Upstream | Stable single-person desktop core and explicit promotion decisions |
+| Downstream | Future mobile, music, presence, sharing, and backlog plans |
+| Primary output now | Architectural preparation only |
+| Markers | `LTR-01` through `LTR-04`; Anti-Resume has no package |
+
 ## Purpose
 
 Preserve accepted later direction without over-planning it, and record backlog-only ideas without further detail.

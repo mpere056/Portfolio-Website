@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `QA` |
+| Status | Active cross-cutting control |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md) and every active workstream |
+| Downstream | Preview deployments, production releases, rollback evidence |
+| Primary outputs | Baseline, feature flags, test harness, quality gates, privacy and rollout controls |
+| Execution packages | `BAS-*` and `QA-01` through `QA-05` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Provide the technical guardrails that allow an ambitious 3D, AI, audio, persistence, and content-driven experience to ship safely.
@@ -288,6 +299,19 @@ For each milestone:
 - Document the portable-tool fallback only if it remains necessary.
 - Keep commits focused by workstream.
 - Avoid committing generated `.next` or local Vercel state.
+
+## Cross-Plan Handoff
+
+At each phase gate, this plan provides:
+
+- The required test and review checklist.
+- Named evidence locations.
+- Performance comparison to baseline.
+- Feature-flag and fallback verification.
+- Privacy and content-accuracy review.
+- Preview and production verification steps.
+
+A workstream is not ready for downstream reliance merely because its code compiles; its named quality gate must also pass.
 
 ## Completion Criteria
 

@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `LPS` |
+| Status | Active |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Graph schemas](03-Knowledge-Graph-And-Content.md), Mark's lifecycle review |
+| Downstream | [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [Global AI](04-Global-AI-And-Talking-Archive.md), disturbances, tour reasons |
+| Primary outputs | Lifecycle schema, reviewed classifications, state files, version policy, editorial workflow |
+| Execution packages | `LPS-01` through `LPS-05` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Represent evolving, maintained, complete, and archived projects honestly and consistently across project pages, AI answers, blogs, guided tours, and returning-visitor disturbances.
@@ -221,6 +232,18 @@ Do not show update badges or counts by default.
 - Too-frequent updates turn it into a changelog.
 - Automated GitHub data can imply progress without product meaning.
 - Plans can be presented as shipped behavior.
+
+## Cross-Plan Handoff
+
+When lifecycle and flagship state work is complete, consumers may assume:
+
+- Every project has a reviewed lifecycle.
+- Flagship projects expose one current or final source of truth.
+- Meaningful content versions are distinct from Git activity.
+- AI can resolve current truth before older writing.
+- Disturbance selection can compare reviewed versions safely.
+
+Consumers must not infer lifecycle or current state from repository timestamps.
 
 ## Completion Criteria
 

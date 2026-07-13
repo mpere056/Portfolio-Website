@@ -2,6 +2,16 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `DEC` |
+| Status | Active planning control |
+| Upstream | Mark's feedback, prototypes, implementation discoveries |
+| Downstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Roadmap](01-Program-Roadmap.md), [Traceability](12-Traceability-Matrix.md), workstream scope |
+| Primary output | One authoritative record of confirmed, gated, later, backlog, and rejected decisions |
+
 ## Purpose
 
 Track what is confirmed, what requires a prototype, what needs Mark's feedback, what belongs later, what remains backlog-only, and what is explicitly rejected.

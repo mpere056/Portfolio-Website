@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `ABT` |
+| Status | Active plus one bounded prototype |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Graph](03-Knowledge-Graph-And-Content.md), [AI](04-Global-AI-And-Talking-Archive.md) |
+| Downstream | About route, tour destinations, skill evidence, semantic lighting |
+| Primary outputs | Event inspection, five reviewed consequence sets, memory-room decision, About easter eggs |
+| Execution packages | `ABT-01` through `ABT-04` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Extend the chronological About timeline with inspectable consequences, reviewed knowledge relationships, selected memory-room depth, and meaningful easter eggs.
@@ -185,6 +196,17 @@ Direct links should open at Approach or Handle, not launch an unskippable memory
 - Hidden discoveries remain outside guided tour.
 - Memory-room asset failure returns safely to timeline.
 - Keyboard navigation through events and consequences.
+
+## Cross-Plan Handoff
+
+When event inspection is complete, other systems may assume:
+
+- Five timeline events expose reviewed consequence relationships.
+- About deep links resolve to stable event destinations.
+- Selected event and relationship context can be sent to AI and semantic lighting.
+- Hidden About discoveries are registered separately from tour-visible content.
+
+The memory-room prototype adds no reusable requirement until its keep, revise, or remove decision is recorded.
 
 ## Completion Criteria
 

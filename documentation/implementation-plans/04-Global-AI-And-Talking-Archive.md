@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `AI` |
+| Status | Active |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Knowledge Graph](03-Knowledge-Graph-And-Content.md), [Experience](02-Experience-Foundation.md) context |
+| Downstream | Home, [Projects](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md), tour navigation |
+| Primary outputs | Global shell, context resolution, sources, archive cards, destination flow |
+| Execution packages | `AI-01` through `AI-05` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Replace the assumption that AI lives mainly on `/chat` with one quiet, contextual AI presence available throughout the site.
@@ -255,6 +266,19 @@ Future persistence requires a separate privacy decision.
 - Do not initialize 3D AI visuals separately on every page.
 - Limit source cards and graph expansion.
 - Avoid re-running retrieval when merely collapsing and reopening the panel.
+
+## Cross-Plan Handoff
+
+When this plan is complete, pages and experiences may assume:
+
+- A global AI presence can be opened without losing page state.
+- Context identifiers are resolved server-side against public graph data.
+- Answers include validated public sources.
+- Archive cards use the destination registry and reject unknown states.
+- Cross-subdomain navigation has a safe transition path.
+- AI failure leaves ordinary exploration intact.
+
+Project and About plans remain responsible for publishing accurate current context.
 
 ## Completion Criteria
 

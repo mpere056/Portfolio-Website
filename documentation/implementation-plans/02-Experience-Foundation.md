@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `EXP` |
+| Status | Active |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Knowledge Graph](03-Knowledge-Graph-And-Content.md), [Quality](08-Platform-Quality-And-Rollout.md) |
+| Downstream | Home, [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md) |
+| Primary outputs | Depth controller, discovery store, First Note, tour, stimulation, disturbances |
+| Execution packages | `EXP-01` through `EXP-07` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
@@ -283,6 +294,19 @@ Do not derive disturbances from raw Git commits.
 - Tour hints can accidentally reveal all free-exploration rewards.
 - Global state can cause unnecessary 3D re-renders.
 - An elaborate intro can harm repeat visits if the persistence check fails.
+
+## Cross-Plan Handoff
+
+When this plan is complete, downstream plans may assume:
+
+- Stable depth stages and transition actions exist.
+- Discovery and checkpoint persistence are versioned and tested.
+- Tour destinations resolve through the shared destination registry.
+- Stimulation values can be consumed without owning preference UI.
+- AI context receives current destination and depth updates.
+- Experiences can register meaningful discoveries and content disturbances.
+
+This plan does not provide project-specific demo logic, graph facts, or AI responses.
 
 ## Completion Criteria
 

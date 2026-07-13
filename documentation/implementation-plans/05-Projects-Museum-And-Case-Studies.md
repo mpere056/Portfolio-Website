@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `PRJ` |
+| Status | Active after foundation |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Graph](03-Knowledge-Graph-And-Content.md), [AI](04-Global-AI-And-Talking-Archive.md), [Living State](07-Living-Project-State.md) |
+| Downstream | Main projects route, project subdomains, guided tour, skill evidence |
+| Primary outputs | Museum registry, first vertical slice, three flagship experiences, smaller-project tiers |
+| Execution packages | `PRJ-01` through `PRJ-08` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Transform the existing project page and project subdomains into an inspectable museum of systems with increasing depth, focused product demonstrations, and project-specific exploded case studies.
@@ -327,6 +338,18 @@ For each flagship:
 - 3D asset ambition can block product logic.
 - Simulated demos can be mistaken for live systems.
 - The museum can become slower than the current project page.
+
+## Cross-Plan Handoff
+
+After the first flagship vertical slice, the program may assume:
+
+- Exhibit registration and lazy loading are stable.
+- Shared depth orchestration works with one truly project-specific interaction.
+- Product behavior can transition into exploded system and evidence layers.
+- AI, graph, living state, persistence, and direct destinations function together.
+- The quality gate has produced reusable performance and creative-review evidence.
+
+Only after that handoff should the remaining flagship experiences proceed in parallel or sequence.
 
 ## Completion Criteria
 

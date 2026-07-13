@@ -2,6 +2,18 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `RDM` |
+| Status | Active program control |
+| Upstream | [Vision](../Comprehensive-Website-Vision.md), [Architecture](00-System-Architecture-And-Interfaces.md), [Decisions](11-Decision-Register.md) |
+| Downstream | Every active workstream and release milestone |
+| Primary outputs | Phase order, phase gates, vertical-slice sequence |
+| Execution source | [Work Packages](13-Execution-Work-Packages.md) |
+| Traceability | [Vision Matrix](12-Traceability-Matrix.md) |
+
 ## Objective
 
 Evolve the existing portfolio into a persistent exploratory world while continuing to ship a usable website after every milestone.
@@ -39,6 +51,40 @@ The critical dependency chain is:
 10. Later mobile, musical, and shared-navigation work.
 
 Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status.
+
+## Critical Path And Safe Parallelism
+
+| Point in program | Critical path | Work that may safely proceed in parallel |
+| --- | --- | --- |
+| Baseline | `BAS-01`, `BAS-02`, `BAS-04` | Technical baseline, content inventory, runtime decision |
+| Contracts | `ARC-01`, `ARC-02`, `ARC-03` | Quality harness design after shared types stabilize |
+| Structural foundation | `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` | Loader migration, persistence, AI context, lifecycle schema with contract coordination |
+| Exploration shell | `EXP-02` to `EXP-05`, `AI-02`, `AI-03`, `KG-05` | First Note, tour, global shell, graph queries after their direct dependencies pass |
+| First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-03`, `QA-02` | Asset preparation and reviewed About relationships, not another flagship implementation |
+| Expansion | `PRJ-05` to `PRJ-08`, `ABT-01` to `ABT-04`, `LPS-04` | Remaining flagships and About can overlap only after museum and graph contracts are stable |
+
+Unsafe parallel work:
+
+- Do not build multiple competing depth controllers.
+- Do not create project-local destination formats while the registry is unsettled.
+- Do not migrate `/chat` before card navigation and global state are reliable.
+- Do not build all flagship experiences before learning from the first slice.
+- Do not implement The Studio before its feedback gate exits.
+
+## Phase Package Index
+
+Detailed package definitions and statuses live in `13-Execution-Work-Packages.md`.
+
+| Phase | Package groups |
+| --- | --- |
+| Phase 0 | `BAS-*`, `ARC-01` |
+| Phase 1 | `ARC-*`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
+| Phase 2 | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` |
+| Phase 3 | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-02`, `LPS-03`, `QA-02` |
+| Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05` |
+| Phase 5 | `ABT-01` to `ABT-04` |
+| Phase 6 | `LPS-04`, `LPS-05`, `QA-03` |
+| Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
 
 ## Phase 0: Planning And Technical Baseline
 

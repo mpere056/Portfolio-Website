@@ -36,6 +36,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 | Document | Primary angle | Scope |
 | --- | --- | --- |
+| `00-System-Architecture-And-Interfaces.md` | Shared contracts, ownership, data and event flow | Active foundation |
 | `01-Program-Roadmap.md` | Milestones, dependencies, sequencing, releases | Active |
 | `02-Experience-Foundation.md` | Depth grammar, discovery, persistence, tour, stimulation, easter eggs | Active |
 | `03-Knowledge-Graph-And-Content.md` | Content schemas, relationships, validation, graph access | Active |
@@ -47,18 +48,43 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `09-Studio-Feedback-Gate.md` | Services, learning, and products requiring more feedback | Feedback-Gated |
 | `10-Later-And-Backlog.md` | Mobile, music, multiplayer, shared exploration, backlog | Later and Backlog |
 | `11-Decision-Register.md` | Confirmed, unresolved, deferred, and rejected decisions | All classes |
+| `12-Traceability-Matrix.md` | Vision-to-plan-to-package-to-evidence mapping | Active planning control |
+| `13-Execution-Work-Packages.md` | Ordered packages, dependencies, deliverables, exit evidence | Active execution control |
+
+## Start With The Question You Need To Answer
+
+| Question | Read first | Then read |
+| --- | --- | --- |
+| What should we build next? | `13-Execution-Work-Packages.md` | `01-Program-Roadmap.md` |
+| Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
+| How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
+| What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |
+| What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
+| What belongs later or only in backlog? | `10-Later-And-Backlog.md` | `11-Decision-Register.md` |
+| What can we plan for The Studio? | `09-Studio-Feedback-Gate.md` | Wait for Mark's feedback |
+
+## Planning Layers
+
+The documents form four connected layers:
+
+1. **Vision and decisions:** Comprehensive Website Vision and `11-Decision-Register.md`.
+2. **Architecture and workstreams:** `00` plus plans `02` through `10`.
+3. **Sequencing and traceability:** `01` and `12`.
+4. **Execution:** `13`, implementation branches, tests, previews, and release evidence.
+
+Changes should flow downward through these layers. Implementation discoveries can flow upward as decision updates.
 
 ## How To Use The Plans
 
 Before starting an implementation phase:
 
-1. Read `01-Program-Roadmap.md` for dependencies.
-2. Read the relevant workstream document.
-3. Check `11-Decision-Register.md` for unresolved gates.
-4. Create a focused branch or worktree for one milestone.
-5. Implement the smallest coherent vertical slice.
-6. Validate against the acceptance criteria in the workstream plan.
-7. Update project documentation and the decision register when reality changes the plan.
+1. Select a `ready` package from `13-Execution-Work-Packages.md`.
+2. Confirm its vision requirement in `12-Traceability-Matrix.md`.
+3. Read its owning workstream and shared contracts in `00-System-Architecture-And-Interfaces.md`.
+4. Check `11-Decision-Register.md` for unresolved gates.
+5. Create a focused branch or worktree for that package.
+6. Implement the smallest coherent slice and collect named exit evidence.
+7. Update traceability, decisions, and durable architecture when reality changes the plan.
 
 ## Shared Implementation Rules
 
@@ -96,4 +122,7 @@ When updating them:
 - Record changed decisions in `11-Decision-Register.md`.
 - Keep backlog items brief until promoted.
 - Do not expand feedback-gated sections without Mark's input.
+- Update package status and exit evidence in `13-Execution-Work-Packages.md`.
+- Update vision ownership and acceptance evidence in `12-Traceability-Matrix.md`.
+- Update shared contracts before changing incompatible workstream assumptions.
 - Move completed milestone details into durable architecture or operations documentation instead of leaving the implementation plans as the only source.

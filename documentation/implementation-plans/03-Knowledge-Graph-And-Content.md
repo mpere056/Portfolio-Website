@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `KG` |
+| Status | Active foundation |
+| Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), content inventory, [Living State](07-Living-Project-State.md) schema |
+| Downstream | [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md), semantic lighting, skill prototype |
+| Primary outputs | Shared loaders, schemas, graph compiler, reviewed subgraph, bounded queries |
+| Execution packages | `KG-01` through `KG-06` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Scope
 
 Expand the current MDX corpus into a validated, queryable relationship graph without abandoning authored files as the source of truth.
@@ -294,6 +305,18 @@ Use this subgraph to validate AI, semantic lighting, About connections, project 
 - Graph-derived UI can expose private or draft material if visibility is inconsistent.
 - Renaming IDs will break persistence and AI cards.
 - A graph database would add operational complexity before it provides value.
+
+## Cross-Plan Handoff
+
+When the initial foundation is complete, downstream plans may assume:
+
+- Public content nodes and reviewed relationships compile deterministically.
+- Stable IDs resolve to source paths and public summaries.
+- Bounded queries enforce visibility and reviewed status.
+- The initial flagship subgraph is available for AI, projects, About, lighting, and skill evidence.
+- Current project state can override older content through an explicit precedence rule.
+
+Downstream components must not read raw relationship files or bypass query limits.
 
 ## Completion Criteria
 

@@ -2,6 +2,17 @@
 
 Last updated: 2026-07-12
 
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `STU` |
+| Status | Feedback-gated, not scheduled |
+| Upstream | Mark's offering, audience, readiness, and transaction decisions |
+| Downstream | Future Studio plan, potential-client tour branch, offering graph nodes |
+| Primary output now | Questions, allowed preparation, and a hard stop against premature implementation |
+| Gate marker | `STU-GATE-01` in [Work Packages](13-Execution-Work-Packages.md) |
+
 ## Status
 
 Feedback-Gated. Do not expand into a detailed implementation plan until Mark provides more direction.
