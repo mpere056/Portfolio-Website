@@ -4,6 +4,8 @@ Last revised: 2026-07-12
 
 Status: Primary source of truth for future creative direction.
 
+Implementation plans: `documentation/implementation-plans/README.md`.
+
 This document consolidates the accepted ideas and feedback from:
 
 - `Creative-Website-Ideas.md`
@@ -1037,21 +1039,23 @@ Each relationship should include:
 - Prototype one memory room.
 - Add meaningful personal and relational easter eggs.
 
-### Phase 6: The Studio
+### Parallel Feedback Gate: The Studio
+
+This gate can open whenever Mark provides the needed feedback. It is not inherently later than the other phases.
 
 - Remove or de-emphasize the existing template-sales direction.
 - Define which offerings are actually ready.
 - Build one strong experience for each ready path.
 - Add honest readiness states and role-aware tour routing.
 
-### Phase 7: Experimental Systems
+### Phase 6: Experimental Systems
 
 - Prototype the evidence-built skill tree or evidence map.
 - Add rare feedback invitations for evolving work.
 - Test ambient anonymous presence.
 - Develop the musical identity collaboratively.
 
-### Phase 8: Future Expansion
+### Phase 7: Future Expansion
 
 - Design the independent mobile experience.
 - Evaluate shareable states and shared navigation.
