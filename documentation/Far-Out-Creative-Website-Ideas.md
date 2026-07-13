@@ -1,5 +1,7 @@
 # Far-Out Creative Website Ideas: Feedback Revision
 
+> Historical ideation document. The current consolidated direction lives in `Comprehensive-Website-Vision.md`.
+
 Last revised: 2026-07-10
 
 ## Direction Established By Feedback

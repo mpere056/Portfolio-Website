@@ -1,5 +1,7 @@
 # Exploration-Driven Website Ideas
 
+> Historical ideation document. The current consolidated direction lives in `Comprehensive-Website-Vision.md`.
+
 Created from feedback: 2026-07-10
 
 ## Purpose
