@@ -12,6 +12,7 @@ Last updated: YYYY-MM-DD
 | Capabilities | `CAP-XXX-000` |
 | Requirements | `V-00` or Platform |
 | Branch/task | Reference |
+| Work items | `WI-PACKAGE-ID-00` |
 | Target environment | local / preview / production |
 | Started | YYYY-MM-DD |
 | Last assessed | YYYY-MM-DD at commit |
@@ -83,21 +84,21 @@ Record observable output, behavior, metrics, screenshots, or review decision.
 
 ## Capability Reconciliation
 
-| Capability | Before | After | Lifecycle | Health | Confidence | Evidence | Next checkpoint |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-XXX-000` | `U/U/U/U/U/U/U` | `2/1/2/1/0/0/0` | in-progress | on-track | medium | `EV-PACKAGE-ID-01` | Observable increment |
+| Capability | Before states | After states | Lifecycle | Health | Confidence | Evidence | Work item | Next checkpoint |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `CAP-XXX-000` | all unknown | `S: working; A: ready-for-review; I: working` | in-progress | on-track | medium | `EV-PACKAGE-ID-01` | `WI-PACKAGE-ID-00` | Observable checkpoint |
 
 ## Package Exit Checklist
 
 - Deliverables match `13-Execution-Work-Packages.md`.
 - Every owned capability is reconciled.
-- Partial dimensions have named gaps.
+- Working dimensions have named gaps and work items.
 - Accepted dimensions have accepted evidence.
 - Contract changes are documented.
 - Content claims are reviewed.
 - Fallback and flag behavior is recorded.
 - Automated checks and manual QA are recorded.
-- Preview or production evidence matches the claimed rollout level.
+- Preview or production evidence matches the claimed rollout state.
 - Dashboard, traceability, and decisions are updated.
 
 ## Completion Or Reopen Decision

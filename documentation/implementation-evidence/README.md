@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Purpose
 
@@ -88,7 +88,7 @@ Every evidence item records:
 - Production evidence must identify the deployed commit and live routes.
 - Factual content acceptance names the source material or reviewer.
 - One evidence item may advance several dimensions only when it genuinely proves each claim.
-- Capability vector level `4` requires at least one accepted evidence item for that dimension.
+- Capability state `accepted` requires at least one accepted evidence item for that dimension.
 
 ## Storage Rules
 
@@ -105,16 +105,17 @@ Every evidence item records:
 2. Add evidence items in sequence.
 3. Add each item to the registry table above.
 4. Link evidence IDs from capability detail records.
-5. Update dimension levels only after reviewing sufficiency.
+5. Update dimension states only after reviewing sufficiency.
 6. Reconcile package status, dashboard, and release outcome.
-7. Preserve failed and superseded items as implementation history.
+7. Refresh the current work-item resume packet and update history.
+8. Preserve failed and superseded items as implementation history.
 
 ## Integrity Audit
 
 `QA-06` periodically checks:
 
 - Every referenced evidence ID exists.
-- Every accepted level `4` has accepted evidence.
+- Every `accepted` dimension has accepted evidence.
 - Evidence package and capability IDs are valid.
 - Production evidence identifies a commit and route.
 - Preview-only proof is not represented as production rollout.

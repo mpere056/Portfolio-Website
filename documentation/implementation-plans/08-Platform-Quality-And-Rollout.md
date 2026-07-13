@@ -1,6 +1,6 @@
 # Platform, Quality, And Rollout Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -308,8 +308,9 @@ For each milestone:
 ### At Package Start
 
 - Create a package evidence file from `documentation/implementation-evidence/_Package-Evidence-Template.md`.
-- Name the package's capability IDs, owner, branch or task, safe exposure, and next checkpoint.
-- Reconcile existing capability vectors before changing them.
+- Create or reopen a work item under `documentation/implementation-work/active/`.
+- Name the package's capability IDs, owner, branch or worktree, safe exposure, and next checkpoint.
+- Reconcile existing capability dimension states before changing them.
 
 ### At Every Durable Increment
 
@@ -320,11 +321,12 @@ For each milestone:
 
 ### At Milestone Review
 
-- Recompute workstream and outcome rollups from capability weights.
-- Refuse a percentage if required dimensions remain unassessed.
-- Check every accepted level against the evidence registry.
+- Summarize each outcome by stage, last checkpoint, current work, named gaps, and next proof point.
+- Do not calculate completion percentages.
+- Check every accepted dimension against the evidence registry.
 - Flag in-progress records older than 14 days for review.
 - Reopen packages invalidated by regressions, contract changes, or content changes.
+- Verify every unfinished active item has a reproducible known-good point and exact next action.
 - Update the dashboard's reconciliation date and commit.
 
 ### Tracking Integrity Checks
@@ -334,7 +336,8 @@ For each milestone:
 - Every evidence reference resolves to a registered item.
 - Every production rollout claim names a deployed commit and live route.
 - Every partial visitor-facing feature records its flag, fallback, and safe environment.
-- Package completion agrees with capability vectors and package exit evidence.
+- Package completion agrees with capability dimension states and package exit evidence.
+- Dashboard active states resolve to current work-item files.
 
 Tracking quality is part of release quality. A feature whose true partial state cannot be explained is not ready for broader rollout.
 

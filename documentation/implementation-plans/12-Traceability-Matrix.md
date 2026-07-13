@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -9,7 +9,7 @@ Last updated: 2026-07-13
 | Plan ID | `TRC` |
 | Status | Active planning control |
 | Upstream | Comprehensive Website Vision |
-| Downstream | Roadmap, work packages, capability ledger, evidence registry, and all workstream plans |
+| Downstream | Roadmap, work packages, capability ledger, work items, evidence registry, and all workstream plans |
 | Primary output | Proof that every confirmed vision item has an owner and validation path |
 
 ## Purpose
@@ -59,9 +59,9 @@ Traceability is complete only when:
 
 - Every active requirement maps to at least one active capability.
 - Every active capability maps back to a requirement or a named platform necessity.
-- Capability weights do not imply requirement priority; they represent implementation breadth and visitor importance for progress rollups.
-- Requirement acceptance uses the combined evidence of all critical mapped capabilities, not the highest individual percentage.
-- Later, feedback-gated, and backlog requirements remain excluded from active progress denominators until promoted.
+- Capability scope signals do not imply requirement priority or completion; they only warn when work likely needs splitting.
+- Requirement acceptance uses the combined evidence of all critical mapped capabilities, not arithmetic progress.
+- Later, feedback-gated, and backlog requirements remain outside active workflow until promoted.
 - A requirement cannot be accepted while a critical mapped capability is blocked, unassessed, or missing required evidence.
 
 ## Workstream Dependency Matrix
@@ -104,7 +104,8 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Manual creative review | Review checklist | Taste, discoverability, pacing |
 | Live verification | Route/status notes | Production and subdomains |
 | Decision record | `11-Decision-Register.md` | Prototype and scope gates |
-| Capability reconciliation | `15-Capability-Coverage-Ledger.md` | Partial implementation and rollups |
+| Capability reconciliation | `15-Capability-Coverage-Ledger.md` | Named partial implementation states |
+| Work-item resume packet | `documentation/implementation-work/active/{WORK-ITEM-ID}.md` | Exact restart context and chronological updates |
 | Package evidence record | `documentation/implementation-evidence/{PACKAGE-ID}.md` | Durable acceptance and release proof |
 
 ## Orphan Checks
@@ -129,4 +130,4 @@ When the vision changes:
 3. Update this requirement row.
 4. Add, remove, or change execution packages.
 5. Re-evaluate phase gates and downstream plans.
-6. Reconcile capability inventory, weights, and vectors before publishing a new progress rollup.
+6. Reconcile capability inventory, dimension states, work items, and checkpoints before reporting the new state.

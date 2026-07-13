@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Purpose
 
@@ -50,9 +50,11 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `11-Decision-Register.md` | Confirmed, unresolved, deferred, and rejected decisions | All classes |
 | `12-Traceability-Matrix.md` | Vision-to-plan-to-package-to-evidence mapping | Active planning control |
 | `13-Execution-Work-Packages.md` | Ordered packages, dependencies, deliverables, exit evidence | Active execution control |
-| `14-Implementation-Tracking-Model.md` | Coverage dimensions, partial-state rules, rollups, health, and update protocol | Active tracking control |
+| `14-Implementation-Tracking-Model.md` | Named dimension states, partial-state rules, health, and update protocol | Active tracking control |
 | `15-Capability-Coverage-Ledger.md` | Granular target capabilities and multidimensional status | Active status source |
-| `16-Progress-Dashboard.md` | Current rollups, work in flight, gaps, gates, risks, and next work | Active summary |
+| `16-Progress-Dashboard.md` | Current focus, checkpoints, gaps, gates, risks, and next work | Active summary |
+| `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
+| `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
 | `../implementation-evidence/README.md` | Evidence registry, acceptance rules, and package record template | Active evidence control |
 
 ## Start With The Question You Need To Answer
@@ -66,6 +68,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
+| Where exactly did unfinished work stop? | `../implementation-work/README.md` | Its linked work-item resume packet |
 | What proves an implementation or release claim? | `../implementation-evidence/README.md` | Owning package evidence file |
 | What belongs later or only in backlog? | `10-Later-And-Backlog.md` | `11-Decision-Register.md` |
 | What can we plan for The Studio? | `09-Studio-Feedback-Gate.md` | Wait for Mark's feedback |
@@ -78,7 +81,7 @@ The documents form five connected layers:
 2. **Architecture and workstreams:** `00` plus plans `02` through `10`.
 3. **Sequencing and traceability:** `01` and `12`.
 4. **Execution:** `13`, implementation branches, tests, and previews.
-5. **Progress and proof:** `14`, `15`, `16`, and `documentation/implementation-evidence/`.
+5. **Continuation and proof:** `14` through `17`, `documentation/implementation-work/`, and `documentation/implementation-evidence/`.
 
 Changes should flow downward through these layers. Implementation discoveries can flow upward as decision updates.
 
@@ -91,21 +94,23 @@ Before starting an implementation phase:
 3. Read its owning workstream and shared contracts in `00-System-Architecture-And-Interfaces.md`.
 4. Check `11-Decision-Register.md` for unresolved gates.
 5. Create a focused branch or worktree for that package.
-6. Implement the smallest coherent slice and collect named exit evidence.
-7. Reconcile capability vectors, named gaps, evidence, and the dashboard before calling the slice complete.
-8. Update traceability, decisions, and durable architecture when reality changes the plan.
+6. Create or reopen a work item with a current resume packet and one exact next action.
+7. Implement the smallest coherent slice and collect named exit evidence.
+8. Refresh dimension states, named gaps, resume packet, update history, and dashboard before stopping.
+9. Update traceability, decisions, and durable architecture when reality changes the plan.
 
 ## Tracking Partial Implementation
 
 Large features must not be represented by one optimistic status.
 
-- Use the seven-dimension `S/C/A/I/T/Q/R` coverage vector in `15-Capability-Coverage-Ledger.md`.
-- Keep uninspected target behavior as `U`, not `0` or complete.
+- Use the seven named `S/C/A/I/T/Q/R` dimension states in `15-Capability-Coverage-Ledger.md`.
+- Keep uninspected target behavior as `unknown`, not `not-started` or complete.
 - Name what works and what remains for every partial capability.
 - Treat implemented, verified, and released as different states.
 - Link accepted dimensions to durable evidence records.
-- Publish percentages only after all included capabilities are assessed.
-- Keep the dashboard concise; keep granular truth in the capability ledger and evidence files.
+- Do not publish completion percentages for capabilities, packages, milestones, outcomes, or phases.
+- Keep every unfinished active item restartable from its repository resume packet.
+- Keep the dashboard concise; keep granular truth in capability, work-item, and evidence files.
 
 ## Shared Implementation Rules
 
@@ -145,8 +150,9 @@ When updating them:
 - Do not expand feedback-gated sections without Mark's input.
 - Update package status and exit evidence in `13-Execution-Work-Packages.md`.
 - Update vision ownership and acceptance evidence in `12-Traceability-Matrix.md`.
-- Update capability vectors and named gaps in `15-Capability-Coverage-Ledger.md`.
-- Update in-flight work, outcome rollups, blockers, and reconciliation date in `16-Progress-Dashboard.md`.
+- Update capability dimension states and named gaps in `15-Capability-Coverage-Ledger.md`.
+- Update current focus, outcome checkpoints, blockers, and reconciliation date in `16-Progress-Dashboard.md`.
+- Update work-item resume packets and chronological updates under `documentation/implementation-work/`.
 - Register durable proof under `documentation/implementation-evidence/`.
 - Update shared contracts before changing incompatible workstream assumptions.
 - Move completed milestone details into durable architecture or operations documentation instead of leaving the implementation plans as the only source.

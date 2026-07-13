@@ -1,6 +1,6 @@
 # Implementation Tracking Model
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -9,21 +9,21 @@ Last updated: 2026-07-13
 | Plan ID | `TRK` |
 | Status | Active execution control |
 | Upstream | Vision, architecture, roadmap, work packages, and decisions |
-| Downstream | Capability ledger, progress dashboard, evidence records, and releases |
-| Primary output | A consistent way to represent partial implementation without overstating progress |
+| Downstream | Capability ledger, work-item registry, continuation dashboard, evidence records, and releases |
+| Primary output | A consistent way to represent partial implementation and resume it without reconstructing context |
 
 ## Purpose
 
-Large features will be incomplete in different ways at the same time. A project experience may have finished interaction code but incomplete content, missing failure behavior, no creative review, and no production rollout. A single `in progress` label or an unsupported percentage hides those differences.
+Large features will be incomplete in different ways at the same time. A project experience may have finished interaction code but incomplete content, missing failure behavior, no creative review, and no production rollout. A single `in progress` label hides those differences, while a percentage invents a denominator that will change as the work becomes better understood.
 
 This model tracks progress at four connected levels:
 
 1. **Vision requirement:** the visitor outcome being protected.
 2. **Work package:** the bounded execution unit with dependencies and exit evidence.
 3. **Capability:** a stable, visitor-meaningful part of a package that can be assessed independently.
-4. **Implementation task:** short-lived branch, issue, or session work that contributes to one or more capabilities.
+4. **Work item:** a bounded, restartable unit of implementation that contributes to one or more capabilities.
 
-The capability is the primary progress unit. Tasks may be reorganized freely without rewriting the product-level history.
+The capability is the stable product-level unit. The work item is the day-to-day continuation unit. Work items may be split, reordered, paused, or canceled without rewriting the capability history.
 
 ## Sources Of Truth
 
@@ -35,10 +35,11 @@ The capability is the primary progress unit. Tasks may be reorganized freely wit
 | What package owns the work? | `13-Execution-Work-Packages.md` |
 | What parts of the feature exist? | `15-Capability-Coverage-Ledger.md` |
 | What is currently happening? | `16-Progress-Dashboard.md` |
+| Exactly where did unfinished work stop? | `17-Work-Items-And-Resume-Protocol.md` and `documentation/implementation-work/` |
 | What proves a claim? | `documentation/implementation-evidence/` |
 | What changed direction? | `11-Decision-Register.md` |
 
-Do not maintain the same status independently in several documents. The capability ledger owns granular status. The dashboard summarizes it. Work packages own dependency and exit state.
+Do not maintain the same status independently in several documents. The capability ledger owns capability state. The work-item file owns active implementation and resume state. The dashboard points to current work. Work packages own dependency and exit state.
 
 ## Seven Coverage Dimensions
 
@@ -56,42 +57,36 @@ Every active capability is assessed across seven dimensions.
 
 Use `-` only when a dimension genuinely does not apply. For example, a low-level TypeScript contract may not need authored content. Do not use `-` to avoid unfinished work.
 
-## Dimension Levels
+## Dimension States
 
-| Level | Meaning | Required interpretation |
+Each dimension uses named states rather than numeric levels.
+
+| State | Meaning | Required interpretation |
 | --- | --- | --- |
-| `U` | Unassessed | Current state is unknown. It blocks a trustworthy rollup. |
-| `0` | Not started | Assessed and no target-state work exists. |
-| `1` | Drafted | Direction, spike, rough content, or scaffolding exists but is not dependable. |
-| `2` | Partial | Useful target-state work exists, with named gaps or incomplete paths. |
-| `3` | Implemented | The dimension appears complete, but final acceptance evidence is not yet approved. |
-| `4` | Accepted | Required evidence exists and the relevant reviewer or gate has accepted it. |
-| `-` | Not applicable | Excluded from the capability calculation with a written reason if non-obvious. |
+| `unknown` | Current target-state coverage has not been inspected | Requires baseline or direct inspection before planning from it |
+| `not-started` | Assessed and no dependable target-state work exists | The existing site may still contain legacy behavior |
+| `working` | Useful work exists but named paths or acceptance needs remain | Must link to an active or paused work item with explicit gaps |
+| `ready-for-review` | Work appears complete for this dimension | Awaiting the named evidence or reviewer |
+| `accepted` | Required evidence exists and the relevant gate accepted it | Evidence ID is mandatory |
+| `not-applicable` | The dimension genuinely does not apply | Give a reason when that is not obvious |
 
-A level describes the target architecture in these plans, not whether the current legacy site has a vaguely similar feature.
-
-## Coverage Vector
-
-Record capability coverage in this fixed order:
+Record the dimensions as a readable state map:
 
 ```text
-S/C/A/I/T/Q/R
+S: accepted
+C: working
+A: accepted
+I: working
+T: not-started
+Q: not-started
+R: not-started
 ```
 
-Examples:
-
-| Vector | Honest interpretation |
-| --- | --- |
-| `2/1/2/0/0/0/0` | Partly designed, early content and architecture, no implementation yet |
-| `4/3/4/3/2/1/1` | Built in development, but tests, creative review, and rollout remain incomplete |
-| `4/-/4/4/4/4/3` | Accepted technical capability in preview; content is not applicable and production is pending |
-| `U/U/U/U/U/U/U` | Baseline audit has not assessed this capability; do not publish a percentage |
-
-Every `1` or `2` must have a short named gap in the ledger or linked evidence record. A vector is not useful if it only says that something is partial.
+This says exactly what kind of work remains without implying that the capability is a calculable fraction complete. The compact `U/U/U/U/U/U/U` entries in the initial ledger mean all seven dimensions are `unknown`; active capabilities should replace that shorthand with a detail record.
 
 ## Lifecycle State
 
-The lifecycle state is a readable summary, not a replacement for the vector.
+The lifecycle state is a readable summary, not a replacement for the dimension map.
 
 | State | Use when |
 | --- | --- |
@@ -105,7 +100,7 @@ The lifecycle state is a readable summary, not a replacement for the vector.
 | `paused` | Valid work is intentionally not active; a restart condition is named |
 | `deferred` | Classified as prototype, feedback-gated, later, or backlog rather than active delivery |
 
-`blocked` and `paused` preserve the last coverage vector. They do not reset progress.
+`blocked` and `paused` preserve the last dimension states and resume packet. They do not reset history.
 
 ## Health And Confidence
 
@@ -121,38 +116,30 @@ Track delivery health separately from completion.
 
 Track confidence as `high`, `medium`, or `low`.
 
-- `high`: recent evidence and direct inspection support the vector.
+- `high`: recent evidence and direct inspection support the recorded states.
 - `medium`: status is recent but some evidence is indirect or incomplete.
 - `low`: status is stale, inferred, or awaiting a baseline audit.
 
-## Progress Calculation
+## No Completion Percentages
 
-Percentages are summaries, never acceptance claims.
+The program does not calculate capability, package, outcome, milestone, or phase completion percentages.
 
-For an assessed capability:
+Instead, every summary answers:
 
-```text
-capability progress = sum(applicable dimension levels) / (4 * applicable dimension count)
-```
+- What state is the work in?
+- What coherent checkpoint was last reached?
+- What works now?
+- What remains incomplete?
+- What is actively being worked on?
+- What is blocked, paused, or awaiting review?
+- What is the next exact action?
+- What evidence supports the current claim?
 
-For a workstream or release outcome:
-
-```text
-rollup progress = sum(capability progress * capability weight) / sum(capability weights)
-```
-
-Rules:
-
-- Do not publish a rollup while any included capability has `U` in a required dimension. Show `baseline incomplete` instead.
-- Round to the nearest whole percent and always show assessed capability coverage, such as `18/22 assessed`.
-- Weights are relative complexity and visitor importance: `1` small, `2` medium, `3` large, `5` critical or unusually broad.
-- Never change a weight to make progress look better. Weight changes require a ledger note.
-- A high percentage does not override a failed critical gate.
-- `released` requires evidence even if the arithmetic reaches 100%.
+Counts may be used for inventory, such as the number of work items in each state, but never as a claim that a large feature is a certain fraction complete. Milestones are named visitor or platform checkpoints, not arithmetic progress markers.
 
 ## Critical Gates
 
-These gates can prevent promotion regardless of percentage:
+These gates prevent promotion regardless of how much surrounding work appears finished:
 
 - Content accuracy and privacy for all public factual claims.
 - Destination validation for AI cards and cross-domain navigation.
@@ -162,11 +149,11 @@ These gates can prevent promotion regardless of percentage:
 - Production build, preview review, live route verification, and rollback readiness.
 - Mark's explicit approval for feedback-gated or taste-sensitive work.
 
-## Package Rollup Rules
+## Package State Rules
 
 A package may contain several capabilities.
 
-- `ready`: package dependencies and gates are satisfied; capability progress may still be `0`.
+- `ready`: package dependencies and gates are satisfied; implementation may still be `not-started`.
 - `in-progress`: at least one owned capability is active.
 - `implemented`: all package deliverables have target code/content, but some exit evidence is incomplete.
 - `complete`: every required capability is accepted at the package's target environment and all package exit evidence is registered.
@@ -176,15 +163,17 @@ When reopening a package, retain its completion history and add the reason to th
 
 ## Partial Implementation Record
 
-Every active capability with a `1` or `2` should answer:
+Every capability with a `working`, `blocked`, or `paused` dimension should answer:
 
 - What works now?
 - What does not work yet?
 - Which visitor paths are safe to expose?
 - Which paths are behind a flag or fallback?
 - What is the next smallest coherent increment?
-- What evidence would move the current dimension to the next level?
+- What evidence would move the current dimension to the next state?
 - Is any completed-looking surface still backed by placeholder content or behavior?
+- Which work-item file contains the latest resume packet?
+- What was the last known-good commit and verification command?
 
 This record belongs in the capability ledger's note/evidence link, not only in a chat or commit message.
 
@@ -196,29 +185,34 @@ Update tracking at these moments:
 
 1. Name one primary package and the capability IDs being changed.
 2. Confirm dependencies and decision gates.
-3. Record lifecycle `in-progress`, owner, branch or task, and next checkpoint on the dashboard.
-4. Preserve the current vector until work actually changes a dimension.
+3. Create or reopen one work item and put it in `ready` or `in-progress`.
+4. Read and verify its resume packet before editing.
+5. Record owner, branch, last known-good commit, next checkpoint, and next exact action.
+6. Preserve current dimension states until inspected work actually changes them.
 
 ### During Implementation
 
 1. Update a dimension when a durable increment lands, not for every edit.
-2. Add a named gap for every partial dimension.
+2. Add a named gap for every `working` dimension.
 3. Register important decisions or contract changes immediately.
 4. Keep unfinished visitor-facing behavior flagged or unreachable.
+5. Append a short work-item update when the next action, blocker, scope, or known-good point changes.
 
 ### At Merge Or Session End
 
-1. Update affected vectors and capability notes.
+1. Update affected dimension states and capability notes.
 2. Add evidence IDs and durable links.
-3. Recalculate package and release rollups.
-4. Record remaining gaps and the next coherent slice.
-5. Update the dashboard's in-flight, blocked, and recently changed sections.
+3. Refresh the work item's resume packet, even when the work is still incomplete.
+4. Record remaining gaps and one next exact action.
+5. Record the last known-good commit, commands, routes, flags, and important files.
+6. Move the work item to `in-review`, `blocked`, `paused`, or `done` as appropriate.
+7. Update the dashboard's now, next, blocked, review, and recently changed sections.
 
 ### At Preview Or Production Promotion
 
 1. Record deployment URL and commit.
 2. Run the named gate checklist.
-3. Update `R` only for the environment actually verified.
+3. Update rollout state only for the environment actually verified.
 4. Record rollback result or readiness.
 5. Reopen any capability invalidated by live behavior.
 
@@ -228,23 +222,24 @@ Update tracking at these moments:
 - In-progress capabilities older than 30 days without evidence are treated as stale and reviewed for pause, split, or rescope.
 - External preview links must have a durable summary because previews may expire.
 - Evidence tied to a superseded contract or content version is marked `superseded`, not deleted.
-- The dashboard carries a `last reconciled` date and commit.
+- Active work items with no update for 14 days are marked stale on the dashboard.
+- The dashboard carries a `last reconciled` date and implementation commit.
 
 ## Scope Change Rules
 
 When implementation reveals new scope:
 
 1. Decide whether it is a gap in an existing capability, a new capability, or a new package.
-2. Add the capability before counting its work in a rollup.
+2. Add the capability before attaching work items or making completion claims.
 3. Update requirement and package mappings.
 4. Record meaningful direction changes in the decision register.
-5. Recalculate the rollup without rewriting historical snapshots.
+5. Update current state without rewriting chronological work-item updates.
 
 Splitting a capability must preserve the parent ID as an alias or historical reference in the ledger.
 
 ## Tracking Anti-Patterns
 
-- One percentage with no dimensions or evidence.
+- Any completion percentage for a capability, package, milestone, outcome, or phase.
 - Calling code complete when content or failure behavior is placeholder.
 - Counting legacy behavior as target-state implementation without assessment.
 - Marking a package complete because a branch merged.
@@ -252,12 +247,15 @@ Splitting a capability must preserve the parent ID as an alias or historical ref
 - Hiding blocked work inside `in-progress` for weeks.
 - Deleting failed experiments or superseded evidence instead of recording the decision.
 - Maintaining private status in chat that never reaches the repository.
+- Ending a work session without a restart-ready next action and known-good point.
+- Using a branch name or commit history as the only record of unfinished intent.
 
 ## Completion Criteria
 
 - Every active package maps to at least one capability.
-- Every active capability has a package, requirement, weight, vector, lifecycle state, health, confidence, and next checkpoint.
+- Every active capability has a package, requirement, dimension states, lifecycle state, health, confidence, and next checkpoint.
+- Every active or paused work item has a current resume packet.
 - Every accepted dimension points to evidence appropriate to that dimension.
-- Dashboard rollups can be reproduced from the capability ledger.
+- The dashboard can be reproduced from work-item and capability states without arithmetic progress.
 - Unknown implementation state is visible and is not represented as zero or complete.
 - Partial features record both working behavior and named gaps.

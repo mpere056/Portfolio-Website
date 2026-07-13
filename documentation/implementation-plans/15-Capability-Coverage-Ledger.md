@@ -1,6 +1,6 @@
 # Capability Coverage Ledger
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -9,12 +9,12 @@ Last updated: 2026-07-13
 | Plan ID | `CAP` |
 | Status | Active granular status source |
 | Upstream | Tracking model, work packages, traceability matrix, and workstream plans |
-| Downstream | Progress dashboard, package completion decisions, and release gates |
-| Primary output | Stable capability inventory with multidimensional implementation coverage |
+| Downstream | Work items, continuation dashboard, package completion decisions, and release gates |
+| Primary output | Stable capability inventory with named dimension and lifecycle states |
 
 ## How To Read This Ledger
 
-The coverage vector uses `S/C/A/I/T/Q/R` from `14-Implementation-Tracking-Model.md`:
+Each capability is inspected across `S/C/A/I/T/Q/R` from `14-Implementation-Tracking-Model.md`:
 
 - Specification.
 - Content.
@@ -24,9 +24,11 @@ The coverage vector uses `S/C/A/I/T/Q/R` from `14-Implementation-Tracking-Model.
 - Creative and manual QA.
 - Rollout.
 
-All target-state capabilities begin as `U/U/U/U/U/U/U` because their current implementation has not yet been reconciled against the target plans. `BAS-05` performs that audit. This is intentionally different from saying the existing site has no implementation.
+All target-state capabilities begin as `U/U/U/U/U/U/U`, a compact initial marker meaning all seven dimensions are `unknown`. `BAS-05` performs the first audit. This is intentionally different from saying the existing site has no implementation.
 
-When work starts, update the row with a real vector, lifecycle, health, confidence, evidence IDs, named gaps, and next checkpoint. Do not leave the detail only in the dashboard.
+When work starts, add a readable dimension-state map and detail record with lifecycle, health, confidence, evidence IDs, named gaps, current work-item ID, and next checkpoint. Do not replace named states with numbers and do not leave the detail only in the dashboard.
+
+The `Scope signal` values are rough breadth warnings retained to help split capabilities into appropriately bounded work items. They are never summed, averaged, or used as a completion denominator. A `5` means the capability is likely to require several work items and checkpoints, not that it is more important or worth more progress.
 
 Until a capability receives its own detail record, these defaults apply:
 
@@ -38,6 +40,7 @@ Until a capability receives its own detail record, these defaults apply:
 | Evidence | none |
 | Named gap | Target-state implementation has not been assessed |
 | Next checkpoint | `BAS-05` reconciliation |
+| Current work item | none |
 | Last assessed | not yet assessed |
 
 ## Release Outcomes
@@ -54,7 +57,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Baseline And Architecture
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-BAS-001` | Reproducible technical and performance baseline | `BAS-01` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
@@ -69,7 +72,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Knowledge Graph And Content
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-KG-001` | Shared loader with current-output parity | `KG-01` | `V-11` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-002` | Validated project, event, post, and relationship schemas | `KG-02` | `V-11`, `V-19` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -81,7 +84,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Persistent Exploration Foundation
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -100,7 +103,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Quiet Global AI
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-AI-001` | Route, object, project, timeline, and depth context stack | `AI-01` | `V-09` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-AI-002` | Context precedence, clearing, and privacy boundaries | `AI-01` | `V-09` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -113,7 +116,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Living Project State
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-LPS-001` | Lifecycle schema and section requirements | `LPS-01` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-002` | Reviewed classification for every project | `LPS-02` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -124,7 +127,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Museum And Shared Case-Study System
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-002` | Direct-linkable exhibit and depth state | `PRJ-01`, `PRJ-08` | `V-10`, `V-14` | `O-03` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -137,7 +140,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Flagship Product Experiences
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` or `PRJ-06` | `V-17` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` or `PRJ-06` | `V-15`, `V-17` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -151,7 +154,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## About And Memory Depth
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-ABT-001` | Five reviewed events with bounded consequences | `ABT-01` | `V-13` | `O-05` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ABT-002` | Timeline event inspection and direct-link state | `ABT-02` | `V-03`, `V-13` | `O-05` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -161,7 +164,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 ## Quality, Release, And Experimental Decisions
 
-| Capability ID | Capability | Package | Requirements | Outcome | Weight | Vector | Lifecycle |
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -183,13 +186,14 @@ When a row becomes active, add a short detail block below the relevant table or 
 - Lifecycle: in-progress
 - Health: on-track
 - Confidence: medium
-- Coverage: `4/2/3/2/1/1/0`
+- Dimension states: `S: accepted; C: working; A: ready-for-review; I: working; T: not-started; Q: not-started; R: not-started`
 - Active package: `XXX-00`
 - Branch/task: reference
 - Works now: concise tested behavior
 - Named gaps: concise missing paths by dimension
 - Feature flag/exposure: flag and environment
 - Evidence: `EV-XXX-00-01`, `EV-XXX-00-02`
+- Work item: `WI-XXX-00-01`
 - Next checkpoint: observable increment and target date if committed
 - Last assessed: YYYY-MM-DD at commit
 ```
@@ -200,14 +204,14 @@ When a row becomes active, add a short detail block below the relevant table or 
 - Every active work package maps to at least one capability.
 - Every capability maps to a package or an explicit deferred marker.
 - Every capability maps to at least one vision requirement, `Platform`, or `Prototype`.
-- Every `4` in a vector has an evidence ID.
-- Every `1` or `2` has a named gap.
+- Every `accepted` dimension has an evidence ID.
+- Every `working` dimension has a named gap and active or paused work item.
 - Every `blocked` state names the blocking condition and restart trigger.
-- Every changed vector updates `last assessed` in its detail record.
+- Every changed dimension state updates `last assessed` in its detail record.
 - Every package completion reconciles all owned capability rows.
 
 ## Initial Reconciliation
 
-`BAS-05` must inspect the current code, content, tests, deployments, and live routes, then replace `U` values with evidence-based levels. The audit should prioritize `O-00`, then any current behavior that will be retained by `O-01` and `O-02`.
+`BAS-05` inspects current code, content, tests, deployments, and live routes for `O-00`, retained behavior, and the capabilities approaching execution. It replaces their `U` values with named states and creates work items for actionable gaps. Distant capabilities may remain `unknown` until they enter the current or next queue.
 
-Until that audit is complete, the program dashboard must say `baseline incomplete` rather than calculate implementation percentages.
+Until that audit covers the current queue, the dashboard must say `baseline incomplete` and identify the next capability to inspect. It must not calculate implementation percentages afterward either.

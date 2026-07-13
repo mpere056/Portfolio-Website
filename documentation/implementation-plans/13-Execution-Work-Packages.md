@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -9,7 +9,7 @@ Last updated: 2026-07-13
 | Plan ID | `EXE` |
 | Status | Active planning control |
 | Upstream | Roadmap, architecture contracts, workstream plans, decision register |
-| Downstream | Implementation branches, commits, previews, and release evidence |
+| Downstream | Work items, implementation branches, commits, previews, and release evidence |
 | Primary output | Bounded packages that can be implemented and verified independently |
 
 ## Purpose
@@ -32,7 +32,7 @@ Every implementation session should name its package ID.
 - `complete`: acceptance evidence exists.
 - `reopened`: previously complete work no longer satisfies a current contract or criterion.
 
-Capability vectors, lifecycle, health, and confidence live in `15-Capability-Coverage-Ledger.md`. Package status must agree with those rows but does not replace them.
+Capability dimension states, lifecycle, health, and confidence live in `15-Capability-Coverage-Ledger.md`. Active implementation and restart context live in `documentation/implementation-work/`. Package status must agree with them but does not replace them.
 
 ## Baseline Packages
 
@@ -42,7 +42,7 @@ Capability vectors, lifecycle, health, and confidence live in `15-Capability-Cov
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | ready |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | ready |
-| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02` | Reconcile current code, content, tests, and live behavior against every active capability | No required active capability retains an unassessed dimension; audit evidence registered | pending |
+| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | pending |
 
 ## Architecture Packages
 
@@ -128,7 +128,7 @@ Capability vectors, lifecycle, health, and confidence live in `15-Capability-Cov
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | pending |
-| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted levels, or stale in-flight work | pending |
+| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | pending |
 
 ## Prototype Packages
 
@@ -176,8 +176,8 @@ For every active package:
 - Feature flags and fallback behavior exist where needed.
 - Decision register is updated if a gate was resolved.
 - Traceability matrix points to the collected evidence.
-- Every owned capability has a reconciled vector, lifecycle, health, confidence, and next checkpoint.
-- Every partial dimension has a named gap; every accepted dimension has accepted evidence.
+- Every owned capability has reconciled dimension states, lifecycle, health, confidence, and next checkpoint.
+- Every working dimension has a named gap and work item; every accepted dimension has accepted evidence.
 - The package evidence file records what works, what remains, and safe exposure.
 - The progress dashboard reflects package status, blockers, risks, and outcome impact.
 - Commit and deployment scope remain focused.
@@ -192,7 +192,8 @@ When a package starts, create `documentation/implementation-evidence/{PACKAGE-ID
 - Current behavior and named gaps.
 - Feature flag and safe-exposure state.
 - Evidence IDs as proof accumulates.
-- Capability vectors before and after each durable increment.
+- Capability dimension states before and after each durable increment.
+- Work-item IDs and current resume packets.
 - Completion, reopen, or pause decision.
 
 Package completion is a gate decision based on capabilities and evidence, not an automatic result of merging code.

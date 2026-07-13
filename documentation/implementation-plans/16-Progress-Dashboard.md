@@ -1,6 +1,6 @@
-# Implementation Progress Dashboard
+# Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-13
+Last reconciled: 2026-07-14
 Implementation commit baseline: not yet established; `BAS-05` will record it
 
 ## Plan Metadata
@@ -8,16 +8,16 @@ Implementation commit baseline: not yet established; `BAS-05` will record it
 | Field | Value |
 | --- | --- |
 | Plan ID | `DSH` |
-| Status | Active summary; update whenever implementation status changes |
-| Upstream | Capability ledger, work packages, evidence records, and decisions |
-| Downstream | Work selection, milestone reviews, previews, and release decisions |
-| Primary output | A concise, reproducible view of progress, uncertainty, blockers, and next work |
+| Status | Active summary; update whenever implementation or work-item state changes |
+| Upstream | Work-item registry, capability ledger, work packages, evidence records, and decisions |
+| Downstream | Session restart, work selection, milestone reviews, previews, and release decisions |
+| Primary output | A concise view of current focus, last checkpoints, uncertainty, blockers, and exact next work |
 
 ## Current Program State
 
 **Target-state implementation baseline: incomplete.**
 
-The portfolio already has substantial live code and content, but the target capabilities have not yet been reconciled against that implementation. Therefore no implementation percentage is published. `BAS-05` will replace unassessed coverage vectors with evidence-based levels.
+The portfolio already has substantial live code and content, but the target capabilities have not yet been reconciled against that implementation. `BAS-05` will replace unknown dimension states with inspected named states and create work items for the first actionable gaps.
 
 This distinction prevents two errors:
 
@@ -26,15 +26,15 @@ This distinction prevents two errors:
 
 ## Outcome Dashboard
 
-| Outcome | Assessment coverage | Progress | Health | Critical gate | Next proof point |
+| Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | Baseline incomplete | Not publishable | watch | Baselines, IDs, contracts, test harness | `BAS-01`, `BAS-02`, and `BAS-05` evidence |
-| `O-01` Persistent exploratory world | Baseline incomplete | Not publishable | not-active | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
-| `O-02` Quiet global AI | Baseline incomplete | Not publishable | not-active | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
-| `O-03` First flagship proof | Baseline incomplete | Not publishable | not-active | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
-| `O-04` Portfolio museum | Baseline incomplete | Not publishable | not-active | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
-| `O-05` About depth | Baseline incomplete | Not publishable | not-active | Reviewed event consequences | Five-event review plus one inspection flow |
-| `O-06` Living portfolio operations | Baseline incomplete | Not publishable | not-active | Project lifecycle classification | Every project classified and three flagship states reviewed |
+| `O-00` Measured foundation | baseline not started | watch | Planning and tracking system established | Baselines, IDs, contracts, test harness | `BAS-01`, `BAS-02`, and `BAS-05` evidence |
+| `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
+| `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
+| `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
+| `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
+| `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
+| `O-06` Living portfolio operations | not active | not-active | Lifecycle direction documented | Project lifecycle classification | Every project classified and three flagship states reviewed |
 
 ## Package Snapshot
 
@@ -48,7 +48,7 @@ This distinction prevents two errors:
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
 | `complete` | 0 | No target-state package has registered complete exit evidence yet |
 
-Counts are planning controls, not progress percentages. Recalculate this table whenever package rows change.
+Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
 ## Current Execution Queue
 
@@ -57,7 +57,7 @@ Counts are planning controls, not progress percentages. Recalculate this table w
 | 1 | `BAS-01` | Technical baseline | ready | None | Reproducible build, route, performance, and warning record |
 | 2 | `BAS-02` | Content inventory | ready | None | Reviewed inventory with missing stable IDs identified |
 | 3 | `BAS-04` | Runtime maintenance decision | ready | None | Compatibility decision and isolated upgrade path |
-| 4 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02` | No required active capability remains unassessed |
+| 4 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02` | Current and next capabilities have inspected states and restartable work items |
 | 5 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
 | 6 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
 | 7 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
@@ -65,25 +65,40 @@ Counts are planning controls, not progress percentages. Recalculate this table w
 
 Only the first three packages are immediately ready. `BAS-05` may be prepared in parallel, but its authoritative assessment waits for the technical and content baselines.
 
-## In Flight
+## Now And Next
 
-No target implementation package is currently recorded as in flight.
+The operational source is `documentation/implementation-work/README.md`.
 
-When work starts, replace this sentence with rows using the following structure:
+| Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
+| --- | --- | --- | --- | --- | --- | --- |
+| Now | None | - | - | Planning commit only | Select the first ready baseline package and create its work item | 2026-07-14 |
+| Next | None | - | - | - | Use the work-item template after package selection | 2026-07-14 |
 
-| Package | Capabilities | Owner | Branch/task | Started | Next checkpoint | Health | Last update |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `XXX-00` | `CAP-XXX-000` | Name | Reference | YYYY-MM-DD | Observable increment | on-track | YYYY-MM-DD |
+Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
-Limit active work to the critical path plus deliberately safe parallel work from the roadmap.
+## Awaiting Review
+
+No work items are currently `in-review`.
+
+| Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
+| --- | --- | --- | --- | --- | --- |
+| None | - | - | - | - | - |
+
+## Blocked Or Paused
+
+No implementation work items are currently blocked or paused. Product and planning gates remain listed below.
+
+| Work item | State | Reason | Restart condition | Last known-good point | Last update |
+| --- | --- | --- | --- | --- | --- |
+| None | - | - | - | - | - |
 
 ## Partial Implementation Watchlist
 
-No target capability has been assessed as partial yet. After `BAS-05`, this section must list every high-weight capability with a `1` or `2` in implementation, verification, creative QA, or rollout.
+No target capability has been assessed as partially implemented yet. After `BAS-05`, this section lists consequential capabilities with `working`, `blocked`, or `paused` dimension states.
 
-| Capability | What works | Named gaps | Safe exposure | Next increment | Evidence |
-| --- | --- | --- | --- | --- | --- |
-| `CAP-XXX-000` | Current dependable behavior | Missing paths by dimension | Flag/environment | Small coherent improvement | Evidence IDs |
+| Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| `CAP-XXX-000` | `WI-XXX-00-00` | Current dependable behavior | Missing paths by dimension | Flag/environment | Concrete edit/test/decision | Evidence IDs |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -103,12 +118,12 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Risk | Early indicator | Mitigation | Owner package |
 | --- | --- | --- | --- |
-| Progress appears higher than visitor readiness | Code vectors rise while `C`, `Q`, or `R` remain low | Always display the full vector and critical gates | `QA-06` |
+| Implementation appears more finished than visitor readiness | Code is present while content, QA, or rollout remains unfinished | Show named dimension states, gaps, and gates | `QA-06` |
 | Broad packages stay partial indefinitely | No coherent checkpoint or evidence for 14 days | Split into capability-sized increments or pause explicitly | Owning package |
 | Graph, AI, and navigation IDs diverge | Local string formats or unresolved destinations appear | Enforce `ARC-01` through `ARC-05` before dependent UI | `ARC-*` |
 | Several flagship demos start before one finishes | Multiple project branches without `O-03` evidence | Stop expansion and complete the selected first slice | `PRJ-04` |
 | Creative ambition outpaces loading and fallbacks | Main path depends on all heavy assets and services | Preserve staged loading, flags, posters, and error boundaries | `QA-02`, `QA-04` |
-| Status becomes stale | In-progress row unchanged for 14 days | Mark `watch`, reconcile evidence, name restart or next action | `QA-06` |
+| Resume context becomes stale | Active work item unchanged for 14 days | Mark stale, verify known-good point, and refresh next exact action | `QA-06` |
 
 ## Evidence Summary
 
@@ -125,7 +140,8 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-13 | Added multidimensional tracking model, capability ledger, dashboard, and evidence workflow | `TRK`, `CAP`, `DSH`, `EVD` | Tracking scaffold ready; implementation baseline still required |
+| 2026-07-14 | Replaced arithmetic progress with work-item states and restart-ready handoffs | `TRK`, `CAP`, `DSH`, `WIP`, `EVD` | Continuation system ready; implementation baseline still required |
+| 2026-07-13 | Added multidimensional tracking model, capability ledger, dashboard, and evidence workflow | `TRK`, `CAP`, `DSH`, `EVD` | Tracking scaffold established |
 
 Retain only the most recent ten meaningful entries here. Durable history belongs in Git and package evidence files.
 
@@ -133,15 +149,16 @@ Retain only the most recent ten meaningful entries here. Durable history belongs
 
 Run this checklist at least at package start, merge, preview, production promotion, and milestone review:
 
-- Capability vectors match the latest inspected implementation.
-- Every partial level has named gaps.
-- Every accepted level has evidence.
+- Capability dimension states match the latest inspected implementation.
+- Every `working` state has named gaps and a work item.
+- Every `accepted` state has evidence.
 - Package status agrees with owned capability states and exit evidence.
 - Dashboard package counts match the work-package registry.
-- Outcome rollups include all mapped capability weights.
-- New scope has been added before recalculating progress.
+- Outcome stages name their last checkpoint and next proof point.
+- New scope has been added before attaching work or claiming completion.
 - Blockers name an owner and restart condition.
-- In-flight entries have a recent checkpoint.
+- Active work items have a current known-good point and next exact action.
+- `Now`, `Next`, review, blocked, and paused entries match the work registry.
 - Decision and feedback gates remain respected.
 - Reconciled date and implementation baseline commit are current once `BAS-05` begins.
 
@@ -150,6 +167,6 @@ Run this checklist at least at package start, merge, preview, production promoti
 The next update occurs after the first of these events:
 
 - `BAS-01`, `BAS-02`, or `BAS-04` begins.
-- `BAS-05` replaces the first unassessed vectors.
+- `BAS-05` replaces the first unknown dimension states.
 - A gate or dependency changes.
 - Target implementation code lands.

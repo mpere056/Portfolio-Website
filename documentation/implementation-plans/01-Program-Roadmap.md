@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -13,7 +13,7 @@ Last updated: 2026-07-13
 | Primary outputs | Phase order, phase gates, vertical-slice sequence |
 | Execution source | [Work Packages](13-Execution-Work-Packages.md) |
 | Traceability | [Vision Matrix](12-Traceability-Matrix.md) |
-| Progress control | [Tracking Model](14-Implementation-Tracking-Model.md), [Capability Ledger](15-Capability-Coverage-Ledger.md), and [Dashboard](16-Progress-Dashboard.md) |
+| Continuation control | [Tracking Model](14-Implementation-Tracking-Model.md), [Capability Ledger](15-Capability-Coverage-Ledger.md), [Dashboard](16-Progress-Dashboard.md), and [Resume Protocol](17-Work-Items-And-Resume-Protocol.md) |
 
 ## Objective
 
@@ -111,7 +111,7 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 - Baseline build passes.
 - Content inventory and ID policy are documented.
 - State ownership and stable-ID decisions are recorded.
-- Required active capability dimensions have been assessed and the first dashboard rollup is reproducible.
+- Capabilities needed for the first structural slice have been assessed, every current gap has a clear state or work item, and distant unknowns remain visible.
 - No visitor-facing behavior changes are required in this phase.
 
 ## Milestone Progress Gate
@@ -119,9 +119,9 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 Every phase exit includes two views:
 
 1. **Acceptance gate:** required visitor and platform criteria pass with evidence.
-2. **Coverage snapshot:** capability vectors expose remaining specification, content, architecture, implementation, test, creative QA, and rollout gaps.
+2. **Coverage snapshot:** named capability states expose remaining specification, content, architecture, implementation, test, creative QA, and rollout gaps.
 
-A phase may ship a deliberately bounded outcome while later capabilities remain incomplete, but it may not hide required incomplete capabilities from the snapshot. Percentages never override a failed critical gate.
+A phase may ship a deliberately bounded outcome while later capabilities remain incomplete, but it may not hide required incomplete capabilities from the snapshot. Phase state is expressed through passed checkpoints, current work, named gaps, and gates rather than a percentage.
 
 ## Phase 1: Structural Foundation
 
