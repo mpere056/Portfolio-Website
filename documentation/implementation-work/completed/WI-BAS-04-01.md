@@ -109,7 +109,7 @@ Official Node.js, Next.js, and Vercel support constraints plus the linked projec
 - Remaining: Execute `BAS-06`, then `BAS-07`; no runtime or dependency setting changed in this package.
 - Decision: `BAS-06` owns Node.js 24 plus the narrow security bridge; `BAS-07` owns Next.js 16, React 19, 3D, route, lint, middleware, API, browser, and visual migration gates.
 - Next: Create `WI-BAS-06-01`.
-- Commit: Decision closeout commit
+- Commit: `624c57d811b427dfe3dce2735deb69128bfc9a11`
 
 ## Completion Summary
 

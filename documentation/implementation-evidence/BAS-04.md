@@ -35,7 +35,7 @@ Verified official runtime and framework support, inspected the effective Vercel 
 | Requirements | Platform |
 | Date | 2026-07-14 |
 | Reviewer | Codex |
-| Commit | Decision closeout commit |
+| Commit | `624c57d811b427dfe3dce2735deb69128bfc9a11` |
 | Environment | Official Node.js, Next.js, and Vercel support documentation |
 
 #### Actual
