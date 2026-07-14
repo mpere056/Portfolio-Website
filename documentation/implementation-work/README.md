@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, and runtime-decision baselines are complete. `BAS-06` is actively moving production to Node.js 24 through a bounded security bridge; no visitor-facing feature implementation has begun yet.
+The technical, content, runtime-decision, and Node.js 24 bridge baselines are complete. `BAS-07` is ready for supported framework modernization; no visitor-facing feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Clean Node.js 24 preview is Ready | Push previewed commit and verify production/live domains | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-07` | Waits for accepted Node.js 24 production bridge | Begin supported framework modernization after `BAS-06` | 2026-07-14 |
+| Now | None | idle | - | `BAS-06` production and live domains accepted | Create `WI-BAS-07-01` | 2026-07-14 |
+| Next | Uncreated | ready | `BAS-07` | Node.js 24 production bridge accepted | Begin supported framework modernization | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-BAS-06-01` | Ship The Supported Runtime And Security Bridge | in-progress | urgent | `BAS-06` | `CAP-BAS-006` | `active/WI-BAS-06-01.md` | 2026-07-14 |
+| None | - | - | - | - | - | - | - |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
 | `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
 | `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |
 | `WI-BAS-01-01` | done | `BAS-01` | Technical baseline accepted | `EV-BAS-01-01` through `EV-BAS-01-04` | 2026-07-14 |

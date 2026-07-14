@@ -68,6 +68,11 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-04-02` | `BAS-04` | `CAP-BAS-004` | production | accepted | Vercel deployment `a894aaf` and build logs | 2026-07-14 | `BAS-04.md` |
 | `EV-BAS-04-03` | `BAS-04` | `CAP-BAS-004` | integration-test | accepted | Node.js 22/24 isolated probes at `a894aaf` | 2026-07-14 | `BAS-04.md` |
 | `EV-BAS-04-04` | `BAS-04` | `CAP-BAS-004` | privacy-security | accepted | Production dependency audit and source review | 2026-07-14 | `BAS-04.md` |
+| `EV-BAS-06-01` | `BAS-06` | `CAP-BAS-006` | unit-test | accepted | Node.js 24, 3 files and 6 tests | 2026-07-14 | `BAS-06.md` |
+| `EV-BAS-06-02` | `BAS-06` | `CAP-BAS-006` | integration-test | accepted | Node.js 24, 24-page production build | 2026-07-14 | `BAS-06.md` |
+| `EV-BAS-06-03` | `BAS-06` | `CAP-BAS-006` | privacy-security | accepted | Production audit comparison | 2026-07-14 | `BAS-06.md` |
+| `EV-BAS-06-04` | `BAS-06` | `CAP-BAS-006` | preview | accepted | Vercel `dpl_2mydKQDCRRkyHfnt9qrYXRNSPGVt` | 2026-07-14 | `BAS-06.md` |
+| `EV-BAS-06-05` | `BAS-06` | `CAP-BAS-006` | production | accepted | Vercel `dpl_7FRQWihojVoVftNVmF5a7imVV55C` and live routes | 2026-07-14 | `BAS-06.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

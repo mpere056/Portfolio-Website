@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | done |
 | Priority | urgent |
 | Package | `BAS-06` |
 | Capabilities | `CAP-BAS-006` |
@@ -60,8 +60,8 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 - [x] Run full tests and production build under Node.js 24.
 - [x] Compare production dependency audit and review residual findings.
 - [x] Deploy and inspect preview before production mutation.
-- [ ] Align Vercel runtime, promote, and verify live domains.
-- [ ] Record rollback readiness, evidence, and tracking reconciliation.
+- [x] Align Vercel runtime, promote, and verify live domains.
+- [x] Record rollback readiness, evidence, and tracking reconciliation.
 
 ## Updates
 
@@ -95,4 +95,4 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 
 ## Completion Summary
 
-Complete this only for `done` or `canceled` items.
+Node.js 24 is selected by both the repository and Vercel project. Local tests/build, security delta, clean preview, Git-triggered production, and five live routes are accepted through `EV-BAS-06-01` to `EV-BAS-06-05`; `BAS-07` is ready.
