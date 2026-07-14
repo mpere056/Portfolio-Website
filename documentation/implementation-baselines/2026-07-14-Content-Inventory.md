@@ -1,7 +1,7 @@
 # Content And Route Inventory Baseline
 
 - Captured: 2026-07-14
-- Baseline commit: `a88e2907388e1faf10a271ac1286ed0f910972fc` plus the `BAS-02` implementation changes
+- Baseline commit: `7b99008cb28b994a3401ff20725b6c8e06f70039`
 - Package: `BAS-02`
 - Capability: `CAP-BAS-002`
 

@@ -12,7 +12,7 @@ Last updated: 2026-07-14
 | Capabilities | `CAP-BAS-002` |
 | Requirements | `V-11`, `V-19` |
 | Work items | `WI-BAS-02-01` |
-| Baseline code | `a88e2907388e1faf10a271ac1286ed0f910972fc` plus the `BAS-02` implementation commit |
+| Baseline code | `7b99008cb28b994a3401ff20725b6c8e06f70039` |
 | Target environment | Repository content, local tests, and local production build |
 | Started | 2026-07-14 |
 | Last assessed | 2026-07-14 |
@@ -35,7 +35,7 @@ Added deterministic content-inventory logic, a read-only CLI with Markdown and J
 | Requirements | `V-11`, `V-19` |
 | Date | 2026-07-14 |
 | Reviewer | Codex |
-| Commit | `BAS-02` implementation commit |
+| Commit | `7b99008cb28b994a3401ff20725b6c8e06f70039` |
 | Environment | Windows, Node `20.20.2`, Vitest `2.1.9` |
 
 #### Method
@@ -65,7 +65,7 @@ Exit code `0`; 2 test files and 5 tests passed. The 3 new content-inventory test
 | Requirements | `V-11`, `V-19` |
 | Date | 2026-07-14 |
 | Reviewer | Codex |
-| Commit | `BAS-02` implementation commit |
+| Commit | `7b99008cb28b994a3401ff20725b6c8e06f70039` |
 | Environment | Repository filesystem and App Router source |
 
 #### Method
@@ -98,7 +98,7 @@ Recorded 39 nodes across 9 projects, 20 About events, 7 miscellaneous documents,
 | Requirements | Platform |
 | Date | 2026-07-14 |
 | Reviewer | Codex |
-| Commit | `BAS-02` implementation commit |
+| Commit | `7b99008cb28b994a3401ff20725b6c8e06f70039` |
 | Environment | Local production build |
 
 #### Actual

@@ -61,9 +61,9 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-01-02` | `BAS-01` | `CAP-BAS-001` | unit-test | accepted | `c924104` local tests | 2026-07-14 | `BAS-01.md` |
 | `EV-BAS-01-03` | `BAS-01` | `CAP-BAS-001` | performance | accepted | `c924104` repository assets | 2026-07-14 | `BAS-01.md` |
 | `EV-BAS-01-04` | `BAS-01` | `CAP-BAS-001` | production | accepted | Live production routes | 2026-07-14 | `BAS-01.md` |
-| `EV-BAS-02-01` | `BAS-02` | `CAP-BAS-002` | unit-test | accepted | `BAS-02` implementation commit, local tests | 2026-07-14 | `BAS-02.md` |
+| `EV-BAS-02-01` | `BAS-02` | `CAP-BAS-002` | unit-test | accepted | `7b99008` local tests | 2026-07-14 | `BAS-02.md` |
 | `EV-BAS-02-02` | `BAS-02` | `CAP-BAS-002` | content-review | accepted | Repository content and routes | 2026-07-14 | `BAS-02.md` |
-| `EV-BAS-02-03` | `BAS-02` | `CAP-BAS-002` | integration-test | accepted | `BAS-02` local production build | 2026-07-14 | `BAS-02.md` |
+| `EV-BAS-02-03` | `BAS-02` | `CAP-BAS-002` | integration-test | accepted | `7b99008` local production build | 2026-07-14 | `BAS-02.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

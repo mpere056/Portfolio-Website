@@ -100,7 +100,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Safe exposure: Read-only platform tooling and documentation; no authored content, runtime route, or production behavior changed.
 - Evidence: `EV-BAS-02-01` through `EV-BAS-02-03`
 - Next checkpoint: `ARC-01` stable namespaced-ID and migration policy after the remaining baseline queue
-- Last assessed: 2026-07-14 at `BAS-02` implementation commit
+- Last assessed: 2026-07-14 at `7b99008`
 
 ## Knowledge Graph And Content
 

@@ -31,7 +31,7 @@ A deterministic inventory enumerates all authored project, About, miscellaneous,
 
 ### Known-Good Point
 
-- Commit: `a88e2907388e1faf10a271ac1286ed0f910972fc` plus the `BAS-02` implementation commit
+- Commit: `7b99008cb28b994a3401ff20725b6c8e06f70039`
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`
 - Verification command: Portable-Node `npm run inventory:content`, `npm test`, and `npm run build`.
 - Verification result: 39 nodes and 0 structural errors; 2 test files and 5 tests passed; 24 of 24 static pages generated.
@@ -108,7 +108,7 @@ A deterministic inventory enumerates all authored project, About, miscellaneous,
 - Remaining: Stable IDs (`ARC-01`), recursive loader parity (`KG-01`), and shared schemas (`KG-02`).
 - Decision: Preserve all detected gaps as explicit handoffs rather than changing authored content or ingestion in the baseline package.
 - Next: Create the `BAS-04` runtime compatibility work item.
-- Commit: `BAS-02` implementation commit
+- Commit: `7b99008cb28b994a3401ff20725b6c8e06f70039`
 
 ## Completion Summary
 
@@ -116,5 +116,5 @@ A deterministic inventory enumerates all authored project, About, miscellaneous,
 - Capability states changed: `CAP-BAS-002` moved from `unassessed` to `verified`; all dimensions are accepted.
 - Evidence IDs: `EV-BAS-02-01`, `EV-BAS-02-02`, `EV-BAS-02-03`.
 - Remaining work moved to: `ARC-01`, `KG-01`, and `KG-02`.
-- Final commit/deployment: `BAS-02` implementation commit; no deployment required because behavior is read-only tooling and documentation.
+- Final commit/deployment: `7b99008cb28b994a3401ff20725b6c8e06f70039`; no deployment required because behavior is read-only tooling and documentation.
 - Closed by and date: Codex, 2026-07-14.
