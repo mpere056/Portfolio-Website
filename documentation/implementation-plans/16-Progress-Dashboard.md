@@ -28,7 +28,7 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | runtime bridge in progress | at-risk | `BAS-06` Node.js 24 tests/build and audit delta pass locally | Preview/production rollout, supported framework, target-state audit, IDs, contracts, test harness | Clean Vercel preview proves effective Node.js 24 |
+| `O-00` Measured foundation | runtime bridge in progress | at-risk | Clean `BAS-06` Vercel preview is Ready on Node.js 24 | Production rollout, supported framework, target-state audit, IDs, contracts, test harness | Git-triggered production and live domains pass |
 | `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
 | `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
@@ -74,7 +74,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Node.js 24 bridge passes 6 tests and 24-page build locally | Commit exact bridge and deploy clean Vercel preview | 2026-07-14 |
+| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Clean Node.js 24 preview `dpl_2mydKQDCRRkyHfnt9qrYXRNSPGVt` is Ready | Push previewed commit and verify production/live domains | 2026-07-14 |
 | Next | Uncreated | planned | `BAS-07` | Waits for accepted Node.js 24 production bridge | Begin supported framework modernization after `BAS-06` | 2026-07-14 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.

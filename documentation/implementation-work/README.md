@@ -14,7 +14,7 @@ The technical, content, and runtime-decision baselines are complete. `BAS-06` is
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Node.js 24 bridge passes 6 tests and 24-page build locally | Commit exact bridge and deploy clean Vercel preview | 2026-07-14 |
+| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Clean Node.js 24 preview is Ready | Push previewed commit and verify production/live domains | 2026-07-14 |
 | Next | Uncreated | planned | `BAS-07` | Waits for accepted Node.js 24 production bridge | Begin supported framework modernization after `BAS-06` | 2026-07-14 |
 
 ## Active And Unfinished Items

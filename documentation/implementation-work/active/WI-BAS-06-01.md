@@ -24,9 +24,9 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 
 ### Current Truth
 
-- State in one sentence: The Node.js 24 and Next.js 14.2.35 bridge passes locally; clean preview, production alignment, live checks, and closeout remain.
+- State in one sentence: The Node.js 24 bridge passes locally and in a clean Vercel preview; production promotion, live checks, and closeout remain.
 - Works now: The policy test and full suite pass under Node.js 24, all 24 pages build, non-breaking audit fixes are locked, and production audit findings fell from 18 to 10 with no critical findings.
-- Incomplete or stubbed: Clean Vercel preview, effective runtime-log inspection, production promotion, live checks, and accepted rollout evidence remain.
+- Incomplete or stubbed: Production promotion, live-domain checks, and accepted rollout evidence remain.
 - Safe exposure: No production mutation until the repository changes pass locally and in preview.
 
 ### Known-Good Point
@@ -34,15 +34,15 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 - Commit: `575456d59abc1bae16e1c004e926169f72ca83f6`
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`
 - Verification result: After the bridge, 3 files and 6 tests pass and 24 of 24 pages build under Node.js `24.18.0`; eight pre-existing lint warnings remain.
-- Route/preview: Production deployment `a894aaf` is Ready but effectively uses deprecated Node.js 20.
+- Route/preview: Preview `dpl_2mydKQDCRRkyHfnt9qrYXRNSPGVt` is Ready at `portfolio-website-rjzyd16l4-marks-projects-445b0eb9.vercel.app`; build logs confirm the Node.js cache changed from `20.x` to `24.x`.
 - Feature flags: None; rollout is controlled by preview and deployment rollback.
 
 ### Restart Here
 
-- Next exact action: Commit the locally verified bridge, deploy a clean archive of that commit to Vercel preview, and inspect its runtime/build logs.
+- Next exact action: Push the previewed commit to GitHub, inspect the resulting production deployment, and verify main plus project subdomain routes.
 - First files/symbols: `package.json`, `package-lock.json`, `tests/runtimePolicy.test.ts`, Vercel project link.
-- Expected observable result: Preview builds with Node.js 24, has no Node.js 20 deprecation warning, and serves representative routes.
-- Only after that: Align the Vercel dashboard, promote to production, verify live domains, and close the package.
+- Expected observable result: GitHub and Vercel production use the previewed bridge and live routes remain healthy.
+- Only after that: Record accepted rollout evidence and close the package.
 
 ### Context That Must Survive
 
@@ -59,7 +59,7 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 - [x] Update engine and narrow dependency bridge under Node.js 24.
 - [x] Run full tests and production build under Node.js 24.
 - [x] Compare production dependency audit and review residual findings.
-- [ ] Deploy and inspect preview before production mutation.
+- [x] Deploy and inspect preview before production mutation.
 - [ ] Align Vercel runtime, promote, and verify live domains.
 - [ ] Record rollback readiness, evidence, and tracking reconciliation.
 
@@ -83,6 +83,15 @@ The repository and Vercel project select Node.js 24; Next.js and its ESLint conf
 - Remaining: Clean Vercel preview, effective Node.js 24 log proof, dashboard alignment, production promotion, live routes, evidence, and closeout.
 - Next: Commit the local bridge and deploy that exact commit to preview.
 - Commit: pending local bridge checkpoint
+
+### 2026-07-14 - Clean Node.js 24 preview accepted
+
+- State: in-progress
+- Changed: Deployed a clean Git archive of `c0fb077` rather than the dirty working tree.
+- Verified: Vercel switched build cache/runtime from Node.js `20.x` to `24.x`, detected Next.js `14.2.35`, built all 24 pages, and marked deployment `dpl_2mydKQDCRRkyHfnt9qrYXRNSPGVt` Ready.
+- Remaining: Push, production deployment inspection, live domains, evidence, and closeout.
+- Next: Push `c0fb077` and verify the Git-triggered production deployment.
+- Commit: `c0fb07734ae9a2429219f6086036873103f65aca`
 
 ## Completion Summary
 
