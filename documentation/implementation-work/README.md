@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, and runtime-decision baselines are complete. `BAS-06` is ready to move production to Node.js 24 through a bounded security bridge; no visitor-facing feature implementation has begun yet.
+The technical, content, and runtime-decision baselines are complete. `BAS-06` is actively moving production to Node.js 24 through a bounded security bridge; no visitor-facing feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | idle | - | `BAS-04` completed with accepted evidence | Create `WI-BAS-06-01` | 2026-07-14 |
-| Next | Uncreated | ready | `BAS-06` | Node.js 24 target, package boundary, and rollback accepted | Add runtime policy test, then implement the narrow bridge | 2026-07-14 |
+| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Node.js 24 bridge passes 6 tests and 24-page build locally | Commit exact bridge and deploy clean Vercel preview | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-07` | Waits for accepted Node.js 24 production bridge | Begin supported framework modernization after `BAS-06` | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - | - | - |
+| `WI-BAS-06-01` | Ship The Supported Runtime And Security Bridge | in-progress | urgent | `BAS-06` | `CAP-BAS-006` | `active/WI-BAS-06-01.md` | 2026-07-14 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

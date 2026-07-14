@@ -64,7 +64,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-004` | Runtime compatibility and upgrade decision | `BAS-04` | Platform | `O-00` | 1 | All applicable dimensions accepted; see `BAS-04` evidence | verified |
 | `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: planned; I: planned; T: working; Q: planned; R: planned` | in-progress |
 | `CAP-BAS-007` | Supported Next.js 16 framework modernization | `BAS-07` | Platform | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |

@@ -28,7 +28,7 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | runtime bridge ready | at-risk | `BAS-04` decision accepted with Node.js 24 target | Supported runtime/framework, target-state audit, IDs, contracts, test harness | `BAS-06` Node.js 24 preview and production evidence |
+| `O-00` Measured foundation | runtime bridge in progress | at-risk | `BAS-06` Node.js 24 tests/build and audit delta pass locally | Preview/production rollout, supported framework, target-state audit, IDs, contracts, test harness | Clean Vercel preview proves effective Node.js 24 |
 | `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
 | `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
@@ -40,8 +40,8 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `BAS-06` is bounded and dependency-ready |
-| `in-progress` | 0 | No package is active between the `BAS-04` closeout and `BAS-06` start |
+| `ready` | 0 | The only dependency-ready baseline package is active |
+| `in-progress` | 1 | `BAS-06` has an active resumable work item |
 | `pending` | 46 | Valid active work waiting on dependencies or baseline reconciliation |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
@@ -58,7 +58,7 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 1 | `BAS-01` | Technical baseline | complete | None | Build, route, warning, model, test, and live-domain evidence accepted |
 | 2 | `BAS-02` | Content inventory | complete | None | Reviewed inventory with missing stable IDs identified |
 | 3 | `BAS-04` | Runtime maintenance decision | complete | None | Node.js 24 bridge and separate Next.js 16 package accepted |
-| 4 | `BAS-06` | Supported runtime and security bridge | ready | `BAS-04` | Node.js 24 tests/build, audit delta, preview, production, and rollback evidence |
+| 4 | `BAS-06` | Supported runtime and security bridge | in-progress | `BAS-04` | Node.js 24 tests/build, audit delta, preview, production, and rollback evidence |
 | 5 | `BAS-07` | Supported framework modernization | pending | `BAS-06` | Next.js 16, React/3D ecosystem, API, browser, and visual gates pass |
 | 6 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Current and next capabilities have inspected states and restartable work items |
 | 7 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
@@ -74,8 +74,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | idle | - | `BAS-04` accepted with production and compatibility evidence | Create `WI-BAS-06-01` and begin the Node.js 24 bridge | 2026-07-14 |
-| Next | Uncreated | ready | `BAS-06` | Runtime decision and rollback boundary accepted | Add runtime policy test, then update engine and narrow dependencies | 2026-07-14 |
+| Now | `WI-BAS-06-01` | in-progress | `BAS-06` | Node.js 24 bridge passes 6 tests and 24-page build locally | Commit exact bridge and deploy clean Vercel preview | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-07` | Waits for accepted Node.js 24 production bridge | Begin supported framework modernization after `BAS-06` | 2026-07-14 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
