@@ -83,7 +83,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 
 | Roadmap phase | Required packages | Gate to exit |
 | --- | --- | --- |
-| Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-05`, `ARC-01` | Baseline, target-state capability audit, and stable-ID decisions recorded |
+| Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `ARC-01` | Baseline, supported runtime/framework, target-state capability audit, and stable-ID decisions recorded |
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` | First Note, tour, AI shell, lighting prototype work together |
 | Phase 3 First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `QA-02` | One full vertical slice passes acceptance |

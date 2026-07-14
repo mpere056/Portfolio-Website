@@ -10,12 +10,12 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical and content baselines are complete. `BAS-04` is the next recommended package; no visitor-facing feature implementation has begun yet.
+The technical, content, and runtime-decision baselines are complete. `BAS-06` is ready to move production to Node.js 24 through a bounded security bridge; no visitor-facing feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | - | - | `BAS-02` accepted | Create `WI-BAS-04-01` when implementation resumes | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-04` | Runtime baseline recorded | Verify compatibility constraints and choose the isolated upgrade path | 2026-07-14 |
+| Now | None | idle | - | `BAS-04` completed with accepted evidence | Create `WI-BAS-06-01` | 2026-07-14 |
+| Next | Uncreated | ready | `BAS-06` | Node.js 24 target, package boundary, and rollback accepted | Add runtime policy test, then implement the narrow bridge | 2026-07-14 |
 
 ## Active And Unfinished Items
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
 | `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |
 | `WI-BAS-01-01` | done | `BAS-01` | Technical baseline accepted | `EV-BAS-01-01` through `EV-BAS-01-04` | 2026-07-14 |
 

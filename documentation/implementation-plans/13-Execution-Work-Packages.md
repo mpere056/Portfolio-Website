@@ -41,8 +41,10 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `BAS-01` | Technical baseline | None | Build output, route sizes, warnings, model inventory, current test result | Baseline document and passing build | complete |
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | complete |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
-| `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | ready |
-| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | pending |
+| `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | complete |
+| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | pending |
+| `BAS-06` | Supported runtime and security bridge | `BAS-04` | Node.js 24 engine and Vercel alignment, narrow Next.js 14 security update, bounded direct remediations, runtime policy test | Node.js 24 tests/build pass; audit delta reviewed; preview and production routes verified with rollback ready | ready |
+| `BAS-07` | Supported framework modernization | `BAS-06` | Next.js 16 and React 19 ecosystem migration, async route APIs, ESLint CLI, middleware/proxy and edge review | Unit, integration, browser, visual, 3D, API, preview, and rollback gates pass | pending |
 
 ## Architecture Packages
 
@@ -155,11 +157,13 @@ Start only with packages that reduce uncertainty for everything else:
 1. `BAS-01` Technical baseline.
 2. `BAS-02` Content inventory.
 3. `BAS-04` Runtime maintenance decision.
-4. `BAS-05` Target-state implementation audit after `BAS-01` and `BAS-02`.
-5. `ARC-01` Stable ID policy.
-6. `ARC-02` Shared contract types.
-7. `QA-01` Foundation test harness.
-8. `KG-01` Shared content loader parity.
+4. `BAS-06` Supported runtime and security bridge.
+5. `BAS-07` Supported framework modernization.
+6. `BAS-05` Target-state implementation audit on the supported stack.
+7. `ARC-01` Stable ID policy.
+8. `ARC-02` Shared contract types.
+9. `QA-01` Foundation test harness.
+10. `KG-01` Shared content loader parity.
 
 Do not begin First Note visuals, global AI UI, museum redesign, or project demos before the shared identifiers and baseline are stable.
 

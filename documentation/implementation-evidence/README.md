@@ -64,6 +64,10 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-02-01` | `BAS-02` | `CAP-BAS-002` | unit-test | accepted | `7b99008` local tests | 2026-07-14 | `BAS-02.md` |
 | `EV-BAS-02-02` | `BAS-02` | `CAP-BAS-002` | content-review | accepted | Repository content and routes | 2026-07-14 | `BAS-02.md` |
 | `EV-BAS-02-03` | `BAS-02` | `CAP-BAS-002` | integration-test | accepted | `7b99008` local production build | 2026-07-14 | `BAS-02.md` |
+| `EV-BAS-04-01` | `BAS-04` | `CAP-BAS-004` | decision | accepted | Official support policies and decision record | 2026-07-14 | `BAS-04.md` |
+| `EV-BAS-04-02` | `BAS-04` | `CAP-BAS-004` | production | accepted | Vercel deployment `a894aaf` and build logs | 2026-07-14 | `BAS-04.md` |
+| `EV-BAS-04-03` | `BAS-04` | `CAP-BAS-004` | integration-test | accepted | Node.js 22/24 isolated probes at `a894aaf` | 2026-07-14 | `BAS-04.md` |
+| `EV-BAS-04-04` | `BAS-04` | `CAP-BAS-004` | privacy-security | accepted | Production dependency audit and source review | 2026-07-14 | `BAS-04.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

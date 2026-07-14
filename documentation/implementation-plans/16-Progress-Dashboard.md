@@ -28,7 +28,7 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | technical and content baselines complete | on-track | `BAS-02` inventory, validation tests, and route review accepted | Runtime decision, target-state audit, IDs, contracts, test harness | `BAS-04` runtime compatibility decision |
+| `O-00` Measured foundation | runtime bridge ready | at-risk | `BAS-04` decision accepted with Node.js 24 target | Supported runtime/framework, target-state audit, IDs, contracts, test harness | `BAS-06` Node.js 24 preview and production evidence |
 | `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
 | `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
@@ -40,13 +40,14 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | Remaining baseline work may begin without upstream implementation dependencies |
-| `pending` | 45 | Valid active work waiting on dependencies or baseline reconciliation |
+| `ready` | 1 | `BAS-06` is bounded and dependency-ready |
+| `in-progress` | 0 | No package is active between the `BAS-04` closeout and `BAS-06` start |
+| `pending` | 46 | Valid active work waiting on dependencies or baseline reconciliation |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 2 | `BAS-01` and `BAS-02` have registered complete exit evidence |
+| `complete` | 3 | `BAS-01`, `BAS-02`, and `BAS-04` have registered complete exit evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -56,14 +57,16 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | ---: | --- | --- | --- | --- | --- |
 | 1 | `BAS-01` | Technical baseline | complete | None | Build, route, warning, model, test, and live-domain evidence accepted |
 | 2 | `BAS-02` | Content inventory | complete | None | Reviewed inventory with missing stable IDs identified |
-| 3 | `BAS-04` | Runtime maintenance decision | ready | None | Compatibility decision and isolated upgrade path |
-| 4 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02` | Current and next capabilities have inspected states and restartable work items |
-| 5 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
-| 6 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
-| 7 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
-| 8 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
+| 3 | `BAS-04` | Runtime maintenance decision | complete | None | Node.js 24 bridge and separate Next.js 16 package accepted |
+| 4 | `BAS-06` | Supported runtime and security bridge | ready | `BAS-04` | Node.js 24 tests/build, audit delta, preview, production, and rollback evidence |
+| 5 | `BAS-07` | Supported framework modernization | pending | `BAS-06` | Next.js 16, React/3D ecosystem, API, browser, and visual gates pass |
+| 6 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Current and next capabilities have inspected states and restartable work items |
+| 7 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
+| 8 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
+| 9 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
+| 10 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
 
-Only the first three packages are immediately ready. `BAS-05` may be prepared in parallel, but its authoritative assessment waits for the technical and content baselines.
+`BAS-06` is the only ready package. Keep `BAS-07` separate from its urgent runtime/security bridge, then run `BAS-05` against the supported stack.
 
 ## Now And Next
 
@@ -71,8 +74,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | - | - | `BAS-02` accepted with `EV-BAS-02-01` through `EV-BAS-02-03` | Create the `BAS-04` work item when implementation resumes | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-04` | Technical and content baselines accepted | Verify compatibility constraints and choose the isolated upgrade path | 2026-07-14 |
+| Now | None | idle | - | `BAS-04` accepted with production and compatibility evidence | Create `WI-BAS-06-01` and begin the Node.js 24 bridge | 2026-07-14 |
+| Next | Uncreated | ready | `BAS-06` | Runtime decision and rollback boundary accepted | Add runtime policy test, then update engine and narrow dependencies | 2026-07-14 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -106,7 +109,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Gate | Affects | State | Needed next |
 | --- | --- | --- | --- |
-| Runtime compatibility decision | Baseline and future deployments | open | Verify current Vercel, Node, Next.js, AI SDK, and 3D dependency path in `BAS-04` |
+| Runtime compatibility decision | Baseline and future deployments | resolved | Execute the accepted Node.js 24 bridge in `BAS-06`, then Next.js 16 in `BAS-07` |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
 | First flagship selection | `PRJ-04` | waits on prototype | Compare LifeInbox and Sudoku spikes using visitor value, risk, and reuse evidence |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
@@ -124,12 +127,13 @@ This section is intentionally selective. The capability ledger remains the compl
 | Several flagship demos start before one finishes | Multiple project branches without `O-03` evidence | Stop expansion and complete the selected first slice | `PRJ-04` |
 | Creative ambition outpaces loading and fallbacks | Main path depends on all heavy assets and services | Preserve staged loading, flags, posters, and error boundaries | `QA-02`, `QA-04` |
 | Resume context becomes stale | Active work item unchanged for 14 days | Mark stale, verify known-good point, and refresh next exact action | `QA-06` |
+| Unsupported runtime or framework reaches deployment cutoff | Vercel continues selecting Node.js 20 or bridge work stalls | Prioritize `BAS-06`; preserve `BAS-07` as a separate follow-on with rollback to the bridge | `BAS-06`, `BAS-07` |
 
 ## Evidence Summary
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 7 | `BAS-01` technical evidence plus `BAS-02` tests, reviewed inventory, and build regression |
+| Accepted | 11 | `BAS-01`, `BAS-02`, and `BAS-04` baseline, decision, test, security, and production evidence |
 | Candidate | 0 | Add during implementation, preview, or review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 0 | Failed evidence remains useful and should not be deleted |
@@ -140,6 +144,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-14 | Completed the runtime maintenance decision | `BAS-04`, `CAP-BAS-004`, `WI-BAS-04-01`, `O-00` | Node.js 24 bridge and separate Next.js 16 migration accepted; `BAS-06` is ready |
 | 2026-07-14 | Completed the content and route inventory | `BAS-02`, `CAP-BAS-002`, `WI-BAS-02-01`, `O-00` | 39 nodes inventoried; identity and ingestion gaps have named downstream owners |
 | 2026-07-14 | Completed the first implementation package | `BAS-01`, `CAP-BAS-001`, `WI-BAS-01-01`, `O-00` | Technical baseline accepted; `BAS-02` is next |
 | 2026-07-14 | Replaced arithmetic progress with work-item states and restart-ready handoffs | `TRK`, `CAP`, `DSH`, `WIP`, `EVD` | Continuation system ready; implementation baseline still required |
@@ -168,7 +173,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `BAS-02` or `BAS-04` begins.
+- `BAS-06` begins or its runtime/security bridge changes scope.
 - `BAS-05` replaces the first unknown dimension states.
 - A gate or dependency changes.
 - Target implementation code lands.

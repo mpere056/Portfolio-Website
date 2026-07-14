@@ -1,6 +1,6 @@
 # Decision Register
 
-Last updated: 2026-07-12
+Last updated: 2026-07-14
 
 ## Plan Metadata
 
@@ -39,6 +39,12 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 | Progressive stimulation | Confirmed | Start calm; allow richer optional immersion. |
 | Desktop and mobile designed independently | Confirmed | Do not force one-to-one interaction parity. |
 | New content as disturbance | Confirmed | Create authored update markers and persistent discovery comparison. |
+
+## Implementation Decisions
+
+| Date | Decision | Status | Consequence | Detailed record |
+| --- | --- | --- | --- | --- |
+| 2026-07-14 | Use a Node.js 24 security bridge, then a separate Next.js 16 modernization | Confirmed | `BAS-06` handles urgent runtime/security rollout; `BAS-07` handles coordinated framework, React, 3D, route, lint, and middleware migration | [Runtime Maintenance Decision](../implementation-baselines/2026-07-14-Runtime-Maintenance-Decision.md) |
 
 ## Prototype Candidates
 

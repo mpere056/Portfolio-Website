@@ -57,7 +57,7 @@ Semantic lighting depends on the relationship graph. AI cards depend on stable o
 
 | Point in program | Critical path | Work that may safely proceed in parallel |
 | --- | --- | --- |
-| Baseline | `BAS-01`, `BAS-02`, `BAS-04`, then `BAS-05` | Technical baseline, content inventory, and runtime decision may overlap; capability reconciliation follows the first two |
+| Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, then `BAS-05` | Runtime/security and supported-framework work complete before target capability reconciliation |
 | Contracts | `ARC-01`, `ARC-02`, `ARC-03` | Quality harness design after shared types stabilize |
 | Structural foundation | `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` | Loader migration, persistence, AI context, lifecycle schema with contract coordination |
 | Exploration shell | `EXP-02` to `EXP-05`, `AI-02`, `AI-03`, `KG-05` | First Note, tour, global shell, graph queries after their direct dependencies pass |
@@ -78,7 +78,7 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 
 | Phase | Package groups |
 | --- | --- |
-| Phase 0 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-05`, `ARC-01` |
+| Phase 0 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `ARC-01` |
 | Phase 1 | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
 | Phase 2 | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` |
 | Phase 3 | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-02`, `LPS-03`, `QA-02` |
