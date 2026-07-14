@@ -59,7 +59,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-BAS-001` | Reproducible technical and performance baseline | `BAS-01` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-001` | Reproducible technical and performance baseline | `BAS-01` | Platform | `O-00` | 2 | All applicable dimensions accepted; see `BAS-01` evidence | verified |
 | `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-004` | Runtime compatibility and upgrade decision | `BAS-04` | Platform | `O-00` | 1 | `U/U/U/U/U/U/U` | unassessed |
@@ -69,6 +69,22 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-BAS-001: Reproducible Technical And Performance Baseline
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted`
+- Package: `BAS-01`
+- Work item: `WI-BAS-01-01` (done)
+- Works now: Runtime, dependencies, production build, routes, warnings, tests, static assets, models, content-media integrity, and live domains are recorded.
+- Named gaps: Repeatable frame-time, heap, model-load, AI-idle, and Vercel-build timing remain future `QA-01`/`QA-04` instrumentation.
+- Safe exposure: Documentation-only baseline; no visitor behavior changed.
+- Evidence: `EV-BAS-01-01` through `EV-BAS-01-04`
+- Next checkpoint: `BAS-02` reviewed content inventory
+- Last assessed: 2026-07-14 at baseline implementation commit
 
 ## Knowledge Graph And Content
 

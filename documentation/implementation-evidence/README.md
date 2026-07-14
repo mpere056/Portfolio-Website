@@ -57,7 +57,10 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 
 | Evidence ID | Package | Capabilities | Type | Status | Commit/environment | Recorded | File |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| None yet | - | - | - | - | - | - | - |
+| `EV-BAS-01-01` | `BAS-01` | `CAP-BAS-001` | integration-test | accepted | `c924104` local production build | 2026-07-14 | `BAS-01.md` |
+| `EV-BAS-01-02` | `BAS-01` | `CAP-BAS-001` | unit-test | accepted | `c924104` local tests | 2026-07-14 | `BAS-01.md` |
+| `EV-BAS-01-03` | `BAS-01` | `CAP-BAS-001` | performance | accepted | `c924104` repository assets | 2026-07-14 | `BAS-01.md` |
+| `EV-BAS-01-04` | `BAS-01` | `CAP-BAS-001` | production | accepted | Live production routes | 2026-07-14 | `BAS-01.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

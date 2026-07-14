@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-No target-state implementation work item is active yet. The first work item should be created when `BAS-01`, `BAS-02`, or `BAS-04` begins.
+The first implementation package, `BAS-01`, is complete. `BAS-02` content inventory is the next recommended work; no visitor-facing feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | - | - | - | Select the first ready baseline package | 2026-07-14 |
-| Next | None | - | - | - | Create from `_Work-Item-Template.md` after selection | 2026-07-14 |
+| Now | None | - | - | `BAS-01` accepted | Create `WI-BAS-02-01` when implementation resumes | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-02` | Reviewed content inventory | Inventory authored content, routes, current IDs, and missing IDs | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| None yet | - | - | - | - | - | - | - |
+| None | - | - | - | - | - | - | - |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,7 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
-| None yet | - | - | - | - | - |
+| `WI-BAS-01-01` | done | `BAS-01` | Technical baseline accepted | `EV-BAS-01-01` through `EV-BAS-01-04` | 2026-07-14 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

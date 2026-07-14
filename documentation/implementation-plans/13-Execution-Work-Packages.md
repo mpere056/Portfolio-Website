@@ -36,9 +36,9 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Baseline Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `BAS-01` | Technical baseline | None | Build output, route sizes, warnings, model inventory, current test result | Baseline document and passing build | ready |
+| `BAS-01` | Technical baseline | None | Build output, route sizes, warnings, model inventory, current test result | Baseline document and passing build | complete |
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | ready |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | ready |
@@ -46,7 +46,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Architecture Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture and decision record | pending |
 | `ARC-02` | Shared contract types | `ARC-01` | Canonical TypeScript types for depth, destinations, discovery, context | Typecheck and consumer fixture | pending |
@@ -56,7 +56,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Knowledge And Content Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `KG-01` | Shared content loader parity | `ARC-01` | Shared parser used by one content type | Existing output parity tests | pending |
 | `KG-02` | Content schemas | `KG-01`, `ARC-02` | Project, timeline, post, relationship schema | Invalid fixture failures | pending |
@@ -67,7 +67,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Experience Foundation Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | pending |
 | `EXP-02` | Depth-controller primitives | `ARC-02`, `ARC-04` | Stage transitions, hints, AI context emission, persistence hooks | Controlled-scene integration test | pending |
@@ -79,7 +79,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Global AI Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | pending |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | pending |
@@ -89,7 +89,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Living Project State Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `LPS-01` | Lifecycle schema | `ARC-01`, `KG-02` | Lifecycle types, required-section rules | Schema tests | pending |
 | `LPS-02` | Project classification review | `LPS-01` | Reviewed lifecycle for every project | Mark approval recorded | decision-gated |
@@ -99,7 +99,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Project Museum Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | pending |
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | prototype |
@@ -112,7 +112,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## About Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `ABT-01` | Reviewed event consequences | `KG-04` | Five events, max three primary consequences each | Content review | pending |
 | `ABT-02` | Event inspection | `ABT-01`, `EXP-02`, `AI-01` | Open/close state, consequence UI, AI context | Timeline remains usable and deep links work | pending |
@@ -121,7 +121,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Quality And Rollout Packages
 
-| ID | Package | Depends on | Deliverables | Exit evidence | Initial status |
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | pending |
 | `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | pending |
@@ -132,7 +132,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Prototype Packages
 
-| ID | Prototype | Depends on | Decision enabled | Initial status |
+| ID | Prototype | Depends on | Decision enabled | Current status |
 | --- | --- | --- | --- | --- |
 | `PXP-01` | Skill tree or evidence map | `KG-04`, `EXP-01` | Keep, revise presentation, or remove | prototype |
 | `PXP-02` | Ambient presence | Stable single-person core | Is subtle real presence valuable? | later |
