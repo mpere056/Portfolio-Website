@@ -10,12 +10,12 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The first implementation package, `BAS-01`, is complete. `BAS-02` content inventory is the next recommended work; no visitor-facing feature implementation has begun yet.
+The technical and content baselines are complete. `BAS-04` is the next recommended package; no visitor-facing feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | - | - | `BAS-01` accepted | Create `WI-BAS-02-01` when implementation resumes | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-02` | Reviewed content inventory | Inventory authored content, routes, current IDs, and missing IDs | 2026-07-14 |
+| Now | None | - | - | `BAS-02` accepted | Create `WI-BAS-04-01` when implementation resumes | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-04` | Runtime baseline recorded | Verify compatibility constraints and choose the isolated upgrade path | 2026-07-14 |
 
 ## Active And Unfinished Items
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |
 | `WI-BAS-01-01` | done | `BAS-01` | Technical baseline accepted | `EV-BAS-01-01` through `EV-BAS-01-04` | 2026-07-14 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.

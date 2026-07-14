@@ -12,7 +12,8 @@
     "lint": "next lint",
     "test": "npm run lint && vitest run --reporter=verbose",
     "prepare": "husky",
-    "ingest": "tsx scripts/ingest.ts"
+    "ingest": "tsx scripts/ingest.ts",
+    "inventory:content": "tsx scripts/content-inventory.ts"
   },
   "dependencies": {
     "@google/generative-ai": "^0.12.0",

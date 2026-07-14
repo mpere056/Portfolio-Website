@@ -60,7 +60,7 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-BAS-001` | Reproducible technical and performance baseline | `BAS-01` | Platform | `O-00` | 2 | All applicable dimensions accepted; see `BAS-01` evidence | verified |
-| `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | All dimensions accepted; see `BAS-02` evidence | verified |
 | `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-004` | Runtime compatibility and upgrade decision | `BAS-04` | Platform | `O-00` | 1 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
@@ -83,8 +83,24 @@ Until a capability receives its own detail record, these defaults apply:
 - Named gaps: Repeatable frame-time, heap, model-load, AI-idle, and Vercel-build timing remain future `QA-01`/`QA-04` instrumentation.
 - Safe exposure: Documentation-only baseline; no visitor behavior changed.
 - Evidence: `EV-BAS-01-01` through `EV-BAS-01-04`
-- Next checkpoint: `BAS-02` reviewed content inventory
+- Next checkpoint: `BAS-04` runtime compatibility decision
 - Last assessed: 2026-07-14 at baseline implementation commit
+
+### CAP-BAS-002: Reviewed Content And Route Inventory
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted`
+- Package: `BAS-02`
+- Work item: `WI-BAS-02-01` (done)
+- Works now: A deterministic scanner and CLI inventory all 39 authored nodes, identifier provenance, runtime consumers, retrieval identity, and content destinations; fixture and repository tests protect the contract.
+- Named gaps: Four miscellaneous files lack authored IDs, 20 About IDs diverge in AI ingestion, and three blog posts are excluded from retrieval; these are routed to `ARC-01`, `KG-01`, and `KG-02`.
+- Safe exposure: Read-only platform tooling and documentation; no authored content, runtime route, or production behavior changed.
+- Evidence: `EV-BAS-02-01` through `EV-BAS-02-03`
+- Next checkpoint: `ARC-01` stable namespaced-ID and migration policy after the remaining baseline queue
+- Last assessed: 2026-07-14 at `BAS-02` implementation commit
 
 ## Knowledge Graph And Content
 

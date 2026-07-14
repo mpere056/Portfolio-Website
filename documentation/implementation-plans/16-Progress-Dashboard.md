@@ -28,7 +28,7 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | technical baseline complete; content baseline next | on-track | `BAS-01` build, tests, assets, warnings, and live routes accepted | Content inventory, IDs, contracts, test harness | `BAS-02` reviewed inventory |
+| `O-00` Measured foundation | technical and content baselines complete | on-track | `BAS-02` inventory, validation tests, and route review accepted | Runtime decision, target-state audit, IDs, contracts, test harness | `BAS-04` runtime compatibility decision |
 | `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
 | `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
@@ -40,13 +40,13 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 2 | Remaining baseline work may begin without upstream implementation dependencies |
+| `ready` | 1 | Remaining baseline work may begin without upstream implementation dependencies |
 | `pending` | 45 | Valid active work waiting on dependencies or baseline reconciliation |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 1 | `BAS-01` has registered complete exit evidence |
+| `complete` | 2 | `BAS-01` and `BAS-02` have registered complete exit evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -55,7 +55,7 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | Order | Package | Purpose | Status | Start condition | Completion signal |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | `BAS-01` | Technical baseline | complete | None | Build, route, warning, model, test, and live-domain evidence accepted |
-| 2 | `BAS-02` | Content inventory | ready | None | Reviewed inventory with missing stable IDs identified |
+| 2 | `BAS-02` | Content inventory | complete | None | Reviewed inventory with missing stable IDs identified |
 | 3 | `BAS-04` | Runtime maintenance decision | ready | None | Compatibility decision and isolated upgrade path |
 | 4 | `BAS-05` | Target-state implementation audit | pending | `BAS-01`, `BAS-02` | Current and next capabilities have inspected states and restartable work items |
 | 5 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
@@ -71,8 +71,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | - | - | `BAS-01` completed with `EV-BAS-01-01` through `EV-BAS-01-04` | Create the `BAS-02` work item when implementation resumes | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-02` | Technical baseline accepted | Inventory authored content, routes, current IDs, and missing IDs | 2026-07-14 |
+| Now | None | - | - | `BAS-02` accepted with `EV-BAS-02-01` through `EV-BAS-02-03` | Create the `BAS-04` work item when implementation resumes | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-04` | Technical and content baselines accepted | Verify compatibility constraints and choose the isolated upgrade path | 2026-07-14 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -129,7 +129,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 4 | `BAS-01` build, tests, asset inventory, and live-route verification |
+| Accepted | 7 | `BAS-01` technical evidence plus `BAS-02` tests, reviewed inventory, and build regression |
 | Candidate | 0 | Add during implementation, preview, or review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 0 | Failed evidence remains useful and should not be deleted |
@@ -140,6 +140,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-14 | Completed the content and route inventory | `BAS-02`, `CAP-BAS-002`, `WI-BAS-02-01`, `O-00` | 39 nodes inventoried; identity and ingestion gaps have named downstream owners |
 | 2026-07-14 | Completed the first implementation package | `BAS-01`, `CAP-BAS-001`, `WI-BAS-01-01`, `O-00` | Technical baseline accepted; `BAS-02` is next |
 | 2026-07-14 | Replaced arithmetic progress with work-item states and restart-ready handoffs | `TRK`, `CAP`, `DSH`, `WIP`, `EVD` | Continuation system ready; implementation baseline still required |
 | 2026-07-13 | Added multidimensional tracking model, capability ledger, dashboard, and evidence workflow | `TRK`, `CAP`, `DSH`, `EVD` | Tracking scaffold established |
