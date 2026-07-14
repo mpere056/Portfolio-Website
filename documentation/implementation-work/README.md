@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, runtime-decision, and Node.js 24 bridge baselines are complete. `BAS-07` is ready for supported framework modernization; no visitor-facing feature implementation has begun yet.
+The technical, content, runtime-decision, and Node.js 24 bridge baselines are complete. `BAS-07` passes its local framework-migration gates and is awaiting clean preview and production rollout; no target-state visitor feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | idle | - | `BAS-06` production and live domains accepted | Create `WI-BAS-07-01` | 2026-07-14 |
-| Next | Uncreated | ready | `BAS-07` | Node.js 24 production bridge accepted | Begin supported framework modernization | 2026-07-14 |
+| Now | `WI-BAS-07-01` | in-progress | `BAS-07` | Local Next.js 16/React 19 automated, browser, visual, and rewrite gates pass | Commit the bounded migration and deploy that exact commit to preview | 2026-07-14 |
+| Next | Uncreated | planned | `BAS-05` | Waits for accepted supported framework stack | Audit target-state implementation after `BAS-07` | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - | - | - |
+| `WI-BAS-07-01` | Modernize The Supported Framework Stack | in-progress | high | `BAS-07` | `CAP-BAS-007` | `active/WI-BAS-07-01.md` | 2026-07-14 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

@@ -326,15 +326,11 @@ function SceneContent() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            array={confettiPositions.current}
-            count={CONFETTI_COUNT}
-            itemSize={3}
+            args={[confettiPositions.current, 3]}
           />
           <bufferAttribute
             attach="attributes-color"
-            array={confettiColors.current}
-            count={CONFETTI_COUNT}
-            itemSize={3}
+            args={[confettiColors.current, 3]}
           />
         </bufferGeometry>
         <pointsMaterial size={0.06} vertexColors depthWrite={false} transparent opacity={0.95} />

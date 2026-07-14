@@ -47,7 +47,7 @@ interface GuestItemProps {
   isSelected: boolean;
   onClick: (name: string) => void;
   scaleMultiplier?: number; // additional scale multiplier per model
-  groupRef?: React.RefObject<THREE.Group>;
+  groupRef?: React.RefObject<THREE.Group | null>;
 }
 
 function GuestItem({ modelName, parentMaxDim, position, rotation = [0, 0, 0], isSelected, onClick, scaleMultiplier = 1, groupRef }: GuestItemProps) {
@@ -211,7 +211,7 @@ function LifeAppWithGuests({ activeKey, clicked, onClick }: { activeKey: ActiveK
   );
 }
 
-function FocusRig({ active, lifeRef, kitsuneRef, dinoRef, discordBotRef }: { active: ActiveKey; lifeRef: React.RefObject<THREE.Group>; kitsuneRef: React.RefObject<THREE.Group>; dinoRef: React.RefObject<THREE.Group>; discordBotRef: React.RefObject<THREE.Group> }) {
+function FocusRig({ active, lifeRef, kitsuneRef, dinoRef, discordBotRef }: { active: ActiveKey; lifeRef: React.RefObject<THREE.Group | null>; kitsuneRef: React.RefObject<THREE.Group | null>; dinoRef: React.RefObject<THREE.Group | null>; discordBotRef: React.RefObject<THREE.Group | null> }) {
   const { camera } = useThree();
   const dir = useMemo(() => new THREE.Vector3(1, 0.32, -1).normalize(), []);
   const tmpBox = useMemo(() => new THREE.Box3(), []);

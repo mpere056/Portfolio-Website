@@ -65,7 +65,7 @@ function Particles({ count, displacement = 3, visibility = 6, intensity = 1 }: P
   const oPos = new THREE.Vector3()
   const vec = new THREE.Vector3()
   const dir = new THREE.Vector3()
-  const ref = useRef<any>()
+  const ref = useRef<any>(null)
   const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf')
 
   const positions = useMemo(() => {

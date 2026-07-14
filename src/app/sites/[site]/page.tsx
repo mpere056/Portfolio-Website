@@ -1,12 +1,13 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import ProjectPreview from '@/components/ProjectPreview';
 import { getProjects, type Project } from '@/lib/projects';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 
 interface ProjectSitePageProps {
-  params: {
+  params: Promise<{
     site: string;
-  };
+  }>;
 }
 
 const portfolioOrigin = 'https://marknperera.ca';
@@ -16,7 +17,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectSitePageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
+  const { site: siteParam } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
   const projects = await getProjects();
   const project = projects.find((item) => item.slug === site?.projectSlug);
 
@@ -33,7 +35,8 @@ export async function generateMetadata({ params }: ProjectSitePageProps) {
 }
 
 export default async function ProjectSitePage({ params }: ProjectSitePageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
+  const { site: siteParam } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
   if (!site) notFound();
 
   const projects = await getProjects();
@@ -418,9 +421,9 @@ function ProjectFooter({ project, tone, prompt }: { project: Project; tone: 'war
 function SiteNav({ site, brand, textColor, accentColor }: { site: string; brand: string; textColor: string; accentColor: string }) {
   return (
     <nav className={`relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-8 ${textColor}`}>
-      <a href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
+      <Link href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
         {brand}
-      </a>
+      </Link>
       <div className="flex items-center gap-3 text-sm">
         <a href={`https://${site}.marknperera.ca/blog`} className={`rounded-md border ${accentColor} px-3 py-2 opacity-75 transition hover:opacity-100`}>
           Blog

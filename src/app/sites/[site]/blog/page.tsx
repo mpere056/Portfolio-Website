@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 import { getSiteBlogPosts } from '@/lib/siteBlogs';
 
 interface BlogIndexPageProps {
-  params: {
+  params: Promise<{
     site: string;
-  };
+  }>;
 }
 
 const portfolioOrigin = 'https://marknperera.ca';
@@ -36,7 +37,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogIndexPageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
+  const { site: siteParam } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
   const copy = site ? SITE_COPY[site.subdomain as keyof typeof SITE_COPY] : undefined;
 
   if (!site || !copy) {
@@ -50,7 +52,8 @@ export async function generateMetadata({ params }: BlogIndexPageProps) {
 }
 
 export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
+  const { site: siteParam } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
   const copy = site ? SITE_COPY[site.subdomain as keyof typeof SITE_COPY] : undefined;
   if (!site || !copy) notFound();
 
@@ -104,9 +107,9 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
 function BlogNav({ site, label, classes }: { site: string; label: string; classes: ReturnType<typeof getThemeClasses> }) {
   return (
     <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
-      <a href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
+      <Link href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
         {label}
-      </a>
+      </Link>
       <div className="flex items-center gap-3 text-sm">
         <a href={portfolioOrigin} className={`rounded-md border px-3 py-2 opacity-75 transition hover:opacity-100 ${classes.navBorder}`}>
           Mark

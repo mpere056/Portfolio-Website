@@ -3,10 +3,10 @@ import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 import { getSiteBlogPost, getSiteBlogPosts, renderSimpleMarkdown } from '@/lib/siteBlogs';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     site: string;
     slug: string;
-  };
+  }>;
 }
 
 const portfolioOrigin = 'https://marknperera.ca';
@@ -29,8 +29,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
-  const post = site ? await getSiteBlogPost(site.subdomain, params.slug) : undefined;
+  const { site: siteParam, slug } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
+  const post = site ? await getSiteBlogPost(site.subdomain, slug) : undefined;
 
   if (!site || !post) {
     return { title: 'Post Not Found | Mark Perera' };
@@ -43,10 +44,11 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const site = getProjectSiteBySubdomain(params.site);
+  const { site: siteParam, slug } = await params;
+  const site = getProjectSiteBySubdomain(siteParam);
   if (!site) notFound();
 
-  const post = await getSiteBlogPost(site.subdomain, params.slug);
+  const post = await getSiteBlogPost(site.subdomain, slug);
   if (!post) notFound();
 
   const theme = SITE_THEMES[site.subdomain as keyof typeof SITE_THEMES];

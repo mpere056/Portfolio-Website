@@ -18,7 +18,12 @@ describe('supported runtime bridge policy', () => {
     const manifest = readPackageManifest();
 
     expect(manifest.engines?.node).toBe('24.x');
-    expect(manifest.dependencies?.next).toBe('14.2.35');
-    expect(manifest.devDependencies?.['eslint-config-next']).toBe('14.2.35');
+    expect(manifest.dependencies?.next).toBe('16.2.10');
+    expect(manifest.dependencies?.react).toBe('19.2.7');
+    expect(manifest.dependencies?.['react-dom']).toBe('19.2.7');
+    expect(manifest.dependencies?.['@react-three/fiber']).toBe('9.6.1');
+    expect(manifest.dependencies?.['@react-three/drei']).toBe('10.7.7');
+    expect(manifest.dependencies?.['@react-three/postprocessing']).toBe('3.0.4');
+    expect(manifest.devDependencies?.['eslint-config-next']).toBe('16.2.10');
   });
 });
