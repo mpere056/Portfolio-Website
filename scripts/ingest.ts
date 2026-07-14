@@ -9,6 +9,11 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 import { config as loadEnv } from 'dotenv'
+import {
+  createEmbeddingRequest,
+  EMBEDDING_DIMENSIONS,
+  EMBEDDING_MODEL,
+} from '../src/lib/embeddingPolicy'
 
 // Load env from .env.local (Next-style) and .env (fallback)
 const envLocal = path.join(process.cwd(), '.env.local')
@@ -60,23 +65,34 @@ function chunkWords(text: string, size = CHUNK_WORDS, overlap = OVERLAP_WORDS): 
 
 async function embedBatch(texts: string[]): Promise<number[][]> {
   if (texts.length === 0) return []
-  const model = genAI.getGenerativeModel({ model: 'text-embedding-004' }) as any
+  const model = genAI.getGenerativeModel({ model: EMBEDDING_MODEL }) as any
   if (typeof model.batchEmbedContents === 'function') {
     const res = await model.batchEmbedContents({
-      requests: texts.map((t: string) => ({ content: { parts: [{ text: t }] } }))
+      requests: texts.map(createEmbeddingRequest)
     })
-    return res.embeddings.map((e: any) => e.values as number[])
+    const vectors = res.embeddings.map((e: any) => e.values as number[])
+    assertEmbeddingDimensions(vectors)
+    return vectors
   }
   const out: number[][] = []
   for (const t of texts) {
-    const res = await model.embedContent({ content: { parts: [{ text: t }] } })
+    const res = await model.embedContent(createEmbeddingRequest(t))
     out.push(res.embedding.values as number[])
   }
+  assertEmbeddingDimensions(out)
   return out
 }
 
+function assertEmbeddingDimensions(vectors: number[][]) {
+  const invalid = vectors.findIndex(vector => vector.length !== EMBEDDING_DIMENSIONS)
+  if (invalid !== -1) {
+    throw new Error(`Embedding ${invalid} has ${vectors[invalid].length} dimensions; expected ${EMBEDDING_DIMENSIONS}`)
+  }
+}
+
 async function removeExistingForSlug(slug: string) {
-  await supa.from('docs').delete().eq('slug', slug)
+  const { error } = await supa.from('docs').delete().eq('slug', slug)
+  if (error) throw error
 }
 
 async function ingestFile(absPath: string, relPath: string) {
@@ -95,23 +111,20 @@ async function ingestFile(absPath: string, relPath: string) {
   const plain = await toPlainText([fmPieces.join('\n'), body].filter(Boolean).join('\n\n'))
   const slug = deriveSlug(relPath, front.slug)
 
-  // delete-then-insert for clean upsert
-  await removeExistingForSlug(slug)
-
   const slices = chunkWords(plain)
   const vectors = await embedBatch(slices)
 
-  for (let i = 0; i < slices.length; i++) {
-    const content = slices[i]
-    const heading = content.slice(0, 80)
-    await supa.from('docs').insert({
+  // Generate every vector before replacing the stored slug so API failures cannot erase good rows.
+  await removeExistingForSlug(slug)
+  const rows = slices.map((content, i) => ({
       slug,
-      heading,
+      heading: content.slice(0, 80),
       content,
       tokens: content.split(/\s+/).length,
       embedding: vectors[i]
-    })
-  }
+  }))
+  const { error } = await supa.from('docs').insert(rows)
+  if (error) throw error
   // eslint-disable-next-line no-console
   console.log(`ingested: ${slug} (${slices.length} chunks)`) 
 }

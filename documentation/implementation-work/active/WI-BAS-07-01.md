@@ -39,8 +39,8 @@ Next.js and `eslint-config-next` use `16.2.10`; React and React DOM use `19.2.7`
 
 ### Restart Here
 
-- Next exact action: Commit only the bounded `BAS-07` implementation, deploy that exact commit to a clean Vercel preview, and inspect build/runtime logs plus representative routes.
-- First files/symbols: The focused `BAS-07` diff, `.vercel/project.json`, Vercel preview output, and `documentation/implementation-evidence/BAS-07.md`.
+- Next exact action: Commit the shared `gemini-embedding-2` policy and ingestion repair, deploy the superseding exact commit to preview, then verify `/api/rag/diag` returns a valid 768-dimensional retrieval result.
+- First files/symbols: `src/lib/embeddingPolicy.ts`, `src/lib/retriever.ts`, `scripts/ingest.ts`, `tests/retriever.test.ts`, the failed preview `dpl_GajydSx74TwzDNS78GDW6gbtFNLP`, and the next clean preview.
 - Expected observable result: Vercel builds 24 pages on Node.js 24, recognizes the proxy and edge routes, and serves the main site plus all three project routes without application errors.
 - Only after that: Promote through Git, verify the production deployment and public subdomains, record rollback readiness, then close and reconcile the package.
 
@@ -83,6 +83,18 @@ Next.js and `eslint-config-next` use `16.2.10`; React and React DOM use `19.2.7`
 - Boundaries: ESLint reports 14 non-blocking warnings; browser QA reports two non-blocking Three.js asset/shader warnings; the production audit reports 0 critical, 0 high, 4 moderate, and 6 low findings whose available remediations are separate major/upstream work.
 - Remaining: Focused implementation commit, clean preview, production promotion, public route checks, rollback evidence, and tracking closeout.
 - Next: Create the focused implementation commit and deploy that exact commit to preview.
+- Commit: uncommitted
+
+### 2026-07-14 - First preview found a retired embedding model
+
+- State: in-progress
+- Changed: Deployed exact implementation commit `5597390` to protected preview `dpl_GajydSx74TwzDNS78GDW6gbtFNLP`.
+- Verified: Vercel built Next.js `16.2.10`, generated 24 of 24 pages, and served all checked visitor routes with HTTP 200 through authenticated preview requests.
+- Failed gate: `/api/rag/diag?q=projects` returned HTTP 500 because Google no longer serves `text-embedding-004` for `embedContent`.
+- Repair: Added one shared `gemini-embedding-2` and 768-dimension policy for query plus ingestion, rejects dimension drift before pgvector, and generates every replacement vector before deleting a slug's existing rows.
+- Tests: 3 files and 7 tests pass; the production build again compiles, typechecks, and generates 24 pages.
+- Remaining: Commit the repair, deploy a superseding preview, refresh the stored corpus with matching vectors, then perform production and closeout gates.
+- Next: Commit the edge repair and verify the superseding preview diagnostic route.
 - Commit: uncommitted
 
 ## Completion Summary
