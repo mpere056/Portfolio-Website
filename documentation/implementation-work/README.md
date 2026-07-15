@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, runtime, and supported-framework baselines are complete. Next.js 16, React 19, retrieval, resilient chat generation, preview, production, and public routes are accepted; the target-state implementation audit is ready and no new visitor feature implementation has begun yet.
+The technical, content, runtime, framework, and target-state audit baselines are complete. `ARC-01` is implementing canonical content identities before shared experience contracts or visitor features begin.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-05-01` | ready | `BAS-05` | Supported production stack and AI runtime accepted | Audit retained and target capabilities against code, content, tests, and live routes | 2026-07-14 |
-| Next | Uncreated | planned | `ARC-01` | Content inventory accepted; audit may refine first gaps | Establish stable namespaced IDs and rename policy | 2026-07-14 |
+| Now | `WI-ARC-01-01` | in-progress | `ARC-01` | Shared inventory/ingestion IDs, safe legacy replacement, 38 authored IDs, 13 tests, and build pass | Commit and preview before managed retrieval re-index | 2026-07-14 |
+| Next | Uncreated | planned | `ARC-02` | Waits for accepted content identity | Define shared depth, destination, discovery, AI context, and project contracts | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-BAS-05-01` | Audit Target-State Implementation | ready | high | `BAS-05` | `CAP-BAS-005` | `active/WI-BAS-05-01.md` | 2026-07-14 |
+| `WI-ARC-01-01` | Establish Stable Content Identities | in-progress | high | `ARC-01` | `CAP-ARC-001` | `active/WI-ARC-01-01.md` | 2026-07-14 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-BAS-05-01` | done | `BAS-05` | Supported implementation reconciled against target capabilities | `EV-BAS-05-01` through `EV-BAS-05-03` | 2026-07-14 |
 | `WI-BAS-07-01` | done | `BAS-07` | Next.js 16/React 19 and repaired AI runtime live on all production domains | `EV-BAS-07-01` through `EV-BAS-07-09` | 2026-07-14 |
 | `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
 | `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |

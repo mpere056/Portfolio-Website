@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-14
-Implementation commit baseline: not yet established; `BAS-05` will record it
+Implementation commit baseline: `4144bcc2f252a211ce0c611328ffe6be6d51dd32`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: not yet established; `BAS-05` will record it
 
 ## Current Program State
 
-**Target-state implementation baseline: incomplete.**
+**Target-state implementation baseline: complete; stable content identities are in progress.**
 
-The portfolio already has substantial live code and content, but the target capabilities have not yet been reconciled against that implementation. `BAS-05` will replace unknown dimension states with inspected named states and create work items for the first actionable gaps.
+`BAS-05` reconciled the supported site against the approved target and preserved reusable legacy behavior without overstating it. Immediate architecture, loader, and quality capabilities now have inspected states; distant capabilities remain explicitly unknown until they approach execution.
 
 This distinction prevents two errors:
 
@@ -28,9 +28,9 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | target-state audit ready | on-track | `BAS-07` is accepted in production with retrieval and chat healthy | Target-state audit, IDs, contracts, test harness | `BAS-05` reconciles current and next capabilities against the supported stack |
-| `O-01` Persistent exploratory world | not active | not-active | Existing site behavior not yet reconciled | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
-| `O-02` Quiet global AI | not active | not-active | Existing chat behavior not yet reconciled | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
+| `O-00` Measured foundation | stable IDs in progress | on-track | Inventory and ingestion share canonical IDs; 13 tests and build pass | Canonical corpus rollout, contracts, test harness | Exact-commit preview then managed retrieval re-index |
+| `O-01` Persistent exploratory world | planned | not-active | Legacy spatial navigation and project expansion assessed | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
+| `O-02` Quiet global AI | planned | not-active | Standalone RAG chat and its target gaps assessed | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
@@ -40,14 +40,14 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `BAS-05` has satisfied dependencies and a restart-ready work item |
-| `in-progress` | 0 | No package is currently mid-change |
-| `pending` | 44 | Valid active work waiting on dependencies or baseline reconciliation |
+| `ready` | 0 | No package is waiting at the start line; the dependency-ready package is active |
+| `in-progress` | 1 | `ARC-01` has an active resumable work item |
+| `pending` | 43 | Valid active work waiting on dependencies or sequencing |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 5 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, and `BAS-07` have accepted exit evidence |
+| `complete` | 6 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-05`, `BAS-06`, and `BAS-07` have accepted exit evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -60,13 +60,13 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 3 | `BAS-04` | Runtime maintenance decision | complete | None | Node.js 24 bridge and separate Next.js 16 package accepted |
 | 4 | `BAS-06` | Supported runtime and security bridge | complete | `BAS-04` | Node.js 24 tests/build, audit delta, preview, production, and rollback evidence |
 | 5 | `BAS-07` | Supported framework modernization | complete | `BAS-06` | Next.js 16, React/3D ecosystem, API, browser, visual, preview, and production gates pass |
-| 6 | `BAS-05` | Target-state implementation audit | ready | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Current and next capabilities have inspected states and restartable work items |
-| 7 | `ARC-01` | Stable ID policy | pending | `BAS-02` | Validation fixture and rename policy |
+| 6 | `BAS-05` | Target-state implementation audit | complete | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Current and next capabilities have inspected states and restartable work items |
+| 7 | `ARC-01` | Stable ID policy | in-progress | `BAS-02` | Validation fixture, canonical consumers, initial IDs, and rename policy |
 | 8 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
 | 9 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
 | 10 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
 
-`BAS-07` is complete and remains separate from the runtime bridge. `BAS-05` is now the dependency-ready audit of the supported production stack.
+The complete baseline packages establish the supported production stack and its honest target-state starting point. `ARC-01` is the first active architecture package.
 
 ## Now And Next
 
@@ -74,8 +74,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-05-01` | ready | `BAS-05` | Supported stack, AI retrieval, chat, and public routes are accepted in production | Audit retained and target capabilities against code, content, tests, and live routes | 2026-07-14 |
-| Next | Uncreated | planned | `ARC-01` | Content inventory is accepted; implementation audit may refine first gaps | Establish stable namespaced IDs and rename policy | 2026-07-14 |
+| Now | `WI-ARC-01-01` | in-progress | `ARC-01` | Shared inventory/ingestion IDs, legacy-row replacement, 38 authored IDs, 13 tests, and build pass | Commit and preview the migration before managed retrieval re-index | 2026-07-14 |
+| Next | Uncreated | planned | `ARC-02` | Waits for accepted canonical content identities | Define shared depth, destination, discovery, AI context, and project contracts | 2026-07-14 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -97,11 +97,11 @@ No implementation work items are currently blocked or paused. Product and planni
 
 ## Partial Implementation Watchlist
 
-No target capability has been assessed as partially implemented yet. After `BAS-05`, this section lists consequential capabilities with `working`, `blocked`, or `paused` dimension states.
+The active stable-ID capability has a bounded partial implementation. Other inspected near-term capabilities are planned rather than represented as partly complete from legacy behavior alone.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-XXX-000` | `WI-XXX-00-00` | Current dependable behavior | Missing paths by dimension | Flag/environment | Concrete edit/test/decision | Evidence IDs |
+| `CAP-ARC-001` | `WI-ARC-01-01` | Shared inventory/ingestion identity, alias policy, safe legacy-row replacement, 38 authored IDs, 13 tests, and build | One authored fallback, managed corpus re-index, preview and acceptance | Internal code only until managed re-index | Commit and preview, then re-index canonical retrieval IDs | `EV-ARC-01-01` candidate |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -109,7 +109,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Gate | Affects | State | Needed next |
 | --- | --- | --- | --- |
-| Runtime compatibility decision | Baseline and future deployments | resolved | Execute the accepted Node.js 24 bridge in `BAS-06`, then Next.js 16 in `BAS-07` |
+| Runtime and framework compatibility | Baseline and future deployments | resolved | No action; `BAS-06` and `BAS-07` are accepted |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
 | First flagship selection | `PRJ-04` | waits on prototype | Compare LifeInbox and Sudoku spikes using visitor value, risk, and reuse evidence |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
@@ -133,8 +133,8 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 21 | Baseline, runtime, framework, AI recovery, preview, and production evidence |
-| Candidate | 0 | Add during implementation, preview, or review |
+| Accepted | 24 | Baseline, audit, runtime, framework, AI recovery, preview, and production evidence |
+| Candidate | 1 | Canonical content-ID contract and fixtures await consumer migration |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
 
@@ -144,6 +144,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-14 | Completed target-state audit and began stable content identities | `BAS-05`, `ARC-01`, `CAP-BAS-005`, `CAP-ARC-001`, `WI-ARC-01-01`, `O-00` | Current implementation reconciled; shared inventory/ingestion IDs, alias policy, safe legacy replacement, and 13 tests pass |
 | 2026-07-14 | Completed supported framework modernization and AI runtime recovery | `BAS-07`, `CAP-BAS-007`, `WI-BAS-07-01`, `O-00` | Next.js 16/React 19, retrieval, chat fallback, preview, production, public routes, and rollback evidence accepted; `BAS-05` is ready |
 | 2026-07-14 | Completed the runtime maintenance decision | `BAS-04`, `CAP-BAS-004`, `WI-BAS-04-01`, `O-00` | Node.js 24 bridge and separate Next.js 16 migration accepted; `BAS-06` is ready |
 | 2026-07-14 | Completed the content and route inventory | `BAS-02`, `CAP-BAS-002`, `WI-BAS-02-01`, `O-00` | 39 nodes inventoried; identity and ingestion gaps have named downstream owners |
@@ -174,7 +175,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `BAS-05` begins or changes the first inspected capability states.
-- `BAS-05` replaces the first unknown dimension states.
+- `ARC-01` aligns ingestion or changes its authored-ID migration boundary.
+- `ARC-01` reaches review, completion, or a blocker.
 - A gate or dependency changes.
 - Target implementation code lands.

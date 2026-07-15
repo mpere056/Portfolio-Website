@@ -63,11 +63,11 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | All dimensions accepted; see `BAS-02` evidence | verified |
 | `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-BAS-004` | Runtime compatibility and upgrade decision | `BAS-04` | Platform | `O-00` | 1 | All applicable dimensions accepted; see `BAS-04` evidence | verified |
-| `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | All applicable dimensions accepted; see `BAS-05` evidence | verified |
 | `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | All applicable dimensions accepted; see `BAS-06` evidence | verified |
 | `CAP-BAS-007` | Supported Next.js 16 framework modernization | `BAS-07` | Platform | `O-00` | 5 | All applicable dimensions accepted; see `BAS-07` evidence | verified |
-| `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started` | in-progress |
+| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -120,17 +120,81 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: `BAS-06` Node.js 24 and security bridge rollout
 - Last assessed: 2026-07-14 against production commit `a894aaf`
 
+### CAP-BAS-005: Target-State Implementation Baseline
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: not-applicable; T: accepted; Q: accepted; R: not-applicable`
+- Package: `BAS-05`
+- Work item: `WI-BAS-05-01` (done)
+- Works now: Current runtime, content, interaction, persistence, AI, project, About, living-state, quality, and rollout surfaces are reconciled against the approved target without treating legacy behavior as target acceptance.
+- Named gaps: Target implementation remains intentionally distributed to its owning capabilities; this audit changes no visitor behavior.
+- Safe exposure: Documentation, inspection, and work sequencing only.
+- Evidence: `EV-BAS-05-01` through `EV-BAS-05-03`
+- Next checkpoint: `ARC-01` completes canonical content identity and migration policy.
+- Last assessed: 2026-07-14 at `4144bcc`
+
+### CAP-ARC-001: Stable Namespaced IDs And Rename Policy
+
+- Owner: Codex
+- Lifecycle: in-progress
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started`
+- Active package: `ARC-01`
+- Work item: `WI-ARC-01-01`
+- Works now: Canonical content ID constructors and validators cover projects, timeline events, misc knowledge, and site posts; explicit aliases resolve only to valid canonical IDs; inventory and one-level ingestion share path classification and identity precedence; legacy retrieval rows are removed during replacement; three unaffected misc records now have authored IDs; 13 tests and the production build pass.
+- Named gaps: One separately edited misc record needs an authored ID, the managed retrieval corpus needs canonical re-indexing, three nested posts need later shared-loader ingestion, and no visitor-facing consumer resolves aliases yet.
+- Safe exposure: The utility and inventory reporting are internal; current route slugs and production behavior remain unchanged.
+- Evidence: `EV-ARC-01-01` (candidate)
+- Next checkpoint: Commit and preview the migration, then re-index and verify the managed retrieval corpus before package acceptance.
+- Last assessed: 2026-07-14 in `WI-ARC-01-01`
+
+### CAP-ARC-002: Shared Depth, Destination, Discovery, AI, And Project Contracts
+
+- Owner: unassigned
+- Lifecycle: planned
+- Health: not-active
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started`
+- Package: `ARC-02`
+- Works now: Separate legacy interfaces exist for projects, timeline entries, project sites, and retrieval results.
+- Named gaps: No canonical shared source defines depth, destination, discovery, AI context, project state, or their versioning boundaries.
+- Safe exposure: Existing local interfaces remain until migrated behind tested adapters.
+- Evidence: `EV-BAS-05-01`
+- Work item: none; waits for `ARC-01`.
+- Next checkpoint: Typecheck and one cross-consumer fixture after stable IDs are accepted.
+- Last assessed: 2026-07-14 at `4144bcc`
+
 ## Knowledge Graph And Content
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-KG-001` | Shared loader with current-output parity | `KG-01` | `V-11` | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-KG-001` | Shared loader with current-output parity | `KG-01` | `V-11` | `O-00` | 2 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
 | `CAP-KG-002` | Validated project, event, post, and relationship schemas | `KG-02` | `V-11`, `V-19` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-003` | Build-time graph compiler and visibility validator | `KG-03` | `V-11` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-004` | Reviewed flagship, event, skill, and post subgraph | `KG-04` | `V-11`, `V-13`, `V-24` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-KG-001: Shared Loader With Current-Output Parity
+
+- Owner: unassigned
+- Lifecycle: planned
+- Health: not-active
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started`
+- Package: `KG-01`
+- Works now: Separate project, timeline, and project-blog loaders serve current routes, while ingestion independently scans only one content level.
+- Named gaps: No recursive shared loader preserves current outputs across all 39 nodes; twenty About identities diverge in ingestion and three nested posts are skipped.
+- Safe exposure: Existing loaders remain authoritative until parity fixtures pass.
+- Evidence: `EV-BAS-02-02`, `EV-BAS-05-01`
+- Work item: none; waits for `ARC-01`.
+- Next checkpoint: Shared recursive loader fixture proves current route output and full-corpus enumeration parity.
+- Last assessed: 2026-07-14 at `4144bcc`
 
 ## Persistent Exploration Foundation
 
@@ -216,7 +280,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -224,6 +288,22 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PXP-001` | Evidence-backed skill map prototype and decision | `PXP-01` | `V-24` | Experimental | 2 | `U/U/U/U/U/U/U` | deferred |
 | `CAP-PXP-002` | Rare site-help request prototype and decision | `PXP-03` | `V-21` | Experimental | 1 | `U/U/U/U/U/U/U` | deferred |
+
+### CAP-QA-001: Foundation Unit And Browser Test Harness
+
+- Owner: unassigned
+- Lifecycle: planned
+- Health: not-active
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started`
+- Package: `QA-01`
+- Works now: Vitest covers inventory, runtime policy, retrieval, chat generation fallback, and canonical content IDs; browser and production checks have repeatable written evidence.
+- Named gaps: The target reusable harness does not yet automate one foundation browser journey, visual checkpoint, or preview gate.
+- Safe exposure: Existing tests remain required; the later harness adds coverage without replacing them blindly.
+- Evidence: `EV-BAS-05-01`, existing baseline package test evidence.
+- Work item: none; waits for `ARC-02`.
+- Next checkpoint: One automated foundation flow consumes shared contracts and runs in the supported toolchain.
+- Last assessed: 2026-07-14 at `4144bcc`
 
 ## Per-Capability Detail Record
 

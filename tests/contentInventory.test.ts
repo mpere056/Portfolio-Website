@@ -44,18 +44,19 @@ describe('scanContentInventory', () => {
     expect(inventory.summary.byKind).toEqual({ project: 1, about: 1, misc: 1, blog: 1, unclassified: 0 });
     expect(inventory.summary.withAuthoredIdentifiers).toBe(3);
     expect(inventory.summary.withFilenameFallbacks).toBe(1);
-    expect(inventory.summary.aiIdentifierDivergences).toBe(1);
+    expect(inventory.summary.aiIdentifierDivergences).toBe(0);
 
     const about = inventory.nodes.find((node) => node.kind === 'about');
     expect(about).toMatchObject({
+      candidateKey: 'timeline:example-event',
       candidateId: 'example-event',
       runtimeIdentifier: 'example-event',
-      currentAiIngestionIdentifier: '2026-example',
+      currentAiIngestionIdentifier: 'timeline:example-event',
     });
 
     const blog = inventory.nodes.find((node) => node.kind === 'blog');
     expect(blog).toMatchObject({
-      candidateKey: 'blog:example:first-post',
+      candidateKey: 'post:example:first-post',
       identifierSource: 'slug',
       includedInCurrentAiIngestion: false,
       runtimeConsumers: ['src/lib/siteBlogs.ts'],
@@ -64,7 +65,6 @@ describe('scanContentInventory', () => {
     expect(inventory.issues).toEqual(expect.arrayContaining([
       expect.objectContaining({ code: 'missing-authored-identifier', relativePath: 'misc/private-note.mdx' }),
       expect.objectContaining({ code: 'ai-ingestion-coverage-gap', relativePath: 'sites/example/blog/first-post.mdx' }),
-      expect.objectContaining({ code: 'ai-identifier-divergence', relativePath: 'about/2026-example.mdx' }),
     ]));
     expect(formatContentInventoryReport(inventory)).toContain('| Total nodes | 4 |');
   });
@@ -92,8 +92,8 @@ describe('scanContentInventory', () => {
     expect(inventory.summary.byKind).toEqual({ project: 9, about: 20, misc: 7, blog: 3, unclassified: 0 });
     expect(inventory.summary.totalNodes).toBe(39);
     expect(inventory.summary.issues.error).toBe(0);
-    expect(inventory.nodes.filter((node) => node.identifierSource === 'filename-fallback')).toHaveLength(4);
+    expect(inventory.nodes.filter((node) => node.identifierSource === 'filename-fallback')).toHaveLength(1);
     expect(inventory.nodes.filter((node) => node.kind === 'blog' && !node.includedInCurrentAiIngestion)).toHaveLength(3);
-    expect(inventory.summary.aiIdentifierDivergences).toBe(20);
+    expect(inventory.summary.aiIdentifierDivergences).toBe(0);
   });
 });

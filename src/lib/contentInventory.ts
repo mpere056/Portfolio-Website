@@ -1,11 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import {
+  classifyContentPath,
+  createContentNodeId,
+  deriveContentIdentity,
+  type IdentifierSource,
+} from '@/lib/contentIds';
 
 export const CONTENT_KINDS = ['project', 'about', 'misc', 'blog', 'unclassified'] as const;
 
 export type ContentKind = (typeof CONTENT_KINDS)[number];
-export type IdentifierSource = 'id' | 'slug' | 'filename-fallback';
 export type InventoryIssueSeverity = 'error' | 'warning' | 'info';
 
 export interface ContentInventoryNode {
@@ -88,16 +93,7 @@ function walkContentFiles(directory: string): string[] {
 }
 
 function classify(relativePath: string): Classification {
-  const parts = relativePath.split('/');
-
-  if (parts.length === 2 && parts[0] === 'projects') return { kind: 'project' };
-  if (parts.length === 2 && parts[0] === 'about') return { kind: 'about' };
-  if (parts.length === 2 && parts[0] === 'misc') return { kind: 'misc' };
-  if (parts.length === 4 && parts[0] === 'sites' && parts[2] === 'blog') {
-    return { kind: 'blog', site: parts[1] };
-  }
-
-  return { kind: 'unclassified' };
+  return classifyContentPath(relativePath) ?? { kind: 'unclassified' };
 }
 
 function nonEmptyString(value: unknown): string | undefined {
@@ -111,28 +107,35 @@ function resolveIdentifier(
   frontmatter: Record<string, unknown>,
   relativePath: string,
 ) {
-  const preferred = kind === 'about'
-    ? [['id', nonEmptyString(frontmatter.id)], ['slug', nonEmptyString(frontmatter.slug)]] as const
-    : [['slug', nonEmptyString(frontmatter.slug)], ['id', nonEmptyString(frontmatter.id)]] as const;
-  const authored = preferred.find(([, value]) => value);
-
-  if (authored?.[1]) {
+  if (kind === 'unclassified') {
     return {
-      authoredId: authored[1],
-      candidateId: authored[1],
-      identifierSource: authored[0] as Exclude<IdentifierSource, 'filename-fallback'>,
+      authoredId: undefined,
+      candidateId: path.basename(relativePath).replace(/\.mdx?$/i, ''),
+      identifierSource: 'filename-fallback' as const,
     };
   }
 
-  return {
-    authoredId: undefined,
-    candidateId: path.basename(relativePath).replace(/\.mdx?$/i, ''),
-    identifierSource: 'filename-fallback' as const,
-  };
+  const { nodeId: _nodeId, ...identity } = deriveContentIdentity(
+    { kind, ...(kind === 'blog' ? { site: classify(relativePath).site } : {}) },
+    frontmatter,
+    relativePath,
+  );
+  return identity;
 }
 
 function namespaceFor(kind: ContentKind, site?: string) {
-  return kind === 'blog' ? `blog:${site ?? 'unknown-site'}` : kind;
+  if (kind === 'about') return 'timeline';
+  if (kind === 'blog') return `post:${site ?? 'unknown-site'}`;
+  return kind;
+}
+
+function canonicalCandidateKey(kind: ContentKind, candidateId: string, site?: string) {
+  if (kind === 'unclassified') return `unclassified:${candidateId}`;
+  if (kind === 'blog') {
+    return createContentNodeId({ kind, authoredId: candidateId, site: site ?? 'unknown-site' });
+  }
+
+  return createContentNodeId({ kind, authoredId: candidateId });
 }
 
 function titleFor(kind: ContentKind, frontmatter: Record<string, unknown>, candidateId: string) {
@@ -164,10 +167,6 @@ function runtimeIdentifierFor(
     case 'blog': return nonEmptyString(frontmatter.slug) ?? filenameIdentifier(relativePath);
     default: return undefined;
   }
-}
-
-function currentAiIdentifierFor(frontmatter: Record<string, unknown>, relativePath: string) {
-  return nonEmptyString(frontmatter.slug) ?? filenameIdentifier(relativePath);
 }
 
 function routesFor(kind: ContentKind, runtimeIdentifier?: string, site?: string) {
@@ -239,13 +238,13 @@ function validateNodes(nodes: ContentInventoryNode[], metadata: Map<string, Reco
 
     if (
       node.currentAiIngestionIdentifier
-      && node.currentAiIngestionIdentifier !== node.candidateId
+      && node.currentAiIngestionIdentifier !== node.candidateKey
     ) {
       issues.push({
         severity: 'warning',
         code: 'ai-identifier-divergence',
         relativePath: node.relativePath,
-        message: `Runtime candidate "${node.candidateId}" is ingested under "${node.currentAiIngestionIdentifier}" because ingestion reads slug but not id.`,
+        message: `Canonical candidate "${node.candidateKey}" is ingested under "${node.currentAiIngestionIdentifier}".`,
       });
     }
 
@@ -331,10 +330,11 @@ export function scanContentInventory(contentRoot = path.join(process.cwd(), 'src
 
     metadata.set(relativePath, frontmatter);
     const identifier = resolveIdentifier(classification.kind, frontmatter, relativePath);
+    const candidateKey = canonicalCandidateKey(classification.kind, identifier.candidateId, classification.site);
     const runtimeIdentifier = runtimeIdentifierFor(classification.kind, frontmatter, relativePath);
     const includedInCurrentAiIngestion = isIncludedInCurrentAiIngestion(relativePath);
     const currentAiIngestionIdentifier = includedInCurrentAiIngestion
-      ? currentAiIdentifierFor(frontmatter, relativePath)
+      ? candidateKey
       : undefined;
     const routes = routesFor(classification.kind, runtimeIdentifier, classification.site);
 
@@ -343,7 +343,7 @@ export function scanContentInventory(contentRoot = path.join(process.cwd(), 'src
       relativePath,
       site: classification.site,
       ...identifier,
-      candidateKey: `${namespaceFor(classification.kind, classification.site)}:${identifier.candidateId}`,
+      candidateKey,
       runtimeIdentifier,
       currentAiIngestionIdentifier,
       title: titleFor(classification.kind, frontmatter, identifier.candidateId),
@@ -379,7 +379,7 @@ export function scanContentInventory(contentRoot = path.join(process.cwd(), 'src
       includedInCurrentAiIngestion: nodes.filter((node) => node.includedInCurrentAiIngestion).length,
       aiIdentifierDivergences: nodes.filter((node) => (
         node.currentAiIngestionIdentifier
-        && node.currentAiIngestionIdentifier !== node.candidateId
+        && node.currentAiIngestionIdentifier !== node.candidateKey
       )).length,
       withRuntimeConsumers: nodes.filter((node) => node.runtimeConsumers.length > 0).length,
       uniqueRoutes: routes.length,

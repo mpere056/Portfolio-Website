@@ -64,6 +64,9 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-02-01` | `BAS-02` | `CAP-BAS-002` | unit-test | accepted | `7b99008` local tests | 2026-07-14 | `BAS-02.md` |
 | `EV-BAS-02-02` | `BAS-02` | `CAP-BAS-002` | content-review | accepted | Repository content and routes | 2026-07-14 | `BAS-02.md` |
 | `EV-BAS-02-03` | `BAS-02` | `CAP-BAS-002` | integration-test | accepted | `7b99008` local production build | 2026-07-14 | `BAS-02.md` |
+| `EV-BAS-05-01` | `BAS-05` | `CAP-BAS-005` | integration-test | accepted | `4144bcc` source and runtime inspection | 2026-07-14 | `BAS-05.md` |
+| `EV-BAS-05-02` | `BAS-05` | `CAP-BAS-005` | content-review | accepted | Target-state implementation matrix | 2026-07-14 | `BAS-05.md` |
+| `EV-BAS-05-03` | `BAS-05` | `CAP-BAS-005` | decision | accepted | Dependency-ordered implementation sequence | 2026-07-14 | `BAS-05.md` |
 | `EV-BAS-04-01` | `BAS-04` | `CAP-BAS-004` | decision | accepted | Official support policies and decision record | 2026-07-14 | `BAS-04.md` |
 | `EV-BAS-04-02` | `BAS-04` | `CAP-BAS-004` | production | accepted | Vercel deployment `a894aaf` and build logs | 2026-07-14 | `BAS-04.md` |
 | `EV-BAS-04-03` | `BAS-04` | `CAP-BAS-004` | integration-test | accepted | Node.js 22/24 isolated probes at `a894aaf` | 2026-07-14 | `BAS-04.md` |
@@ -82,6 +85,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-07-07` | `BAS-07` | `CAP-BAS-007` | preview | failed | Vercel `dpl_Dd24f231s4ivduZGfwhhQ4JFfP3w` | 2026-07-14 | `BAS-07.md` |
 | `EV-BAS-07-08` | `BAS-07` | `CAP-BAS-007` | preview | accepted | Vercel `dpl_BYMrYgS9ZBSDNCDbe9VhfYsXNEL9` | 2026-07-14 | `BAS-07.md` |
 | `EV-BAS-07-09` | `BAS-07` | `CAP-BAS-007` | production | accepted | Vercel `dpl_CfieGiesbhQnT2DKUa6x1iUvkURQ` and live routes | 2026-07-14 | `BAS-07.md` |
+| `EV-ARC-01-01` | `ARC-01` | `CAP-ARC-001` | unit-test | candidate | Working tree, 5 files and 13 tests | 2026-07-14 | `ARC-01.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

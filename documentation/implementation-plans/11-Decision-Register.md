@@ -44,6 +44,7 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-14 | Use canonical namespaced content IDs with explicit one-way aliases for genuine renames | Confirmed and in implementation | Projects, timeline events, misc knowledge, and posts receive stable identities independent from labels, filenames, and routes | [Stable Content ID Decision](../implementation-baselines/2026-07-14-Stable-Content-ID-Decision.md) |
 | 2026-07-14 | Use a Node.js 24 security bridge, then a separate Next.js 16 modernization | Confirmed | `BAS-06` handles urgent runtime/security rollout; `BAS-07` handles coordinated framework, React, 3D, route, lint, and middleware migration | [Runtime Maintenance Decision](../implementation-baselines/2026-07-14-Runtime-Maintenance-Decision.md) |
 
 ## Prototype Candidates
@@ -120,7 +121,7 @@ These remain recorded without detailed planning.
 Resolve these in order as implementation approaches them.
 
 1. Choose the state owner and versioning policy for discovery persistence.
-2. Choose stable identifier formats for graph nodes, destinations, and experiences.
+2. Extend the confirmed content-ID policy to destination and experience registries after `ARC-01`.
 3. Decide whether content validation runs during build, tests, or both.
 4. Choose the global AI shell's inactive visual form.
 5. Finalize quick-tour role labels.

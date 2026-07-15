@@ -14,6 +14,7 @@ import {
   EMBEDDING_DIMENSIONS,
   EMBEDDING_MODEL,
 } from '../src/lib/embeddingPolicy'
+import { classifyContentPath, deriveContentIdentity } from '../src/lib/contentIds'
 
 // Load env from .env.local (Next-style) and .env (fallback)
 const envLocal = path.join(process.cwd(), '.env.local')
@@ -39,10 +40,10 @@ function toPlainText(md: string): Promise<string> {
   return remark().use(strip).process(md).then(v => String(v))
 }
 
-function deriveSlug(filePath: string, frontmatterSlug?: string): string {
-  if (frontmatterSlug) return String(frontmatterSlug)
-  const base = path.basename(filePath).replace(/\.mdx?$/i, '')
-  return base
+function deriveCanonicalId(filePath: string, frontmatter: Record<string, unknown>): string {
+  const classification = classifyContentPath(filePath)
+  if (!classification) throw new Error(`Unsupported content path: ${filePath}`)
+  return deriveContentIdentity(classification, frontmatter, filePath).nodeId
 }
 
 function extractFrontmatter(raw: string): { front: Record<string, any>, body: string } {
@@ -83,6 +84,11 @@ async function embedBatch(texts: string[]): Promise<number[][]> {
   return out
 }
 
+function deriveLegacyIngestionId(filePath: string, frontmatter: Record<string, unknown>) {
+  if (typeof frontmatter.slug === 'string' && frontmatter.slug.trim()) return frontmatter.slug.trim()
+  return path.basename(filePath).replace(/\.mdx?$/i, '')
+}
+
 function assertEmbeddingDimensions(vectors: number[][]) {
   const invalid = vectors.findIndex(vector => vector.length !== EMBEDDING_DIMENSIONS)
   if (invalid !== -1) {
@@ -90,8 +96,8 @@ function assertEmbeddingDimensions(vectors: number[][]) {
   }
 }
 
-async function removeExistingForSlug(slug: string) {
-  const { error } = await supa.from('docs').delete().eq('slug', slug)
+async function removeExistingForIds(ids: string[]) {
+  const { error } = await supa.from('docs').delete().in('slug', [...new Set(ids)])
   if (error) throw error
 }
 
@@ -109,13 +115,14 @@ async function ingestFile(absPath: string, relPath: string) {
   }
 
   const plain = await toPlainText([fmPieces.join('\n'), body].filter(Boolean).join('\n\n'))
-  const slug = deriveSlug(relPath, front.slug)
+  const slug = deriveCanonicalId(relPath, front)
+  const legacySlug = deriveLegacyIngestionId(relPath, front)
 
   const slices = chunkWords(plain)
   const vectors = await embedBatch(slices)
 
   // Generate every vector before replacing the stored slug so API failures cannot erase good rows.
-  await removeExistingForSlug(slug)
+  await removeExistingForIds([slug, legacySlug])
   const rows = slices.map((content, i) => ({
       slug,
       heading: content.slice(0, 80),

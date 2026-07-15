@@ -42,7 +42,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | complete |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | complete |
-| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | ready |
+| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | complete |
 | `BAS-06` | Supported runtime and security bridge | `BAS-04` | Node.js 24 engine and Vercel alignment, narrow Next.js 14 security update, bounded direct remediations, runtime policy test | Node.js 24 tests/build pass; audit delta reviewed; preview and production routes verified with rollback ready | complete |
 | `BAS-07` | Supported framework modernization | `BAS-06` | Next.js 16 and React 19 ecosystem migration, async route APIs, ESLint CLI, middleware/proxy and edge review | Unit, integration, browser, visual, 3D, API, preview, and rollback gates pass | complete |
 
@@ -50,7 +50,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture and decision record | pending |
+| `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture and decision record | in-progress |
 | `ARC-02` | Shared contract types | `ARC-01` | Canonical TypeScript types for depth, destinations, discovery, context | Typecheck and consumer fixture | pending |
 | `ARC-03` | Destination registry | `ARC-02` | Validated registry for routes, areas, subdomains, safe state | Unit tests including unknown destination | pending |
 | `ARC-04` | Cross-system actions | `ARC-02` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | pending |
