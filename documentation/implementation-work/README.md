@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, runtime-decision, and Node.js 24 bridge baselines are complete. `BAS-07` passes its local framework-migration gates and is awaiting clean preview and production rollout; no target-state visitor feature implementation has begun yet.
+The technical, content, runtime, and supported-framework baselines are complete. Next.js 16, React 19, retrieval, resilient chat generation, preview, production, and public routes are accepted; the target-state implementation audit is ready and no new visitor feature implementation has begun yet.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-07-01` | in-progress | `BAS-07` | Local Next.js 16/React 19 automated, browser, visual, and rewrite gates pass | Commit the bounded migration and deploy that exact commit to preview | 2026-07-14 |
-| Next | Uncreated | planned | `BAS-05` | Waits for accepted supported framework stack | Audit target-state implementation after `BAS-07` | 2026-07-14 |
+| Now | `WI-BAS-05-01` | ready | `BAS-05` | Supported production stack and AI runtime accepted | Audit retained and target capabilities against code, content, tests, and live routes | 2026-07-14 |
+| Next | Uncreated | planned | `ARC-01` | Content inventory accepted; audit may refine first gaps | Establish stable namespaced IDs and rename policy | 2026-07-14 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-BAS-07-01` | Modernize The Supported Framework Stack | in-progress | high | `BAS-07` | `CAP-BAS-007` | `active/WI-BAS-07-01.md` | 2026-07-14 |
+| `WI-BAS-05-01` | Audit Target-State Implementation | ready | high | `BAS-05` | `CAP-BAS-005` | `active/WI-BAS-05-01.md` | 2026-07-14 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-BAS-07-01` | done | `BAS-07` | Next.js 16/React 19 and repaired AI runtime live on all production domains | `EV-BAS-07-01` through `EV-BAS-07-09` | 2026-07-14 |
 | `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
 | `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
 | `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |

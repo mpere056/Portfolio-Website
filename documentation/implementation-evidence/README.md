@@ -73,6 +73,15 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-06-03` | `BAS-06` | `CAP-BAS-006` | privacy-security | accepted | Production audit comparison | 2026-07-14 | `BAS-06.md` |
 | `EV-BAS-06-04` | `BAS-06` | `CAP-BAS-006` | preview | accepted | Vercel `dpl_2mydKQDCRRkyHfnt9qrYXRNSPGVt` | 2026-07-14 | `BAS-06.md` |
 | `EV-BAS-06-05` | `BAS-06` | `CAP-BAS-006` | production | accepted | Vercel `dpl_7FRQWihojVoVftNVmF5a7imVV55C` and live routes | 2026-07-14 | `BAS-06.md` |
+| `EV-BAS-07-01` | `BAS-07` | `CAP-BAS-007` | unit-test | accepted | `64e8e00`, 4 files and 9 tests | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-02` | `BAS-07` | `CAP-BAS-007` | integration-test | accepted | `64e8e00` local production build | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-03` | `BAS-07` | `CAP-BAS-007` | browser-flow | accepted | Local representative routes, rewrites, 3D, and API boundaries | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-04` | `BAS-07` | `CAP-BAS-007` | preview | failed | Vercel `dpl_GajydSx74TwzDNS78GDW6gbtFNLP` | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-05` | `BAS-07` | `CAP-BAS-007` | preview | failed | Vercel `dpl_FsZPpagxLkpke94vzsmvn3XN6QPG` | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-06` | `BAS-07` | `CAP-BAS-007` | preview | failed | Vercel `dpl_CzuQ4DPYks78feKbEUNVu6ZAwMh5` | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-07` | `BAS-07` | `CAP-BAS-007` | preview | failed | Vercel `dpl_Dd24f231s4ivduZGfwhhQ4JFfP3w` | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-08` | `BAS-07` | `CAP-BAS-007` | preview | accepted | Vercel `dpl_BYMrYgS9ZBSDNCDbe9VhfYsXNEL9` | 2026-07-14 | `BAS-07.md` |
+| `EV-BAS-07-09` | `BAS-07` | `CAP-BAS-007` | production | accepted | Vercel `dpl_CfieGiesbhQnT2DKUa6x1iUvkURQ` and live routes | 2026-07-14 | `BAS-07.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

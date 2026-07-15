@@ -42,9 +42,9 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | complete |
 | `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | complete |
-| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | pending |
+| `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | ready |
 | `BAS-06` | Supported runtime and security bridge | `BAS-04` | Node.js 24 engine and Vercel alignment, narrow Next.js 14 security update, bounded direct remediations, runtime policy test | Node.js 24 tests/build pass; audit delta reviewed; preview and production routes verified with rollback ready | complete |
-| `BAS-07` | Supported framework modernization | `BAS-06` | Next.js 16 and React 19 ecosystem migration, async route APIs, ESLint CLI, middleware/proxy and edge review | Unit, integration, browser, visual, 3D, API, preview, and rollback gates pass | in-progress |
+| `BAS-07` | Supported framework modernization | `BAS-06` | Next.js 16 and React 19 ecosystem migration, async route APIs, ESLint CLI, middleware/proxy and edge review | Unit, integration, browser, visual, 3D, API, preview, and rollback gates pass | complete |
 
 ## Architecture Packages
 
