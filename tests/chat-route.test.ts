@@ -74,4 +74,25 @@ describe('POST /api/chat', () => {
       }),
     }))
   })
+
+  it('falls back to Flash Lite when the primary model is temporarily unavailable', async () => {
+    chatMocks.generateContentStream
+      .mockRejectedValueOnce(Object.assign(new Error('high demand'), { status: 503 }))
+      .mockResolvedValueOnce({ stream: true })
+
+    const { POST } = await import('@/app/api/chat/route')
+    const response = await POST(new Request('http://localhost/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        messages: [{ role: 'user', content: 'What is DreamLife?' }],
+      }),
+    }))
+
+    expect(response.status).toBe(200)
+    expect(chatMocks.getGenerativeModel.mock.calls).toEqual([
+      [{ model: 'gemini-flash-latest' }],
+      [{ model: 'gemini-flash-lite-latest' }],
+    ])
+  })
 })

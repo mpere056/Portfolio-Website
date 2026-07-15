@@ -1,7 +1,10 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from 'ai';
 import { fetchContext } from '@/lib/retriever'
-import { GENERATION_MODEL } from '@/lib/generationPolicy'
+import {
+  canFallbackGenerationModel,
+  GENERATION_MODELS,
+} from '@/lib/generationPolicy'
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
@@ -49,12 +52,26 @@ export async function POST(req: Request) {
       ctx = ''
     }
 
-    const geminiStream = await genAI
-      .getGenerativeModel({ model: GENERATION_MODEL })
-      .generateContentStream({
-        ...buildGoogleGenAIPrompt(messages),
-        system_instruction: { role: 'system', parts: [{ text: SYSTEM(ctx) }] }
-      } as any);
+    const generationRequest = {
+      ...buildGoogleGenAIPrompt(messages),
+      system_instruction: { role: 'system', parts: [{ text: SYSTEM(ctx) }] },
+    } as any;
+
+    let geminiStream: Awaited<ReturnType<ReturnType<typeof genAI.getGenerativeModel>['generateContentStream']>> | undefined;
+    for (const [index, model] of GENERATION_MODELS.entries()) {
+      try {
+        geminiStream = await genAI
+          .getGenerativeModel({ model })
+          .generateContentStream(generationRequest);
+        break;
+      } catch (error) {
+        const hasFallback = index < GENERATION_MODELS.length - 1;
+        if (!hasFallback || !canFallbackGenerationModel(error)) throw error;
+        if (DEBUG) console.warn('[AI] generation model unavailable, trying fallback', { model });
+      }
+    }
+
+    if (!geminiStream) throw new Error('No Gemini generation model was available.');
 
     // Convert the response into a friendly text-stream
     const stream = GoogleGenerativeAIStream(geminiStream);
