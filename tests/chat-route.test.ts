@@ -1,0 +1,77 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+const chatMocks = vi.hoisted(() => ({
+  fetchContext: vi.fn(),
+  generateContentStream: vi.fn(),
+  getGenerativeModel: vi.fn(),
+  googleStream: vi.fn(),
+}))
+
+process.env.GOOGLE_API_KEY = 'test-key'
+
+vi.mock('@/lib/retriever', () => ({
+  fetchContext: chatMocks.fetchContext,
+}))
+
+vi.mock('@google/generative-ai', () => ({
+  GoogleGenerativeAI: class {
+    getGenerativeModel(params: unknown) {
+      return chatMocks.getGenerativeModel(params)
+    }
+  },
+}))
+
+vi.mock('ai', () => ({
+  GoogleGenerativeAIStream: chatMocks.googleStream,
+  StreamingTextResponse: class extends Response {
+    constructor(stream: ReadableStream) {
+      super(stream)
+    }
+  },
+}))
+
+describe('POST /api/chat', () => {
+  beforeEach(() => {
+    vi.resetModules()
+    chatMocks.fetchContext.mockReset().mockResolvedValue({
+      context: 'DreamLife is a mobile life-planning product.',
+      slugs: ['dreamlife'],
+    })
+    chatMocks.generateContentStream.mockReset().mockResolvedValue({ stream: true })
+    chatMocks.getGenerativeModel.mockReset().mockReturnValue({
+      generateContentStream: chatMocks.generateContentStream,
+    })
+    chatMocks.googleStream.mockReset().mockReturnValue(new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode('DreamLife answer'))
+        controller.close()
+      },
+    }))
+  })
+
+  it('uses the supported Flash alias and grounds the streamed response', async () => {
+    const { POST } = await import('@/app/api/chat/route')
+    const response = await POST(new Request('http://localhost/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        messages: [{ role: 'user', content: 'What is DreamLife?' }],
+      }),
+    }))
+
+    expect(response.status).toBe(200)
+    expect(await response.text()).toBe('DreamLife answer')
+    expect(chatMocks.fetchContext).toHaveBeenCalledWith('What is DreamLife?', 4)
+    expect(chatMocks.getGenerativeModel).toHaveBeenCalledWith({
+      model: 'gemini-flash-latest',
+    })
+    expect(chatMocks.generateContentStream).toHaveBeenCalledWith(expect.objectContaining({
+      contents: [{ role: 'user', parts: [{ text: 'What is DreamLife?' }] }],
+      system_instruction: expect.objectContaining({
+        parts: [expect.objectContaining({
+          text: expect.stringContaining('DreamLife is a mobile life-planning product.'),
+        })],
+      }),
+    }))
+  })
+})

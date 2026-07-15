@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from 'ai';
 import { fetchContext } from '@/lib/retriever'
+import { GENERATION_MODEL } from '@/lib/generationPolicy'
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
@@ -49,7 +50,7 @@ export async function POST(req: Request) {
     }
 
     const geminiStream = await genAI
-      .getGenerativeModel({ model: 'gemini-2.5-flash' })
+      .getGenerativeModel({ model: GENERATION_MODEL })
       .generateContentStream({
         ...buildGoogleGenAIPrompt(messages),
         system_instruction: { role: 'system', parts: [{ text: SYSTEM(ctx) }] }
