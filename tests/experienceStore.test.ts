@@ -116,6 +116,33 @@ describe('versioned exploration store', () => {
     store.getState().dispose();
   });
 
+  it('applies depth and its checkpoint atomically or rejects both', async () => {
+    const { storage } = createMemoryStorage();
+    const store = createExplorationStore({ storage, origin: 'marknperera.ca' });
+    await store.getState().hydrate();
+
+    expect(store.getState().applyDepthTransition('project:dreamlife', {
+      destinationId: 'destination:museum-project-dreamlife',
+      stage: 'enter',
+      selectedPartId: 'vision-loop',
+    })).toBe(true);
+    expect(store.getState().discovery.enteredIds).toContain('project:dreamlife');
+    expect(store.getState().discovery.lastCheckpoint).toMatchObject({
+      stage: 'enter',
+      selectedPartId: 'vision-loop',
+    });
+
+    const acceptedState = store.getState().discovery;
+    expect(store.getState().applyDepthTransition('project:lifeinbox', {
+      destinationId: 'destination:about',
+      stage: 'handle',
+      safeState: { project: 'not-allowed' },
+    })).toBe(false);
+    expect(store.getState().discovery).toEqual(acceptedState);
+    expect(store.getState().discovery.handledIds).not.toContain('project:lifeinbox');
+    store.getState().dispose();
+  });
+
   it('rejects unsafe checkpoints and reset removes only its origin key', async () => {
     const mainKey = getExplorationStorageKey('marknperera.ca');
     const projectKey = getExplorationStorageKey('sudokutogether.marknperera.ca');

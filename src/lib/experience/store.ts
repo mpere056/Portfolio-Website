@@ -38,6 +38,7 @@ export interface ExplorationStoreState extends PersistedExperienceState {
   setFirstNoteCompleted(completed: boolean): void;
   recordDepth(id: SemanticExperienceId, stage: DepthStage): void;
   setCheckpoint(checkpoint?: ExperienceCheckpoint): boolean;
+  applyDepthTransition(id: SemanticExperienceId, checkpoint: ExperienceCheckpoint): boolean;
   setStimulation(value: number): void;
   resetExploration(): Promise<void>;
   dispose(): void;
@@ -113,6 +114,27 @@ function withUnique(values: readonly SemanticExperienceId[], id: SemanticExperie
   return values.includes(id) ? values : [...values, id];
 }
 
+function withRecordedDepth(
+  discovery: PersistedExperienceState['discovery'],
+  id: SemanticExperienceId,
+  stage: DepthStage,
+): PersistedExperienceState['discovery'] {
+  const next = {
+    ...discovery,
+    discoveredIds: withUnique(discovery.discoveredIds, id),
+  };
+  if (stage === 'handle' || stage === 'enter' || stage === 'understand') {
+    next.handledIds = withUnique(discovery.handledIds, id);
+  }
+  if (stage === 'enter' || stage === 'understand') {
+    next.enteredIds = withUnique(discovery.enteredIds, id);
+  }
+  if (stage === 'understand') {
+    next.understoodIds = withUnique(discovery.understoodIds, id);
+  }
+  return next;
+}
+
 export function createExplorationStore(
   options: CreateExplorationStoreOptions = {},
 ): StoreApi<ExplorationStoreState> {
@@ -167,22 +189,7 @@ export function createExplorationStore(
     },
 
     recordDepth(id, stage) {
-      set(state => {
-        const discovery = {
-          ...state.discovery,
-          discoveredIds: withUnique(state.discovery.discoveredIds, id),
-        };
-        if (stage === 'handle' || stage === 'enter' || stage === 'understand') {
-          discovery.handledIds = withUnique(state.discovery.handledIds, id);
-        }
-        if (stage === 'enter' || stage === 'understand') {
-          discovery.enteredIds = withUnique(state.discovery.enteredIds, id);
-        }
-        if (stage === 'understand') {
-          discovery.understoodIds = withUnique(state.discovery.understoodIds, id);
-        }
-        return { discovery };
-      });
+      set(state => ({ discovery: withRecordedDepth(state.discovery, id, stage) }));
     },
 
     setCheckpoint(checkpoint) {
@@ -192,6 +199,21 @@ export function createExplorationStore(
         discovery: {
           ...current.discovery,
           ...(checkpoint ? { lastCheckpoint: checkpoint } : { lastCheckpoint: undefined }),
+        },
+      };
+      const parsed = parsePersistedExperienceState(candidate);
+      if (parsed.resetSections.includes('discovery')) return false;
+      set({ discovery: parsed.value.discovery });
+      return true;
+    },
+
+    applyDepthTransition(id, checkpoint) {
+      const current = semanticSnapshot(get());
+      const candidate = {
+        ...current,
+        discovery: {
+          ...withRecordedDepth(current.discovery, id, checkpoint.stage),
+          lastCheckpoint: checkpoint,
         },
       };
       const parsed = parsePersistedExperienceState(candidate);
