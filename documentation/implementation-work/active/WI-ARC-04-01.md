@@ -31,7 +31,7 @@ Define one discriminated union and focused action creators for the approved cros
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test`, `npm run inventory:content`, and `npm run build` under Node.js 24.
 - Verification result: 8 test files and 26 tests pass; inventory has 0 errors; lint has 0 errors and 11 retained warnings; production build passes.
@@ -78,7 +78,7 @@ Define one discriminated union and focused action creators for the approved cros
 - Changed: Bounded action work around shared semantics and pure integration, excluding UI migration and persistence.
 - Verified: Dependencies pass 26 tests and the production build.
 - Next: Implement the union and one exhaustive destination/depth/context fixture.
-- Commit: pending focused implementation commit.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 
 ## Completion Summary
 

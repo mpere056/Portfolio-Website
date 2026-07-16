@@ -31,7 +31,7 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 - Implementation commit: `91e6d54735d14cfbf4084c2bb4763933dcfe0129`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
 - Verification result: 8 files and 26 tests pass; lint has 0 errors and 11 retained warnings; content inventory has 0 errors and 0 identity divergences; production build passes.
@@ -86,7 +86,7 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 - Verified: 8 test files and 26 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors; production build passes.
 - Evidence: `EV-ARC-02-02` accepted.
 - Next: `WI-ARC-04-01` after the destination registry checkpoint.
-- Commit: pending focused implementation commit.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 
 ## Completion Summary
 

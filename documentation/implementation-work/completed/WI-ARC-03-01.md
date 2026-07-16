@@ -31,7 +31,7 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit; shared-contract implementation began at `91e6d54`.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`; shared-contract implementation began at `91e6d54`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
 - Verification result: 8 files and 26 tests pass; inventory has 0 errors; lint has 0 errors and 11 retained warnings; production build passes.
@@ -111,7 +111,7 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 - Failure retained: The first production build exposed an exact-object-union typecheck issue in the validation loop; widening the loop to the declared contract fixed it without changing behavior.
 - Evidence: `EV-ARC-03-01` accepted.
 - Next: `WI-ARC-04-01`.
-- Commit: pending focused implementation commit.
+- Commit: `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 
 ## Completion Summary
 

@@ -62,7 +62,7 @@ npm run build
 | Requirements | `V-03`, `V-08`, `V-10`, `V-11`, `V-20` |
 | Date | 2026-07-16 |
 | Reviewer | Codex |
-| Commit | pending focused implementation commit |
+| Commit | `6a24533742867e738dbce86f5cdb81c8b570f97c` |
 | Environment | Local Node.js 24 and Next.js 16 production build |
 
 #### Actual
