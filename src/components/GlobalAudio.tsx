@@ -11,7 +11,13 @@ function getTrackForPath(pathname: string): { src: string | null; label: string 
   return { src: null, label: 'Page music' };
 }
 
-export default function GlobalAudio({ deferHomeAutoplay = false }: { deferHomeAutoplay?: boolean }) {
+export default function GlobalAudio({
+  deferHomeAutoplay = false,
+  nonBlockingPrompt = false,
+}: {
+  deferHomeAutoplay?: boolean;
+  nonBlockingPrompt?: boolean;
+}) {
   const pathname = usePathname() || '/';
   const { src, label } = useMemo(() => getTrackForPath(pathname), [pathname]);
   const homeAutoplayDeferred = deferHomeAutoplay && (pathname === '/' || pathname === '');
@@ -303,7 +309,9 @@ export default function GlobalAudio({ deferHomeAutoplay = false }: { deferHomeAu
     <>
       {showPlayPrompt && (
         <div 
-          className="fixed inset-0 z-[1000] bg-black/30 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+          className={nonBlockingPrompt
+            ? 'fixed bottom-32 right-4 z-[55] max-w-56 cursor-pointer rounded-2xl border border-white/10 bg-black/75 shadow-2xl backdrop-blur-xl'
+            : 'fixed inset-0 z-[1000] flex cursor-pointer items-center justify-center bg-black/30 backdrop-blur-sm'}
           onClick={handlePlayPromptClick}
         >
           <div className="bg-black/70 text-white px-8 py-6 rounded-2xl backdrop-blur-xl border border-white/10 text-center shadow-2xl">

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from '@/components/FramerMotion';
 import LoadingDots from './LoadingDots'; // Import the new component
 import ChatOrb from './ChatOrb';
 import ClipboardButton from './ClipboardButton';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 const samplePrompts = [
   'Tell me about your journey into coding.',
@@ -14,8 +14,36 @@ const samplePrompts = [
   'How does this AI chatbot work?'
 ];
 
-export default function ChatUI() {
-  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat();
+export default function ChatUI({
+  compact = false,
+  resetSignal,
+  onActivityChange,
+}: {
+  compact?: boolean;
+  resetSignal?: number;
+  onActivityChange?: (state: 'idle' | 'responding' | 'error', message?: string) => void;
+} = {}) {
+  const {
+    messages,
+    input,
+    setInput,
+    setMessages,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    error,
+    reload,
+  } = useChat();
+
+  useEffect(() => {
+    onActivityChange?.(error ? 'error' : isLoading ? 'responding' : 'idle', error?.message);
+  }, [error, isLoading, onActivityChange]);
+
+  useEffect(() => {
+    if (resetSignal === undefined) return;
+    setMessages([]);
+    setInput('');
+  }, [resetSignal, setInput, setMessages]);
 
   const handlePromptClick = useCallback((prompt: string) => {
     setInput(prompt);
@@ -26,7 +54,7 @@ export default function ChatUI() {
   const isThinking = isLoading && messages[messages.length - 1]?.role === 'user';
 
   return (
-    <div className="flex flex-col h-full w-full max-w-4xl mx-auto">
+    <div className={`flex h-full w-full flex-col mx-auto ${compact ? 'max-w-none' : 'max-w-4xl'}`}>
       <div className="flex-1 overflow-auto px-3 sm:px-4 py-2">
         <AnimatePresence mode="wait">
           {chatStream.messages.length === 0 ? (
@@ -81,6 +109,18 @@ export default function ChatUI() {
                   </div>
                 </motion.div>
               )}
+              {error && (
+                <div className="mb-3 rounded-2xl border border-amber-200/15 bg-amber-100/5 p-3 text-sm text-white/60">
+                  <p>The archive could not answer just now. Your question is still here.</p>
+                  <button
+                    type="button"
+                    onClick={() => void reload()}
+                    className="mt-2 font-mono text-[10px] uppercase tracking-wider text-amber-100/65 hover:text-amber-100"
+                  >
+                    Try again
+                  </button>
+                </div>
+              )}
             </>
           )}
         </AnimatePresence>
@@ -89,7 +129,7 @@ export default function ChatUI() {
       <div className="flex-shrink-0 p-3 sm:p-4 bg-[#0a0a12]/80 backdrop-blur border-t border-white/10">
         {chatStream.messages.length === 0 && (
           <div className="mb-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
+            <div className={`grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 ${compact ? '' : 'lg:grid-cols-4'}`}>
               {samplePrompts.map(prompt => (
                 <motion.button
                   key={prompt}

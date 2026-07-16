@@ -12,10 +12,12 @@ import NavPointer from './NavPointer';
 import { BufferGeometry } from 'three';
 import { FirstNoteExperience } from './experience/FirstNoteExperience';
 import type { FirstNotePresentation } from '@/lib/experience/firstNote';
+import { usePortfolioAI } from './ai/PortfolioAIProvider';
 
 extend({ RoundedBoxGeometry })
 
 export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnabled?: boolean }) {
+  const portfolioAI = usePortfolioAI();
   return (
     <FirstNoteExperience enabled={firstNoteEnabled}>
       {({ state, presentation, wake, reset }) => (
@@ -49,7 +51,11 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
               <>
                 <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
                 <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
-                <NavPointer path="/chat" position={[-2, -1.5, -2]}>
+                <NavPointer
+                  path="/chat"
+                  position={[-2, -1.5, -2]}
+                  onActivate={portfolioAI.enabled ? portfolioAI.open : undefined}
+                >
                   <span>Ask Me Anything </span>
                   <span className="bg-[linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa)] bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">[AI]</span>
                 </NavPointer>

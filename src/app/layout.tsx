@@ -3,6 +3,8 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import GlobalAudio from "@/components/GlobalAudio";
 import { resolveFeatureFlags } from "@/lib/featureFlags";
+import { PortfolioAIProvider } from "@/components/ai/PortfolioAIProvider";
+import GlobalAIPresence from "@/components/ai/GlobalAIPresence";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const cormorant = Cormorant_Garamond({
@@ -30,8 +32,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cormorant.variable}`}>
-        {children}
-        <GlobalAudio deferHomeAutoplay={flags.firstNote} />
+        <PortfolioAIProvider enabled={flags.globalAI}>
+          {children}
+          <GlobalAIPresence />
+        </PortfolioAIProvider>
+        <GlobalAudio
+          deferHomeAutoplay={flags.firstNote}
+          nonBlockingPrompt={flags.globalAI}
+        />
       </body>
     </html>
   );

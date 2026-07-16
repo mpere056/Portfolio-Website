@@ -10,9 +10,10 @@ interface NavPointerProps {
   path: string;
   position: [number, number, number];
   children?: React.ReactNode;
+  onActivate?: () => void;
 }
 
-export default function NavPointer({ text, path, position, children }: NavPointerProps) {
+export default function NavPointer({ text, path, position, children, onActivate }: NavPointerProps) {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
 
@@ -22,9 +23,9 @@ export default function NavPointer({ text, path, position, children }: NavPointe
   // Prefetch the target route to minimize navigation delay
   useEffect(() => {
     try {
-      (router as any).prefetch?.(path);
+      if (!onActivate) (router as any).prefetch?.(path);
     } catch {}
-  }, [path, router]);
+  }, [onActivate, path, router]);
 
   return (
     <group position={position}>
@@ -38,9 +39,15 @@ export default function NavPointer({ text, path, position, children }: NavPointe
       <Html center>
         <button
           type="button"
-          onMouseEnter={() => { try { (router as any).prefetch?.(path); } catch {} }}
-          onFocus={() => { try { (router as any).prefetch?.(path); } catch {} }}
-          onClick={() => { setIsNavigating(true); router.push(path); }}
+          onMouseEnter={() => { try { if (!onActivate) (router as any).prefetch?.(path); } catch {} }}
+          onFocus={() => { try { if (!onActivate) (router as any).prefetch?.(path); } catch {} }}
+          onClick={() => {
+            if (onActivate) onActivate();
+            else {
+              setIsNavigating(true);
+              router.push(path);
+            }
+          }}
           aria-busy={isNavigating}
           aria-disabled={isNavigating}
           className={`inline-flex items-center gap-2 cursor-pointer text-white whitespace-nowrap select-none font-mono

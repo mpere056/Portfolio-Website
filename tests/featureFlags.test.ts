@@ -13,7 +13,7 @@ describe('feature flags', () => {
     expectTypeOf<(typeof FEATURE_FLAG_NAMES)[number]>().toEqualTypeOf<FeatureFlagName>();
     expect(resolveFeatureFlags({ environment: 'preview' })).toMatchObject({
       experienceFoundation: true,
-      globalAI: false,
+      globalAI: true,
       firstNote: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
@@ -22,12 +22,12 @@ describe('feature flags', () => {
   it('allows explicit local overrides only in development', () => {
     expect(resolveFeatureFlags({
       environment: 'development',
-      localOverrides: { globalAI: true },
-    }).globalAI).toBe(true);
+      localOverrides: { globalAI: false },
+    }).globalAI).toBe(false);
     expect(resolveFeatureFlags({
       environment: 'preview',
-      localOverrides: { globalAI: true },
-    }).globalAI).toBe(false);
+      localOverrides: { globalAI: false },
+    }).globalAI).toBe(true);
     expect(resolveFeatureFlags({
       environment: 'production',
       localOverrides: { globalAI: true },
