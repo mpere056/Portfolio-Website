@@ -22,9 +22,10 @@ export interface AuthoredContentRecord {
 }
 
 export interface LoadContentRecordsOptions {
-  contentRoot?: string;
   patterns?: string | readonly string[];
 }
+
+const CONTENT_ROOT = path.join(process.cwd(), 'src', 'content');
 
 function normalizePath(value: string) {
   return value.replace(/\\/g, '/');
@@ -47,15 +48,12 @@ function patternExpression(pattern: string) {
   return new RegExp(`${expression}$`);
 }
 
-async function listContentFiles(root: string, directory = ''): Promise<string[]> {
-  const entries = await fs.readdir(
-    path.join(/* turbopackIgnore: true */ root, directory),
-    { withFileTypes: true },
-  );
+async function listContentFiles(directory = ''): Promise<string[]> {
+  const entries = await fs.readdir(path.join(CONTENT_ROOT, directory), { withFileTypes: true });
   const paths = await Promise.all(entries.map(async entry => {
     const relativePath = normalizePath(path.join(directory, entry.name));
     return entry.isDirectory()
-      ? listContentFiles(root, relativePath)
+      ? listContentFiles(relativePath)
       : [relativePath];
   }));
   return paths.flat();
@@ -64,24 +62,19 @@ async function listContentFiles(root: string, directory = ''): Promise<string[]>
 export async function loadContentRecords(
   options: LoadContentRecordsOptions = {},
 ): Promise<AuthoredContentRecord[]> {
-  const contentRoot = options.contentRoot
-    ?? path.join(/* turbopackIgnore: true */ process.cwd(), 'src/content');
   const patterns = typeof options.patterns === 'string'
     ? [options.patterns]
     : options.patterns ?? ['**/*.md', '**/*.mdx'];
   const matchers = patterns.map(patternExpression);
-  const files = (await listContentFiles(contentRoot))
+  const files = (await listContentFiles())
     .filter(relativePath => matchers.some(matcher => matcher.test(relativePath)));
 
   return Promise.all(files
     .map(normalizePath)
     .sort((left, right) => left.localeCompare(right))
     .map(async relativePath => {
-      const absolutePath = path.join(contentRoot, relativePath);
-      const parsed = matter(await fs.readFile(
-        /* turbopackIgnore: true */ absolutePath,
-        'utf8',
-      ));
+      const absolutePath = path.join(CONTENT_ROOT, relativePath);
+      const parsed = matter(await fs.readFile(absolutePath, 'utf8'));
       const frontmatter = parsed.data as Record<string, unknown>;
       const classification = classifyContentPath(relativePath);
       if (!classification) {

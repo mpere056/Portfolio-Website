@@ -144,10 +144,12 @@ A phase may ship a deliberately bounded outcome while later capabilities remain 
 
 ### Exit Criteria
 
-- Invalid IDs and broken relationships fail validation.
-- Existing pages render from the extended schemas without regressions.
-- Discovery state can persist and migrate a small test value.
-- AI context can describe the current route and selected object without changing the chat UI yet.
+- [x] Invalid IDs and broken relationships fail validation.
+- [x] Existing pages render from the extended schemas without regressions.
+- [x] Discovery state can persist and migrate a small test value.
+- [x] AI context can describe the current route and selected object without changing the chat UI yet.
+
+Implementation checkpoint: commit `afa5f67` completes the dormant Phase 1 foundation. The production build validates 49 graph nodes and 19 reviewed relationships before Next.js compiles; 61 tests cover contracts, migration, persistence, loaders, schemas, graph integrity, lifecycle rules, feature flags, and AI context. Visitor-facing exploration and global-AI UI remain intentionally deferred to Phase 2.
 
 ## Phase 2: Exploration Shell
 

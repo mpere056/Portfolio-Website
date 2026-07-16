@@ -16,6 +16,8 @@ Last updated: 2026-07-16
 
 ## Scope
 
+Phase 1 status: `EXP-01` is complete at `afa5f67`. The versioned per-origin store, migration-aware hydration, semantic checkpoints, stimulation state, and reset are implemented and tested but remain unmounted. `QA-01` is the next gate; visitor-facing depth begins in `EXP-02` only after that integrated foundation flow passes.
+
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
 
 - Five-stage depth grammar.

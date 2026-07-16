@@ -18,6 +18,8 @@ Last updated: 2026-07-16
 
 Expand the current MDX corpus into a validated, queryable relationship graph without abandoning authored files as the source of truth.
 
+Phase 1 status: `KG-01` through `KG-04` are complete at `afa5f67`. The shared recursive loader covers all 39 authored records, the prebuild gate validates a 49-node/19-relationship public graph, and the initial flagship/event/skill/post subgraph is authored. `KG-05` bounded queries and `KG-06` graph-aware retrieval remain future work.
+
 ## Existing Foundation
 
 - `src/content/projects/*.mdx`
@@ -30,7 +32,7 @@ Expand the current MDX corpus into a validated, queryable relationship graph wit
 - `src/lib/retriever.ts`
 - `scripts/ingest.ts`
 
-Current loaders normalize frontmatter independently. This is sufficient for page rendering but not for cross-content validation or relationships.
+Project, timeline, and blog APIs now delegate parsing to `src/lib/content/loaders.ts` while preserving their existing output contracts. Cross-content validation and relationships compile through `src/lib/content/schemas.ts` and `src/lib/content/graph.ts`.
 
 ## Architecture Decision
 

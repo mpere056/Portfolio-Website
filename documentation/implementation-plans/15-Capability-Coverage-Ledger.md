@@ -61,7 +61,7 @@ Until a capability receives its own detail record, these defaults apply:
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-BAS-001` | Reproducible technical and performance baseline | `BAS-01` | Platform | `O-00` | 2 | All applicable dimensions accepted; see `BAS-01` evidence | verified |
 | `CAP-BAS-002` | Reviewed content and route inventory | `BAS-02` | `V-11`, `V-19` | `O-00` | 2 | All dimensions accepted; see `BAS-02` evidence | verified |
-| `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-003` | Typed environment-aware feature flags | `BAS-03` | Platform | `O-00` | 2 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-BAS-004` | Runtime compatibility and upgrade decision | `BAS-04` | Platform | `O-00` | 1 | All applicable dimensions accepted; see `BAS-04` evidence | verified |
 | `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | All applicable dimensions accepted; see `BAS-05` evidence | verified |
 | `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | All applicable dimensions accepted; see `BAS-06` evidence | verified |
@@ -237,36 +237,36 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-KG-001` | Shared loader with current-output parity | `KG-01` | `V-11` | `O-00` | 2 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
-| `CAP-KG-002` | Validated project, event, post, and relationship schemas | `KG-02` | `V-11`, `V-19` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-KG-003` | Build-time graph compiler and visibility validator | `KG-03` | `V-11` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-KG-004` | Reviewed flagship, event, skill, and post subgraph | `KG-04` | `V-11`, `V-13`, `V-24` | `O-00` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-KG-001` | Shared loader with current-output parity | `KG-01` | `V-11` | `O-00` | 2 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
+| `CAP-KG-002` | Validated project, event, post, and relationship schemas | `KG-02` | `V-11`, `V-19` | `O-00` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-KG-003` | Build-time graph compiler and visibility validator | `KG-03` | `V-11` | `O-00` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
+| `CAP-KG-004` | Reviewed flagship, event, skill, and post subgraph | `KG-04` | `V-11`, `V-13`, `V-24` | `O-00` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
 
 ### CAP-KG-001: Shared Loader With Current-Output Parity
 
-- Owner: unassigned
-- Lifecycle: planned
-- Health: not-active
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted`
 - Package: `KG-01`
-- Works now: Separate project, timeline, and project-blog loaders serve current routes, while ingestion independently scans only one content level.
-- Named gaps: No recursive shared loader preserves current outputs across all 39 nodes; twenty About identities diverge in ingestion and three nested posts are skipped.
-- Safe exposure: Existing loaders remain authoritative until parity fixtures pass.
-- Evidence: `EV-BAS-02-02`, `EV-BAS-05-01`
-- Work item: none; waits for `ARC-01`.
-- Next checkpoint: Shared recursive loader fixture proves current route output and full-corpus enumeration parity.
-- Last assessed: 2026-07-14 at `4144bcc`
+- Works now: One recursive parser enumerates all 39 managed records; project, timeline, and nested-blog APIs preserve their shapes and ordering; ingestion includes nested posts with canonical IDs.
+- Named gaps: Bounded graph queries and render adapters remain in `KG-05`, not this loader package.
+- Safe exposure: Current route APIs are unchanged; only `src/content/**/*` is explicitly included in server output tracing.
+- Evidence: `EV-KG-01-01`.
+- Work item: `WI-KG-01-01` (done).
+- Next checkpoint: `KG-05` consumes compiled graph data through deterministic bounded queries.
+- Last assessed: 2026-07-16 at `afa5f67`.
 
 ## Persistent Exploration Foundation
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | active |
-| `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | active |
+| `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-003` | Five-stage depth controller | `EXP-02` | `V-01`, `V-03` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -283,41 +283,41 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-EXP-001: Versioned Local Discovery Store With Reset
 
 - Owner: Codex
-- Lifecycle: active
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `EXP-01`
-- Works now: `ARC-05` provides accepted semantic-state types, defaults, validation, v0 migration, partial reset, and unknown-version fallback without storage coupling.
-- Named gaps: No Zustand store, per-origin storage key, hydration adapter, reset action, or memory-storage integration fixture exists.
-- Safe exposure: Keep the first store dormant and injectable; no current component reads it.
-- Evidence: `EV-ARC-05-01` establishes the accepted compatibility dependency; package evidence is not yet collected.
-- Work item: `WI-EXP-01-01` (ready).
-- Next checkpoint: A memory-backed store proves SSR defaults, hydration/migration, isolation, semantic updates, and full reset.
-- Last assessed: 2026-07-16 during work-item preparation.
+- Works now: The dormant store derives per-origin keys, hydrates only validated state, rewrites v0 data, preserves valid siblings after partial corruption, persists semantic updates, rejects unsafe checkpoints, and resets its own origin.
+- Named gaps: No UI consumes the store; cookie/global-preference sharing and First Note remain later scope.
+- Safe exposure: Injectable and unmounted; current audio storage and route behavior remain unchanged.
+- Evidence: `EV-EXP-01-01`.
+- Work item: `WI-EXP-01-01` (done).
+- Next checkpoint: `QA-01` integrated flow, then one `EXP-02` depth consumer.
+- Last assessed: 2026-07-16 at `afa5f67`.
 
 ### CAP-EXP-002: Semantic Checkpoint Restore Across Refresh And Return
 
 - Owner: Codex
-- Lifecycle: active
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `EXP-01`
-- Works now: The accepted checkpoint contract validates destination, depth stage, selected part, and bounded destination-specific safe state while excluding raw camera/scene state.
-- Named gaps: No store action writes checkpoints and no hydration fixture restores one through the accepted parser.
-- Safe exposure: Test semantic restoration in memory before browser persistence or route-history integration.
-- Evidence: `EV-ARC-05-01` accepted for the checkpoint contract; `EXP-01` evidence is pending.
-- Work item: `WI-EXP-01-01` (ready).
-- Next checkpoint: Store hydration restores one validated semantic checkpoint and selectively discards an invalid checkpoint section.
-- Last assessed: 2026-07-16 during work-item preparation.
+- Works now: A semantic checkpoint action validates destination, depth, selected part, and bounded safe state, persists it, and restores it through explicit hydration; unsafe checkpoints fail without mutation.
+- Named gaps: Visitor-facing route/history restoration is intentionally deferred to `EXP-02` and later routing packages.
+- Safe exposure: Memory-backed tests prove the behavior before any browser UI depends on it.
+- Evidence: `EV-EXP-01-01`.
+- Work item: `WI-EXP-01-01` (done).
+- Next checkpoint: Integrate checkpoint restoration with destination and context foundations in `QA-01`.
+- Last assessed: 2026-07-16 at `afa5f67`.
 
 ## Quiet Global AI
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-AI-001` | Route, object, project, timeline, and depth context stack | `AI-01` | `V-09` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-AI-002` | Context precedence, clearing, and privacy boundaries | `AI-01` | `V-09` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-AI-001` | Route, object, project, timeline, and depth context stack | `AI-01` | `V-09` | `O-02` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-AI-002` | Context precedence, clearing, and privacy boundaries | `AI-01` | `V-09` | `O-02` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-AI-003` | Quiet global shell and unobtrusive state transitions | `AI-02` | `V-09` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-AI-004` | Lazy loading, error fallback, sound-off, and lower-stimulation AI behavior | `AI-02` | `V-09`, `V-22` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-AI-005` | Contextual graph retrieval with public source enforcement | `AI-03` | `V-09`, `V-11` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -329,7 +329,7 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-LPS-001` | Lifecycle schema and section requirements | `LPS-01` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-LPS-001` | Lifecycle schema and section requirements | `LPS-01` | `V-19` | `O-06` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-LPS-002` | Reviewed classification for every project | `LPS-02` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-003` | Edited current-state records for three flagships | `LPS-03` | `V-19` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-004` | Meaningful content-version and update metadata | `LPS-04` | `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |

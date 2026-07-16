@@ -96,6 +96,14 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ARC-03-01` | `ARC-03` | `CAP-ARC-003` | integration-test | accepted | `6a24533`, registry/build gate | 2026-07-16 | `ARC-03.md` |
 | `EV-ARC-04-01` | `ARC-04` | `CAP-ARC-004` | integration-test | accepted | `55e6104`, 9 files and 29 tests | 2026-07-16 | `ARC-04.md` |
 | `EV-ARC-05-01` | `ARC-05` | `CAP-ARC-005` | integration-test | accepted | `d5fca11`, 10 files and 37 tests | 2026-07-16 | `ARC-05.md` |
+| `EV-BAS-03-01` | `BAS-03` | `CAP-BAS-003` | contract | accepted | `afa5f67`, feature-flag fixtures | 2026-07-16 | `BAS-03.md` |
+| `EV-EXP-01-01` | `EXP-01` | `CAP-EXP-001`, `CAP-EXP-002` | integration-test | accepted | `afa5f67`, persistence fixtures | 2026-07-16 | `EXP-01.md` |
+| `EV-AI-01-01` | `AI-01` | `CAP-AI-001`, `CAP-AI-002` | integration-test | accepted | `afa5f67`, nested-context fixtures | 2026-07-16 | `AI-01.md` |
+| `EV-KG-01-01` | `KG-01` | `CAP-KG-001` | integration-test | accepted | `afa5f67`, loader parity fixtures | 2026-07-16 | `KG-01.md` |
+| `EV-KG-02-01` | `KG-02` | `CAP-KG-002` | contract | accepted | `afa5f67`, schema fixtures | 2026-07-16 | `KG-02.md` |
+| `EV-KG-03-01` | `KG-03` | `CAP-KG-003` | integration-test | accepted | `afa5f67`, prebuild graph gate | 2026-07-16 | `KG-03.md` |
+| `EV-KG-04-01` | `KG-04` | `CAP-KG-004` | content-review | accepted | `afa5f67`, 49-node/19-edge fixture | 2026-07-16 | `KG-04.md` |
+| `EV-LPS-01-01` | `LPS-01` | `CAP-LPS-001` | contract | accepted | `afa5f67`, lifecycle fixtures | 2026-07-16 | `LPS-01.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

@@ -40,7 +40,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | --- | --- | --- | --- | --- | --- |
 | `BAS-01` | Technical baseline | None | Build output, route sizes, warnings, model inventory, current test result | Baseline document and passing build | complete |
 | `BAS-02` | Content inventory | None | Node candidate inventory across projects, About, posts, misc | Reviewed inventory with missing IDs identified | complete |
-| `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | pending |
+| `BAS-03` | Feature-flag convention | `ARC-02` | Typed flags, local/preview/production policy | Unit test and one dormant flag | complete |
 | `BAS-04` | Runtime maintenance decision | None | Verified Node/Vercel/Next compatibility plan | Decision record and separate upgrade package if needed | complete |
 | `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | complete |
 | `BAS-06` | Supported runtime and security bridge | `BAS-04` | Node.js 24 engine and Vercel alignment, narrow Next.js 14 security update, bounded direct remediations, runtime policy test | Node.js 24 tests/build pass; audit delta reviewed; preview and production routes verified with rollback ready | complete |
@@ -61,10 +61,10 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `KG-01` | Shared content loader parity | `ARC-01` | Shared parser used by one content type | Existing output parity tests | pending |
-| `KG-02` | Content schemas | `KG-01`, `ARC-02` | Project, timeline, post, relationship schema | Invalid fixture failures | pending |
-| `KG-03` | Graph compiler and validator | `KG-02` | Node compiler, relationship loader, visibility validation | Graph test suite | pending |
-| `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | pending |
+| `KG-01` | Shared content loader parity | `ARC-01` | Shared parser used by one content type | Existing output parity tests | complete |
+| `KG-02` | Content schemas | `KG-01`, `ARC-02` | Project, timeline, post, relationship schema | Invalid fixture failures | complete |
+| `KG-03` | Graph compiler and validator | `KG-02` | Node compiler, relationship loader, visibility validation | Graph test suite | complete |
+| `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
 | `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | pending |
 | `KG-06` | Graph-aware RAG metadata | `KG-04` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | pending |
 
@@ -72,7 +72,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | ready |
+| `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | complete |
 | `EXP-02` | Depth-controller primitives | `ARC-02`, `ARC-04` | Stage transitions, hints, AI context emission, persistence hooks | Controlled-scene integration test | pending |
 | `EXP-03` | One-time First Note | `EXP-01`, `EXP-02`, `QA-01` | Dark initial scene, wake interaction, returning behavior | First/return browser flow | pending |
 | `EXP-04` | Non-linear guided tour | `ARC-03`, `EXP-01`, `KG-05` | Role selection, authored destinations, hints, dismiss/resume | Out-of-order tour browser flow | pending |
@@ -84,7 +84,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | pending |
+| `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | pending |
 | `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | pending |
 | `AI-04` | Archive cards and destination flow | `AI-03`, `ARC-03` | Structured cards, validation, transitions, cross-subdomain behavior | Card navigation browser flow | pending |
@@ -94,7 +94,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `LPS-01` | Lifecycle schema | `ARC-01`, `KG-02` | Lifecycle types, required-section rules | Schema tests | pending |
+| `LPS-01` | Lifecycle schema | `ARC-01`, `KG-02` | Lifecycle types, required-section rules | Schema tests | complete |
 | `LPS-02` | Project classification review | `LPS-01` | Reviewed lifecycle for every project | Mark approval recorded | decision-gated |
 | `LPS-03` | Flagship state files | `LPS-02` | Edited state for active flagships | Content review and rendered fixture | pending |
 | `LPS-04` | Content versions and disturbance metadata | `LPS-03` | Meaningful version policy and compiled update records | Version comparison tests | pending |
@@ -126,7 +126,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | pending |
+| `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | ready |
 | `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | pending |
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
