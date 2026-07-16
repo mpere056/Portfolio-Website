@@ -58,13 +58,15 @@ describe('scanContentInventory', () => {
     expect(blog).toMatchObject({
       candidateKey: 'post:example:first-post',
       identifierSource: 'slug',
-      includedInCurrentAiIngestion: false,
+      includedInCurrentAiIngestion: true,
       runtimeConsumers: ['src/lib/siteBlogs.ts'],
     });
     expect(blog?.routes).toContain('https://example.marknperera.ca/blog/first-post');
     expect(inventory.issues).toEqual(expect.arrayContaining([
       expect.objectContaining({ code: 'missing-authored-identifier', relativePath: 'misc/private-note.mdx' }),
-      expect.objectContaining({ code: 'ai-ingestion-coverage-gap', relativePath: 'sites/example/blog/first-post.mdx' }),
+    ]));
+    expect(inventory.issues).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: 'ai-ingestion-coverage-gap' }),
     ]));
     expect(formatContentInventoryReport(inventory)).toContain('| Total nodes | 4 |');
   });
@@ -93,7 +95,7 @@ describe('scanContentInventory', () => {
     expect(inventory.summary.totalNodes).toBe(39);
     expect(inventory.summary.issues.error).toBe(0);
     expect(inventory.nodes.filter((node) => node.identifierSource === 'filename-fallback')).toHaveLength(1);
-    expect(inventory.nodes.filter((node) => node.kind === 'blog' && !node.includedInCurrentAiIngestion)).toHaveLength(3);
+    expect(inventory.nodes.filter((node) => node.kind === 'blog' && !node.includedInCurrentAiIngestion)).toHaveLength(0);
     expect(inventory.summary.aiIdentifierDivergences).toBe(0);
   });
 });

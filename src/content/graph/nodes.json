@@ -1,0 +1,12 @@
+[
+  { "id": "skill:ai-product-design", "type": "skill", "title": "AI Product Design", "summary": "Designing AI as a support for judgment, exploration, and usable product loops.", "visibility": "public", "tags": ["ai", "product"] },
+  { "id": "skill:automation", "type": "skill", "title": "Automation", "summary": "Turning repeated manual processes into dependable software-assisted workflows.", "visibility": "public", "tags": ["systems"] },
+  { "id": "skill:community-growth", "type": "skill", "title": "Community Growth", "summary": "Experimenting with acquisition, retention, and operations in a rapidly growing online community.", "visibility": "public", "tags": ["community"] },
+  { "id": "skill:discord-platform-development", "type": "skill", "title": "Discord Platform Development", "summary": "Building bots and embedded activities within Discord's platform constraints.", "visibility": "public", "tags": ["discord"] },
+  { "id": "skill:full-stack-development", "type": "skill", "title": "Full-Stack Development", "summary": "Connecting interactive clients, APIs, persistence, and deployment into working products.", "visibility": "public", "tags": ["engineering"] },
+  { "id": "skill:local-first-architecture", "type": "skill", "title": "Local-First Architecture", "summary": "Keeping essential product behavior dependable locally while synchronizing carefully with private services.", "visibility": "public", "tags": ["architecture"] },
+  { "id": "skill:mobile-product-development", "type": "skill", "title": "Mobile Product Development", "summary": "Designing and implementing mobile-first products with practical deployment and reliability constraints.", "visibility": "public", "tags": ["mobile"] },
+  { "id": "skill:product-strategy", "type": "skill", "title": "Product Strategy", "summary": "Shaping product direction around a clear problem, feedback loop, and testable next step.", "visibility": "public", "tags": ["product"] },
+  { "id": "skill:reflective-design", "type": "skill", "title": "Reflective Design", "summary": "Creating systems that help people interpret their own signals without replacing their judgment.", "visibility": "public", "tags": ["design"] },
+  { "id": "skill:system-integration", "type": "skill", "title": "System Integration", "summary": "Coordinating local data, private APIs, AI enrichment, background work, and deployment boundaries.", "visibility": "public", "tags": ["architecture"] }
+]

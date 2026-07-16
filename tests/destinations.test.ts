@@ -115,9 +115,10 @@ describe('destination registry', () => {
     });
 
     const suggestions = getSuggestibleDestinations();
+    const suggestionIds: string[] = suggestions.map(destination => destination.id);
     expect(suggestions.every(destination => destination.status === 'canonical')).toBe(true);
-    expect(suggestions.some(destination => destination.id === 'destination:chat-legacy')).toBe(false);
-    expect(suggestions.some(destination => destination.id === 'destination:archive')).toBe(false);
-    expect(suggestions.some(destination => destination.id === 'destination:templates-internal')).toBe(false);
+    expect(suggestionIds).not.toContain('destination:chat-legacy');
+    expect(suggestionIds).not.toContain('destination:archive');
+    expect(suggestionIds).not.toContain('destination:templates-internal');
   });
 });

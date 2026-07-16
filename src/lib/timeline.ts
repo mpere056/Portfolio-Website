@@ -1,9 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { glob } from 'glob';
-
-const TIMELINE_PATH = path.join(process.cwd(), 'src/content/about');
+import { loadContentRecords } from './content/loaders';
 
 // Colors are optional per-entry; when missing, UI derives a color from the entry's texture
 
@@ -30,19 +25,16 @@ export interface TimelineEntry {
 }
 
 export async function getTimelineEntries(): Promise<TimelineEntry[]> {
-  const files = await glob('*.mdx', { cwd: TIMELINE_PATH });
+  const records = await loadContentRecords({ patterns: 'about/*.mdx' });
 
-  const entries = files.map((file, index) => {
-    const filePath = path.join(TIMELINE_PATH, file);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContents);
-
+  const entries = records.map(record => {
+    const data = record.frontmatter;
     return {
       ...data,
-      body: content,
+      body: record.body,
       position: data.position || 'left',
       color: data.color as string | undefined,
-    } as TimelineEntry;
+    } as unknown as TimelineEntry;
   });
 
   return entries.sort((a, b) => new Date(a.from).getTime() - new Date(b.from).getTime());

@@ -7,13 +7,15 @@
   },
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=\"--require ./scripts/win-epipe-fix.js\" next dev -H 0.0.0.0",
+    "prebuild": "npm run validate:content",
     "build": "cross-env NODE_OPTIONS=\"--require ./scripts/win-epipe-fix.js\" next build",
     "start": "cross-env NODE_OPTIONS=\"--require ./scripts/win-epipe-fix.js\" next start",
     "lint": "eslint .",
     "test": "npm run lint && vitest run --reporter=verbose",
     "prepare": "husky",
     "ingest": "tsx scripts/ingest.ts",
-    "inventory:content": "tsx scripts/content-inventory.ts"
+    "inventory:content": "tsx scripts/content-inventory.ts",
+    "validate:content": "tsx scripts/validate-content.ts"
   },
   "dependencies": {
     "@google-cloud/firestore": "^8.6.0",

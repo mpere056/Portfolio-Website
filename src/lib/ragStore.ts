@@ -40,8 +40,10 @@ export interface FirebaseServerConfig {
   privateKey: string
 }
 
+type FirebaseServerEnvironment = Readonly<Record<string, string | undefined>>;
+
 export function readFirebaseServerConfig(
-  env: NodeJS.ProcessEnv = process.env,
+  env: FirebaseServerEnvironment = process.env as FirebaseServerEnvironment,
 ): FirebaseServerConfig {
   const projectId = env.FIREBASE_PROJECT_ID?.trim()
   const clientEmail = env.FIREBASE_CLIENT_EMAIL?.trim()

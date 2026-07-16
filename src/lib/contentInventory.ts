@@ -185,7 +185,7 @@ function routesFor(kind: ContentKind, runtimeIdentifier?: string, site?: string)
 }
 
 function isIncludedInCurrentAiIngestion(relativePath: string) {
-  return relativePath.split('/').length <= 2;
+  return classifyContentPath(relativePath) !== undefined;
 }
 
 function hasRequiredValue(frontmatter: Record<string, unknown>, field: string) {
@@ -232,7 +232,7 @@ function validateNodes(nodes: ContentInventoryNode[], metadata: Map<string, Reco
         severity: 'warning',
         code: 'ai-ingestion-coverage-gap',
         relativePath: node.relativePath,
-        message: 'Nested blog content is loaded by the site but skipped by the current one-level AI ingestion traversal.',
+        message: 'Nested blog content is loaded by the site but skipped by the current AI ingestion traversal.',
       });
     }
 

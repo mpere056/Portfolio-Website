@@ -1,9 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { glob } from 'glob';
-
-const BLOG_ROOT = path.join(process.cwd(), 'src/content/sites');
+import { loadContentRecords } from './content/loaders';
 
 export interface SiteBlogPost {
   site: string;
@@ -16,29 +11,19 @@ export interface SiteBlogPost {
 }
 
 export async function getSiteBlogPosts(site: string): Promise<SiteBlogPost[]> {
-  const blogPath = path.join(BLOG_ROOT, site, 'blog');
-
-  if (!fs.existsSync(blogPath)) {
-    return [];
-  }
-
-  const files = await glob('*.mdx', { cwd: blogPath });
-
-  return files
-    .map((file) => {
-      const filePath = path.join(blogPath, file);
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      const { data, content } = matter(fileContents);
-      const frontmatter = data as Record<string, unknown>;
+  const records = await loadContentRecords({ patterns: `sites/${site}/blog/*.mdx` });
+  return records
+    .map(record => {
+      const frontmatter = record.frontmatter;
 
       return {
         site,
-        slug: String(frontmatter.slug ?? file.replace(/\.mdx$/, '')),
+        slug: String(frontmatter.slug ?? record.relativePath.split('/').at(-1)?.replace(/\.mdx$/, '') ?? ''),
         title: String(frontmatter.title ?? ''),
         description: String(frontmatter.description ?? ''),
         date: String(frontmatter.date ?? ''),
         tags: (frontmatter.tags as string[] | undefined) ?? [],
-        body: content.trim(),
+        body: record.body.trim(),
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

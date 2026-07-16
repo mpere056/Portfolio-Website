@@ -9,6 +9,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import { remark } from 'remark'
 import strip from 'strip-markdown'
 import { config as loadEnv } from 'dotenv'
+import { glob } from 'glob'
 import {
   createEmbeddingRequest,
   EMBEDDING_DIMENSIONS,
@@ -156,21 +157,9 @@ async function ingestFile(absolutePath: string, relativePath: string) {
 }
 
 async function main() {
-  const entries = await fs.readdir(CONTENT_DIR, { withFileTypes: true })
-  const filePaths: string[] = []
-  for (const entry of entries) {
-    const fullPath = path.join(CONTENT_DIR, entry.name)
-    if (entry.isDirectory()) {
-      const inner = await fs.readdir(fullPath)
-      for (const name of inner) {
-        if (name.endsWith('.md') || name.endsWith('.mdx')) {
-          filePaths.push(path.join(entry.name, name))
-        }
-      }
-    } else if (entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
-      filePaths.push(entry.name)
-    }
-  }
+  const filePaths = (await glob(['**/*.md', '**/*.mdx'], { cwd: CONTENT_DIR, nodir: true }))
+    .map(filePath => filePath.replace(/\\/g, '/'))
+    .sort((left, right) => left.localeCompare(right))
 
   for (const relativePath of filePaths) {
     await ingestFile(path.join(CONTENT_DIR, relativePath), relativePath)

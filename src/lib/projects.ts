@@ -1,9 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { glob } from 'glob';
-
-const PROJECTS_PATH = path.join(process.cwd(), 'src/content/projects');
+import { loadContentRecords } from './content/loaders';
 
 export interface Project {
   slug: string;
@@ -30,15 +25,10 @@ export interface Project {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const files = await glob('*.mdx', { cwd: PROJECTS_PATH });
-
-  const projects = files.map((file) => {
-    const filePath = path.join(PROJECTS_PATH, file);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContents);
-
+  const records = await loadContentRecords({ patterns: 'projects/*.mdx' });
+  const projects = records.map((record) => {
     // Normalize frontmatter keys and provide safe defaults
-    const frontmatter = data as Record<string, unknown>;
+    const frontmatter = record.frontmatter;
 
     const normalized: Project = {
       slug: String(frontmatter.slug ?? ''),
@@ -63,7 +53,7 @@ export async function getProjects(): Promise<Project[]> {
       cardCameraPosition: (frontmatter.cardCameraPosition as [number, number, number] | undefined),
       modelOffset: (frontmatter.modelOffset as [number, number, number] | undefined),
       cardModelOffset: (frontmatter.cardModelOffset as [number, number, number] | undefined),
-      body: content,
+      body: record.body,
     };
 
     return normalized;
