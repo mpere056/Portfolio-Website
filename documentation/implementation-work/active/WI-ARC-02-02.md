@@ -77,7 +77,7 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 - Changed: Recorded the narrow `NodeId` and omitted `easter_egg_found` as explicit contract gaps discovered before destination implementation.
 - Verified: The initial `91e6d54` contract evidence remains valid for its original claim; no visitor runtime consumes the missing shapes yet.
 - Next: Correct the shared type vocabulary, then resume `ARC-03`.
-- Commit: documentation update pending.
+- Commit: `d66c701173072cd7f653fe1a178ec7d222b1298d`.
 
 ## Completion Summary
 

@@ -100,7 +100,7 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 - Gap found: The shared `NodeId` is too narrow for planned graph nodes and `easter_egg_found` is absent from the implemented discovery vocabulary.
 - Restart condition: `WI-ARC-02-02` passes tests/build and returns `ARC-02` to complete.
 - Next: Inventory canonical, planned, legacy-alias, internal-only, and feedback-gated destinations.
-- Commit: documentation update pending.
+- Commit: `d66c701173072cd7f653fe1a178ec7d222b1298d`.
 
 ## Completion Summary
 
