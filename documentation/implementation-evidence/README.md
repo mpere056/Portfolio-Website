@@ -114,6 +114,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-KG-06-02` | `KG-06` | `CAP-KG-007` | integration-test | accepted | `aeff727`, 42-document free Firestore backfill | 2026-07-16 | `KG-06.md` |
 | `EV-AI-02-01` | `AI-02` | `CAP-AI-003`, `CAP-AI-004` | integration-test | accepted | `3dfef6b`, shell/provider/flag gate | 2026-07-16 | `AI-02.md` |
 | `EV-AI-02-02` | `AI-02` | `CAP-AI-003`, `CAP-AI-004` | browser-flow | accepted | `3dfef6b`, local Development | 2026-07-16 | `AI-02.md` |
+| `EV-AI-03-01` | `AI-03` | `CAP-AI-005` | privacy-security | accepted | `aeb3152`, request/source/retrieval fixtures | 2026-07-16 | `AI-03.md` |
 
 ## Required Evidence Fields
 

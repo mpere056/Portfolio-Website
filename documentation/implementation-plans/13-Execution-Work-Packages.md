@@ -75,7 +75,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | complete |
 | `EXP-02` | Depth-controller primitives | `ARC-02`, `ARC-04` | Stage transitions, hints, AI context emission, persistence hooks | Controlled-scene integration test | complete |
 | `EXP-03` | One-time First Note | `EXP-01`, `EXP-02`, `QA-01` | Dark initial scene, wake interaction, returning behavior | First/return browser flow | complete |
-| `EXP-04` | Non-linear guided tour | `ARC-03`, `EXP-01`, `KG-05` | Role selection, authored destinations, hints, dismiss/resume | Out-of-order tour browser flow | pending |
+| `EXP-04` | Non-linear guided tour | `ARC-03`, `EXP-01`, `KG-05` | Role selection, authored destinations, hints, dismiss/resume | Out-of-order tour browser flow | ready |
 | `EXP-05` | Environmental response system | `EXP-02`, `KG-05` | Proximity/handle prototypes, semantic-light adapter, stimulation consumers | Three-rule prototype and review decision | pending |
 | `EXP-06` | Meaningful discovery registry | `EXP-01`, `KG-04` | Easter-egg schema, three initial discoveries, no completion UI | Tour exclusion and discovery tests | pending |
 | `EXP-07` | New-content disturbances | `EXP-01`, `LPS-04` | Version comparison, disturbance selector, seen behavior | Return-visitor integration test | pending |
@@ -86,7 +86,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | --- | --- | --- | --- | --- | --- |
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | complete |
-| `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | ready |
+| `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | complete |
 | `AI-04` | Archive cards and destination flow | `AI-03`, `ARC-03` | Structured cards, validation, transitions, cross-subdomain behavior | Card navigation browser flow | pending |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
 
