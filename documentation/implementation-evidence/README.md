@@ -92,6 +92,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-BAS-08-05` | `BAS-08` | `CAP-BAS-008`, `CAP-ARC-001` | production | accepted | `fe64bb6`, Vercel `dpl_3HGisq6kX91L3yKVh1d9Ae8DrHQW` and live routes | 2026-07-16 | `BAS-08.md` |
 | `EV-ARC-01-01` | `ARC-01` | `CAP-ARC-001` | unit-test | accepted | `fe64bb6`, 6 files and 17 tests | 2026-07-16 | `ARC-01.md` |
 | `EV-ARC-02-01` | `ARC-02` | `CAP-ARC-002` | contract | accepted | `91e6d54`, 7 files and 19 tests | 2026-07-16 | `ARC-02.md` |
+| `EV-ARC-02-02` | `ARC-02` | `CAP-ARC-002` | contract | accepted | Pending focused commit, 8 files and 26 tests | 2026-07-16 | `ARC-02.md` |
+| `EV-ARC-03-01` | `ARC-03` | `CAP-ARC-003` | integration-test | accepted | Pending focused commit, registry/build gate | 2026-07-16 | `ARC-03.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

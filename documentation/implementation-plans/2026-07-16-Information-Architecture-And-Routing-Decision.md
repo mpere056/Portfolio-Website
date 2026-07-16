@@ -163,14 +163,15 @@ Rejected because browser origin isolation makes it technically false without a s
 - Do not wire tours, AI cards, or graph links to raw URLs; use destination IDs.
 - Do not add global visitor persistence beyond non-sensitive approved fields without privacy review.
 
-## Next Required Work
+## Implementation Checkpoint
 
-Before `ARC-03` implementation:
+The architecture prerequisites and initial destination foundation are complete:
 
-1. Reconcile the shared contract vocabulary with the approved architecture.
-2. Distinguish current `ContentNodeId` from the broader graph-node identity needed for skills, offerings, project state, features, and decisions.
-3. Add the missing approved `easter_egg_found` discovery event or formally remove it from every active plan.
-4. Align `safeState` documentation around primitive string, number, and boolean values.
-5. Inventory canonical, planned, legacy-alias, internal-only, and feedback-gated routes.
+1. [x] Reconcile the shared contract vocabulary with the approved architecture.
+2. [x] Distinguish current `ContentNodeId` from broader reviewed graph-only identities.
+3. [x] Add the approved `easter_egg_found` discovery event.
+4. [x] Keep `safeState` primitive-only and enforce destination-specific allowlists.
+5. [x] Inventory canonical, planned, legacy-alias, internal-only, and feedback-gated routes.
+6. [x] Implement and test the initial classified destination registry and resolver.
 
-Then `ARC-03` can implement the initial destination registry without guessing at page structure.
+Next, `ARC-04` introduces typed cross-system actions that request destination IDs rather than raw URLs. `ARC-05` then owns untrusted payload validation and persisted-state migrations before visitor-facing consumers migrate.

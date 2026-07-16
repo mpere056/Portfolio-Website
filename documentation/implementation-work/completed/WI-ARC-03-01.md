@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | paused |
+| State | done |
 | Priority | high |
 | Package | `ARC-03` |
 | Capabilities | `CAP-ARC-003` |
@@ -24,26 +24,26 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 
 ### Current Truth
 
-- State in one sentence: The information architecture is approved and destination scope is clear, but implementation is paused while `WI-ARC-02-02` reconciles two shared-contract omissions.
-- Works now: Existing main-site and project-subdomain routes are live, `ProjectSite` maps subdomains to projects, proxy rewrites hosts, and `ExperienceDestination` defines the target shape.
-- Incomplete or stubbed: There is no canonical registry, unknown-ID fallback, safe-state allowlist, checkpoint policy, or reusable cross-subdomain resolver; broader graph-node IDs and the full discovery vocabulary are not yet represented in code.
-- Safe exposure: The package begins as data and pure functions; existing links remain authoritative until parity tests pass.
+- State in one sentence: The approved information architecture now has a reviewed inventory, typed 27-entry registry, pure resolver, safe fallback policy, and passing parity/safety/build gates.
+- Works now: Every current project/site/blog post has a stable destination; canonical and compatibility requests resolve; unavailable and unsafe requests fall back; navigation mode is explicit across origins.
+- Incomplete or stubbed: Existing UI links do not consume the registry yet; typed action transport belongs to `ARC-04`, and generic runtime validation/persistence belongs to `ARC-05`.
+- Safe exposure: The registry is foundation-only, so current visitor navigation remains unchanged while consumers migrate incrementally.
 
 ### Known-Good Point
 
-- Commit: `f1b35b59bcfdcf04440d18ebe17d0043bf6f00e8`; shared-contract implementation began at `91e6d54`.
+- Commit: pending focused implementation commit; shared-contract implementation began at `91e6d54`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
-- Verification result: 7 files and 19 tests pass; production build passes; `BAS-08` live domains remain healthy.
+- Verification result: 8 files and 26 tests pass; inventory has 0 errors; lint has 0 errors and 11 retained warnings; production build passes.
 - Route/preview: Production `dpl_Ai2hdKjwLugHNV8jPqbGnUz9vVPj` is the current visitor-safe baseline; all seven public routes, retrieval, and grounded chat passed.
 - Feature flags: None; do not wire the registry into navigation until registry parity and fallbacks pass.
 
 ### Restart Here
 
-- Next exact action: Resume only after `WI-ARC-02-02` restores shared-contract acceptance, then produce the route-classified destination inventory approved by the information-architecture decision.
-- First files/symbols: `src/lib/portfolioContracts.ts`, `src/lib/projectSites.ts`, `src/proxy.ts`, route links, and project-site blog helpers.
-- Expected observable result: A reviewed table maps stable destination IDs to canonical internal or cross-subdomain hrefs before implementation begins.
-- Only after that: Implement a pure resolver and unknown-destination tests; defer navigation transitions and actions.
+- Next exact action: Begin `WI-ARC-04-01` and define typed cross-system actions that carry destination IDs rather than raw hrefs.
+- First files/symbols: `src/lib/portfolioContracts.ts`, `src/lib/destinations.ts`, the event vocabulary in the architecture plan, and focused integration fixtures.
+- Expected observable result: Depth, destination, relationship, discovery, stimulation, AI context, project state, and experience-failure actions share one discriminated union without a global browser event bus.
+- Only after that: `ARC-05` adds runtime validators and persisted-state migrations before UI consumers rely on untrusted data.
 
 ### Context That Must Survive
 
@@ -59,28 +59,29 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 | Type | Reference | State | Restart condition or consequence |
 | --- | --- | --- | --- |
 | Package | `ARC-01` | resolved | Canonical content identities accepted |
-| Package | `ARC-02` | resolved | Shared destination contracts accepted |
-| Package correction | `WI-ARC-02-02` | open | Resume after graph-node and discovery-event contracts pass tests/build |
+| Package | `ARC-02` | resolved | Shared content/graph/discovery contracts accepted |
+| Package correction | `WI-ARC-02-02` | resolved | Graph-node and discovery-event contracts pass tests/build |
 | Package boundary | `ARC-04`, `ARC-05` | resolved | Do not absorb actions, generic validators, or migrations |
 
 ## Implementation Checklist
 
-- [ ] Inventory current internal and cross-subdomain destinations.
-- [ ] Record initial registry scope and fallback policy.
-- [ ] Implement typed registry data and pure lookup/resolution.
-- [ ] Add unknown-ID, unsupported-state, fallback, and cross-subdomain tests.
-- [ ] Run tests, inventory, lint, and production build.
-- [ ] Reconcile capability, evidence, dashboard, and resume records.
+- [x] Inventory current internal and cross-subdomain destinations.
+- [x] Record initial registry scope and fallback policy.
+- [x] Implement typed registry data and pure lookup/resolution.
+- [x] Add unknown-ID, unsupported-state, fallback, and cross-subdomain tests.
+- [x] Run tests, inventory, lint, and production build.
+- [x] Reconcile capability, evidence, dashboard, and resume records.
 
 ## Files And Entry Points
 
 | Path or symbol | Why it matters | Current state |
 | --- | --- | --- |
 | `src/lib/portfolioContracts.ts` | Accepted destination and safe-state types | implemented |
-| `src/lib/projectSites.ts` | Current project/subdomain mapping | unchanged |
+| `src/lib/projectSites.ts` | Current project/subdomain mapping | covered by registry parity tests |
 | `src/proxy.ts` | Host-to-route rewrite behavior | unchanged |
-| `src/app` and route links | Current destination inventory | inspect next |
-| `tests` | Pure resolver and parity fixtures | planned |
+| `src/app` and route links | Current destination inventory | reviewed and classified |
+| `src/lib/destinations.ts` | Registry, resolver, navigation mode, and validation | implemented |
+| `tests/destinations.test.ts` | Pure resolver and parity fixtures | passing |
 
 ## Updates
 
@@ -102,6 +103,16 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 - Next: Inventory canonical, planned, legacy-alias, internal-only, and feedback-gated destinations.
 - Commit: `d66c701173072cd7f653fe1a178ec7d222b1298d`.
 
+### 2026-07-16 - Destination registry accepted
+
+- State: paused -> in-progress -> done.
+- Changed: Reviewed the route inventory, implemented 27 classified destinations, explicit origins/checkpoints/fallbacks, allowlisted state, pure resolution, suggestion filtering, and registry validation.
+- Verified: All nine projects, three project sites/blogs, and three current posts have destinations; 8 test files and 26 tests pass; inventory and production build pass.
+- Failure retained: The first production build exposed an exact-object-union typecheck issue in the validation loop; widening the loop to the declared contract fixed it without changing behavior.
+- Evidence: `EV-ARC-03-01` accepted.
+- Next: `WI-ARC-04-01`.
+- Commit: pending focused implementation commit.
+
 ## Completion Summary
 
-Complete only after the registry and resolver pass parity, unknown-ID, safe-state, fallback, and cross-subdomain tests without changing existing navigation behavior.
+The initial destination registry is complete: semantic IDs, route classes, current project/blog parity, safe state, fallbacks, origin transitions, suggestion policy, and production typechecking are accepted without changing current visitor navigation.

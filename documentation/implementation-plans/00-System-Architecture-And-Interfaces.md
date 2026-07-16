@@ -261,7 +261,7 @@ Consumers:
 
 Do not use discovery events as factual evidence in the knowledge graph.
 
-Implementation note: the first `ARC-02` increment omitted `easter_egg_found` and narrowed `NodeId` to `ContentNodeId`. `ARC-02` is reopened through `WI-ARC-02-02`; dependent registry implementation waits for that reconciliation.
+Implementation note: `WI-ARC-02-02` corrected the first increment by adding `easter_egg_found` and separating strict `ContentNodeId` from reviewed graph-only identities. `ARC-02` and the initial `ARC-03` destination registry are accepted; `ARC-04` is the next consumer through typed cross-system actions.
 
 ## Cross-Origin Experience State
 

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | ready |
+| State | done |
 | Priority | high |
 | Package | `ARC-02` |
 | Capabilities | `CAP-ARC-002` |
@@ -24,25 +24,25 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 
 ### Current Truth
 
-- State in one sentence: The initial shared contracts are implemented and tested, but the information-architecture audit exposed two omitted requirements that make the package incomplete for graph and discovery consumers.
-- Works now: Destination, experience, discovery, relationship, content-version, depth, safe-state, AI-context, archive-card, and project-experience manifest types share one module; 19 tests and the production build passed at `91e6d54`.
-- Incomplete or stubbed: `NodeId` currently equals `ContentNodeId`, so skill, offering, project-state, feature, decision, and other graph-only nodes cannot type-check; `easter_egg_found` is approved in architecture but absent from `DISCOVERY_EVENT_TYPES`.
-- Safe exposure: The current types are not yet wired into visitor navigation or persistence, so correction is low-risk and should happen before dependent runtime work.
+- State in one sentence: Shared contracts now represent strict content IDs, reviewed graph-only IDs, and every approved discovery event, restoring `ARC-02` acceptance.
+- Works now: Ten graph-only namespaces validate independently; `NodeId` covers content and graph references; `easter_egg_found` is present; the expanded suite passes 26 tests and the production build.
+- Incomplete or stubbed: Graph content, relationships, generic payload validation, and persistence remain in their named downstream packages.
+- Safe exposure: The corrected types are still foundation-only and introduce no visitor-facing behavior.
 
 ### Known-Good Point
 
-- Commit: `f1b35b59bcfdcf04440d18ebe17d0043bf6f00e8` on `main` and GitHub.
+- Commit: pending focused implementation commit.
 - Implementation commit: `91e6d54735d14cfbf4084c2bb4763933dcfe0129`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
-- Verification result: 7 files and 19 tests pass; lint has 0 errors and 11 retained warnings; production build passes.
+- Verification result: 8 files and 26 tests pass; lint has 0 errors and 11 retained warnings; content inventory has 0 errors and 0 identity divergences; production build passes.
 - Production: `dpl_Ai2hdKjwLugHNV8jPqbGnUz9vVPj` is Ready; all seven public routes, retrieval, and chat passed after the clean Firebase-only rebuild.
 
 ### Restart Here
 
-- Next exact action: Define the graph-only namespace union beside `ContentNodeId`, update `NodeId`, add `easter_egg_found`, and expand the existing contract fixture before touching destination registry code.
-- First files/symbols: `src/lib/portfolioContracts.ts`, `src/lib/contentIds.ts`, `tests/portfolioContracts.test.ts`, and `00-System-Architecture-And-Interfaces.md`.
-- Expected observable result: Existing content IDs and representative skill/offering/project-state IDs all satisfy `NodeId`, and the discovery vocabulary test includes `easter_egg_found`.
-- Only after that: Re-run all gates, accept follow-up evidence, return `ARC-02` to complete, and resume `WI-ARC-03-01`.
+- Next exact action: Continue through completed `WI-ARC-03-01`, then begin `WI-ARC-04-01` with typed cross-system actions.
+- First files/symbols: `src/lib/portfolioContracts.ts`, `src/lib/destinations.ts`, and the system event vocabulary.
+- Expected observable result: Typed actions request accepted destinations and carry shared depth/discovery/context payloads without raw global browser events.
+- Only after that: Add runtime validators and persistence migrations in `ARC-05`.
 
 ### Context That Must Survive
 
@@ -62,12 +62,12 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 
 ## Implementation Checklist
 
-- [ ] Define graph-only namespaces without weakening `ContentNodeId`.
-- [ ] Expand `NodeId` for reviewed graph consumers.
-- [ ] Add `easter_egg_found` to the approved discovery vocabulary.
-- [ ] Update cross-consumer fixtures and contract documentation.
-- [ ] Run tests, inventory, lint, and production build.
-- [ ] Reconcile evidence, package, capability, dashboard, and resume records.
+- [x] Define graph-only namespaces without weakening `ContentNodeId`.
+- [x] Expand `NodeId` for reviewed graph consumers.
+- [x] Add `easter_egg_found` to the approved discovery vocabulary.
+- [x] Update cross-consumer fixtures and contract documentation.
+- [x] Run tests, inventory, lint, and production build.
+- [x] Reconcile evidence, package, capability, dashboard, and resume records.
 
 ## Updates
 
@@ -79,6 +79,15 @@ Separate current `ContentNodeId` from a broader validated graph-node type; add t
 - Next: Correct the shared type vocabulary, then resume `ARC-03`.
 - Commit: `d66c701173072cd7f653fe1a178ec7d222b1298d`.
 
+### 2026-07-16 - Shared contract reconciliation accepted
+
+- State: ready -> in-progress -> done.
+- Changed: Added graph-only identity namespaces and guards, broadened `NodeId` without weakening content IDs, and added `easter_egg_found`.
+- Verified: 8 test files and 26 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors; production build passes.
+- Evidence: `EV-ARC-02-02` accepted.
+- Next: `WI-ARC-04-01` after the destination registry checkpoint.
+- Commit: pending focused implementation commit.
+
 ## Completion Summary
 
-Complete only after the broader graph identity and full approved discovery vocabulary pass tests/build and `ARC-03` is unblocked.
+The shared contract vocabulary now covers current content identities, reviewed graph-only identities, primitive safe state, and every approved discovery event. `ARC-02` is complete again and downstream packages are unblocked.

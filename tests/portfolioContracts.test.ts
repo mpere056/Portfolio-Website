@@ -2,13 +2,17 @@ import { describe, expect, expectTypeOf, it } from 'vitest';
 import {
   DEPTH_STAGES,
   DISCOVERY_EVENT_TYPES,
+  isGraphOnlyNodeId,
+  isNodeId,
   type ArchiveCard,
   type DepthState,
   type DestinationId,
   type DiscoveryEvent,
   type ExperienceDestination,
+  type NodeId,
   type PortfolioAIContext,
   type ProjectExperienceManifest,
+  type SafeState,
 } from '@/lib/portfolioContracts';
 
 const dreamlifeDestination = {
@@ -23,7 +27,22 @@ const dreamlifeDestination = {
 describe('portfolio contracts', () => {
   it('shares one ordered depth and discovery vocabulary', () => {
     expect(DEPTH_STAGES).toEqual(['signal', 'approach', 'handle', 'enter', 'understand']);
+    expect(DISCOVERY_EVENT_TYPES).toContain('easter_egg_found');
     expect(DISCOVERY_EVENT_TYPES).toContain('meaningful_update_seen');
+  });
+
+  it('keeps content IDs strict while supporting reviewed graph-only namespaces', () => {
+    expect(isGraphOnlyNodeId('skill:local-first-architecture')).toBe(true);
+    expect(isGraphOnlyNodeId('decision:lifeinbox:reminder-runtime-vibration')).toBe(true);
+    expect(isGraphOnlyNodeId('project:dreamlife')).toBe(false);
+    expect(isGraphOnlyNodeId('skill:Local First')).toBe(false);
+    expect(isNodeId('project:dreamlife')).toBe(true);
+    expect(isNodeId('offering:ai-workflow-audit')).toBe(true);
+    expect(isNodeId('unknown:anything')).toBe(false);
+    expectTypeOf<'project:dreamlife'>().toMatchTypeOf<NodeId>();
+    expectTypeOf<'project-state:dreamlife-current'>().toMatchTypeOf<NodeId>();
+    expectTypeOf<'skill:local-first-architecture'>().toMatchTypeOf<NodeId>();
+    expectTypeOf<SafeState>().toMatchTypeOf<Readonly<Record<string, string | number | boolean>>>();
   });
 
   it('types a destination across depth, discovery, AI, cards, and project experiences', () => {
@@ -52,14 +71,14 @@ describe('portfolio contracts', () => {
       type: 'experience',
       title: 'Compare possible futures',
       summary: 'Inspect the product loop through one authored scenario.',
-      sourceNodeIds: ['project:dreamlife'],
+      sourceNodeIds: ['project:dreamlife', 'skill:ai-product-design'],
       destinationId: dreamlifeDestination.id,
     } as const satisfies ArchiveCard;
     const manifest = {
       id: dreamlifeDestination.experienceId,
       projectId: 'project:dreamlife',
       supportedStages: ['handle', 'enter', 'understand'],
-      evidenceNodeIds: ['project:dreamlife', 'timeline:dreamlife'],
+      evidenceNodeIds: ['project:dreamlife', 'timeline:dreamlife', 'decision:dreamlife:three-path-model'],
     } as const satisfies ProjectExperienceManifest;
 
     expectTypeOf(dreamlifeDestination.id).toMatchTypeOf<DestinationId>();

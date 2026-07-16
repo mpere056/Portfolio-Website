@@ -10,19 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The supported stack, free-tier Firestore retrieval, canonical content identities, and first shared-contract increment are implemented. Information-architecture review reopened `ARC-02` for one bounded graph/discovery contract correction; `ARC-03` is paused behind it with route scope already approved.
+The supported stack, free-tier Firestore retrieval, canonical content identities, reconciled shared contracts, and initial destination registry are implemented. `ARC-04` is ready to establish typed cross-system actions without changing visitor UI or introducing a global browser event bus.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-02-02` | ready | `ARC-02` | Initial shared contracts pass 19 tests/build; omissions are documented before runtime adoption | Expand graph-node identity and add `easter_egg_found`, then rerun gates | 2026-07-16 |
-| Next | `WI-ARC-03-01` | paused | `ARC-03` | Information architecture approved; current routes remain the visitor-safe baseline | Resume route-classified destination inventory after `ARC-02` returns to complete | 2026-07-16 |
+| Now | `WI-ARC-04-01` | ready | `ARC-04` | Shared contracts and the 27-entry destination registry pass 26 tests, inventory, lint, and build | Define the minimal action union and one exhaustive destination/depth/context fixture | 2026-07-16 |
+| Next | `ARC-05` package preparation | pending | `ARC-05` | Runtime-validation boundaries are documented and deliberately excluded from `ARC-04` | Prepare a bounded work item only after the action contract is accepted | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ARC-02-02` | Reconcile Graph And Discovery Contracts | ready | high | `ARC-02` | `CAP-ARC-002` | `active/WI-ARC-02-02.md` | 2026-07-16 |
-| `WI-ARC-03-01` | Build The Destination Registry | paused | high | `ARC-03` | `CAP-ARC-003` | `active/WI-ARC-03-01.md` | 2026-07-16 |
+| `WI-ARC-04-01` | Establish Typed Cross-System Actions | ready | high | `ARC-04` | `CAP-ARC-004` | `active/WI-ARC-04-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -36,6 +35,8 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ARC-03-01` | done | `ARC-03` | Reviewed 27-entry destination registry, resolver, safe-state policy, fallbacks, and origin handling accepted | `EV-ARC-03-01` | 2026-07-16 |
+| `WI-ARC-02-02` | done | `ARC-02` | Graph-only identities and complete discovery vocabulary restore shared-contract acceptance | `EV-ARC-02-02` | 2026-07-16 |
 | `WI-ARC-02-01` | done | `ARC-02` | Initial shared depth, destination, discovery, AI-context, card, and project-experience increment accepted; package later reopened by `WI-ARC-02-02` | `EV-ARC-02-01` | 2026-07-16 |
 | `WI-ARC-01-01` | done | `ARC-01` | Canonical IDs accepted in inventory, Firestore ingestion, Preview, and Production | `EV-ARC-01-01`, `EV-BAS-08-03` through `EV-BAS-08-05` | 2026-07-16 |
 | `WI-BAS-08-01` | done | `BAS-08` | Free-tier Firestore retrieval and grounded chat live on all public domains | `EV-BAS-08-01` through `EV-BAS-08-05` | 2026-07-16 |

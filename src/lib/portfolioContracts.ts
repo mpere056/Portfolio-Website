@@ -1,11 +1,39 @@
-import type { ContentNodeId } from './contentIds';
+import { isContentNodeId, type ContentNodeId } from './contentIds';
 
-export type NodeId = ContentNodeId;
+export const GRAPH_ONLY_NODE_NAMESPACES = [
+  'project-state',
+  'feature',
+  'decision',
+  'constraint',
+  'lesson',
+  'skill',
+  'community',
+  'media',
+  'repository',
+  'offering',
+] as const;
+
+export type GraphOnlyNodeNamespace = (typeof GRAPH_ONLY_NODE_NAMESPACES)[number];
+export type GraphOnlyNodeId = `${GraphOnlyNodeNamespace}:${string}`;
+export type NodeId = ContentNodeId | GraphOnlyNodeId;
 export type DestinationId = `destination:${string}`;
 export type ExperienceId = `experience:${string}`;
 export type DiscoveryId = `discovery:${string}`;
 export type RelationshipId = `relationship:${string}`;
 export type ContentVersion = `${number}-${number}-${number}:${string}`;
+
+const NODE_ID_SEGMENT = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+export function isGraphOnlyNodeId(value: string): value is GraphOnlyNodeId {
+  const [namespace, ...segments] = value.split(':');
+  return GRAPH_ONLY_NODE_NAMESPACES.includes(namespace as GraphOnlyNodeNamespace)
+    && segments.length > 0
+    && segments.every(segment => NODE_ID_SEGMENT.test(segment));
+}
+
+export function isNodeId(value: string): value is NodeId {
+  return isContentNodeId(value) || isGraphOnlyNodeId(value);
+}
 
 export const DEPTH_STAGES = ['signal', 'approach', 'handle', 'enter', 'understand'] as const;
 export type DepthStage = (typeof DEPTH_STAGES)[number];
@@ -36,6 +64,7 @@ export const DISCOVERY_EVENT_TYPES = [
   'handled',
   'entered',
   'understood',
+  'easter_egg_found',
   'meaningful_update_seen',
 ] as const;
 export type DiscoveryEventType = (typeof DISCOVERY_EVENT_TYPES)[number];
