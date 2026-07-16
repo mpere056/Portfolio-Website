@@ -7,7 +7,7 @@ Last updated: 2026-07-16
 | Field | Value |
 | --- | --- |
 | Package | `EXP-02` Depth-controller primitives |
-| Lifecycle | in-progress |
+| Lifecycle | complete |
 | Capabilities | `CAP-EXP-003`, `CAP-EXP-004` |
 | Work item | `WI-EXP-02-01` |
 | Implementation | `4c9b02a` |
@@ -24,10 +24,21 @@ Last updated: 2026-07-16
 
 Accepted transitions emit the existing typed action, semantic checkpoint, and AI context together. Skips, wrong reasons, and destination mismatches are rejected without producing effects.
 
-## Named Gaps
+## EV-EXP-02-02: Atomic Controller And Consumer Boundary
 
-- No headless controller applies transition outputs to the exploration and AI stores yet.
-- No controlled React/scene consumer, keyboard/pointer interaction, history behavior, or browser integration test exists.
-- Visual hints, tour integration, and stimulation consumers remain unimplemented; stimulation belongs primarily to `EXP-05`.
+| Field | Value |
+| --- | --- |
+| Status | accepted |
+| Type | integration-test |
+| Claim | One headless controller atomically applies accepted transitions to persistence, AI context, actions, and observers; rejected transitions mutate none; disposal removes only owned context. |
+| Evidence | `tests/depthController.test.ts`, `tests/depthControllerProvider.test.tsx`, and atomic store fixture; full suite passes 75 tests in 21 files and production build passes. |
 
-The package remains in progress until a controlled consumer proves persistence hooks, context ownership/cleanup, and accepted/rejected behavior end to end.
+The dormant React provider exposes stable snapshots to a controlled server-rendered consumer. Vitest now includes `.test.tsx`, preventing future React tests from being silently skipped.
+
+## Boundaries After Completion
+
+- No production route mounts the provider, so current visuals and history are unchanged.
+- Pointer, keyboard, browser history, and creative behavior begin with visitor-facing packages such as `EXP-03` and project consumers.
+- Tour integration belongs to `EXP-04`; stimulation mapping belongs to `EXP-05`.
+
+Package complete. Its reusable contract is ready for First Note and later project experiences.

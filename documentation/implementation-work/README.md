@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 remains fully accepted. Phase 2 has begun at `4c9b02a`: `QA-01` proves the foundations cooperate in one integrated flow, and `EXP-02` now has an accepted dormant five-stage transition contract while its controller and first consumer remain explicitly incomplete.
+Phase 1 remains fully accepted. Phase 2 now has two complete packages: `QA-01` proves the foundations cooperate, and `EXP-02` provides the accepted five-stage controller plus dormant React consumer boundary through `852e14c`. `EXP-03` is ready for the first visitor-facing First Note increment.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-EXP-02-01` | in-progress | `EXP-02` | Pure transitions and the integrated foundation flow pass within 68 tests | Apply accepted transitions through a headless persistence/context controller | 2026-07-16 |
-| Next | Controlled consumer increment | pending | `EXP-02` | Controller must synchronize and clean up before UI adoption | Mount one lightweight consumer and add browser coverage | 2026-07-16 |
+| Now | `WI-EXP-03-01` | ready | `EXP-03` | Controller, persistence, AI ownership, and controlled React consumption pass within 75 tests | Define deterministic First Note states before changing `HeroCube` | 2026-07-16 |
+| Next | Feature-flagged home composition | pending | `EXP-03` | Pure first/return/reset/audio-denied rules must pass first | Mount the home provider behind `firstNote` | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-EXP-02-01` | Establish The First Controlled Depth Primitive | in-progress | high | `EXP-02` | `CAP-EXP-003`, `CAP-EXP-004` | `active/WI-EXP-02-01.md` | 2026-07-16 |
+| `WI-EXP-03-01` | Build The One-Time First Note | ready | high | `EXP-03` | `CAP-EXP-005`, `CAP-EXP-006` | `active/WI-EXP-03-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-EXP-02-01` | done | `EXP-02` | Atomic five-stage controller, AI ownership, persistence, hints, cleanup, and dormant React boundary accepted | `EV-EXP-02-01`, `EV-EXP-02-02` | 2026-07-16 |
 | `WI-QA-01-01` | done | `QA-01` | Destination, graph, persistence, AI context, and fallback foundations cooperate in one automated flow | `EV-QA-01-01` | 2026-07-16 |
 | `WI-EXP-01-01` | done | `EXP-01` | Versioned per-origin exploration hydration, migration, semantic checkpoints, and reset accepted | `EV-EXP-01-01` | 2026-07-16 |
 | `WI-KG-04-01` | done | `KG-04` | Initial 49-node, 19-relationship reviewed public subgraph accepted | `EV-KG-04-01` | 2026-07-16 |
@@ -44,7 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-AI-01-01` | done | `AI-01` | Nested source-owned route and object context accepted | `EV-AI-01-01` | 2026-07-16 |
 | `WI-LPS-01-01` | done | `LPS-01` | Lifecycle-specific authored section rules accepted without classifying projects | `EV-LPS-01-01` | 2026-07-16 |
 | `WI-BAS-03-01` | done | `BAS-03` | Typed environment-aware feature flag policy accepted | `EV-BAS-03-01` | 2026-07-16 |
-| `WI-ARC-05-01` | done | `ARC-05` | Structured runtime validation and section-isolated semantic-state migration accepted | `EV-ARC-05-01` | 2026-07-16 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

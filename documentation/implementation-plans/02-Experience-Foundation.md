@@ -16,7 +16,7 @@ Last updated: 2026-07-16
 
 ## Scope
 
-Phase 2 status: `QA-01` is complete and `EXP-02` is in progress at `4c9b02a`. The versioned store and integrated foundation flow are accepted; the dormant transition engine now defines all five stages and emits synchronized action, checkpoint, and AI-context outputs. A headless controller and controlled consumer remain the next required checkpoints before visitor-facing adoption.
+Phase 2 status: `QA-01` and `EXP-02` are complete through `852e14c`; `EXP-03` is ready. The versioned store, integrated foundation flow, transition grammar, atomic headless controller, AI ownership cleanup, and dormant React consumer boundary are accepted. Visitor-facing adoption begins with the one-time First Note and its first/return browser flow.
 
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
 

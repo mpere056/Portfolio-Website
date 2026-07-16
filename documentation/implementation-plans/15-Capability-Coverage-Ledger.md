@@ -267,8 +267,8 @@ Until a capability receives its own detail record, these defaults apply:
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-EXP-003` | Five-stage depth controller | `EXP-02` | `V-01`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: working; I: working; T: accepted; Q: not-started; R: not-started` | active |
-| `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: working; I: working; T: accepted; Q: not-started; R: not-started` | active |
+| `CAP-EXP-003` | Five-stage depth controller | `EXP-02` | `V-01`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-006` | Returning-visitor resume after First Note | `EXP-03` | `V-05`, `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-007` | Role-aware tour entry with no time question | `EXP-04` | `V-07` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
@@ -315,18 +315,18 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-EXP-003 And CAP-EXP-004: Five-Stage Controller And Reusable Depth Primitives
 
 - Owner: Codex
-- Lifecycle: active
+- Lifecycle: verified
 - Health: on-track
-- Confidence: high for the pure contract; medium for unimplemented consumer integration
-- Dimension states: `S: accepted; C: not-applicable; A: working; I: working; T: accepted; Q: not-started; R: not-started`
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `EXP-02`
-- Works now: Signal, Approach, Handle, Enter, and Understand have explicit reason-bound adjacent transitions, one-step retreat, reset, and restore. Accepted transitions emit a typed action, semantic checkpoint, and AI context; invalid transitions emit no effects.
-- Named gaps: No headless controller applies outputs to stores, no controlled consumer is mounted, and browser/history/creative behavior is untested.
-- Safe exposure: Dormant pure module with no current component imports.
-- Evidence: `EV-EXP-02-01`.
-- Work item: `WI-EXP-02-01` (in-progress).
-- Next checkpoint: Controller applies each accepted transition exactly once to persistence and source-owned AI context, rejects without mutation, and cleans up on dispose.
-- Last assessed: 2026-07-16 at `4c9b02a`.
+- Works now: Signal, Approach, Handle, Enter, and Understand have explicit transitions; the headless controller atomically synchronizes persistence, typed actions, AI context, and observers; disposal cleans owned context; a dormant React provider exposes stable snapshots.
+- Named gaps: No package gap remains. Pointer, keyboard, history, and creative UI behavior belong to the visitor-facing consumers that adopt this foundation.
+- Safe exposure: Dormant provider with no production route imports.
+- Evidence: `EV-EXP-02-01`, `EV-EXP-02-02`.
+- Work item: `WI-EXP-02-01` (done).
+- Next checkpoint: `EXP-03` uses the controller for the one-time First Note and returning-visitor flow.
+- Last assessed: 2026-07-16 at `852e14c`.
 
 ## Quiet Global AI
 
