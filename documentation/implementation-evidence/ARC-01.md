@@ -1,24 +1,24 @@
 # ARC-01 Evidence
 
-Last updated: 2026-07-15
+Last updated: 2026-07-16
 
 ## Package Snapshot
 
 | Field | Value |
 | --- | --- |
 | Package | `ARC-01` Stable ID policy |
-| Lifecycle | in-progress |
+| Lifecycle | complete |
 | Capability | `CAP-ARC-001` |
 | Work item | `WI-ARC-01-01` |
-| Implementation commit | pending |
+| Implementation commit | `fe64bb6` |
 
-## Candidate Evidence
+## Accepted Evidence
 
 ### EV-ARC-01-01: Canonical Content ID Contract And Fixtures
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | accepted |
 | Type | unit-test |
 | Claim | Canonical content IDs are deterministic, namespaced, validated, and able to resolve explicit legacy aliases |
 | Dimensions | `A`, `I`, `T` |
@@ -41,13 +41,22 @@ $env:PATH = '<Node 24>;' + (Resolve-Path '.tools\node').Path + ';' + $env:PATH
 - Inventory reports 39 nodes, 38 authored identifiers, 1 filename fallback, 0 inventory/ingestion identity divergences, and 0 structural errors.
 - The Next.js 16 production build compiles and typechecks with the existing font network available.
 
-#### Candidate Boundary
+#### Acceptance Boundary
 
-This evidence remains candidate until `BAS-08` makes Firestore ingest-ready and the managed retrieval corpus is re-indexed and verified. The one separately edited misc file remains an explicit authored-ID gap.
+`BAS-08` re-indexed the managed Firestore corpus and verified canonical IDs in local retrieval, exact-commit Preview, and Production. The separately edited misc file keeps its deterministic validated fallback ID; a future authored rename must add an explicit alias rather than silently changing identity.
 
 ## Current Gaps
 
-- One separately edited miscellaneous record still uses a filename fallback ID.
-- The managed Firestore retrieval corpus still needs its first canonical re-index after IAM and vector-index readiness.
+- One separately edited miscellaneous record intentionally retains a deterministic filename fallback until a separately reviewed authored rename.
 - Nested project posts remain outside ingestion; shared recursive traversal belongs to `KG-01` after ID policy acceptance.
 - No alias is currently needed, so the resolver has fixtures but no production alias registry entry.
+
+## Supporting Rollout Evidence
+
+- `EV-BAS-08-03` proves 42 managed chunks cover 36 canonical IDs through the ready vector index.
+- `EV-BAS-08-04` proves exact-commit Preview retrieval returns canonical DreamLife IDs.
+- `EV-BAS-08-05` proves the same canonical retrieval contract in Production.
+
+## Completion Decision
+
+Complete. Constructors, validation, explicit alias behavior, inventory/ingestion parity, deterministic fallback policy, canonical managed-corpus rollout, tests, build, Preview, and Production evidence are accepted. Recursive loading remains correctly owned by `KG-01`.

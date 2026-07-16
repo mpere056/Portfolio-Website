@@ -1,7 +1,7 @@
 # Firebase Retrieval Migration Decision
 
 Date: 2026-07-15; account/project target revised 2026-07-16
-Status: approved and in progress
+Status: approved and complete
 Package: `BAS-08`
 Capability: `CAP-BAS-008`
 

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | paused |
+| State | done |
 | Priority | high |
 | Package | `ARC-01` |
 | Capabilities | `CAP-ARC-001` |
@@ -24,25 +24,25 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 
 ### Current Truth
 
-- State in one sentence: Canonical content IDs are implemented locally, while managed re-indexing and acceptance are paused behind the active `BAS-08` Firestore cutover.
-- Works now: `project:`, `timeline:`, `misc:`, and `post:{site}:` IDs are deterministic and reject unstable shapes; one-level ingestion uses the same derivation; three unaffected misc records have authored IDs; 5 test files and 13 tests plus the production build pass.
-- Incomplete or stubbed: The managed retrieval corpus still contains legacy bare IDs, one separately edited misc record uses a filename fallback, nested posts remain outside later shared-loader ingestion, and no visitor-facing consumer resolves aliases.
-- Safe exposure: Current changes affect internal utilities, tests, and inventory output only; routes, persisted visitor state, and production retrieval remain unchanged.
+- State in one sentence: Canonical content identities are accepted across inventory, ingestion, managed Firestore retrieval, Preview, and Production.
+- Works now: `project:`, `timeline:`, `misc:`, and `post:{site}:` IDs are deterministic and validated; one-level ingestion uses the same derivation; the 42-chunk managed corpus covers all 36 current canonical IDs; live retrieval returns canonical IDs.
+- Incomplete or stubbed: One separately edited misc record intentionally keeps its validated fallback ID; nested posts remain correctly owned by `KG-01`; no real rename currently requires a production alias entry.
+- Safe exposure: Route slugs remain unchanged, aliases are explicit and one-way, and future authored replacement of the fallback must preserve identity through a reviewed alias.
 
 ### Known-Good Point
 
-- Commit: `4144bcc2f252a211ce0c611328ffe6be6d51dd32` before the uncommitted `ARC-01` increment.
-- Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
-- Verification result: 5 test files and 13 tests pass; the production build passes; lint has 0 errors and 14 retained warnings.
-- Evidence: `EV-ARC-01-01` is candidate pending ingestion and corpus migration.
+- Commit: `fe64bb68443f9d48a758683f8968367ce1ebd98a`.
+- Branch/worktree: `main` in `C:\Projects\Portfolio-Website`, pushed to `origin/main`.
+- Verification result: 6 test files and 17 tests pass; inventory has 39 nodes, 0 errors, and 0 runtime/AI ID divergences; the production build passes; lint has 0 errors and 11 retained warnings.
+- Evidence: `EV-ARC-01-01` plus `EV-BAS-08-03` through `EV-BAS-08-05` are accepted.
 - Feature flags: None; no visitor-facing consumer uses the new IDs yet.
 
 ### Restart Here
 
-- Next exact action: Resume after `BAS-08` establishes Firestore IAM and its vector index, then run the canonical corpus ingest and verify retrieved IDs.
-- First files/symbols: `src/lib/contentIds.ts`, `scripts/ingest.ts`, `src/lib/contentInventory.ts`, `tests/contentIds.test.ts`, and the Vercel preview.
-- Expected observable result: The preview build passes without route changes; a later controlled re-index replaces bare retrieval IDs with canonical IDs and leaves grounded chat healthy.
-- Only after that: Decide whether the one separately edited misc fallback can be migrated independently, accept evidence, and close `ARC-01` or retain the explicit gap.
+- Next exact action: Begin `WI-ARC-02-01` and centralize the shared contract types defined by the architecture plan.
+- First files/symbols: `00-System-Architecture-And-Interfaces.md`, existing project/timeline/retrieval interfaces, and a new shared contract module with tests.
+- Expected observable result: One canonical type source and consumer fixture compile without changing visitor behavior.
+- Only after that: Let `ARC-03` own destination data/validation and `ARC-04` own cross-system actions.
 
 ### Context That Must Survive
 
@@ -63,7 +63,7 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 - [x] Add authored IDs to unaffected filename-fallback misc records.
 - [x] Explicitly defer the separately edited productivity-system ID migration from this commit.
 - [x] Run full tests, inventory, and production build.
-- [ ] Commit, preview, re-index the managed corpus, and reconcile acceptance evidence.
+- [x] Commit, preview, re-index the managed corpus, and reconcile acceptance evidence.
 
 ## Updates
 
@@ -95,6 +95,16 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 - Restart condition: `BAS-08` IAM and vector index are ready for canonical ingestion.
 - Commit: uncommitted.
 
+### 2026-07-16 - Canonical corpus rollout accepted
+
+- State: paused -> done.
+- Changed: Re-indexed 42 Firestore chunks across all 36 canonical IDs and retained the separately edited misc file's deterministic fallback as its current canonical identity.
+- Verified: Real local, Preview, and Production DreamLife retrieval returned namespaced canonical IDs; tests, inventory, lint, and build passed; route slugs were unchanged.
+- Boundary: Recursive nested-post loading remains in `KG-01`; future authored replacement of the fallback requires an explicit alias migration.
+- Evidence: `EV-ARC-01-01`, `EV-BAS-08-03`, `EV-BAS-08-04`, and `EV-BAS-08-05` accepted.
+- Next: Begin `WI-ARC-02-01`.
+- Commit: `fe64bb6`.
+
 ## Completion Summary
 
-Complete this only after inventory and ingestion share canonical IDs, initial migrations are explicit, tests/build pass, and accepted evidence records the known-good commit.
+Inventory and ingestion now share strict namespaced IDs, rename behavior is explicit, every managed source has a validated canonical identity, the Firestore corpus and live retrieval use those identities, and accepted test/Preview/Production evidence records commit `fe64bb6`.

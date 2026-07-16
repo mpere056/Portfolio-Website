@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | done |
 | Priority | urgent |
 | Package | `BAS-08` |
 | Capabilities | `CAP-BAS-008` |
@@ -24,26 +24,27 @@ Replace Supabase retrieval with server-only Firestore vector search; retain deny
 
 ### Current Truth
 
-- State in one sentence: The free Firestore backend, canonical corpus, vector index, real retrieval, and Vercel credentials are ready; focused commit, preview, production verification, old-variable cleanup, and closeout remain.
-- Works now: `ragStore.ts` provides lazy server credentials and 768-dimensional native vector queries; ingestion writes deterministic canonical chunks; the dedicated service account has only `Cloud Datastore User`; Firestore contains 42 chunks across all 36 current canonical IDs; the vector index is `READY`; a real DreamLife query returns canonical IDs; all Vercel targets have the new server variables; 6 test files and 17 tests plus the final production build pass.
-- Incomplete or stubbed: The working tree is not committed or deployed; Preview and Production diagnostics/chat/routes have not yet been verified; obsolete Supabase Vercel variables remain as rollback data.
-- Safe exposure: Production still runs the historical deployment. The new project has `freeTier: true`, `billingEnabled: false`, direct client access is not configured, and server access is least privilege.
+- State in one sentence: The free-tier Firestore migration is accepted in code, exact-commit Preview, Production, public domains, and GitHub.
+- Works now: `ragStore.ts` provides lazy server credentials and 768-dimensional native vector queries; 42 chunks cover all 36 canonical IDs; retrieval and grounded chat pass locally, in Preview, and in Production; all seven public routes return HTTP 200; obsolete Supabase Vercel records are removed.
+- Incomplete or stubbed: No package acceptance gap remains. Local credential deletion and revocation of an inaccessible historical-project key are explicit user-owned security follow-ups, not runtime dependencies.
+- Safe exposure: Firebase remains free-tier with billing disabled, direct client rules deny all access, runtime IAM is least privilege, and Vercel retains prior Ready deployments for rollback.
 
 ### Known-Good Point
 
-- Commit: `5d0765eca5f5869f1d64d6353ec5a233430d0a7b` before the uncommitted migration.
-- Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
+- Commit: `fe64bb68443f9d48a758683f8968367ce1ebd98a`.
+- Branch/worktree: `main` in `C:\Projects\Portfolio-Website`, pushed to `origin/main`.
 - Verification command: `npm test`, `npm run inventory:content`, `npm run build` under Node.js 24.
 - Verification result: 6 files and 17 tests pass; lint has 0 errors and 11 retained warnings; inventory has 39 nodes, 38 authored IDs, 1 explicit fallback, 0 runtime/AI divergences, and 0 errors; the final Next.js 16 production build passes and regenerates both Node API routes.
+- Route/preview: Preview `dpl_DjW5r68niS2D9KP7uPq5g1io6atE` and Production `dpl_3HGisq6kX91L3yKVh1d9Ae8DrHQW` passed retrieval, chat, and route checks.
 - External state: Firebase project `mark-portfolio-ai-mpere056`, Firestore `(default)` in `nam5`, `freeTier: true`, `billingEnabled: false`, service account `portfolio-website-ai@mark-portfolio-ai-mpere056.iam.gserviceaccount.com`, one active JSON key downloaded outside the repository, and one restricted Gemini key stored in Vercel.
 - Secrets: The JSON key is outside the repository and must never be printed or staged.
 
 ### Restart Here
 
-- Next exact action: Stage only migration files, run the secret scan, create the focused commit, and push that exact commit to `codex/firebase-rag-migration` for Vercel Preview.
-- First files/symbols: `src/lib/ragStore.ts`, `scripts/ingest.ts`, `firestore.indexes.json`, Firebase IAM, and the Vercel project environment.
-- Expected observable result: Vercel Preview reaches Ready; `/api/rag/diag` returns canonical Firestore results and `/api/chat` returns grounded output.
-- Only after that: Promote the exact commit to `main`, verify production and public domains, remove Supabase variables, reconcile `ARC-01`, and accept evidence.
+- Next exact action: Begin `WI-ARC-02-01` from the accepted Phase 0 foundation.
+- First files/symbols: Shared contract plan, current local interfaces, `src/lib`, and focused contract tests.
+- Expected observable result: Canonical depth, destination, discovery, and AI-context types compile from one shared source and one consumer fixture passes.
+- Only after that: Start the destination registry or cross-system actions; do not combine them into the first contract increment.
 
 ### Context That Must Survive
 
@@ -62,7 +63,7 @@ Replace Supabase retrieval with server-only Firestore vector search; retain deny
 | External permission | Firestore IAM role for portfolio service account | resolved | `roles/datastore.user`; read probe succeeds |
 | External configuration | Firestore vector index | resolved | 768-dimensional `rag_docs.embedding` index is `READY` |
 | External secret | Vercel Firebase environment variables | resolved | Production/Preview sensitive; Development encrypted |
-| Package | `ARC-01` canonical IDs | resolved for code | Canonical ingestion is implemented; acceptance waits for the new corpus |
+| Package | `ARC-01` canonical IDs | resolved | Canonical ingestion and managed-corpus acceptance are complete |
 
 ## Implementation Checklist
 
@@ -75,11 +76,11 @@ Replace Supabase retrieval with server-only Firestore vector search; retain deny
 - [x] Create and wait for the vector index.
 - [x] Re-index the canonical repository corpus and run a real vector query.
 - [x] Configure Vercel server-only Firebase variables.
-- [ ] Re-run tests, inventory, audit, and production build.
-- [ ] Deploy and verify diagnostics, chat, and all public domains.
-- [ ] Remove obsolete Supabase runtime variables after successful cutover.
-- [ ] Reconcile capability, evidence, dashboard, `ARC-01`, and resume records.
-- [ ] Commit and push only the intended migration files.
+- [x] Re-run tests, inventory, audit, and production build.
+- [x] Deploy and verify diagnostics, chat, and all public domains.
+- [x] Remove obsolete Supabase runtime variables after successful cutover.
+- [x] Reconcile capability, evidence, dashboard, `ARC-01`, and resume records.
+- [x] Commit and push only the intended migration files.
 
 ## Files And Entry Points
 
@@ -115,6 +116,16 @@ Replace Supabase retrieval with server-only Firestore vector search; retain deny
 - Next: Commit the bounded migration and push it to the preview branch.
 - Commit: uncommitted.
 
+### 2026-07-16 - Preview and production cutover accepted
+
+- State: in-progress -> done.
+- Changed: Committed the bounded migration as `fe64bb6`, pushed an exact-commit Preview, promoted the accepted deployment to Production, and removed all obsolete Supabase Vercel records.
+- Verified: Preview and Production retrieval each returned 4,635 context characters and canonical DreamLife IDs; grounded chat returned HTTP 200; the main site plus three project homes and three blog routes returned HTTP 200.
+- Security: Firebase remains free-tier with billing disabled, direct client rules deny all, runtime IAM remains `roles/datastore.user`, and staged secret scanning passed.
+- Evidence: `EV-BAS-08-01` through `EV-BAS-08-05` accepted.
+- Next: Begin `WI-ARC-02-01` on the accepted Phase 0 foundation.
+- Commit: `fe64bb6`.
+
 ## Completion Summary
 
-Complete only after accepted production evidence proves the free-tier Firestore cutover and focused push.
+The unavailable Supabase backend has been replaced by a server-only, deny-all-client, least-privilege Firestore vector store on the free tier. Canonical ingestion, retrieval, resilient chat, exact-commit Preview, Production, seven public routes, environment cleanup, and the focused GitHub push are accepted.

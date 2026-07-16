@@ -40,7 +40,7 @@ This plan covers:
 - Google Generative AI.
 - Firestore native vector retrieval through a server-only adapter.
 
-The previous Supabase retrieval contract is historical. `BAS-08` owns the free-tier Firestore migration and must be accepted before global AI work depends on retrieval in production.
+The previous Supabase retrieval contract is historical. `BAS-08` accepted the free-tier Firestore migration, so later global AI work can depend on the server-only production retrieval contract.
 
 The current UI already provides streaming chat and an animated orb. The next architecture should preserve working retrieval while changing where and how conversation appears.
 

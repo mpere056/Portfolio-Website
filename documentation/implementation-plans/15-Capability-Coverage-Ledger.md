@@ -66,10 +66,10 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | All applicable dimensions accepted; see `BAS-05` evidence | verified |
 | `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | All applicable dimensions accepted; see `BAS-06` evidence | verified |
 | `CAP-BAS-007` | Supported Next.js 16 framework modernization | `BAS-07` | Platform | `O-00` | 5 | All applicable dimensions accepted; see `BAS-07` evidence | verified |
-| `CAP-BAS-008` | Durable free-tier retrieval datastore | `BAS-08` | Platform, `V-10`, `V-11` | `O-00` | 3 | `S: accepted; C: not-applicable; A: ready-for-review; I: ready-for-review; T: ready-for-review; Q: not-applicable; R: working` | in-progress |
-| `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started` | in-progress |
-| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
-| `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-BAS-008` | Durable free-tier retrieval datastore | `BAS-08` | Platform, `V-10`, `V-11` | `O-00` | 3 | All applicable dimensions accepted; see `BAS-08` evidence | verified |
+| `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | All applicable dimensions accepted; see `ARC-01` and `BAS-08` evidence | verified |
+| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | All applicable dimensions accepted; see `ARC-02` evidence | verified |
+| `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
 | `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 
@@ -140,50 +140,66 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-BAS-008: Durable Free-Tier Retrieval Datastore
 
 - Owner: Codex
-- Lifecycle: in-progress
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: ready-for-review; I: ready-for-review; T: ready-for-review; Q: not-applicable; R: working`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted`
 - Package: `BAS-08`
-- Work item: `WI-BAS-08-01`
-- Works now: Firestore native vector retrieval and deterministic canonical ingestion are implemented; the dedicated project reports free tier with billing disabled; least-privilege service access succeeds; 42 chunks cover 36 canonical IDs; the 768-dimensional index is ready; real DreamLife retrieval returns canonical results; all Vercel environments contain server credentials; 6 files and 17 tests pass.
-- Named gaps: The migration commit, exact-commit Preview, Production cutover, public-route verification, Supabase variable removal, and final credential cleanup remain.
-- Safe exposure: Production still runs the historical deployment; the new database is server-only and no billing account is attached.
-- Evidence: `EV-BAS-08-01` through `EV-BAS-08-03` (candidate)
-- Next checkpoint: Focused commit and Vercel Preview prove the server environment and API routes.
-- Last assessed: 2026-07-16 in `WI-BAS-08-01`
+- Work item: `WI-BAS-08-01` (done)
+- Works now: Firestore native vector retrieval and deterministic canonical ingestion are live; the dedicated project reports free tier with billing disabled; least-privilege service access succeeds; 42 chunks cover 36 canonical IDs; the 768-dimensional index is ready; exact-commit Preview and Production retrieval/chat pass; all seven public routes are healthy; obsolete Supabase variables are removed.
+- Named gaps: No package acceptance gap remains. Local credential-file deletion and inaccessible historical-key revocation are explicit security follow-ups outside runtime implementation.
+- Safe exposure: Server-only credentials, deny-all client rules, no billing account, and retained Vercel rollback history.
+- Evidence: `EV-BAS-08-01` through `EV-BAS-08-05` accepted.
+- Next checkpoint: Preserve these constraints while `ARC-03` builds destination infrastructure.
+- Last assessed: 2026-07-16 at `fe64bb6` and Production `dpl_3HGisq6kX91L3yKVh1d9Ae8DrHQW`.
 
 ### CAP-ARC-001: Stable Namespaced IDs And Rename Policy
 
 - Owner: Codex
-- Lifecycle: in-progress
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started`
-- Active package: `ARC-01`
-- Work item: `WI-ARC-01-01`
-- Works now: Canonical content ID constructors and validators cover projects, timeline events, misc knowledge, and site posts; explicit aliases resolve only to valid canonical IDs; inventory and one-level Firestore ingestion share path classification and identity precedence; three unaffected misc records have authored IDs; the expanded 17-test suite and production build pass.
-- Named gaps: One separately edited misc record needs an authored ID, the managed Firestore corpus needs canonical re-indexing after `BAS-08` IAM/index readiness, three nested posts need later shared-loader ingestion, and no visitor-facing consumer resolves aliases yet.
-- Safe exposure: The utility and inventory reporting are internal; current route slugs and production behavior remain unchanged.
-- Evidence: `EV-ARC-01-01` (candidate)
-- Next checkpoint: Resume from paused work after `BAS-08` is ready for canonical ingestion; verify real retrieved IDs before package acceptance.
-- Last assessed: 2026-07-15 in `WI-ARC-01-01`
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted`
+- Package: `ARC-01`
+- Work item: `WI-ARC-01-01` (done)
+- Works now: Canonical constructors, validators, aliases, inventory, deterministic Firestore ingestion, the 42-chunk managed corpus, Preview, and Production retrieval all share namespaced content identities.
+- Named gaps: One separately edited misc record intentionally retains its validated fallback; recursive nested-post loading remains in `KG-01`; no real rename currently requires an alias entry.
+- Safe exposure: Route slugs are unchanged, fallback replacement requires an explicit alias, and managed retrieval already uses canonical IDs.
+- Evidence: `EV-ARC-01-01`, `EV-BAS-08-03`, `EV-BAS-08-04`, and `EV-BAS-08-05` accepted.
+- Next checkpoint: `ARC-03` uses the accepted identities inside destination records.
+- Last assessed: 2026-07-16 at `fe64bb6`.
 
 ### CAP-ARC-002: Shared Depth, Destination, Discovery, AI, And Project Contracts
 
-- Owner: unassigned
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Package: `ARC-02`
+- Works now: `portfolioContracts.ts` defines stable cross-system IDs, ordered depth, primitive-only safe state, destinations, discovery, AI context, archive cards, and project-experience manifests while reusing `ContentNodeId`.
+- Named gaps: Concrete destination data, runtime actions, validators, persistence, and UI consumers remain in `ARC-03` through `ARC-05` and later workstreams.
+- Safe exposure: Type-only infrastructure and tests; no visitor-facing behavior or persisted state changed.
+- Evidence: `EV-ARC-02-01` accepted.
+- Work item: `WI-ARC-02-01` (done).
+- Next checkpoint: `WI-ARC-03-01` inventories and validates concrete destinations.
+- Last assessed: 2026-07-16 in the focused contract increment.
+
+### CAP-ARC-003: Validated Destination Registry And Safe-State Resolution
+
+- Owner: Codex
 - Lifecycle: planned
-- Health: not-active
+- Health: ready
 - Confidence: high
 - Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started`
-- Package: `ARC-02`
-- Works now: Separate legacy interfaces exist for projects, timeline entries, project sites, and retrieval results.
-- Named gaps: No canonical shared source defines depth, destination, discovery, AI context, project state, or their versioning boundaries.
-- Safe exposure: Existing local interfaces remain until migrated behind tested adapters.
-- Evidence: `EV-BAS-05-01`
-- Work item: none; waits for `ARC-01`.
-- Next checkpoint: Typecheck and one cross-consumer fixture after stable IDs are accepted.
-- Last assessed: 2026-07-14 at `4144bcc`
+- Package: `ARC-03`
+- Works now: Shared destination/safe-state types are accepted; all current main and project-subdomain routes are healthy; project-site and proxy mappings provide inventory inputs.
+- Named gaps: No canonical registry, fallback resolver, destination-specific safe-state policy, checkpoint policy, or reusable cross-subdomain resolution exists.
+- Safe exposure: Existing links remain authoritative until pure registry parity and fallback tests pass.
+- Evidence: `EV-ARC-02-01`, `EV-BAS-08-05`.
+- Work item: `WI-ARC-03-01` (ready).
+- Next checkpoint: Record the smallest reviewed destination inventory before implementing registry data.
+- Last assessed: 2026-07-16 in `WI-ARC-03-01`.
 
 ## Knowledge Graph And Content
 

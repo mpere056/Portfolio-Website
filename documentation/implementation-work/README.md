@@ -10,19 +10,17 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, runtime, framework, and target-state audit baselines are complete. `BAS-08` is replacing the unavailable Supabase retrieval backend with free-tier Firestore; `ARC-01` acceptance is paused only at its managed-corpus rollout boundary.
+Phase 0 is complete: the supported stack, free-tier Firestore retrieval, canonical content identities, and shared contract vocabulary are accepted. `ARC-03` is the single ready item and begins the structural foundation with a data-only destination registry.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-BAS-08-01` | in-progress | `BAS-08` | Free Firestore, 42 chunks/36 IDs, ready index, real retrieval, Vercel credentials, and 17 tests | Commit and push exact migration to Vercel Preview | 2026-07-16 |
-| Next | `WI-ARC-01-01` | paused | `ARC-01` | Canonical identity and ingestion contract implemented | Resume canonical re-index and acceptance after `BAS-08` IAM/index readiness | 2026-07-15 |
+| Now | `WI-ARC-03-01` | ready | `ARC-03` | Shared destination contracts accepted; existing routes remain the visitor-safe baseline | Inventory current internal and cross-subdomain destinations before authoring registry data | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-BAS-08-01` | Migrate Retrieval To Firestore | in-progress | urgent | `BAS-08` | `CAP-BAS-008` | `active/WI-BAS-08-01.md` | 2026-07-16 |
-| `WI-ARC-01-01` | Establish Stable Content Identities | paused | high | `ARC-01` | `CAP-ARC-001` | `active/WI-ARC-01-01.md` | 2026-07-15 |
+| `WI-ARC-03-01` | Build The Destination Registry | ready | high | `ARC-03` | `CAP-ARC-003` | `active/WI-ARC-03-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -36,12 +34,14 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ARC-02-01` | done | `ARC-02` | Shared depth, destination, discovery, AI-context, card, and project-experience types accepted | `EV-ARC-02-01` | 2026-07-16 |
+| `WI-ARC-01-01` | done | `ARC-01` | Canonical IDs accepted in inventory, Firestore ingestion, Preview, and Production | `EV-ARC-01-01`, `EV-BAS-08-03` through `EV-BAS-08-05` | 2026-07-16 |
+| `WI-BAS-08-01` | done | `BAS-08` | Free-tier Firestore retrieval and grounded chat live on all public domains | `EV-BAS-08-01` through `EV-BAS-08-05` | 2026-07-16 |
 | `WI-BAS-05-01` | done | `BAS-05` | Supported implementation reconciled against target capabilities | `EV-BAS-05-01` through `EV-BAS-05-03` | 2026-07-14 |
 | `WI-BAS-07-01` | done | `BAS-07` | Next.js 16/React 19 and repaired AI runtime live on all production domains | `EV-BAS-07-01` through `EV-BAS-07-09` | 2026-07-14 |
 | `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
 | `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
 | `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |
-| `WI-BAS-01-01` | done | `BAS-01` | Technical baseline accepted | `EV-BAS-01-01` through `EV-BAS-01-04` | 2026-07-14 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 
