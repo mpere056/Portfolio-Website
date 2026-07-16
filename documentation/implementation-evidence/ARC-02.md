@@ -7,9 +7,9 @@ Last updated: 2026-07-16
 | Field | Value |
 | --- | --- |
 | Package | `ARC-02` Shared contract types |
-| Lifecycle | complete |
+| Lifecycle | reopened |
 | Capability | `CAP-ARC-002` |
-| Work item | `WI-ARC-02-01` |
+| Work items | `WI-ARC-02-01` done; `WI-ARC-02-02` ready |
 | Implementation commit | `91e6d54735d14cfbf4084c2bb4763933dcfe0129` |
 
 ## Accepted Evidence
@@ -55,8 +55,8 @@ npm run build
 
 | Capability | Before states | After states | Lifecycle | Health | Confidence | Evidence | Work item | Next checkpoint |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ARC-002` | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified | on-track | high | `EV-ARC-02-01` accepted | `WI-ARC-02-01` done | `ARC-03` validates concrete destinations against these types |
+| `CAP-ARC-002` | Original increment accepted | `S: accepted; C: not-applicable; A: working; I: working; T: working; Q: not-applicable; R: not-applicable` | reopened | on-track | high | `EV-ARC-02-01` accepted for original claim; follow-up pending | `WI-ARC-02-02` ready | Graph-only IDs and full discovery vocabulary pass tests/build |
 
 ## Completion Decision
 
-Complete. One shared type source and one cross-consumer fixture pass tests and the production build, with destination data, runtime validation, global actions, and UI behavior left to their named packages.
+The original increment and `EV-ARC-02-01` remain accepted for their named claim. Package-level completion is reopened because the approved architecture requires graph-only node identities and `easter_egg_found`, neither of which is represented by the current implementation. `WI-ARC-02-02` owns the bounded correction before `ARC-03` resumes.

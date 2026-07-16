@@ -1,3 +1,7 @@
+# Historical Original Website Brief
+
+> Original user brief retained as product history. It explains the first cube/About/Projects/chat structure but is not the current information architecture. The accepted direction is a technically multi-route, experientially continuous world with quiet global AI, project subdomains, increasing depth, and the routing policy in `implementation-plans/2026-07-16-Information-Architecture-And-Routing-Decision.md`.
+
 <Task>
 I want to create a portfolio website. 
 I want it to have a Hero "Igloo" Scene to start (like from this website https://www.igloo.inc/) - except instead of an igloo it would be a cube in a softly lit void. The cube is made up of many mini cubes, and hovering the mouse around the cube would make the mini cubes be displaced and light up and stuff, I'll provide the code for this for your reference. This page shouldn't be scrollable, but around the cube there should be a few buttons that can be clicked on to take the user to places - About Me, Projects, and AI Chat. 

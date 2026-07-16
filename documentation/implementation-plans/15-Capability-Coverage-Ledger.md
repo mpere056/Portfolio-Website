@@ -68,7 +68,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-BAS-007` | Supported Next.js 16 framework modernization | `BAS-07` | Platform | `O-00` | 5 | All applicable dimensions accepted; see `BAS-07` evidence | verified |
 | `CAP-BAS-008` | Durable free-tier retrieval datastore | `BAS-08` | Platform, `V-10`, `V-11` | `O-00` | 3 | All applicable dimensions accepted; see `BAS-08` evidence | verified |
 | `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | All applicable dimensions accepted; see `ARC-01` and `BAS-08` evidence | verified |
-| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | All applicable dimensions accepted; see `ARC-02` evidence | verified |
+| `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: working; I: working; T: working; Q: not-applicable; R: not-applicable` | reopened |
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
 | `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -76,7 +76,7 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-BAS-001: Reproducible Technical And Performance Baseline
 
 - Owner: Codex
-- Lifecycle: verified
+- Lifecycle: reopened
 - Health: on-track
 - Confidence: high
 - Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted`
@@ -175,30 +175,30 @@ Until a capability receives its own detail record, these defaults apply:
 - Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Dimension states: `S: accepted; C: not-applicable; A: working; I: working; T: working; Q: not-applicable; R: not-applicable`
 - Package: `ARC-02`
-- Works now: `portfolioContracts.ts` defines stable cross-system IDs, ordered depth, primitive-only safe state, destinations, discovery, AI context, archive cards, and project-experience manifests while reusing `ContentNodeId`.
-- Named gaps: Concrete destination data, runtime actions, validators, persistence, and UI consumers remain in `ARC-03` through `ARC-05` and later workstreams.
+- Works now: `portfolioContracts.ts` defines current cross-system IDs, ordered depth, primitive-only safe state, destinations, discovery, AI context, archive cards, and project-experience manifests; the original fixture and 19-test/build gate remain accepted.
+- Named gaps: `NodeId` currently equals `ContentNodeId` and cannot represent approved graph-only nodes; `easter_egg_found` is approved in architecture but absent from the implementation. Concrete destination data, actions, validators, persistence, and UI consumers remain in their downstream packages.
 - Safe exposure: Type-only infrastructure and tests; no visitor-facing behavior or persisted state changed.
-- Evidence: `EV-ARC-02-01` accepted.
-- Work item: `WI-ARC-02-01` (done).
-- Next checkpoint: `WI-ARC-03-01` inventories and validates concrete destinations.
-- Last assessed: 2026-07-16 at `91e6d54`.
+- Evidence: `EV-ARC-02-01` remains accepted for the original narrower claim; follow-up evidence pending.
+- Work item: `WI-ARC-02-02` (ready); `WI-ARC-02-01` remains done.
+- Next checkpoint: Expanded graph identity and discovery vocabulary pass tests/build, then `ARC-03` resumes.
+- Last assessed: 2026-07-16 after information-architecture review.
 
 ### CAP-ARC-003: Validated Destination Registry And Safe-State Resolution
 
 - Owner: Codex
 - Lifecycle: planned
-- Health: ready
+- Health: waiting
 - Confidence: high
 - Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started`
 - Package: `ARC-03`
-- Works now: Shared destination/safe-state types are accepted; all current main and project-subdomain routes are healthy; project-site and proxy mappings provide inventory inputs.
-- Named gaps: No canonical registry, fallback resolver, destination-specific safe-state policy, checkpoint policy, or reusable cross-subdomain resolution exists.
+- Works now: The page/depth architecture, route classes, museum/subdomain boundary, browser-history policy, and cross-origin persistence policy are approved; current routes remain healthy.
+- Named gaps: No canonical registry, fallback resolver, destination-specific safe-state policy, checkpoint policy, or reusable cross-subdomain resolution exists; implementation waits for `WI-ARC-02-02`.
 - Safe exposure: Existing links remain authoritative until pure registry parity and fallback tests pass.
 - Evidence: `EV-ARC-02-01`, `EV-BAS-08-05`.
-- Work item: `WI-ARC-03-01` (ready).
-- Next checkpoint: Record the smallest reviewed destination inventory before implementing registry data.
+- Work item: `WI-ARC-03-01` (paused).
+- Next checkpoint: Resume after `ARC-02` contract reconciliation, then record the route-classified destination inventory.
 - Last assessed: 2026-07-16 in `WI-ARC-03-01`.
 
 ## Knowledge Graph And Content

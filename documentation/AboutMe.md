@@ -1,5 +1,7 @@
 # **Specification · About Me Page**
 
+> Historical page specification. Preserve it as implementation history, but use `Comprehensive-Website-Vision.md`, `implementation-plans/06-About-And-Memory-Depth.md`, and the information-architecture decision for current work. In particular, About remains one chronological route with validated event depth; repeated chat CTAs and older framework assumptions are superseded.
+
 *(plus quick-outline for the Projects page)*
 
 ---

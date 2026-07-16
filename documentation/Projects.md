@@ -1,5 +1,7 @@
 # **Specification · Projects Page**
 
+> Historical page specification. Preserve it as implementation history, but use `Comprehensive-Website-Vision.md`, `implementation-plans/05-Projects-Museum-And-Case-Studies.md`, and the information-architecture decision for current work. Old project names, offer attribution, template-style CTAs, gamified badges, and dedicated `/chat` links are not current requirements.
+
 *(mirrors depth of the About-Me spec so a teammate can build the whole experience end-to-end)*
 
 ---

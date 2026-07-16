@@ -1,12 +1,26 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-14
+Last updated: 2026-07-16
 
 ## Purpose
 
 This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinated implementation plans.
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
+
+## Document Authority
+
+Use this precedence when documents differ:
+
+1. `documentation/Comprehensive-Website-Vision.md` for accepted product direction.
+2. Approved dated decisions in this folder for specific resolved choices.
+3. `00-System-Architecture-And-Interfaces.md` for current cross-system contracts.
+4. Active workstream plans `02` through `10` for implementation detail within those contracts.
+5. Tracking controls `13` through `17`, active work items, and evidence records for current execution truth.
+6. Baselines and completed work items for dated historical truth.
+7. Top-level legacy specifications and earlier ideation documents for history only when marked superseded or when the comprehensive vision explicitly incorporates them.
+
+Historical documents must not be silently rewritten to pretend they described the current system. They should carry a visible status banner and point to the active replacement.
 
 ## Scope Classification
 
@@ -54,6 +68,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `15-Capability-Coverage-Ledger.md` | Granular target capabilities and multidimensional status | Active status source |
 | `16-Progress-Dashboard.md` | Current focus, checkpoints, gaps, gates, risks, and next work | Active summary |
 | `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
+| `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
 | `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
 | `../implementation-evidence/README.md` | Evidence registry, acceptance rules, and package record template | Active evidence control |
 
@@ -65,6 +80,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
 | How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |
+| What pages should exist and how should depth affect URLs? | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | `00-System-Architecture-And-Interfaces.md` |
 | What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
@@ -120,7 +136,7 @@ Large features must not be represented by one optimistic status.
 - Build the relationship graph before relying on semantic lighting or graph-driven AI navigation.
 - Treat desktop as the active design target and preserve an architectural boundary for a future independent mobile experience.
 - Feature-flag expensive, experimental, or unfinished interactions.
-- Persist anonymous discovery locally before considering accounts or cloud synchronization.
+- Persist detailed anonymous discovery per origin; use only approved non-sensitive domain-scoped preferences and validated URL handoff across subdomains before considering accounts or cloud synchronization.
 - Do not expose private repository, personal, production, or visitor data in demonstrations.
 - Avoid fake activity, fake visitors, fake metrics, or demos that could be mistaken for live behavior.
 - Keep unrelated local worktree changes out of implementation commits.

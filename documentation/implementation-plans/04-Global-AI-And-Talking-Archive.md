@@ -1,6 +1,6 @@
 # Global AI And Talking Archive Plan
 
-Last updated: 2026-07-15
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -183,6 +183,8 @@ Choose the exact AI SDK mechanism during implementation based on the installed v
 
 The expanded state should be the same AI system with more room for sources and exploration.
 
+When this state earns a durable route, use `/archive`. It remains the expanded state of the global AI rather than a separate assistant or primary navigation requirement.
+
 It can show:
 
 - Active conversation.
@@ -198,9 +200,9 @@ It should not expose hidden chain-of-thought. Show sources, concise rationale, a
 1. Extract chat state and UI from `ChatUI` into reusable global components.
 2. Mount the global provider in the root layout.
 3. Add the quiet presence to main portfolio pages.
-4. Keep `/chat` as an expanded archive entry point during migration.
+4. Keep `/chat` as a compatibility entry point during migration; later redirect or resolve it to `/archive` only after reload, deep-link, error, and cross-subdomain behavior pass.
 5. Update internal links to open the global AI where appropriate.
-6. After validation, decide whether `/chat` remains a deep link, redirects to an archive state, or becomes an alias.
+6. After validation, preserve `/chat` as a legacy alias or redirect to the canonical `/archive` state.
 
 Do not remove the working route before global conversation handles reloads, deep links, and errors reliably.
 

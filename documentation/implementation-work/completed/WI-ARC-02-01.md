@@ -26,7 +26,7 @@ Create one canonical TypeScript module for the shared contracts already approved
 
 - State in one sentence: The shared contract vocabulary is implemented and locally accepted without visitor-facing behavior changes.
 - Works now: Stable template IDs, ordered depth stages, primitive-only safe state, destination references, discovery events, AI context, archive cards, and project-experience manifests share one module and one DreamLife fixture.
-- Incomplete or stubbed: Concrete destination entries, fallback resolution, runtime validation, cross-system actions, and persisted migrations remain in `ARC-03` through `ARC-05`.
+- Incomplete or stubbed: The original accepted claim remains true, but a later architecture audit found that `NodeId` is too narrow for graph-only nodes and the approved `easter_egg_found` event is missing; follow-up is tracked in `WI-ARC-02-02`.
 - Safe exposure: This is compile-time architecture only; existing pages, APIs, navigation, and local storage are unchanged.
 
 ### Known-Good Point
@@ -74,6 +74,12 @@ Create one canonical TypeScript module for the shared contracts already approved
 - Next: `WI-ARC-03-01`.
 - Commit: `91e6d54`.
 
+### 2026-07-16 - Later audit created a bounded follow-up
+
+- Package effect: `ARC-02` reopened without invalidating the original contract evidence.
+- Found: Graph-only node namespaces and `easter_egg_found` were omitted from the first increment.
+- Follow-up: `WI-ARC-02-02` owns correction before `ARC-03` resumes.
+
 ## Completion Summary
 
-The portfolio now has one compile-time vocabulary for the cross-system concepts that exploration, AI, projects, and future navigation will share. The package is complete because its type and consumer gates pass without hiding later registry, action, validation, or migration work.
+The first contract increment established one compile-time vocabulary and remains a valid completed work item. Package-level acceptance was later reopened by `WI-ARC-02-02` when routing review exposed omitted graph-node and discovery-event requirements.

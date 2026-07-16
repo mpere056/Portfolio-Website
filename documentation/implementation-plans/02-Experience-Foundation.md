@@ -1,6 +1,6 @@
 # Experience Foundation Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -77,7 +77,9 @@ Use stable semantic IDs such as `home:first-note`, `project:lifeinbox`, and `tim
 
 ### Storage
 
-Start with versioned `localStorage` persistence through a Zustand persistence layer or a small dedicated adapter.
+Start with versioned per-origin `localStorage` persistence through a Zustand persistence layer or a small dedicated adapter.
+
+`localStorage` cannot cross from `marknperera.ca` to project subdomains. Use a small non-sensitive `.marknperera.ca` cookie only for approved global preferences and coarse return hints, and validated destination/return parameters for cross-subdomain handoff. Keep detailed discoveries and altered-object state local to each origin. Do not add accounts or server visitor profiles without a separate privacy decision.
 
 ### Versioning
 
@@ -99,9 +101,20 @@ Do not restore an exact camera matrix by default. Persist a semantic checkpoint:
 
 Each page converts the checkpoint into a clean, stable camera or layout state.
 
+### Browser History
+
+- Signal and ordinary Approach interactions do not create history entries.
+- Meaningful Handle state may update a validated query or fragment.
+- Enter and Understand push durable history only when the state is independently useful.
+- Browser Back closes a meaningful depth layer before leaving the durable route.
+- Direct links restore at a safe checkpoint and never begin with an unskippable animation.
+- Cross-subdomain transitions carry only validated destination, return, and bounded safe state.
+
 ## Depth Grammar Components
 
 Build reusable state primitives before visual primitives.
+
+Depth primitives operate inside durable routes defined by `2026-07-16-Information-Architecture-And-Routing-Decision.md`; they do not create one route per depth stage.
 
 Suggested modules:
 

@@ -1,4 +1,8 @@
-Below is a **bird-eye technical blueprint** for the complete portfolio, from entry cube to AI chat, written so you (or any collaborator) can jump straight into scaffolding.
+# Historical Website Overview
+
+> Superseded planning baseline. This document describes the original portfolio scaffold and is retained to explain existing implementation choices. Do not use its Next.js 14, React 18, Supabase, Edge-runtime, dedicated-chat-page, or route assumptions for new work. Current authority: `Comprehensive-Website-Vision.md`, `implementation-plans/2026-07-16-Information-Architecture-And-Routing-Decision.md`, and the active implementation plans.
+
+Below is the original **bird-eye technical blueprint** for the portfolio, from entry cube to AI chat.
 
 ---
 

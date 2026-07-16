@@ -1,6 +1,6 @@
 # Comprehensive Website Vision
 
-Last revised: 2026-07-12
+Last revised: 2026-07-16
 
 Status: Primary source of truth for future creative direction.
 
@@ -30,6 +30,28 @@ The website should feel mysterious without being confusing, expressive without b
 The central principle is:
 
 **Let visitors discover, experience, manipulate, and understand.**
+
+### Information Architecture
+
+The portfolio should be technically multi-route while feeling like one continuous world.
+
+Routes represent durable places with independent loading, deep-link, browser-history, search, and recovery value. Increasing depth usually happens inside those places rather than creating one page per stage. Shared transitions, persistent discovery, global AI, semantic lighting, stimulation, and orientation make the places feel connected.
+
+The core durable places are:
+
+- `/` as the world atrium, First Note, return checkpoint, tour entry, and major portals.
+- `/about` as one chronological environment with inspectable events.
+- `/projects` as the museum lobby and overview.
+- `/projects/[slug]` as a stable project entry family, with flagship entries leading to canonical project subdomains.
+- An optional future `/archive` as the expanded state of the same global AI.
+
+Flagship subdomains are canonical project worlds, not duplicates of the museum. The museum normally owns Signal, Approach, and lightweight Handle states. Project subdomains normally own substantial Enter and Understand states, plus canonical project blogs.
+
+Transient proximity, pointer, camera, and manipulation state should not create routes. Meaningful Handle, Enter, and Understand states should support validated browser history or deep links when they are independently useful. Browser Back should close the current meaningful layer before leaving its durable place.
+
+Environmental navigation remains primary, but a quiet universal orientation control must always provide a reliable way to move or return. It should not look like a literal compass, checklist, or conventional persistent navbar unless testing proves one is needed.
+
+The approved routing and state policy is recorded in `implementation-plans/2026-07-16-Information-Architecture-And-Routing-Decision.md`.
 
 ## 2. Confirmed Design Principles
 

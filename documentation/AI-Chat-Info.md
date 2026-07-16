@@ -1,4 +1,4 @@
-> Historical reference only. Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`; current retrieval uses server-side Firestore native vector search and Node.js Vercel functions.
+> Historical reference only. Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`; current retrieval uses server-side Firestore native vector search and Node.js Vercel functions. Current AI information architecture is global and contextual; `/chat` remains only as a compatibility route until the future `/archive` state and global shell are proven.
 
 Below is the original Supabase starter kit retained for migration history.
 

@@ -1,6 +1,6 @@
 # About And Memory Depth Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -178,6 +178,8 @@ Support a stable event query or fragment:
 Optional deeper state can use additional safe parameters or local destination state.
 
 Direct links should open at Approach or Handle, not launch an unskippable memory-room animation.
+
+Chronology remains one durable `/about` route. Do not create one page per timeline event. Event selection, consequences, and ordinary inspection use validated route state so browser Back closes inspection before leaving About. A memory room receives a dedicated route only if the prototype is retained and proves independent loading or sharing value.
 
 ## Sensitive Content
 

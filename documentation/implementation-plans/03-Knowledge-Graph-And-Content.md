@@ -1,6 +1,6 @@
 # Knowledge Graph And Content Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -72,6 +72,8 @@ Recommended formats:
 - `offering:ai-workflow-audit`
 
 IDs must remain stable when display names change.
+
+The graph does not require one public page per node or a dedicated constellation route. Visitor-facing nodes become navigable only through reviewed destinations, while other nodes remain evidence and relationship infrastructure.
 
 ## Core Types
 

@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-14
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -23,12 +23,12 @@ Evolve the existing portfolio into a persistent exploratory world while continui
 
 The repository already provides:
 
-- Next.js 14 App Router pages.
+- Next.js 16 App Router pages on Node.js 24.
 - A Three.js and React Three Fiber home scene.
 - 3D project models and project detail overlays.
 - A fullscreen About timeline.
 - MDX content loaders for projects, timeline events, and project blogs.
-- RAG-backed AI chat using the Vercel AI SDK and Google Generative AI.
+- RAG-backed AI chat using the Vercel AI SDK, Google Generative AI, and server-only Firestore vector retrieval.
 - Zustand state.
 - Project subdomain middleware.
 - Vercel deployment and custom domains.
@@ -40,8 +40,8 @@ The program should extend these foundations rather than replace the entire appli
 
 The critical dependency chain is:
 
-1. Content schemas and reviewed relationships.
-2. Shared context and discovery-state architecture.
+1. Stable content/graph identities, destinations, and route/state contracts.
+2. Content schemas, reviewed relationships, and shared context/discovery-state architecture.
 3. Global AI shell and route/object context contract.
 4. One-time First Note, persistence, tour, and stimulation controls.
 5. One complete flagship project exhibit.
@@ -52,6 +52,8 @@ The critical dependency chain is:
 10. Later mobile, musical, and shared-navigation work.
 
 Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status.
+
+The approved information architecture is technically multi-route and experientially one world. `/` is the atrium, `/about` remains one chronology, `/projects` is the museum lobby, and flagship Enter/Understand states normally live on canonical project subdomains. Depth does not automatically create pages.
 
 ## Critical Path And Safe Parallelism
 

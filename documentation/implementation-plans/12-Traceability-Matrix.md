@@ -20,7 +20,7 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 
 | ID | Confirmed requirement | Owning plan | Primary work packages | Acceptance evidence |
 | --- | --- | --- | --- | --- |
-| `V-01` | One cohesive experience | `02`, `05`, `06` | `EXP-02`, `PRJ-03`, `ABT-02` | Shared depth grammar across Home, one project, and one event |
+| `V-01` | One cohesive experience | `00`, `02`, `05`, `06`, IA decision | `ARC-03`, `EXP-02`, `PRJ-03`, `ABT-02` | Durable routes and semantic destinations feel continuous across Home, one project subdomain, and one event while Back/deep links remain predictable |
 | `V-02` | Exploration is primary | `02` | `EXP-02`, `EXP-05` | New visitor discovers and handles one object without forced tour |
 | `V-03` | Increasing depth | `00`, `02`, `05` | `ARC-02`, `EXP-02`, `PRJ-03` | Signal through Understand works in first flagship |
 | `V-04` | Products are experienced | `05` | `PRJ-02` through `PRJ-06` | Flagship product slices pass interaction QA |

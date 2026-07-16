@@ -1,6 +1,6 @@
 # System Architecture And Interface Contracts
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -8,7 +8,7 @@ Last updated: 2026-07-13
 | --- | --- |
 | Plan ID | `ARC` |
 | Status | Active foundation |
-| Upstream | Comprehensive Website Vision, Decision Register |
+| Upstream | Comprehensive Website Vision, Decision Register, Information Architecture And Routing Decision |
 | Downstream | Every active implementation plan |
 | Primary outputs | Stable IDs, shared contracts, ownership boundaries, event vocabulary |
 | Execution packages | `ARC-01` through `ARC-05` |
@@ -19,6 +19,25 @@ Last updated: 2026-07-13
 Define how the planned systems connect so that experience, graph, AI, projects, About, living state, and quality work do not invent incompatible models independently.
 
 This document owns cross-system contracts. Workstream documents own internal implementation details.
+
+## Route, Destination, And State Layers
+
+The application is multi-route and one experiential world.
+
+Use four distinct layers:
+
+| Layer | Owns | Examples |
+| --- | --- | --- |
+| Durable route | Independent loading, direct access, search/canonical metadata, and error boundary | `/`, `/about`, `/projects`, project subdomains, blog posts |
+| Semantic destination | Stable selected place and requested depth within or across routes | A timeline event, project exhibit, product experience, architecture layer |
+| Shareable safe state | Bounded validated state needed to restore a useful view | Selected part, authored scenario key, requested depth |
+| Transient interaction | Pointer, camera, animation, drag, local puzzle edit, and unreviewed scene state | Never treated as canonical navigation |
+
+The destination resolver maps IDs to routes, selected areas, safe state, fallback, checkpoint policy, and cross-subdomain behavior. Tour, AI cards, graph relationships, semantic lighting, returning checkpoints, and ordinary deep links must use that resolver rather than inventing local URL formats.
+
+Browser Back closes the current meaningful depth state before leaving the durable route. Direct links restore at a safe checkpoint and never launch an unskippable animation.
+
+See `2026-07-16-Information-Architecture-And-Routing-Decision.md` for canonical, planned, legacy, internal, and gated route policy.
 
 ## System Map
 
@@ -114,7 +133,25 @@ Must use shared contracts for:
 All systems use namespaced stable IDs.
 
 ```ts
-type NodeId = `${NodeNamespace}:${string}`;
+type ContentNodeId =
+  | `project:${string}`
+  | `timeline:${string}`
+  | `misc:${string}`
+  | `post:${string}:${string}`;
+
+type GraphOnlyNodeId =
+  | `project-state:${string}`
+  | `feature:${string}`
+  | `decision:${string}`
+  | `constraint:${string}`
+  | `lesson:${string}`
+  | `skill:${string}`
+  | `community:${string}`
+  | `media:${string}`
+  | `repository:${string}`
+  | `offering:${string}`;
+
+type NodeId = ContentNodeId | GraphOnlyNodeId;
 type DestinationId = `destination:${string}`;
 type ExperienceId = `experience:${string}`;
 type DiscoveryId = `discovery:${string}`;
@@ -168,7 +205,7 @@ interface ExperienceDestination {
   areaId?: string;
   experienceId?: ExperienceId;
   requestedDepth?: DepthStage;
-  safeState?: Record<string, string>;
+  safeState?: Record<string, string | number | boolean>;
 }
 ```
 
@@ -189,6 +226,8 @@ Every destination must provide:
 - A safe fallback route.
 - A checkpoint restoration policy.
 - Cross-subdomain behavior.
+
+The initial registry also classifies each destination as canonical, planned, legacy alias, internal-only, or feedback-gated. Only canonical and explicitly approved planned destinations may appear in tours or AI cards.
 
 ## Discovery Event Contract
 
@@ -221,6 +260,21 @@ Consumers:
 - Optional privacy-respecting analytics.
 
 Do not use discovery events as factual evidence in the knowledge graph.
+
+Implementation note: the first `ARC-02` increment omitted `easter_egg_found` and narrowed `NodeId` to `ContentNodeId`. `ARC-02` is reopened through `WI-ARC-02-02`; dependent registry implementation waits for that reconciliation.
+
+## Cross-Origin Experience State
+
+`localStorage` is origin-scoped. The apex domain and each project subdomain therefore cannot share one local-storage store.
+
+Near-term ownership is:
+
+- A small non-sensitive cookie scoped to `.marknperera.ca` for approved global preferences such as First Note completion, tour role/dismissal, stimulation, and a coarse return hint.
+- Versioned per-origin local storage for detailed discoveries, altered objects, and local project-demo state.
+- Validated destination and return context for cross-subdomain navigation.
+- Session-only AI conversation where practical.
+
+Do not add authenticated or server-persisted visitor profiles merely to synchronize anonymous exploration. Richer persistence requires a separate privacy decision.
 
 ## AI Context Contract
 

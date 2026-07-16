@@ -1,6 +1,6 @@
 # Projects Museum And Case Studies Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -93,9 +93,11 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 ### Overview
 
 - Preserve a fast project overview for direct visitors.
+- Treat `/projects` as the museum lobby rather than the canonical full home of each flagship.
 - Replace generic card-only browsing with exhibits that signal depth.
 - Keep stable anchors and direct links for every project.
 - Allow AI cards and the guided tour to open a project at a safe requested stage.
+- Add `/projects/[slug]` as the planned stable direct-entry family; flagship entries transition or redirect to canonical project subdomains, while smaller projects may render in the museum shell.
 
 ### Depth Behavior
 
@@ -290,8 +292,13 @@ The visual implementation can differ per project. Shared code manages ordering, 
 ## Direct Routes And Subdomains
 
 - Maintain direct project anchors on `/projects`.
-- Preserve project subdomains as deep product destinations.
-- Decide whether museum `Enter` navigates to a subdomain or transitions in-place per project.
+- Preserve current anchors as compatibility inputs while canonical destinations move toward `/projects/[slug]`.
+- Preserve project subdomains as canonical flagship project worlds and deep product destinations.
+- Museum Signal and Approach remain on `/projects`; lightweight Handle may begin there; substantial Enter and Understand normally transition to the project subdomain.
+- Allow in-place flagship Enter only when a bounded prototype proves the cross-subdomain transition materially harms the experience.
+- Start each subdomain with one coherent project shell. Add `/experience/[id]` or a case-study route only when the state deserves independent loading, sharing, history, or search value.
+- Keep `/blog` and `/blog/[slug]` canonical on each project subdomain.
+- Ensure every subdomain can return to its exact museum exhibit and preserve a validated return destination.
 - Use canonical metadata to avoid duplicate search indexing if the same content appears in multiple routes.
 - AI destinations must support both main-domain and subdomain contexts.
 

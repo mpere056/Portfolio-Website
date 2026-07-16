@@ -1,6 +1,6 @@
 ## AI Chat - Historical Supabase Implementation Plan
 
-> Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`. This file is retained as historical implementation context and must not be used for current environment setup.
+> Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`. This file is retained as historical implementation context and must not be used for current environment setup or current AI page structure. Current product direction is the quiet global AI in `implementation-plans/04-Global-AI-And-Talking-Archive.md`; `/chat` is only a compatibility route during that migration.
 
 ### Objectives
 - **Answer portfolio questions with facts from MDX** in `src/content/projects` and `src/content/about` using retrieval-augmented generation.
