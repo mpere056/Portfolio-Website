@@ -6,8 +6,8 @@ import {
   GENERATION_MODELS,
 } from '@/lib/generationPolicy'
 
-// IMPORTANT! Set the runtime to edge
-export const runtime = 'edge';
+// Firestore's server client requires the Node.js runtime.
+export const runtime = 'nodejs';
 
 const buildGoogleGenAIPrompt = (messages: Message[]) => ({
   contents: messages

@@ -7,14 +7,12 @@ const googleMocks = vi.hoisted(() => ({
 
 // Mock env before importing module under test
 process.env.GOOGLE_API_KEY = 'test-key'
-process.env.NEXT_PUBLIC_SUPA_URL = 'http://localhost:54321'
-process.env.NEXT_PUBLIC_SUPA_ANON_KEY = 'anon'
 
-// Mock supabase client used by retriever
-vi.mock('@/lib/db', () => {
-  const rpc = vi.fn()
-  return { supa: { rpc } }
-})
+const ragStoreMocks = vi.hoisted(() => ({
+  findNearestRagDocuments: vi.fn(),
+}))
+
+vi.mock('@/lib/ragStore', () => ragStoreMocks)
 
 // Mock Google SDK
 vi.mock('@google/generative-ai', async () => {
@@ -36,11 +34,10 @@ describe('fetchContext', () => {
     googleMocks.getGenerativeModel.mockReset().mockReturnValue({
       embedContent: googleMocks.embedContent,
     })
+    ragStoreMocks.findNearestRagDocuments.mockReset().mockResolvedValue([])
   })
 
-  it('returns empty when supabase yields no rows', async () => {
-    const { supa } = await import('@/lib/db') as any
-    supa.rpc.mockResolvedValue({ data: [], error: null })
+  it('returns empty when Firestore yields no rows', async () => {
     const { fetchContext } = await import('@/lib/retriever')
     const res = await fetchContext('hello world', 4)
     expect(res.context).toBe('')
@@ -53,21 +50,18 @@ describe('fetchContext', () => {
   })
 
   it('returns concatenated context and unique slugs', async () => {
-    const { supa } = await import('@/lib/db') as any
-    supa.rpc.mockResolvedValue({ data: [
-      { slug: 'story-app', content: 'AI-powered interactive story generator' },
-      { slug: 'discord-sync-messaging', content: 'Multi-bot relay and high FPS text animations' },
-      { slug: 'story-app', content: 'More details about story-app' },
-    ], error: null })
+    ragStoreMocks.findNearestRagDocuments.mockResolvedValue([
+      { contentId: 'project:story-app', content: 'AI-powered interactive story generator' },
+      { contentId: 'project:discord-sync-messaging', content: 'Multi-bot relay and high FPS text animations' },
+      { contentId: 'project:story-app', content: 'More details about story-app' },
+    ])
     const { fetchContext } = await import('@/lib/retriever')
     const res = await fetchContext('projects', 2)
     expect(res.context).toMatch(/interactive story|relay/i)
-    expect(res.slugs).toEqual(['story-app', 'discord-sync-messaging'])
+    expect(res.slugs).toEqual(['project:story-app', 'project:discord-sync-messaging'])
   })
 
-  it('rejects an unexpected embedding shape before querying pgvector', async () => {
-    const { supa } = await import('@/lib/db') as any
-    supa.rpc.mockClear()
+  it('rejects an unexpected embedding shape before querying Firestore', async () => {
     googleMocks.embedContent.mockResolvedValueOnce({
       embedding: { values: Array.from({ length: 3072 }, () => 0.01) },
     })
@@ -76,7 +70,7 @@ describe('fetchContext', () => {
     await expect(fetchContext('dimension guard')).rejects.toThrow(
       'Expected 768 embedding dimensions, received 3072',
     )
-    expect(supa.rpc).not.toHaveBeenCalled()
+    expect(ragStoreMocks.findNearestRagDocuments).not.toHaveBeenCalled()
   })
 })
 

@@ -1,6 +1,6 @@
 # Capability Coverage Ledger
 
-Last updated: 2026-07-14
+Last updated: 2026-07-16
 
 ## Plan Metadata
 
@@ -66,6 +66,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-BAS-005` | Target-state implementation baseline | `BAS-05` | `V-01` through `V-24` | `O-00` | 2 | All applicable dimensions accepted; see `BAS-05` evidence | verified |
 | `CAP-BAS-006` | Supported Node.js 24 and security bridge | `BAS-06` | Platform | `O-00` | 3 | All applicable dimensions accepted; see `BAS-06` evidence | verified |
 | `CAP-BAS-007` | Supported Next.js 16 framework modernization | `BAS-07` | Platform | `O-00` | 5 | All applicable dimensions accepted; see `BAS-07` evidence | verified |
+| `CAP-BAS-008` | Durable free-tier retrieval datastore | `BAS-08` | Platform, `V-10`, `V-11` | `O-00` | 3 | `S: accepted; C: not-applicable; A: ready-for-review; I: ready-for-review; T: ready-for-review; Q: not-applicable; R: working` | in-progress |
 | `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started` | in-progress |
 | `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-started` | planned |
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -136,6 +137,22 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: `ARC-01` completes canonical content identity and migration policy.
 - Last assessed: 2026-07-14 at `4144bcc`
 
+### CAP-BAS-008: Durable Free-Tier Retrieval Datastore
+
+- Owner: Codex
+- Lifecycle: in-progress
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: ready-for-review; I: ready-for-review; T: ready-for-review; Q: not-applicable; R: working`
+- Package: `BAS-08`
+- Work item: `WI-BAS-08-01`
+- Works now: Firestore native vector retrieval and deterministic canonical ingestion are implemented; the dedicated project reports free tier with billing disabled; least-privilege service access succeeds; 42 chunks cover 36 canonical IDs; the 768-dimensional index is ready; real DreamLife retrieval returns canonical results; all Vercel environments contain server credentials; 6 files and 17 tests pass.
+- Named gaps: The migration commit, exact-commit Preview, Production cutover, public-route verification, Supabase variable removal, and final credential cleanup remain.
+- Safe exposure: Production still runs the historical deployment; the new database is server-only and no billing account is attached.
+- Evidence: `EV-BAS-08-01` through `EV-BAS-08-03` (candidate)
+- Next checkpoint: Focused commit and Vercel Preview prove the server environment and API routes.
+- Last assessed: 2026-07-16 in `WI-BAS-08-01`
+
 ### CAP-ARC-001: Stable Namespaced IDs And Rename Policy
 
 - Owner: Codex
@@ -145,12 +162,12 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S: accepted; C: working; A: working; I: working; T: working; Q: not-applicable; R: not-started`
 - Active package: `ARC-01`
 - Work item: `WI-ARC-01-01`
-- Works now: Canonical content ID constructors and validators cover projects, timeline events, misc knowledge, and site posts; explicit aliases resolve only to valid canonical IDs; inventory and one-level ingestion share path classification and identity precedence; legacy retrieval rows are removed during replacement; three unaffected misc records now have authored IDs; 13 tests and the production build pass.
-- Named gaps: One separately edited misc record needs an authored ID, the managed retrieval corpus needs canonical re-indexing, three nested posts need later shared-loader ingestion, and no visitor-facing consumer resolves aliases yet.
+- Works now: Canonical content ID constructors and validators cover projects, timeline events, misc knowledge, and site posts; explicit aliases resolve only to valid canonical IDs; inventory and one-level Firestore ingestion share path classification and identity precedence; three unaffected misc records have authored IDs; the expanded 17-test suite and production build pass.
+- Named gaps: One separately edited misc record needs an authored ID, the managed Firestore corpus needs canonical re-indexing after `BAS-08` IAM/index readiness, three nested posts need later shared-loader ingestion, and no visitor-facing consumer resolves aliases yet.
 - Safe exposure: The utility and inventory reporting are internal; current route slugs and production behavior remain unchanged.
 - Evidence: `EV-ARC-01-01` (candidate)
-- Next checkpoint: Commit and preview the migration, then re-index and verify the managed retrieval corpus before package acceptance.
-- Last assessed: 2026-07-14 in `WI-ARC-01-01`
+- Next checkpoint: Resume from paused work after `BAS-08` is ready for canonical ingestion; verify real retrieved IDs before package acceptance.
+- Last assessed: 2026-07-15 in `WI-ARC-01-01`
 
 ### CAP-ARC-002: Shared Depth, Destination, Discovery, AI, And Project Contracts
 

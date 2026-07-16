@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-14
-Implementation commit baseline: `4144bcc2f252a211ce0c611328ffe6be6d51dd32`
+Last reconciled: 2026-07-16
+Implementation commit baseline: `5d0765eca5f5869f1d64d6353ec5a233430d0a7b`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `4144bcc2f252a211ce0c611328ffe6be6d51dd32`
 
 ## Current Program State
 
-**Target-state implementation baseline: complete; stable content identities are in progress.**
+**Target-state implementation baseline: complete; the free-tier Firestore retrieval migration is in progress.**
 
-`BAS-05` reconciled the supported site against the approved target and preserved reusable legacy behavior without overstating it. Immediate architecture, loader, and quality capabilities now have inspected states; distant capabilities remain explicitly unknown until they approach execution.
+`BAS-05` reconciled the supported site against the approved target. The old Supabase project later became unavailable, so `BAS-08` now owns a bounded Firestore cutover. Canonical ID implementation remains intact and `ARC-01` is paused only at its managed-corpus acceptance boundary.
 
 This distinction prevents two errors:
 
@@ -28,7 +28,7 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | stable IDs in progress | on-track | Inventory and ingestion share canonical IDs; 13 tests and build pass | Canonical corpus rollout, contracts, test harness | Exact-commit preview then managed retrieval re-index |
+| `O-00` Measured foundation | Firestore migration in progress | on-track | Free project, 42 chunks/36 IDs, ready index, real retrieval, Vercel credentials, and 17 tests | Exact-commit Preview and Production cutover | Commit and push the Preview branch |
 | `O-01` Persistent exploratory world | planned | not-active | Legacy spatial navigation and project expansion assessed | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
 | `O-02` Quiet global AI | planned | not-active | Standalone RAG chat and its target gaps assessed | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
@@ -41,7 +41,8 @@ This distinction prevents two errors:
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
 | `ready` | 0 | No package is waiting at the start line; the dependency-ready package is active |
-| `in-progress` | 1 | `ARC-01` has an active resumable work item |
+| `in-progress` | 1 | `BAS-08` has the single active implementation item |
+| `implemented` | 1 | `ARC-01` code is implemented; acceptance is paused behind `BAS-08` rollout |
 | `pending` | 43 | Valid active work waiting on dependencies or sequencing |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
@@ -61,12 +62,13 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 4 | `BAS-06` | Supported runtime and security bridge | complete | `BAS-04` | Node.js 24 tests/build, audit delta, preview, production, and rollback evidence |
 | 5 | `BAS-07` | Supported framework modernization | complete | `BAS-06` | Next.js 16, React/3D ecosystem, API, browser, visual, preview, and production gates pass |
 | 6 | `BAS-05` | Target-state implementation audit | complete | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Current and next capabilities have inspected states and restartable work items |
-| 7 | `ARC-01` | Stable ID policy | in-progress | `BAS-02` | Validation fixture, canonical consumers, initial IDs, and rename policy |
-| 8 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
-| 9 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
-| 10 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
+| 7 | `BAS-08` | Durable free-tier retrieval datastore | in-progress | `BAS-07`, `ARC-01` ingestion contract | Real canonical retrieval, grounded live chat, routes, and rollback evidence |
+| 8 | `ARC-01` | Stable ID policy | implemented | `BAS-02`; rollout waits on `BAS-08` | Validation fixture, canonical managed corpus, and rename policy |
+| 9 | `ARC-02` | Shared contracts | pending | `ARC-01` | Typecheck and consumer fixture |
+| 10 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
+| 11 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
 
-The complete baseline packages establish the supported production stack and its honest target-state starting point. `ARC-01` is the first active architecture package.
+The complete baseline packages establish the supported production stack. `BAS-08` is a bounded recovery package required before `ARC-01` can accept its canonical managed-corpus evidence.
 
 ## Now And Next
 
@@ -74,8 +76,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-01-01` | in-progress | `ARC-01` | Shared inventory/ingestion IDs, legacy-row replacement, 38 authored IDs, 13 tests, and build pass | Commit and preview the migration before managed retrieval re-index | 2026-07-14 |
-| Next | Uncreated | planned | `ARC-02` | Waits for accepted canonical content identities | Define shared depth, destination, discovery, AI context, and project contracts | 2026-07-14 |
+| Now | `WI-BAS-08-01` | in-progress | `BAS-08` | Free Firestore, least-privilege IAM, 42 chunks/36 IDs, ready index, real retrieval, Vercel credentials, and 17 tests | Commit and push exact migration to Vercel Preview | 2026-07-16 |
+| Next | `WI-ARC-01-01` | paused | `ARC-01` | Canonical identities and Firestore ingestion contract implemented | Resume canonical corpus acceptance after `BAS-08` IAM/index readiness | 2026-07-15 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -89,11 +91,11 @@ No work items are currently `in-review`.
 
 ## Blocked Or Paused
 
-No implementation work items are currently blocked or paused. Product and planning gates remain listed below.
+`ARC-01` is deliberately paused at its external corpus boundary while the active recovery package establishes the replacement datastore.
 
 | Work item | State | Reason | Restart condition | Last known-good point | Last update |
 | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - |
+| `WI-ARC-01-01` | paused | Managed Supabase corpus is unavailable and Firestore is not yet ingest-ready | `BAS-08` IAM and vector index are ready | Canonical code and expanded retrieval tests pass | 2026-07-15 |
 
 ## Partial Implementation Watchlist
 
@@ -101,7 +103,8 @@ The active stable-ID capability has a bounded partial implementation. Other insp
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ARC-001` | `WI-ARC-01-01` | Shared inventory/ingestion identity, alias policy, safe legacy-row replacement, 38 authored IDs, 13 tests, and build | One authored fallback, managed corpus re-index, preview and acceptance | Internal code only until managed re-index | Commit and preview, then re-index canonical retrieval IDs | `EV-ARC-01-01` candidate |
+| `CAP-BAS-008` | `WI-BAS-08-01` | Free Firestore, canonical ingestion, least-privilege IAM, 42 chunks/36 IDs, ready index, real retrieval, all Vercel credentials, and 17 tests | Commit, Preview, Production, route verification, old-variable cleanup | Production still on historical deployment | Commit and push exact Preview branch | `EV-BAS-08-01` through `EV-BAS-08-03` candidate |
+| `CAP-ARC-001` | `WI-ARC-01-01` | Shared inventory/ingestion identity, alias policy, deterministic Firestore IDs, 38 authored IDs, and expanded tests | One authored fallback, managed corpus re-index, preview and acceptance | Internal code only until managed re-index | Resume after `BAS-08` IAM/index readiness | `EV-ARC-01-01` candidate |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -110,6 +113,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Gate | Affects | State | Needed next |
 | --- | --- | --- | --- |
 | Runtime and framework compatibility | Baseline and future deployments | resolved | No action; `BAS-06` and `BAS-07` are accepted |
+| Firestore service-account data access | `BAS-08`, `ARC-01` | resolved | `Cloud Datastore User` verified; index and canonical corpus ready |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
 | First flagship selection | `PRJ-04` | waits on prototype | Compare LifeInbox and Sudoku spikes using visitor value, risk, and reuse evidence |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
@@ -128,13 +132,14 @@ This section is intentionally selective. The capability ledger remains the compl
 | Creative ambition outpaces loading and fallbacks | Main path depends on all heavy assets and services | Preserve staged loading, flags, posters, and error boundaries | `QA-02`, `QA-04` |
 | Resume context becomes stale | Active work item unchanged for 14 days | Mark stale, verify known-good point, and refresh next exact action | `QA-06` |
 | Unsupported runtime or framework reaches deployment cutoff | Vercel continues selecting Node.js 20 or bridge work stalls | Prioritize `BAS-06`; preserve `BAS-07` as a separate follow-on with rollback to the bridge | `BAS-06`, `BAS-07` |
+| Replacement datastore accidentally requires billing or exposes client access | Billing/trial prompt appears or rules permit public reads | Stop; retain Spark, deny-all rules, server-only credentials, and current production rollback | `BAS-08` |
 
 ## Evidence Summary
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 24 | Baseline, audit, runtime, framework, AI recovery, preview, and production evidence |
-| Candidate | 1 | Canonical content-ID contract and fixtures await consumer migration |
+| Candidate | 3 | Firestore contract/foundation and canonical content IDs await external integration and rollout |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
 
@@ -144,6 +149,8 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-16 | Established dedicated free Firestore backend under `mpere056@gmail.com` | `BAS-08`, `CAP-BAS-008`, `WI-BAS-08-01`, `ARC-01`, `O-00` | Billing disabled; 42 chunks/36 canonical IDs; index ready; real retrieval and Vercel credentials verified; Preview remains |
+| 2026-07-15 | Began free-tier Firestore retrieval migration after Supabase became unavailable | `BAS-08`, `CAP-BAS-008`, `WI-BAS-08-01`, `ARC-01`, `O-00` | Local adapter, ingestion, rules, Spark database, service key, and 17 tests exist; IAM/index/cutover remain explicit |
 | 2026-07-14 | Completed target-state audit and began stable content identities | `BAS-05`, `ARC-01`, `CAP-BAS-005`, `CAP-ARC-001`, `WI-ARC-01-01`, `O-00` | Current implementation reconciled; shared inventory/ingestion IDs, alias policy, safe legacy replacement, and 13 tests pass |
 | 2026-07-14 | Completed supported framework modernization and AI runtime recovery | `BAS-07`, `CAP-BAS-007`, `WI-BAS-07-01`, `O-00` | Next.js 16/React 19, retrieval, chat fallback, preview, production, public routes, and rollback evidence accepted; `BAS-05` is ready |
 | 2026-07-14 | Completed the runtime maintenance decision | `BAS-04`, `CAP-BAS-004`, `WI-BAS-04-01`, `O-00` | Node.js 24 bridge and separate Next.js 16 migration accepted; `BAS-06` is ready |
@@ -175,7 +182,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `ARC-01` aligns ingestion or changes its authored-ID migration boundary.
-- `ARC-01` reaches review, completion, or a blocker.
+- `BAS-08` gains Firestore IAM access, index readiness, or production cutover evidence.
+- `ARC-01` resumes canonical-corpus acceptance or changes its authored-ID boundary.
 - A gate or dependency changes.
 - Target implementation code lands.

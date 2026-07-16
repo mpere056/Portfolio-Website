@@ -1,10 +1,10 @@
-import { supa } from './db'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import {
   createEmbeddingRequest,
   EMBEDDING_DIMENSIONS,
   EMBEDDING_MODEL,
 } from './embeddingPolicy'
+import { findNearestRagDocuments } from './ragStore'
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!)
 const DEBUG = process.env.DEBUG_RAG === '1' || process.env.NODE_ENV !== 'production'
@@ -30,21 +30,17 @@ export async function fetchContext(query: string, topK = 4): Promise<RetrievedCo
     throw new Error(`Expected ${EMBEDDING_DIMENSIONS} embedding dimensions, received ${queryEmbedding.length}`)
   }
 
-  if (DEBUG) console.log('[RAG] supabase.rpc(match_docs)')
-  const { data, error } = await supa.rpc('match_docs', {
-    query_embedding: queryEmbedding,
-    match_count: 12
-  })
-  if (error) {
-    if (DEBUG) console.error('[RAG] match_docs error', error)
-    throw error
+  if (DEBUG) console.log('[RAG] firestore vector query')
+  const rows = await findNearestRagDocuments(queryEmbedding, 12)
+  if (DEBUG) {
+    console.log('[RAG] retrieved rows', {
+      count: rows.length,
+      slugs: rows.slice(0, 6).map(row => row.contentId),
+    })
   }
-
-  const rows = (data as any) as Array<{ slug: string; content: string; similarity?: number }>
-  if (DEBUG) console.log('[RAG] retrieved rows', { count: rows?.length, slugs: rows?.slice(0, 6)?.map(r => r.slug) })
   const top = (rows || []).slice(0, Math.max(0, Math.min(topK, rows?.length || 0)))
   const context = top.map(r => r.content).join('\n\n')
-  const slugs = Array.from(new Set(top.map(r => r.slug).filter(Boolean)))
+  const slugs = Array.from(new Set(top.map(r => r.contentId).filter(Boolean)))
 
   if (DEBUG) console.log('[RAG] selected context', { chars: context.length, slugs })
   return { context, slugs }

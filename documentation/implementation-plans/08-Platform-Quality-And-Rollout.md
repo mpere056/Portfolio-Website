@@ -1,6 +1,6 @@
 # Platform, Quality, And Rollout Plan
 
-Last updated: 2026-07-14
+Last updated: 2026-07-15
 
 ## Plan Metadata
 
@@ -79,7 +79,7 @@ Before the implementation program grows:
 
 - Reconfirm the supported Vercel Node runtime.
 - Plan the previously warned Node runtime upgrade before the hosting deadline.
-- Verify Next.js, AI SDK, React Three Fiber, Three.js, and Supabase compatibility together.
+- Verify Next.js, AI SDK, React Three Fiber, Three.js, and Firestore compatibility together.
 - Upgrade through a dedicated maintenance change, not inside a flagship-experience branch.
 - Capture build and visual baselines before and after dependency upgrades.
 

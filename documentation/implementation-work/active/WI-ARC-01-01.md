@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | paused |
 | Priority | high |
 | Package | `ARC-01` |
 | Capabilities | `CAP-ARC-001` |
@@ -14,7 +14,7 @@
 | Owner | Codex |
 | Branch/worktree | `main` |
 | Created | 2026-07-14 |
-| Last update | 2026-07-14 |
+| Last update | 2026-07-15 |
 
 ## Acceptance
 
@@ -24,7 +24,7 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 
 ### Current Truth
 
-- State in one sentence: Canonical content IDs are shared by inventory and ingestion with safe legacy-row replacement; preview, managed re-indexing, and one authored fallback remain.
+- State in one sentence: Canonical content IDs are implemented locally, while managed re-indexing and acceptance are paused behind the active `BAS-08` Firestore cutover.
 - Works now: `project:`, `timeline:`, `misc:`, and `post:{site}:` IDs are deterministic and reject unstable shapes; one-level ingestion uses the same derivation; three unaffected misc records have authored IDs; 5 test files and 13 tests plus the production build pass.
 - Incomplete or stubbed: The managed retrieval corpus still contains legacy bare IDs, one separately edited misc record uses a filename fallback, nested posts remain outside later shared-loader ingestion, and no visitor-facing consumer resolves aliases.
 - Safe exposure: Current changes affect internal utilities, tests, and inventory output only; routes, persisted visitor state, and production retrieval remain unchanged.
@@ -39,7 +39,7 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 
 ### Restart Here
 
-- Next exact action: Commit the focused audit and stable-ID increment, deploy that exact commit, and verify its build before running the managed corpus re-index.
+- Next exact action: Resume after `BAS-08` establishes Firestore IAM and its vector index, then run the canonical corpus ingest and verify retrieved IDs.
 - First files/symbols: `src/lib/contentIds.ts`, `scripts/ingest.ts`, `src/lib/contentInventory.ts`, `tests/contentIds.test.ts`, and the Vercel preview.
 - Expected observable result: The preview build passes without route changes; a later controlled re-index replaces bare retrieval IDs with canonical IDs and leaves grounded chat healthy.
 - Only after that: Decide whether the one separately edited misc fallback can be migrated independently, accept evidence, and close `ARC-01` or retain the explicit gap.
@@ -51,6 +51,7 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 - Recursive loading and nested-blog ingestion belong to `KG-01`; do not absorb that package here.
 - Alias resolution is explicit and one-way; never silently lowercase or slugify an unknown client ID.
 - `.gitignore`, `.husky/pre-commit`, `src/content/misc/ai-productivity-system.mdx`, `.tmp-repos/`, and `.tools/` are unrelated and must remain unstaged.
+- Supabase became unavailable after the original implementation checkpoint. `BAS-08` supersedes only the retrieval-backend rollout path; canonical ID rules and tests remain this package's contract.
 
 ## Implementation Checklist
 
@@ -84,6 +85,15 @@ Confirm canonical namespace and segment rules; implement shared constructors, va
 - Remaining: Focused commit, exact-commit preview, managed retrieval re-index, chat verification, and evidence acceptance.
 - Next: Commit and preview before mutating the managed retrieval corpus.
 - Commit: uncommitted
+
+### 2026-07-15 - Acceptance paused behind Firestore cutover
+
+- State: in-progress -> paused.
+- Changed: The canonical ingestion contract was adapted to deterministic Firestore document IDs as part of `BAS-08` after the Supabase project became unavailable.
+- Verified: Canonical retrieval mapping is covered by the expanded 6-file, 17-test suite.
+- Remaining: One fallback authored ID and accepted real-corpus/production evidence.
+- Restart condition: `BAS-08` IAM and vector index are ready for canonical ingestion.
+- Commit: uncommitted.
 
 ## Completion Summary
 

@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-14
+Last reconciled: 2026-07-16
 
 ## Purpose
 
@@ -10,18 +10,19 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The technical, content, runtime, framework, and target-state audit baselines are complete. `ARC-01` is implementing canonical content identities before shared experience contracts or visitor features begin.
+The technical, content, runtime, framework, and target-state audit baselines are complete. `BAS-08` is replacing the unavailable Supabase retrieval backend with free-tier Firestore; `ARC-01` acceptance is paused only at its managed-corpus rollout boundary.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-01-01` | in-progress | `ARC-01` | Shared inventory/ingestion IDs, safe legacy replacement, 38 authored IDs, 13 tests, and build pass | Commit and preview before managed retrieval re-index | 2026-07-14 |
-| Next | Uncreated | planned | `ARC-02` | Waits for accepted content identity | Define shared depth, destination, discovery, AI context, and project contracts | 2026-07-14 |
+| Now | `WI-BAS-08-01` | in-progress | `BAS-08` | Free Firestore, 42 chunks/36 IDs, ready index, real retrieval, Vercel credentials, and 17 tests | Commit and push exact migration to Vercel Preview | 2026-07-16 |
+| Next | `WI-ARC-01-01` | paused | `ARC-01` | Canonical identity and ingestion contract implemented | Resume canonical re-index and acceptance after `BAS-08` IAM/index readiness | 2026-07-15 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ARC-01-01` | Establish Stable Content Identities | in-progress | high | `ARC-01` | `CAP-ARC-001` | `active/WI-ARC-01-01.md` | 2026-07-14 |
+| `WI-BAS-08-01` | Migrate Retrieval To Firestore | in-progress | urgent | `BAS-08` | `CAP-BAS-008` | `active/WI-BAS-08-01.md` | 2026-07-16 |
+| `WI-ARC-01-01` | Establish Stable Content Identities | paused | high | `ARC-01` | `CAP-ARC-001` | `active/WI-ARC-01-01.md` | 2026-07-15 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

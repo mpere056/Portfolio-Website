@@ -1,6 +1,6 @@
 # Global AI And Talking Archive Plan
 
-Last updated: 2026-07-13
+Last updated: 2026-07-15
 
 ## Plan Metadata
 
@@ -38,7 +38,9 @@ This plan covers:
 - `src/app/api/rag/diag/route.ts`
 - Vercel AI SDK `useChat`.
 - Google Generative AI.
-- Supabase-backed retrieval.
+- Firestore native vector retrieval through a server-only adapter.
+
+The previous Supabase retrieval contract is historical. `BAS-08` owns the free-tier Firestore migration and must be accepted before global AI work depends on retrieval in production.
 
 The current UI already provides streaming chat and an animated orb. The next architecture should preserve working retrieval while changing where and how conversation appears.
 

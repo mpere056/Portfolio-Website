@@ -1,4 +1,6 @@
-Below is a **step-by-step “starter kit”** that plugs Supabase + pgvector into the Chat UI you already have, uses **Google’s embedding model** for retrieval, and sends the final prompt to **Gemini 2.5-flash**—all inside a Vercel Edge Function.
+> Historical reference only. Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`; current retrieval uses server-side Firestore native vector search and Node.js Vercel functions.
+
+Below is the original Supabase starter kit retained for migration history.
 
 ---
 

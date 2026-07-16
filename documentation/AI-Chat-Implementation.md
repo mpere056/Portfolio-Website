@@ -1,4 +1,6 @@
-## AI Chat — Implementation Plan (Gemini + Supabase RAG)
+## AI Chat - Historical Supabase Implementation Plan
+
+> Superseded on 2026-07-15 by `implementation-plans/2026-07-15-Firebase-Retrieval-Migration-Decision.md`. This file is retained as historical implementation context and must not be used for current environment setup.
 
 ### Objectives
 - **Answer portfolio questions with facts from MDX** in `src/content/projects` and `src/content/about` using retrieval-augmented generation.

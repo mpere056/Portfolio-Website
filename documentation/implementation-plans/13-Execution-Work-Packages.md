@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-14
+Last updated: 2026-07-15
 
 ## Plan Metadata
 
@@ -45,12 +45,13 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `BAS-05` | Target-state implementation audit | `BAS-01`, `BAS-02`, `BAS-06`, `BAS-07` | Reconcile retained baseline behavior plus the current and next capability set against code, content, tests, and live routes | Current and next capabilities have inspected states and restartable work items; distant unknowns remain explicit | complete |
 | `BAS-06` | Supported runtime and security bridge | `BAS-04` | Node.js 24 engine and Vercel alignment, narrow Next.js 14 security update, bounded direct remediations, runtime policy test | Node.js 24 tests/build pass; audit delta reviewed; preview and production routes verified with rollback ready | complete |
 | `BAS-07` | Supported framework modernization | `BAS-06` | Next.js 16 and React 19 ecosystem migration, async route APIs, ESLint CLI, middleware/proxy and edge review | Unit, integration, browser, visual, 3D, API, preview, and rollback gates pass | complete |
+| `BAS-08` | Durable free-tier retrieval datastore migration | `BAS-07`, `ARC-01` canonical ingestion contract | Firestore native vector adapter, canonical re-indexing, deny-all client rules, Spark-plan guardrail, Vercel cutover | Local tests/build, real canonical retrieval, grounded live chat, public routes, and rollback evidence pass without billing | in-progress |
 
 ## Architecture Packages
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture and decision record | in-progress |
+| `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture, canonical managed corpus, and decision record | implemented |
 | `ARC-02` | Shared contract types | `ARC-01` | Canonical TypeScript types for depth, destinations, discovery, context | Typecheck and consumer fixture | pending |
 | `ARC-03` | Destination registry | `ARC-02` | Validated registry for routes, areas, subdomains, safe state | Unit tests including unknown destination | pending |
 | `ARC-04` | Cross-system actions | `ARC-02` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | pending |

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { fetchContext } from '@/lib/retriever'
 
-export const runtime = 'edge'
+export const runtime = 'nodejs'
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
@@ -15,8 +15,9 @@ export async function GET(req: Request) {
       slugs,
       env: {
         GOOGLE_API_KEY: !!process.env.GOOGLE_API_KEY,
-        NEXT_PUBLIC_SUPA_URL: !!process.env.NEXT_PUBLIC_SUPA_URL,
-        NEXT_PUBLIC_SUPA_ANON_KEY: !!process.env.NEXT_PUBLIC_SUPA_ANON_KEY,
+        FIREBASE_PROJECT_ID: !!process.env.FIREBASE_PROJECT_ID,
+        FIREBASE_CLIENT_EMAIL: !!process.env.FIREBASE_CLIENT_EMAIL,
+        FIREBASE_PRIVATE_KEY: !!process.env.FIREBASE_PRIVATE_KEY,
       }
     })
   } catch (e: any) {

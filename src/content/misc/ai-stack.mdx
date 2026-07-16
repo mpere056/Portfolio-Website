@@ -2,12 +2,12 @@
 slug: "ai-stack"
 name: "AI Chat Stack"
 year: "2025"
-headline: "Supabase pgvector retrieval + Gemini streaming on Vercel Edge"
-summary: "RAG pipeline that embeds MDX content, retrieves similar chunks from Supabase, and streams answers from Gemini with citations."
+headline: "Firestore vector retrieval + Gemini streaming on Vercel"
+summary: "RAG pipeline that embeds MDX content, retrieves similar chunks from Firestore, and streams grounded answers from Gemini."
 ---
 
-The chatbot loads content from my MDX files (projects and timeline), converts it to plain text, chunks it, and stores vector embeddings in Supabase using `pgvector`.
+The chatbot loads content from my MDX files, converts it to plain text, chunks it, and stores canonical content records with 768-dimensional vector embeddings in Cloud Firestore.
 
-At query time, it embeds your question, retrieves the most similar chunks via an RPC (`match_docs`), selects a diverse subset, and sends that context to Gemini 2.5 Flash. Responses stream to the UI and include citations like `(story-app)` when relevant.
+At query time, it embeds your question, runs Firestore nearest-neighbour search, selects a small relevant subset, and sends that context to Gemini Flash. The database remains private to server credentials, while the site streams the grounded answer to the visitor.
 
 
