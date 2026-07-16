@@ -16,7 +16,7 @@ Last updated: 2026-07-16
 
 ## Scope
 
-Phase 1 status: `EXP-01` is complete at `afa5f67`. The versioned per-origin store, migration-aware hydration, semantic checkpoints, stimulation state, and reset are implemented and tested but remain unmounted. `QA-01` is the next gate; visitor-facing depth begins in `EXP-02` only after that integrated foundation flow passes.
+Phase 2 status: `QA-01` is complete and `EXP-02` is in progress at `4c9b02a`. The versioned store and integrated foundation flow are accepted; the dormant transition engine now defines all five stages and emits synchronized action, checkpoint, and AI-context outputs. A headless controller and controlled consumer remain the next required checkpoints before visitor-facing adoption.
 
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
 

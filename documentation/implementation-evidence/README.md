@@ -104,6 +104,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-KG-03-01` | `KG-03` | `CAP-KG-003` | integration-test | accepted | `afa5f67` + `1c7129b`, prebuild graph gate | 2026-07-16 | `KG-03.md` |
 | `EV-KG-04-01` | `KG-04` | `CAP-KG-004` | content-review | accepted | `afa5f67`, 49-node/19-edge fixture | 2026-07-16 | `KG-04.md` |
 | `EV-LPS-01-01` | `LPS-01` | `CAP-LPS-001` | contract | accepted | `afa5f67`, lifecycle fixtures | 2026-07-16 | `LPS-01.md` |
+| `EV-QA-01-01` | `QA-01` | Foundation flow | integration-test | accepted | `4c9b02a`, integrated contract fixture | 2026-07-16 | `QA-01.md` |
+| `EV-EXP-02-01` | `EXP-02` | `CAP-EXP-003`, `CAP-EXP-004` | contract | accepted | `4c9b02a`, depth transition fixture | 2026-07-16 | `EXP-02.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

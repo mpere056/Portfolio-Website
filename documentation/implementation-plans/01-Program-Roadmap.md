@@ -62,7 +62,7 @@ The approved information architecture is technically multi-route and experientia
 | Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, then `BAS-05` | Runtime/security and supported-framework work complete before target capability reconciliation |
 | Contracts | `ARC-01`, `ARC-02`, `ARC-03` | Quality harness design after shared types stabilize |
 | Structural foundation | `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` | Loader migration, persistence, AI context, lifecycle schema with contract coordination |
-| Exploration shell | `EXP-02` to `EXP-05`, `AI-02`, `AI-03`, `KG-05` | First Note, tour, global shell, graph queries after their direct dependencies pass |
+| Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Foundation flow, First Note, tour, global shell, and graph queries/retrieval after their direct dependencies pass |
 | First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-03`, `QA-02` | Asset preparation and reviewed About relationships, not another flagship implementation |
 | Expansion | `PRJ-05` to `PRJ-08`, `ABT-01` to `ABT-04`, `LPS-04` | Remaining flagships and About can overlap only after museum and graph contracts are stable |
 
@@ -82,11 +82,11 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 | --- | --- |
 | Phase 0 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `ARC-01` |
 | Phase 1 | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
-| Phase 2 | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` |
+| Phase 2 | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` |
 | Phase 3 | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-02`, `LPS-03`, `QA-02` |
 | Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05` |
 | Phase 5 | `ABT-01` to `ABT-04` |
-| Phase 6 | `LPS-04`, `LPS-05`, `QA-03` |
+| Phase 6 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` |
 | Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
 
 `QA-06` runs across phases after `BAS-05`; it reconciles capability status, evidence, and dashboard summaries rather than forming a standalone release phase.
@@ -166,7 +166,7 @@ Implementation checkpoint: commits `afa5f67` and `1c7129b` complete the dormant 
 - Global AI shell in dormant and contextual states.
 - Stimulation and sound controls.
 - Initial discovery physics rules.
-- New-content disturbance model using authored test data.
+- A bounded new-content disturbance prototype may use authored test data; final `EXP-07` integration remains with `LPS-04` in Phase 6.
 
 ### Exit Criteria
 

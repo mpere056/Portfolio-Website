@@ -85,7 +85,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | --- | --- | --- |
 | Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `BAS-08`, `ARC-01` | Baseline, supported runtime/framework, durable retrieval, target-state capability audit, and stable-ID decisions recorded |
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
-| Phase 2 Exploration shell | `EXP-02` to `EXP-07`, `AI-02`, `AI-03`, `KG-05`, `QA-01` | First Note, tour, AI shell, lighting prototype work together |
+| Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Foundation flow, First Note, tour, AI shell, graph retrieval, and lighting prototype work together; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
 | Phase 3 First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `QA-02` | One full vertical slice passes acceptance |
 | Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02` | Three flagship experiences and lighter projects coherent |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
