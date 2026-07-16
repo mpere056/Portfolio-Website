@@ -31,7 +31,7 @@ Implement a dedicated Zustand exploration store around the accepted version-1 se
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit.
+- Commit: `d5fca116729787c49725d38c58e6183ea2470428`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test`, `npm run inventory:content`, and `npm run build` under Node.js 24.
 - Verification result: 10 test files and 37 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors and 11 retained warnings; production build passes.
@@ -80,7 +80,7 @@ Implement a dedicated Zustand exploration store around the accepted version-1 se
 - Changed: Bounded the first exploration increment around dormant, injectable, versioned state infrastructure rather than visitor UI.
 - Verified: `ARC-05` dependencies pass 37 tests and the production build.
 - Next: Write memory-storage fixtures around Zustand vanilla/persist behavior.
-- Commit: pending focused implementation commit.
+- Commit: `d5fca116729787c49725d38c58e6183ea2470428`.
 
 ## Completion Summary
 

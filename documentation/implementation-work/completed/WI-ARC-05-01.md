@@ -31,7 +31,7 @@ Inventory actual untrusted and persisted boundaries; implement dependency-light 
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit; dependency baseline `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`.
+- Commit: `d5fca116729787c49725d38c58e6183ea2470428`; dependency baseline `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test`, `npm run inventory:content`, and `npm run build` under Node.js 24.
 - Verification result: 10 test files and 37 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors and 11 retained warnings; production build passes.
@@ -81,7 +81,7 @@ Inventory actual untrusted and persisted boundaries; implement dependency-light 
 - Verified: 10 test files and 37 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors; the production build typechecks and emits all 26 pages.
 - Evidence: `EV-ARC-05-01` accepted.
 - Next: `WI-EXP-01-01` dormant versioned exploration store and storage-adapter tests.
-- Commit: pending focused implementation commit.
+- Commit: `d5fca116729787c49725d38c58e6183ea2470428`.
 
 ### 2026-07-16 - Boundary inventory and fixtures started
 
