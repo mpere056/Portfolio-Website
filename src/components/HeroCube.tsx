@@ -1,56 +1,137 @@
 "use client";
 
 import * as THREE from 'three'
-import { useRef, useMemo, useEffect } from 'react'
+import { memo, useRef, useMemo, useEffect } from 'react'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
-import { OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
+import { Html, OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
 import { RoundedBoxGeometry } from 'three-stdlib'
 import { motion } from '@/components/FramerMotion';
 import { easing } from 'maath'
 import NavPointer from './NavPointer';
 import { BufferGeometry } from 'three';
+import { FirstNoteExperience } from './experience/FirstNoteExperience';
+import type { FirstNotePresentation } from '@/lib/experience/firstNote';
 
 extend({ RoundedBoxGeometry })
 
-export default function HeroCube() {
+export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnabled?: boolean }) {
   return (
-    <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw', zIndex: 0 }}>
-      <ResponsiveCamera />
-      <color attach="background" args={['#07070d']} />
-      {/* Subtle star field for space vibe */}
-      <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
-      <ambientLight intensity={0.18} />
-      <spotLight position={[-10, 20, 20]} angle={0.15} penumbra={3} decay={0} intensity={2} castShadow />
-      <HeroScaleGroup>
-        <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
-        {/* Platform under the hero model */}
-        <group>
-          <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
-            <cylinderGeometry args={[2.5, 2.5, 0.2, 64]} />
-            <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
-          </mesh>
-          <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[2.5, 2.53, 64]} />
-            <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
-          </mesh>
-          <PlatformImage src="/images/me_logo.png" />
-        </group>
-      </HeroScaleGroup>
-      <EffectComposer>
-        <N8AO aoRadius={1} intensity={1} />
-        <Bloom mipmapBlur luminanceThreshold={0.3} levels={5} intensity={2} />
-      </EffectComposer>
-      <OrbitControls autoRotate autoRotateSpeed={0.7} />
-      <CursorLight />
-      <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
-      <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
-      <NavPointer path="/chat" position={[-2, -1.5, -2]}>
-        <span>Ask Me Anything </span>
-        <span className="bg-[linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa)] bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">[AI]</span>
-      </NavPointer>
-    </Canvas>
+    <FirstNoteExperience enabled={firstNoteEnabled}>
+      {({ state, presentation, wake, reset }) => (
+        <div
+          className="relative h-screen w-screen overflow-hidden bg-[#07070d]"
+          style={{ backgroundColor: '#07070d' }}
+        >
+          <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw', zIndex: 0 }}>
+            <ResponsiveCamera />
+            <color attach="background" args={['#07070d']} />
+            <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
+            <AwakeningLights presentation={presentation} reducedMotion={state.reducedMotionRequested} />
+            <HeroScaleGroup>
+              <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
+              <group>
+                <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
+                  <cylinderGeometry args={[2.5, 2.5, 0.2, 64]} />
+                  <meshStandardMaterial color="#191936" roughness={0.9} metalness={0.1} />
+                </mesh>
+                <mesh position={[0, -2.31, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
+                  <ringGeometry args={[2.5, 2.53, 64]} />
+                  <meshBasicMaterial color="#312f6b" transparent opacity={0.05} side={THREE.DoubleSide} />
+                </mesh>
+                <PlatformImage src="/images/me_logo.png" />
+              </group>
+            </HeroScaleGroup>
+            <HeroPostProcessing />
+            <OrbitControls autoRotate autoRotateSpeed={0.7} />
+            <CursorLight />
+            {presentation.navigationVisible && (
+              <>
+                <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
+                <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
+                <NavPointer path="/chat" position={[-2, -1.5, -2]}>
+                  <span>Ask Me Anything </span>
+                  <span className="bg-[linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa)] bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">[AI]</span>
+                </NavPointer>
+              </>
+            )}
+            {presentation.wakeControlVisible && <FirstNoteWakeControl onWake={wake} />}
+          </Canvas>
+          {firstNoteEnabled && state.phase === 'ready' && state.visitor !== 'bypass' && (
+            <button
+              type="button"
+              onClick={reset}
+              className="absolute bottom-5 left-5 z-20 rounded-full border border-white/10 bg-black/35 px-3 py-1.5 font-mono text-[11px] tracking-wide text-white/45 backdrop-blur-md transition hover:border-white/20 hover:text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            >
+              Reset opening
+            </button>
+          )}
+        </div>
+      )}
+    </FirstNoteExperience>
   )
+}
+
+const HeroPostProcessing = memo(function HeroPostProcessing() {
+  return (
+    <EffectComposer>
+      <N8AO aoRadius={1} intensity={1} />
+      <Bloom mipmapBlur luminanceThreshold={0.3} levels={5} intensity={2} />
+    </EffectComposer>
+  );
+});
+
+function AwakeningLights({
+  presentation,
+  reducedMotion,
+}: {
+  presentation: FirstNotePresentation;
+  reducedMotion: boolean;
+}) {
+  const ambient = useRef<THREE.AmbientLight>(null);
+  const spot = useRef<THREE.SpotLight>(null);
+  const visible = presentation.illumination !== 'dark';
+
+  useFrame((_, delta) => {
+    const ambientTarget = visible ? 0.18 : 0.012;
+    const spotTarget = visible ? 2 : 0.08;
+    if (ambient.current) {
+      ambient.current.intensity = reducedMotion
+        ? ambientTarget
+        : THREE.MathUtils.damp(ambient.current.intensity, ambientTarget, 3.2, delta);
+    }
+    if (spot.current) {
+      spot.current.intensity = reducedMotion
+        ? spotTarget
+        : THREE.MathUtils.damp(spot.current.intensity, spotTarget, 2.4, delta);
+    }
+  });
+
+  return (
+    <>
+      <ambientLight ref={ambient} intensity={visible ? 0.18 : 0.012} />
+      <spotLight ref={spot} position={[-10, 20, 20]} angle={0.15} penumbra={3} decay={0} intensity={visible ? 2 : 0.08} castShadow />
+    </>
+  );
+}
+
+function FirstNoteWakeControl({ onWake }: { onWake: () => void }) {
+  return (
+    <Html center position={[0, -0.35, 2.4]} zIndexRange={[30, 20]}>
+      <button
+        type="button"
+        onClick={onWake}
+        className="group min-w-52 rounded-2xl border border-white/15 bg-[#08080d]/80 px-5 py-4 text-left text-white shadow-[0_18px_80px_rgba(0,0,0,0.65)] backdrop-blur-xl transition duration-500 hover:border-white/30 hover:bg-[#10101a]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+        aria-label="Play the first note and reveal the portfolio"
+      >
+        <span className="block font-serif text-lg tracking-wide text-white/90">Play the first note</span>
+        <span className="mt-1.5 flex items-center justify-between gap-5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35 group-hover:text-white/55">
+          <span>Wake the world</span>
+          <kbd className="rounded border border-white/10 px-1.5 py-0.5">Enter</kbd>
+        </span>
+      </button>
+    </Html>
+  );
 }
 
 interface ParticlesProps {

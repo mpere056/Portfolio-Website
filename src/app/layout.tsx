@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import GlobalAudio from "@/components/GlobalAudio";
+import { resolveFeatureFlags } from "@/lib/featureFlags";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const cormorant = Cormorant_Garamond({
@@ -25,11 +26,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const flags = resolveFeatureFlags();
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cormorant.variable}`}>
         {children}
-        <GlobalAudio />
+        <GlobalAudio deferHomeAutoplay={flags.firstNote} />
       </body>
     </html>
   );

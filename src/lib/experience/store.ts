@@ -19,6 +19,18 @@ export interface ExplorationStorage {
   removeItem(key: string): unknown | Promise<unknown>;
 }
 
+export const browserExplorationStorage: ExplorationStorage = {
+  getItem(key) {
+    return typeof window === 'undefined' ? null : window.localStorage.getItem(key);
+  },
+  setItem(key, value) {
+    if (typeof window !== 'undefined') window.localStorage.setItem(key, value);
+  },
+  removeItem(key) {
+    if (typeof window !== 'undefined') window.localStorage.removeItem(key);
+  },
+};
+
 export type ExplorationHydrationStatus =
   | 'idle'
   | 'current'

@@ -11,9 +11,10 @@ function getTrackForPath(pathname: string): { src: string | null; label: string 
   return { src: null, label: 'Page music' };
 }
 
-export default function GlobalAudio() {
+export default function GlobalAudio({ deferHomeAutoplay = false }: { deferHomeAutoplay?: boolean }) {
   const pathname = usePathname() || '/';
   const { src, label } = useMemo(() => getTrackForPath(pathname), [pathname]);
+  const homeAutoplayDeferred = deferHomeAutoplay && (pathname === '/' || pathname === '');
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -51,7 +52,7 @@ export default function GlobalAudio() {
     hasAttemptedRef.current = false;
     
     // Don't attempt play here - let the monitoring effect handle it
-  }, [src]);
+  }, [src, isMuted]);
 
   // Check if audio is playing and show prompt if needed
   useEffect(() => {
@@ -63,6 +64,11 @@ export default function GlobalAudio() {
 
     console.log('Monitoring effect running for src:', src);
     audio.muted = isMuted;
+
+    if (homeAutoplayDeferred) {
+      setShowPlayPrompt(false);
+      return;
+    }
     
     // Only attempt play if we haven't tried yet for this source
     if (!hasAttemptedRef.current) {
@@ -171,7 +177,7 @@ export default function GlobalAudio() {
       audio.removeEventListener('error', onError);
       clearTimeout(graceTimer);
     };
-  }, [src, isMuted]);
+  }, [src, isMuted, homeAutoplayDeferred]);
 
   function handlePlayPromptClick() {
     const audio = audioRef.current;

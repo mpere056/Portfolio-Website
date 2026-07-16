@@ -14,7 +14,7 @@ describe('feature flags', () => {
     expect(resolveFeatureFlags({ environment: 'preview' })).toMatchObject({
       experienceFoundation: true,
       globalAI: false,
-      firstNote: false,
+      firstNote: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
   });

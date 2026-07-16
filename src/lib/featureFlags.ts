@@ -23,8 +23,8 @@ const ALL_DISABLED = Object.fromEntries(
 ) as Record<FeatureFlagName, boolean>;
 
 const DEFAULTS: Readonly<Record<PortfolioEnvironment, FeatureFlags>> = {
-  development: { ...ALL_DISABLED, experienceFoundation: true },
-  preview: { ...ALL_DISABLED, experienceFoundation: true },
+  development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true },
+  preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true },
   production: { ...ALL_DISABLED },
   test: { ...ALL_DISABLED },
 };
