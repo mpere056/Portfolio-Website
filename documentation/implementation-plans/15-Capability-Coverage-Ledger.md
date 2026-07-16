@@ -183,7 +183,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Evidence: `EV-ARC-02-01` accepted.
 - Work item: `WI-ARC-02-01` (done).
 - Next checkpoint: `WI-ARC-03-01` inventories and validates concrete destinations.
-- Last assessed: 2026-07-16 in the focused contract increment.
+- Last assessed: 2026-07-16 at `91e6d54`.
 
 ### CAP-ARC-003: Validated Destination Registry And Safe-State Resolution
 

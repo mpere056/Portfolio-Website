@@ -10,7 +10,7 @@ Last updated: 2026-07-16
 | Lifecycle | complete |
 | Capability | `CAP-ARC-002` |
 | Work item | `WI-ARC-02-01` |
-| Implementation commit | pending focused commit |
+| Implementation commit | `91e6d54735d14cfbf4084c2bb4763933dcfe0129` |
 
 ## Accepted Evidence
 
@@ -25,7 +25,7 @@ Last updated: 2026-07-16
 | Requirements | `V-03`, `V-10` |
 | Date | 2026-07-16 |
 | Reviewer | Codex |
-| Commit | pending focused commit |
+| Commit | `91e6d54735d14cfbf4084c2bb4763933dcfe0129` |
 | Environment | Local Node.js 24 and Next.js 16 production build |
 
 #### Method

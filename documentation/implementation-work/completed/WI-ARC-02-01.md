@@ -31,7 +31,7 @@ Create one canonical TypeScript module for the shared contracts already approved
 
 ### Known-Good Point
 
-- Commit: pending focused contract commit.
+- Commit: `91e6d54735d14cfbf4084c2bb4763933dcfe0129`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
 - Verification result: 7 files and 19 tests pass; lint has 0 errors and 11 retained warnings; the Next.js 16 production build passes.
@@ -72,7 +72,7 @@ Create one canonical TypeScript module for the shared contracts already approved
 - Boundary: No registry data, runtime validation, global actions, persistence, or UI behavior was introduced.
 - Evidence: `EV-ARC-02-01` accepted.
 - Next: `WI-ARC-03-01`.
-- Commit: pending focused contract commit.
+- Commit: `91e6d54`.
 
 ## Completion Summary
 

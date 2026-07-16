@@ -31,7 +31,7 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 
 ### Known-Good Point
 
-- Commit: pending focused contract commit.
+- Commit: `91e6d54735d14cfbf4084c2bb4763933dcfe0129`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test` and `npm run build` under Node.js 24.
 - Verification result: 7 files and 19 tests pass; production build passes; `BAS-08` live domains remain healthy.
@@ -90,7 +90,7 @@ Inventory the current portfolio and project-subdomain destinations; implement a 
 - Verified: Dependency package `ARC-02` passes 19 tests and the production build.
 - Remaining: All destination inventory and implementation work.
 - Next: Create the reviewed destination inventory before editing runtime navigation.
-- Commit: pending focused contract commit.
+- Commit: `91e6d54`.
 
 ## Completion Summary
 
