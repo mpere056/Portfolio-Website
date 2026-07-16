@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-16
-Implementation commit baseline: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`
+Implementation commit baseline: pending focused implementation commit
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`
 
 ## Current Program State
 
-**Phase 0 contracts now reach typed cross-system actions; runtime validation and migration are next.**
+**Phase 0 architecture contracts are complete; the first persistent-exploration infrastructure is next.**
 
-`BAS-08` provides accepted free-tier Firestore retrieval, `ARC-01` through `ARC-03` establish identities, shared contracts, and 27 validated destinations, and `ARC-04` adds seven ID-first actions with exhaustive destination/depth/context integration. `WI-ARC-05-01` is the single ready implementation item and remains decoupled from browser storage.
+`BAS-08` provides accepted free-tier Firestore retrieval, and `ARC-01` through `ARC-05` now establish identities, 27 destinations, seven ID-first actions, structured runtime validation, and explicit semantic-state migration. `WI-EXP-01-01` is the single ready implementation item and will keep the first store dormant.
 
 This distinction prevents two errors:
 
@@ -28,8 +28,8 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | Runtime validation preparation | on-track | Free Firestore production, canonical IDs, 27 destinations, seven typed actions, 29 tests, and passing build | Validate untrusted inputs and old semantic state before adoption | Complete `WI-ARC-05-01` |
-| `O-01` Persistent exploratory world | planned | not-active | Legacy spatial navigation and project expansion assessed | Architecture, graph queries, discovery migrations | One controlled depth and persistence fixture |
+| `O-00` Measured foundation | architecture contracts complete | on-track | Free Firestore production plus accepted identity, destination, action, validation, and migration contracts | Preserve accepted boundaries during adoption | Complete the first downstream store fixture without regressions |
+| `O-01` Persistent exploratory world | store foundation ready | on-track | Semantic state, v0 migration, partial reset, and checkpoint validation accepted | Dormant store hydration and reset | Complete `WI-EXP-01-01` |
 | `O-02` Quiet global AI | planned | not-active | Standalone RAG chat and its target gaps assessed | Context contract, public retrieval, destination validation | Nested context plus safe card-navigation fixture |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
@@ -40,16 +40,16 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `ARC-05` has accepted dependencies and a bounded work item |
+| `ready` | 1 | `EXP-01` has accepted compatibility dependencies and a bounded work item |
 | `in-progress` | 0 | No package is partially active between coherent checkpoints |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 39 | Valid packages waiting on accepted upstream work or sequencing |
+| `pending` | 38 | Valid packages waiting on accepted upstream work or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 11 | Seven baseline packages plus `ARC-01` through `ARC-04` have accepted exit evidence |
+| `complete` | 12 | Seven baseline packages plus `ARC-01` through `ARC-05` have accepted exit evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -68,11 +68,12 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 9 | `ARC-02` | Shared contracts | complete | `ARC-01` | Graph-only node identity and full discovery vocabulary accepted in the shared fixture |
 | 10 | `ARC-03` | Destination registry | complete | `ARC-02` | Registry parity, unknown-ID fallback, safe-state, and cross-subdomain tests accepted |
 | 11 | `ARC-04` | Cross-system actions | complete | `ARC-02`, `ARC-03` | Seven ID-first actions and exhaustive integration accepted without browser-global events |
-| 12 | `ARC-05` | Contract validation and migrations | ready | `ARC-02`, `ARC-03`, `ARC-04` | Invalid/old-version fixtures prove rejection, migration, and selective reset |
-| 13 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
-| 14 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
+| 12 | `ARC-05` | Contract validation and migrations | complete | `ARC-02`, `ARC-03`, `ARC-04` | Invalid/current/old/unknown-version fixtures and section-isolated reset accepted |
+| 13 | `EXP-01` | Versioned exploration store | ready | `ARC-02`, `ARC-05` | Memory-backed hydration, migration, per-origin isolation, checkpoint, and reset tests |
+| 14 | `QA-01` | Foundation test harness | pending | `BAS-01`, `ARC-02` | One automated foundation flow |
+| 15 | `KG-01` | Shared loader parity | pending | `ARC-01` | Existing content output parity tests |
 
-The foundation now establishes the supported production stack, durable retrieval, content identity, shared vocabulary, semantic destination resolution, and transport-independent actions. `ARC-05` closes the trust/version boundary before tours, AI cards, depth, stimulation, and persistence consume these contracts.
+The architecture foundation now establishes the supported stack, durable retrieval, identity, destinations, transport-independent actions, runtime trust, and state compatibility. `EXP-01` is the first controlled adoption: a dormant, injectable store before any visual experience depends on persistence.
 
 ## Now And Next
 
@@ -80,8 +81,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-05-01` | ready | `ARC-05` | Seven typed actions and exhaustive destination/depth/context handling pass 29 tests and build | Inventory untrusted/storage boundaries and write malformed/current/old-version fixtures | 2026-07-16 |
-| Next | `EXP-01` package preparation | pending | `EXP-01` | Persistence ownership and partial-reset rules are documented | Prepare store adoption only after `ARC-05` validation/migration acceptance | 2026-07-16 |
+| Now | `WI-EXP-01-01` | ready | `EXP-01` | Runtime validators and v0-to-v1 migration pass 37 tests and build without storage coupling | Write memory-storage fixtures for hydration, migration, checkpoint, isolation, and reset | 2026-07-16 |
+| Next | `EXP-02` package preparation | pending | `EXP-02` | Depth/action contracts are accepted, but no UI should consume an unaccepted store | Prepare one controlled depth primitive after `EXP-01` acceptance | 2026-07-16 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -103,11 +104,11 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No current capability is in a partial implementation state between coherent checkpoints.
+The persistent-exploration capabilities have accepted compatibility foundations but no store implementation yet.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - | - |
+| `CAP-EXP-001`, `CAP-EXP-002` | `WI-EXP-01-01` | Versioned semantic envelope, validation, v0 migration, partial reset, checkpoint contract | No Zustand store, storage adapter/key, hydration, semantic update, or reset implementation | Dormant module; current UI and audio storage remain unchanged | Write memory-backed store fixtures before implementation | `EV-ARC-05-01` accepted for dependencies; `EXP-01` evidence pending |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -120,7 +121,8 @@ This section is intentionally selective. The capability ledger remains the compl
 | Information architecture and routing | `ARC-02`, `ARC-03`, `EXP-*`, `AI-*`, `PRJ-*` | resolved | Multi-route/one-world model, route classes, subdomain roles, depth/history, and state ownership approved |
 | Shared graph/discovery vocabulary | `ARC-02`, `ARC-03` | resolved | Accepted graph identities, discovery vocabulary, destination registry, and resolver are available to `ARC-04` |
 | Typed cross-system actions | `ARC-04`, `ARC-05` | resolved | Seven ID-first action semantics and exhaustive handling are accepted |
-| Runtime trust and state compatibility | `ARC-05`, `EXP-01` | open | Validate untrusted actions and prove old/corrupt semantic-state migration before storage adoption |
+| Runtime trust and state compatibility | `ARC-05`, `EXP-01` | resolved | Structured action validation and current/v0/corrupt/unknown state behavior are accepted for store adoption |
+| Dormant exploration-store adoption | `EXP-01` | open | Prove SSR defaults, migration-aware hydration, per-origin isolation, checkpoint updates, and reset before mounting UI |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
 | First flagship selection | `PRJ-04` | waits on prototype | Compare LifeInbox and Sudoku spikes using visitor value, risk, and reuse evidence |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
@@ -145,7 +147,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 34 | Includes accepted identity, destination, and typed-action foundation evidence through `ARC-04` |
+| Accepted | 35 | Includes accepted architecture evidence through runtime validation and state migration in `ARC-05` |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -156,6 +158,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-16 | Accepted runtime validation and semantic-state migration | `ARC-05`, `EXP-01`, `CAP-ARC-005`, `CAP-EXP-001`, `CAP-EXP-002`, `WI-EXP-01-01`, `O-00`, `O-01` | Seven-action parsing, registry-backed destinations, current/v0/corrupt/unknown state behavior pass 37 tests and build; dormant store is next |
 | 2026-07-16 | Accepted typed cross-system action foundation | `ARC-04`, `ARC-05`, `CAP-ARC-004`, `WI-ARC-04-01`, `WI-ARC-05-01`, `O-00` | Seven ID-first actions and exhaustive destination/depth/context integration pass 29 tests and build; validation/migration is next |
 | 2026-07-16 | Accepted shared-contract reconciliation and initial destination registry | `ARC-02`, `ARC-03`, `ARC-04`, `CAP-ARC-002`, `CAP-ARC-003`, `WI-ARC-04-01`, `O-00` | Strict content plus graph identities, full discovery vocabulary, and 27 validated destinations pass 26 tests and build; typed actions are next |
 | 2026-07-16 | Approved information architecture and reopened shared-contract acceptance | `ARC-02`, `ARC-03`, `WI-ARC-02-02`, `WI-ARC-03-01`, `CAP-ARC-002`, `O-00` | Multi-route/one-world model recorded; two contract omissions bounded before destination implementation |
@@ -165,7 +168,6 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | 2026-07-14 | Completed target-state audit and began stable content identities | `BAS-05`, `ARC-01`, `CAP-BAS-005`, `CAP-ARC-001`, `WI-ARC-01-01`, `O-00` | Current implementation reconciled; shared inventory/ingestion IDs, alias policy, safe legacy replacement, and 13 tests pass |
 | 2026-07-14 | Completed supported framework modernization and AI runtime recovery | `BAS-07`, `CAP-BAS-007`, `WI-BAS-07-01`, `O-00` | Next.js 16/React 19, retrieval, chat fallback, preview, production, public routes, and rollback evidence accepted; `BAS-05` is ready |
 | 2026-07-14 | Completed the runtime maintenance decision | `BAS-04`, `CAP-BAS-004`, `WI-BAS-04-01`, `O-00` | Node.js 24 bridge and separate Next.js 16 migration accepted; `BAS-06` is ready |
-| 2026-07-14 | Completed the content and route inventory | `BAS-02`, `CAP-BAS-002`, `WI-BAS-02-01`, `O-00` | 39 nodes inventoried; identity and ingestion gaps have named downstream owners |
 
 Retain only the most recent ten meaningful entries here. Durable history belongs in Git and package evidence files.
 
@@ -190,7 +192,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `ARC-05` reaches an accepted validation/migration checkpoint or changes scope.
-- `EXP-01` becomes ready after contract compatibility acceptance.
+- `EXP-01` reaches an accepted dormant-store checkpoint or changes scope.
+- `EXP-02` becomes ready after store acceptance.
 - A gate or dependency changes.
 - Target implementation code lands.

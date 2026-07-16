@@ -174,4 +174,4 @@ The architecture prerequisites and initial destination foundation are complete:
 5. [x] Inventory canonical, planned, legacy-alias, internal-only, and feedback-gated routes.
 6. [x] Implement and test the initial classified destination registry and resolver.
 
-`ARC-04` now provides typed cross-system actions that request destination IDs rather than raw URLs. Next, `ARC-05` owns untrusted payload validation and persisted-state migrations before visitor-facing consumers migrate.
+`ARC-04` provides typed cross-system actions that request destination IDs rather than raw URLs, and `ARC-05` now validates untrusted payloads and migrates versioned semantic state. Next, `EXP-01` adopts those contracts through a dormant per-origin store before visitor-facing consumers migrate.

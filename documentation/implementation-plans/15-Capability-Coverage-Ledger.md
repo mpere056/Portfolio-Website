@@ -71,7 +71,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | planned |
+| `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 
 ### CAP-BAS-001: Reproducible Technical And Performance Baseline
 
@@ -210,28 +210,28 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `ARC-04`
 - Works now: Seven discriminated plain-object actions and focused creators carry stable IDs and bounded state; stimulation is normalized; exhaustive handling updates depth/AI context and resolves destinations through the accepted registry.
-- Named gaps: No acceptance gap remains in `ARC-04`. Runtime validation and migration belong to `ARC-05`; store, transition, AI, and feature adapters remain downstream.
+- Named gaps: No acceptance gap remains in `ARC-04`; `ARC-05` has accepted runtime validation and migration. Store, transition, AI, and feature adapters remain downstream.
 - Safe exposure: Pure TypeScript contracts and tests only; no global browser events, visitor UI changes, persistence, or route changes.
 - Evidence: `EV-ARC-04-01` accepted.
 - Work item: `WI-ARC-04-01` (done).
-- Next checkpoint: `ARC-05` validates untrusted action and persisted-state inputs before adoption.
+- Next checkpoint: `EXP-01` adopts accepted actions and validation through a dormant versioned store.
 - Last assessed: 2026-07-16 after action-contract acceptance.
 
 ### CAP-ARC-005: Runtime Validation And Persisted-State Migrations
 
 - Owner: Codex
-- Lifecycle: planned
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `ARC-05`
-- Works now: Destination resolution rejects unknown/unavailable destinations and unsafe state, while compile-time action contracts and experience persistence rules define the intended runtime boundary.
-- Named gaps: No reusable parser validates untrusted actions; no versioned semantic-state envelope, migration registry, structured issue result, or corrupt/old-state fixture exists.
-- Safe exposure: Pure validators and migrations with synthetic fixtures only; browser storage and UI adoption remain in `EXP-01` and downstream packages.
-- Evidence: `EV-ARC-03-01` and `EV-ARC-04-01` establish accepted dependencies; package evidence is not yet collected.
-- Work item: `WI-ARC-05-01` (ready).
-- Next checkpoint: Current, malformed, old-version, and unknown-version fixtures prove deterministic acceptance, rejection, partial preservation, and selective reset.
-- Last assessed: 2026-07-16 during work-item preparation.
+- Works now: Structured parsing validates every action and destination request; bounded version-1 semantic state ignores unknown fields, migrates flat version 0, resets corrupt sections independently, and rejects malformed roots/unknown versions to defaults.
+- Named gaps: No acceptance gap remains in `ARC-05`. Browser storage, Zustand hydration, reset UI, and feature adapters remain in `EXP-01` and downstream packages.
+- Safe exposure: Pure validators and migrations with synthetic fixtures only; current audio preferences, browser storage, routes, and visitor UI are unchanged.
+- Evidence: `EV-ARC-05-01` accepted.
+- Work item: `WI-ARC-05-01` (done).
+- Next checkpoint: `EXP-01` adopts the accepted parser through a dormant per-origin store and memory-storage fixture.
+- Last assessed: 2026-07-16 after runtime-validation and migration acceptance.
 
 ## Knowledge Graph And Content
 
@@ -265,8 +265,8 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-001` | Versioned local discovery store with reset | `EXP-01` | `V-05` | `O-01` | 5 | `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | active |
+| `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | active |
 | `CAP-EXP-003` | Five-stage depth controller | `EXP-02` | `V-01`, `V-03` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -279,6 +279,38 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-EXP-001: Versioned Local Discovery Store With Reset
+
+- Owner: Codex
+- Lifecycle: active
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
+- Package: `EXP-01`
+- Works now: `ARC-05` provides accepted semantic-state types, defaults, validation, v0 migration, partial reset, and unknown-version fallback without storage coupling.
+- Named gaps: No Zustand store, per-origin storage key, hydration adapter, reset action, or memory-storage integration fixture exists.
+- Safe exposure: Keep the first store dormant and injectable; no current component reads it.
+- Evidence: `EV-ARC-05-01` establishes the accepted compatibility dependency; package evidence is not yet collected.
+- Work item: `WI-EXP-01-01` (ready).
+- Next checkpoint: A memory-backed store proves SSR defaults, hydration/migration, isolation, semantic updates, and full reset.
+- Last assessed: 2026-07-16 during work-item preparation.
+
+### CAP-EXP-002: Semantic Checkpoint Restore Across Refresh And Return
+
+- Owner: Codex
+- Lifecycle: active
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: working; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
+- Package: `EXP-01`
+- Works now: The accepted checkpoint contract validates destination, depth stage, selected part, and bounded destination-specific safe state while excluding raw camera/scene state.
+- Named gaps: No store action writes checkpoints and no hydration fixture restores one through the accepted parser.
+- Safe exposure: Test semantic restoration in memory before browser persistence or route-history integration.
+- Evidence: `EV-ARC-05-01` accepted for the checkpoint contract; `EXP-01` evidence is pending.
+- Work item: `WI-EXP-01-01` (ready).
+- Next checkpoint: Store hydration restores one validated semantic checkpoint and selectively discards an invalid checkpoint section.
+- Last assessed: 2026-07-16 during work-item preparation.
 
 ## Quiet Global AI
 

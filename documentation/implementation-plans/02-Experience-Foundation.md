@@ -89,6 +89,8 @@ Start with versioned per-origin `localStorage` persistence through a Zustand per
 - Reset only invalid portions instead of clearing all discovery state.
 - Provide a user-facing `Reset exploration` action.
 
+Implementation note: `ARC-05` now provides the version-1 semantic envelope, structured validation, explicit flat-v0 migration, unknown-field tolerance, section-isolated reset, and unknown-version rejection as pure functions. `EXP-01` owns the first dormant Zustand/storage adoption and must use that parser during hydration.
+
 ### Checkpoints
 
 Do not restore an exact camera matrix by default. Persist a semantic checkpoint:

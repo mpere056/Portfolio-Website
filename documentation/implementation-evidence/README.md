@@ -95,6 +95,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ARC-02-02` | `ARC-02` | `CAP-ARC-002` | contract | accepted | `6a24533`, 8 files and 26 tests | 2026-07-16 | `ARC-02.md` |
 | `EV-ARC-03-01` | `ARC-03` | `CAP-ARC-003` | integration-test | accepted | `6a24533`, registry/build gate | 2026-07-16 | `ARC-03.md` |
 | `EV-ARC-04-01` | `ARC-04` | `CAP-ARC-004` | integration-test | accepted | `55e6104`, 9 files and 29 tests | 2026-07-16 | `ARC-04.md` |
+| `EV-ARC-05-01` | `ARC-05` | `CAP-ARC-005` | integration-test | accepted | Pending focused commit, 10 files and 37 tests | 2026-07-16 | `ARC-05.md` |
 
 Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
 

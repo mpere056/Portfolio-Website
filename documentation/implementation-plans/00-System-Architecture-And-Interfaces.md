@@ -401,7 +401,7 @@ interface SemanticEdgeView {
 
 Prefer typed local functions or state actions over a global browser event bus. The table defines semantics, not a required technical transport.
 
-Implementation note: `WI-ARC-04-01` implements this vocabulary as plain discriminated TypeScript actions with ID-first payloads and focused creators. Runtime validation and migration remain in `ARC-05`; feature-specific adapters remain in their owning packages.
+Implementation note: `WI-ARC-04-01` implements this vocabulary as plain discriminated TypeScript actions with ID-first payloads and focused creators. `WI-ARC-05-01` adds structured runtime validation and versioned semantic-state migration; feature-specific adapters remain in their owning packages.
 
 ## Dependency Matrix
 

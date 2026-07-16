@@ -55,7 +55,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ARC-02` | Shared contract types | `ARC-01` | Canonical TypeScript types for depth, destinations, discovery, context | Typecheck and consumer fixture | complete |
 | `ARC-03` | Destination registry | `ARC-02` | Validated registry for routes, areas, subdomains, safe state | Unit tests including unknown destination | complete |
 | `ARC-04` | Cross-system actions | `ARC-02`, `ARC-03` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | complete |
-| `ARC-05` | Contract validation and migrations | `ARC-02`, `ARC-03`, `ARC-04` | Runtime validators, persisted-state migrations, compatibility rules | Old-version and invalid-payload tests | ready |
+| `ARC-05` | Contract validation and migrations | `ARC-02`, `ARC-03`, `ARC-04` | Runtime validators, persisted-state migrations, compatibility rules | Old-version and invalid-payload tests | complete |
 
 ## Knowledge And Content Packages
 
@@ -72,7 +72,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | pending |
+| `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | ready |
 | `EXP-02` | Depth-controller primitives | `ARC-02`, `ARC-04` | Stage transitions, hints, AI context emission, persistence hooks | Controlled-scene integration test | pending |
 | `EXP-03` | One-time First Note | `EXP-01`, `EXP-02`, `QA-01` | Dark initial scene, wake interaction, returning behavior | First/return browser flow | pending |
 | `EXP-04` | Non-linear guided tour | `ARC-03`, `EXP-01`, `KG-05` | Role selection, authored destinations, hints, dismiss/resume | Out-of-order tour browser flow | pending |

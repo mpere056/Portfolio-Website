@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The supported stack, free-tier Firestore retrieval, canonical identities, shared contracts, destination registry, and typed cross-system actions are implemented. `ARC-05` is ready to validate untrusted inputs and define pure state migrations before any persistence or UI adoption.
+The supported stack, free-tier Firestore retrieval, canonical identities, shared contracts, destinations, typed actions, runtime validation, and state migration are implemented. `EXP-01` is ready to adopt the accepted semantic envelope through a dormant per-origin store.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-05-01` | ready | `ARC-05` | Seven typed actions and exhaustive destination/depth/context handling pass 29 tests and build | Inventory untrusted/storage boundaries and write malformed/current/old-version fixtures | 2026-07-16 |
-| Next | `EXP-01` package preparation | pending | `EXP-01` | Persistence ownership and partial-reset rules are documented | Prepare storage adoption only after `ARC-05` validators and migrations are accepted | 2026-07-16 |
+| Now | `WI-EXP-01-01` | ready | `EXP-01` | Runtime validators and v0-to-v1 migration pass 37 tests and build without storage coupling | Write memory-storage fixtures for hydration, migration, checkpoint, isolation, and reset | 2026-07-16 |
+| Next | `EXP-02` package preparation | pending | `EXP-02` | Depth/action contracts are accepted, but no UI should consume an unaccepted store | Prepare one controlled depth primitive only after `EXP-01` passes | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ARC-05-01` | Establish Runtime Validation And Migration Boundaries | ready | high | `ARC-05` | `CAP-ARC-005` | `active/WI-ARC-05-01.md` | 2026-07-16 |
+| `WI-EXP-01-01` | Establish The Versioned Exploration Store | ready | high | `EXP-01` | `CAP-EXP-001`, `CAP-EXP-002` | `active/WI-EXP-01-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ARC-05-01` | done | `ARC-05` | Structured runtime validation and section-isolated semantic-state migration accepted | `EV-ARC-05-01` | 2026-07-16 |
 | `WI-ARC-04-01` | done | `ARC-04` | Seven ID-first actions, creators, and exhaustive destination/depth/context integration accepted | `EV-ARC-04-01` | 2026-07-16 |
 | `WI-ARC-03-01` | done | `ARC-03` | Reviewed 27-entry destination registry, resolver, safe-state policy, fallbacks, and origin handling accepted | `EV-ARC-03-01` | 2026-07-16 |
 | `WI-ARC-02-02` | done | `ARC-02` | Graph-only identities and complete discovery vocabulary restore shared-contract acceptance | `EV-ARC-02-02` | 2026-07-16 |
@@ -44,7 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-BAS-05-01` | done | `BAS-05` | Supported implementation reconciled against target capabilities | `EV-BAS-05-01` through `EV-BAS-05-03` | 2026-07-14 |
 | `WI-BAS-07-01` | done | `BAS-07` | Next.js 16/React 19 and repaired AI runtime live on all production domains | `EV-BAS-07-01` through `EV-BAS-07-09` | 2026-07-14 |
 | `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
-| `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 
