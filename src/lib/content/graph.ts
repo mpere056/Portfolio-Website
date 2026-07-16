@@ -75,7 +75,9 @@ function contentNode(record: AuthoredContentRecord): GraphNode | undefined {
     .find(Boolean) ?? record.nodeId;
   const summary = ['summary', 'description']
     .map(key => stringValue(fields[key]))
-    .find(Boolean) ?? record.body.trim().slice(0, 240);
+    .find(Boolean)
+    ?? stringValue(record.body.trim().slice(0, 240))
+    ?? `Authored ${record.kind} content record.`;
   const visibility = ['public', 'private', 'draft'].includes(String(fields.visibility))
     ? fields.visibility as GraphVisibility
     : 'public';

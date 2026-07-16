@@ -58,4 +58,20 @@ describe('knowledge graph compiler', () => {
     });
     expect(graph.issues.some(issue => issue.code === 'content-missing-required-field')).toBe(true);
   });
+
+  it('keeps empty legacy misc records valid without inventing a factual claim', () => {
+    const graph = compileKnowledgeGraph({
+      contentRecords: [{
+        kind: 'misc',
+        nodeId: 'misc:legacy-note',
+        relativePath: 'misc/legacy-note.mdx',
+        absolutePath: 'misc/legacy-note.mdx',
+        frontmatter: {},
+        body: '',
+      }],
+    });
+
+    expect(graph.issues).toEqual([]);
+    expect(graph.nodes[0]?.summary).toBe('Authored misc content record.');
+  });
 });
