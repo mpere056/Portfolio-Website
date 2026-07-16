@@ -107,8 +107,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-QA-01-01` | `QA-01` | Foundation flow | integration-test | accepted | `4c9b02a`, integrated contract fixture | 2026-07-16 | `QA-01.md` |
 | `EV-EXP-02-01` | `EXP-02` | `CAP-EXP-003`, `CAP-EXP-004` | contract | accepted | `4c9b02a`, depth transition fixture | 2026-07-16 | `EXP-02.md` |
 | `EV-EXP-02-02` | `EXP-02` | `CAP-EXP-003`, `CAP-EXP-004` | integration-test | accepted | `852e14c`, atomic controller and React boundary | 2026-07-16 | `EXP-02.md` |
-
-Replace the placeholder row when the first evidence item is added. The detailed record belongs in a package file named after the package ID, such as `EXP-03.md`.
+| `EV-EXP-03-01` | `EXP-03` | `CAP-EXP-005`, `CAP-EXP-006` | integration-test | accepted | `27d2485`, 82-test/type/build gate | 2026-07-16 | `EXP-03.md` |
+| `EV-EXP-03-02` | `EXP-03` | `CAP-EXP-005`, `CAP-EXP-006` | browser-flow | accepted | `27d2485`, local Development | 2026-07-16 | `EXP-03.md` |
 
 ## Required Evidence Fields
 

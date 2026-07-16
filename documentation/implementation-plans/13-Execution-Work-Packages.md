@@ -65,7 +65,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `KG-02` | Content schemas | `KG-01`, `ARC-02` | Project, timeline, post, relationship schema | Invalid fixture failures | complete |
 | `KG-03` | Graph compiler and validator | `KG-02` | Node compiler, relationship loader, visibility validation | Graph test suite | complete |
 | `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
-| `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | pending |
+| `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | ready |
 | `KG-06` | Graph-aware RAG metadata | `KG-04` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | pending |
 
 ## Experience Foundation Packages
@@ -74,7 +74,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | --- | --- | --- | --- | --- | --- |
 | `EXP-01` | Versioned discovery store | `ARC-02`, `ARC-05` | Zustand slices, local persistence, reset, semantic checkpoints | Migration and refresh tests | complete |
 | `EXP-02` | Depth-controller primitives | `ARC-02`, `ARC-04` | Stage transitions, hints, AI context emission, persistence hooks | Controlled-scene integration test | complete |
-| `EXP-03` | One-time First Note | `EXP-01`, `EXP-02`, `QA-01` | Dark initial scene, wake interaction, returning behavior | First/return browser flow | ready |
+| `EXP-03` | One-time First Note | `EXP-01`, `EXP-02`, `QA-01` | Dark initial scene, wake interaction, returning behavior | First/return browser flow | complete |
 | `EXP-04` | Non-linear guided tour | `ARC-03`, `EXP-01`, `KG-05` | Role selection, authored destinations, hints, dismiss/resume | Out-of-order tour browser flow | pending |
 | `EXP-05` | Environmental response system | `EXP-02`, `KG-05` | Proximity/handle prototypes, semantic-light adapter, stimulation consumers | Three-rule prototype and review decision | pending |
 | `EXP-06` | Meaningful discovery registry | `EXP-01`, `KG-04` | Easter-egg schema, three initial discoveries, no completion UI | Tour exclusion and discovery tests | pending |

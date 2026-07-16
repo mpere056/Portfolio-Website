@@ -153,6 +153,8 @@ Implementation checkpoint: commits `afa5f67` and `1c7129b` complete the dormant 
 
 ## Phase 2: Exploration Shell
 
+Implementation checkpoint: `QA-01`, `EXP-02`, and `EXP-03` are complete through `27d2485`. The 82-test/build gate and local browser flow accept the one-time First Note behind Development/Preview flags while Production remains off for creative rollout review. `KG-05` bounded queries are the active dependency for the non-linear tour, semantic response, and graph-aware AI sequence.
+
 ### Goals
 
 - Make the site feel like one persistent exploratory world before building deep project experiences.

@@ -18,7 +18,7 @@ Last updated: 2026-07-16
 
 Expand the current MDX corpus into a validated, queryable relationship graph without abandoning authored files as the source of truth.
 
-Phase 1 status: `KG-01` through `KG-04` are complete at `afa5f67` plus deployment validation fix `1c7129b`. The shared recursive loader covers all 39 authored records, the prebuild gate validates a 49-node/19-relationship public graph, and the initial flagship/event/skill/post subgraph is authored. `KG-05` bounded queries and `KG-06` graph-aware retrieval remain future work.
+Phase 1 status: `KG-01` through `KG-04` are complete at `afa5f67` plus deployment validation fix `1c7129b`. The shared recursive loader covers all 39 authored records, the prebuild gate validates a 49-node/19-relationship public graph, and the initial flagship/event/skill/post subgraph is authored. `KG-05` is now the active Phase 2 item; `KG-06` follows its bounded query contract.
 
 ## Existing Foundation
 

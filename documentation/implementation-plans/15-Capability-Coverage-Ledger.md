@@ -269,8 +269,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-002` | Semantic checkpoint restore across refresh and return | `EXP-01` | `V-05` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-003` | Five-stage depth controller | `EXP-02` | `V-01`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-006` | Returning-visitor resume after First Note | `EXP-03` | `V-05`, `V-06` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-EXP-006` | Returning-visitor resume after First Note | `EXP-03` | `V-05`, `V-06` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-007` | Role-aware tour entry with no time question | `EXP-04` | `V-07` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-008` | Non-linear destination recommendations and resume | `EXP-04` | `V-07` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-009` | Discovery physics rule engine and first reviewed rules | `EXP-05` | `V-02`, `V-12` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -279,6 +279,22 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-EXP-005 And CAP-EXP-006: One-Time Wake And Return Resume
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable`
+- Package: `EXP-03`
+- Works now: The feature-flagged home hydrates semantic discovery, presents one dark wake control, reveals navigation independently from audio, persists completion only after readiness, skips the intro on refresh, restores a safe checkpoint, and exposes reset plus keyboard behavior.
+- Named gaps: Production promotion still requires Mark's creative rollout review; origin-wide sharing across subdomains remains a later cookie decision rather than an `EXP-03` defect.
+- Safe exposure: Development and Preview defaults are on; Production default remains off.
+- Evidence: `EV-EXP-03-01`, `EV-EXP-03-02`.
+- Work item: `WI-EXP-03-01` (done).
+- Next checkpoint: `KG-05` provides bounded graph adapters before tour and semantic-environment consumers mount.
+- Last assessed: 2026-07-16 at `27d2485`.
 
 ### CAP-EXP-001: Versioned Local Discovery Store With Reset
 

@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-16
-Implementation commit baseline: `852e14c3a6f99a3327793ef7d62bb79ec82a08ac`
+Implementation commit baseline: `27d2485`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `852e14c3a6f99a3327793ef7d62bb79ec82a08ac`
 
 ## Current Program State
 
-**Phase 1 is complete; Phase 2 has accepted its foundation flow and depth controller, with the one-time First Note ready next.**
+**Phase 1 is complete; Phase 2 has accepted its foundation, depth controller, and feature-flagged one-time First Note, with bounded graph queries ready next.**
 
-Phase 1 remains accepted at its production checkpoint. Through `852e14c`, Phase 2 now has an integrated foundation flow and complete dormant depth-controller system: atomic persistence, typed actions, AI ownership/cleanup, stable React snapshots, and rejection isolation pass. All 75 tests, strict typechecking, content validation, and the production build pass; `WI-EXP-03-01` is the single ready item.
+Phase 1 remains accepted at its production checkpoint. Through `27d2485`, Phase 2 now adds a deterministic First Note over the integrated persistence and depth foundation. All 82 tests, strict typechecking, 49-node/19-edge validation, the production build, and local first/return/reset/keyboard browser flows pass. `WI-KG-05-01` is the single ready item; Production still keeps the First Note flag off pending creative rollout review.
 
 This distinction prevents two errors:
 
@@ -29,7 +29,7 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, and context accepted | Preserve boundaries in integrated adoption | Complete `WI-QA-01-01` |
-| `O-01` Persistent exploratory world | First Note ready | on-track | Persistence, five-stage controller, and dormant React boundary accepted | First/return/reset/audio-denied semantics | Begin `WI-EXP-03-01` |
+| `O-01` Persistent exploratory world | First Note accepted | on-track | First/return/reset/keyboard flow passes behind flags | Bounded graph adapters for tour and environmental response | Begin `WI-KG-05-01` |
 | `O-02` Quiet global AI | context foundation integrated | on-track | Nested ownership participates in the accepted foundation flow | Global shell and graph-aware retrieval remain unmounted | Consume controller-owned depth context safely |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
@@ -40,16 +40,16 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `EXP-03` dependencies are accepted and its work item is bounded |
+| `ready` | 1 | `KG-05` dependencies are accepted and its work item is bounded |
 | `in-progress` | 0 | No package sits between coherent checkpoints |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 28 | Valid packages waiting on accepted upstream work or sequencing |
+| `pending` | 27 | Valid packages waiting on accepted upstream work or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 22 | Phase 1 packages plus Phase 2 `QA-01` and `EXP-02` have accepted evidence |
+| `complete` | 23 | Phase 1 packages plus Phase 2 `QA-01`, `EXP-02`, and `EXP-03` have accepted evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -73,7 +73,8 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 14 | `KG-01` to `KG-04`, `BAS-03`, `AI-01`, `LPS-01` | Remaining structural foundation | complete | Phase 1 contracts | Recursive parity, schemas, graph gate/subgraph, flags, context, and lifecycle fixtures |
 | 15 | `QA-01` | Foundation test harness | complete | `BAS-01`, `ARC-02`, Phase 1 checkpoint | One automated foundation flow |
 | 16 | `EXP-02` | Depth-controller primitives | complete | `ARC-02`, `ARC-04`, `QA-01` | Atomic controller and controlled React consumer integration |
-| 17 | `EXP-03` | One-time First Note | ready | `EXP-01`, `EXP-02`, `QA-01` | First/return/reset/audio-denied browser flow |
+| 17 | `EXP-03` | One-time First Note | complete | `EXP-01`, `EXP-02`, `QA-01` | First/return/reset/audio-denied browser flow |
+| 18 | `KG-05` | Bounded graph queries and render adapters | ready | `KG-04`, `ARC-03` | Deterministic ordering, limits, visibility, and adapter tests |
 
 The structural foundation is accepted and intentionally dormant. The next checkpoint is integration quality, not visual scope expansion: one test must prove destination resolution, persisted checkpoints, nested AI context, and public graph eligibility cooperate safely.
 
@@ -83,8 +84,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-EXP-03-01` | ready | `EXP-03` | Controller and dormant React consumer pass within 75 tests | Define deterministic First Note states before changing `HeroCube` | 2026-07-16 |
-| Next | Feature-flagged home composition | pending | `EXP-03` | Pure first/return/reset/audio-denied rules must pass first | Mount the home provider behind `firstNote` | 2026-07-16 |
+| Now | `WI-KG-05-01` | ready | `KG-05` | 49-node/19-edge graph, destinations, and 82-test First Note checkpoint | Define bounded deterministic query contracts and visibility rules | 2026-07-16 |
+| Next | Graph-aware retrieval metadata | pending | `KG-06` | `KG-05` bounded queries and adapters accepted | Extend ingestion and retrieval metadata fixtures | 2026-07-16 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -106,11 +107,11 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No package is currently partial. `EXP-03` is ready but has not started.
+No package is currently partial. `EXP-03` is accepted behind Development/Preview flags; its Production-off rollout boundary is explicit rather than hidden incompleteness.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| None | - | `EXP-02` has no remaining package gap | First Note, tour, stimulation, and project-specific interactions remain separate packages rather than hidden partials | Dormant provider; current visitor UI remains unchanged | Begin `WI-EXP-03-01` | `EV-EXP-02-01`, `EV-EXP-02-02` accepted |
+| None | - | `EXP-03` has no implementation gap | Production creative promotion, tour, stimulation, and project interactions remain separate gates/packages | First Note on in Development/Preview and off in Production | Begin `WI-KG-05-01` | `EV-EXP-03-01`, `EV-EXP-03-02` accepted |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -150,7 +151,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 46 | Adds the atomic controller and controlled React boundary checkpoint for completed `EXP-02` |
+| Accepted | 48 | Adds deterministic and browser-flow evidence for completed `EXP-03` |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -161,6 +162,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-16 | Completed one-time First Note implementation | `EXP-03`, `CAP-EXP-005`, `CAP-EXP-006`, `O-01`, `WI-KG-05-01` | 82 tests, build, and first/return/reset/keyboard browser flow pass; Preview on, Production off; bounded graph queries are ready |
 | 2026-07-16 | Completed Phase 2 depth-controller foundation | `EXP-02`, `CAP-EXP-003`, `CAP-EXP-004`, `O-01`, `WI-EXP-03-01` | Atomic store/context/action synchronization and dormant React consumption pass within 75 tests; First Note is ready |
 | 2026-07-16 | Began Phase 2 exploration shell | `QA-01`, `EXP-02`, `CAP-EXP-003`, `CAP-EXP-004`, `O-01`, `O-02` | Integrated foundation flow and five-stage transition contract pass within 68 tests; headless controller is next |
 | 2026-07-16 | Completed Phase 1 structural foundation | `BAS-03`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01`, `O-00` to `O-02` | 49 graph nodes, 19 reviewed edges, 62 tests, typecheck, content gate, and production build pass; `QA-01` is ready |
@@ -198,7 +200,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `EXP-03` deterministic First Note state model reaches an accepted checkpoint.
-- The feature-flagged home composition receives first/return browser and creative review.
+- `KG-05` bounded graph query contract reaches an accepted checkpoint.
+- The feature-flagged First Note receives Production creative rollout approval.
 - A gate or dependency changes.
 - Target implementation code lands.

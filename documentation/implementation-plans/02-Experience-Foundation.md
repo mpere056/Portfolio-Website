@@ -16,7 +16,7 @@ Last updated: 2026-07-16
 
 ## Scope
 
-Phase 2 status: `QA-01` and `EXP-02` are complete through `852e14c`; `EXP-03` is ready. The versioned store, integrated foundation flow, transition grammar, atomic headless controller, AI ownership cleanup, and dormant React consumer boundary are accepted. Visitor-facing adoption begins with the one-time First Note and its first/return browser flow.
+Phase 2 status: `QA-01`, `EXP-02`, and `EXP-03` are complete through `27d2485`. The versioned store, integrated foundation flow, transition grammar, atomic controller, and feature-flagged First Note are accepted. The first/return/reset/keyboard browser flow passes in Development and Preview defaults; Production remains deliberately disabled until creative rollout review.
 
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
 
