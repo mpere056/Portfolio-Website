@@ -42,6 +42,7 @@ describe('fetchContext', () => {
     const res = await fetchContext('hello world', 4)
     expect(res.context).toBe('')
     expect(res.slugs).toEqual([])
+    expect(res.sources).toEqual([])
     expect(googleMocks.getGenerativeModel).toHaveBeenCalledWith({ model: 'gemini-embedding-2' })
     expect(googleMocks.embedContent).toHaveBeenCalledWith({
       content: { parts: [{ text: 'hello world' }] },
@@ -59,6 +60,42 @@ describe('fetchContext', () => {
     const res = await fetchContext('projects', 2)
     expect(res.context).toMatch(/interactive story|relay/i)
     expect(res.slugs).toEqual(['project:story-app', 'project:discord-sync-messaging'])
+    expect(res.sources.map(source => source.nodeId)).toEqual([
+      'project:story-app',
+      'project:discord-sync-messaging',
+    ])
+  })
+
+  it('lets validated graph context nudge results by at most two positions', async () => {
+    ragStoreMocks.findNearestRagDocuments.mockResolvedValue([
+      { contentId: 'project:story-app', nodeId: 'project:story-app', content: 'Direct result', relatedNodeIds: [] },
+      { contentId: 'project:lifeinbox', nodeId: 'project:lifeinbox', content: 'Another result', relatedNodeIds: [] },
+      { contentId: 'project:discord-bot', nodeId: 'project:discord-bot', content: 'Third result', relatedNodeIds: [] },
+      { contentId: 'project:dreamlife', nodeId: 'project:dreamlife', content: 'Current object result', relatedNodeIds: [] },
+    ])
+    const { fetchContext } = await import('@/lib/retriever')
+    const result = await fetchContext('product work', 3, { nodeId: 'project:dreamlife' })
+    expect(result.slugs).toEqual([
+      'project:story-app',
+      'project:dreamlife',
+      'project:lifeinbox',
+    ])
+    expect(result.sources).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        nodeId: 'project:dreamlife',
+        destination: expect.objectContaining({ id: 'destination:museum-project-dreamlife' }),
+      }),
+    ]))
+  })
+
+  it('ignores unknown client context identifiers and preserves vector order', async () => {
+    ragStoreMocks.findNearestRagDocuments.mockResolvedValue([
+      { contentId: 'project:lifeinbox', content: 'First', relatedNodeIds: [] },
+      { contentId: 'project:dreamlife', content: 'Second', relatedNodeIds: [] },
+    ])
+    const { fetchContext } = await import('@/lib/retriever')
+    const result = await fetchContext('projects', 2, { nodeId: 'project:not-public' })
+    expect(result.slugs).toEqual(['project:lifeinbox', 'project:dreamlife'])
   })
 
   it('rejects an unexpected embedding shape before querying Firestore', async () => {

@@ -1,4 +1,5 @@
 import { Firestore } from '@google-cloud/firestore'
+import { isNodeId, type NodeId } from './portfolioContracts'
 
 export const RAG_COLLECTION = 'rag_docs'
 
@@ -14,6 +15,11 @@ export interface RagDocument {
   chunkIndex: number
   sourcePath: string
   distance?: number
+  nodeId?: NodeId
+  nodeType?: string
+  projectId?: NodeId
+  relatedNodeIds: readonly NodeId[]
+  visibility?: 'public'
 }
 
 interface FirestoreVectorSnapshot {
@@ -83,6 +89,16 @@ function asNumber(value: unknown): number {
   return typeof value === 'number' && Number.isFinite(value) ? value : 0
 }
 
+function asNodeId(value: unknown): NodeId | undefined {
+  return typeof value === 'string' && isNodeId(value) ? value : undefined
+}
+
+function asNodeIds(value: unknown): NodeId[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is NodeId => typeof item === 'string' && isNodeId(item))
+    : []
+}
+
 export async function queryNearestRagDocuments(
   db: FirestoreVectorClient,
   queryVector: number[],
@@ -101,14 +117,22 @@ export async function queryNearestRagDocuments(
 
   return snapshot.docs.map(document => {
     const data = document.data()
+    const contentId = asString(data.contentId)
+    const nodeId = asNodeId(data.nodeId) ?? asNodeId(contentId)
+    const projectId = asNodeId(data.projectId)
     return {
-      contentId: asString(data.contentId),
+      contentId,
       heading: asString(data.heading),
       content: asString(data.content),
       tokens: asNumber(data.tokens),
       chunkIndex: asNumber(data.chunkIndex),
       sourcePath: asString(data.sourcePath),
       distance: asNumber(data.distance),
+      ...(nodeId ? { nodeId } : {}),
+      nodeType: asString(data.nodeType) || undefined,
+      ...(projectId ? { projectId } : {}),
+      relatedNodeIds: asNodeIds(data.relatedNodeIds),
+      ...(data.visibility === 'public' ? { visibility: 'public' as const } : {}),
     }
   })
 }

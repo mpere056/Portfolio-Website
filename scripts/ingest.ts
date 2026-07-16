@@ -21,6 +21,11 @@ import {
   getFirestore,
   RAG_COLLECTION,
 } from '../src/lib/ragStore'
+import { loadKnowledgeGraph } from '../src/lib/content/graph'
+import {
+  createRagGraphMetadataIndex,
+  type RagGraphMetadata,
+} from '../src/lib/content/ragMetadata'
 
 const envLocal = path.join(process.cwd(), '.env.local')
 const envFile = path.join(process.cwd(), '.env')
@@ -105,6 +110,7 @@ async function replaceContentDocuments(
   sourcePath: string,
   slices: string[],
   vectors: number[][],
+  metadata: RagGraphMetadata,
 ) {
   const collection = firestore.collection(RAG_COLLECTION)
   const ids = [...new Set([contentId, legacyContentId])]
@@ -121,6 +127,11 @@ async function replaceContentDocuments(
       tokens: content.split(/\s+/).length,
       chunkIndex,
       sourcePath: sourcePath.replace(/\\/g, '/'),
+      nodeId: metadata.nodeId,
+      nodeType: metadata.nodeType,
+      projectId: metadata.projectId ?? null,
+      relatedNodeIds: [...metadata.relatedNodeIds],
+      visibility: metadata.visibility,
       embedding: FieldValue.vector(vectors[chunkIndex]),
     })
   })
@@ -128,7 +139,19 @@ async function replaceContentDocuments(
   await batch.commit()
 }
 
-async function ingestFile(absolutePath: string, relativePath: string) {
+async function removeContentDocuments(contentId: string, legacyContentId: string) {
+  const collection = firestore.collection(RAG_COLLECTION)
+  const existing = await collection.where('contentId', 'in', [...new Set([contentId, legacyContentId])]).get()
+  const batch = firestore.batch()
+  existing.docs.forEach(document => batch.delete(document.ref))
+  await batch.commit()
+}
+
+async function ingestFile(
+  absolutePath: string,
+  relativePath: string,
+  metadataIndex: ReadonlyMap<string, RagGraphMetadata>,
+) {
   const raw = await fs.readFile(absolutePath, 'utf8')
   const { front, body } = extractFrontmatter(raw)
   const frontmatterText: string[] = []
@@ -142,6 +165,12 @@ async function ingestFile(absolutePath: string, relativePath: string) {
   const plain = await toPlainText([frontmatterText.join('\n'), body].filter(Boolean).join('\n\n'))
   const contentId = deriveCanonicalId(relativePath, front)
   const legacyContentId = deriveLegacyIngestionId(relativePath, front)
+  const metadata = metadataIndex.get(contentId)
+  if (!metadata) {
+    await removeContentDocuments(contentId, legacyContentId)
+    console.log(`skipped non-public content: ${contentId}`)
+    return
+  }
   const slices = chunkWords(plain)
   const vectors = await embedBatch(slices)
 
@@ -152,17 +181,21 @@ async function ingestFile(absolutePath: string, relativePath: string) {
     relativePath,
     slices,
     vectors,
+    metadata,
   )
   console.log(`ingested: ${contentId} (${slices.length} chunks)`)
 }
 
 async function main() {
+  const graph = await loadKnowledgeGraph()
+  if (graph.issues.length) throw new Error(`Knowledge graph has ${graph.issues.length} validation issues`)
+  const metadataIndex = createRagGraphMetadataIndex(graph)
   const filePaths = (await glob(['**/*.md', '**/*.mdx'], { cwd: CONTENT_DIR, nodir: true }))
     .map(filePath => filePath.replace(/\\/g, '/'))
     .sort((left, right) => left.localeCompare(right))
 
   for (const relativePath of filePaths) {
-    await ingestFile(path.join(CONTENT_DIR, relativePath), relativePath)
+    await ingestFile(path.join(CONTENT_DIR, relativePath), relativePath, metadataIndex)
   }
   console.log('ingest complete')
 }

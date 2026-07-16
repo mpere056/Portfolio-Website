@@ -40,6 +40,14 @@ export interface RelatedContentView {
   destination: DestinationDefinition;
 }
 
+export interface PublicSourceDescriptor {
+  nodeId: NodeId;
+  nodeType: string;
+  title: string;
+  summary: string;
+  destination?: Pick<DestinationDefinition, 'id' | 'href' | 'targetOrigin'>;
+}
+
 export interface TourDestinationCandidate {
   nodeId: NodeId;
   title: string;
@@ -272,6 +280,25 @@ export function createKnowledgeGraphQueries(graph: CompiledKnowledgeGraph) {
       .slice(0, clampLimit(options.limit));
   }
 
+  function getPublicSourceDescriptor(nodeId: NodeId): PublicSourceDescriptor | undefined {
+    const node = nodeMap.get(nodeId);
+    if (!isPublicNode(node)) return undefined;
+    const destination = destinationForNode(nodeId);
+    return {
+      nodeId: node.id,
+      nodeType: node.type,
+      title: node.title,
+      summary: node.summary,
+      ...(destination ? {
+        destination: {
+          id: destination.id,
+          href: destination.href,
+          targetOrigin: destination.targetOrigin,
+        },
+      } : {}),
+    };
+  }
+
   function getTourDestinationCandidates(role: TourRole, options: BoundedQueryOptions = {}) {
     if (!TOUR_ROLES.includes(role)) return [];
     const typeRanks: Readonly<Record<TourRole, Readonly<Record<string, number>>>> = {
@@ -396,6 +423,7 @@ export function createKnowledgeGraphQueries(graph: CompiledKnowledgeGraph) {
     getEvidenceForSkill,
     getHiddenDiscoveries,
     getRelatedContent,
+    getPublicSourceDescriptor,
     getTourDestinationCandidates,
     getAIContextSubgraph,
     getSemanticLightingEdges,

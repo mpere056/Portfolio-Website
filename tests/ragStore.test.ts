@@ -40,6 +40,11 @@ describe('Firestore RAG store', () => {
           tokens: 4,
           chunkIndex: 0,
           sourcePath: 'projects/dreamlife.mdx',
+          nodeId: 'project:dreamlife',
+          nodeType: 'project',
+          projectId: 'project:dreamlife',
+          relatedNodeIds: ['skill:ai-product-design', 'not-a-node'],
+          visibility: 'public',
           distance: 0.125,
         }),
       }],
@@ -64,6 +69,30 @@ describe('Firestore RAG store', () => {
       contentId: 'project:dreamlife',
       content: 'A life-design product.',
       distance: 0.125,
+      nodeId: 'project:dreamlife',
+      nodeType: 'project',
+      projectId: 'project:dreamlife',
+      relatedNodeIds: ['skill:ai-product-design'],
+      visibility: 'public',
     })])
+  })
+
+  it('keeps legacy documents usable while deriving their canonical node ID', async () => {
+    const collection = vi.fn().mockReturnValue({
+      findNearest: () => ({
+        get: async () => ({
+          docs: [{ data: () => ({
+            contentId: 'project:lifeinbox',
+            content: 'Legacy content without graph metadata.',
+          }) }],
+        }),
+      }),
+    })
+    const [row] = await queryNearestRagDocuments({ collection }, [0.1], 1)
+    expect(row).toEqual(expect.objectContaining({
+      contentId: 'project:lifeinbox',
+      nodeId: 'project:lifeinbox',
+      relatedNodeIds: [],
+    }))
   })
 })
