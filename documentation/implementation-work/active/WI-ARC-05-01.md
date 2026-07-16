@@ -31,7 +31,7 @@ Inventory actual untrusted and persisted boundaries; implement dependency-light 
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit.
+- Commit: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test`, `npm run inventory:content`, and `npm run build` under Node.js 24.
 - Verification result: 9 test files and 29 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors and 11 retained warnings; production build passes.
@@ -80,7 +80,7 @@ Inventory actual untrusted and persisted boundaries; implement dependency-light 
 - Changed: Bounded runtime validation and pure migration behavior separately from browser storage and feature adoption.
 - Verified: Dependencies pass 29 tests, inventory, lint, and the production build.
 - Next: Inventory trust/storage boundaries and write failing malformed/current/old-version fixtures.
-- Commit: pending focused implementation commit.
+- Commit: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`.
 
 ## Completion Summary
 

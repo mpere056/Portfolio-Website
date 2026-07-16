@@ -31,7 +31,7 @@ Define one discriminated union and focused action creators for the approved cros
 
 ### Known-Good Point
 
-- Commit: pending focused implementation commit; dependency baseline `6a24533742867e738dbce86f5cdb81c8b570f97c`.
+- Commit: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`; dependency baseline `6a24533742867e738dbce86f5cdb81c8b570f97c`.
 - Branch/worktree: `main` in `C:\Projects\Portfolio-Website`.
 - Verification command: `npm test`, `npm run inventory:content`, and `npm run build` under Node.js 24.
 - Verification result: 9 test files and 29 tests pass; inventory has 0 errors and 0 identity divergences; lint has 0 errors and 11 retained warnings; production build passes.
@@ -79,7 +79,7 @@ Define one discriminated union and focused action creators for the approved cros
 - Verified: 9 test files and 29 tests pass; inventory reports 0 errors and 0 identity divergences; lint has 0 errors; the production build emits all 26 pages.
 - Evidence: `EV-ARC-04-01` accepted.
 - Next: `WI-ARC-05-01` runtime validation and migration boundaries.
-- Commit: pending focused implementation commit.
+- Commit: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`.
 
 ### 2026-07-16 - Action contract implementation started
 

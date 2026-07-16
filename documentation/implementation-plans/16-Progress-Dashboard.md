@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-16
-Implementation commit baseline: pending focused implementation commit
+Implementation commit baseline: `55e6104e4fee32b5f4f004a0f171fe40c4af2ced`
 
 ## Plan Metadata
 
