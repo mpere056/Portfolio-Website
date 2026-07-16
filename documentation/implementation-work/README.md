@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 remains fully accepted. Phase 2 now has five complete packages through `aeff727`: `QA-01`, `EXP-02`, feature-flagged `EXP-03`, and `KG-05`/`KG-06`. All 42 Firestore chunks carry verified public graph metadata. `AI-02` is ready for the quiet global shell.
+Phase 1 remains fully accepted. Phase 2 now has six complete packages through `3dfef6b`, including the feature-flagged First Note, bounded graph/retrieval foundation, and quiet global AI shell. `AI-03` is ready to connect active public context and trusted sources without changing `/chat` compatibility.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-AI-02-01` | ready | `AI-02` | Context ownership, flags, graph retrieval metadata, 93 tests, and 42-document backfill pass | Define pure shell states and provider ownership before UI extraction | 2026-07-16 |
-| Next | Graph-aware AI request and sources | pending | `AI-03` | `KG-06` and `AI-01` are accepted | Thread validated IDs and descriptors through the API after shell acceptance | 2026-07-16 |
+| Now | `WI-AI-03-01` | ready | `AI-03` | Quiet shell, context ownership, graph retrieval, sources, and browser flows are accepted | Define a minimal runtime request-context parser and structured source channel | 2026-07-16 |
+| Next | Non-linear guided tour | pending | `EXP-04` | `KG-05` candidates and exploration persistence are accepted | Author role profiles after AI context/source wiring | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-AI-02-01` | Build The Quiet Global AI Shell | ready | high | `AI-02` | `CAP-AI-003`, `CAP-AI-004` | `active/WI-AI-02-01.md` | 2026-07-16 |
+| `WI-AI-03-01` | Wire Contextual Retrieval And Trusted Sources | ready | high | `AI-03` | `CAP-AI-005` | `active/WI-AI-03-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-AI-02-01` | done | `AI-02` | Quiet lazy global shell, route context, clear/close/error, optional audio, and `/chat` compatibility accepted | `EV-AI-02-01`, `EV-AI-02-02` | 2026-07-16 |
 | `WI-KG-06-01` | done | `KG-06` | Public graph metadata, bounded retrieval context, source descriptors, legacy compatibility, and 42-chunk backfill accepted | `EV-KG-06-01`, `EV-KG-06-02` | 2026-07-16 |
 | `WI-KG-05-01` | done | `KG-05` | Deterministic visibility-safe bounded graph queries and destination render adapters accepted | `EV-KG-05-01` | 2026-07-16 |
 | `WI-EXP-03-01` | done | `EXP-03` | One-time wake, audio-independent reveal, return restore, reset, and keyboard flow accepted behind flags | `EV-EXP-03-01`, `EV-EXP-03-02` | 2026-07-16 |
@@ -42,7 +43,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-QA-01-01` | done | `QA-01` | Destination, graph, persistence, AI context, and fallback foundations cooperate in one automated flow | `EV-QA-01-01` | 2026-07-16 |
 | `WI-EXP-01-01` | done | `EXP-01` | Versioned per-origin exploration hydration, migration, semantic checkpoints, and reset accepted | `EV-EXP-01-01` | 2026-07-16 |
 | `WI-KG-04-01` | done | `KG-04` | Initial 49-node, 19-relationship reviewed public subgraph accepted | `EV-KG-04-01` | 2026-07-16 |
-| `WI-KG-02-01` | done | `KG-02` | Authored content and extension schemas accepted | `EV-KG-02-01` | 2026-07-16 |
 | `WI-KG-01-01` | done | `KG-01` | Recursive shared loader and nested ingestion parity accepted | `EV-KG-01-01` | 2026-07-16 |
 | `WI-AI-01-01` | done | `AI-01` | Nested source-owned route and object context accepted | `EV-AI-01-01` | 2026-07-16 |
 

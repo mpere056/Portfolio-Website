@@ -85,8 +85,8 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
-| `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | ready |
-| `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | pending |
+| `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | complete |
+| `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | ready |
 | `AI-04` | Archive cards and destination flow | `AI-03`, `ARC-03` | Structured cards, validation, transitions, cross-subdomain behavior | Card navigation browser flow | pending |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
 

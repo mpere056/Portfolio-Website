@@ -18,7 +18,7 @@ Last updated: 2026-07-16
 
 Replace the assumption that AI lives mainly on `/chat` with one quiet, contextual AI presence available throughout the site.
 
-Phase 1 status: `AI-01` is complete at `afa5f67`. A dormant source-owned context stack can describe routes and selected objects, enforce strict IDs and local routes, restore parent context, and clear safely. It is intentionally not mounted; `AI-02` owns the quiet global shell and `AI-03` owns public graph-aware retrieval.
+Current status: `AI-01` and `AI-02` are complete through `3dfef6b`. The source-owned context stack is mounted in one root provider; a quiet CSS-only presence and lazy conversation surface work across routes while preserving `/chat`, sound-off navigation, and page state. `AI-03` is active for validated request context and visible trusted sources.
 
 This plan covers:
 
