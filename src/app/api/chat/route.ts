@@ -1,10 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from 'ai';
+import { GoogleGenerativeAIStream, Message, StreamData, StreamingTextResponse } from 'ai';
 import { fetchContext } from '@/lib/retriever'
 import {
   canFallbackGenerationModel,
   GENERATION_MODELS,
 } from '@/lib/generationPolicy'
+import { parseChatRequest } from '@/lib/ai/request'
+import { createSourcePayload } from '@/lib/ai/sources'
 
 // Firestore's server client requires the Node.js runtime.
 export const runtime = 'nodejs';
@@ -34,17 +36,24 @@ export async function POST(req: Request) {
   const genAI = new GoogleGenerativeAI(apiKey);
   const DEBUG = process.env.DEBUG_RAG === '1' || process.env.NODE_ENV !== 'production'
 
-  // Extract the `messages` from the body of the request
-  const { messages } = await req.json();
+  const parsed = parseChatRequest(await req.json());
+  if (!parsed.ok || !parsed.value) {
+    return new Response(parsed.error ?? 'Invalid chat request.', { status: 400 });
+  }
+  const { messages, context } = parsed.value;
 
   try {
     const userText: string | undefined = messages?.[messages.length - 1]?.content
     let ctx = ''
+    let sources: Awaited<ReturnType<typeof fetchContext>>['sources'] = []
     try {
       if (userText) {
-        const { context, slugs } = await fetchContext(userText, 4)
-        ctx = context
-        if (DEBUG) console.log('[RAG] ctx chars', ctx.length, 'slugs', slugs)
+        const retrieved = context?.nodeId
+          ? await fetchContext(userText, 4, { nodeId: context.nodeId })
+          : await fetchContext(userText, 4)
+        ctx = retrieved.context
+        sources = retrieved.sources
+        if (DEBUG) console.log('[RAG] ctx chars', ctx.length, 'slugs', retrieved.slugs)
       }
     } catch (e) {
       // Retrieval failed; proceed without context
@@ -74,10 +83,14 @@ export async function POST(req: Request) {
     if (!geminiStream) throw new Error('No Gemini generation model was available.');
 
     // Convert the response into a friendly text-stream
-    const stream = GoogleGenerativeAIStream(geminiStream);
+    const data = new StreamData();
+    data.append(createSourcePayload(sources));
+    const stream = GoogleGenerativeAIStream(geminiStream, {
+      onFinal: () => data.close(),
+    });
 
     // Respond with the stream
-    return new StreamingTextResponse(stream);
+    return new StreamingTextResponse(stream, {}, data);
   } catch (error) {
     console.error(error);
     return new Response('An error occurred while processing your request.', { status: 500 });

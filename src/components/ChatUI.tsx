@@ -6,6 +6,9 @@ import LoadingDots from './LoadingDots'; // Import the new component
 import ChatOrb from './ChatOrb';
 import ClipboardButton from './ClipboardButton';
 import { useCallback, useEffect, useMemo } from 'react';
+import type { PortfolioAIContext } from '@/lib/portfolioContracts';
+import { serializeChatRequestContext } from '@/lib/ai/request';
+import { parseLatestSourcePayload } from '@/lib/ai/sources';
 
 const samplePrompts = [
   'Tell me about your journey into coding.',
@@ -18,10 +21,12 @@ export default function ChatUI({
   compact = false,
   resetSignal,
   onActivityChange,
+  context,
 }: {
   compact?: boolean;
   resetSignal?: number;
   onActivityChange?: (state: 'idle' | 'responding' | 'error', message?: string) => void;
+  context?: PortfolioAIContext;
 } = {}) {
   const {
     messages,
@@ -33,7 +38,11 @@ export default function ChatUI({
     isLoading,
     error,
     reload,
-  } = useChat();
+    data,
+    setData,
+  } = useChat({
+    body: context ? { context: serializeChatRequestContext(context) } : undefined,
+  });
 
   useEffect(() => {
     onActivityChange?.(error ? 'error' : isLoading ? 'responding' : 'idle', error?.message);
@@ -43,13 +52,15 @@ export default function ChatUI({
     if (resetSignal === undefined) return;
     setMessages([]);
     setInput('');
-  }, [resetSignal, setInput, setMessages]);
+    setData(undefined);
+  }, [resetSignal, setData, setInput, setMessages]);
 
   const handlePromptClick = useCallback((prompt: string) => {
     setInput(prompt);
   }, [setInput]);
 
   const chatStream = useMemo(() => ({ messages, isLoading }), [messages, isLoading]);
+  const sources = useMemo(() => parseLatestSourcePayload(data), [data]);
 
   const isThinking = isLoading && messages[messages.length - 1]?.role === 'user';
 
@@ -127,6 +138,26 @@ export default function ChatUI({
       </div>
 
       <div className="flex-shrink-0 p-3 sm:p-4 bg-[#0a0a12]/80 backdrop-blur border-t border-white/10">
+        {sources.length > 0 && (
+          <div className="mb-3 flex flex-wrap gap-2" aria-label="Answer sources">
+            {sources.map(source => source.destination ? (
+              <a
+                key={source.nodeId}
+                href={source.destination.href}
+                className="max-w-full truncate rounded-full border border-sky-200/10 bg-sky-100/5 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.1em] text-sky-100/55 transition hover:border-sky-200/25 hover:text-sky-50"
+              >
+                {source.title}
+              </a>
+            ) : (
+              <span
+                key={source.nodeId}
+                className="max-w-full truncate rounded-full border border-white/8 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.1em] text-white/35"
+              >
+                {source.title}
+              </span>
+            ))}
+          </div>
+        )}
         {chatStream.messages.length === 0 && (
           <div className="mb-4">
             <div className={`grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3 ${compact ? '' : 'lg:grid-cols-4'}`}>

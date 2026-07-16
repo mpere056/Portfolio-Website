@@ -102,12 +102,15 @@ export async function fetchContext(
   const top = rankedRows.slice(0, Math.max(0, Math.min(topK, rankedRows.length)))
   const context = top.map(r => r.content).join('\n\n')
   const slugs = Array.from(new Set(top.map(r => r.contentId).filter(Boolean)))
-  graphQueriesPromise ??= loadKnowledgeGraphQueries()
-  const queries = await graphQueriesPromise
-  const sources = slugs
-    .filter(isNodeId)
-    .map(nodeId => queries.getPublicSourceDescriptor(nodeId))
-    .filter((source): source is PublicSourceDescriptor => Boolean(source))
+  let sources: PublicSourceDescriptor[] = []
+  if (slugs.length) {
+    graphQueriesPromise ??= loadKnowledgeGraphQueries()
+    const queries = await graphQueriesPromise
+    sources = slugs
+      .filter(isNodeId)
+      .map(nodeId => queries.getPublicSourceDescriptor(nodeId))
+      .filter((source): source is PublicSourceDescriptor => Boolean(source))
+  }
 
   if (DEBUG) console.log('[RAG] selected context', { chars: context.length, slugs })
   return { context, slugs, sources }
