@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The supported stack, free-tier Firestore retrieval, canonical content identities, reconciled shared contracts, and initial destination registry are implemented. `ARC-04` is ready to establish typed cross-system actions without changing visitor UI or introducing a global browser event bus.
+The supported stack, free-tier Firestore retrieval, canonical identities, shared contracts, destination registry, and typed cross-system actions are implemented. `ARC-05` is ready to validate untrusted inputs and define pure state migrations before any persistence or UI adoption.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ARC-04-01` | ready | `ARC-04` | Shared contracts and the 27-entry destination registry pass 26 tests, inventory, lint, and build | Define the minimal action union and one exhaustive destination/depth/context fixture | 2026-07-16 |
-| Next | `ARC-05` package preparation | pending | `ARC-05` | Runtime-validation boundaries are documented and deliberately excluded from `ARC-04` | Prepare a bounded work item only after the action contract is accepted | 2026-07-16 |
+| Now | `WI-ARC-05-01` | ready | `ARC-05` | Seven typed actions and exhaustive destination/depth/context handling pass 29 tests and build | Inventory untrusted/storage boundaries and write malformed/current/old-version fixtures | 2026-07-16 |
+| Next | `EXP-01` package preparation | pending | `EXP-01` | Persistence ownership and partial-reset rules are documented | Prepare storage adoption only after `ARC-05` validators and migrations are accepted | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ARC-04-01` | Establish Typed Cross-System Actions | ready | high | `ARC-04` | `CAP-ARC-004` | `active/WI-ARC-04-01.md` | 2026-07-16 |
+| `WI-ARC-05-01` | Establish Runtime Validation And Migration Boundaries | ready | high | `ARC-05` | `CAP-ARC-005` | `active/WI-ARC-05-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ARC-04-01` | done | `ARC-04` | Seven ID-first actions, creators, and exhaustive destination/depth/context integration accepted | `EV-ARC-04-01` | 2026-07-16 |
 | `WI-ARC-03-01` | done | `ARC-03` | Reviewed 27-entry destination registry, resolver, safe-state policy, fallbacks, and origin handling accepted | `EV-ARC-03-01` | 2026-07-16 |
 | `WI-ARC-02-02` | done | `ARC-02` | Graph-only identities and complete discovery vocabulary restore shared-contract acceptance | `EV-ARC-02-02` | 2026-07-16 |
 | `WI-ARC-02-01` | done | `ARC-02` | Initial shared depth, destination, discovery, AI-context, card, and project-experience increment accepted; package later reopened by `WI-ARC-02-02` | `EV-ARC-02-01` | 2026-07-16 |
@@ -44,7 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-BAS-07-01` | done | `BAS-07` | Next.js 16/React 19 and repaired AI runtime live on all production domains | `EV-BAS-07-01` through `EV-BAS-07-09` | 2026-07-14 |
 | `WI-BAS-06-01` | done | `BAS-06` | Node.js 24 bridge live on all production domains | `EV-BAS-06-01` through `EV-BAS-06-05` | 2026-07-14 |
 | `WI-BAS-04-01` | done | `BAS-04` | Node.js 24 bridge and separate Next.js 16 migration accepted | `EV-BAS-04-01` through `EV-BAS-04-04` | 2026-07-14 |
-| `WI-BAS-02-01` | done | `BAS-02` | Content and route inventory accepted | `EV-BAS-02-01` through `EV-BAS-02-03` | 2026-07-14 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

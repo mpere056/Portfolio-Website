@@ -70,8 +70,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ARC-001` | Stable namespaced IDs and rename policy | `ARC-01` | `V-10`, `V-11` | `O-00` | 3 | All applicable dimensions accepted; see `ARC-01` and `BAS-08` evidence | verified |
 | `CAP-ARC-002` | Shared depth, destination, discovery, AI, and project contracts | `ARC-02` | `V-03`, `V-10` | `O-00` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-ARC-003` | Validated destination registry and safe-state resolution | `ARC-03` | `V-07`, `V-10` | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | planned |
-| `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ARC-004` | Typed cross-system actions without hidden global coupling | `ARC-04` | `V-01`, `V-03` | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-ARC-005` | Runtime validation and persisted-state migrations | `ARC-05` | `V-05` | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-applicable` | planned |
 
 ### CAP-BAS-001: Reproducible Technical And Performance Baseline
 
@@ -204,17 +204,33 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-ARC-004: Typed Cross-System Actions Without Hidden Global Coupling
 
 - Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Package: `ARC-04`
+- Works now: Seven discriminated plain-object actions and focused creators carry stable IDs and bounded state; stimulation is normalized; exhaustive handling updates depth/AI context and resolves destinations through the accepted registry.
+- Named gaps: No acceptance gap remains in `ARC-04`. Runtime validation and migration belong to `ARC-05`; store, transition, AI, and feature adapters remain downstream.
+- Safe exposure: Pure TypeScript contracts and tests only; no global browser events, visitor UI changes, persistence, or route changes.
+- Evidence: `EV-ARC-04-01` accepted.
+- Work item: `WI-ARC-04-01` (done).
+- Next checkpoint: `ARC-05` validates untrusted action and persisted-state inputs before adoption.
+- Last assessed: 2026-07-16 after action-contract acceptance.
+
+### CAP-ARC-005: Runtime Validation And Persisted-State Migrations
+
+- Owner: Codex
 - Lifecycle: planned
 - Health: on-track
 - Confidence: high
 - Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-applicable; R: not-applicable`
-- Package: `ARC-04`
-- Works now: The accepted event vocabulary, payload contracts, destination resolver, and existing local store/component actions provide bounded inputs for implementation.
-- Named gaps: No canonical discriminated action union, creator API, exhaustive handler fixture, or transport-independent consumer boundary exists yet.
-- Safe exposure: Begin with pure TypeScript contracts and tests; do not migrate visitor UI or add browser-global events in this increment.
-- Evidence: `EV-ARC-02-02` and `EV-ARC-03-01` establish accepted dependencies; package evidence is not yet collected.
-- Work item: `WI-ARC-04-01` (ready).
-- Next checkpoint: An exhaustive integration fixture resolves destination requests by ID while carrying depth and AI-context changes without arbitrary hrefs.
+- Package: `ARC-05`
+- Works now: Destination resolution rejects unknown/unavailable destinations and unsafe state, while compile-time action contracts and experience persistence rules define the intended runtime boundary.
+- Named gaps: No reusable parser validates untrusted actions; no versioned semantic-state envelope, migration registry, structured issue result, or corrupt/old-state fixture exists.
+- Safe exposure: Pure validators and migrations with synthetic fixtures only; browser storage and UI adoption remain in `EXP-01` and downstream packages.
+- Evidence: `EV-ARC-03-01` and `EV-ARC-04-01` establish accepted dependencies; package evidence is not yet collected.
+- Work item: `WI-ARC-05-01` (ready).
+- Next checkpoint: Current, malformed, old-version, and unknown-version fixtures prove deterministic acceptance, rejection, partial preservation, and selective reset.
 - Last assessed: 2026-07-16 during work-item preparation.
 
 ## Knowledge Graph And Content

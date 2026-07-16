@@ -54,8 +54,8 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ARC-01` | Stable ID policy | `BAS-02` | Namespace rules, initial IDs, rename policy | Validation fixture, canonical managed corpus, and decision record | complete |
 | `ARC-02` | Shared contract types | `ARC-01` | Canonical TypeScript types for depth, destinations, discovery, context | Typecheck and consumer fixture | complete |
 | `ARC-03` | Destination registry | `ARC-02` | Validated registry for routes, areas, subdomains, safe state | Unit tests including unknown destination | complete |
-| `ARC-04` | Cross-system actions | `ARC-02`, `ARC-03` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | ready |
-| `ARC-05` | Contract validation and migrations | `ARC-02`, `ARC-03` | Runtime validators, persisted-state migrations, compatibility rules | Old-version and invalid-payload tests | pending |
+| `ARC-04` | Cross-system actions | `ARC-02`, `ARC-03` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | complete |
+| `ARC-05` | Contract validation and migrations | `ARC-02`, `ARC-03`, `ARC-04` | Runtime validators, persisted-state migrations, compatibility rules | Old-version and invalid-payload tests | ready |
 
 ## Knowledge And Content Packages
 
