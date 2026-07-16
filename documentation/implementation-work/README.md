@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 remains fully accepted. Phase 2 now has three complete packages: `QA-01`, `EXP-02`, and the feature-flagged `EXP-03` First Note through `27d2485`. `KG-05` is ready to provide bounded graph queries for the tour, semantic response, and graph-aware AI work that follows.
+Phase 1 remains fully accepted. Phase 2 now has four complete packages through `e14b103`: `QA-01`, `EXP-02`, feature-flagged `EXP-03`, and the bounded `KG-05` query layer. `KG-06` is ready to add graph-safe metadata and source descriptors to the existing Firestore retrieval path.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-KG-05-01` | ready | `KG-05` | Compiled 49-node/19-edge graph and destination registry are accepted | Define bounded deterministic query contracts and visibility rules | 2026-07-16 |
-| Next | Graph-aware retrieval metadata | pending | `KG-06` | `KG-05` bounded query and adapter evidence | Extend ingestion metadata and retrieval fixtures without changing public UI | 2026-07-16 |
+| Now | `WI-KG-06-01` | ready | `KG-06` | Bounded graph queries and destination-safe adapters pass within 88 tests | Define additive chunk metadata and public source descriptor contracts | 2026-07-16 |
+| Next | Quiet global AI shell | pending | `AI-02` | Existing `AI-01` context and feature-flag foundations are accepted | Build a lazy shell independently from retrieval UI changes | 2026-07-16 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-KG-05-01` | Build Bounded Graph Queries And Render Adapters | ready | high | `KG-05` | `CAP-KG-005`, `CAP-KG-006` | `active/WI-KG-05-01.md` | 2026-07-16 |
+| `WI-KG-06-01` | Add Graph-Aware Retrieval Metadata | ready | high | `KG-06` | `CAP-KG-007` | `active/WI-KG-06-01.md` | 2026-07-16 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-KG-05-01` | done | `KG-05` | Deterministic visibility-safe bounded graph queries and destination render adapters accepted | `EV-KG-05-01` | 2026-07-16 |
 | `WI-EXP-03-01` | done | `EXP-03` | One-time wake, audio-independent reveal, return restore, reset, and keyboard flow accepted behind flags | `EV-EXP-03-01`, `EV-EXP-03-02` | 2026-07-16 |
 | `WI-EXP-02-01` | done | `EXP-02` | Atomic five-stage controller, AI ownership, persistence, hints, cleanup, and dormant React boundary accepted | `EV-EXP-02-01`, `EV-EXP-02-02` | 2026-07-16 |
 | `WI-QA-01-01` | done | `QA-01` | Destination, graph, persistence, AI context, and fallback foundations cooperate in one automated flow | `EV-QA-01-01` | 2026-07-16 |
@@ -44,7 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-KG-02-01` | done | `KG-02` | Authored content and extension schemas accepted | `EV-KG-02-01` | 2026-07-16 |
 | `WI-KG-01-01` | done | `KG-01` | Recursive shared loader and nested ingestion parity accepted | `EV-KG-01-01` | 2026-07-16 |
 | `WI-AI-01-01` | done | `AI-01` | Nested source-owned route and object context accepted | `EV-AI-01-01` | 2026-07-16 |
-| `WI-LPS-01-01` | done | `LPS-01` | Lifecycle-specific authored section rules accepted without classifying projects | `EV-LPS-01-01` | 2026-07-16 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

@@ -109,6 +109,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-EXP-02-02` | `EXP-02` | `CAP-EXP-003`, `CAP-EXP-004` | integration-test | accepted | `852e14c`, atomic controller and React boundary | 2026-07-16 | `EXP-02.md` |
 | `EV-EXP-03-01` | `EXP-03` | `CAP-EXP-005`, `CAP-EXP-006` | integration-test | accepted | `27d2485`, 82-test/type/build gate | 2026-07-16 | `EXP-03.md` |
 | `EV-EXP-03-02` | `EXP-03` | `CAP-EXP-005`, `CAP-EXP-006` | browser-flow | accepted | `27d2485`, local Development | 2026-07-16 | `EXP-03.md` |
+| `EV-KG-05-01` | `KG-05` | `CAP-KG-005`, `CAP-KG-006` | integration-test | accepted | `e14b103`, 88-test/type/build gate | 2026-07-16 | `KG-05.md` |
 
 ## Required Evidence Fields
 

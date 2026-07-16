@@ -241,9 +241,25 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-KG-002` | Validated project, event, post, and relationship schemas | `KG-02` | `V-11`, `V-19` | `O-00` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-003` | Build-time graph compiler and visibility validator | `KG-03` | `V-11` | `O-00` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
 | `CAP-KG-004` | Reviewed flagship, event, skill, and post subgraph | `KG-04` | `V-11`, `V-13`, `V-24` | `O-00` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
-| `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-KG-005 And CAP-KG-006: Bounded Queries And Render Adapters
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Package: `KG-05`
+- Works now: Narrow APIs return deterministic reviewed/public connections, timeline consequences, skill evidence, explicit hidden discoveries, destination-safe related content and tour candidates, bounded AI neighborhoods, and at most three semantic edges.
+- Named gaps: Retrieval metadata remains `KG-06`; tour authoring remains `EXP-04`; visual semantic response remains `EXP-05`.
+- Safe exposure: Pure build/server queries with no new route or component consumer.
+- Evidence: `EV-KG-05-01`.
+- Work item: `WI-KG-05-01` (done).
+- Next checkpoint: `KG-06` attaches safe graph metadata and descriptors to Firestore retrieval.
+- Last assessed: 2026-07-16 at `e14b103`.
 
 ### CAP-KG-001: Shared Loader With Current-Output Parity
 

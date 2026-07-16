@@ -65,8 +65,8 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `KG-02` | Content schemas | `KG-01`, `ARC-02` | Project, timeline, post, relationship schema | Invalid fixture failures | complete |
 | `KG-03` | Graph compiler and validator | `KG-02` | Node compiler, relationship loader, visibility validation | Graph test suite | complete |
 | `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
-| `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | ready |
-| `KG-06` | Graph-aware RAG metadata | `KG-04` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | pending |
+| `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | complete |
+| `KG-06` | Graph-aware RAG metadata | `KG-04`, `KG-05` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | ready |
 
 ## Experience Foundation Packages
 
