@@ -14,6 +14,7 @@
     "test": "npm run lint && vitest run --reporter=verbose",
     "prepare": "husky",
     "ingest": "tsx scripts/ingest.ts",
+    "backfill:rag-metadata": "tsx scripts/backfill-rag-metadata.ts",
     "inventory:content": "tsx scripts/content-inventory.ts",
     "validate:content": "tsx scripts/validate-content.ts"
   },

@@ -29,6 +29,8 @@ import {
 
 const envLocal = path.join(process.cwd(), '.env.local')
 const envFile = path.join(process.cwd(), '.env')
+const ingestEnvFile = process.env.INGEST_ENV_FILE
+if (ingestEnvFile) loadEnv({ path: path.resolve(ingestEnvFile) })
 if (fsSync.existsSync(envLocal)) loadEnv({ path: envLocal })
 if (fsSync.existsSync(envFile)) loadEnv({ path: envFile })
 
