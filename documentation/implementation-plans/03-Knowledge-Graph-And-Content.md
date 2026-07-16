@@ -18,7 +18,7 @@ Last updated: 2026-07-16
 
 Expand the current MDX corpus into a validated, queryable relationship graph without abandoning authored files as the source of truth.
 
-Current status: `KG-01` through `KG-05` are complete through `e14b103`. The shared loader covers all 39 authored records, the prebuild gate validates a 49-node/19-relationship public graph, and deterministic bounded queries now serve consequences, evidence, tours, hidden discoveries, AI neighborhoods, related content, and semantic edges. `KG-06` is active for retrieval metadata and public source descriptors.
+Current status: `KG-01` through `KG-06` are complete through `aeff727`. In addition to the shared 49-node/19-edge compiler and bounded queries, all 42 canonical Firestore chunks carry verified public graph metadata; retrieval supports bounded validated context, legacy compatibility, and destination-safe public source descriptors. `AI-03` will consume this server contract after the global shell.
 
 ## Existing Foundation
 

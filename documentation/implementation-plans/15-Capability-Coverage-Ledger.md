@@ -243,7 +243,23 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-KG-004` | Reviewed flagship, event, skill, and post subgraph | `KG-04` | `V-11`, `V-13`, `V-24` | `O-00` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
+
+### CAP-KG-007: Graph-Aware Retrieval Metadata And Sources
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted`
+- Package: `KG-06`
+- Works now: New ingestion writes graph metadata; all 42 live chunks are backfilled and verified; retrieval accepts only public server-resolved context, caps graph influence at two rank positions, preserves legacy rows, and emits public destination-safe descriptors.
+- Named gaps: The current chat client does not yet send context or display sources; that belongs to `AI-03`.
+- Safe exposure: Existing context-free retrieval order remains unchanged; Firestore remains Spark/free and server-only.
+- Evidence: `EV-KG-06-01`, `EV-KG-06-02`.
+- Work item: `WI-KG-06-01` (done).
+- Next checkpoint: `AI-02` mounts the shell, then `AI-03` threads validated IDs and sources through it.
+- Last assessed: 2026-07-16 at `7597c1b` and `aeff727` with 42-document readback.
 
 ### CAP-KG-005 And CAP-KG-006: Bounded Queries And Render Adapters
 

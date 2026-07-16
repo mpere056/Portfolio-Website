@@ -66,7 +66,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `KG-03` | Graph compiler and validator | `KG-02` | Node compiler, relationship loader, visibility validation | Graph test suite | complete |
 | `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
 | `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | complete |
-| `KG-06` | Graph-aware RAG metadata | `KG-04`, `KG-05` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | ready |
+| `KG-06` | Graph-aware RAG metadata | `KG-04`, `KG-05` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | complete |
 
 ## Experience Foundation Packages
 
@@ -85,7 +85,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
-| `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | pending |
+| `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | ready |
 | `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | pending |
 | `AI-04` | Archive cards and destination flow | `AI-03`, `ARC-03` | Structured cards, validation, transitions, cross-subdomain behavior | Card navigation browser flow | pending |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
