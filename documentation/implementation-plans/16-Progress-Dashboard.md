@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-16
-Implementation commit baseline: `afa5f6739459a03e7f47e6cfb0273cdd55170a76`
+Implementation commit baseline: `1c7129ba7eb470b9d00358f81043f34294419e1e`
 
 ## Plan Metadata
 
@@ -17,7 +17,7 @@ Implementation commit baseline: `afa5f6739459a03e7f47e6cfb0273cdd55170a76`
 
 **Phase 1 structural foundations are complete; the integrated Phase 2 foundation harness is next.**
 
-Commit `afa5f67` adds typed flags, a dormant versioned exploration store, nested AI context, recursive content parity, schemas, lifecycle rules, mandatory graph validation, and a 49-node/19-relationship reviewed subgraph. All 61 tests, strict typechecking, content validation, and the production build pass. `WI-QA-01-01` is the single ready item and will prove these foundations cooperate before visitor-facing Phase 2 UI begins.
+Commits `afa5f67` and `1c7129b` add typed flags, a dormant versioned exploration store, nested AI context, recursive content parity, schemas, lifecycle rules, mandatory graph validation, a 49-node/19-relationship reviewed subgraph, and a safe empty-legacy-record fallback. All 62 tests, strict typechecking, content validation, and the production build pass. `WI-QA-01-01` is the single ready item and will prove these foundations cooperate before visitor-facing Phase 2 UI begins.
 
 This distinction prevents two errors:
 
@@ -81,7 +81,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-01-01` | ready | `QA-01` | Phase 1 passes 61 tests, content validation, typecheck, and production build | Write one integrated destination/store/context/public-graph foundation flow | 2026-07-16 |
+| Now | `WI-QA-01-01` | ready | `QA-01` | Phase 1 passes 62 tests, content validation, typecheck, and production build | Write one integrated destination/store/context/public-graph foundation flow | 2026-07-16 |
 | Next | `EXP-02` package preparation | pending | `EXP-02` | Dormant store, context, graph, destination, and action contracts are accepted | Prepare one controlled depth primitive after `QA-01` | 2026-07-16 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
@@ -158,7 +158,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-16 | Completed Phase 1 structural foundation | `BAS-03`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01`, `O-00` to `O-02` | 49 graph nodes, 19 reviewed edges, 61 tests, typecheck, content gate, and production build pass; `QA-01` is ready |
+| 2026-07-16 | Completed Phase 1 structural foundation | `BAS-03`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01`, `O-00` to `O-02` | 49 graph nodes, 19 reviewed edges, 62 tests, typecheck, content gate, and production build pass; `QA-01` is ready |
 | 2026-07-16 | Accepted runtime validation and semantic-state migration | `ARC-05`, `EXP-01`, `CAP-ARC-005`, `CAP-EXP-001`, `CAP-EXP-002`, `WI-EXP-01-01`, `O-00`, `O-01` | Seven-action parsing, registry-backed destinations, current/v0/corrupt/unknown state behavior pass 37 tests and build; dormant store is next |
 | 2026-07-16 | Accepted typed cross-system action foundation | `ARC-04`, `ARC-05`, `CAP-ARC-004`, `WI-ARC-04-01`, `WI-ARC-05-01`, `O-00` | Seven ID-first actions and exhaustive destination/depth/context integration pass 29 tests and build; validation/migration is next |
 | 2026-07-16 | Accepted shared-contract reconciliation and initial destination registry | `ARC-02`, `ARC-03`, `ARC-04`, `CAP-ARC-002`, `CAP-ARC-003`, `WI-ARC-04-01`, `O-00` | Strict content plus graph identities, full discovery vocabulary, and 27 validated destinations pass 26 tests and build; typed actions are next |

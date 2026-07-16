@@ -101,7 +101,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-AI-01-01` | `AI-01` | `CAP-AI-001`, `CAP-AI-002` | integration-test | accepted | `afa5f67`, nested-context fixtures | 2026-07-16 | `AI-01.md` |
 | `EV-KG-01-01` | `KG-01` | `CAP-KG-001` | integration-test | accepted | `afa5f67`, loader parity fixtures | 2026-07-16 | `KG-01.md` |
 | `EV-KG-02-01` | `KG-02` | `CAP-KG-002` | contract | accepted | `afa5f67`, schema fixtures | 2026-07-16 | `KG-02.md` |
-| `EV-KG-03-01` | `KG-03` | `CAP-KG-003` | integration-test | accepted | `afa5f67`, prebuild graph gate | 2026-07-16 | `KG-03.md` |
+| `EV-KG-03-01` | `KG-03` | `CAP-KG-003` | integration-test | accepted | `afa5f67` + `1c7129b`, prebuild graph gate | 2026-07-16 | `KG-03.md` |
 | `EV-KG-04-01` | `KG-04` | `CAP-KG-004` | content-review | accepted | `afa5f67`, 49-node/19-edge fixture | 2026-07-16 | `KG-04.md` |
 | `EV-LPS-01-01` | `LPS-01` | `CAP-LPS-001` | contract | accepted | `afa5f67`, lifecycle fixtures | 2026-07-16 | `LPS-01.md` |
 

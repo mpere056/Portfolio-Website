@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 is accepted at `afa5f67`: flags, recursive content loading, schemas, graph validation, an initial reviewed subgraph, lifecycle rules, the dormant exploration store, and nested AI context all pass their gates. Phase 2 starts by proving these foundations cooperate in one automated flow before any visitor-facing shell is mounted.
+Phase 1 is accepted at `afa5f67` plus deployment validation fix `1c7129b`: flags, recursive content loading, schemas, graph validation, an initial reviewed subgraph, lifecycle rules, the dormant exploration store, and nested AI context all pass their gates. Phase 2 starts by proving these foundations cooperate in one automated flow before any visitor-facing shell is mounted.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-01-01` | ready | `QA-01` | Phase 1 passes 61 tests, content validation, typecheck, and production build | Write one integrated destination/store/context/public-graph foundation flow | 2026-07-16 |
+| Now | `WI-QA-01-01` | ready | `QA-01` | Phase 1 passes 62 tests, content validation, typecheck, and production build | Write one integrated destination/store/context/public-graph foundation flow | 2026-07-16 |
 | Next | `EXP-02` package preparation | pending | `EXP-02` | Dormant store and action contracts are accepted | Prepare one controlled depth primitive after `QA-01` | 2026-07-16 |
 
 ## Active And Unfinished Items

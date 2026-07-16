@@ -19,7 +19,7 @@ Last updated: 2026-07-16
 | Status | accepted |
 | Type | contract |
 | Claim | One typed registry resolves development, preview, production, and test policy; overrides are development-only and URL input cannot enable flags. |
-| Evidence | `tests/featureFlags.test.ts` passes 3 cases within the 61-test suite. |
+| Evidence | `tests/featureFlags.test.ts` passes 3 cases within the 62-test suite. |
 | Safe exposure | `experienceFoundation` is dormant and false in production; no UI reads the registry yet. |
 
 Package complete. Visitor rollout remains owned by each feature package and `QA-05`.

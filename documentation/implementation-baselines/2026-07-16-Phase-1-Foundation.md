@@ -2,7 +2,7 @@
 
 Date: 2026-07-16
 
-Implementation commit: `afa5f6739459a03e7f47e6cfb0273cdd55170a76`
+Implementation commits: `afa5f6739459a03e7f47e6cfb0273cdd55170a76`, deployment validation fix `1c7129ba7eb470b9d00358f81043f34294419e1e`
 
 ## Accepted Foundation
 
@@ -32,7 +32,7 @@ Phase 1 establishes dormant infrastructure without changing the current visitor 
 | --- | --- |
 | `npm run validate:content` | Passed: 49 nodes, 19 relationships |
 | `npx tsc --noEmit` | Passed |
-| `npm test` | Passed: 17 files, 61 tests; 0 lint errors and 11 retained warnings |
+| `npm test` | Passed: 17 files, 62 tests; 0 lint errors and 11 retained warnings |
 | `npm run build` | Passed under Node.js 24 with content prebuild validation |
 
 ## Resume Point

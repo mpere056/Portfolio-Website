@@ -19,7 +19,7 @@ Last updated: 2026-07-16
 | Status | accepted |
 | Type | integration-test |
 | Claim | The dormant Zustand store is SSR-safe and supports per-origin hydration, v0 migration, partial recovery, semantic checkpoints, invalid-checkpoint rejection, and reset. |
-| Evidence | `tests/experienceStore.test.ts` passes 6 memory-backed cases; the full 61-test suite and production build pass. |
+| Evidence | `tests/experienceStore.test.ts` passes 6 memory-backed cases; the full 62-test suite and production build pass. |
 | Safe exposure | Store is unmounted; current audio preferences, route history, cookies, and UI are unchanged. |
 
 Package complete. `EXP-02` owns the first controlled UI consumer.
