@@ -37,7 +37,9 @@ Examples:
 | `EV-EXP-05-01` through `EV-EXP-05-03` | `EXP-05` | accepted | `EXP-05.md` |
 | `EV-EXP-06-01`, `EV-EXP-06-02` | `EXP-06` | accepted | `EXP-06.md` |
 
-Aggregate build, Preview, and production-safe deployment records are appended to `QA-01.md` by `WI-QA-01-02`.
+| `EV-QA-01-02` through `EV-QA-01-04` | Phase 2 aggregate | accepted | `QA-01.md` |
+
+Aggregate local, protected Preview, and production-safe deployment records are complete in `QA-01.md`.
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 

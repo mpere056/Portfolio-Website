@@ -25,4 +25,3 @@ A reviewed registry defines one personal artifact, one technical lesson, and one
 - The technical lesson requires the understood relationship instrument; the relational insight requires both earlier discoveries.
 - Semantic IDs persist without scores, totals, badges, shelves, or collection UI, and reset clears them safely.
 - Every discovery is explicitly excluded from guided-tour profiles.
-

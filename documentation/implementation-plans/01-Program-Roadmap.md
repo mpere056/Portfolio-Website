@@ -153,7 +153,7 @@ Implementation checkpoint: commits `afa5f67` and `1c7129b` complete the dormant 
 
 ## Phase 2: Exploration Shell
 
-Implementation checkpoint: all ten Phase 2 packages are locally accepted through `51b2e7d`. The 123-test aggregate suite, strict typecheck, package browser flows, and production-off flag boundary pass for First Note, persistent depth, contextual AI, non-linear tour, environmental response, stimulation, and meaningful discoveries. Preview and production-safe deployment evidence is tracked by `WI-QA-01-02`.
+Implementation checkpoint: Phase 2 is complete. All ten packages pass the 123-test aggregate, strict typecheck, package browser flows, clean Preview deployment, live graph-aware AI request, production-safe deployment, and public route matrix. Development/Preview exposes the complete shell; Production deliberately keeps its visitor UI off pending combined creative review. Evidence is `EV-QA-01-02` through `EV-QA-01-04`.
 
 ### Goals
 

@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 remains fully accepted. All ten Phase 2 implementation packages are accepted locally through `51b2e7d`, including the First Note, graph/retrieval foundation, contextual AI, guided tour, environmental response, and meaningful discoveries. The aggregate release audit is the only active Phase 2 work.
+Phase 1 and Phase 2 are fully accepted. Phase 2 is pushed, deployed, and live-verified through production deployment `dpl_51xD2i8nQU8zEgjFiHnvNCvB2JqA`; its complete creative shell remains on in Development/Preview and deliberately off in Production pending creative review.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-01-02` | in-progress | `QA-01` | All Phase 2 implementation packages are locally accepted; 123 tests and typecheck pass | Finish build, deploy Preview and Production-safe code, and live-verify | 2026-07-17 |
-| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 release gates pass | Audit shared exhibit needs and compare bounded LifeInbox/Sudoku feasibility spikes | 2026-07-17 |
+| Now | None | complete | Phase 2 | Aggregate tests, Preview, production-safe deployment, live routes, and AI source proof pass | Preserve the accepted exposure boundary | 2026-07-17 |
+| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 release gates pass | Create a bounded work item for shared exhibit audit and LifeInbox/Sudoku feasibility | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-QA-01-02` | Release The Phase 2 Exploration Shell | in-progress | high | `QA-01` | Phase 2 aggregate | `active/WI-QA-01-02.md` | 2026-07-17 |
+| None | - | - | - | - | - | - |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-QA-01-02` | done | `QA-01` | Aggregate tests/build, protected Preview, production-safe deployment, live routes, and structured AI sources accepted | `EV-QA-01-02` through `EV-QA-01-04` | 2026-07-17 |
 | `WI-EXP-06-01` | done | `EXP-06` | Three explicit meaningful discoveries, prerequisites, semantic persistence, and no-score/tour exclusion accepted | `EV-EXP-06-01`, `EV-EXP-06-02` | 2026-07-17 |
 | `WI-EXP-05-01` | done | `EXP-05` | Three-rule relationship instrument, canonical semantic light, and persisted stimulation accepted | `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03` | 2026-07-17 |
 | `WI-EXP-04-01` | done | `EXP-04` | One-question role lens, canonical any-order doors, dismiss/resume, and route persistence accepted | `EV-EXP-04-01`, `EV-EXP-04-02` | 2026-07-16 |
@@ -45,7 +46,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-EXP-03-01` | done | `EXP-03` | One-time wake, audio-independent reveal, return restore, reset, and keyboard flow accepted behind flags | `EV-EXP-03-01`, `EV-EXP-03-02` | 2026-07-16 |
 | `WI-EXP-02-01` | done | `EXP-02` | Atomic five-stage controller, AI ownership, persistence, hints, cleanup, and dormant React boundary accepted | `EV-EXP-02-01`, `EV-EXP-02-02` | 2026-07-16 |
 | `WI-QA-01-01` | done | `QA-01` | Destination, graph, persistence, AI context, and fallback foundations cooperate in one automated flow | `EV-QA-01-01` | 2026-07-16 |
-| `WI-EXP-01-01` | done | `EXP-01` | Versioned per-origin exploration hydration, migration, semantic checkpoints, and reset accepted | `EV-EXP-01-01` | 2026-07-16 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

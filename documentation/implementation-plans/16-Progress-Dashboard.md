@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-17
-Implementation commit baseline: `51b2e7d`
+Implementation commit baseline: `3de7c3c`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `51b2e7d`
 
 ## Current Program State
 
-**Phase 1 is complete; all ten Phase 2 implementation packages are locally accepted, and the aggregate deployment audit is active.**
+**Phase 1 and Phase 2 are complete; the exploration shell is pushed, Preview-verified, production-safely deployed, and ready for the Phase 3 handoff.**
 
-Phase 1 remains accepted at its production checkpoint. Through `51b2e7d`, Phase 2 adds persistent depth, First Note, contextual global AI, an any-order role tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. All 123 tests, strict typechecking, package browser flows, and the Production-off flag boundary pass. `WI-QA-01-02` owns final build, Preview, production-safe deployment, live-route, push, and handoff evidence.
+Through `3de7c3c`, Phase 2 adds persistent depth, First Note, contextual global AI, an any-order role tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. All 123 tests, strict typechecking, content/build gates, package browser flows, protected Preview routes and live AI, production-safe deployment, public routes, and Production-off feature boundaries pass. No Phase 2 work item remains active.
 
 This distinction prevents two errors:
 
@@ -29,8 +29,8 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, and context accepted | Preserve boundaries in integrated adoption | Complete `WI-QA-01-01` |
-| `O-01` Persistent exploratory world | Phase 2 locally accepted | on-track | First Note, persistence, depth, tour, environment, stimulation, and discoveries pass together | Aggregate deployment evidence remains | Complete `WI-QA-01-02`, then begin Phase 3 |
-| `O-02` Quiet global AI | Phase 2 locally accepted | on-track | Lazy global shell, identifier-only context, bounded retrieval, and validated sources pass | Live Preview source-chip proof remains | Complete `WI-QA-01-02`, then add cards in `AI-04` |
+| `O-01` Persistent exploratory world | Phase 2 complete | on-track | Complete shell passes local and protected Preview gates; Production-off boundary is verified | Production creative promotion is a later review, not an implementation gap | Begin bounded Phase 3 flagship work |
+| `O-02` Quiet global AI | Phase 2 complete | on-track | Lazy shell, identifier-only context, Firebase retrieval, and validated sources pass live | Cards remain the planned `AI-04` increment | Add cards within the first flagship slice |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
@@ -81,7 +81,7 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 22 | `EXP-04` | Non-linear guided tour | complete | `EXP-01`, `EXP-02`, `ARC-03` | One role question, any-order doors, dismiss/resume, no discovery leakage |
 | 23 | `EXP-05` | Environmental response system | complete | `EXP-02`, `KG-05` | Ordered interaction, semantic light, and stimulation prototype |
 | 24 | `EXP-06` | Meaningful discovery registry | complete | `EXP-01`, `KG-04`, `EXP-04`, `EXP-05` | Three explicit discoveries with no score or tour exposure |
-| 25 | Phase 2 aggregate release | in-progress | All Phase 2 packages | Build, Preview, production-safe deployment, and live evidence |
+| 25 | Phase 2 aggregate release | complete | All Phase 2 packages | Build, Preview, production-safe deployment, routes, and live AI evidence accepted |
 
 The complete exploration shell is accepted locally and intentionally Production-off. The current checkpoint proves the integrated Preview without prematurely promoting its creative surface; Phase 3 begins only after this release audit closes.
 
@@ -91,8 +91,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-01-02` | in-progress | `QA-01` | All ten Phase 2 packages, 123 tests, and strict typecheck pass | Finish build, deploy, live-verify, push, and close the release record | 2026-07-17 |
-| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 aggregate release closes | Audit shared exhibit infrastructure and run bounded LifeInbox/Sudoku feasibility spikes | 2026-07-17 |
+| Now | None | complete | Phase 2 | Aggregate, Preview, Production, route, and live AI gates pass | Preserve the accepted Production-off boundary | 2026-07-17 |
+| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 is complete | Create the shared-exhibit audit and bounded LifeInbox/Sudoku feasibility work item | 2026-07-17 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -118,7 +118,7 @@ No Phase 2 implementation package is partial. The complete shell is accepted beh
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| Phase 2 shell | `WI-QA-01-02` | Every owned package has accepted implementation and package QA | Preview/live deployment evidence and later Production creative promotion | Full shell on in Development/Preview; off in Production | Complete release audit without changing exposure policy | Phase 2 package evidence accepted |
+| None | - | All Phase 2 implementation and release evidence is accepted | Production creative promotion remains a separate later review | Full shell on in Development/Preview; off in Production | Begin Phase 3 without changing exposure policy | `EV-QA-01-02` through `EV-QA-01-04` |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -158,7 +158,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 62 | Includes every Phase 2 package record plus the aggregate 123-test, type, content, and production-build gate |
+| Accepted | 64 | Includes every Phase 2 package record plus aggregate local, protected Preview, and production-safe live evidence |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -169,6 +169,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-17 | Completed Phase 2 release | `QA-01`, `O-01`, `O-02`, `WI-QA-01-02` | 123 tests/build, protected Preview, live structured sources, production-safe deployment, and all public routes pass |
 | 2026-07-17 | Completed meaningful hidden discoveries | `EXP-06`, `CAP-EXP-012`, `CAP-EXP-013`, `O-01`, `WI-QA-01-02` | Three explicit discoveries persist without tour, score, count, or page-load completion; aggregate release is active |
 | 2026-07-17 | Completed environmental response | `EXP-05`, `CAP-EXP-009` to `CAP-EXP-011`, `O-01` | Ordered interaction, graph light, text explanation, and continuous stimulation pass |
 | 2026-07-16 | Completed non-linear guided tour | `EXP-04`, `CAP-EXP-007`, `CAP-EXP-008`, `O-01` | One role question, three any-order doors, dismiss/resume, persistence, and discovery exclusion pass |
@@ -204,8 +205,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `WI-QA-01-02` closes with Preview and production-safe deployment evidence.
-- Phase 3 creates its first bounded work item after flagship feasibility review.
+- Phase 3 creates its first bounded work item for exhibit audit and flagship feasibility.
 - The feature-flagged Phase 2 shell receives Production creative rollout approval.
 - A gate or dependency changes.
 - Target implementation code lands.
