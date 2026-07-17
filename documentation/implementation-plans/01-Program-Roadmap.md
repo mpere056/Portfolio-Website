@@ -153,7 +153,7 @@ Implementation checkpoint: commits `afa5f67` and `1c7129b` complete the dormant 
 
 ## Phase 2: Exploration Shell
 
-Implementation checkpoint: `QA-01`, `EXP-02`, and `EXP-03` are complete through `27d2485`. The 82-test/build gate and local browser flow accept the one-time First Note behind Development/Preview flags while Production remains off for creative rollout review. `KG-05` bounded queries are the active dependency for the non-linear tour, semantic response, and graph-aware AI sequence.
+Implementation checkpoint: all ten Phase 2 packages are locally accepted through `51b2e7d`. The 123-test aggregate suite, strict typecheck, package browser flows, and production-off flag boundary pass for First Note, persistent depth, contextual AI, non-linear tour, environmental response, stimulation, and meaningful discoveries. Preview and production-safe deployment evidence is tracked by `WI-QA-01-02`.
 
 ### Goals
 
@@ -172,11 +172,11 @@ Implementation checkpoint: `QA-01`, `EXP-02`, and `EXP-03` are complete through 
 
 ### Exit Criteria
 
-- A first-time visitor can wake the world and start exploring.
-- A returning visitor does not repeat the intro and retains meaningful state.
-- The tour can recommend destinations in any order and be dismissed.
-- The AI is globally reachable without repeated page buttons.
-- Sound-off and lower-stimulation behavior are usable.
+- [x] A first-time visitor can wake the world and start exploring.
+- [x] A returning visitor does not repeat the intro and retains meaningful state.
+- [x] The tour can recommend destinations in any order and be dismissed.
+- [x] The AI is globally reachable without repeated page buttons.
+- [x] Sound-off and lower-stimulation behavior are usable.
 
 ## Phase 3: First Flagship Vertical Slice
 

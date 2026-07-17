@@ -1,6 +1,6 @@
 # Capability Coverage Ledger
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -254,11 +254,11 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted`
 - Package: `KG-06`
 - Works now: New ingestion writes graph metadata; all 42 live chunks are backfilled and verified; retrieval accepts only public server-resolved context, caps graph influence at two rank positions, preserves legacy rows, and emits public destination-safe descriptors.
-- Named gaps: The current chat client does not yet send context or display sources; that belongs to `AI-03`.
+- Named gaps: No KG-06 gap remains; archive cards and `/chat` migration belong to `AI-04` and `AI-05`.
 - Safe exposure: Existing context-free retrieval order remains unchanged; Firestore remains Spark/free and server-only.
 - Evidence: `EV-KG-06-01`, `EV-KG-06-02`.
 - Work item: `WI-KG-06-01` (done).
-- Next checkpoint: `AI-02` mounts the shell, then `AI-03` threads validated IDs and sources through it.
+- Next checkpoint: `AI-04` may build validated archive cards on the accepted descriptors.
 - Last assessed: 2026-07-16 at `7597c1b` and `aeff727` with 42-document readback.
 
 ### CAP-KG-005 And CAP-KG-006: Bounded Queries And Render Adapters
@@ -270,8 +270,8 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `KG-05`
 - Works now: Narrow APIs return deterministic reviewed/public connections, timeline consequences, skill evidence, explicit hidden discoveries, destination-safe related content and tour candidates, bounded AI neighborhoods, and at most three semantic edges.
-- Named gaps: Retrieval metadata remains `KG-06`; tour authoring remains `EXP-04`; visual semantic response remains `EXP-05`.
-- Safe exposure: Pure build/server queries with no new route or component consumer.
+- Named gaps: No package gap remains; broader project/About consumers belong to their owning later packages.
+- Safe exposure: Pure build/server queries consumed by retrieval, tour, environmental response, and discovery adapters; every consumer remains bounded and visibility-safe.
 - Evidence: `EV-KG-05-01`.
 - Work item: `WI-KG-05-01` (done).
 - Next checkpoint: `KG-06` attaches safe graph metadata and descriptors to Firestore retrieval.
@@ -308,8 +308,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-009` | Discovery physics rule engine and first reviewed rules | `EXP-05` | `V-02`, `V-12` | `O-01` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-010` | Graph-powered semantic lighting | `EXP-05` | `V-12` | `O-01` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-011` | Seamless stimulation and sound controls | `EXP-05`, `QA-04` | `V-22` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: planned` | verified-foundation |
-| `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 
 ### CAP-EXP-009 Through CAP-EXP-011: Environmental Response And Stimulation
@@ -325,8 +325,24 @@ Until a capability receives its own detail record, these defaults apply:
 - Safe exposure: Development and Preview defaults are on; Production default remains off; graph failure omits the instrument without affecting routes.
 - Evidence: `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03`.
 - Work item: `WI-EXP-05-01` (done).
-- Next checkpoint: `EXP-06` uses an understood relationship as one explicit discovery prerequisite without introducing score UI.
+- Next checkpoint: `QA-04` adds target-device stimulation checks without reopening the accepted rule engine.
 - Last assessed: 2026-07-17 at `4276e6b`.
+
+### CAP-EXP-012 And CAP-EXP-013: Meaningful Free-Exploration Discoveries
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S/C/A/I/T/Q accepted; R not-applicable`
+- Package: `EXP-06`
+- Works now: A validated registry contains exactly one personal artifact, technical lesson, and relational insight. Explicit route and interaction prerequisites unlock them without page-load completion; public node validation and canonical links fail closed; semantic IDs persist; pointer and keyboard paths work.
+- Named gaps: No package gap remains. Additional project-specific discoveries belong to their owning exhibit or About packages and must satisfy the same contract.
+- Safe exposure: Development and Preview defaults are on; Production remains off pending combined creative review.
+- Evidence: `EV-EXP-06-01`, `EV-EXP-06-02`.
+- Work item: `WI-EXP-06-01` (done).
+- Next checkpoint: Phase 3 may add one exhibit-specific discovery only after its project experience earns it.
+- Last assessed: 2026-07-17 at `51b2e7d`.
 
 ### CAP-EXP-007 And CAP-EXP-008: Role-Aware Non-Linear Tour
 
@@ -414,12 +430,28 @@ Until a capability receives its own detail record, these defaults apply:
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-AI-001` | Route, object, project, timeline, and depth context stack | `AI-01` | `V-09` | `O-02` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-AI-002` | Context precedence, clearing, and privacy boundaries | `AI-01` | `V-09` | `O-02` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-AI-003` | Quiet global shell and unobtrusive state transitions | `AI-02` | `V-09` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-AI-004` | Lazy loading, error fallback, sound-off, and lower-stimulation AI behavior | `AI-02` | `V-09`, `V-22` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-AI-003` | Quiet global shell and unobtrusive state transitions | `AI-02` | `V-09` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-AI-004` | Lazy loading, error fallback, sound-off, and lower-stimulation AI behavior | `AI-02` | `V-09`, `V-22` | `O-02` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-AI-005` | Contextual graph retrieval with public source enforcement | `AI-03` | `V-09`, `V-11` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-AI-006` | Structured archive-card generation and validation | `AI-04` | `V-10` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-AI-007` | In-page, route, and cross-subdomain destination flow | `AI-04` | `V-10` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-AI-008` | Existing chat migration and deep-link compatibility | `AI-05` | `V-09`, `V-10` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-AI-003 Through CAP-AI-005: Quiet Contextual Global AI
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S/A/I/T/Q accepted`; content is accepted where applicable; rollout remains behind the Phase 2 Production-off boundary
+- Packages: `AI-02`, `AI-03`
+- Works now: One lazy root-owned shell follows route and selected-object context, isolates errors, remains unobtrusive until opened or relevant, and preserves `/chat`. Requests send validated IDs rather than client claims; server retrieval enforces public graph context; native structured sources render only exact canonical destinations.
+- Named gaps: Archive cards and destination transitions remain `AI-04`; full `/chat` migration remains `AI-05`.
+- Safe exposure: Development and Preview defaults are on; Production is off pending combined creative review; malformed context degrades to context-free chat.
+- Evidence: `EV-AI-02-01`, `EV-AI-02-02`, `EV-AI-03-01`.
+- Work items: `WI-AI-02-01`, `WI-AI-03-01` (done).
+- Next checkpoint: `AI-04` adds validated cards during the first flagship vertical slice.
+- Last assessed: 2026-07-17 through `aeb3152` and the 123-test aggregate gate.
 
 ## Living Project State
 

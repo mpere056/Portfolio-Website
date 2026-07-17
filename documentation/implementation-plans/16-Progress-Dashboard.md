@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-16
-Implementation commit baseline: `aeff727`
+Last reconciled: 2026-07-17
+Implementation commit baseline: `51b2e7d`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `aeff727`
 
 ## Current Program State
 
-**Phase 1 is complete; Phase 2 has accepted its foundation, First Note, bounded graph queries, and live retrieval metadata, with the quiet global AI shell ready next.**
+**Phase 1 is complete; all ten Phase 2 implementation packages are locally accepted, and the aggregate deployment audit is active.**
 
-Phase 1 remains accepted at its production checkpoint. Through `aeff727`, Phase 2 adds the deterministic First Note plus complete bounded graph/retrieval infrastructure. All 93 tests, strict typechecking, content validation, production build, First Note browser flows, and the 42-document Firestore metadata readback pass. `WI-AI-02-01` is the single ready item; Production still keeps new visitor UI flags off pending review.
+Phase 1 remains accepted at its production checkpoint. Through `51b2e7d`, Phase 2 adds persistent depth, First Note, contextual global AI, an any-order role tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. All 123 tests, strict typechecking, package browser flows, and the Production-off flag boundary pass. `WI-QA-01-02` owns final build, Preview, production-safe deployment, live-route, push, and handoff evidence.
 
 This distinction prevents two errors:
 
@@ -29,8 +29,8 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, and context accepted | Preserve boundaries in integrated adoption | Complete `WI-QA-01-01` |
-| `O-01` Persistent exploratory world | Graph adapters accepted | on-track | First Note plus bounded tour/semantic adapters pass | Non-linear tour and environmental consumers remain | Complete graph-aware retrieval, then begin shell/tour |
-| `O-02` Quiet global AI | retrieval foundation accepted | on-track | Context ownership, bounded graph retrieval, 42 live metadata chunks, and public descriptors pass | Global shell and request/source UI remain unmounted | Begin `WI-AI-02-01` |
+| `O-01` Persistent exploratory world | Phase 2 locally accepted | on-track | First Note, persistence, depth, tour, environment, stimulation, and discoveries pass together | Aggregate deployment evidence remains | Complete `WI-QA-01-02`, then begin Phase 3 |
+| `O-02` Quiet global AI | Phase 2 locally accepted | on-track | Lazy global shell, identifier-only context, bounded retrieval, and validated sources pass | Live Preview source-chip proof remains | Complete `WI-QA-01-02`, then add cards in `AI-04` |
 | `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
@@ -40,16 +40,16 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `AI-02` dependencies are accepted and its work item is bounded |
+| `ready` | 0 | No package is waiting at a bounded ready checkpoint |
 | `in-progress` | 0 | No package sits between coherent checkpoints |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 25 | Valid packages waiting on accepted upstream work or sequencing |
+| `pending` | 20 | Valid packages waiting on accepted upstream work or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 4 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 25 | Phase 1 packages plus Phase 2 `QA-01`, `EXP-02`, `EXP-03`, `KG-05`, and `KG-06` have accepted evidence |
+| `complete` | 30 | Phase 1 and all ten Phase 2 implementation packages have accepted evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -76,9 +76,14 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 17 | `EXP-03` | One-time First Note | complete | `EXP-01`, `EXP-02`, `QA-01` | First/return/reset/audio-denied browser flow |
 | 18 | `KG-05` | Bounded graph queries and render adapters | complete | `KG-04`, `ARC-03` | Deterministic ordering, limits, visibility, and adapter tests |
 | 19 | `KG-06` | Graph-aware retrieval metadata | complete | `KG-04`, `KG-05` | Context metadata, source descriptor, privacy, and compatibility tests |
-| 20 | `AI-02` | Quiet global AI shell | ready | `AI-01`, `BAS-03` | Cross-route lazy shell, failure isolation, and browser flow |
+| 20 | `AI-02` | Quiet global AI shell | complete | `AI-01`, `BAS-03` | Cross-route lazy shell, failure isolation, and browser flow |
+| 21 | `AI-03` | Graph-aware retrieval and sources | complete | `KG-06`, `AI-01`, `AI-02` | Identifier-only context and validated structured sources |
+| 22 | `EXP-04` | Non-linear guided tour | complete | `EXP-01`, `EXP-02`, `ARC-03` | One role question, any-order doors, dismiss/resume, no discovery leakage |
+| 23 | `EXP-05` | Environmental response system | complete | `EXP-02`, `KG-05` | Ordered interaction, semantic light, and stimulation prototype |
+| 24 | `EXP-06` | Meaningful discovery registry | complete | `EXP-01`, `KG-04`, `EXP-04`, `EXP-05` | Three explicit discoveries with no score or tour exposure |
+| 25 | Phase 2 aggregate release | in-progress | All Phase 2 packages | Build, Preview, production-safe deployment, and live evidence |
 
-The structural foundation is accepted and intentionally dormant. The next checkpoint is integration quality, not visual scope expansion: one test must prove destination resolution, persisted checkpoints, nested AI context, and public graph eligibility cooperate safely.
+The complete exploration shell is accepted locally and intentionally Production-off. The current checkpoint proves the integrated Preview without prematurely promoting its creative surface; Phase 3 begins only after this release audit closes.
 
 ## Now And Next
 
@@ -86,8 +91,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-AI-02-01` | ready | `AI-02` | 93 tests, build, and 42-document graph metadata readback pass | Define pure shell states and provider ownership before UI extraction | 2026-07-16 |
-| Next | Graph-aware AI request and sources | pending | `AI-03` | `KG-06` and `AI-01` are accepted | Thread validated IDs and descriptors through the API after shell acceptance | 2026-07-16 |
+| Now | `WI-QA-01-02` | in-progress | `QA-01` | All ten Phase 2 packages, 123 tests, and strict typecheck pass | Finish build, deploy, live-verify, push, and close the release record | 2026-07-17 |
+| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 aggregate release closes | Audit shared exhibit infrastructure and run bounded LifeInbox/Sudoku feasibility spikes | 2026-07-17 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -109,11 +114,11 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No package is currently partial. `EXP-03` is accepted behind Development/Preview flags; its Production-off rollout boundary is explicit rather than hidden incompleteness.
+No Phase 2 implementation package is partial. The complete shell is accepted behind Development/Preview flags; its Production-off rollout boundary is an explicit creative-release decision, not hidden incompleteness.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| None | - | `EXP-03` has no implementation gap | Production creative promotion, tour, stimulation, and project interactions remain separate gates/packages | First Note on in Development/Preview and off in Production | Begin `WI-KG-05-01` | `EV-EXP-03-01`, `EV-EXP-03-02` accepted |
+| Phase 2 shell | `WI-QA-01-02` | Every owned package has accepted implementation and package QA | Preview/live deployment evidence and later Production creative promotion | Full shell on in Development/Preview; off in Production | Complete release audit without changing exposure policy | Phase 2 package evidence accepted |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -153,7 +158,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 51 | Adds retrieval-contract and live Firestore metadata evidence for completed `KG-06` |
+| Accepted | 62 | Includes every Phase 2 package record plus the aggregate 123-test, type, content, and production-build gate |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -164,6 +169,10 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-17 | Completed meaningful hidden discoveries | `EXP-06`, `CAP-EXP-012`, `CAP-EXP-013`, `O-01`, `WI-QA-01-02` | Three explicit discoveries persist without tour, score, count, or page-load completion; aggregate release is active |
+| 2026-07-17 | Completed environmental response | `EXP-05`, `CAP-EXP-009` to `CAP-EXP-011`, `O-01` | Ordered interaction, graph light, text explanation, and continuous stimulation pass |
+| 2026-07-16 | Completed non-linear guided tour | `EXP-04`, `CAP-EXP-007`, `CAP-EXP-008`, `O-01` | One role question, three any-order doors, dismiss/resume, persistence, and discovery exclusion pass |
+| 2026-07-16 | Completed contextual global AI | `AI-02`, `AI-03`, `CAP-AI-003` to `CAP-AI-005`, `O-02` | Quiet lazy shell, validated ID context, public retrieval, and native source links pass |
 | 2026-07-16 | Completed graph-aware retrieval metadata | `KG-06`, `CAP-KG-007`, `O-02`, `WI-AI-02-01` | 93 tests/build and 42-document Firestore backfill/readback pass; quiet global shell is ready |
 | 2026-07-16 | Completed bounded graph queries and render adapters | `KG-05`, `CAP-KG-005`, `CAP-KG-006`, `O-01`, `WI-KG-06-01` | 88 tests and build accept visibility, limits, cycles, destinations, AI neighborhoods, and semantic edges; retrieval metadata is ready |
 | 2026-07-16 | Completed one-time First Note implementation | `EXP-03`, `CAP-EXP-005`, `CAP-EXP-006`, `O-01`, `WI-KG-05-01` | 82 tests, build, and first/return/reset/keyboard browser flow pass; Preview on, Production off; bounded graph queries are ready |
@@ -171,15 +180,6 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | 2026-07-16 | Began Phase 2 exploration shell | `QA-01`, `EXP-02`, `CAP-EXP-003`, `CAP-EXP-004`, `O-01`, `O-02` | Integrated foundation flow and five-stage transition contract pass within 68 tests; headless controller is next |
 | 2026-07-16 | Completed Phase 1 structural foundation | `BAS-03`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01`, `O-00` to `O-02` | 49 graph nodes, 19 reviewed edges, 62 tests, typecheck, content gate, and production build pass; `QA-01` is ready |
 | 2026-07-16 | Accepted runtime validation and semantic-state migration | `ARC-05`, `EXP-01`, `CAP-ARC-005`, `CAP-EXP-001`, `CAP-EXP-002`, `WI-EXP-01-01`, `O-00`, `O-01` | Seven-action parsing, registry-backed destinations, current/v0/corrupt/unknown state behavior pass 37 tests and build; dormant store is next |
-| 2026-07-16 | Accepted typed cross-system action foundation | `ARC-04`, `ARC-05`, `CAP-ARC-004`, `WI-ARC-04-01`, `WI-ARC-05-01`, `O-00` | Seven ID-first actions and exhaustive destination/depth/context integration pass 29 tests and build; validation/migration is next |
-| 2026-07-16 | Accepted shared-contract reconciliation and initial destination registry | `ARC-02`, `ARC-03`, `ARC-04`, `CAP-ARC-002`, `CAP-ARC-003`, `WI-ARC-04-01`, `O-00` | Strict content plus graph identities, full discovery vocabulary, and 27 validated destinations pass 26 tests and build; typed actions are next |
-| 2026-07-16 | Approved information architecture and reopened shared-contract acceptance | `ARC-02`, `ARC-03`, `WI-ARC-02-02`, `WI-ARC-03-01`, `CAP-ARC-002`, `O-00` | Multi-route/one-world model recorded; two contract omissions bounded before destination implementation |
-| 2026-07-16 | Completed the first shared-contract increment | `BAS-08`, `ARC-01`, `ARC-02`, `CAP-BAS-008`, `CAP-ARC-001`, `CAP-ARC-002`, `O-00` | Free Firestore and canonical IDs are accepted; the initial contracts pass 19 tests/build; later review created bounded follow-up `WI-ARC-02-02` |
-| 2026-07-16 | Established dedicated free Firestore backend under `mpere056@gmail.com` | `BAS-08`, `CAP-BAS-008`, `WI-BAS-08-01`, `ARC-01`, `O-00` | Billing disabled; 42 chunks/36 canonical IDs; index ready; real retrieval and Vercel credentials verified; Preview remains |
-| 2026-07-15 | Began free-tier Firestore retrieval migration after Supabase became unavailable | `BAS-08`, `CAP-BAS-008`, `WI-BAS-08-01`, `ARC-01`, `O-00` | Local adapter, ingestion, rules, Spark database, service key, and 17 tests exist; IAM/index/cutover remain explicit |
-| 2026-07-14 | Completed target-state audit and began stable content identities | `BAS-05`, `ARC-01`, `CAP-BAS-005`, `CAP-ARC-001`, `WI-ARC-01-01`, `O-00` | Current implementation reconciled; shared inventory/ingestion IDs, alias policy, safe legacy replacement, and 13 tests pass |
-| 2026-07-14 | Completed supported framework modernization and AI runtime recovery | `BAS-07`, `CAP-BAS-007`, `WI-BAS-07-01`, `O-00` | Next.js 16/React 19, retrieval, chat fallback, preview, production, public routes, and rollback evidence accepted; `BAS-05` is ready |
-| 2026-07-14 | Completed the runtime maintenance decision | `BAS-04`, `CAP-BAS-004`, `WI-BAS-04-01`, `O-00` | Node.js 24 bridge and separate Next.js 16 migration accepted; `BAS-06` is ready |
 
 Retain only the most recent ten meaningful entries here. Durable history belongs in Git and package evidence files.
 
@@ -204,7 +204,8 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- `AI-02` quiet global shell reaches an accepted cross-route checkpoint.
-- The feature-flagged First Note receives Production creative rollout approval.
+- `WI-QA-01-02` closes with Preview and production-safe deployment evidence.
+- Phase 3 creates its first bounded work item after flagship feasibility review.
+- The feature-flagged Phase 2 shell receives Production creative rollout approval.
 - A gate or dependency changes.
 - Target implementation code lands.

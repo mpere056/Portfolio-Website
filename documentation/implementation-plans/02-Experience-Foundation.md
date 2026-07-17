@@ -16,7 +16,7 @@ Last updated: 2026-07-16
 
 ## Scope
 
-Phase 2 status: `QA-01`, `EXP-02`, and `EXP-03` are complete through `27d2485`. The versioned store, integrated foundation flow, transition grammar, atomic controller, and feature-flagged First Note are accepted. The first/return/reset/keyboard browser flow passes in Development and Preview defaults; Production remains deliberately disabled until creative rollout review.
+Phase 2 status: `QA-01` and `EXP-02` through `EXP-06` are complete through `51b2e7d`. The accepted shell combines versioned persistence, five-stage depth, First Note, any-order tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. Aggregate release evidence is tracked by `WI-QA-01-02`; Development/Preview defaults are on and Production remains deliberately off pending creative review.
 
 Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
 

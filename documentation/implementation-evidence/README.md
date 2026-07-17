@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Purpose
 
@@ -21,6 +21,23 @@ Examples:
 - `EV-BAS-01-01`
 - `EV-EXP-03-02`
 - `EV-PRJ-04-07`
+
+## Phase 2 Exploration Shell
+
+| Evidence ID | Package | Status | Durable record |
+| --- | --- | --- | --- |
+| `EV-QA-01-01` | `QA-01` | accepted | `QA-01.md` |
+| `EV-EXP-02-01`, `EV-EXP-02-02` | `EXP-02` | accepted | `EXP-02.md` |
+| `EV-EXP-03-01`, `EV-EXP-03-02` | `EXP-03` | accepted | `EXP-03.md` |
+| `EV-KG-05-01` | `KG-05` | accepted | `KG-05.md` |
+| `EV-KG-06-01`, `EV-KG-06-02` | `KG-06` | accepted | `KG-06.md` |
+| `EV-AI-02-01`, `EV-AI-02-02` | `AI-02` | accepted | `AI-02.md` |
+| `EV-AI-03-01` | `AI-03` | accepted | `AI-03.md` |
+| `EV-EXP-04-01`, `EV-EXP-04-02` | `EXP-04` | accepted | `EXP-04.md` |
+| `EV-EXP-05-01` through `EV-EXP-05-03` | `EXP-05` | accepted | `EXP-05.md` |
+| `EV-EXP-06-01`, `EV-EXP-06-02` | `EXP-06` | accepted | `EXP-06.md` |
+
+Aggregate build, Preview, and production-safe deployment records are appended to `QA-01.md` by `WI-QA-01-02`.
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
