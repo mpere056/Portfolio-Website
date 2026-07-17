@@ -16,6 +16,7 @@ describe('feature flags', () => {
       globalAI: true,
       guidedTour: true,
       firstNote: true,
+      semanticLighting: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
   });

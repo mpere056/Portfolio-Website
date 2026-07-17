@@ -66,6 +66,7 @@ export interface ExplorationStoreState extends PersistedExperienceState {
   dismissTourHint(hintId: SemanticExperienceId): void;
   resetTour(): void;
   setStimulation(value: number): void;
+  setReducedMotionRequested(requested: boolean): void;
   resetExploration(): Promise<void>;
   dispose(): void;
 }
@@ -272,6 +273,12 @@ export function createExplorationStore(
       const normalizedValue = portfolioActions.stimulationChanged(value).payload.normalizedValue;
       set(state => ({
         stimulation: { ...state.stimulation, normalizedValue },
+      }));
+    },
+
+    setReducedMotionRequested(requested) {
+      set(state => ({
+        stimulation: { ...state.stimulation, reducedMotionRequested: requested },
       }));
     },
 

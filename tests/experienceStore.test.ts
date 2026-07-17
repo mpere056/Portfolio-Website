@@ -207,4 +207,25 @@ describe('versioned exploration store', () => {
     });
     expect(store.getState().discovery.firstNoteCompleted).toBe(false);
   });
+
+  it('persists stimulation and reduced-motion preferences independently', async () => {
+    const { storage, values } = createMemoryStorage();
+    const store = createExplorationStore({ storage, origin: 'marknperera.ca' });
+    await store.getState().hydrate();
+
+    store.getState().setStimulation(0.72);
+    store.getState().setReducedMotionRequested(true);
+
+    expect(store.getState().stimulation).toMatchObject({
+      normalizedValue: 0.72,
+      reducedMotionRequested: true,
+      soundEnabled: false,
+    });
+    const persisted = JSON.parse(values.get(getExplorationStorageKey('marknperera.ca'))!);
+    expect(persisted.stimulation).toMatchObject({
+      normalizedValue: 0.72,
+      reducedMotionRequested: true,
+    });
+    store.getState().dispose();
+  });
 });
