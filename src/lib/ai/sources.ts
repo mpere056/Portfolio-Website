@@ -3,9 +3,17 @@ import { getDestinationDefinition } from '../destinations';
 import { isNodeId } from '../portfolioContracts';
 import type { PublicSourceDescriptor } from '../content/queries';
 
-interface SourcePayload {
+interface SerializedSource extends Record<string, JSONValue> {
+  nodeId: string;
+  nodeType: string;
+  title: string;
+  summary: string;
+  destination: Record<string, JSONValue> | null;
+}
+
+interface SourcePayload extends Record<string, JSONValue> {
   type: 'portfolio-sources';
-  sources: PublicSourceDescriptor[];
+  sources: SerializedSource[];
 }
 
 function parseSource(value: unknown): PublicSourceDescriptor | undefined {
@@ -20,7 +28,7 @@ function parseSource(value: unknown): PublicSourceDescriptor | undefined {
   ) return undefined;
 
   let destination: PublicSourceDescriptor['destination'];
-  if (input.destination !== undefined) {
+  if (input.destination != null) {
     if (!input.destination || typeof input.destination !== 'object' || Array.isArray(input.destination)) {
       return undefined;
     }
@@ -51,7 +59,22 @@ function parseSource(value: unknown): PublicSourceDescriptor | undefined {
 }
 
 export function createSourcePayload(sources: readonly PublicSourceDescriptor[]): SourcePayload {
-  return { type: 'portfolio-sources', sources: sources.slice(0, 4) };
+  return {
+    type: 'portfolio-sources',
+    sources: sources.slice(0, 4).map(source => ({
+      nodeId: source.nodeId,
+      nodeType: source.nodeType,
+      title: source.title,
+      summary: source.summary,
+      destination: source.destination
+        ? {
+            id: source.destination.id,
+            href: source.destination.href,
+            targetOrigin: source.destination.targetOrigin,
+          }
+        : null,
+    })),
+  };
 }
 
 export function parseLatestSourcePayload(data: readonly JSONValue[] | undefined) {
