@@ -104,7 +104,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | pending |
+| `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | in progress |
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | prototype |
 | `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Signal/Approach presentation and stable anchors | Overview-to-approach browser flow | pending |
 | `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-03` | Handle, Enter, Understand, evidence, persistence | Phase 3 vertical-slice evidence | pending |

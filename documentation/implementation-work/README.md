@@ -14,14 +14,14 @@ Phase 1 and Phase 2 are fully accepted. Phase 2 is pushed, deployed, and live-ve
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | complete | Phase 2 | Aggregate tests, Preview, production-safe deployment, live routes, and AI source proof pass | Preserve the accepted exposure boundary | 2026-07-17 |
-| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 release gates pass | Create a bounded work item for shared exhibit audit and LifeInbox/Sudoku feasibility | 2026-07-17 |
+| Now | `WI-PRJ-01-01` | in-progress | `PRJ-01` | Shared exhibit audit complete; contract implementation started | Add the typed registry, lazy loader, fallback shell, and direct-link tests | 2026-07-17 |
+| Next | Phase 3 feasibility spikes | pending | `PRJ-02` | `PRJ-01` accepted | Compare bounded LifeInbox and Sudoku interaction spikes, then record the first-flagship decision | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - | - |
+| `WI-PRJ-01-01` | Establish the shared exhibit foundation | in-progress | high | `PRJ-01` | `CAP-PRJ-001`, `CAP-PRJ-002` | `active/WI-PRJ-01-01.md` | 2026-07-17 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

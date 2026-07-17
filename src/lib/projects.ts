@@ -1,6 +1,16 @@
 import { loadContentRecords } from './content/loaders';
+import { isContentNodeId } from './contentIds';
+import {
+  isExperienceId,
+  isNodeId,
+  type ExperienceId,
+  type NodeId,
+} from './portfolioContracts';
+
+export type ProjectNodeId = `project:${string}`;
 
 export interface Project {
+  nodeId: ProjectNodeId;
   slug: string;
   name: string;
   year: string;
@@ -21,7 +31,19 @@ export interface Project {
   cardCameraPosition?: [number, number, number];
   modelOffset?: [number, number, number];
   cardModelOffset?: [number, number, number];
+  experienceId?: ExperienceId;
+  capabilityIds: NodeId[];
+  relatedTimelineIds: NodeId[];
+  relatedPostIds: NodeId[];
   body: string;
+}
+
+function readNodeIds(value: unknown, field: string, projectSlug: string): NodeId[] {
+  if (value === undefined) return [];
+  if (!Array.isArray(value) || value.some(item => typeof item !== 'string' || !isNodeId(item))) {
+    throw new Error(`Project ${projectSlug} has invalid ${field}`);
+  }
+  return [...new Set(value as NodeId[])];
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -29,9 +51,20 @@ export async function getProjects(): Promise<Project[]> {
   const projects = records.map((record) => {
     // Normalize frontmatter keys and provide safe defaults
     const frontmatter = record.frontmatter;
+    const slug = String(frontmatter.slug ?? '');
+    const expectedNodeId = `project:${slug}`;
+    if (!record.nodeId || !isContentNodeId(record.nodeId) || record.nodeId !== expectedNodeId) {
+      throw new Error(`Project ${slug || record.relativePath} has no canonical project node ID`);
+    }
+
+    const experienceId = frontmatter.experienceId;
+    if (experienceId !== undefined && (typeof experienceId !== 'string' || !isExperienceId(experienceId))) {
+      throw new Error(`Project ${slug} has an invalid experienceId`);
+    }
 
     const normalized: Project = {
-      slug: String(frontmatter.slug ?? ''),
+      nodeId: record.nodeId as ProjectNodeId,
+      slug,
       name: String(frontmatter.name ?? ''),
       year: String(frontmatter.year ?? ''),
       headline: String(frontmatter.headline ?? ''),
@@ -53,6 +86,10 @@ export async function getProjects(): Promise<Project[]> {
       cardCameraPosition: (frontmatter.cardCameraPosition as [number, number, number] | undefined),
       modelOffset: (frontmatter.modelOffset as [number, number, number] | undefined),
       cardModelOffset: (frontmatter.cardModelOffset as [number, number, number] | undefined),
+      experienceId: experienceId as ExperienceId | undefined,
+      capabilityIds: readNodeIds(frontmatter.capabilityIds, 'capabilityIds', slug),
+      relatedTimelineIds: readNodeIds(frontmatter.relatedTimelineIds, 'relatedTimelineIds', slug),
+      relatedPostIds: readNodeIds(frontmatter.relatedPostIds, 'relatedPostIds', slug),
       body: record.body,
     };
 
