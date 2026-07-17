@@ -15,9 +15,9 @@ Implementation commit baseline: `3de7c3c`
 
 ## Current Program State
 
-**Phase 1 and Phase 2 are complete; the exploration shell is pushed, Preview-verified, production-safely deployed, and ready for the Phase 3 handoff.**
+**Phase 1 and Phase 2 are complete; Phase 3 is active with the shared exhibit foundation accepted and the equal-candidate flagship spike ready.**
 
-Through `3de7c3c`, Phase 2 adds persistent depth, First Note, contextual global AI, an any-order role tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. All 123 tests, strict typechecking, content/build gates, package browser flows, protected Preview routes and live AI, production-safe deployment, public routes, and Production-off feature boundaries pass. No Phase 2 work item remains active.
+Through `e462080`, Phase 3 adds nine canonical exhibit definitions, three lazy flagship manifests, stable direct-entry resolution, graph-backed serializable views, and a resilient semantic fallback shell without changing the visitor-facing `/projects` route. All 134 tests, strict typechecking, 49-node/19-relationship validation, lint with ten pre-existing warnings and no errors, and the production build pass. `PRJ-02` is the only ready work item.
 
 This distinction prevents two errors:
 
@@ -31,7 +31,7 @@ This distinction prevents two errors:
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, and context accepted | Preserve boundaries in integrated adoption | Complete `WI-QA-01-01` |
 | `O-01` Persistent exploratory world | Phase 2 complete | on-track | Complete shell passes local and protected Preview gates; Production-off boundary is verified | Production creative promotion is a later review, not an implementation gap | Begin bounded Phase 3 flagship work |
 | `O-02` Quiet global AI | Phase 2 complete | on-track | Lazy shell, identifier-only context, Firebase retrieval, and validated sources pass live | Cards remain the planned `AI-04` increment | Add cards within the first flagship slice |
-| `O-03` First flagship proof | not active | not-active | Candidate experiences documented | First-flagship selection and complete vertical slice | LifeInbox or Sudoku feasibility decision |
+| `O-03` First flagship proof | Phase 3 foundation | on-track | `PRJ-01` registry, loaders, fallback, direct entries, and build accepted | Equal LifeInbox/Sudoku spikes and selection before vertical-slice expansion | Complete `WI-PRJ-02-01` |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | not active | not-active | Lifecycle direction documented | Project lifecycle classification | Every project classified and three flagship states reviewed |
@@ -40,16 +40,16 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 0 | No package is waiting at a bounded ready checkpoint |
+| `ready` | 1 | `PRJ-02` has bounded equal-candidate acceptance and may begin |
 | `in-progress` | 0 | No package sits between coherent checkpoints |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 20 | Valid packages waiting on accepted upstream work or sequencing |
+| `pending` | 19 | Valid packages waiting on accepted upstream work or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
-| `prototype` | 4 | Bounded experiments, not committed product scope |
+| `prototype` | 3 | Bounded experiments, not committed product scope |
 | `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
 | `later` | 5 | Accepted direction intentionally outside near-term delivery |
-| `complete` | 30 | Phase 1 and all ten Phase 2 implementation packages have accepted evidence |
+| `complete` | 31 | Phase 1, Phase 2, and the `PRJ-01` Phase 3 foundation have accepted evidence |
 
 Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
 
@@ -82,8 +82,10 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 23 | `EXP-05` | Environmental response system | complete | `EXP-02`, `KG-05` | Ordered interaction, semantic light, and stimulation prototype |
 | 24 | `EXP-06` | Meaningful discovery registry | complete | `EXP-01`, `KG-04`, `EXP-04`, `EXP-05` | Three explicit discoveries with no score or tour exposure |
 | 25 | Phase 2 aggregate release | complete | All Phase 2 packages | Build, Preview, production-safe deployment, routes, and live AI evidence accepted |
+| 26 | `PRJ-01` | Exhibit registry and shell | complete | `EXP-02`, `KG-05`, `LPS-01` | Nine definitions, three lazy manifests, fallback shell, direct-entry tests, and build accepted |
+| 27 | `PRJ-02` | Equal-candidate flagship spikes | ready | `PRJ-01` | LifeInbox/Sudoku comparison and first-slice decision recorded |
 
-The complete exploration shell is accepted locally and intentionally Production-off. The current checkpoint proves the integrated Preview without prematurely promoting its creative surface; Phase 3 begins only after this release audit closes.
+The complete exploration shell is accepted locally and intentionally Production-off. The first Phase 3 package is additive and dormant: it establishes one shared exhibit language before any new museum presentation or product demonstration is exposed.
 
 ## Now And Next
 
@@ -91,8 +93,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | None | complete | Phase 2 | Aggregate, Preview, Production, route, and live AI gates pass | Preserve the accepted Production-off boundary | 2026-07-17 |
-| Next | Phase 3 flagship selection | pending | `PRJ-01`, `PRJ-02` | Phase 2 is complete | Create the shared-exhibit audit and bounded LifeInbox/Sudoku feasibility work item | 2026-07-17 |
+| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` accepted at `e462080` | Define equal deterministic LifeInbox and Sudoku interaction fixtures | 2026-07-17 |
+| Next | Museum Signal/Approach integration | pending | `PRJ-03` | Stable registry and anchors accepted | Preserve the current orchestration seam while integrating the shared shell | 2026-07-17 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -114,11 +116,12 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No Phase 2 implementation package is partial. The complete shell is accepted behind Development/Preview flags; its Production-off rollout boundary is an explicit creative-release decision, not hidden incompleteness.
+No Phase 2 implementation package is partial. Phase 3 deliberately separates accepted infrastructure from visitor integration and product depth so dormant code cannot be mistaken for a finished museum.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| None | - | All Phase 2 implementation and release evidence is accepted | Production creative promotion remains a separate later review | Full shell on in Development/Preview; off in Production | Begin Phase 3 without changing exposure policy | `EV-QA-01-02` through `EV-QA-01-04` |
+| `CAP-PRJ-002` | `PRJ-08` work item not yet created | Stable exhibit anchors and depth fallback resolve in code | URL/history depth, subdomain transitions, manual QA, and rollout remain | Dormant foundation; existing anchors unchanged | Consume the resolver in `PRJ-03`, then finish route integration in `PRJ-08` | `EV-PRJ-01-01`, `EV-PRJ-01-02` |
+| `CAP-PRJ-003` | `WI-PRJ-02-01` | Shared manifests and equal evaluation scope are ready | Neither candidate product interaction nor selection record exists | Synthetic isolated spikes only | Define deterministic state fixtures before visual implementation | `EV-PRJ-01-01` |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -158,7 +161,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 64 | Includes every Phase 2 package record plus aggregate local, protected Preview, and production-safe live evidence |
+| Accepted | 66 | Includes every Phase 2 record plus the `PRJ-01` contract and fallback/build evidence |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -169,6 +172,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-17 | Began Phase 3 and completed shared exhibit foundation | `PRJ-01`, `CAP-PRJ-001`, `CAP-PRJ-002`, `O-03`, `WI-PRJ-02-01` | Nine canonical exhibits, three lazy manifests, stable anchors, semantic fallback, 134 tests, and build pass; equal candidate spikes are ready |
 | 2026-07-17 | Completed Phase 2 release | `QA-01`, `O-01`, `O-02`, `WI-QA-01-02` | 123 tests/build, protected Preview, live structured sources, production-safe deployment, and all public routes pass |
 | 2026-07-17 | Completed meaningful hidden discoveries | `EXP-06`, `CAP-EXP-012`, `CAP-EXP-013`, `O-01`, `WI-QA-01-02` | Three explicit discoveries persist without tour, score, count, or page-load completion; aggregate release is active |
 | 2026-07-17 | Completed environmental response | `EXP-05`, `CAP-EXP-009` to `CAP-EXP-011`, `O-01` | Ordered interaction, graph light, text explanation, and continuous stimulation pass |
@@ -205,7 +209,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
-- Phase 3 creates its first bounded work item for exhibit audit and flagship feasibility.
+- `PRJ-02` completes both bounded spikes and records the first-flagship selection.
 - The feature-flagged Phase 2 shell receives Production creative rollout approval.
 - A gate or dependency changes.
 - Target implementation code lands.

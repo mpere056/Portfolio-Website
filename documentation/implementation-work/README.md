@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 and Phase 2 are fully accepted. Phase 2 is pushed, deployed, and live-verified through production deployment `dpl_51xD2i8nQU8zEgjFiHnvNCvB2JqA`; its complete creative shell remains on in Development/Preview and deliberately off in Production pending creative review.
+Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit foundation is locally accepted at `e462080`, while the visitor-facing `/projects` presentation remains unchanged until the museum navigation package. Phase 2 is pushed, deployed, and live-verified through production deployment `dpl_51xD2i8nQU8zEgjFiHnvNCvB2JqA`; its complete creative shell remains on in Development/Preview and deliberately off in Production pending creative review.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-01-01` | in-progress | `PRJ-01` | Shared exhibit audit complete; contract implementation started | Add the typed registry, lazy loader, fallback shell, and direct-link tests | 2026-07-17 |
-| Next | Phase 3 feasibility spikes | pending | `PRJ-02` | `PRJ-01` accepted | Compare bounded LifeInbox and Sudoku interaction spikes, then record the first-flagship decision | 2026-07-17 |
+| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` registry, loaders, fallback, direct links, tests, and build accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
+| Next | Museum Signal/Approach integration | pending | `PRJ-03` | `PRJ-01` accepted; `EXP-05` available | Integrate the shared shell only after candidate work is bounded and the current legacy orchestration seam is preserved | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-PRJ-01-01` | Establish the shared exhibit foundation | in-progress | high | `PRJ-01` | `CAP-PRJ-001`, `CAP-PRJ-002` | `active/WI-PRJ-01-01.md` | 2026-07-17 |
+| `WI-PRJ-02-01` | Compare the first flagship candidates | ready | high | `PRJ-02` | `CAP-PRJ-003`, `CAP-LIB-001`, `CAP-SDK-001`, `CAP-SDK-002` | `active/WI-PRJ-02-01.md` | 2026-07-17 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-PRJ-01-01` | done | `PRJ-01` | Nine canonical exhibits, three lazy flagship manifests, stable anchors, and resilient semantic fallbacks accepted | `EV-PRJ-01-01`, `EV-PRJ-01-02` | 2026-07-17 |
 | `WI-QA-01-02` | done | `QA-01` | Aggregate tests/build, protected Preview, production-safe deployment, live routes, and structured AI sources accepted | `EV-QA-01-02` through `EV-QA-01-04` | 2026-07-17 |
 | `WI-EXP-06-01` | done | `EXP-06` | Three explicit meaningful discoveries, prerequisites, semantic persistence, and no-score/tour exclusion accepted | `EV-EXP-06-01`, `EV-EXP-06-02` | 2026-07-17 |
 | `WI-EXP-05-01` | done | `EXP-05` | Three-rule relationship instrument, canonical semantic light, and persisted stimulation accepted | `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03` | 2026-07-17 |
@@ -44,8 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-KG-06-01` | done | `KG-06` | Public graph metadata, bounded retrieval context, source descriptors, legacy compatibility, and 42-chunk backfill accepted | `EV-KG-06-01`, `EV-KG-06-02` | 2026-07-16 |
 | `WI-KG-05-01` | done | `KG-05` | Deterministic visibility-safe bounded graph queries and destination render adapters accepted | `EV-KG-05-01` | 2026-07-16 |
 | `WI-EXP-03-01` | done | `EXP-03` | One-time wake, audio-independent reveal, return restore, reset, and keyboard flow accepted behind flags | `EV-EXP-03-01`, `EV-EXP-03-02` | 2026-07-16 |
-| `WI-EXP-02-01` | done | `EXP-02` | Atomic five-stage controller, AI ownership, persistence, hints, cleanup, and dormant React boundary accepted | `EV-EXP-02-01`, `EV-EXP-02-02` | 2026-07-16 |
-| `WI-QA-01-01` | done | `QA-01` | Destination, graph, persistence, AI context, and fallback foundations cooperate in one automated flow | `EV-QA-01-01` | 2026-07-16 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

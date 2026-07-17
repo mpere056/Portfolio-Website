@@ -468,14 +468,46 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-PRJ-002` | Direct-linkable exhibit and depth state | `PRJ-01`, `PRJ-08` | `V-10`, `V-14` | `O-03` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
+| `CAP-PRJ-002` | Direct-linkable exhibit and depth state | `PRJ-01`, `PRJ-08` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-started; R: not-started` | implemented |
+| `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
 | `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-008` | Canonical project routes, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-PRJ-001: Typed Exhibit Registry, Loader, And Fallback Shell
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Package: `PRJ-01`
+- Works now: All nine authored projects derive typed definitions from canonical content and destinations; three flagship manifests lazy-load behind runtime ownership/depth validation; graph and module failures preserve semantic project copy and links.
+- Named gaps: None within `PRJ-01`; the shell is intentionally not the final art direction or mounted museum navigation.
+- Safe exposure: Additive server/library/component foundation only; the existing visitor route remains unchanged.
+- Evidence: `EV-PRJ-01-01`, `EV-PRJ-01-02`.
+- Work item: `WI-PRJ-01-01` (done).
+- Next checkpoint: `PRJ-02` proves two bounded product interactions against the same contract.
+- Last assessed: 2026-07-17 at `e462080`.
+
+### CAP-PRJ-002: Direct-Linkable Exhibit And Depth State
+
+- Owner: Codex
+- Lifecycle: implemented
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-started; R: not-started`
+- Packages: `PRJ-01`, `PRJ-08`
+- Works now: Every current project resolves by slug or canonical project ID to one stable museum anchor; unsupported requested depth falls back to Signal without losing the exhibit; unknown exhibits return to the museum lobby.
+- Named gaps: The new resolver is not yet integrated with visitor history, URL depth encoding, project subdomain transitions, or visual/manual navigation review; those remain explicit `PRJ-08` scope.
+- Safe exposure: Existing route anchors continue to work; no new URL or history behavior is exposed.
+- Evidence: `EV-PRJ-01-01`, `EV-PRJ-01-02`.
+- Work item: `WI-PRJ-01-01` completed the foundation portion; no `PRJ-08` work item is active yet.
+- Next checkpoint: `PRJ-03` consumes stable anchors without inventing a second destination format.
+- Last assessed: 2026-07-17 at `e462080`.
 
 ## Flagship Product Experiences
 
