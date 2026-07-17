@@ -303,14 +303,30 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-004` | Reusable proximity, handle, enter, and understand primitives | `EXP-02` | `V-02`, `V-03` | `O-01` | 5 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-EXP-005` | One-time First Note wake sequence | `EXP-03` | `V-06` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-006` | Returning-visitor resume after First Note | `EXP-03` | `V-05`, `V-06` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
-| `CAP-EXP-007` | Role-aware tour entry with no time question | `EXP-04` | `V-07` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-008` | Non-linear destination recommendations and resume | `EXP-04` | `V-07` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-007` | Role-aware tour entry with no time question | `EXP-04` | `V-07` | `O-01` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-EXP-008` | Non-linear destination recommendations and resume | `EXP-04` | `V-07` | `O-01` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-009` | Discovery physics rule engine and first reviewed rules | `EXP-05` | `V-02`, `V-12` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-010` | Graph-powered semantic lighting | `EXP-05` | `V-12` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-011` | Seamless stimulation and sound controls | `EXP-05`, `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-EXP-007 And CAP-EXP-008: Role-Aware Non-Linear Tour
+
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable`
+- Package: `EXP-04`
+- Works now: A single purpose question chooses one of four authored lenses; three canonical destinations remain selectable in any order; dismiss/resume, lens change, route navigation, and independent reset persist correctly without time, progress, score, or hidden-discovery UI.
+- Named gaps: Contextual first-interaction hints remain optional later refinement; Production promotion awaits combined creative review rather than additional package implementation.
+- Safe exposure: Development and Preview defaults are on; Production default remains off.
+- Evidence: `EV-EXP-04-01`, `EV-EXP-04-02`.
+- Work item: `WI-EXP-04-01` (done).
+- Next checkpoint: `EXP-05` proves environmental response without turning the tour into a checklist or revealing discoveries.
+- Last assessed: 2026-07-16 at `4c80518`.
 
 ### CAP-EXP-005 And CAP-EXP-006: One-Time Wake And Return Resume
 
