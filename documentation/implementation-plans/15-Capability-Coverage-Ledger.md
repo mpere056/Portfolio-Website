@@ -305,12 +305,28 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-006` | Returning-visitor resume after First Note | `EXP-03` | `V-05`, `V-06` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-007` | Role-aware tour entry with no time question | `EXP-04` | `V-07` | `O-01` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-008` | Non-linear destination recommendations and resume | `EXP-04` | `V-07` | `O-01` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
-| `CAP-EXP-009` | Discovery physics rule engine and first reviewed rules | `EXP-05` | `V-02`, `V-12` | `O-01` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-010` | Graph-powered semantic lighting | `EXP-05` | `V-12` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-011` | Seamless stimulation and sound controls | `EXP-05`, `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-009` | Discovery physics rule engine and first reviewed rules | `EXP-05` | `V-02`, `V-12` | `O-01` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-EXP-010` | Graph-powered semantic lighting | `EXP-05` | `V-12` | `O-01` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+| `CAP-EXP-011` | Seamless stimulation and sound controls | `EXP-05`, `QA-04` | `V-22` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: planned` | verified-foundation |
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+
+### CAP-EXP-009 Through CAP-EXP-011: Environmental Response And Stimulation
+
+- Owner: Codex
+- Lifecycle: verified foundation; target-device rollout checks remain `QA-04`
+- Health: on-track
+- Confidence: high
+- Dimension states: `CAP-EXP-009/010 S/C/A/I/T/Q accepted`; `CAP-EXP-011 S/A/I/T/Q accepted, R planned`
+- Package: `EXP-05`
+- Works now: One compact instrument applies the ordered proximity/handle/review grammar to at most three canonical graph relationships; visible copy accompanies semantic light; pointer and keyboard paths work; continuous persisted stimulation scales particles, motion, and glow; reduced motion clamps output and sound gain remains opt-in.
+- Named gaps: Target-device frame-time and broader sound-control QA remain `QA-04`; final musical identity is later collaborative creative work.
+- Safe exposure: Development and Preview defaults are on; Production default remains off; graph failure omits the instrument without affecting routes.
+- Evidence: `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03`.
+- Work item: `WI-EXP-05-01` (done).
+- Next checkpoint: `EXP-06` uses an understood relationship as one explicit discovery prerequisite without introducing score UI.
+- Last assessed: 2026-07-17 at `4276e6b`.
 
 ### CAP-EXP-007 And CAP-EXP-008: Role-Aware Non-Linear Tour
 

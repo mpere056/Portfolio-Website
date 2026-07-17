@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-16
+Last reconciled: 2026-07-17
 
 ## Purpose
 
@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 remains fully accepted. Phase 2 now has eight complete packages through `4c80518`, including the First Note, graph/retrieval foundation, global contextual AI, and non-linear guided tour. `EXP-05` is active for the controlled environmental-response prototype.
+Phase 1 remains fully accepted. Phase 2 now has nine complete packages through `4276e6b`, including the First Note, graph/retrieval foundation, contextual AI, guided tour, and graph-aware environmental response. `EXP-06` is the final implementation package before aggregate Phase 2 gates.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-EXP-05-01` | in-progress | `EXP-05` | `EXP-02`, `KG-05`, and the shared route shell are accepted | Implement the pure three-rule environmental reducer and stimulation profile | 2026-07-16 |
-| Next | Meaningful discovery registry | pending | `EXP-06` | `EXP-01` and `KG-04` are accepted | Create its bounded work item after environmental-response acceptance | 2026-07-16 |
+| Now | `WI-EXP-06-01` | in-progress | `EXP-06` | `EXP-01`, `KG-04`, `EXP-04`, and `EXP-05` are accepted | Define and validate exactly three registry entries and their pure conditions | 2026-07-17 |
+| Next | Phase 2 aggregate gates | pending | Phase 2 | All earlier Phase 2 packages are accepted | Run complete suite, reconcile docs, push, deploy Preview and Production-safe code, then live-verify | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-EXP-05-01` | Build The Environmental Response Prototype | in-progress | high | `EXP-05` | `CAP-EXP-009`, `CAP-EXP-010`, `CAP-EXP-011` | `active/WI-EXP-05-01.md` | 2026-07-16 |
+| `WI-EXP-06-01` | Build The Meaningful Discovery Registry | in-progress | high | `EXP-06` | `CAP-EXP-012`, `CAP-EXP-013` | `active/WI-EXP-06-01.md` | 2026-07-17 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-EXP-05-01` | done | `EXP-05` | Three-rule relationship instrument, canonical semantic light, and persisted stimulation accepted | `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03` | 2026-07-17 |
 | `WI-EXP-04-01` | done | `EXP-04` | One-question role lens, canonical any-order doors, dismiss/resume, and route persistence accepted | `EV-EXP-04-01`, `EV-EXP-04-02` | 2026-07-16 |
 | `WI-AI-03-01` | done | `AI-03` | Identifier-only request context, public graph retrieval, native structured sources, and canonical source links accepted | `EV-AI-03-01` | 2026-07-16 |
 | `WI-AI-02-01` | done | `AI-02` | Quiet lazy global shell, route context, clear/close/error, optional audio, and `/chat` compatibility accepted | `EV-AI-02-01`, `EV-AI-02-02` | 2026-07-16 |
