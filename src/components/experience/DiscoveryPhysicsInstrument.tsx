@@ -9,6 +9,7 @@ import {
   type SemanticFieldSignal,
 } from '@/lib/experience/environment';
 import { useExplorationWorld } from './ExplorationWorldProvider';
+import { RELATIONSHIP_INSTRUMENT_ID } from '@/lib/experience/discoveries';
 
 export default function DiscoveryPhysicsInstrument({
   signals,
@@ -197,10 +198,13 @@ export default function DiscoveryPhysicsInstrument({
           {!connected ? (
             <button
               type="button"
-              onClick={() => dispatch({
-                type: 'relationship-reviewed',
-                relationshipId: signal.relationshipId,
-              })}
+              onClick={() => {
+                dispatch({
+                  type: 'relationship-reviewed',
+                  relationshipId: signal.relationshipId,
+                });
+                store.getState().recordDepth(RELATIONSHIP_INSTRUMENT_ID, 'understand');
+              }}
               className="mt-3 rounded-full border border-cyan-100/15 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.13em] text-cyan-50/55 transition hover:border-cyan-100/30 hover:text-cyan-50/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-100/30 motion-reduce:transition-none"
             >
               Follow where it leads

@@ -4,6 +4,7 @@ export const FEATURE_FLAG_NAMES = [
   'guidedTour',
   'globalAI',
   'semanticLighting',
+  'meaningfulDiscoveries',
   'museumV2',
   'dreamlifeExperience',
   'lifeinboxExperience',
@@ -23,8 +24,8 @@ const ALL_DISABLED = Object.fromEntries(
 ) as Record<FeatureFlagName, boolean>;
 
 const DEFAULTS: Readonly<Record<PortfolioEnvironment, FeatureFlags>> = {
-  development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true },
-  preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true },
+  development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true },
+  preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true },
   production: { ...ALL_DISABLED },
   test: { ...ALL_DISABLED },
 };

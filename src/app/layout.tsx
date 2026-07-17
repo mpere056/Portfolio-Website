@@ -8,6 +8,7 @@ import GlobalAIPresence from "@/components/ai/GlobalAIPresence";
 import { ExplorationWorldProvider } from "@/components/experience/ExplorationWorldProvider";
 import GuidedTour from "@/components/experience/GuidedTour";
 import SemanticEnvironment from "@/components/experience/SemanticEnvironment";
+import HiddenDiscoveries from "@/components/experience/HiddenDiscoveries";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const cormorant = Cormorant_Garamond({
@@ -40,6 +41,7 @@ export default function RootLayout({
             {children}
             <GuidedTour enabled={flags.guidedTour} />
             <SemanticEnvironment enabled={flags.semanticLighting} />
+            <HiddenDiscoveries enabled={flags.meaningfulDiscoveries} />
             <GlobalAIPresence />
           </PortfolioAIProvider>
         </ExplorationWorldProvider>

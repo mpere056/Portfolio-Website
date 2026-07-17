@@ -228,4 +228,23 @@ describe('versioned exploration store', () => {
     });
     store.getState().dispose();
   });
+
+  it('persists meaningful discovery IDs and clears them only through exploration reset', async () => {
+    const { storage, values } = createMemoryStorage();
+    const key = getExplorationStorageKey('marknperera.ca');
+    const store = createExplorationStore({ storage, origin: 'marknperera.ca' });
+    await store.getState().hydrate();
+
+    store.getState().recordDepth('discovery:music-after-the-diploma', 'signal');
+    expect(store.getState().discovery.discoveredIds).toContain('discovery:music-after-the-diploma');
+    expect(JSON.parse(values.get(key)!).discovery.discoveredIds)
+      .toContain('discovery:music-after-the-diploma');
+
+    store.getState().resetTour();
+    expect(store.getState().discovery.discoveredIds).toContain('discovery:music-after-the-diploma');
+    await store.getState().resetExploration();
+    expect(store.getState().discovery.discoveredIds).toEqual([]);
+    expect(values.has(key)).toBe(false);
+    store.getState().dispose();
+  });
 });

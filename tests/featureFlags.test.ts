@@ -17,6 +17,7 @@ describe('feature flags', () => {
       guidedTour: true,
       firstNote: true,
       semanticLighting: true,
+      meaningfulDiscoveries: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
   });
