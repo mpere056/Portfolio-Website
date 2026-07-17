@@ -5,6 +5,8 @@ import GlobalAudio from "@/components/GlobalAudio";
 import { resolveFeatureFlags } from "@/lib/featureFlags";
 import { PortfolioAIProvider } from "@/components/ai/PortfolioAIProvider";
 import GlobalAIPresence from "@/components/ai/GlobalAIPresence";
+import { ExplorationWorldProvider } from "@/components/experience/ExplorationWorldProvider";
+import GuidedTour from "@/components/experience/GuidedTour";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const cormorant = Cormorant_Garamond({
@@ -32,10 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${cormorant.variable}`}>
-        <PortfolioAIProvider enabled={flags.globalAI}>
-          {children}
-          <GlobalAIPresence />
-        </PortfolioAIProvider>
+        <ExplorationWorldProvider>
+          <PortfolioAIProvider enabled={flags.globalAI}>
+            {children}
+            <GuidedTour enabled={flags.guidedTour} />
+            <GlobalAIPresence />
+          </PortfolioAIProvider>
+        </ExplorationWorldProvider>
         <GlobalAudio
           deferHomeAutoplay={flags.firstNote}
           nonBlockingPrompt={flags.globalAI}

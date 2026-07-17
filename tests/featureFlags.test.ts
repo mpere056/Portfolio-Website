@@ -14,6 +14,7 @@ describe('feature flags', () => {
     expect(resolveFeatureFlags({ environment: 'preview' })).toMatchObject({
       experienceFoundation: true,
       globalAI: true,
+      guidedTour: true,
       firstNote: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);

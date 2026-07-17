@@ -179,4 +179,32 @@ describe('versioned exploration store', () => {
       store.getState().dispose();
     }
   });
+
+  it('persists non-linear tour role, visits, dismissal, and reset independently', async () => {
+    const { storage } = createMemoryStorage();
+    const store = createExplorationStore({ storage, origin: 'marknperera.ca' });
+    await store.getState().hydrate();
+    store.getState().chooseTourRole('builder');
+    const suggestions = store.getState().tour.suggestedDestinationIds;
+    store.getState().recordTourVisit(suggestions[2]);
+    store.getState().recordTourVisit(suggestions[0]);
+    store.getState().dismissTourHint('home:tour-dreamlife-post');
+    store.getState().setTourEnabled(false);
+    expect(store.getState().tour).toMatchObject({
+      enabled: false,
+      role: 'builder',
+      visitedSuggestedIds: [suggestions[2], suggestions[0]],
+      dismissedHintIds: ['home:tour-dreamlife-post'],
+    });
+    store.getState().setTourEnabled(true);
+    expect(store.getState().tour.enabled).toBe(true);
+    store.getState().resetTour();
+    expect(store.getState().tour).toEqual({
+      enabled: false,
+      suggestedDestinationIds: [],
+      visitedSuggestedIds: [],
+      dismissedHintIds: [],
+    });
+    expect(store.getState().discovery.firstNoteCompleted).toBe(false);
+  });
 });

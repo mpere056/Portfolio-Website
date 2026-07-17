@@ -2,9 +2,11 @@ import { createStore, type StoreApi } from 'zustand/vanilla';
 import { portfolioActions } from '../portfolioActions';
 import type {
   DepthStage,
+  DestinationId,
   ExperienceCheckpoint,
   PersistedExperienceState,
   SemanticExperienceId,
+  TourRole,
 } from '../portfolioContracts';
 import {
   DEFAULT_PERSISTED_EXPERIENCE_STATE,
@@ -12,6 +14,13 @@ import {
   type PersistedExperienceStateResult,
   type ValidationIssue,
 } from '../portfolioValidation';
+import {
+  dismissTourHint as withDismissedTourHint,
+  recordTourVisit as withRecordedTourVisit,
+  resetTour as createResetTour,
+  setTourEnabled as withTourEnabled,
+  startTour,
+} from './tour';
 
 export interface ExplorationStorage {
   getItem(key: string): string | null | Promise<string | null>;
@@ -51,6 +60,11 @@ export interface ExplorationStoreState extends PersistedExperienceState {
   recordDepth(id: SemanticExperienceId, stage: DepthStage): void;
   setCheckpoint(checkpoint?: ExperienceCheckpoint): boolean;
   applyDepthTransition(id: SemanticExperienceId, checkpoint: ExperienceCheckpoint): boolean;
+  chooseTourRole(role: TourRole): void;
+  setTourEnabled(enabled: boolean): void;
+  recordTourVisit(destinationId: DestinationId): void;
+  dismissTourHint(hintId: SemanticExperienceId): void;
+  resetTour(): void;
   setStimulation(value: number): void;
   resetExploration(): Promise<void>;
   dispose(): void;
@@ -232,6 +246,26 @@ export function createExplorationStore(
       if (parsed.resetSections.includes('discovery')) return false;
       set({ discovery: parsed.value.discovery });
       return true;
+    },
+
+    chooseTourRole(role) {
+      set(state => ({ tour: startTour(state.tour, role) }));
+    },
+
+    setTourEnabled(enabled) {
+      set(state => ({ tour: withTourEnabled(state.tour, enabled) }));
+    },
+
+    recordTourVisit(destinationId) {
+      set(state => ({ tour: withRecordedTourVisit(state.tour, destinationId) }));
+    },
+
+    dismissTourHint(hintId) {
+      set(state => ({ tour: withDismissedTourHint(state.tour, hintId) }));
+    },
+
+    resetTour() {
+      set({ tour: createResetTour() });
     },
 
     setStimulation(value) {

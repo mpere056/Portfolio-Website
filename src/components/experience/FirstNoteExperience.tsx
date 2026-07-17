@@ -16,11 +16,8 @@ import {
   type FirstNotePresentation,
   type FirstNoteState,
 } from '@/lib/experience/firstNote';
-import {
-  browserExplorationStorage,
-  createExplorationStore,
-} from '@/lib/experience/store';
 import type { ExperienceCheckpoint } from '@/lib/portfolioContracts';
+import { useExplorationWorld } from './ExplorationWorldProvider';
 
 export interface FirstNoteExperienceValue {
   state: FirstNoteState;
@@ -50,10 +47,11 @@ export function FirstNoteExperience({
   revealDurationMs?: number;
 }) {
   const audioEl = useAudioStore(state => state.audioEl);
-  const [explorationStore] = useState(() => createExplorationStore({
-    storage: browserExplorationStorage,
-    origin: 'marknperera.ca',
-  }));
+  const {
+    store: explorationStore,
+    state: explorationState,
+    ready: explorationReady,
+  } = useExplorationWorld();
   const initialState = enabled ? INITIAL_FIRST_NOTE_STATE : bypassState();
   const stateRef = useRef(initialState);
   const [state, setState] = useState(initialState);
@@ -106,25 +104,23 @@ export function FirstNoteExperience({
   }, [applyEvent]);
 
   useEffect(() => {
-    if (!enabled) return;
-    let active = true;
-    void explorationStore.getState().hydrate().then(() => {
-      if (!active) return;
-      const discovery = explorationStore.getState().discovery;
-      const stimulation = explorationStore.getState().stimulation;
-      const systemReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      applyEvent({
-        type: 'hydrated',
-        enabled: true,
-        firstNoteCompleted: discovery.firstNoteCompleted,
-        reducedMotionRequested: stimulation.reducedMotionRequested || systemReducedMotion,
-        hasCheckpoint: Boolean(discovery.lastCheckpoint),
-      });
+    if (!enabled || !explorationReady) return;
+    const systemReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    applyEvent({
+      type: 'hydrated',
+      enabled: true,
+      firstNoteCompleted: explorationState.discovery.firstNoteCompleted,
+      reducedMotionRequested: explorationState.stimulation.reducedMotionRequested || systemReducedMotion,
+      hasCheckpoint: Boolean(explorationState.discovery.lastCheckpoint),
     });
-    return () => {
-      active = false;
-    };
-  }, [applyEvent, enabled, explorationStore]);
+  }, [
+    applyEvent,
+    enabled,
+    explorationReady,
+    explorationState.discovery.firstNoteCompleted,
+    explorationState.discovery.lastCheckpoint,
+    explorationState.stimulation.reducedMotionRequested,
+  ]);
 
   useEffect(() => {
     if (!enabled || state.phase !== 'waiting') return;
