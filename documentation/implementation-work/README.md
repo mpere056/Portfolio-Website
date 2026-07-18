@@ -10,17 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit foundation is locally accepted at `e462080`, while the visitor-facing `/projects` presentation remains unchanged until the museum navigation package. Phase 2 is pushed, deployed, and live-verified through production deployment `dpl_51xD2i8nQU8zEgjFiHnvNCvB2JqA`; its complete creative shell remains on in Development/Preview and deliberately off in Production pending creative review.
+Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit foundation is accepted at `e462080`, tracking closes at `fa0d671`, and production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready while the visitor-facing `/projects` presentation remains unchanged. A bounded `QA-06` reconciliation is active before candidate implementation resumes.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` registry, loaders, fallback, direct links, tests, and build accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
-| Next | Museum Signal/Approach integration | pending | `PRJ-03` | `PRJ-01` accepted; `EXP-05` available | Integrate the shared shell only after candidate work is bounded and the current legacy orchestration seam is preserved | 2026-07-17 |
+| Now | `WI-QA-06-01` | in-progress | `QA-06` | Cross-document audit findings named against deployed `PRJ-01` | Reconcile Phase 3 dependencies and add automated planning-integrity checks | 2026-07-17 |
+| Next | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` registry, loaders, fallback, direct links, tests, and build accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `WI-QA-06-01` | Reconcile and strengthen the implementation plans | in-progress | high | `QA-06` | `CAP-QA-006` | `active/WI-QA-06-01.md` | 2026-07-17 |
 | `WI-PRJ-02-01` | Compare the first flagship candidates | ready | high | `PRJ-02` | `CAP-PRJ-003`, `CAP-LIB-001`, `CAP-SDK-001`, `CAP-SDK-002` | `active/WI-PRJ-02-01.md` | 2026-07-17 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.

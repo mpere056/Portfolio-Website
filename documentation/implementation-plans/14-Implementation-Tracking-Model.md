@@ -1,6 +1,6 @@
 # Implementation Tracking Model
 
-Last updated: 2026-07-14
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -161,6 +161,12 @@ A package may contain several capabilities.
 
 When reopening a package, retain its completion history and add the reason to the evidence record and dashboard.
 
+Package counts are derived only from package rows in `13-Execution-Work-Packages.md`. Feedback gates and later markers are separate controls and must not be blended into package-state counts.
+
+When one capability name combines an accepted foundation with substantial later visitor behavior, split or narrow the capability rather than marking the whole behavior accepted. For example, stable exhibit-anchor resolution and generalized URL/history/subdomain integration have different package and evidence boundaries.
+
+An accepted evidence range in a phase summary is not registration. Every evidence ID requires its own canonical row in `documentation/implementation-evidence/README.md` and must resolve to a durable package file containing that ID.
+
 ## Partial Implementation Record
 
 Every capability with a `working`, `blocked`, or `paused` dimension should answer:
@@ -207,6 +213,7 @@ Update tracking at these moments:
 5. Record the last known-good commit, commands, routes, flags, and important files.
 6. Move the work item to `in-review`, `blocked`, `paused`, or `done` as appropriate.
 7. Update the dashboard's now, next, blocked, review, and recently changed sections.
+8. Run `npm exec vitest run tests/planningIntegrity.test.ts` when package, capability, evidence, work-item, or dashboard structure changed.
 
 ### At Preview Or Production Promotion
 

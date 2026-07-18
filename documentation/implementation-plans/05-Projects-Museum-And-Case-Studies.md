@@ -1,13 +1,13 @@
 # Projects Museum And Case Studies Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
 | Field | Value |
 | --- | --- |
 | Plan ID | `PRJ` |
-| Status | Active after foundation |
+| Status | Active; `PRJ-01` complete, `PRJ-02` ready |
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Graph](03-Knowledge-Graph-And-Content.md), [AI](04-Global-AI-And-Talking-Archive.md), [Living State](07-Living-Project-State.md) |
 | Downstream | Main projects route, project subdomains, guided tour, skill evidence |
 | Primary outputs | Museum registry, first vertical slice, three flagship experiences, smaller-project tiers |
@@ -30,63 +30,73 @@ Transform the existing project page and project subdomains into an inspectable m
 - `src/content/projects/*.mdx`
 - `src/app/sites/[site]/page.tsx`
 - Existing Dreamlife, LifeInbox, and Sudoku Together subdomains.
+- `src/lib/museum/types.ts`
+- `src/lib/museum/registry.ts`
+- `src/lib/museum/experienceLoaders.ts`
+- `src/lib/museum/loadExhibits.ts`
+- `src/components/museum/ExhibitFallback.tsx`
+- `src/components/museum/MuseumFallbackShell.tsx`
 
 The current project experience already uses 3D models, scroll snapping, expanded detail overlays, and project MDX. The new system should replace monolithic project behavior gradually.
 
+`PRJ-01` is complete at `e462080`. All nine project records now derive one canonical exhibit definition; three flagship manifests lazy-load behind runtime validation; graph or module failures preserve semantic copy and links. Deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready, but the new shell remains dormant and the visible route still uses `ProjectsClient`.
+
 ## Target Architecture
 
-Separate shared exhibit orchestration from project-specific experiences.
+Separate shared exhibit orchestration from project-specific experiences. Preserve the implemented boundary and add visitor behavior around it rather than moving the same concepts into a second registry.
 
-Suggested structure:
+Implemented and planned structure:
 
 ```text
 src/components/museum/
-  MuseumShell.tsx
-  Exhibit.tsx
-  ExhibitSignal.tsx
-  ExhibitIdentity.tsx
-  ExhibitExperience.tsx
-  ExplodedCaseStudy.tsx
-  EvidenceLayer.tsx
-  ExhibitTransition.tsx
-src/experiences/
-  registry.ts
-  dreamlife/
-  lifeinbox/
-  sudoku-together/
+  ExhibitFallback.tsx              # implemented semantic fallback
+  MuseumFallbackShell.tsx          # implemented server-safe shell
+  MuseumShell.tsx                  # PRJ-03 visitor orchestration
+  ExhibitSignal.tsx                # PRJ-03
+  ExhibitApproach.tsx              # PRJ-03
+  ExhibitExperienceBoundary.tsx    # PRJ-04 loading/error boundary
+  ExplodedCaseStudy.tsx            # PRJ-04
 src/lib/museum/
-  types.ts
-  registry.ts
-  state.ts
+  types.ts                          # implemented serializable contracts
+  registry.ts                       # implemented canonical derivation/validation
+  experienceLoaders.ts              # implemented lazy manifest registry
+  loadExhibits.ts                   # implemented graph-backed server adapter
+  experiences/                      # implemented lightweight manifests
+  state.ts                          # add only after PRJ-02 proves runtime state needs
+  transitions.ts                    # add with PRJ-03/PRJ-04 destination integration
 ```
 
-The exhibit registry should map stable project IDs to:
+The exhibit registry maps stable project IDs to:
 
 - Model and visual assets.
 - Supported depth stages.
-- Product experience loader.
+- Optional product experience ID and lazy manifest loader.
 - Exploded-layer descriptors.
 - Evidence and living-state source IDs.
-- AI destination IDs.
+- Museum and canonical project destination IDs.
 - Discovery conditions and easter eggs.
 
 ## Shared Exhibit Contract
 
 ```ts
 interface ProjectExhibitDefinition {
-  projectId: string;
-  destinationId: string;
-  visualKey: string;
-  stages: DepthStage[];
-  experienceId?: string;
-  layerIds: string[];
-  evidenceNodeIds: string[];
-  relatedNodeIds: string[];
-  hiddenDiscoveryIds: string[];
+  projectId: ProjectNodeId;
+  slug: string;
+  destinationId: DestinationId;
+  projectDestinationId: DestinationId;
+  visual: ExhibitVisualDescriptor;
+  supportedStages: readonly DepthStage[];
+  experienceId?: ExperienceId;
+  layerIds: readonly string[];
+  evidenceNodeIds: readonly NodeId[];
+  relatedNodeIds: readonly NodeId[];
+  hiddenDiscoveryIds: readonly DiscoveryId[];
 }
 ```
 
 Shared orchestration handles depth, persistence, tour hints, AI context, loading, and transitions. Project modules control the product-specific interaction and art direction.
+
+`supportedStages` is present-tense capability, not aspiration. Current exhibits and manifests advertise only Signal and Approach. A selected flagship may add Handle, Enter, or Understand only in the package that implements and tests that stage.
 
 ## Museum Entry And Navigation
 
@@ -125,29 +135,56 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 
 - Exploded architecture, evidence, relationships, and living or final state.
 
+## Legacy-To-Museum Migration
+
+`PRJ-03` is an adapter migration, not a rewrite of every project surface.
+
+1. The server route loads `loadMuseumExhibits()` and passes serializable views to the new shell.
+2. `museumV2` chooses the new path; the current `ProjectsClient` remains the rollback path.
+3. Both paths preserve the nine exact existing anchors and canonical destination IDs.
+4. Signal renders without loading a project interaction module or every 3D model.
+5. Approach uses authored identity plus reviewed selected-project state when available.
+6. A registry, graph, model, or project-module failure renders `ExhibitFallback` rather than an empty scene.
+7. Browser Back and direct-entry behavior remain unchanged until the new path explicitly owns them.
+
+`museumV2` begins off in every environment. `PRJ-03` may enable it in Development only after server/fallback tests; Preview promotion requires the overview-to-Approach browser flow. Production remains off through `QA-02` and a separate promotion decision.
+
 ## Flagship Selection Spike
 
-Before building the reusable framework, create feasibility spikes for LifeInbox and Sudoku Together.
+Before building a full interactive runtime, create equal feasibility spikes for LifeInbox and Sudoku Together. Each spike is an isolated local state machine rendered through the same lightweight harness; neither may call a private backend, require authentication, or claim to be the full product.
 
 ### LifeInbox Spike
 
 Validate:
 
-- Synthetic capture interaction.
-- Animated local/server/enrichment pipeline.
-- Layered phone and system reveal.
-- Performance cost of combined 3D and UI.
+- One authored synthetic capture enters a local inbox immediately.
+- A deterministic action transforms it into one structured destination without calling AI.
+- The UI distinguishes immediate local trust from illustrative later sync/enrichment.
+- Reset returns the exact initial fixture and a module failure returns the authored exhibit fallback.
 
 ### Sudoku Together Spike
 
 Validate:
 
-- Minimal playable grid.
-- Deterministic valid computer moves.
-- Presence timing.
-- Transition from board to architecture beneath it.
+- One fixed 9x9 puzzle accepts a legal visitor move and rejects an illegal move.
+- A participant labeled `Computer` makes one deterministic legal move only after visitor input settles.
+- The reducer never pretends that the computer is remote or human.
+- Reset returns the exact puzzle fixture and a module failure returns the authored exhibit fallback.
 
-Choose the first full vertical slice based on clarity, asset readiness, and implementation risk, not project prestige alone.
+### Equal Decision Rubric
+
+Record evidence under the same headings without percentages or aggregate scores:
+
+| Criterion | Question | Required evidence |
+| --- | --- | --- |
+| Visitor value | Does one interaction communicate the product faster than a paragraph? | Observed interaction path and resulting product understanding |
+| Product truth | Is the spike representative without implying unavailable live behavior? | Source-to-spike mapping and explicit simulation boundary |
+| Depth potential | Can the interaction lead naturally to one architecture/evidence reveal? | Named Handle-to-Understand bridge |
+| Asset readiness | Are copy, visual assets, and source facts sufficient for a coherent slice? | Ready assets and named missing assets |
+| Implementation risk | Can deterministic logic, fallback, and performance be bounded? | Test result, loading boundary, and largest unknown |
+| Reuse learning | Will the slice teach a shared museum primitive without flattening project identity? | One likely reusable lesson and one project-specific boundary |
+
+Rate each criterion `strong`, `acceptable`, or `weak` with a sentence of evidence. Select the first slice through a written tradeoff decision, not a numeric winner. If both are weak on product truth or visitor value, revise the spike scope instead of forcing a selection.
 
 ## Dreamlife Experience Plan
 
@@ -260,6 +297,24 @@ The visitor and another participant can contribute to the same Sudoku board insi
 - Label simulation clearly.
 - Preserve the real architecture explanation separately from simulated demo internals.
 
+## First Slice Convergence Contract
+
+`PRJ-04` starts only when `PRJ-02`, `PRJ-03`, `LPS-06`, and `AI-04` have accepted their inputs. It combines exactly one selected project into a complete journey:
+
+| Boundary | Minimum accepted behavior |
+| --- | --- |
+| Signal | Lightweight identity is visible without the interaction bundle |
+| Approach | Problem, significance, and reviewed lifecycle/current or final state are accurate |
+| Handle | The selected deterministic interaction teaches itself with bounded hints |
+| Enter | A meaningful focused state opens, normally on the canonical project subdomain |
+| Understand | One behavior connects to one system layer, one evidence source, and the reviewed state record |
+| AI | One validated archive card opens an exact selected-project destination and safe state |
+| Persistence | Shared semantic depth/checkpoint persists; transient demo edits remain local |
+| Failure | Graph, AI, model, and project-module failures retain identity, evidence links, and navigation |
+| Calm path | Sound-off, reduced motion, keyboard, and lower stimulation preserve understanding |
+
+Do not add a second product scenario, full project feature parity, generalized all-project routing, multiple exploded layers, or project-specific easter eggs before this journey passes `QA-02`.
+
 ## Smaller Project Strategy
 
 Classify non-flagship projects into:
@@ -302,6 +357,12 @@ The visual implementation can differ per project. Shared code manages ordering, 
 - Use canonical metadata to avoid duplicate search indexing if the same content appears in multiple routes.
 - AI destinations must support both main-domain and subdomain contexts.
 
+Responsibility split:
+
+- `PRJ-04` proves one selected museum-to-canonical-subdomain transition and exact return using existing destinations.
+- `PRJ-08` implements the generalized `/projects/[slug]` family, all-project canonical metadata, compatibility redirects, reusable history rules, and cross-origin handoff validation.
+- Existing `/projects#slug` URLs remain compatibility inputs until `PRJ-08` Preview evidence accepts redirects and browser Back behavior.
+
 ## Asset Plan
 
 For each flagship:
@@ -322,6 +383,8 @@ For each flagship:
 - LifeInbox pipeline state machine.
 - Sudoku board validity and computer moves.
 - Case-study layer dependencies.
+- Manifest stage claims cannot exceed implemented exhibit stages.
+- Candidate reducers are deterministic and reset to exact fixtures.
 
 ### Integration
 
@@ -330,6 +393,8 @@ For each flagship:
 - Tour opens project without exposing hidden material.
 - Refresh and return restore safe state.
 - Subdomain navigation preserves intended destination.
+- `museumV2` off preserves the legacy route; Development-on uses server exhibit views.
+- Unknown, malformed, or unsupported requested depth returns to a safe registered state.
 
 ### Visual And Interaction
 

@@ -31,6 +31,16 @@ Last updated: 2026-07-17
 | Claim | The server adapter emits serializable public exhibit views and preserves authored names, headlines, summaries, technology labels, stable anchors, and project-world links when a product module is absent or rejects. |
 | Evidence | Server-rendered fallback assertions pass for LifeInbox and failed-module behavior; content validation passes 49 nodes and 19 relationships; Next.js 16.2.10 produces build ID `O2KzZ9-28VnhxGnym9fce`. |
 
+## EV-PRJ-01-03: Production Deployment And Public Route Smoke
+
+| Field | Value |
+| --- | --- |
+| Status | accepted |
+| Type | production deployment and route smoke |
+| Deployment | `dpl_9DeyQkjizoRc91163TcF6TuumEbL`; `https://portfolio-website-eidzb6kim-marks-projects-445b0eb9.vercel.app` plus main and project aliases |
+| Claim | The accepted `PRJ-01` foundation is present in the Production build without changing the mounted legacy Projects experience or breaking the public main and project routes. |
+| Evidence | Vercel reports the deployment Ready; `/projects`, Dreamlife, LifeInbox, and Sudoku Together public routes return `200`; the visitor-facing rollback path remains the legacy `ProjectsClient`. |
+
 ## Boundaries After Completion
 
 - `supportedStages` names implemented depth only; all current manifests stop at Approach rather than claiming unfinished Handle/Enter/Understand behavior.

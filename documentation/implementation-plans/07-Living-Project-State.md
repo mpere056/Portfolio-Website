@@ -1,6 +1,6 @@
 # Living Project State Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -11,14 +11,16 @@ Last updated: 2026-07-16
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Graph schemas](03-Knowledge-Graph-And-Content.md), Mark's lifecycle review |
 | Downstream | [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [Global AI](04-Global-AI-And-Talking-Archive.md), disturbances, tour reasons |
 | Primary outputs | Lifecycle schema, reviewed classifications, state files, version policy, editorial workflow |
-| Execution packages | `LPS-01` through `LPS-05` in [Work Packages](13-Execution-Work-Packages.md) |
+| Execution packages | `LPS-01` through `LPS-06` in [Work Packages](13-Execution-Work-Packages.md) |
 | Capability tracking | `CAP-LPS-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 
 Represent evolving, maintained, complete, and archived projects honestly and consistently across project pages, AI answers, blogs, guided tours, and returning-visitor disturbances.
 
-Phase 1 status: `LPS-01` is complete at `afa5f67`. Lifecycle-specific required sections, content-version/date validation, and evolving-only constraints are tested. No real project has been classified; `LPS-02` remains explicitly decision-gated on Mark's review.
+Phase 1 status: `LPS-01` is complete at `afa5f67`. Lifecycle-specific required sections, content-version/date validation, and evolving-only constraints are tested. No real project has been classified; `LPS-02` remains explicitly decision-gated on Mark's portfolio-wide review.
+
+Phase 3 sequencing: `LPS-06` creates one reviewed state seed only after `PRJ-02` selects the first flagship. This lets Approach/Understand make truthful present-tense claims without treating the other eight projects as classified. The seed is later absorbed into `LPS-03`, not maintained as a parallel source.
 
 ## Existing Foundation
 
@@ -90,7 +92,7 @@ Suggested frontmatter:
 ```yaml
 projectId: project:dreamlife
 lifecycle: evolving
-contentVersion: 2026-07-12-a
+contentVersion: 2026-07-12:dreamlife-state
 updatedAt: 2026-07-12
 ```
 
@@ -122,6 +124,25 @@ For every project, Mark should confirm:
 - What is the last state worth showing?
 
 Create a migration table during implementation, but do not assign final lifecycle values without review.
+
+## Selected Flagship State Seed
+
+`LPS-06` is the minimum reviewed content gate for `PRJ-04`:
+
+1. Wait for the `PRJ-02` selection record.
+2. Present Mark with the selected project only, the four lifecycle definitions, source-backed current facts, and explicit unknowns.
+3. Record one approved lifecycle value and only the sections required by that lifecycle.
+4. Include a valid content version, review date, public evidence IDs, and a `supersedes` link if an older claim is replaced.
+5. Compile the record through the existing lifecycle and graph validation.
+6. Render the state in a plain fallback fixture before it enters a visual exhibit or AI context.
+
+The seed must not:
+
+- Infer activity from commit timestamps.
+- Require classifications for unrelated projects.
+- Add disturbance metadata before `LPS-04`.
+- Establish AI precedence before `LPS-05` tests conflict behavior.
+- Describe planned product behavior as shipped.
 
 ## Meaningful Change Standard
 
@@ -238,7 +259,13 @@ Do not show update badges or counts by default.
 
 ## Cross-Plan Handoff
 
-When lifecycle and flagship state work is complete, consumers may assume:
+After `LPS-06`, the first flagship may assume only:
+
+- One selected project has a reviewed lifecycle and minimum current/final state.
+- Its state record satisfies `LPS-01` and resolves to public evidence.
+- Other projects remain unclassified and must keep using neutral authored project copy.
+
+After `LPS-02` and `LPS-03`, broader consumers may assume:
 
 - Every project has a reviewed lifecycle.
 - Flagship projects expose one current or final source of truth.

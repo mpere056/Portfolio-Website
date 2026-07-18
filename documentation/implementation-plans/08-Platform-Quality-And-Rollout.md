@@ -1,6 +1,6 @@
 # Platform, Quality, And Rollout Plan
 
-Last updated: 2026-07-15
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -45,15 +45,14 @@ Do not place all of them in one Zustand store or React context.
 
 ## Feature Flags
 
-Add a typed feature registry.
-
-Candidate flags:
+The typed registry is implemented in `src/lib/featureFlags.ts`. Current flags are:
 
 - `experienceFoundation`
 - `firstNote`
 - `guidedTour`
 - `globalAI`
 - `semanticLighting`
+- `meaningfulDiscoveries`
 - `museumV2`
 - `dreamlifeExperience`
 - `lifeinboxExperience`
@@ -62,7 +61,7 @@ Candidate flags:
 - `skillEvidencePrototype`
 - `ambientPresence`
 
-Support:
+Current policy supports:
 
 - Local development overrides.
 - Preview-deployment defaults.
@@ -73,17 +72,12 @@ Remove flags after stable rollout rather than accumulating permanent branches.
 
 ## Runtime And Dependency Maintenance
 
-The repository currently targets Node `>=18.17 <21` and Next.js 14.2.3.
+`BAS-06` and `BAS-07` are complete. The repository and Vercel production now target Node.js 24 and Next.js 16.2.10 with React 19.2.7; the React Three Fiber ecosystem, AI routes, middleware/proxy behavior, Firestore retrieval, preview, and rollback gates have passed.
 
-Before the implementation program grows:
-
-- Reconfirm the supported Vercel Node runtime.
-- Plan the previously warned Node runtime upgrade before the hosting deadline.
-- Verify Next.js, AI SDK, React Three Fiber, Three.js, and Firestore compatibility together.
-- Upgrade through a dedicated maintenance change, not inside a flagship-experience branch.
-- Capture build and visual baselines before and after dependency upgrades.
-
-Do not mix major framework upgrades with the first museum vertical slice.
+- Keep `package.json` engines, Vercel runtime, and local verification on Node.js 24.
+- Treat future major framework/runtime changes as dedicated baseline packages, never as flagship work.
+- Re-run route, AI, 3D, visual, Preview, and rollback checks after coordinated dependency changes.
+- The current Browserslist-data warning is maintenance debt, not permission to mix dependency refresh into `PRJ-02` through `PRJ-04`.
 
 ## Performance Baseline
 
@@ -215,6 +209,24 @@ For every milestone, manually review:
 - Does the deeper layer feel earned?
 - Are sound and lighting tasteful?
 
+## First Flagship Quality Gate
+
+`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. It requires:
+
+| Gate | Required proof |
+| --- | --- |
+| Contract | Supported stages, destinations, state, evidence, and card payloads validate at runtime |
+| Logic | Candidate reducer, stage transitions, safe-state parser, and fallback decisions are deterministic |
+| Browser | Overview to Approach to Handle to Enter/Understand, Back, refresh, return, and exact fallback paths work |
+| Visual | Signal, Approach, interaction, exploded layer, AI card, loading, and error checkpoints are reviewed at stable frames |
+| Performance | Lobby does not download all flagship bundles; cold interaction loading and frame-time risks are measured on the target desktop |
+| Stimulation | Sound-off, reduced motion, keyboard, pointer/trackpad, and lower-stimulation paths preserve meaning |
+| Creative | Product truth, pacing, mystery, depth, distinct project identity, and explanation density receive explicit review |
+| Preview | Exact commit is Ready with `museumV2` and only the selected experience enabled; representative main/subdomain routes pass |
+| Rollback | Disabling the museum and selected-experience flags restores the legacy Projects path without content or destination loss |
+
+Production promotion is not automatic when `QA-02` passes. It requires a separate release decision naming flags, deployed commit, live aliases, rollback, and the remaining Phase 2 Production-off boundary.
+
 ## Stimulation And Input QA
 
 Test:
@@ -338,6 +350,12 @@ For each milestone:
 - Every partial visitor-facing feature records its flag, fallback, and safe environment.
 - Package completion agrees with capability dimension states and package exit evidence.
 - Dashboard active states resolve to current work-item files.
+- Package-state counts come only from package rows; feedback/later markers are reported separately.
+- Every accepted evidence ID has one explicit canonical registry row; summary ranges do not substitute for registration.
+- Every active work-item file appears exactly once in the active registry and every active registry row resolves to a file.
+- Every package ID referenced by a capability exists in the package registry.
+
+Run `npm exec vitest run tests/planningIntegrity.test.ts` at package closure and dashboard reconciliation. The test owns structural parity; human review still owns whether status and evidence claims are truthful.
 
 Tracking quality is part of release quality. A feature whose true partial state cannot be explained is not ready for broader rollout.
 

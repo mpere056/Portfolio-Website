@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -87,7 +87,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | complete |
 | `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | complete |
-| `AI-04` | Archive cards and destination flow | `AI-03`, `ARC-03` | Structured cards, validation, transitions, cross-subdomain behavior | Card navigation browser flow | pending |
+| `AI-04` | Archive cards and selected-destination flow | `AI-03`, `ARC-03`, `PRJ-01` | Runtime card schema, public-source validation, client re-resolution, selected museum/subdomain transition | Invalid-card fixtures and one exact card navigation browser flow | pending |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
 
 ## Living Project State Packages
@@ -99,6 +99,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `LPS-03` | Flagship state files | `LPS-02` | Edited state for active flagships | Content review and rendered fixture | pending |
 | `LPS-04` | Content versions and disturbance metadata | `LPS-03` | Meaningful version policy and compiled update records | Version comparison tests | pending |
 | `LPS-05` | Editorial workflow and AI precedence | `LPS-03`, `KG-06` | Update checklist, current-state retrieval precedence | Conflict fixture resolves to current state | pending |
+| `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One Mark-reviewed lifecycle and minimum current/final state for the selected first flagship | Approval record, lifecycle validation, public evidence links, and rendered fallback fixture | pending |
 
 ## Project Museum Packages
 
@@ -106,12 +107,12 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | --- | --- | --- | --- | --- | --- |
 | `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | complete |
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | ready |
-| `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Signal/Approach presentation and stable anchors | Overview-to-approach browser flow | pending |
-| `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-03` | Handle, Enter, Understand, evidence, persistence | Phase 3 vertical-slice evidence | pending |
+| `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Server exhibit-view adoption behind `museumV2`, lightweight Signal, authored Approach, exact anchors, legacy rollback | Flag-off parity, fallback integration, and overview-to-Approach browser flow | ready |
+| `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-06` | Selected Handle/Enter/Understand journey, one exploded layer, evidence, state, persistence, minimum subdomain handoff | Phase 3 vertical-slice evidence | pending |
 | `PRJ-05` | Dreamlife experience | `PRJ-04` framework | Future paths, reaction, experiment, exploded layers | Authored scenario and interaction QA | pending |
 | `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework | LifeInbox or Sudoku experience not selected first | Product and architecture QA | pending |
 | `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06` | Standard/archive/related tiers and selected easter eggs | Every project assigned a tier | pending |
-| `PRJ-08` | Direct routes and subdomain integration | `PRJ-04`, `ARC-03` | Canonical destinations, metadata, cross-domain state | Live preview route verification | pending |
+| `PRJ-08` | Generalized direct routes and subdomain integration | `PRJ-04`, `ARC-03` | `/projects/[slug]`, all-project canonical metadata, compatibility redirects, reusable URL/history and cross-origin state rules | Back/refresh/redirect tests and live Preview route matrix | pending |
 
 ## About Packages
 
@@ -131,7 +132,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | pending |
-| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | pending |
+| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | in-progress |
 
 ## Prototype Packages
 
@@ -151,22 +152,19 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `LTR-03` | Ambient multi-visitor presence | Stable single-person experience | later |
 | `LTR-04` | Shared exploration | Presence/share-state value established | later |
 
-## First Recommended Execution Queue
+## Current Phase 3 Execution Queue
 
-Start only with packages that reduce uncertainty for everything else:
+Completed foundation packages remain in their tables and evidence files. Current delivery order is:
 
-1. `BAS-01` Technical baseline.
-2. `BAS-02` Content inventory.
-3. `BAS-04` Runtime maintenance decision.
-4. `BAS-06` Supported runtime and security bridge.
-5. `BAS-07` Supported framework modernization.
-6. `BAS-05` Target-state implementation audit on the supported stack.
-7. `ARC-01` Stable ID policy.
-8. `ARC-02` Shared contract types.
-9. `QA-01` Foundation test harness.
-10. `KG-01` Shared content loader parity.
+1. Close `QA-06` documentation reconciliation and restore `WI-PRJ-02-01` to the Now slot.
+2. Implement `PRJ-02` equal deterministic LifeInbox/Sudoku spikes and record one selection.
+3. Implement `PRJ-03` registry-backed Signal/Approach behind `museumV2`; keep legacy rollback.
+4. Complete `LPS-06` with Mark's review of the selected flagship only.
+5. Implement `AI-04` card validation, then one selected-destination transition.
+6. Converge the selected interaction and shared systems in `PRJ-04`.
+7. Run `QA-02`; promote no production flag without its separate release decision.
 
-Do not begin First Note visuals, global AI UI, museum redesign, or project demos before the shared identifiers and baseline are stable.
+`PRJ-02` and `PRJ-03` are both `ready` because their dependencies pass. Ready status permits selection, not simultaneous implementation; the one-active-code-package WIP rule prevents competing unfinished surfaces.
 
 ## Package Completion Checklist
 

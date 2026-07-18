@@ -463,19 +463,20 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-LPS-004` | Meaningful content-version and update metadata | `LPS-04` | `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-005` | Editorial update, freshness, and review workflow | `LPS-05` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-006` | AI precedence for edited current state over historical material | `LPS-05` | `V-09`, `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-LPS-007` | Reviewed selected-flagship state seed | `LPS-06` | `V-19` | `O-03` | 3 | `S: accepted; C: not-started; A: accepted; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
 
 ## Museum And Shared Case-Study System
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-PRJ-002` | Direct-linkable exhibit and depth state | `PRJ-01`, `PRJ-08` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-started; R: not-started` | implemented |
+| `CAP-PRJ-002` | Stable exhibit anchors and depth-fallback resolution | `PRJ-01` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
 | `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-PRJ-008` | Canonical project routes, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
 ### CAP-PRJ-001: Typed Exhibit Registry, Loader, And Fallback Shell
 
@@ -493,31 +494,47 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: `PRJ-02` proves two bounded product interactions against the same contract.
 - Last assessed: 2026-07-17 at `e462080`.
 
-### CAP-PRJ-002: Direct-Linkable Exhibit And Depth State
+### CAP-PRJ-002: Stable Exhibit Anchors And Depth-Fallback Resolution
 
 - Owner: Codex
-- Lifecycle: implemented
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-started; R: not-started`
-- Packages: `PRJ-01`, `PRJ-08`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
+- Package: `PRJ-01`
 - Works now: Every current project resolves by slug or canonical project ID to one stable museum anchor; unsupported requested depth falls back to Signal without losing the exhibit; unknown exhibits return to the museum lobby.
-- Named gaps: The new resolver is not yet integrated with visitor history, URL depth encoding, project subdomain transitions, or visual/manual navigation review; those remain explicit `PRJ-08` scope.
+- Named gaps: None within this bounded capability. Generalized URL/history state, route metadata, and project-subdomain transitions are separately tracked by `CAP-PRJ-008` and `PRJ-08`.
 - Safe exposure: Existing route anchors continue to work; no new URL or history behavior is exposed.
-- Evidence: `EV-PRJ-01-01`, `EV-PRJ-01-02`.
-- Work item: `WI-PRJ-01-01` completed the foundation portion; no `PRJ-08` work item is active yet.
+- Evidence: `EV-PRJ-01-01`, `EV-PRJ-01-02`, `EV-PRJ-01-03`.
+- Work item: `WI-PRJ-01-01` (done).
 - Next checkpoint: `PRJ-03` consumes stable anchors without inventing a second destination format.
 - Last assessed: 2026-07-17 at `e462080`.
+
+### CAP-PRJ-003: Equal Feasibility Spikes And Selection Record
+
+- Owner: Codex
+- Lifecycle: planned; work item ready
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable`
+- Package: `PRJ-02`
+- Works now: The accepted exhibit manifest, runtime boundary, deterministic fallback, and project-specific source research provide a safe base for two equal spikes.
+- Named gaps: Neither bounded interaction exists yet, and no flagship has been selected. Selection must follow the published non-numeric rubric rather than implementation convenience.
+- Safe exposure: Both spikes remain local, deterministic, synthetic, and outside the mounted visitor route until the selection record is accepted.
+- Evidence: none yet.
+- Work item: `WI-PRJ-02-01` (ready).
+- Next checkpoint: Build and compare the LifeInbox and Sudoku Together spikes, then record the selected flagship and rejected alternative.
+- Last assessed: 2026-07-17 after `PRJ-01` Production verification.
 
 ## Flagship Product Experiences
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` or `PRJ-06` | `V-17` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` or `PRJ-06` | `V-17` | `O-03` or `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
 | `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` or `PRJ-06` | `V-15`, `V-17` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LIB-003` | LifeInbox evidence, privacy, errors, and living state | `PRJ-04` or `PRJ-06` | `V-17`, `V-19` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
+| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
 | `CAP-SDK-003` | Sudoku collaboration architecture, validity, evidence, and fallback | `PRJ-04` or `PRJ-06` | `V-15`, `V-18` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-DRM-001` | Authored Dreamlife future-path scenario | `PRJ-05` | `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-DRM-002` | Dreamlife reaction, refinement, and experiment interaction | `PRJ-05` | `V-04`, `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -537,30 +554,46 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `S: accepted; C: not-applicable; A: working; I: working; T: not-started; Q: not-applicable; R: not-applicable` | in-progress |
 | `CAP-PXP-001` | Evidence-backed skill map prototype and decision | `PXP-01` | `V-24` | Experimental | 2 | `U/U/U/U/U/U/U` | deferred |
 | `CAP-PXP-002` | Rare site-help request prototype and decision | `PXP-03` | `V-21` | Experimental | 1 | `U/U/U/U/U/U/U` | deferred |
 
 ### CAP-QA-001: Foundation Unit And Browser Test Harness
 
-- Owner: unassigned
-- Lifecycle: planned
-- Health: not-active
+- Owner: Codex
+- Lifecycle: verified
+- Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted`
 - Package: `QA-01`
-- Works now: Vitest covers inventory, runtime policy, retrieval, chat generation fallback, and canonical content IDs; browser and production checks have repeatable written evidence.
-- Named gaps: The target reusable harness does not yet automate one foundation browser journey, visual checkpoint, or preview gate.
-- Safe exposure: Existing tests remain required; the later harness adds coverage without replacing them blindly.
-- Evidence: `EV-BAS-05-01`, existing baseline package test evidence.
-- Work item: none; waits for `ARC-02`.
-- Next checkpoint: One automated foundation flow consumes shared contracts and runs in the supported toolchain.
-- Last assessed: 2026-07-14 at `4144bcc`
+- Works now: Vitest covers the shared contracts, graph, exploration, AI, exhibit runtime, retrieval, content identity, and regression surfaces; the reusable Playwright harness covers foundation journeys and screenshots; Preview and Production checks have repeatable evidence.
+- Named gaps: No `QA-01` acceptance gap remains. Feature-specific creative, performance, stimulation, and rollout gates remain in `QA-02` through `QA-05`.
+- Safe exposure: Unit, integration, browser, build, Preview, and Production evidence are additive and preserve explicit feature flags and rollback routes.
+- Evidence: `EV-QA-01-01`, `EV-QA-01-02`, `EV-QA-01-03`, `EV-QA-01-04`.
+- Work item: `WI-QA-01-01` (done).
+- Next checkpoint: `QA-02` applies the accepted harness to the first complete flagship vertical slice.
+- Last assessed: 2026-07-17 after the 134-test aggregate gate and current Production smoke.
+
+### CAP-QA-006: Tracking Integrity And Evidence Reconciliation
+
+- Owner: Codex
+- Lifecycle: in-progress
+- Health: on-track
+- Confidence: high
+- Dimension states: `S: accepted; C: not-applicable; A: working; I: working; T: not-started; Q: not-applicable; R: not-applicable`
+- Package: `QA-06`
+- Works now: Package, capability, work-item, evidence, decision, and dashboard records are being reconciled against the repository and live deployment rather than inferred from earlier plans.
+- Named gaps: The canonical evidence registry and dashboard still require final count reconciliation, and the planning-integrity test has not yet passed.
+- Safe exposure: Documentation and test infrastructure only; no visitor behavior or production configuration changes.
+- Evidence: none accepted yet.
+- Work item: `WI-QA-06-01` (in-progress).
+- Next checkpoint: Pass the integrity test, close this work item with durable evidence, and hand the only active implementation slot to `PRJ-02`.
+- Last assessed: 2026-07-17 during the post-Phase-2 planning audit.
 
 ## Per-Capability Detail Record
 

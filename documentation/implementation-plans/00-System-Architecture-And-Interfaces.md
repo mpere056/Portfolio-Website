@@ -1,6 +1,6 @@
 # System Architecture And Interface Contracts
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -127,6 +127,16 @@ Must use shared contracts for:
 - Discovery events.
 - Evidence references.
 - Error and loading states.
+
+`PRJ-01` implementation checkpoint:
+
+- `src/lib/museum/types.ts` owns the serializable exhibit definition and view contracts.
+- `src/lib/museum/registry.ts` derives all nine exhibits from canonical project content and destinations; it does not duplicate project copy.
+- `src/lib/museum/experienceLoaders.ts` owns lazy manifest loading and fails closed on missing, rejected, malformed, wrong-project, or over-claimed-stage modules.
+- `src/lib/museum/loadExhibits.ts` is the server boundary for public graph-backed exhibit views.
+- `src/components/museum/MuseumFallbackShell.tsx` preserves useful semantic HTML and canonical links when richer systems are unavailable.
+
+The current `ProjectsClient` remains legacy presentation and rollback orchestration. New modules must not import its wheel, audio, modal, or eager-3D assumptions into the shared contract.
 
 ## Canonical Identifier Contract
 
@@ -343,18 +353,31 @@ Every visitor-facing graph query must be:
 ## Project Experience Contract
 
 ```ts
-interface ProjectExperienceModule {
+interface ProjectExperienceManifest {
   id: ExperienceId;
-  projectId: NodeId;
+  projectId: ContentNodeId;
   supportedStages: DepthStage[];
-  load: () => Promise<React.ComponentType<ProjectExperienceProps>>;
-  getInitialState: () => Record<string, unknown>;
-  validateSafeState: (state: unknown) => Record<string, string> | undefined;
   evidenceNodeIds: NodeId[];
+}
+
+interface ProjectExperienceRuntime<State, SafeState> {
+  manifest: ProjectExperienceManifest;
+  loadView: () => Promise<React.ComponentType<ProjectExperienceProps<State>>>;
+  createInitialState: () => State;
+  validateSafeState: (state: unknown) => SafeState | undefined;
 }
 ```
 
-Project experiences emit shared events through callbacks rather than importing global stores directly where avoidable.
+`ProjectExperienceManifest` is implemented and accepted. The interactive runtime is added by `PRJ-02`/`PRJ-04` only after a candidate proves its deterministic local state. Keeping the manifest separate allows the lobby to know identity, evidence, and supported depth without downloading an interaction bundle.
+
+Project experiences emit shared actions through callbacks rather than importing global stores directly where avoidable. Runtime state is divided explicitly:
+
+- **Transient local state:** pointer focus, puzzle edits, draft capture text, animation phase, camera state.
+- **Persistable local demo state:** only a bounded validated checkpoint that is safe to restore on the same origin.
+- **Shareable safe state:** authored scenario key, selected stable part, and requested depth only.
+- **Global state:** destination, depth, AI context, discovery, tour, and stimulation remain owned by shared systems.
+
+An experience may support fewer stages than the universal vocabulary. It must never advertise a stage until its interaction, fallback, and tests exist.
 
 ## Living-State Contract
 
@@ -370,6 +393,8 @@ Consumers:
 Precedence rule:
 
 Current reviewed project state overrides older descriptive content when they conflict about present behavior.
+
+The first flagship may consume one reviewed selected-project seed from `LPS-06`. This does not imply that the remaining projects are classified. Portfolio-wide consumers may assume complete classification only after `LPS-02`; three flagship consumers may assume full state coverage only after `LPS-03`.
 
 ## Semantic-Lighting Contract
 

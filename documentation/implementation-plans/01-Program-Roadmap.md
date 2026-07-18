@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -36,6 +36,8 @@ The repository already provides:
 
 The program should extend these foundations rather than replace the entire application at once.
 
+Phase 3 implementation checkpoint: `PRJ-01` is complete at `e462080` with nine canonical exhibits, three lazy flagship manifests, stable entry resolution, graph-backed views, and semantic fallbacks. Production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready and the main Projects route plus all three flagship subdomains return `200`; the new museum UI remains dormant.
+
 ## Dependency Order
 
 The critical dependency chain is:
@@ -63,8 +65,8 @@ The approved information architecture is technically multi-route and experientia
 | Contracts | `ARC-01`, `ARC-02`, `ARC-03` | Quality harness design after shared types stabilize |
 | Structural foundation | `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` | Loader migration, persistence, AI context, lifecycle schema with contract coordination |
 | Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Foundation flow, First Note, tour, global shell, and graph queries/retrieval after their direct dependencies pass |
-| First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-03`, `QA-02` | Asset preparation and reviewed About relationships, not another flagship implementation |
-| Expansion | `PRJ-05` to `PRJ-08`, `ABT-01` to `ABT-04`, `LPS-04` | Remaining flagships and About can overlap only after museum and graph contracts are stable |
+| First flagship | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` after completed `PRJ-01` | Asset preparation and card-contract tests may proceed only at package boundaries; do not start a second flagship interaction |
+| Expansion | `PRJ-05` to `PRJ-08`, `LPS-02`, `LPS-03`, then `ABT-01` to `ABT-04` | Remaining flagships and About can overlap only after the first slice and shared museum behavior are accepted |
 
 Unsafe parallel work:
 
@@ -83,8 +85,8 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 | Phase 0 | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `ARC-01` |
 | Phase 1 | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01` |
 | Phase 2 | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` |
-| Phase 3 | `PRJ-01` to `PRJ-04`, `AI-04`, `LPS-02`, `LPS-03`, `QA-02` |
-| Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05` |
+| Phase 3 | completed `PRJ-01`; then `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` |
+| Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` |
 | Phase 5 | `ABT-01` to `ABT-04` |
 | Phase 6 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` |
 | Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
@@ -180,6 +182,8 @@ Implementation checkpoint: Phase 2 is complete. All ten packages pass the 123-te
 
 ## Phase 3: First Flagship Vertical Slice
 
+Implementation checkpoint: `PRJ-01` is complete and deployed. `WI-QA-06-01` is the active planning-integrity gate; after it closes, `WI-PRJ-02-01` becomes the implementation handoff. `PRJ-03` is dependency-ready but remains queued behind the equal-candidate decision under the one-active-code-package rule. The authoritative sequence and scope boundaries are in [the Phase 3 sequencing decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md).
+
 ### Goal
 
 Prove the full architecture through one project before generalizing.
@@ -191,6 +195,17 @@ Choose LifeInbox or Sudoku Together after a short feasibility spike.
 LifeInbox is strong for demonstrating graph relationships, current state, and exploded architecture.
 
 Sudoku Together is strong for demonstrating immediate product interaction with a computer participant.
+
+Both spikes must use synthetic local state, deterministic reducers, the same evidence rubric, and the accepted `PRJ-01` fallback. Do not select on visual polish or implementation effort alone.
+
+### Execution Sequence
+
+1. `PRJ-02`: prove one capture-to-organization transition and one visitor-plus-computer Sudoku turn; record the decision.
+2. `PRJ-03`: integrate registry-backed Signal/Approach behind `museumV2`, preserving anchors and legacy rollback.
+3. `LPS-06`: review one lifecycle and minimum public state record for the selected flagship.
+4. `AI-04`: validate card data first, then integrate one exact selected-destination transition.
+5. `PRJ-04`: converge Handle, Enter, Understand, evidence, persistence, and selected-project subdomain handoff.
+6. `QA-02`: run logic, browser, visual, performance, stimulation, creative, Preview, and rollback gates.
 
 ### Required Slice
 
@@ -211,6 +226,8 @@ Sudoku Together is strong for demonstrating immediate product interaction with a
 - Product behavior is more convincing than a text-only explanation.
 - The architecture reveal answers why the product behaves that way.
 - The same core primitives appear reusable without forcing identical project interactions.
+- The selected exhibit has truthful reviewed state without claiming portfolio-wide lifecycle completion.
+- The legacy Projects route remains a tested rollback until a separate production promotion.
 
 ## Phase 4: Museum Framework And Remaining Flagships
 
@@ -221,11 +238,12 @@ Sudoku Together is strong for demonstrating immediate product interaction with a
 
 ### Work
 
-- Define an exhibit registry and experience loader.
-- Separate shared depth state from project-specific interaction code.
+- Extend the accepted exhibit registry and loader only where the first slice proves a reusable need.
+- Keep shared depth/destination state separate from project-specific interaction state.
 - Build missing flagship experiences.
 - Add knowledge relationships, living state, AI cards, evidence, and easter eggs for each.
 - Decide which smaller projects receive reduced-depth exhibits.
+- Complete portfolio-wide lifecycle classification and all three flagship state records without rewriting the selected seed.
 
 ### Exit Criteria
 

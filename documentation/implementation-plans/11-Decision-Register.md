@@ -1,6 +1,6 @@
 # Decision Register
 
-Last updated: 2026-07-15
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -29,7 +29,8 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 | Quiet global AI | Confirmed | Move from route-only chat toward a site-wide contextual shell. |
 | AI cards flow into site content | Confirmed | Define stable destination and transition contracts. |
 | Expand MDX corpus into relationship graph | Confirmed | Add reviewed nodes, relationships, validation, and query helpers. |
-| Semantic lighting | Confirmed for prototype and likely use | Start with a few reviewed relationships. |
+| Discovery physics | Confirmed at a bounded scale | Reuse proximity, handling, and reviewed-light rules without turning them into a universal visual gimmick. |
+| Semantic lighting | Confirmed at a bounded, explainable scale | Render only a few reviewed relationships and keep text meaning available; do not create a constellation page. |
 | Projects as inspectable systems | Confirmed | Create museum and depth architecture. |
 | Experiential project communication | Confirmed | Build focused product slices for flagships. |
 | Exploded case studies | Confirmed | Reveal product, system, evidence, and state layers. |
@@ -44,6 +45,7 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-17 | Sequence Phase 3 around equal candidate spikes, feature-flagged museum integration, one selected-project state seed, validated AI cards, one converged slice, and a full quality gate | Confirmed | Portfolio-wide lifecycle review no longer blocks the first slice; selected-project handoff is bounded in `PRJ-04`; generalized route/history work remains `PRJ-08` | [Phase 3 Vertical-Slice Sequencing Decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md) |
 | 2026-07-16 | Use a technically multi-route portfolio that behaves as one continuous exploratory world | Confirmed | Durable routes provide loading/share/history boundaries; semantic destinations own depth; flagship subdomains own substantial Enter/Understand states; cross-origin state uses bounded cookie and URL handoff rather than shared local storage | [Information Architecture And Routing Decision](2026-07-16-Information-Architecture-And-Routing-Decision.md) |
 | 2026-07-15 | Replace the unavailable Supabase retrieval store with server-only Firestore native vector search on the Spark plan | Confirmed and implemented | `BAS-08` accepted IAM, index, canonical re-indexing, Vercel cutover, and no-billing guardrails; current MDX remains authoritative | [Firebase Retrieval Migration Decision](2026-07-15-Firebase-Retrieval-Migration-Decision.md) |
 | 2026-07-14 | Use canonical namespaced content IDs with explicit one-way aliases for genuine renames | Confirmed and implemented for content and reviewed graph-only identities | Projects, timeline events, misc knowledge, and posts retain strict stable identities; `WI-ARC-02-02` adds broader graph references without weakening ingestion | [Stable Content ID Decision](../implementation-baselines/2026-07-14-Stable-Content-ID-Decision.md) |
@@ -55,8 +57,6 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 | --- | --- | --- |
 | Evidence-backed skill tree | Does it clarify capability and evidence better than project filters? | Static or lightly interactive prototype using 8 to 12 nodes. |
 | Memory room | Does one object deepen a timeline event without slowing chronology? | One event, one object, one return transition. |
-| Discovery physics | Which physical rules feel intuitive? | Three rules in one controlled scene. |
-| Semantic lighting | Can relationships be noticed and understood without visual noise? | Three source nodes and six reviewed links. |
 | Ambient visitor presence | Does anonymity feel alive rather than distracting or creepy? | One opt-in/opt-out visual signal with no identity. |
 | Site asks for help | Can rare feedback requests feel thoughtful? | One evolving project and one explicit response action. |
 
@@ -122,15 +122,10 @@ These remain recorded without detailed planning.
 
 Resolve these in order as implementation approaches them.
 
-1. Choose the state owner and versioning policy for discovery persistence.
-2. Extend the confirmed content-ID policy to destination and experience registries after `ARC-01`.
-3. Decide whether content validation runs during build, tests, or both.
-4. Choose the global AI shell's inactive visual form.
-5. Finalize quick-tour role labels.
-6. Choose the first flagship vertical slice after feasibility spikes.
-7. Define the minimum semantic-lighting prototype.
-8. Select the first About event for a memory-room prototype.
-9. Decide whether the skill experiment is called a skill tree or evidence map after seeing it.
+1. Choose the first flagship vertical slice after the equal LifeInbox and Sudoku feasibility spikes.
+2. Confirm the selected flagship lifecycle and minimum public current/final state for `LPS-06`.
+3. Select the first About event for a memory-room prototype when Phase 5 approaches.
+4. Decide whether the skill experiment is called a skill tree or evidence map after seeing it.
 
 ## Decision Record Template
 

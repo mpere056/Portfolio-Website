@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-17
-Implementation commit baseline: `3de7c3c`
+Implementation commit baseline: `e462080`; current Production record: `fa0d671`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `3de7c3c`
 
 ## Current Program State
 
-**Phase 1 and Phase 2 are complete; Phase 3 is active with the shared exhibit foundation accepted and the equal-candidate flagship spike ready.**
+**Phase 1 and Phase 2 are complete; Phase 3 has an accepted exhibit foundation, and the planning-integrity reconciliation is the only active package before equal-candidate flagship work begins.**
 
-Through `e462080`, Phase 3 adds nine canonical exhibit definitions, three lazy flagship manifests, stable direct-entry resolution, graph-backed serializable views, and a resilient semantic fallback shell without changing the visitor-facing `/projects` route. All 134 tests, strict typechecking, 49-node/19-relationship validation, lint with ten pre-existing warnings and no errors, and the production build pass. `PRJ-02` is the only ready work item.
+Through `e462080`, Phase 3 adds nine canonical exhibit definitions, three lazy flagship manifests, stable direct-entry resolution, graph-backed serializable views, and a resilient semantic fallback shell without changing the visitor-facing `/projects` route. All 134 tests, strict typechecking, 49-node/19-relationship validation, lint with ten pre-existing warnings and no errors, and the production build pass. Production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready and the main project routes return `200`. `QA-06` is active; `PRJ-02` and `PRJ-03` are ready but the one-active-code-package rule keeps implementation sequencing explicit.
 
 This distinction prevents two errors:
 
@@ -28,30 +28,29 @@ This distinction prevents two errors:
 
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
-| `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, and context accepted | Preserve boundaries in integrated adoption | Complete `WI-QA-01-01` |
+| `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, recursive content, schemas, graph, lifecycle, persistence, context, and foundation harness accepted | Preserve boundaries and tracking integrity during integrated adoption | Complete `WI-QA-06-01`, then keep its integrity test in the normal gate |
 | `O-01` Persistent exploratory world | Phase 2 complete | on-track | Complete shell passes local and protected Preview gates; Production-off boundary is verified | Production creative promotion is a later review, not an implementation gap | Begin bounded Phase 3 flagship work |
 | `O-02` Quiet global AI | Phase 2 complete | on-track | Lazy shell, identifier-only context, Firebase retrieval, and validated sources pass live | Cards remain the planned `AI-04` increment | Add cards within the first flagship slice |
 | `O-03` First flagship proof | Phase 3 foundation | on-track | `PRJ-01` registry, loaders, fallback, direct entries, and build accepted | Equal LifeInbox/Sudoku spikes and selection before vertical-slice expansion | Complete `WI-PRJ-02-01` |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
-| `O-06` Living portfolio operations | not active | not-active | Lifecycle direction documented | Project lifecycle classification | Every project classified and three flagship states reviewed |
+| `O-06` Living portfolio operations | foundation accepted | on-track | Lifecycle schema and validation accepted in `LPS-01` | One reviewed selected-flagship seed before the full first slice | Complete `LPS-06`, then defer portfolio-wide `LPS-02`/`LPS-03` review to Phase 4 |
 
 ## Package Snapshot
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `PRJ-02` has bounded equal-candidate acceptance and may begin |
-| `in-progress` | 0 | No package sits between coherent checkpoints |
+| `ready` | 2 | `PRJ-02` and `PRJ-03` are bounded; `PRJ-02` starts first under the accepted sequence |
+| `in-progress` | 1 | `QA-06` is reconciling plans, evidence, work items, and the dashboard |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 19 | Valid packages waiting on accepted upstream work or sequencing |
+| `pending` | 19 | Valid packages waiting on accepted upstream work, review, or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
-| `feedback-gated` | 1 | Studio scope waits for Mark's feedback |
-| `later` | 5 | Accepted direction intentionally outside near-term delivery |
+| `later` | 1 | Ambient presence is intentionally outside near-term delivery |
 | `complete` | 31 | Phase 1, Phase 2, and the `PRJ-01` Phase 3 foundation have accepted evidence |
 
-Counts organize workflow states only. They do not measure feature completion. Recalculate this table whenever package rows change.
+Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
 ## Current Execution Queue
 
@@ -83,7 +82,13 @@ Counts organize workflow states only. They do not measure feature completion. Re
 | 24 | `EXP-06` | Meaningful discovery registry | complete | `EXP-01`, `KG-04`, `EXP-04`, `EXP-05` | Three explicit discoveries with no score or tour exposure |
 | 25 | Phase 2 aggregate release | complete | All Phase 2 packages | Build, Preview, production-safe deployment, routes, and live AI evidence accepted |
 | 26 | `PRJ-01` | Exhibit registry and shell | complete | `EXP-02`, `KG-05`, `LPS-01` | Nine definitions, three lazy manifests, fallback shell, direct-entry tests, and build accepted |
-| 27 | `PRJ-02` | Equal-candidate flagship spikes | ready | `PRJ-01` | LifeInbox/Sudoku comparison and first-slice decision recorded |
+| 27 | `QA-06` | Planning-integrity reconciliation | in-progress | `BAS-05`, current implementation and deployment evidence | Package/capability/work/evidence/dashboard integrity test and zero unresolved drift |
+| 28 | `PRJ-02` | Equal-candidate flagship spikes | ready | `PRJ-01`, `QA-06` operational handoff | LifeInbox/Sudoku comparison and first-slice decision recorded |
+| 29 | `PRJ-03` | Museum Signal/Approach shell | ready after `PRJ-02` under WIP policy | `PRJ-01`, `EXP-05` | Flag-off parity, fallback integration, and overview-to-Approach browser flow |
+| 30 | `LPS-06` | Selected flagship state seed | pending | `PRJ-02` selection | One Mark-reviewed lifecycle and minimum current/final state fixture |
+| 31 | `AI-04` | Archive cards and selected-destination flow | pending | `AI-03`, `ARC-03`, `PRJ-01` | Invalid cards fail closed and one selected card transition passes |
+| 32 | `PRJ-04` | First full flagship slice | pending | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
+| 33 | `QA-02` | First vertical-slice quality gate | pending | `PRJ-04` | Functional, visual, performance, stimulation, creative, Preview, and rollback evidence accepted |
 
 The complete exploration shell is accepted locally and intentionally Production-off. The first Phase 3 package is additive and dormant: it establishes one shared exhibit language before any new museum presentation or product demonstration is exposed.
 
@@ -93,8 +98,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` accepted at `e462080` | Define equal deterministic LifeInbox and Sudoku interaction fixtures | 2026-07-17 |
-| Next | Museum Signal/Approach integration | pending | `PRJ-03` | Stable registry and anchors accepted | Preserve the current orchestration seam while integrating the shared shell | 2026-07-17 |
+| Now | `WI-QA-06-01` | in-progress | `QA-06` | `PRJ-01` accepted and deployed; planning audit findings recorded | Add and pass the planning-integrity test, then close the reconciled baseline | 2026-07-17 |
+| Next | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` accepted at `e462080` | Define equal deterministic LifeInbox and Sudoku interaction fixtures | 2026-07-17 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -120,8 +125,8 @@ No Phase 2 implementation package is partial. Phase 3 deliberately separates acc
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-PRJ-002` | `PRJ-08` work item not yet created | Stable exhibit anchors and depth fallback resolve in code | URL/history depth, subdomain transitions, manual QA, and rollout remain | Dormant foundation; existing anchors unchanged | Consume the resolver in `PRJ-03`, then finish route integration in `PRJ-08` | `EV-PRJ-01-01`, `EV-PRJ-01-02` |
 | `CAP-PRJ-003` | `WI-PRJ-02-01` | Shared manifests and equal evaluation scope are ready | Neither candidate product interaction nor selection record exists | Synthetic isolated spikes only | Define deterministic state fixtures before visual implementation | `EV-PRJ-01-01` |
+| `CAP-QA-006` | `WI-QA-06-01` | Repository truth and drift findings are reconciled in the active edits | Integrity automation and final evidence are not yet accepted | Documentation and tests only | Pass the integrity test and close the work item | Active audit record |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -161,7 +166,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 66 | Includes every Phase 2 record plus the `PRJ-01` contract and fallback/build evidence |
+| Accepted | 67 | Includes all explicitly registered Phase 1/2 records plus three `PRJ-01` contract, build, and Production records |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -172,6 +177,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-17 | Reconciled post-Phase-2 implementation truth and strengthened Phase 3 sequencing | `QA-06`, package registry, capability ledger, evidence registry, decisions, architecture, roadmap | Missing evidence and stale status/dependency claims identified; automated integrity gate in progress |
 | 2026-07-17 | Began Phase 3 and completed shared exhibit foundation | `PRJ-01`, `CAP-PRJ-001`, `CAP-PRJ-002`, `O-03`, `WI-PRJ-02-01` | Nine canonical exhibits, three lazy manifests, stable anchors, semantic fallback, 134 tests, and build pass; equal candidate spikes are ready |
 | 2026-07-17 | Completed Phase 2 release | `QA-01`, `O-01`, `O-02`, `WI-QA-01-02` | 123 tests/build, protected Preview, live structured sources, production-safe deployment, and all public routes pass |
 | 2026-07-17 | Completed meaningful hidden discoveries | `EXP-06`, `CAP-EXP-012`, `CAP-EXP-013`, `O-01`, `WI-QA-01-02` | Three explicit discoveries persist without tour, score, count, or page-load completion; aggregate release is active |
@@ -180,11 +186,6 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | 2026-07-16 | Completed contextual global AI | `AI-02`, `AI-03`, `CAP-AI-003` to `CAP-AI-005`, `O-02` | Quiet lazy shell, validated ID context, public retrieval, and native source links pass |
 | 2026-07-16 | Completed graph-aware retrieval metadata | `KG-06`, `CAP-KG-007`, `O-02`, `WI-AI-02-01` | 93 tests/build and 42-document Firestore backfill/readback pass; quiet global shell is ready |
 | 2026-07-16 | Completed bounded graph queries and render adapters | `KG-05`, `CAP-KG-005`, `CAP-KG-006`, `O-01`, `WI-KG-06-01` | 88 tests and build accept visibility, limits, cycles, destinations, AI neighborhoods, and semantic edges; retrieval metadata is ready |
-| 2026-07-16 | Completed one-time First Note implementation | `EXP-03`, `CAP-EXP-005`, `CAP-EXP-006`, `O-01`, `WI-KG-05-01` | 82 tests, build, and first/return/reset/keyboard browser flow pass; Preview on, Production off; bounded graph queries are ready |
-| 2026-07-16 | Completed Phase 2 depth-controller foundation | `EXP-02`, `CAP-EXP-003`, `CAP-EXP-004`, `O-01`, `WI-EXP-03-01` | Atomic store/context/action synchronization and dormant React consumption pass within 75 tests; First Note is ready |
-| 2026-07-16 | Began Phase 2 exploration shell | `QA-01`, `EXP-02`, `CAP-EXP-003`, `CAP-EXP-004`, `O-01`, `O-02` | Integrated foundation flow and five-stage transition contract pass within 68 tests; headless controller is next |
-| 2026-07-16 | Completed Phase 1 structural foundation | `BAS-03`, `KG-01` to `KG-04`, `EXP-01`, `AI-01`, `LPS-01`, `O-00` to `O-02` | 49 graph nodes, 19 reviewed edges, 62 tests, typecheck, content gate, and production build pass; `QA-01` is ready |
-| 2026-07-16 | Accepted runtime validation and semantic-state migration | `ARC-05`, `EXP-01`, `CAP-ARC-005`, `CAP-EXP-001`, `CAP-EXP-002`, `WI-EXP-01-01`, `O-00`, `O-01` | Seven-action parsing, registry-backed destinations, current/v0/corrupt/unknown state behavior pass 37 tests and build; dormant store is next |
 
 Retain only the most recent ten meaningful entries here. Durable history belongs in Git and package evidence files.
 
@@ -209,6 +210,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 The next update occurs after the first of these events:
 
+- `QA-06` closes with a passing integrity gate and durable evidence.
 - `PRJ-02` completes both bounded spikes and records the first-flagship selection.
 - The feature-flagged Phase 2 shell receives Production creative rollout approval.
 - A gate or dependency changes.

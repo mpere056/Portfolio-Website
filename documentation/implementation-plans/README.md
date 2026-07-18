@@ -1,12 +1,14 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Purpose
 
 This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinated implementation plans.
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
+
+Current checkpoint: Phase 1 and Phase 2 are complete; `PRJ-01` is complete and deployed; `PRJ-02` and `PRJ-03` are dependency-ready; `QA-06` is reconciling the Phase 3 sequence and structural tracking guard before candidate implementation resumes.
 
 ## Document Authority
 
@@ -69,6 +71,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `16-Progress-Dashboard.md` | Current focus, checkpoints, gaps, gates, risks, and next work | Active summary |
 | `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
 | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
+| `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
 | `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
 | `../implementation-evidence/README.md` | Evidence registry, acceptance rules, and package record template | Active evidence control |
 
@@ -114,6 +117,7 @@ Before starting an implementation phase:
 7. Implement the smallest coherent slice and collect named exit evidence.
 8. Refresh dimension states, named gaps, resume packet, update history, and dashboard before stopping.
 9. Update traceability, decisions, and durable architecture when reality changes the plan.
+10. Run `npm exec vitest run tests/planningIntegrity.test.ts` after changing package, capability, evidence, dashboard, or work-item structure.
 
 ## Tracking Partial Implementation
 

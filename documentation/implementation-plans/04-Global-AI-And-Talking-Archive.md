@@ -1,6 +1,6 @@
 # Global AI And Talking Archive Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -18,7 +18,7 @@ Last updated: 2026-07-16
 
 Replace the assumption that AI lives mainly on `/chat` with one quiet, contextual AI presence available throughout the site.
 
-Current status: `AI-01` through `AI-03` are complete through `aeb3152`. The root shell works across routes and sends identifier-only context; the server resolves public graph context, preserves vector relevance, and returns native structured source descriptors; the client links only exact canonical node/destination matches. Cards and `/chat` migration remain later packages.
+Current status: `AI-01` through `AI-03` are complete through `aeb3152`. The root shell works across routes and sends identifier-only context; the server resolves public graph context, preserves vector relevance, and returns native structured source descriptors; the client links only exact canonical node/destination matches. `PRJ-01` now provides the exhibit IDs and safe Signal/Approach entries that `AI-04` will target. Cards and `/chat` migration remain later packages.
 
 This plan covers:
 
@@ -127,12 +127,34 @@ interface ArchiveCard {
   title: string;
   summary: string;
   sourceNodeIds: string[];
-  destination: ExperienceDestination;
+  destinationId: DestinationId;
+  requestedDepth?: DepthStage;
+  safeState?: SafeState;
   visualKey?: string;
 }
 ```
 
-The server may select cards through reviewed tool calls or validated structured output. The client validates every card against known destinations before rendering it.
+The server may select cards through reviewed tool calls or validated structured output. The model never authors `href`, origin, or unbounded state. The server resolves source visibility and emits only registered destination IDs plus allowlisted primitive safe state; the client re-resolves and validates the destination before rendering it.
+
+## AI-04 Delivery Increments
+
+### A. Card Contract And Validation
+
+- Define a runtime schema for card type, title, bounded summary, source node IDs, destination ID, requested depth, and safe state.
+- Resolve every source server-side as public and reviewed.
+- Reject unknown, planned, internal, mismatched-node, overlong, duplicate, or unsafe-state cards.
+- Render a non-navigating fallback source list when structured card data is invalid.
+- Test generation parsing independently from navigation and project visuals.
+
+### B. Selected-Destination Transition
+
+- Use the `PRJ-01` exhibit resolver and `PRJ-03` mounted museum boundary.
+- Persist the current semantic checkpoint before navigation.
+- Open one exact selected-flagship destination in the same route or through full-document subdomain navigation as registered.
+- Restore only the requested supported stage and validated authored scenario key.
+- Preserve conversation state when practical, but never block destination navigation on transcript persistence.
+
+`AI-04` exits after one card works across the first flagship path and all trust/fallback tests pass. A card gallery, expanded archive composition, conversation library, and `/chat` replacement remain `AI-05` or later scope.
 
 ## Navigation And Transition Contract
 
@@ -140,12 +162,13 @@ Define destinations independently from cards:
 
 ```ts
 interface ExperienceDestination {
-  id: string;
+  id: DestinationId;
   href: string;
+  nodeId?: NodeId;
   areaId?: string;
-  exhibitId?: string;
-  experienceState?: Record<string, string>;
+  experienceId?: ExperienceId;
   requestedDepth?: DepthStage;
+  safeState?: SafeState;
 }
 ```
 
@@ -158,7 +181,7 @@ Transition steps:
 5. Restore the requested area and safe experience state.
 6. Mark the card opened for local continuity.
 
-Cross-subdomain cards need ordinary navigation and cannot assume shared in-memory React state. Encode safe destination state in the URL or local storage keyed by destination.
+Cross-subdomain cards need full-document navigation and cannot assume shared in-memory React state. Encode only validated shareable safe state in the URL handoff; detailed per-origin state remains in versioned local storage and is not copied between origins.
 
 ## Retrieval Changes
 
@@ -286,6 +309,12 @@ When this plan is complete, pages and experiences may assume:
 - AI failure leaves ordinary exploration intact.
 
 Project and About plans remain responsible for publishing accurate current context.
+
+Phase 3 ordering:
+
+- Card contract/validation may begin after `PRJ-01` because canonical exhibit destinations now exist.
+- Visitor transition integration waits for `PRJ-03` so AI does not target an unmounted museum surface.
+- `PRJ-04` consumes one accepted card; it does not own or fork the card schema.
 
 ## Completion Criteria
 

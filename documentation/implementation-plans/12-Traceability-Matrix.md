@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-16
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -36,9 +36,9 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-14` | Projects are inspectable systems | `05` | `PRJ-01`, `PRJ-03`, `PRJ-04` | First exhibit supports full depth journey |
 | `V-15` | Exploded case studies | `05` | `PRJ-04`, `PRJ-05`, `PRJ-06` | Behavior connects visibly to system and evidence |
 | `V-16` | Dreamlife experiential case study | `05` | `PRJ-05` | Authored future-path interaction works |
-| `V-17` | LifeInbox experiential case study | `05` | `PRJ-04` or `PRJ-05` | Synthetic entry autopsy works end to end |
+| `V-17` | LifeInbox experiential case study | `05` | `PRJ-04` or `PRJ-06` | Synthetic entry autopsy works end to end |
 | `V-18` | Sudoku computer participant | `05` | `PRJ-04` or `PRJ-06` | Valid deterministic collaborative slice works |
-| `V-19` | Living project state | `07` | `LPS-01` through `LPS-05` | Every project classified; flagship state current |
+| `V-19` | Living project state | `07` | `LPS-01` through `LPS-06` | Selected first flagship has a reviewed seed before its slice; every project is later classified and flagship state remains current |
 | `V-20` | Meaningful easter eggs | `02`, `06`, `05` | `EXP-06`, `ABT-04`, `PRJ-07` | Three types reveal meaningful content, no score |
 | `V-21` | Rare site feedback requests | `11` prototype | `PXP-03` | One bounded prototype receives explicit review |
 | `V-22` | Stimulation spectrum | `02`, `08` | `EXP-05`, `QA-04` | Sound-off and lower-stimulation flows pass QA |
@@ -86,10 +86,10 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `BAS-08`, `ARC-01` | Baseline, supported runtime/framework, durable retrieval, target-state capability audit, and stable-ID decisions recorded |
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
-| Phase 3 First flagship | `PRJ-01` to `PRJ-04`, `AI-04`, `QA-02` | One full vertical slice passes acceptance |
-| Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02` | Three flagship experiences and lighter projects coherent |
+| Phase 3 First flagship | completed `PRJ-01`; `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` | One selected full vertical slice passes product, route, state, AI, fallback, performance, creative, and Preview acceptance |
+| Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` | Three flagship experiences, generalized routes, reviewed classifications, and lighter projects are coherent |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
-| Phase 6 Living operations | `LPS-03` to `LPS-05`, `QA-03` | Project states reviewed and disturbances reliable |
+| Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |
 | Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |
 
 ## Acceptance Evidence Types
@@ -120,6 +120,8 @@ Before a milestone starts:
 - Every active package must own at least one capability.
 - Every accepted capability dimension must point to accepted evidence.
 - Every partial capability must name its remaining gaps and next coherent increment.
+- Every package-state count must be derivable from package rows without mixing in feedback/later markers.
+- Every accepted evidence ID must have an explicit canonical registry row and a durable package record.
 
 ## Change Process
 

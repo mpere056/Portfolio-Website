@@ -1,6 +1,6 @@
 # Work Items And Resume Protocol
 
-Last updated: 2026-07-14
+Last updated: 2026-07-17
 
 ## Plan Metadata
 
@@ -244,6 +244,22 @@ A work item can move to `done` only when:
 
 Dates are attention signals, not deadlines.
 
+## Structural Reconciliation
+
+Run `npm exec vitest run tests/planningIntegrity.test.ts` whenever a package starts or closes, an active work item moves, evidence is accepted, or dashboard counts change.
+
+The automated check must confirm:
+
+- Package IDs and states are unique and use the accepted vocabulary.
+- Dashboard package counts equal the package registry exactly.
+- Active work-item files and active registry rows have one-to-one parity.
+- Each active item references an existing package and reports the same state in its file and registry row.
+- Capability package references resolve to package IDs.
+- Every evidence reference in the capability ledger is explicitly registered.
+- Every registered evidence row points to an existing durable file containing that evidence ID.
+
+Automation proves structural agreement, not factual or creative truth. The package owner still reviews claims, content, named gaps, and evidence sufficiency.
+
 ## Completion Criteria
 
 - Every active implementation effort has one work-item ID and file.
@@ -251,5 +267,6 @@ Dates are attention signals, not deadlines.
 - Chronological updates explain meaningful state changes.
 - Dashboard `Now`, `Next`, `Review`, and `Blocked` entries resolve to work-item files.
 - Capability state and work-item state agree.
+- Package counts, active work-item parity, package references, and evidence registration pass the structural reconciliation test.
 - No percentage or velocity metric is required to understand current progress.
 - A fresh Codex session can resume an item using repository records rather than chat history.
