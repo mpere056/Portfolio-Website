@@ -53,6 +53,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-AI-04-01`, `EV-AI-04-02` | `AI-04` | accepted | `AI-04.md` |
 | `EV-PRJ-04-01` through `EV-PRJ-04-03` | `PRJ-04` | accepted | `PRJ-04.md` |
 | `EV-QA-02-01` through `EV-QA-02-03` | `QA-02` | accepted | `QA-02.md` |
+| `EV-QA-05-01` | `QA-05` | accepted | `QA-05.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -176,6 +177,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-QA-02-01` | `QA-02` | `CAP-QA-002` | integration-test | accepted | 39 files/157 tests, type, content, lint, and build gate | 2026-07-18 | `QA-02.md` |
 | `EV-QA-02-02` | `QA-02` | `CAP-QA-002` | creative-review | accepted | desktop and 390x844 browser review | 2026-07-18 | `QA-02.md` |
 | `EV-QA-02-03` | `QA-02` | `CAP-QA-002` | preview | accepted | Vercel `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X` | 2026-07-18 | `QA-02.md` |
+| `EV-QA-05-01` | `QA-05` | `CAP-QA-005` | production | accepted | `4d56565`, Vercel `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`, live routes and card | 2026-07-18 | `QA-05.md` |
 
 ## Required Evidence Fields
 

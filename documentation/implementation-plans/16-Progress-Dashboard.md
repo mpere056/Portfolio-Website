@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-18
-Implementation commit baseline: `013d74a`; accepted Preview: `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X`
+Implementation commit baseline: `4d56565`; Production: `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`
 
 ## Plan Metadata
 
@@ -17,7 +17,7 @@ Implementation commit baseline: `013d74a`; accepted Preview: `dpl_BGDDAtggEihci1
 
 **Phase 1, Phase 2, and the complete first Phase 3 flagship vertical slice are accepted.**
 
-Through `013d74a`, Phase 3 selects LifeInbox after equal deterministic spikes, exposes the nine-signal museum in Preview, renders reviewed living state, returns a validated AI archive door, and supports Handle, Enter, Understand, one exploded trust layer, evidence, persistence, project-world handoff, lazy loading, and explicit rollback. The aggregate gate passes 39 files and 157 tests, strict TypeScript, 50-node/19-relationship validation, lint with ten pre-existing warnings and no errors, production build, desktop/narrow browser review, and protected live Preview `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X`.
+Through `4d56565`, Phase 3 selects LifeInbox after equal deterministic spikes, ships the nine-signal museum, renders reviewed living state, returns a validated AI archive door, and supports Handle, Enter, Understand, one exploded trust layer, evidence, persistence, project-world handoff, lazy loading, and explicit rollback. The aggregate gate passes 39 files and 157 tests, strict TypeScript, 50-node/19-relationship validation, lint with ten pre-existing warnings and no errors, production build, desktop/narrow browser review, corrected Preview, and public Production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`.
 
 This distinction prevents two errors:
 
@@ -29,7 +29,7 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | Phase 2 complete | on-track | Complete shell passes local and protected Preview gates | Execute approved production promotion with independent rollback flags | Verify the promoted live world |
+| `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability while Phase 4 begins | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 3 card complete | on-track | Contextual Firebase/Gemini response returns one validated LifeInbox door | Keep the one-card boundary; `/chat` migration remains later | Stabilize production before `AI-05` |
 | `O-03` First flagship proof | Phase 3 complete | on-track | Complete LifeInbox Signal-to-Understand slice and `QA-02` accepted | Production promotion and live smoke only | Begin one bounded Phase 4 package after release |
 | `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
@@ -41,14 +41,14 @@ This distinction prevents two errors:
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
 | `ready` | 0 | No package is waiting in the ready lane while selected state is active |
-| `in-progress` | 1 | `QA-05` is executing the approved Phase 3 production promotion |
+| `in-progress` | 0 | No implementation package is partially active |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
 | `pending` | 14 | Valid Phase 4+ packages waiting on accepted upstream work, review, or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
-| `complete` | 38 | Adds accepted archive cards, first full LifeInbox slice, and its aggregate quality gate |
+| `complete` | 39 | Adds the verified Phase 3 production promotion and rollback workflow |
 
 Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
@@ -90,7 +90,7 @@ Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feed
 | 32 | `PRJ-04` | First full flagship slice | complete | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
 | 33 | `QA-02` | First vertical-slice quality gate | complete | `PRJ-04` | Functional, visual, performance, stimulation, creative, Preview, and rollback evidence accepted |
 
-The complete exploration shell and first LifeInbox slice are accepted in corrected Preview. Production exposure is authorized by the separate 2026-07-18 promotion decision with independent shell, museum, and selected-experience rollback controls.
+The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
 
 ## Now And Next
 
@@ -98,8 +98,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-05-01` | in-progress | `QA-05` | Corrected Preview and `QA-02` accepted | Enable approved flags, deploy, and verify live routes | 2026-07-18 |
-| Next | Project lifecycle classification | decision-gated | `LPS-02` | One selected-project seed proves the schema | Present classifications for Mark's review before expanding state files | 2026-07-18 |
+| Now | `WI-LPS-02-01` | ready | `LPS-02` | Phase 3 production and one selected-project state seed are accepted | Prepare concise classifications for Mark's review | 2026-07-18 |
+| Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after the review gate resolves | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -165,7 +165,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 83 | Adds archive-card, full LifeInbox slice, aggregate QA, Preview, performance, and creative evidence |
+| Accepted | 84 | Adds verified production promotion, public route/card flow, and rollback evidence |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -176,6 +176,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-18 | Promoted Phase 3 to Production | `QA-05`, `CAP-QA-005`, `O-01` through `O-03` | `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc` Ready; public museum, subdomains, AI card, Handle route, and rollback pass |
 | 2026-07-18 | Completed and accepted Phase 3 first flagship | `AI-04`, `PRJ-04`, `QA-02`, `O-02`, `O-03` | Validated archive door, LifeInbox full depth, 157-test/build gate, lazy chunk, and corrected live Preview pass |
 | 2026-07-17 | Reconciled post-Phase-2 implementation truth and strengthened Phase 3 sequencing | `QA-06`, package registry, capability ledger, evidence registry, decisions, architecture, roadmap | Missing evidence and stale status/dependency claims resolved; six integrity checks and the 140-test aggregate gate pass at `1286931` |
 | 2026-07-17 | Began Phase 3 and completed shared exhibit foundation | `PRJ-01`, `CAP-PRJ-001`, `CAP-PRJ-002`, `O-03`, `WI-PRJ-02-01` | Nine canonical exhibits, three lazy manifests, stable anchors, semantic fallback, 134 tests, and build pass; equal candidate spikes are ready |
@@ -208,4 +209,4 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 ## Next Dashboard Update
 
-The next update occurs after production promotion is verified or Mark resolves the `LPS-02` lifecycle classification gate.
+The next update occurs after Mark resolves the `LPS-02` lifecycle classification gate or a production regression changes the release state.

@@ -36,7 +36,7 @@ The repository already provides:
 
 The program should extend these foundations rather than replace the entire application at once.
 
-Phase 3 implementation checkpoint: `PRJ-01` is complete at `e462080` with nine canonical exhibits, three lazy flagship manifests, stable entry resolution, graph-backed views, and semantic fallbacks. Production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready and the main Projects route plus all three flagship subdomains return `200`; the new museum UI remains dormant.
+Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice is accepted and live at `4d56565`, production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`. The museum, selected depth journey, global archive card, and all three flagship subdomains pass public verification; legacy Projects remains rollback code rather than the active presentation.
 
 ## Dependency Order
 

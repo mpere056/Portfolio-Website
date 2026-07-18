@@ -1,7 +1,7 @@
 # Phase 3 Production Promotion Decision
 
 Date: 2026-07-18
-Status: Approved for execution after final repository gate
+Status: Executed and verified
 Packages: `EXP-03` through `EXP-06`, `AI-02` through `AI-04`, `PRJ-03`, `LPS-06`, `PRJ-04`, `QA-02`
 
 ## Decision
@@ -29,5 +29,4 @@ This is the first visitor-facing promotion of the new portfolio architecture. It
 - Dreamlife and Sudoku remain at Signal/Approach until `PRJ-05` and `PRJ-06`.
 - Generalized `/projects/[slug]` history and cross-origin state remain `PRJ-08`.
 - `/chat` replacement remains `AI-05`.
-- Production verification and deployment ID are appended to `QA-02.md` after promotion.
-
+- Production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc` at `4d56565` is Ready and public verification is recorded in `EV-QA-05-01`.

@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1, Phase 2, and the first Phase 3 flagship slice are fully accepted. LifeInbox now reaches Signal through Understand, the contextual archive returns a validated door, and corrected Preview `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X` is Ready. Production promotion is the active release action, not unfinished feature implementation.
+Phase 1, Phase 2, and the first Phase 3 flagship slice are fully accepted and live. Production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc` serves the museum, global archive, and LifeInbox Signal-to-Understand journey; all three project subdomains pass public verification.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-05-01` | in-progress | `QA-05` | `QA-02` accepted corrected Preview | Enable only approved flags, deploy, and verify live museum/AI/subdomain routes | 2026-07-18 |
-| Next | Project lifecycle classification review | decision-gated | `LPS-02` | Selected LifeInbox state is accepted | Present the bounded classification set for Mark's review before authoring all flagship state | 2026-07-18 |
+| Now | `WI-LPS-02-01` | ready | `LPS-02` | Phase 3 production is verified; selected LifeInbox state is accepted | Prepare concise lifecycle proposals for Mark's review | 2026-07-18 |
+| Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after `WI-LPS-02-01` is reviewed | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-QA-05-01` | Promote the accepted Phase 3 experience | in-progress | high | `QA-05` | `CAP-QA-005` | `active/WI-QA-05-01.md` | 2026-07-18 |
+| `WI-LPS-02-01` | Review portfolio project lifecycles | ready | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-QA-05-01` | done | `QA-05` | Approved Phase 3 flags promoted; public museum, subdomains, AI card, exact Handle route, and rollback verified | `EV-QA-05-01` | 2026-07-18 |
 | `WI-QA-02-01` | done | `QA-02` | Full first-slice logic, browser, creative, performance, Preview, and rollback gate accepted | `EV-QA-02-01` through `EV-QA-02-03` | 2026-07-18 |
 | `WI-PRJ-04-01` | done | `PRJ-04` | LifeInbox Signal-to-Understand journey, exploded trust layer, persistence, evidence, and handoff accepted | `EV-PRJ-04-01` through `EV-PRJ-04-03` | 2026-07-18 |
 | `WI-AI-04-01` | done | `AI-04` | Fail-closed archive cards and real selected-destination response accepted | `EV-AI-04-01`, `EV-AI-04-02` | 2026-07-18 |

@@ -131,7 +131,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | complete |
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
-| `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | in-progress |
+| `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | complete |
 | `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | complete |
 
 ## Prototype Packages

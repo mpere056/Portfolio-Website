@@ -225,7 +225,7 @@ For every milestone, manually review:
 | Preview | Exact commit is Ready with `museumV2` and only the selected experience enabled; representative main/subdomain routes pass |
 | Rollback | Disabling the museum and selected-experience flags restores the legacy Projects path without content or destination loss |
 
-Production promotion is not automatic when `QA-02` passes. It requires a separate release decision naming flags, deployed commit, live aliases, rollback, and the remaining Phase 2 Production-off boundary.
+Production promotion is not automatic when `QA-02` passes. Phase 3 satisfied this rule through the separate 2026-07-18 decision, clean commit `4d56565`, Ready production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`, live aliases, and documented rollback.
 
 ## Stimulation And Input QA
 

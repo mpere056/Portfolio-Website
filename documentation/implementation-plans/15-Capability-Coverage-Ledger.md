@@ -443,11 +443,11 @@ Until a capability receives its own detail record, these defaults apply:
 - Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S/A/I/T/Q accepted`; content is accepted where applicable; rollout remains behind the Phase 2 Production-off boundary
+- Dimension states: `S/A/I/T/Q/R accepted`; content is accepted where applicable
 - Packages: `AI-02`, `AI-03`
 - Works now: One lazy root-owned shell follows route and selected-object context, isolates errors, remains unobtrusive until opened or relevant, and preserves `/chat`. Requests send validated IDs rather than client claims; server retrieval enforces public graph context; native structured sources render only exact canonical destinations.
 - Named gaps: The selected LifeInbox card is complete; expanded card composition and full `/chat` migration remain `AI-05` or later.
-- Safe exposure: Development and Preview defaults are on; Production is off pending combined creative review; malformed context degrades to context-free chat.
+- Safe exposure: Development, Preview, and Production are on after `QA-02` and `QA-05`; malformed context degrades to context-free chat and individual flags remain rollback controls.
 - Evidence: `EV-AI-02-01`, `EV-AI-02-02`, `EV-AI-03-01`, `EV-AI-04-01`, `EV-AI-04-02`.
 - Work items: `WI-AI-02-01`, `WI-AI-03-01`, `WI-AI-04-01` (done).
 - Next checkpoint: `AI-05` may address `/chat` reuse after the Phase 3 production release is stable.
@@ -590,7 +590,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PXP-001` | Evidence-backed skill map prototype and decision | `PXP-01` | `V-24` | Experimental | 2 | `U/U/U/U/U/U/U` | deferred |
 | `CAP-PXP-002` | Rare site-help request prototype and decision | `PXP-03` | `V-21` | Experimental | 1 | `U/U/U/U/U/U/U` | deferred |
