@@ -195,6 +195,8 @@ Capture stable checkpoints, not every animation frame.
 - Exploded case-study selected layers.
 - About event inspection.
 - AI archive cards.
+- Loading, error, empty, and semantic fallback states for each representative route class.
+- Standard-stimulation and calm settled frames from the same destination and depth.
 
 ### Manual Creative QA
 
@@ -209,7 +211,7 @@ For every milestone, manually review:
 - Does the deeper layer feel earned?
 - Are sound and lighting tasteful?
 
-The 2026-07-18 aesthetic review showed that this checklist was too permissive: a milestone could answer these questions positively while still using an interchangeable dark-card visual system. Manual creative QA now also requires the structured record in `18-Art-Direction-And-Aesthetic-Quality.md`.
+The 2026-07-18 aesthetic review showed that this checklist was too permissive: a milestone could answer these questions positively while still using an interchangeable dark-card visual system. Manual creative QA now requires the structured record in `18-Art-Direction-And-Aesthetic-Quality.md` and the art-packet, surface-coverage, and delivery gates in `19-Aesthetic-System-Integration-And-Delivery.md`.
 
 For major visual surfaces, `Q: accepted` requires:
 
@@ -218,13 +220,15 @@ For major visual surfaces, `Q: accepted` requires:
 - At least one rejected alternative with a reason.
 - Silhouette, swap, crop, darkness, stillness, deepening, and furniture checks.
 - A project-specific material and motion dialect.
+- A complete art packet connecting real content, semantic inputs, utility placement, calm/fallback behavior, and performance constraints.
+- Stable captures for loading, error, reduced-motion, and semantic fallback states where applicable.
 - Mark's explicit review for the direction and representative implementation.
 
 Automated visual regression proves stability, not taste. A stable screenshot of a generic composition is not creative acceptance.
 
 ## First Flagship Quality Gate
 
-`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. Its original 2026-07-18 evidence remains valid for contracts, logic, browser behavior, performance, stimulation, Preview, rollout, and rollback. Its creative dimension is reopened after Mark's direct feedback that the live museum and LifeInbox treatment feels too plain and average. Renewed creative acceptance depends on `ART-01` keyframes and representative remediation; historical evidence is retained rather than erased.
+`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. Its original 2026-07-18 evidence remains valid for contracts, logic, browser behavior, performance, stimulation, Preview, rollout, and rollback. Its creative dimension is reopened after Mark's direct feedback that the live museum and LifeInbox treatment feels too plain and average. `ART-01` supplies selected packets, `ART-02` supplies the minimum runtime foundation, and `ART-03` supplies representative remediation and renewed creative evidence; historical evidence is retained rather than erased.
 
 | Gate | Required proof |
 | --- | --- |

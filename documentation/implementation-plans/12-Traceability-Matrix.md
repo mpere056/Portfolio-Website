@@ -50,7 +50,7 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-28` | Musical identity later with Mark | `10` | `LTR-02` integration hooks only | No motif planned without collaboration |
 | `V-29` | Studio waits for feedback | `09` | `STU-GATE-01` | No implementation beyond allowed preparation |
 | `V-30` | Anti-Resume backlog only | `10` | None | Recorded only, no detailed tasks |
-| `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `05`, `08` | `ART-01`, `QA-02`, `PRJ-05` to `PRJ-07` | `EV-ART-01-01` accepts the Impossible Observatory direction; keyframes, rejection tests, representative remediation, and renewed Mark acceptance remain |
+| `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `19`, `00`, `02` through `08` | `ART-01` through `ART-06`, `QA-02`, `PRJ-05` to `PRJ-07`, `ABT-02`, `AI-05` | `EV-ART-01-01` accepts the Impossible Observatory direction; packet selection, runtime foundation, representative remediation, route translations, coherence review, and renewed Mark acceptance remain |
 
 ## Requirement To Capability Control
 
@@ -89,7 +89,9 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
 | Phase 3 First flagship | complete: `PRJ-01` through `PRJ-04`, `LPS-06`, `AI-04`, `QA-02` | LifeInbox full vertical slice passes product, route, state, AI, fallback, performance, creative, and corrected Preview acceptance |
-| Phase 4 Remaining flagships | `ART-01`, creative re-review of `QA-02`, `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` | Museum/LifeInbox art direction is corrected; three distinct flagship experiences, generalized routes, reviewed classifications, and lighter projects are coherent |
+| Phase 4 Remaining flagships | `ART-01` through `ART-04`, creative re-review of `QA-02`, `PRJ-05` to `PRJ-08`, `LPS-02`, `LPS-03` | Museum/LifeInbox packets, foundation, and remediation are accepted before three distinct flagship experiences, generalized routes, reviewed classifications, and lighter projects expand |
+| Phase 5 About depth and supporting translation | `ART-05`, `ABT-01` to `ABT-04`, `AI-05` | About, AI, Home/reading/support states translate the shared world without copying the museum composition |
+| Whole-portfolio maturation | `ART-06`, `QA-03`, `QA-04` | Representative route classes pass coherence, calm/fallback, performance, and production review while mobile/music remain explicitly later |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |
 | Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |

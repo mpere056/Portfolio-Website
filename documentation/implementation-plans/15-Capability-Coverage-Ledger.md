@@ -485,8 +485,12 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-ART-001` | Selected portfolio art direction and project material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: not-applicable; I: not-applicable; T: not-applicable; Q: accepted; R: not-applicable` | verified |
-| `CAP-ART-002` | Museum/LifeInbox keyframes, representative remediation, and anti-generic acceptance | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: accepted; C: working; A: accepted; I: not-started; T: not-started; Q: working; R: not-started` | in-progress |
+| `CAP-ART-001` | Selected portfolio art direction and starting material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: not-applicable; I: not-applicable; T: not-applicable; Q: accepted; R: not-applicable` | verified |
+| `CAP-ART-002` | Museum/LifeInbox keyframes and accepted art packets | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 3 | `S: accepted; C: working; A: accepted; I: not-applicable; T: not-applicable; Q: working; R: not-applicable` | in-progress |
+| `CAP-ART-003` | Semantic aesthetic runtime, utility, calm, fallback, and capture foundation | `ART-02` | `V-04`, `V-22`, `V-31` | `O-01`, `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ART-004` | Museum/LifeInbox representative aesthetic remediation | `ART-03` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ART-005` | Distinct project and archive dialect packets | `ART-04` | `V-03`, `V-14`, `V-31` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ART-006` | Supporting-route translation and whole-portfolio coherence | `ART-05`, `ART-06` | `V-04`, `V-05`, `V-09`, `V-31` | `O-01`, `O-02`, `O-04`, `O-05` | 5 | `U/U/U/U/U/U/U` | unassessed |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -504,20 +508,20 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: produce three Museum Signal visual keyframes from the accepted briefs.
 - Last assessed: 2026-07-18 after Mark's nine-reference direction review.
 
-### CAP-ART-002: Museum And LifeInbox Aesthetic Remediation
+### CAP-ART-002: Museum And LifeInbox Keyframes And Art Packets
 
 - Owner: Codex with Mark creative review
 - Lifecycle: in-progress
 - Health: watch
-- Confidence: high on implementation starting points; medium until keyframes are selected
-- Dimension states: `S/A accepted; C/Q working; I/T/R not-started`
+- Confidence: high on content and direction; medium until keyframes are selected
+- Dimension states: `S/A accepted; C/Q working; I/T/R not-applicable`
 - Package: `ART-01`
-- Works now: the museum and LifeInbox have stable content, interactions, routes, flags, and fallbacks plus implementation-specific Signal, Handle, and Understand keyframe briefs in the selected world.
-- Named gaps: visual keyframes, rejected alternative, chosen composition, and remediation code remain; current uniform cards, nested panels, generic form treatment, weak silhouettes, and floating controls remain live.
-- Safe exposure: current release stays live under existing independent rollback flags while visual replacement is developed in Preview.
-- Evidence: none accepted yet; keyframes, one rejected alternative, stable captures, diagnostic record, and Mark review are required.
+- Works now: the museum and LifeInbox have stable real content and implementation-specific Signal, Handle, and Understand briefs in the selected world.
+- Named gaps: three rendered Museum alternatives, one explicit rejection, selected Museum packet, LifeInbox Handle/Understand keyframes, complete packet fields, and Mark review remain.
+- Safe exposure: design documentation only; current release stays live while visual inputs are selected.
+- Evidence: none accepted yet; selected/rejected keyframes, packet records, diagnostic rationale, and Mark review are required.
 - Work item: `WI-ART-01-01` (in-progress).
-- Next checkpoint: three rendered Museum Signal keyframes and one explicit rejection rationale.
+- Next checkpoint: three rendered Museum Signal keyframes and one explicit rejection rationale; implementation then moves to `ART-02` and `ART-03` rather than remaining hidden inside this capability.
 - Last assessed: 2026-07-18.
 
 ## Museum And Shared Case-Study System
@@ -646,8 +650,8 @@ Until a capability receives its own detail record, these defaults apply:
 - Named gaps: the original visual review did not prevent an interchangeable rounded-card museum or conventional dark-panel LifeInbox treatment. `V-31` now requires selected/rejected keyframes, distinct silhouettes, material and motion dialects, anti-generic diagnostics, and Mark acceptance.
 - Safe exposure: the functional release remains live under independent rollback flags while remediation is developed and reviewed in Preview.
 - Evidence: `EV-QA-02-01` and `EV-QA-02-03` remain sufficient; `EV-QA-02-02` remains sufficient for browser/stimulation claims but not the renewed aesthetic claim.
-- Work item: historical `WI-QA-02-01` remains done; active correction is `WI-ART-01-01`.
-- Next checkpoint: `CAP-ART-002` produces representative remediation, then the creative dimension receives new evidence or remains open.
+- Work item: historical `WI-QA-02-01` remains done; `WI-ART-01-01` supplies packet selection, and a later `ART-03` work item will own the runtime correction.
+- Next checkpoint: `CAP-ART-002` accepts the art packets; `CAP-ART-003` supplies the foundation; `CAP-ART-004` then produces representative remediation before this creative dimension receives new evidence.
 - Last assessed: 2026-07-18 after Mark's direct live feedback.
 
 ### CAP-QA-001: Foundation Unit And Browser Test Harness

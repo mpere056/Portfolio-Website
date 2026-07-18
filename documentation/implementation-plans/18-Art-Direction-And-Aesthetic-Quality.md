@@ -9,10 +9,10 @@ Last updated: 2026-07-18
 | Plan ID | `ART` |
 | Status | Active; Impossible Observatory of Living Instruments selected |
 | Upstream | Comprehensive vision, accepted depth grammar, Mark's aesthetic feedback, live Phase 3 audit |
-| Downstream | Museum remediation, Dreamlife, Sudoku Together, About depth, AI cards, stimulation, quality gates |
+| Downstream | [Aesthetic integration](19-Aesthetic-System-Integration-And-Delivery.md), museum remediation, Dreamlife, Sudoku Together, About depth, AI cards, stimulation, quality gates |
 | Primary outputs | Art-direction charter, selected visual world, project dialects, keyframes, rejection tests, creative evidence |
-| Execution package | `ART-01` in [Work Packages](13-Execution-Work-Packages.md) |
-| Capability tracking | `CAP-ART-001` and `CAP-ART-002` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+| Execution packages | `ART-01` through `ART-06` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-001` through `CAP-ART-006` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Why This Plan Exists
 
@@ -21,6 +21,8 @@ The implemented ideas are structurally unusual, but the current visual execution
 The previous plans named taste and project identity, but mostly evaluated them at the end. That is too late. A technically complete interaction can already be visually committed to a generic structure before creative review occurs.
 
 Art direction is therefore a build input and tracked capability, not decoration or a final polish pass.
+
+This document owns the aesthetic standard: thesis, material language, rejection tests, and creative review. [Aesthetic System Integration And Delivery](19-Aesthetic-System-Integration-And-Delivery.md) owns how that standard enters architecture, feature plans, route classes, work packages, and release tracking. Neither document replaces the other.
 
 ## Selected Direction
 
@@ -219,6 +221,8 @@ No major visual surface moves directly from wireframe logic to production stylin
 
 Placeholder visuals must be visibly labeled in tracking and cannot receive accepted creative status.
 
+Every accepted major surface is summarized as an **aesthetic art packet** before implementation. The packet contract, route coverage, cross-plan inputs, and delivery handoffs live in `19-Aesthetic-System-Integration-And-Delivery.md`. This prevents keyframes from becoming disconnected mood images: they must state the real visitor truth, semantic inputs, focal order, depth transformations, utility placement, calm profile, fallback composition, and performance envelope.
+
 ## Creative Review Record
 
 The `Q` dimension cannot be accepted from a statement such as “looks good” or “visual checkpoint reviewed.” Each accepted major surface records:
@@ -251,16 +255,16 @@ These are manual, repeatable prompts rather than numeric scores:
 - **Deepening test:** Handle, Enter, and Understand produce perceptual as well as informational depth.
 - **Furniture test:** utility controls form one hierarchy and do not look like unrelated floating widgets.
 
-## Phase 4 Sequence
+## Delivery Sequence
 
-1. Use the selected Impossible Observatory of Living Instruments direction in `WI-ART-01-01`.
-2. Create museum and LifeInbox keyframes from the accepted briefs using the same real content currently in production.
-3. Re-art-direct one LifeInbox flow and the museum lobby before expanding the system.
-4. Re-run the creative portion of `QA-02`; retain all still-valid functional evidence.
-5. Establish Dreamlife and Sudoku dialect keyframes before `PRJ-05` and `PRJ-06` styling.
-6. Only then extract reusable visual primitives.
+1. `ART-01`: select Museum and LifeInbox keyframes and complete their art packets.
+2. `ART-02`: implement only the aesthetic runtime roles, utility hierarchy, calm behavior, and capture support proven necessary by those packets.
+3. `ART-03`: remediate the museum and LifeInbox, then re-run the creative portion of `QA-02` while retaining all still-valid functional evidence.
+4. `ART-04`: establish Dreamlife, Sudoku, and archive dialect packets before `PRJ-05` through `PRJ-07` styling.
+5. `ART-05`: translate the system to Home, About, AI, blogs, and support states as their owning phases begin.
+6. `ART-06`: review whole-portfolio coherence and production maturity after representative route classes exist.
 
-Lifecycle review `LPS-02` can remain in human review during steps 1 and 2. `LPS-03` content and flagship code do not proceed until their own gates resolve.
+Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.
 
 ## Completion Criteria
 
@@ -268,5 +272,6 @@ Lifecycle review `LPS-02` can remain in human review during steps 1 and 2. `LPS-
 - The museum, LifeInbox, Dreamlife, and Sudoku each have an authored dialect within the shared depth grammar.
 - Museum and LifeInbox remediation passes the diagnostic tests and renewed `QA-02` creative gate.
 - Static keyframes and rejected alternatives exist before full implementation.
+- Accepted art packets connect each major keyframe to real content, behavior, semantic inputs, calm/fallback states, and a performance envelope.
 - Utility controls, typography, material, motion, and darkness follow explicit hierarchies.
 - No flagship is promoted with placeholder or generic-template creative status.

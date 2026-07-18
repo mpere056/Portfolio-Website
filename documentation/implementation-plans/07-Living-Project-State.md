@@ -176,6 +176,15 @@ Do not surface:
 
 ## Page Presentation
 
+Living state is a semantic input to composition, not a universal status badge or color system. An `evolving` project may carry one unsettled trace, active boundary, or current-question disturbance; a `complete` project may settle into a composed artifact; an `archived` project may read as a preserved record. These are authored possibilities, not automatic mappings.
+
+Rules:
+
+- Visual state never implies active users, shipping frequency, commercial success, or progress not stated in reviewed content.
+- Lifecycle does not map to traffic-light colors, progress bars, or numerical completion.
+- `ART-04` may translate reviewed flagship and archive state into project packets only after `LPS-02`/`LPS-03` acceptance.
+- Meaningful-update disturbances use `LPS-04` version data and the Experience selector; art direction controls their form and restraint, not whether an update is true.
+
 ### Approach Layer
 
 Show lifecycle in plain language without noisy badges.

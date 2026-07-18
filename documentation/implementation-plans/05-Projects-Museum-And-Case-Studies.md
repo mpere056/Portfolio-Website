@@ -384,12 +384,23 @@ For each flagship:
 
 Project modules own an art-direction thesis, focal artifact, material dialect, one dominant gesture, and depth-specific visual transformation. Shared orchestration must not impose a universal card, panel, pill, heading, or animation treatment.
 
+The required aesthetic art packet is defined in `19-Aesthetic-System-Integration-And-Delivery.md`. It binds the scene to real project truth, reviewed graph/state inputs, utility placement, calm/fallback behavior, and a performance envelope. A keyframe without those links is reference material, not an accepted implementation input.
+
+Package ownership is explicit:
+
+- `ART-01` selects the Museum and LifeInbox packets.
+- `ART-02` supplies only the proven shared runtime roles.
+- `ART-03` implements Museum/LifeInbox remediation and renews `QA-02` creative acceptance.
+- `ART-04` supplies Dreamlife, Sudoku Together, and archive packets.
+- `PRJ-05` through `PRJ-07` own product behavior and production implementation from those packets.
+
 Before implementation expands, review each flagship against:
 
 - The silhouette, swap, crop, darkness, stillness, deepening, and furniture tests in `18-Art-Direction-And-Aesthetic-Quality.md`.
 - One calm keyframe and one standard-stimulation keyframe using real content.
 - One visual explanation of how Handle becomes Enter and Understand rather than merely appending sections.
 - One explicit list of generic patterns rejected for that project.
+- Loading, error, empty, semantic fallback, AI-door, tour, and return-state placement inside the same visual hierarchy.
 
 Creative acceptance requires Mark's review. Passing interaction and route tests cannot substitute for authored visual identity.
 
@@ -446,7 +457,7 @@ After the first flagship vertical slice, the program may assume:
 - AI, graph, living state, persistence, and direct destinations function together.
 - The quality gate has produced reusable performance and creative-review evidence.
 
-Only after that handoff should the remaining flagship experiences proceed in parallel or sequence.
+Only after the representative remediation and renewed creative gate should the remaining flagship experiences proceed, one active code package at a time.
 
 ## Completion Criteria
 

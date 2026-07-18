@@ -149,7 +149,9 @@ These gates prevent promotion regardless of how much surrounding work appears fi
 - Production build, preview review, live route verification, and rollback readiness.
 - Mark's explicit approval for feedback-gated or taste-sensitive work.
 
-For major visual surfaces, `Q` is two inseparable checks: experiential clarity and authored aesthetic quality. Passing usability, route, or screenshot-stability review cannot accept the aesthetic check. The required creative record and anti-generic diagnostics are defined in `18-Art-Direction-And-Aesthetic-Quality.md`.
+For major visual surfaces, `Q` is two inseparable checks: experiential clarity and authored aesthetic quality. Passing usability, route, or screenshot-stability review cannot accept the aesthetic check. The required creative record and anti-generic diagnostics are defined in `18-Art-Direction-And-Aesthetic-Quality.md`; the art-packet checkpoints and delivery boundaries are defined in `19-Aesthetic-System-Integration-And-Delivery.md`.
+
+Track aesthetic work by named artifacts rather than `designing`, `styling`, or `polish`: thesis/content inventory, alternatives, selected packet, runtime dependencies, representative implementation, calm/fallback/support states, regression verification, stable creative captures, Mark review, and rollout. A work item names the last completed artifact and one next observable artifact so another session can resume without reconstructing taste decisions.
 
 When Mark's direct feedback invalidates an accepted taste claim, reopen only the affected package/dimension. Preserve still-valid implementation and rollout evidence, name the aesthetic debt, and create a restartable remediation item rather than pretending all work is either complete or discarded.
 

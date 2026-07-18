@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1, Phase 2, and the functional first Phase 3 flagship slice are live on verified Production `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n`. Mark's 2026-07-18 feedback reopened only the aesthetic acceptance of the museum/LifeInbox slice; its contracts, product truth, routes, tests, deployment, and rollback remain accepted. Phase 4 now has two explicit human reviews: portfolio art direction and project lifecycle classification.
+Phase 1, Phase 2, and the functional first Phase 3 flagship slice remain live on verified Production. Mark's 2026-07-18 feedback reopened only the aesthetic acceptance of the museum/LifeInbox slice; its contracts, product truth, routes, tests, deployment, and rollback remain accepted. The Impossible Observatory is selected, and aesthetic delivery is now split into `ART-01` through `ART-06` so keyframes, runtime foundation, remediation, route translations, and whole-site review remain independently restartable.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-01` | in-progress | `ART-01` | Impossible Observatory selected; reference language and three keyframe briefs recorded | Produce three Museum Signal visual keyframes and reject one explicitly | 2026-07-18 |
+| Now | `WI-ART-01-01` | in-progress | `ART-01` | Impossible Observatory and cross-plan art-packet delivery model recorded | Produce three Museum Signal visual keyframes and reject one explicitly | 2026-07-18 |
 | Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
-| Next | LifeInbox Handle/Understand keyframes | pending | `ART-01` | Waits on selected Museum keyframe world | Preserve one captured specimen across both depth frames | 2026-07-18 |
+| Next | LifeInbox Handle/Understand art packets | pending | `ART-01` | Waits on selected Museum keyframe world | Preserve one captured specimen across both depth frames and complete packet semantics | 2026-07-18 |
 
 ## Active And Unfinished Items
 

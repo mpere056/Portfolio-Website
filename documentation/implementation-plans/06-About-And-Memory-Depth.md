@@ -1,6 +1,6 @@
 # About And Memory Depth Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -46,6 +46,19 @@ An event can be inspected more deeply to answer:
 - What evidence supports that connection?
 
 The knowledge graph supplies these answers. The timeline does not invent connections from visual similarity.
+
+## Aesthetic Translation
+
+About belongs to the same Observatory but is not another project museum. Its dialect is a chronological archive of traces, consequences, and remembered artifacts.
+
+- The distant composition preserves a legible sense of time before revealing connections.
+- An inspected event changes local material, annotation, or sight lines; it does not open a generic detail card over the timeline.
+- Reviewed `led_to`, `learned_from`, and `continued_in` relationships may become a few authored lines, refracted traces, or consequence marks.
+- A memory room is a deeper material change centered on one real artifact, not a decorative 3D room or a duplicate project exhibit.
+- AI remains the same quiet instrument but adapts to archive/reading context through `ART-05`.
+- Sensitive, unavailable, or text-heavy events still receive a composed semantic fallback.
+
+Before broad visual implementation, `ART-05` produces one event-inspection packet and one memory-room packet using reviewed content. `ABT-02` and `ABT-03` own behavior and implementation; their creative dimension cannot be accepted from the museum packet alone.
 
 ## Content Schema
 

@@ -25,11 +25,13 @@ Preserve accepted later direction without over-planning it, and record backlog-o
 - Use semantic checkpoints rather than camera matrices.
 - Keep project demo logic separable from desktop presentation.
 - Avoid assuming hover in shared domain models.
+- Treat desktop aesthetic art packets as evidence of portfolio laws and content hierarchy, not as mobile layout specifications.
 
 ### Later Exploration
 
 - Design mobile as a tactile field guide using stacking, folding, sliding, and haptics.
 - Reuse knowledge and discovery state without requiring desktop interaction parity.
+- Author independent mobile art packets for Home, museum, one flagship, AI, and reading before mobile production styling.
 - Run a separate mobile design and usability phase after desktop core stability.
 
 No detailed screen plan is required now.

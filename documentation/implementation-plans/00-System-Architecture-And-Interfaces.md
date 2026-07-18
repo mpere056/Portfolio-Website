@@ -8,7 +8,7 @@ Last updated: 2026-07-17
 | --- | --- |
 | Plan ID | `ARC` |
 | Status | Active foundation |
-| Upstream | Comprehensive Website Vision, Decision Register, Information Architecture And Routing Decision |
+| Upstream | Comprehensive Website Vision, Decision Register, Information Architecture And Routing Decision, selected art direction |
 | Downstream | Every active implementation plan |
 | Primary outputs | Stable IDs, shared contracts, ownership boundaries, event vocabulary |
 | Execution packages | `ARC-01` through `ARC-05` |
@@ -53,6 +53,14 @@ flowchart LR
     QUERIES --> LIGHT["Semantic lighting"]
     QUERIES --> TOUR["Tour recommendations"]
     QUERIES --> SKILLS["Skill evidence prototype"]
+    QUERIES --> VISUAL["Semantic visual adapters"]
+    STATE --> VISUAL
+    EXPERIENCE --> VISUAL
+    ART["Accepted aesthetic art packets"] --> VISUAL
+    VISUAL --> HOME
+    VISUAL --> ABOUT
+    VISUAL --> MUSEUM
+    VISUAL --> SUB
 
     EXPERIENCE["Experience store"] --> HOME["First Note and Home"]
     EXPERIENCE --> TOUR
@@ -137,6 +145,27 @@ Must use shared contracts for:
 - `src/components/museum/MuseumFallbackShell.tsx` preserves useful semantic HTML and canonical links when richer systems are unavailable.
 
 The current `ProjectsClient` remains legacy presentation and rollback orchestration. New modules must not import its wheel, audio, modal, or eager-3D assumptions into the shared contract.
+
+### Aesthetic Runtime Boundary
+
+The selected art direction is integrated through the six-layer model in `19-Aesthetic-System-Integration-And-Delivery.md`.
+
+The runtime may consume:
+
+- Stable destination, depth, and selected-part state.
+- Render-safe reviewed relationship views.
+- Reviewed lifecycle/current-state cues.
+- Discovery and stimulation state.
+- An accepted surface art packet translated into owned implementation values.
+
+It must not consume:
+
+- Raw MDX or unrestricted graph traversal.
+- Runtime-generated factual claims.
+- Graph records containing layout coordinates, component names, palettes, or animation curves.
+- One universal visual configuration that erases project-specific composition.
+
+Shared aesthetic code owns semantic roles such as emitter, lens, trace, membrane, paper record, calm profile, utility hierarchy, and stable-frame behavior. Owning feature modules retain focal artifact, silhouette, composition, dominant manipulation, and deep-state transformation.
 
 ## Canonical Identifier Contract
 
@@ -412,6 +441,28 @@ interface SemanticEdgeView {
 }
 ```
 
+Semantic edges carry meaning, not styling. The owning scene decides whether a primary edge becomes a line, refraction, shadow, notation, spatial pull, or no visible treatment. Rendering every relationship is explicitly invalid.
+
+## Aesthetic Art Packet Boundary
+
+An art packet is a reviewed design-and-implementation input, not a new factual source of truth. Its required fields and delivery lifecycle are defined in `19-Aesthetic-System-Integration-And-Delivery.md`.
+
+If structured runtime data is needed, keep it bounded to implementation semantics:
+
+```ts
+interface SurfaceVisualDialect {
+  id: string;
+  scope: 'portfolio' | 'home' | 'museum' | 'project' | 'about' | 'ai' | 'reading';
+  silhouetteKey: string;
+  materialRoles: string[];
+  dominantGesture: string;
+  calmProfile: string;
+  fallbackProfile: string;
+}
+```
+
+This is an architectural seam, not a requirement to create a global config immediately. Add code only when two accepted scenes prove a shared consumer. Composition, exact color, geometry, copy, and asset paths stay in the owning surface.
+
 ## Cross-System Events
 
 | Event | Producer | Consumers | Required payload |
@@ -439,6 +490,7 @@ Implementation note: `WI-ARC-04-01` implements this vocabulary as plain discrimi
 | About depth | Experience foundation, graph | Event consequences, memory prototype |
 | Living project state | Content schema, graph IDs | Current truth, content versions |
 | Semantic lighting | Graph query, destinations | Relationship signals |
+| Aesthetic integration | Authored truth, experience meaning, selected art packets, stimulation | Composed runtime scenes, material roles, utility hierarchy, calm/fallback intent |
 | Skill prototype | Graph evidence, discovery events | Capability view |
 | Quality and rollout | All contracts | Validation, flags, release evidence |
 

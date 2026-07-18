@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -53,7 +53,7 @@ The critical dependency chain is:
 9. Experimental skill evidence and ambient presence.
 10. Later mobile, musical, and shared-navigation work.
 
-Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status.
+Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status. Production styling for a major surface depends on an accepted aesthetic art packet; shared visual infrastructure depends on representative packets rather than preceding them as a generic design system.
 
 The approved information architecture is technically multi-route and experientially one world. `/` is the atrium, `/about` remains one chronology, `/projects` is the museum lobby, and flagship Enter/Understand states normally live on canonical project subdomains. Depth does not automatically create pages.
 
@@ -233,7 +233,31 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ## Phase 4: Museum Framework And Remaining Flagships
 
-Phase 4 begins with two human review tracks: the `LPS-02` lifecycle set and `ART-01` portfolio art direction. The live Phase 3 functionality remains valid, but Mark's 2026-07-18 feedback reopens its creative acceptance: the museum and LifeInbox currently rely too heavily on generic dark cards, panels, pills, and glow. Museum/LifeInbox keyframes and one representative remediation must pass the renewed creative gate before the visual system is multiplied into Dreamlife, Sudoku, or smaller projects.
+Phase 4 begins with two human review tracks: the `LPS-02` lifecycle set and the `ART-01` keyframe selection. The live Phase 3 functionality remains valid, but Mark's 2026-07-18 feedback reopens its creative acceptance: the museum and LifeInbox currently rely too heavily on generic dark cards, panels, pills, and glow. The selected Impossible Observatory direction now flows through the integration model in `19-Aesthetic-System-Integration-And-Delivery.md` rather than operating as a separate styling pass.
+
+### Phase 4A: Select The Representative World
+
+- Complete `ART-01` Museum alternatives and LifeInbox Handle/Understand art packets using real production content.
+- Record at least one rejected direction and why it fails the authored-aesthetic diagnostics.
+- Keep the current production experience live; keyframe work does not disturb functional evidence.
+
+### Phase 4B: Build The Minimum Runtime And Remediate The First Slice
+
+- Implement only the semantic material, utility, stimulation, calm/fallback, and capture support required by accepted packets in `ART-02`.
+- Implement the selected museum and LifeInbox composition in `ART-03` behind independent flags.
+- Re-run functional, performance, route/history, fallback, and creative review; close only the reopened `QA-02` creative dimension.
+
+### Phase 4C: Author The Remaining Project Dialects
+
+- Resolve the relevant `LPS-02`/`LPS-03` truth before using current-state visual cues.
+- Produce Dreamlife, Sudoku Together, and smaller-project archive packets in `ART-04`.
+- Prove silhouette, material, and manipulation differences before starting their production styling.
+
+### Phase 4D: Implement And Integrate The Remaining Project Worlds
+
+- Build `PRJ-05`, then `PRJ-06`, then `PRJ-07` as separate code packages using their accepted packets.
+- Complete generalized route, history, metadata, and cross-subdomain behavior through `PRJ-08` without binding transient effects to URLs.
+- Keep one active code package and one coherent visitor journey at a time.
 
 ### Goals
 
@@ -242,8 +266,8 @@ Phase 4 begins with two human review tracks: the `LPS-02` lifecycle set and `ART
 
 ### Work
 
-- Select or refine one portfolio art direction and create museum/LifeInbox keyframes from current production content.
-- Re-art-direct the museum lobby and one LifeInbox depth flow before extracting new visual primitives.
+- Select Museum/LifeInbox keyframes and complete their art packets from current production content.
+- Build the minimum aesthetic runtime foundation, then re-art-direct the museum lobby and one LifeInbox depth flow before extracting broader visual primitives.
 - Extend the accepted exhibit registry and loader only where the first slice proves a reusable need.
 - Keep shared depth/destination state separate from project-specific interaction state.
 - Build missing flagship experiences.
@@ -253,7 +277,7 @@ Phase 4 begins with two human review tracks: the `LPS-02` lifecycle set and `ART
 
 ### Exit Criteria
 
-- Museum, LifeInbox, Dreamlife, and Sudoku pass the authored-aesthetic diagnostics in `18-Art-Direction-And-Aesthetic-Quality.md`.
+- Museum, LifeInbox, Dreamlife, and Sudoku pass the authored-aesthetic diagnostics in `18-Art-Direction-And-Aesthetic-Quality.md` and the integration gates in `19-Aesthetic-System-Integration-And-Delivery.md`.
 - Three flagship exhibits are complete.
 - Shared museum infrastructure does not erase their distinct product behavior.
 - Smaller projects have a coherent lighter presentation.

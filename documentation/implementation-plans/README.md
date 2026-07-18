@@ -71,6 +71,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `16-Progress-Dashboard.md` | Current focus, checkpoints, gaps, gates, risks, and next work | Active summary |
 | `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
 | `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
+| `19-Aesthetic-System-Integration-And-Delivery.md` | Cross-plan aesthetic contracts, route coverage, package sequencing, and partial-work handoffs | Active aesthetic integration control |
 | `2026-07-18-Aesthetic-Direction-Review.md` | Three coherent aesthetic directions and recommended synthesis for Mark's review | Active review |
 | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
 | `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
@@ -90,7 +91,8 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |
 | What pages should exist and how should depth affect URLs? | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | `00-System-Architecture-And-Interfaces.md` |
 | What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
-| How do we prevent generic aesthetics? | `18-Art-Direction-And-Aesthetic-Quality.md` | Owning experience plan and `08-Platform-Quality-And-Rollout.md` |
+| How do we prevent generic aesthetics? | `18-Art-Direction-And-Aesthetic-Quality.md` | `19-Aesthetic-System-Integration-And-Delivery.md` and the owning experience plan |
+| How does art direction connect to architecture and delivery? | `19-Aesthetic-System-Integration-And-Delivery.md` | `00`, `13`, and the owning feature plan |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
 | Where exactly did unfinished work stop? | `../implementation-work/README.md` | Its linked work-item resume packet |
@@ -100,13 +102,14 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 ## Planning Layers
 
-The documents form five connected layers:
+The documents form six connected layers:
 
 1. **Vision and decisions:** Comprehensive Website Vision and `11-Decision-Register.md`.
 2. **Architecture and workstreams:** `00` plus plans `02` through `10`.
-3. **Sequencing and traceability:** `01` and `12`.
-4. **Execution:** `13`, implementation branches, tests, and previews.
-5. **Continuation and proof:** `14` through `17`, `documentation/implementation-work/`, and `documentation/implementation-evidence/`.
+3. **Aesthetic integration:** `18` defines the creative standard and `19` connects it to every route, system, and delivery gate.
+4. **Sequencing and traceability:** `01` and `12`.
+5. **Execution:** `13`, implementation branches, tests, and previews.
+6. **Continuation and proof:** `14` through `17`, `documentation/implementation-work/`, and `documentation/implementation-evidence/`.
 
 Changes should flow downward through these layers. Implementation discoveries can flow upward as decision updates.
 

@@ -120,6 +120,28 @@ describe('implementation planning integrity', () => {
     }
   });
 
+  it('preserves the aesthetic delivery chain and cross-plan surface coverage', () => {
+    const aestheticPackages = ['ART-01', 'ART-02', 'ART-03', 'ART-04', 'ART-05', 'ART-06'];
+    for (const packageId of aestheticPackages) {
+      expect(packages.has(packageId), `missing aesthetic package ${packageId}`).toBe(true);
+    }
+
+    const dependencies = new Map(packageRows.map(row => [row[0], row[2].match(packagePattern) ?? []]));
+    expect(dependencies.get('ART-02')).toContain('ART-01');
+    expect(dependencies.get('ART-03')).toEqual(expect.arrayContaining(['ART-01', 'ART-02', 'PRJ-04']));
+    expect(dependencies.get('ART-04')).toEqual(expect.arrayContaining(['ART-03', 'LPS-03']));
+    expect(dependencies.get('ART-05')).toContain('ART-03');
+    expect(dependencies.get('ART-06')).toEqual(expect.arrayContaining(['ART-03', 'ART-04', 'ART-05']));
+
+    const integration = read('documentation/implementation-plans/19-Aesthetic-System-Integration-And-Delivery.md');
+    for (const planId of ['`00`', '`02`', '`03`', '`04`', '`05`', '`06`', '`07`', '`08`', '`09`', '`10`']) {
+      expect(integration, `aesthetic integration omits plan ${planId}`).toContain(`| ${planId} `);
+    }
+    for (const surface of ['`/` Home atrium', '`/projects` museum', 'LifeInbox museum depth', 'Dreamlife subdomain', 'Sudoku Together subdomain', '`/about`', 'Global AI', 'Blogs and reading pages']) {
+      expect(integration, `aesthetic integration omits surface ${surface}`).toContain(`| ${surface} `);
+    }
+  });
+
   it('registers every durable evidence item exactly once in an existing file', () => {
     const evidenceIndex = read('documentation/implementation-evidence/README.md');
     const registryRows = tableRows(section(evidenceIndex, 'Registry'))

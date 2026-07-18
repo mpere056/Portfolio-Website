@@ -1,6 +1,6 @@
 # Experience Foundation Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -142,6 +142,12 @@ Suggested modules:
 
 It should not dictate project-specific visuals.
 
+### Aesthetic Integration
+
+The depth controller supplies semantic state; it does not select a color, layout, camera move, or component template. Accepted art packets map each supported stage to a perceptual transformation through the owning scene.
+
+Shared experience code may expose depth and transition reason, discovery, selected relationship, current destination, stimulation, reduced-motion state, a stable settled-frame signal, and utility roles for tour, AI, navigation, and recovery. It must not expose a universal `DepthCard`, one transition animation for every stage, or a global palette switch for projects. `ART-02` may add semantic visual roles only after the selected Museum and LifeInbox packets prove a shared need.
+
 ## First Note
 
 ### Implementation Steps
@@ -237,6 +243,8 @@ Systems that consume it:
 - Background movement.
 - Semantic-lighting intensity.
 
+Stimulation changes density, movement, sound, and effect complexity; it does not remove information or reduce the scene to lower opacity. Every major art packet defines a composed calm profile. Reduced motion preserves the same focal hierarchy and settled spatial meaning, while capability fallbacks preserve the same visitor truth with simpler materials.
+
 Rules:
 
 - Respect `prefers-reduced-motion` as an initial input.
@@ -304,6 +312,8 @@ Do not derive disturbances from raw Git commits.
 - Refresh during each depth stage.
 - Corrupt and old local state.
 - Browser back/forward behavior.
+- Stable calm frames whose hierarchy does not depend on animation.
+- Scene-aware utility hierarchy without unrelated floating controls.
 
 ## Risks
 

@@ -9,6 +9,8 @@ Status: Briefs ready; visual keyframes not yet produced
 
 These briefs use the current production content and interactions. They are not speculative redesigns that avoid the hard parts of the real page. Each frame must prove that the selected direction can replace the current card-grid and nested-panel aesthetic without losing product truth, navigation, accessibility, or the depth grammar.
 
+These are visual-production inputs for `ART-01`. A selected output becomes implementation-ready only when its aesthetic art packet is completed using `19-Aesthetic-System-Integration-And-Delivery.md`; runtime primitives and production remediation belong to `ART-02` and `ART-03`.
+
 The first visual round should include three intentionally different compositions for Brief 1 and at least one strong composition for Briefs 2 and 3. Preserve one rejected museum alternative with a written reason.
 
 ## Brief 1: Museum Lobby / Signal
@@ -158,4 +160,3 @@ The stable captured thought is opened without being destroyed. The visitor sees 
 - Darkness improves silhouette and discovery rather than reducing legibility.
 - Spectral color has semantic sources and does not become wallpaper.
 - The composition contains a clear next action without looking like a conventional app panel.
-

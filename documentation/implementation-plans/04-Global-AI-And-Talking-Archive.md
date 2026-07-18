@@ -1,6 +1,6 @@
 # Global AI And Talking Archive Plan
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -135,6 +135,20 @@ interface ArchiveCard {
 ```
 
 The server may select cards through reviewed tool calls or validated structured output. The model never authors `href`, origin, or unbounded state. The server resolves source visibility and emits only registered destination IDs plus allowlisted primitive safe state; the client re-resolves and validates the destination before rendering it.
+
+## Aesthetic Integration
+
+The global AI is a quiet talking instrument inside the current world, not a detached chatbot panel. Its semantic behavior remains shared, while its presentation responds subtly to the current route and accepted surface dialect.
+
+- Dormant state is discoverable but visually subordinate.
+- Active conversation creates one focused reading/listening surface without covering the scene unnecessarily.
+- A validated archive card becomes a **door**: it borrows a silhouette or material cue from the destination and then hands navigation to the destination resolver.
+- The same card payload remains useful as semantic HTML when effects, images, or motion fail.
+- AI does not generate runtime art direction, factual scene content, or unvalidated visual destinations.
+- Two host-surface keyframes are required before the AI visual language is generalized: one museum/project context and one About or reading context.
+- Keyboard focus, source inspection, close/recovery, lower stimulation, streaming, empty, and error states are included in the art packet rather than added after styling.
+
+`ART-05` owns the global AI visual packet. `AI-05` owns chat-surface behavior and route migration; neither package may silently restyle the other.
 
 ## AI-04 Delivery Increments
 

@@ -1,6 +1,6 @@
 # Knowledge Graph And Content Plan
 
-Last updated: 2026-07-16
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -265,6 +265,10 @@ interface SemanticEdgeView {
 Only reviewed public relationships can become normal lighting edges. Hidden-discovery relationships require their discovery condition.
 
 Limit initial output to three primary edges from one source.
+
+Semantic lighting is one possible render treatment, not the visual form of the graph itself. The graph supplies reviewed source, target, relationship type, explanation, strength, and destination. The owning art packet decides whether that meaning appears as a line, refraction, notation, shadow, spatial pull, material change, or remains invisible.
+
+Do not add palette, coordinates, geometry, shader names, component names, or animation curves to graph records. Do not render every relationship. `ART-02` may own a bounded semantic-visual adapter, but factual graph validation remains independent of the selected aesthetic direction.
 
 ## Skill Evidence Prototype Support
 
