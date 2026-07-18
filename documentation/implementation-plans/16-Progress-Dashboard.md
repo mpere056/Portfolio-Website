@@ -98,18 +98,16 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-LPS-02-01` | ready | `LPS-02` | Phase 3 production and one selected-project state seed are accepted | Prepare concise classifications for Mark's review | 2026-07-18 |
+| Now | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project proposal is prepared; only LifeInbox is already accepted | Apply Mark's approval or corrections to the proposal | 2026-07-18 |
 | Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after the review gate resolves | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
 ## Awaiting Review
 
-No work items are currently `in-review`.
-
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - |
+| `WI-LPS-02-01` | Approve the nine proposed lifecycles or correct only the exceptions | Mark | `2026-07-18-Portfolio-Lifecycle-Classification-Proposal.md` | 2026-07-18 | Record the reviewed set, then open `LPS-03` |
 
 ## Blocked Or Paused
 

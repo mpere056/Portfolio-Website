@@ -10,18 +10,18 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1, Phase 2, and the first Phase 3 flagship slice are fully accepted and live. Production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc` serves the museum, global archive, and LifeInbox Signal-to-Understand journey; all three project subdomains pass public verification.
+Phase 1, Phase 2, and the first Phase 3 flagship slice are fully accepted and live. The latest verified production deployment, `dpl_FH5HAHM1zXBf6t4PyoPthA4CSr1u`, serves the museum, global archive, and LifeInbox Signal-to-Understand journey on every portfolio alias. Phase 4 has begun with the portfolio lifecycle review gate.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-LPS-02-01` | ready | `LPS-02` | Phase 3 production is verified; selected LifeInbox state is accepted | Prepare concise lifecycle proposals for Mark's review | 2026-07-18 |
+| Now | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
 | Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after `WI-LPS-02-01` is reviewed | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-LPS-02-01` | Review portfolio project lifecycles | ready | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
+| `WI-LPS-02-01` | Review portfolio project lifecycles | in-review | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
