@@ -14,14 +14,14 @@ Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit fo
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-03-01` | ready | `PRJ-03` | LifeInbox selected; registry, server views, anchors, graph response, and rollback accepted | Add the feature-flagged server route branch and lightweight Signal/Approach shell | 2026-07-18 |
-| Next | Selected LifeInbox state seed | pending | `LPS-06` | `LPS-01` schema accepted and LifeInbox selected | Request/record the minimum truthful lifecycle and current-state fixture after museum integration | 2026-07-18 |
+| Now | `WI-LPS-06-01` | in-progress | `LPS-06` | `PRJ-03` accepted with browser/build evidence and rollback intact | Author, validate, and render the minimum source-grounded LifeInbox state record | 2026-07-18 |
+| Next | Archive cards and selected transition | pending | `AI-04` | AI sources and canonical destinations accepted | Implement runtime card validation before selected navigation | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-PRJ-03-01` | Integrate museum Signal and Approach | ready | high | `PRJ-03` | `CAP-PRJ-004` | `active/WI-PRJ-03-01.md` | 2026-07-18 |
+| `WI-LPS-06-01` | Seed truthful LifeInbox state | in-progress | high | `LPS-06` | `CAP-LPS-007` | `active/WI-LPS-06-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,13 +35,13 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-PRJ-03-01` | done | `PRJ-03` | Nine-signal museum, exact Approach anchors, calm path, fallback, and legacy rollback accepted | `EV-PRJ-03-01` through `EV-PRJ-03-03` | 2026-07-18 |
 | `WI-PRJ-02-01` | done | `PRJ-02` | Equal deterministic LifeInbox/Sudoku spikes accepted; LifeInbox selected for the first complete slice | `EV-PRJ-02-01`, `EV-PRJ-02-02` | 2026-07-18 |
 | `WI-QA-06-01` | done | `QA-06` | Plans, packages, capabilities, evidence, work items, and dashboard reconciled; six structural checks added | `EV-QA-06-01` | 2026-07-17 |
 | `WI-PRJ-01-01` | done | `PRJ-01` | Nine canonical exhibits, three lazy flagship manifests, stable anchors, semantic fallbacks, and Production route smoke accepted | `EV-PRJ-01-01` through `EV-PRJ-01-03` | 2026-07-17 |
 | `WI-QA-01-02` | done | `QA-01` | Aggregate tests/build, protected Preview, production-safe deployment, live routes, and structured AI sources accepted | `EV-QA-01-02` through `EV-QA-01-04` | 2026-07-17 |
 | `WI-EXP-06-01` | done | `EXP-06` | Three explicit meaningful discoveries, prerequisites, semantic persistence, and no-score/tour exclusion accepted | `EV-EXP-06-01`, `EV-EXP-06-02` | 2026-07-17 |
 | `WI-EXP-05-01` | done | `EXP-05` | Three-rule relationship instrument, canonical semantic light, and persisted stimulation accepted | `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03` | 2026-07-17 |
-| `WI-EXP-04-01` | done | `EXP-04` | One-question role lens, canonical any-order doors, dismiss/resume, and route persistence accepted | `EV-EXP-04-01`, `EV-EXP-04-02` | 2026-07-16 |
 | `WI-AI-03-01` | done | `AI-03` | Identifier-only request context, public graph retrieval, native structured sources, and canonical source links accepted | `EV-AI-03-01` | 2026-07-16 |
 | `WI-AI-02-01` | done | `AI-02` | Quiet lazy global shell, route context, clear/close/error, optional audio, and `/chat` compatibility accepted | `EV-AI-02-01`, `EV-AI-02-02` | 2026-07-16 |
 | `WI-KG-06-01` | done | `KG-06` | Public graph metadata, bounded retrieval context, source descriptors, legacy compatibility, and 42-chunk backfill accepted | `EV-KG-06-01`, `EV-KG-06-02` | 2026-07-16 |

@@ -472,7 +472,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PRJ-002` | Stable exhibit anchors and depth-fallback resolution | `PRJ-01` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
-| `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: planned` | verified-foundation |
 | `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -525,6 +525,22 @@ Until a capability receives its own detail record, these defaults apply:
 - Work item: `WI-PRJ-02-01` (done).
 - Next checkpoint: `PRJ-03` integrates the museum shell, then `LPS-06` supplies reviewed LifeInbox state.
 - Last assessed: 2026-07-18 after focused tests and selection review.
+
+### CAP-PRJ-004: Museum Signal And Approach Navigation
+
+- Owner: Codex
+- Lifecycle: verified foundation
+- Health: on-track
+- Confidence: high
+- Dimension states: `S/C/A/I/T/Q accepted; R planned`
+- Package: `PRJ-03`
+- Works now: A server-selected museum path renders nine light-weight signals, exact hash anchors, an authored Approach panel, canonical project-world actions, responsive layout, useful fallbacks, and reduced-motion-aware transitions without importing product interaction bundles.
+- Named gaps: Production exposure remains off until `QA-02`; Handle/Enter/Understand remain selected-LifeInbox `PRJ-04` scope; generalized URL/history behavior remains `PRJ-08`.
+- Safe exposure: Development and Preview on; Production keeps the complete legacy `ProjectsClient` rollback.
+- Evidence: `EV-PRJ-03-01` through `EV-PRJ-03-03`.
+- Work item: `WI-PRJ-03-01` (done).
+- Next checkpoint: `LPS-06` supplies truthful selected-LifeInbox state before product depth is composed.
+- Last assessed: 2026-07-18 after 146 tests, build, and browser review.
 
 ## Flagship Product Experiences
 

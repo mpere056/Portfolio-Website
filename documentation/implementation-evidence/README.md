@@ -48,6 +48,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-PRJ-01-01` through `EV-PRJ-01-03` | `PRJ-01` | accepted | `PRJ-01.md` |
 | `EV-QA-06-01` | `QA-06` | accepted | `QA-06.md` |
 | `EV-PRJ-02-01`, `EV-PRJ-02-02` | `PRJ-02` | accepted | `PRJ-02.md` |
+| `EV-PRJ-03-01` through `EV-PRJ-03-03` | `PRJ-03` | accepted | `PRJ-03.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -158,6 +159,9 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-QA-06-01` | `QA-06` | `CAP-QA-006` | integration-test | accepted | `1286931`, 6 integrity checks and full repository gate | 2026-07-17 | `QA-06.md` |
 | `EV-PRJ-02-01` | `PRJ-02` | `CAP-PRJ-003`, `CAP-LIB-001`, `CAP-SDK-001`, `CAP-SDK-002` | integration-test | accepted | local focused tests and strict typecheck | 2026-07-18 | `PRJ-02.md` |
 | `EV-PRJ-02-02` | `PRJ-02` | `CAP-PRJ-003` | decision | accepted | first flagship selection record | 2026-07-18 | `PRJ-02.md` |
+| `EV-PRJ-03-01` | `PRJ-03` | `CAP-PRJ-004` | integration-test | accepted | local museum/flag/registry gate | 2026-07-18 | `PRJ-03.md` |
+| `EV-PRJ-03-02` | `PRJ-03` | `CAP-PRJ-004` | browser-flow | accepted | local Development desktop and mobile | 2026-07-18 | `PRJ-03.md` |
+| `EV-PRJ-03-03` | `PRJ-03` | `CAP-PRJ-004`, `CAP-EXP-011` | integration-test | accepted | full local gate, rollback, calm path, and build | 2026-07-18 | `PRJ-03.md` |
 
 ## Required Evidence Fields
 

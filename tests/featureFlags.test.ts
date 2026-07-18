@@ -18,8 +18,10 @@ describe('feature flags', () => {
       firstNote: true,
       semanticLighting: true,
       meaningfulDiscoveries: true,
+      museumV2: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
+    expect(resolveFeatureFlags({ environment: 'production' }).museumV2).toBe(false);
   });
 
   it('allows explicit local overrides only in development', () => {

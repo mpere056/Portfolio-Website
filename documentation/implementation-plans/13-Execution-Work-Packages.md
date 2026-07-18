@@ -99,7 +99,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `LPS-03` | Flagship state files | `LPS-02` | Edited state for active flagships | Content review and rendered fixture | pending |
 | `LPS-04` | Content versions and disturbance metadata | `LPS-03` | Meaningful version policy and compiled update records | Version comparison tests | pending |
 | `LPS-05` | Editorial workflow and AI precedence | `LPS-03`, `KG-06` | Update checklist, current-state retrieval precedence | Conflict fixture resolves to current state | pending |
-| `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One Mark-reviewed lifecycle and minimum current/final state for the selected first flagship | Approval record, lifecycle validation, public evidence links, and rendered fallback fixture | pending |
+| `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One source-reviewed lifecycle and minimum current/final state for the selected first flagship, with Mark correction path | Review record, lifecycle validation, public evidence links, and rendered fallback fixture | in-progress |
 
 ## Project Museum Packages
 
@@ -107,7 +107,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | --- | --- | --- | --- | --- | --- |
 | `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | complete |
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | complete |
-| `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Server exhibit-view adoption behind `museumV2`, lightweight Signal, authored Approach, exact anchors, legacy rollback | Flag-off parity, fallback integration, and overview-to-Approach browser flow | ready |
+| `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Server exhibit-view adoption behind `museumV2`, lightweight Signal, authored Approach, exact anchors, legacy rollback | Flag-off parity, fallback integration, and overview-to-Approach browser flow | complete |
 | `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-06` | Selected Handle/Enter/Understand journey, one exploded layer, evidence, state, persistence, minimum subdomain handoff | Phase 3 vertical-slice evidence | pending |
 | `PRJ-05` | Dreamlife experience | `PRJ-04` framework | Future paths, reaction, experiment, exploded layers | Authored scenario and interaction QA | pending |
 | `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework | LifeInbox or Sudoku experience not selected first | Product and architecture QA | pending |

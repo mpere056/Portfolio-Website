@@ -40,15 +40,15 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 1 | `PRJ-03` is the bounded museum Signal/Approach handoff |
-| `in-progress` | 0 | No package currently sits between coherent checkpoints |
+| `ready` | 0 | No package is waiting in the ready lane while selected state is active |
+| `in-progress` | 1 | `LPS-06` is authoring the selected LifeInbox state seed |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
-| `pending` | 19 | Valid packages waiting on accepted upstream work, review, or sequencing |
+| `pending` | 18 | Valid packages waiting on accepted upstream work, review, or sequencing |
 | `reopened` | 0 | No accepted package currently has an unresolved contract regression |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
-| `complete` | 33 | Phase 1, Phase 2, `PRJ-01`, `PRJ-02`, and `QA-06` have accepted evidence |
+| `complete` | 34 | Adds accepted `PRJ-03` museum Signal/Approach behavior and rollback evidence |
 
 Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
@@ -98,8 +98,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-03-01` | ready | `PRJ-03` | Equal spikes accepted and LifeInbox selected | Add the `museumV2` server branch and lightweight Signal/Approach shell | 2026-07-18 |
-| Next | Selected LifeInbox state seed | pending | `LPS-06` | Lifecycle schema accepted and LifeInbox selected | Record the minimum truthful lifecycle/current-state fixture | 2026-07-18 |
+| Now | `WI-LPS-06-01` | in-progress | `LPS-06` | `PRJ-03` browser/build/rollback evidence accepted | Author and validate the minimum source-grounded LifeInbox state fixture | 2026-07-18 |
+| Next | Archive cards and selected transition | pending | `AI-04` | Canonical AI sources and destinations accepted | Implement runtime card validation before selected navigation | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -165,7 +165,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 70 | Adds equal deterministic candidate-spike and first-flagship selection evidence |
+| Accepted | 73 | Adds museum contract, browser/visual, and rollback/build evidence |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |

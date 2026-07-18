@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
 import { useAudioStore } from '@/lib/store';
 
@@ -73,6 +73,13 @@ export default function GlobalAudio({
 
     if (homeAutoplayDeferred) {
       setShowPlayPrompt(false);
+      return;
+    }
+
+    if (isMuted) {
+      audio.pause();
+      setShowPlayPrompt(false);
+      setNeedsUserUnmute(false);
       return;
     }
     
@@ -303,6 +310,19 @@ export default function GlobalAudio({
     try { localStorage.setItem('siteAudioMuted', String(next)); } catch {}
   }
 
+  function handleContinueMuted(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    const audio = audioRef.current;
+    setIsMuted(true);
+    setNeedsUserUnmute(false);
+    setShowPlayPrompt(false);
+    if (audio) {
+      audio.muted = true;
+      audio.pause();
+    }
+    try { localStorage.setItem('siteAudioMuted', 'true'); } catch {}
+  }
+
   if (!src) return null;
 
   return (
@@ -310,15 +330,20 @@ export default function GlobalAudio({
       {showPlayPrompt && (
         <div 
           className={nonBlockingPrompt
-            ? 'fixed bottom-32 right-4 z-[55] max-w-56 cursor-pointer rounded-2xl border border-white/10 bg-black/75 shadow-2xl backdrop-blur-xl'
+            ? 'fixed bottom-20 right-4 z-[55] w-[min(18rem,calc(100vw-2rem))] cursor-pointer rounded-2xl border border-white/10 bg-black/80 shadow-2xl backdrop-blur-xl'
             : 'fixed inset-0 z-[1000] flex cursor-pointer items-center justify-center bg-black/30 backdrop-blur-sm'}
           onClick={handlePlayPromptClick}
         >
-          <div className="bg-black/70 text-white px-8 py-6 rounded-2xl backdrop-blur-xl border border-white/10 text-center shadow-2xl">
+          <div className={nonBlockingPrompt
+            ? 'rounded-2xl p-4 text-left text-white'
+            : 'rounded-2xl border border-white/10 bg-black/70 px-8 py-6 text-center text-white shadow-2xl backdrop-blur-xl'}>
             <div className="text-4xl mb-4">🎵</div>
-            <h3 className="text-xl font-medium mb-2">Enable Audio</h3>
-            <p className="text-white/70 mb-4">Tap anywhere to start the music</p>
+            <h3 className={nonBlockingPrompt ? 'text-sm font-medium' : 'mb-2 text-xl font-medium'}>{nonBlockingPrompt ? 'Sound is optional' : 'Enable Audio'}</h3>
+            <p className={nonBlockingPrompt ? 'mt-1 text-xs leading-5 text-white/60' : 'mb-4 text-white/70'}>{nonBlockingPrompt ? 'Enable project audio, or keep exploring quietly.' : 'Tap anywhere to start the music'}</p>
             <div className="text-sm text-white/50">Playing: {label}</div>
+            {nonBlockingPrompt ? (
+              <button type="button" onClick={handleContinueMuted} className="mt-3 rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/65">Keep muted</button>
+            ) : null}
           </div>
         </div>
       )}
