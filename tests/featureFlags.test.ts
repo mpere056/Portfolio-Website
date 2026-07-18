@@ -19,9 +19,11 @@ describe('feature flags', () => {
       semanticLighting: true,
       meaningfulDiscoveries: true,
       museumV2: true,
+      lifeinboxExperience: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
     expect(resolveFeatureFlags({ environment: 'production' }).museumV2).toBe(false);
+    expect(resolveFeatureFlags({ environment: 'production' }).lifeinboxExperience).toBe(false);
   });
 
   it('allows explicit local overrides only in development', () => {

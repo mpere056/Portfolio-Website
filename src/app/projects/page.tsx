@@ -15,7 +15,7 @@ export default async function ProjectsPage() {
     return (
       <>
         <NavHomeIcon />
-        <MuseumShell exhibits={exhibits} />
+        <MuseumShell exhibits={exhibits} lifeInboxExperienceEnabled={flags.lifeinboxExperience} />
       </>
     );
   }

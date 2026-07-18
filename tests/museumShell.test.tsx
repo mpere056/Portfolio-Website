@@ -7,7 +7,7 @@ import { resolveMuseumHash, resolveMuseumStage } from '@/lib/museum/navigation';
 describe('museum Signal and Approach shell', () => {
   it('renders all canonical signals without loading a flagship interaction', async () => {
     const { exhibits } = await loadMuseumExhibits();
-    const html = renderToStaticMarkup(<MuseumShell exhibits={exhibits} />);
+    const html = renderToStaticMarkup(<MuseumShell exhibits={exhibits} lifeInboxExperienceEnabled />);
 
     expect(exhibits).toHaveLength(9);
     for (const exhibit of exhibits) expect(html).toContain(`href="#${exhibit.slug}"`);

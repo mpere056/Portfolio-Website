@@ -19,9 +19,10 @@ const LifeInboxExperience = dynamic(() => import('./LifeInboxExperience'), {
 
 interface MuseumShellProps {
   exhibits: readonly MuseumExhibitView[];
+  lifeInboxExperienceEnabled: boolean;
 }
 
-export default function MuseumShell({ exhibits }: MuseumShellProps) {
+export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: MuseumShellProps) {
   const [selectedSlug, setSelectedSlug] = useState<string>();
   const [selectedStage, setSelectedStage] = useState<DepthStage>('approach');
   const approachRef = useRef<HTMLElement>(null);
@@ -49,6 +50,11 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
   }, [selectedSlug, selectedStage]);
 
   const selected = exhibits.find(exhibit => exhibit.slug === selectedSlug);
+  const activeStage = selected?.projectId === 'project:lifeinbox'
+    && !lifeInboxExperienceEnabled
+    && ['handle', 'enter', 'understand'].includes(selectedStage)
+    ? 'approach'
+    : selectedStage;
   const navigateToStage = (exhibit: MuseumExhibitView, stage: DepthStage) => {
     const url = new URL(window.location.href);
     url.hash = exhibit.slug;
@@ -110,7 +116,7 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
 
         {selected ? (
           <section ref={approachRef} aria-live="polite" aria-label={`${selected.name} approach`} className={styles.approach}>
-            <MuseumSelectionContext exhibit={selected} stage={selectedStage} />
+            <MuseumSelectionContext exhibit={selected} stage={activeStage} />
             <div className={styles.approachGrid}>
               <div>
                 <p className="font-mono text-[0.66rem] uppercase tracking-[0.28em] text-[#d8b98c]/55">Approach / {selected.year}</p>
@@ -123,7 +129,7 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
                   {selected.tech.map(technology => <span key={technology}>{technology}</span>)}
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {selected.projectId === 'project:lifeinbox' && selectedStage === 'approach' ? (
+                  {selected.projectId === 'project:lifeinbox' && activeStage === 'approach' && lifeInboxExperienceEnabled ? (
                     <button type="button" onClick={() => navigateToStage(selected, 'handle')} className="rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]">
                       Handle a thought
                     </button>
@@ -137,9 +143,9 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
                 </div>
               </div>
             </div>
-            {selected.projectId === 'project:lifeinbox' && ['handle', 'enter', 'understand'].includes(selectedStage) ? (
+            {selected.projectId === 'project:lifeinbox' && lifeInboxExperienceEnabled && ['handle', 'enter', 'understand'].includes(activeStage) ? (
               <ExhibitExperienceBoundary projectHref={selected.projectHref}>
-                <LifeInboxExperience stage={selectedStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} />
+                <LifeInboxExperience stage={activeStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} />
               </ExhibitExperienceBoundary>
             ) : null}
           </section>
