@@ -87,7 +87,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | complete |
 | `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | complete |
-| `AI-04` | Archive cards and selected-destination flow | `AI-03`, `ARC-03`, `PRJ-01` | Runtime card schema, public-source validation, client re-resolution, selected museum/subdomain transition | Invalid-card fixtures and one exact card navigation browser flow | in-progress |
+| `AI-04` | Archive cards and selected-destination flow | `AI-03`, `ARC-03`, `PRJ-01` | Runtime card schema, public-source validation, client re-resolution, selected museum/subdomain transition | Invalid-card fixtures and one exact card navigation browser flow | complete |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
 
 ## Living Project State Packages
@@ -108,7 +108,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `PRJ-01` | Exhibit registry and shell | `EXP-02`, `KG-05`, `LPS-01` | Shared exhibit contract, lazy registry, fallback shell | Registry and direct-link tests | complete |
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | complete |
 | `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Server exhibit-view adoption behind `museumV2`, lightweight Signal, authored Approach, exact anchors, legacy rollback | Flag-off parity, fallback integration, and overview-to-Approach browser flow | complete |
-| `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-06` | Selected Handle/Enter/Understand journey, one exploded layer, evidence, state, persistence, minimum subdomain handoff | Phase 3 vertical-slice evidence | pending |
+| `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-06` | Selected Handle/Enter/Understand journey, one exploded layer, evidence, state, persistence, minimum subdomain handoff | Phase 3 vertical-slice evidence | complete |
 | `PRJ-05` | Dreamlife experience | `PRJ-04` framework | Future paths, reaction, experiment, exploded layers | Authored scenario and interaction QA | pending |
 | `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework | LifeInbox or Sudoku experience not selected first | Product and architecture QA | pending |
 | `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06` | Standard/archive/related tiers and selected easter eggs | Every project assigned a tier | pending |
@@ -128,10 +128,10 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | complete |
-| `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | pending |
+| `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | complete |
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
-| `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | pending |
+| `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | in-progress |
 | `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | complete |
 
 ## Prototype Packages
@@ -154,7 +154,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 ## Current Phase 3 Execution Queue
 
-Completed foundation packages remain in their tables and evidence files. Current delivery order is:
+The Phase 3 delivery sequence is complete:
 
 1. Implement `PRJ-02` equal deterministic LifeInbox/Sudoku spikes and record one selection.
 2. Implement `PRJ-03` registry-backed Signal/Approach behind `museumV2`; keep legacy rollback.
@@ -163,7 +163,7 @@ Completed foundation packages remain in their tables and evidence files. Current
 5. Converge the selected interaction and shared systems in `PRJ-04`.
 6. Run `QA-02`; promote no production flag without its separate release decision.
 
-`PRJ-02` and `PRJ-03` are both `ready` because their dependencies pass. Ready status permits selection, not simultaneous implementation; the one-active-code-package WIP rule prevents competing unfinished surfaces.
+Production promotion follows the separate 2026-07-18 decision. Phase 4 retains the one-active-code-package rule.
 
 ## Package Completion Checklist
 

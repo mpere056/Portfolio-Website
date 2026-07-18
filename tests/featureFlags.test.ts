@@ -21,9 +21,15 @@ describe('feature flags', () => {
       museumV2: true,
       lifeinboxExperience: true,
     });
-    expect(resolveFeatureFlags({ environment: 'production' }).experienceFoundation).toBe(false);
-    expect(resolveFeatureFlags({ environment: 'production' }).museumV2).toBe(false);
-    expect(resolveFeatureFlags({ environment: 'production' }).lifeinboxExperience).toBe(false);
+    expect(resolveFeatureFlags({ environment: 'production' })).toMatchObject({
+      experienceFoundation: true,
+      globalAI: true,
+      museumV2: true,
+      lifeinboxExperience: true,
+      dreamlifeExperience: false,
+      sudokuExperience: false,
+      ambientPresence: false,
+    });
   });
 
   it('allows explicit local overrides only in development', () => {
@@ -37,8 +43,8 @@ describe('feature flags', () => {
     }).globalAI).toBe(true);
     expect(resolveFeatureFlags({
       environment: 'production',
-      localOverrides: { globalAI: true },
-    }).globalAI).toBe(false);
+      localOverrides: { globalAI: false },
+    }).globalAI).toBe(true);
   });
 
   it('detects local, test, preview, and production environments without URL input', () => {
@@ -46,6 +52,6 @@ describe('feature flags', () => {
     expect(detectPortfolioEnvironment({ VERCEL_ENV: 'preview' })).toBe('preview');
     expect(detectPortfolioEnvironment({ NODE_ENV: 'production' })).toBe('production');
     expect(detectPortfolioEnvironment({ NODE_ENV: 'development' })).toBe('development');
-    expect(isFeatureEnabled('firstNote', resolveFeatureFlags({ environment: 'production' }))).toBe(false);
+    expect(isFeatureEnabled('firstNote', resolveFeatureFlags({ environment: 'production' }))).toBe(true);
   });
 });

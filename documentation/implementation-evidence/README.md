@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Purpose
 
@@ -50,6 +50,9 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-PRJ-02-01`, `EV-PRJ-02-02` | `PRJ-02` | accepted | `PRJ-02.md` |
 | `EV-PRJ-03-01` through `EV-PRJ-03-03` | `PRJ-03` | accepted | `PRJ-03.md` |
 | `EV-LPS-06-01`, `EV-LPS-06-02` | `LPS-06` | accepted | `LPS-06.md` |
+| `EV-AI-04-01`, `EV-AI-04-02` | `AI-04` | accepted | `AI-04.md` |
+| `EV-PRJ-04-01` through `EV-PRJ-04-03` | `PRJ-04` | accepted | `PRJ-04.md` |
+| `EV-QA-02-01` through `EV-QA-02-03` | `QA-02` | accepted | `QA-02.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -165,6 +168,14 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-PRJ-03-03` | `PRJ-03` | `CAP-PRJ-004`, `CAP-EXP-011` | integration-test | accepted | full local gate, rollback, calm path, and build | 2026-07-18 | `PRJ-03.md` |
 | `EV-LPS-06-01` | `LPS-06` | `CAP-LPS-007` | content-review | accepted | public source review and lifecycle validation | 2026-07-18 | `LPS-06.md` |
 | `EV-LPS-06-02` | `LPS-06` | `CAP-LPS-007` | integration-test | accepted | museum attachment, render fixture, and local browser flow | 2026-07-18 | `LPS-06.md` |
+| `EV-AI-04-01` | `AI-04` | `CAP-AI-006`, `CAP-AI-007` | privacy-security | accepted | `17b4491`, hostile-card and exact-resolution fixtures | 2026-07-18 | `AI-04.md` |
+| `EV-AI-04-02` | `AI-04` | `CAP-AI-006`, `CAP-AI-007` | preview | accepted | Vercel `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X`, live Firebase/Gemini response | 2026-07-18 | `AI-04.md` |
+| `EV-PRJ-04-01` | `PRJ-04` | `CAP-PRJ-005`, `CAP-LIB-001` | browser-flow | accepted | `1ccb0e7`, local Handle-to-Understand flow | 2026-07-18 | `PRJ-04.md` |
+| `EV-PRJ-04-02` | `PRJ-04` | `CAP-PRJ-006`, `CAP-LIB-002`, `CAP-LIB-003` | integration-test | accepted | exact depth, evidence, persistence, and subdomain handoff | 2026-07-18 | `PRJ-04.md` |
+| `EV-PRJ-04-03` | `PRJ-04` | `CAP-PRJ-005`, `CAP-PRJ-006` | performance | accepted | `013d74a`, 7,819-byte lazy chunk and rollback guard | 2026-07-18 | `PRJ-04.md` |
+| `EV-QA-02-01` | `QA-02` | `CAP-QA-002` | integration-test | accepted | 39 files/157 tests, type, content, lint, and build gate | 2026-07-18 | `QA-02.md` |
+| `EV-QA-02-02` | `QA-02` | `CAP-QA-002` | creative-review | accepted | desktop and 390x844 browser review | 2026-07-18 | `QA-02.md` |
+| `EV-QA-02-03` | `QA-02` | `CAP-QA-002` | preview | accepted | Vercel `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X` | 2026-07-18 | `QA-02.md` |
 
 ## Required Evidence Fields
 

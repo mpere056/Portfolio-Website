@@ -1,6 +1,6 @@
 # Decision Register
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -45,6 +45,7 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-18 | Promote the accepted exploration shell, museum, global AI, and LifeInbox depth together with independent rollback flags | Approved for execution | The visitor-facing site will stop serving the dormant legacy presentation; unimplemented project/prototype flags remain off | [Phase 3 Production Promotion Decision](2026-07-18-Phase-3-Production-Promotion-Decision.md) |
 | 2026-07-17 | Sequence Phase 3 around equal candidate spikes, feature-flagged museum integration, one selected-project state seed, validated AI cards, one converged slice, and a full quality gate | Confirmed | Portfolio-wide lifecycle review no longer blocks the first slice; selected-project handoff is bounded in `PRJ-04`; generalized route/history work remains `PRJ-08` | [Phase 3 Vertical-Slice Sequencing Decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md) |
 | 2026-07-16 | Use a technically multi-route portfolio that behaves as one continuous exploratory world | Confirmed | Durable routes provide loading/share/history boundaries; semantic destinations own depth; flagship subdomains own substantial Enter/Understand states; cross-origin state uses bounded cookie and URL handoff rather than shared local storage | [Information Architecture And Routing Decision](2026-07-16-Information-Architecture-And-Routing-Decision.md) |
 | 2026-07-15 | Replace the unavailable Supabase retrieval store with server-only Firestore native vector search on the Spark plan | Confirmed and implemented | `BAS-08` accepted IAM, index, canonical re-indexing, Vercel cutover, and no-billing guardrails; current MDX remains authoritative | [Firebase Retrieval Migration Decision](2026-07-15-Firebase-Retrieval-Migration-Decision.md) |

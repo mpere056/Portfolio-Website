@@ -26,7 +26,17 @@ const ALL_DISABLED = Object.fromEntries(
 const DEFAULTS: Readonly<Record<PortfolioEnvironment, FeatureFlags>> = {
   development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, lifeinboxExperience: true },
   preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, lifeinboxExperience: true },
-  production: { ...ALL_DISABLED },
+  production: {
+    ...ALL_DISABLED,
+    experienceFoundation: true,
+    firstNote: true,
+    guidedTour: true,
+    globalAI: true,
+    semanticLighting: true,
+    meaningfulDiscoveries: true,
+    museumV2: true,
+    lifeinboxExperience: true,
+  },
   test: { ...ALL_DISABLED },
 };
 

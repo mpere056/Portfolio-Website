@@ -182,7 +182,7 @@ Implementation checkpoint: Phase 2 is complete. All ten packages pass the 123-te
 
 ## Phase 3: First Flagship Vertical Slice
 
-Implementation checkpoint: `PRJ-01` is complete and deployed, and `QA-06` accepted the reconciled baseline at `1286931`. `WI-PRJ-02-01` is the active implementation handoff. `PRJ-03` is dependency-ready but remains queued behind the equal-candidate decision under the one-active-code-package rule. The authoritative sequence and scope boundaries are in [the Phase 3 sequencing decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md).
+Implementation checkpoint: Phase 3 is complete. LifeInbox was selected after equal spikes; the museum, reviewed living state, validated archive door, Signal-to-Understand product journey, evidence handoff, lazy failure boundary, and corrected Preview have passed `QA-02`. The authoritative sequence remains in [the Phase 3 sequencing decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md), and production exposure is governed by [the Phase 3 promotion decision](2026-07-18-Phase-3-Production-Promotion-Decision.md).
 
 ### Goal
 
@@ -228,6 +228,8 @@ Both spikes must use synthetic local state, deterministic reducers, the same evi
 - The same core primitives appear reusable without forcing identical project interactions.
 - The selected exhibit has truthful reviewed state without claiming portfolio-wide lifecycle completion.
 - The legacy Projects route remains a tested rollback until a separate production promotion.
+
+Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` through `03`, and `EV-QA-02-01` through `03`. Generalized routing and the remaining flagships correctly move to Phase 4 rather than expanding this slice.
 
 ## Phase 4: Museum Framework And Remaining Flagships
 

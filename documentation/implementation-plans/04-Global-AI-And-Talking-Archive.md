@@ -18,7 +18,7 @@ Last updated: 2026-07-17
 
 Replace the assumption that AI lives mainly on `/chat` with one quiet, contextual AI presence available throughout the site.
 
-Current status: `AI-01` through `AI-03` are complete through `aeb3152`. The root shell works across routes and sends identifier-only context; the server resolves public graph context, preserves vector relevance, and returns native structured source descriptors; the client links only exact canonical node/destination matches. `PRJ-01` now provides the exhibit IDs and safe Signal/Approach entries that `AI-04` will target. Cards and `/chat` migration remain later packages.
+Current status: `AI-01` through `AI-04` are complete. The root shell works across routes and sends identifier-only context; the server resolves public graph context, preserves vector relevance, returns validated sources, and emits one reviewed LifeInbox archive door. The client re-resolves its exact registered destination and stores the Handle checkpoint before navigation. Expanded card composition and `/chat` migration remain later packages.
 
 This plan covers:
 

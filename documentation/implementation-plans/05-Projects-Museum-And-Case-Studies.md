@@ -147,7 +147,7 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 6. A registry, graph, model, or project-module failure renders `ExhibitFallback` rather than an empty scene.
 7. Browser Back and direct-entry behavior remain unchanged until the new path explicitly owns them.
 
-`museumV2` begins off in every environment. `PRJ-03` may enable it in Development only after server/fallback tests; Preview promotion requires the overview-to-Approach browser flow. Production remains off through `QA-02` and a separate promotion decision.
+`museumV2` and `lifeinboxExperience` are enabled in Development and Preview after their accepted gates. Production promotion is authorized only by the separate 2026-07-18 release decision; either flag can independently restore Approach-only or the complete legacy Projects path.
 
 ## Flagship Selection Spike
 

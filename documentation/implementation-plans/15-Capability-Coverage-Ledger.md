@@ -433,8 +433,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-AI-003` | Quiet global shell and unobtrusive state transitions | `AI-02` | `V-09` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-AI-004` | Lazy loading, error fallback, sound-off, and lower-stimulation AI behavior | `AI-02` | `V-09`, `V-22` | `O-02` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-AI-005` | Contextual graph retrieval with public source enforcement | `AI-03` | `V-09`, `V-11` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
-| `CAP-AI-006` | Structured archive-card generation and validation | `AI-04` | `V-10` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-AI-007` | In-page, route, and cross-subdomain destination flow | `AI-04` | `V-10` | `O-02` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-AI-006` | Structured archive-card generation and validation | `AI-04` | `V-10` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
+| `CAP-AI-007` | In-page, route, and cross-subdomain destination flow | `AI-04` | `V-10` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-selected-slice |
 | `CAP-AI-008` | Existing chat migration and deep-link compatibility | `AI-05` | `V-09`, `V-10` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
 
 ### CAP-AI-003 Through CAP-AI-005: Quiet Contextual Global AI
@@ -446,12 +446,12 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S/A/I/T/Q accepted`; content is accepted where applicable; rollout remains behind the Phase 2 Production-off boundary
 - Packages: `AI-02`, `AI-03`
 - Works now: One lazy root-owned shell follows route and selected-object context, isolates errors, remains unobtrusive until opened or relevant, and preserves `/chat`. Requests send validated IDs rather than client claims; server retrieval enforces public graph context; native structured sources render only exact canonical destinations.
-- Named gaps: Archive cards and destination transitions remain `AI-04`; full `/chat` migration remains `AI-05`.
+- Named gaps: The selected LifeInbox card is complete; expanded card composition and full `/chat` migration remain `AI-05` or later.
 - Safe exposure: Development and Preview defaults are on; Production is off pending combined creative review; malformed context degrades to context-free chat.
-- Evidence: `EV-AI-02-01`, `EV-AI-02-02`, `EV-AI-03-01`.
-- Work items: `WI-AI-02-01`, `WI-AI-03-01` (done).
-- Next checkpoint: `AI-04` adds validated cards during the first flagship vertical slice.
-- Last assessed: 2026-07-17 through `aeb3152` and the 123-test aggregate gate.
+- Evidence: `EV-AI-02-01`, `EV-AI-02-02`, `EV-AI-03-01`, `EV-AI-04-01`, `EV-AI-04-02`.
+- Work items: `WI-AI-02-01`, `WI-AI-03-01`, `WI-AI-04-01` (done).
+- Next checkpoint: `AI-05` may address `/chat` reuse after the Phase 3 production release is stable.
+- Last assessed: 2026-07-18 through corrected Preview `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X`.
 
 ## Living Project State
 
@@ -489,8 +489,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-PRJ-002` | Stable exhibit anchors and depth-fallback resolution | `PRJ-01` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: planned` | verified-foundation |
-| `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
+| `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
@@ -562,9 +562,9 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` | `V-17` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
-| `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` or `PRJ-06` | `V-15`, `V-17` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-LIB-003` | LifeInbox evidence, privacy, errors, and living state | `PRJ-04` or `PRJ-06` | `V-17`, `V-19` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` | `V-17` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
+| `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` | `V-15`, `V-17` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-layer |
+| `CAP-LIB-003` | LifeInbox evidence, privacy, errors, and living state | `PRJ-04` | `V-17`, `V-19` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
 | `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
 | `CAP-SDK-003` | Sudoku collaboration architecture, validity, evidence, and fallback | `PRJ-04` or `PRJ-06` | `V-15`, `V-18` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -587,7 +587,7 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
-| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `U/U/U/U/U/U/U` | unassessed |

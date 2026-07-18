@@ -86,7 +86,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 0 Baseline | `BAS-01`, `BAS-02`, `BAS-04`, `BAS-06`, `BAS-07`, `BAS-05`, `BAS-08`, `ARC-01` | Baseline, supported runtime/framework, durable retrieval, target-state capability audit, and stable-ID decisions recorded |
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
-| Phase 3 First flagship | completed `PRJ-01`; `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` | One selected full vertical slice passes product, route, state, AI, fallback, performance, creative, and Preview acceptance |
+| Phase 3 First flagship | complete: `PRJ-01` through `PRJ-04`, `LPS-06`, `AI-04`, `QA-02` | LifeInbox full vertical slice passes product, route, state, AI, fallback, performance, creative, and corrected Preview acceptance |
 | Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` | Three flagship experiences, generalized routes, reviewed classifications, and lighter projects are coherent |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |

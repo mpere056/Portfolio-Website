@@ -211,7 +211,7 @@ For every milestone, manually review:
 
 ## First Flagship Quality Gate
 
-`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. It requires:
+`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. It was accepted on 2026-07-18 with evidence in `documentation/implementation-evidence/QA-02.md` and requires:
 
 | Gate | Required proof |
 | --- | --- |
