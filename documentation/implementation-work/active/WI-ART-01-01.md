@@ -31,7 +31,7 @@ Mark selects the portfolio-level direction and Museum composition; Museum and Li
 
 ### Known-Good Point
 
-- Commit: `8f3c2b0` selected the Impossible Observatory and recorded the first keyframe briefs.
+- Commit: `519dd47` integrates the selected Observatory, art packets, route coverage, and `ART-01` through `ART-06` delivery boundaries across the implementation program.
 - Branch/worktree: `main`; unrelated local changes remain outside this work item.
 - Verification command: `npm exec vitest run tests/planningIntegrity.test.ts` after all tracking updates.
 - Verification result: all seven planning-integrity checks pass; 39 test files and 158 tests pass; strict TypeScript and 50-node/19-relationship content validation pass.
@@ -113,4 +113,4 @@ Mark selects the portfolio-level direction and Museum composition; Museum and Li
 - Remaining: rendered Museum alternatives, selection/rejection review, LifeInbox keyframes, and accepted packet evidence.
 - Decision: `ART-01` ends at accepted packets; `ART-02` owns proven runtime roles; `ART-03` owns first-slice remediation and renewed creative QA.
 - Next: produce three Museum Signal visual keyframes and reject one explicitly.
-- Commit: pending this documentation increment
+- Commit: `519dd47`
