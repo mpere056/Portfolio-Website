@@ -46,6 +46,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | Evidence ID | Package | Status | Durable record |
 | --- | --- | --- | --- |
 | `EV-PRJ-01-01` through `EV-PRJ-01-03` | `PRJ-01` | accepted | `PRJ-01.md` |
+| `EV-QA-06-01` | `QA-06` | accepted | `QA-06.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -153,6 +154,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-PRJ-01-01` | `PRJ-01` | `CAP-PRJ-001`, `CAP-PRJ-002` | contract | accepted | `e462080`, 134-test local gate | 2026-07-17 | `PRJ-01.md` |
 | `EV-PRJ-01-02` | `PRJ-01` | `CAP-PRJ-001`, `CAP-PRJ-002` | integration-test | accepted | `e462080`, local production build | 2026-07-17 | `PRJ-01.md` |
 | `EV-PRJ-01-03` | `PRJ-01` | `CAP-PRJ-001`, `CAP-PRJ-002` | production | accepted | Vercel `dpl_9DeyQkjizoRc91163TcF6TuumEbL`, public route smoke | 2026-07-17 | `PRJ-01.md` |
+| `EV-QA-06-01` | `QA-06` | `CAP-QA-006` | integration-test | accepted | `1286931`, 6 integrity checks and full repository gate | 2026-07-17 | `QA-06.md` |
 
 ## Required Evidence Fields
 

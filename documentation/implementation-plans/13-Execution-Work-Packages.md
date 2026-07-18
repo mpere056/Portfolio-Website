@@ -132,7 +132,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | pending |
-| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | in-progress |
+| `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | complete |
 
 ## Prototype Packages
 
@@ -156,13 +156,12 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 Completed foundation packages remain in their tables and evidence files. Current delivery order is:
 
-1. Close `QA-06` documentation reconciliation and restore `WI-PRJ-02-01` to the Now slot.
-2. Implement `PRJ-02` equal deterministic LifeInbox/Sudoku spikes and record one selection.
-3. Implement `PRJ-03` registry-backed Signal/Approach behind `museumV2`; keep legacy rollback.
-4. Complete `LPS-06` with Mark's review of the selected flagship only.
-5. Implement `AI-04` card validation, then one selected-destination transition.
-6. Converge the selected interaction and shared systems in `PRJ-04`.
-7. Run `QA-02`; promote no production flag without its separate release decision.
+1. Implement `PRJ-02` equal deterministic LifeInbox/Sudoku spikes and record one selection.
+2. Implement `PRJ-03` registry-backed Signal/Approach behind `museumV2`; keep legacy rollback.
+3. Complete `LPS-06` with Mark's review of the selected flagship only.
+4. Implement `AI-04` card validation, then one selected-destination transition.
+5. Converge the selected interaction and shared systems in `PRJ-04`.
+6. Run `QA-02`; promote no production flag without its separate release decision.
 
 `PRJ-02` and `PRJ-03` are both `ready` because their dependencies pass. Ready status permits selection, not simultaneous implementation; the one-active-code-package WIP rule prevents competing unfinished surfaces.
 

@@ -10,18 +10,17 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit foundation is accepted at `e462080`, tracking closes at `fa0d671`, and production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready while the visitor-facing `/projects` presentation remains unchanged. A bounded `QA-06` reconciliation is active before candidate implementation resumes.
+Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit foundation is accepted at `e462080`, production deployment `dpl_9DeyQkjizoRc91163TcF6TuumEbL` is Ready while the visitor-facing `/projects` presentation remains unchanged, and planning integrity is accepted at `1286931`. Candidate implementation may now resume.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-QA-06-01` | in-progress | `QA-06` | Cross-document audit findings named against deployed `PRJ-01` | Reconcile Phase 3 dependencies and add automated planning-integrity checks | 2026-07-17 |
-| Next | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` registry, loaders, fallback, direct links, tests, and build accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
+| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` and the `QA-06` structural gate are accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
+| Next | Museum Signal/Approach integration | ready | `PRJ-03` | Registry, server view, anchors, graph response, and legacy rollback boundary accepted | Create `WI-PRJ-03-01` only after the `PRJ-02` selection record | 2026-07-17 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-QA-06-01` | Reconcile and strengthen the implementation plans | in-progress | high | `QA-06` | `CAP-QA-006` | `active/WI-QA-06-01.md` | 2026-07-17 |
 | `WI-PRJ-02-01` | Compare the first flagship candidates | ready | high | `PRJ-02` | `CAP-PRJ-003`, `CAP-LIB-001`, `CAP-SDK-001`, `CAP-SDK-002` | `active/WI-PRJ-02-01.md` | 2026-07-17 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
@@ -36,7 +35,8 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
-| `WI-PRJ-01-01` | done | `PRJ-01` | Nine canonical exhibits, three lazy flagship manifests, stable anchors, and resilient semantic fallbacks accepted | `EV-PRJ-01-01`, `EV-PRJ-01-02` | 2026-07-17 |
+| `WI-QA-06-01` | done | `QA-06` | Plans, packages, capabilities, evidence, work items, and dashboard reconciled; six structural checks added | `EV-QA-06-01` | 2026-07-17 |
+| `WI-PRJ-01-01` | done | `PRJ-01` | Nine canonical exhibits, three lazy flagship manifests, stable anchors, semantic fallbacks, and Production route smoke accepted | `EV-PRJ-01-01` through `EV-PRJ-01-03` | 2026-07-17 |
 | `WI-QA-01-02` | done | `QA-01` | Aggregate tests/build, protected Preview, production-safe deployment, live routes, and structured AI sources accepted | `EV-QA-01-02` through `EV-QA-01-04` | 2026-07-17 |
 | `WI-EXP-06-01` | done | `EXP-06` | Three explicit meaningful discoveries, prerequisites, semantic persistence, and no-score/tour exclusion accepted | `EV-EXP-06-01`, `EV-EXP-06-02` | 2026-07-17 |
 | `WI-EXP-05-01` | done | `EXP-05` | Three-rule relationship instrument, canonical semantic light, and persisted stimulation accepted | `EV-EXP-05-01`, `EV-EXP-05-02`, `EV-EXP-05-03` | 2026-07-17 |
@@ -45,7 +45,6 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | `WI-AI-02-01` | done | `AI-02` | Quiet lazy global shell, route context, clear/close/error, optional audio, and `/chat` compatibility accepted | `EV-AI-02-01`, `EV-AI-02-02` | 2026-07-16 |
 | `WI-KG-06-01` | done | `KG-06` | Public graph metadata, bounded retrieval context, source descriptors, legacy compatibility, and 42-chunk backfill accepted | `EV-KG-06-01`, `EV-KG-06-02` | 2026-07-16 |
 | `WI-KG-05-01` | done | `KG-05` | Deterministic visibility-safe bounded graph queries and destination render adapters accepted | `EV-KG-05-01` | 2026-07-16 |
-| `WI-EXP-03-01` | done | `EXP-03` | One-time wake, audio-independent reveal, return restore, reset, and keyboard flow accepted behind flags | `EV-EXP-03-01`, `EV-EXP-03-02` | 2026-07-16 |
 
 Keep the most recent ten here. Completed files remain under `completed/`; canceled files remain under `canceled/`.
 

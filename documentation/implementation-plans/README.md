@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 and Phase 2 are complete; `PRJ-01` is complete and deployed; `PRJ-02` and `PRJ-03` are dependency-ready; `QA-06` is reconciling the Phase 3 sequence and structural tracking guard before candidate implementation resumes.
+Current checkpoint: Phase 1 and Phase 2 are complete; `PRJ-01` is complete and deployed; `QA-06` accepted the reconciled planning baseline and structural tracking guard at `1286931`; `PRJ-02` is Now and `PRJ-03` is ready/Next.
 
 ## Document Authority
 

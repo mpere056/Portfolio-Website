@@ -182,7 +182,7 @@ Implementation checkpoint: Phase 2 is complete. All ten packages pass the 123-te
 
 ## Phase 3: First Flagship Vertical Slice
 
-Implementation checkpoint: `PRJ-01` is complete and deployed. `WI-QA-06-01` is the active planning-integrity gate; after it closes, `WI-PRJ-02-01` becomes the implementation handoff. `PRJ-03` is dependency-ready but remains queued behind the equal-candidate decision under the one-active-code-package rule. The authoritative sequence and scope boundaries are in [the Phase 3 sequencing decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md).
+Implementation checkpoint: `PRJ-01` is complete and deployed, and `QA-06` accepted the reconciled baseline at `1286931`. `WI-PRJ-02-01` is the active implementation handoff. `PRJ-03` is dependency-ready but remains queued behind the equal-candidate decision under the one-active-code-package rule. The authoritative sequence and scope boundaries are in [the Phase 3 sequencing decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md).
 
 ### Goal
 

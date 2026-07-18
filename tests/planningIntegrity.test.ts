@@ -83,9 +83,14 @@ describe('implementation planning integrity', () => {
     const registryItems = new Map(activeRows.map(row => [row[0], { state: row[2], packageId: row[4] }]));
     const activeFiles = fs.readdirSync(path.join(work, 'active'))
       .filter(file => /^WI-.*\.md$/.test(file));
+    const currentFocus = tableRows(section(registry, 'Current Focus'))
+      .map(cells)
+      .find(row => row[0] === 'Now');
 
     expect([...registryItems.keys()].sort()).toEqual(activeFiles.map(file => file.slice(0, -3)).sort());
-    expect(activeRows.filter(row => row[2] === 'in-progress')).toHaveLength(1);
+    expect(activeRows.filter(row => row[2] === 'in-progress').length).toBeLessThanOrEqual(1);
+    expect(currentFocus, 'work registry has no Now row').toBeDefined();
+    expect(registryItems.get(currentFocus![1])).toEqual({ state: currentFocus![2], packageId: currentFocus![3] });
 
     for (const file of activeFiles) {
       const markdown = fs.readFileSync(path.join(work, 'active', file), 'utf8');

@@ -559,7 +559,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `S: accepted; C: not-applicable; A: working; I: working; T: not-started; Q: not-applicable; R: not-applicable` | in-progress |
+| `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PXP-001` | Evidence-backed skill map prototype and decision | `PXP-01` | `V-24` | Experimental | 2 | `U/U/U/U/U/U/U` | deferred |
 | `CAP-PXP-002` | Rare site-help request prototype and decision | `PXP-03` | `V-21` | Experimental | 1 | `U/U/U/U/U/U/U` | deferred |
 
@@ -582,18 +582,18 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-QA-006: Tracking Integrity And Evidence Reconciliation
 
 - Owner: Codex
-- Lifecycle: in-progress
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-applicable; A: working; I: working; T: not-started; Q: not-applicable; R: not-applicable`
+- Dimension states: `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable`
 - Package: `QA-06`
-- Works now: Package, capability, work-item, evidence, decision, and dashboard records are being reconciled against the repository and live deployment rather than inferred from earlier plans.
-- Named gaps: The canonical evidence registry and dashboard still require final count reconciliation, and the planning-integrity test has not yet passed.
+- Works now: Package, capability, work-item, evidence, decision, and dashboard records are reconciled against the repository and live deployment; six automated checks fail on package-count, package-reference, active-work, durable-evidence, capability-evidence, or dashboard drift.
+- Named gaps: No `QA-06` acceptance gap remains. The test cannot replace package-specific functional or creative evidence and must continue to run whenever structural planning records change.
 - Safe exposure: Documentation and test infrastructure only; no visitor behavior or production configuration changes.
-- Evidence: none accepted yet.
-- Work item: `WI-QA-06-01` (in-progress).
-- Next checkpoint: Pass the integrity test, close this work item with durable evidence, and hand the only active implementation slot to `PRJ-02`.
-- Last assessed: 2026-07-17 during the post-Phase-2 planning audit.
+- Evidence: `EV-QA-06-01`.
+- Work item: `WI-QA-06-01` (done).
+- Next checkpoint: Keep the integrity test in the repository gate while `WI-PRJ-02-01` executes.
+- Last assessed: 2026-07-17 at `1286931` with the 140-test aggregate gate.
 
 ## Per-Capability Detail Record
 
