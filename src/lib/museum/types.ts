@@ -7,6 +7,7 @@ import type {
   ExperienceId,
   NodeId,
 } from '../portfolioContracts';
+import type { ReviewedProjectState } from '../content/projectStates';
 
 export interface ExhibitVisualDescriptor {
   key: string;
@@ -90,6 +91,7 @@ export interface MuseumExhibitView {
   experienceId?: ExperienceId;
   evidenceNodeIds: readonly NodeId[];
   relatedNodeIds: readonly NodeId[];
+  projectState?: ReviewedProjectState;
   status: MuseumExhibitStatus;
   fallbackReason?: string;
 }

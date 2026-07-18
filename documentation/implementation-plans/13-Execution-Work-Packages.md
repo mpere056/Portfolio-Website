@@ -87,7 +87,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `AI-01` | AI context provider | `ARC-02`, `ARC-04` | Context stack, route/object adapters | Nested context tests | complete |
 | `AI-02` | Quiet global shell | `AI-01`, `BAS-03` | Dormant/context/listening/responding states, lazy surface | Cross-route manual and integration QA | complete |
 | `AI-03` | Graph-aware retrieval and sources | `KG-06`, `AI-01`, `AI-02` | Context resolution, sources, visibility enforcement | Retrieval and privacy tests | complete |
-| `AI-04` | Archive cards and selected-destination flow | `AI-03`, `ARC-03`, `PRJ-01` | Runtime card schema, public-source validation, client re-resolution, selected museum/subdomain transition | Invalid-card fixtures and one exact card navigation browser flow | pending |
+| `AI-04` | Archive cards and selected-destination flow | `AI-03`, `ARC-03`, `PRJ-01` | Runtime card schema, public-source validation, client re-resolution, selected museum/subdomain transition | Invalid-card fixtures and one exact card navigation browser flow | in-progress |
 | `AI-05` | Existing chat migration | `AI-02`, `AI-04` | Reusable chat surface, updated links, `/chat` decision | Deep-link and regression tests | pending |
 
 ## Living Project State Packages
@@ -99,7 +99,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `LPS-03` | Flagship state files | `LPS-02` | Edited state for active flagships | Content review and rendered fixture | pending |
 | `LPS-04` | Content versions and disturbance metadata | `LPS-03` | Meaningful version policy and compiled update records | Version comparison tests | pending |
 | `LPS-05` | Editorial workflow and AI precedence | `LPS-03`, `KG-06` | Update checklist, current-state retrieval precedence | Conflict fixture resolves to current state | pending |
-| `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One source-reviewed lifecycle and minimum current/final state for the selected first flagship, with Mark correction path | Review record, lifecycle validation, public evidence links, and rendered fallback fixture | in-progress |
+| `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One source-reviewed lifecycle and minimum current/final state for the selected first flagship, with Mark correction path | Review record, lifecycle validation, public evidence links, and rendered fallback fixture | complete |
 
 ## Project Museum Packages
 

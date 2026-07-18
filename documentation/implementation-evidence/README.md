@@ -49,6 +49,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-QA-06-01` | `QA-06` | accepted | `QA-06.md` |
 | `EV-PRJ-02-01`, `EV-PRJ-02-02` | `PRJ-02` | accepted | `PRJ-02.md` |
 | `EV-PRJ-03-01` through `EV-PRJ-03-03` | `PRJ-03` | accepted | `PRJ-03.md` |
+| `EV-LPS-06-01`, `EV-LPS-06-02` | `LPS-06` | accepted | `LPS-06.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -162,6 +163,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-PRJ-03-01` | `PRJ-03` | `CAP-PRJ-004` | integration-test | accepted | local museum/flag/registry gate | 2026-07-18 | `PRJ-03.md` |
 | `EV-PRJ-03-02` | `PRJ-03` | `CAP-PRJ-004` | browser-flow | accepted | local Development desktop and mobile | 2026-07-18 | `PRJ-03.md` |
 | `EV-PRJ-03-03` | `PRJ-03` | `CAP-PRJ-004`, `CAP-EXP-011` | integration-test | accepted | full local gate, rollback, calm path, and build | 2026-07-18 | `PRJ-03.md` |
+| `EV-LPS-06-01` | `LPS-06` | `CAP-LPS-007` | content-review | accepted | public source review and lifecycle validation | 2026-07-18 | `LPS-06.md` |
+| `EV-LPS-06-02` | `LPS-06` | `CAP-LPS-007` | integration-test | accepted | museum attachment, render fixture, and local browser flow | 2026-07-18 | `LPS-06.md` |
 
 ## Required Evidence Fields
 

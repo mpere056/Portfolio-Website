@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { MuseumExhibitView } from '@/lib/museum/types';
 import { resolveMuseumHash } from '@/lib/museum/navigation';
 import ExhibitFallback from './ExhibitFallback';
+import ProjectStateSummary from './ProjectStateSummary';
 import styles from './MuseumShell.module.css';
 
 const SIGNAL_COLORS = ['#c98b57', '#78aaa0', '#d2b66e', '#8a9fc4', '#c77968', '#87a578'];
@@ -77,6 +78,7 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
                 <p className="font-mono text-[0.66rem] uppercase tracking-[0.28em] text-[#d8b98c]/55">Approach / {selected.year}</p>
                 <h2 className="mt-4 max-w-3xl font-serif text-5xl font-medium leading-[0.95] tracking-[-0.035em] md:text-7xl">{selected.headline}</h2>
                 <p className="mt-7 max-w-2xl text-base leading-8 text-[#f4efe5]/58">{selected.summary}</p>
+                {selected.projectState ? <ProjectStateSummary state={selected.projectState} /> : null}
               </div>
               <div>
                 <div className={styles.tech} aria-label={`${selected.name} technologies`}>

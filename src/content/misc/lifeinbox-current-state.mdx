@@ -1,0 +1,22 @@
+---
+slug: "lifeinbox-current-state"
+projectId: "project:lifeinbox"
+lifecycle: "evolving"
+contentVersion: "2026-7-18:lifeinbox-state"
+updatedAt: "2026-07-18"
+summary: "LifeInbox has a working Android-first local capture and private sync foundation. Current work is about making reminder behavior, older enriched data, and the deploy path more trustworthy."
+correctionNote: "This state is grounded in the public LifeInbox repository snapshot and can be corrected by Mark without changing historical project writing."
+sections:
+  stableFoundation: "The Android app captures locally into SQLite, syncs dirty changes with a private Fastify/PostgreSQL server, and supports background enrichment plus inbox, lists, people, projects, reminders, and shopping surfaces."
+  currentQuestion: "Can reminder notification and resurfacing behavior earn trust through more live use while the local, GitHub, and VPS deploy path is normalized?"
+  latestMeaningfulChange: "Recent reliability work improved prompt and privacy handling, timestamp safety, reminder sync, and the documented source-to-deploy path."
+  nextExperiment: "Use reminder behavior in real conditions for longer and reconcile the normal source-control deployment path before treating the current system as routine."
+evidence:
+  - label: "LifeInbox repository"
+    href: "https://github.com/mpere056/LifeInbox-Option-B"
+  - label: "Why local-first capture needs trust"
+    href: "https://lifeinbox.marknperera.ca/blog/local-first-capture-needs-trust"
+---
+
+This record is the current public state used by the portfolio exhibit. It is deliberately separate from historical case-study writing and does not infer progress from commit timestamps.
+

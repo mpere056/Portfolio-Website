@@ -1,6 +1,7 @@
 import { DESTINATION_REGISTRY } from '../destinations';
 import { loadKnowledgeGraphQueries } from '../content/queries';
 import { getProjects, type Project } from '../projects';
+import { loadProjectStates } from '../content/projectStates';
 import { createExhibitRegistry, resolveExhibitEntry } from './registry';
 import type {
   ExhibitRegistryIssue,
@@ -18,6 +19,12 @@ function projectHref(project: Project, definition?: MuseumExhibitDefinition) {
 
 export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
   const projects = await getProjects();
+  let projectStates = new Map<string, Awaited<ReturnType<typeof loadProjectStates>>[number]>();
+  try {
+    projectStates = new Map((await loadProjectStates()).map(state => [state.projectId, state]));
+  } catch {
+    // Authored exhibit identity remains available if living-state content is invalid.
+  }
   const registry = createExhibitRegistry(projects);
   const issues: ExhibitRegistryIssue[] = [...registry.issues];
   let publicProjectIds = new Set<string>();
@@ -62,6 +69,7 @@ export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
       ...(definition?.experienceId ? { experienceId: definition.experienceId } : {}),
       evidenceNodeIds: definition?.evidenceNodeIds ?? [],
       relatedNodeIds: definition?.relatedNodeIds ?? [],
+      ...(projectStates.get(project.nodeId) ? { projectState: projectStates.get(project.nodeId) } : {}),
       status: valid ? 'registered' : 'fallback',
       ...(!valid ? { fallbackReason: 'This exhibit is using its resilient content view.' } : {}),
     };

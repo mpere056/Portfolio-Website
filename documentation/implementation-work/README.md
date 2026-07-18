@@ -14,14 +14,14 @@ Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit fo
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-LPS-06-01` | in-progress | `LPS-06` | `PRJ-03` accepted with browser/build evidence and rollback intact | Author, validate, and render the minimum source-grounded LifeInbox state record | 2026-07-18 |
-| Next | Archive cards and selected transition | pending | `AI-04` | AI sources and canonical destinations accepted | Implement runtime card validation before selected navigation | 2026-07-18 |
+| Now | `WI-AI-04-01` | in-progress | `AI-04` | Validated LifeInbox state and canonical destinations accepted | Define and parse runtime archive cards before rendering selected navigation | 2026-07-18 |
+| Next | First complete LifeInbox slice | pending | `PRJ-04` | Spikes, museum, and living state accepted; AI card active | Converge Handle/Enter/Understand only after card validation passes | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-LPS-06-01` | Seed truthful LifeInbox state | in-progress | high | `LPS-06` | `CAP-LPS-007` | `active/WI-LPS-06-01.md` | 2026-07-18 |
+| `WI-AI-04-01` | Turn archive cards into safe doors | in-progress | high | `AI-04` | `CAP-AI-006`, `CAP-AI-007` | `active/WI-AI-04-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-LPS-06-01` | done | `LPS-06` | Source-grounded evolving LifeInbox state, evidence, museum rendering, and correction path accepted | `EV-LPS-06-01`, `EV-LPS-06-02` | 2026-07-18 |
 | `WI-PRJ-03-01` | done | `PRJ-03` | Nine-signal museum, exact Approach anchors, calm path, fallback, and legacy rollback accepted | `EV-PRJ-03-01` through `EV-PRJ-03-03` | 2026-07-18 |
 | `WI-PRJ-02-01` | done | `PRJ-02` | Equal deterministic LifeInbox/Sudoku spikes accepted; LifeInbox selected for the first complete slice | `EV-PRJ-02-01`, `EV-PRJ-02-02` | 2026-07-18 |
 | `WI-QA-06-01` | done | `QA-06` | Plans, packages, capabilities, evidence, work items, and dashboard reconciled; six structural checks added | `EV-QA-06-01` | 2026-07-17 |

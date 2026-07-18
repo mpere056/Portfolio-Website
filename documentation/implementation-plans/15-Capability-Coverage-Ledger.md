@@ -463,7 +463,23 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-LPS-004` | Meaningful content-version and update metadata | `LPS-04` | `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-005` | Editorial update, freshness, and review workflow | `LPS-05` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-006` | AI precedence for edited current state over historical material | `LPS-05` | `V-09`, `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-LPS-007` | Reviewed selected-flagship state seed | `LPS-06` | `V-19` | `O-03` | 3 | `S: accepted; C: not-started; A: accepted; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
+| `CAP-LPS-007` | Reviewed selected-flagship state seed | `LPS-06` | `V-19` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
+
+### CAP-LPS-007: Reviewed Selected-Flagship State Seed
+
+- Owner: Codex with explicit Mark correction path
+- Lifecycle: verified
+- Health: on-track
+- Confidence: high
+- Dimension states: `S/C/A/I/T/Q accepted; R not-applicable`
+- Package: `LPS-06`
+- Works now: One validated `evolving` LifeInbox record states the stable foundation, current trust question, latest meaningful reliability work, next validation, evidence links, content version, and review date; it attaches to the museum view and renders progressively.
+- Named gaps: Portfolio-wide lifecycle review remains `LPS-02`; full three-flagship state remains `LPS-03`; Mark may correct this source-grounded wording without rewriting historical content.
+- Safe exposure: Public repository facts only; no inference from Git dates and no commercial, user, or release claim.
+- Evidence: `EV-LPS-06-01`, `EV-LPS-06-02`.
+- Work item: `WI-LPS-06-01` (done).
+- Next checkpoint: `AI-04` may target the validated LifeInbox destination and safe state.
+- Last assessed: 2026-07-18 at the 50-node/19-edge content checkpoint.
 
 ## Museum And Shared Case-Study System
 
