@@ -7,6 +7,7 @@ import {
 } from '@/lib/generationPolicy'
 import { parseChatRequest } from '@/lib/ai/request'
 import { createSourcePayload } from '@/lib/ai/sources'
+import { createArchiveCardPayload } from '@/lib/ai/archiveCards'
 
 // Firestore's server client requires the Node.js runtime.
 export const runtime = 'nodejs';
@@ -85,6 +86,7 @@ export async function POST(req: Request) {
     // Convert the response into a friendly text-stream
     const data = new StreamData();
     data.append(createSourcePayload(sources));
+    data.append(createArchiveCardPayload(sources));
     const stream = GoogleGenerativeAIStream(geminiStream, {
       onFinal: () => data.close(),
     });

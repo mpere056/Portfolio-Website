@@ -141,6 +141,8 @@ export interface ArchiveCard {
   summary: string;
   sourceNodeIds: readonly NodeId[];
   destinationId: DestinationId;
+  requestedDepth: DepthStage;
+  safeState?: SafeState;
   visualKey?: string;
 }
 

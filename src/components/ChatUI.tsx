@@ -9,6 +9,8 @@ import { useCallback, useEffect, useMemo } from 'react';
 import type { PortfolioAIContext } from '@/lib/portfolioContracts';
 import { serializeChatRequestContext } from '@/lib/ai/request';
 import { parseLatestSourcePayload } from '@/lib/ai/sources';
+import { parseLatestArchiveCardPayload, type ResolvedArchiveCard } from '@/lib/ai/archiveCards';
+import ArchiveCardDoor from '@/components/ai/ArchiveCardDoor';
 
 const samplePrompts = [
   'Tell me about your journey into coding.',
@@ -22,11 +24,13 @@ export default function ChatUI({
   resetSignal,
   onActivityChange,
   context,
+  onArchiveCardOpen,
 }: {
   compact?: boolean;
   resetSignal?: number;
   onActivityChange?: (state: 'idle' | 'responding' | 'error', message?: string) => void;
   context?: PortfolioAIContext;
+  onArchiveCardOpen?: (card: ResolvedArchiveCard) => void;
 } = {}) {
   const {
     messages,
@@ -61,6 +65,7 @@ export default function ChatUI({
 
   const chatStream = useMemo(() => ({ messages, isLoading }), [messages, isLoading]);
   const sources = useMemo(() => parseLatestSourcePayload(data), [data]);
+  const archiveCards = useMemo(() => parseLatestArchiveCardPayload(data), [data]);
 
   const isThinking = isLoading && messages[messages.length - 1]?.role === 'user';
 
@@ -138,6 +143,9 @@ export default function ChatUI({
       </div>
 
       <div className="flex-shrink-0 p-3 sm:p-4 bg-[#0a0a12]/80 backdrop-blur border-t border-white/10">
+        {archiveCards.map(card => (
+          <ArchiveCardDoor key={card.id} card={card} onOpen={onArchiveCardOpen} />
+        ))}
         {sources.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-2" aria-label="Answer sources">
             {sources.map(source => source.destination ? (
@@ -190,6 +198,7 @@ export default function ChatUI({
           </div>
           <button
             type="submit"
+            aria-label="Send message"
             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-sky-400 hover:text-fuchsia-300 transition-colors"
             disabled={!input.trim()}
           >

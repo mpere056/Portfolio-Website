@@ -132,7 +132,7 @@ export const DESTINATION_REGISTRY = {
     targetOrigin: 'main',
     checkpointPolicy: 'semantic',
     fallbackDestinationId: 'destination:projects',
-    allowedSafeStateKeys: [],
+    allowedSafeStateKeys: ['stage'],
   },
   'destination:museum-project-sudokutogether': {
     id: 'destination:museum-project-sudokutogether',

@@ -73,6 +73,7 @@ describe('portfolio contracts', () => {
       summary: 'Inspect the product loop through one authored scenario.',
       sourceNodeIds: ['project:dreamlife', 'skill:ai-product-design'],
       destinationId: dreamlifeDestination.id,
+      requestedDepth: 'understand',
     } as const satisfies ArchiveCard;
     const manifest = {
       id: dreamlifeDestination.experienceId,
