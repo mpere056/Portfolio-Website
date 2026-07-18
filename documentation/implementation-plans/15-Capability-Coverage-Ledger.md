@@ -471,7 +471,7 @@ Until a capability receives its own detail record, these defaults apply:
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-PRJ-001` | Typed exhibit registry, loader, and fallback shell | `PRJ-01` | `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PRJ-002` | Stable exhibit anchors and depth-fallback resolution | `PRJ-01` | `V-10`, `V-14` | `O-03` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
+| `CAP-PRJ-003` | LifeInbox and Sudoku feasibility spikes with selection record | `PRJ-02` | `V-17`, `V-18` | `O-03` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
@@ -513,28 +513,28 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-PRJ-003: Equal Feasibility Spikes And Selection Record
 
 - Owner: Codex
-- Lifecycle: planned; work item ready
+- Lifecycle: verified
 - Health: on-track
 - Confidence: high
-- Dimension states: `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable`
+- Dimension states: `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable`
 - Package: `PRJ-02`
-- Works now: The accepted exhibit manifest, runtime boundary, deterministic fallback, and project-specific source research provide a safe base for two equal spikes.
-- Named gaps: Neither bounded interaction exists yet, and no flagship has been selected. Selection must follow the published non-numeric rubric rather than implementation convenience.
+- Works now: Equal local-only state machines prove LifeInbox capture/organization and Sudoku legal visitor/computer contribution; both disclose simulation boundaries and reset deterministically. The reviewed rubric selects LifeInbox for the first full slice.
+- Named gaps: Neither spike is a full exhibit. LifeInbox depth belongs to `PRJ-04`; the retained Sudoku spike belongs to later `PRJ-06` convergence.
 - Safe exposure: Both spikes remain local, deterministic, synthetic, and outside the mounted visitor route until the selection record is accepted.
-- Evidence: none yet.
-- Work item: `WI-PRJ-02-01` (ready).
-- Next checkpoint: Build and compare the LifeInbox and Sudoku Together spikes, then record the selected flagship and rejected alternative.
-- Last assessed: 2026-07-17 after `PRJ-01` Production verification.
+- Evidence: `EV-PRJ-02-01`, `EV-PRJ-02-02`.
+- Work item: `WI-PRJ-02-01` (done).
+- Next checkpoint: `PRJ-03` integrates the museum shell, then `LPS-06` supplies reviewed LifeInbox state.
+- Last assessed: 2026-07-18 after focused tests and selection review.
 
 ## Flagship Product Experiences
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` or `PRJ-06` | `V-17` | `O-03` or `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
+| `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` | `V-17` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
 | `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` or `PRJ-06` | `V-15`, `V-17` | `O-03` or `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LIB-003` | LifeInbox evidence, privacy, errors, and living state | `PRJ-04` or `PRJ-06` | `V-17`, `V-19` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
-| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-04` or `PRJ-06` | `V-18` | `O-03` or `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-applicable` | planned |
+| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
+| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
 | `CAP-SDK-003` | Sudoku collaboration architecture, validity, evidence, and fallback | `PRJ-04` or `PRJ-06` | `V-15`, `V-18` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-DRM-001` | Authored Dreamlife future-path scenario | `PRJ-05` | `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-DRM-002` | Dreamlife reaction, refinement, and experiment interaction | `PRJ-05` | `V-04`, `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |

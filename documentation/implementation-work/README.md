@@ -14,14 +14,14 @@ Phase 1 and Phase 2 are fully accepted. Phase 3 has begun: the shared exhibit fo
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` and the `QA-06` structural gate are accepted | Define equal deterministic interaction fixtures for LifeInbox and Sudoku | 2026-07-17 |
-| Next | Museum Signal/Approach integration | ready | `PRJ-03` | Registry, server view, anchors, graph response, and legacy rollback boundary accepted | Create `WI-PRJ-03-01` only after the `PRJ-02` selection record | 2026-07-17 |
+| Now | `WI-PRJ-03-01` | ready | `PRJ-03` | LifeInbox selected; registry, server views, anchors, graph response, and rollback accepted | Add the feature-flagged server route branch and lightweight Signal/Approach shell | 2026-07-18 |
+| Next | Selected LifeInbox state seed | pending | `LPS-06` | `LPS-01` schema accepted and LifeInbox selected | Request/record the minimum truthful lifecycle and current-state fixture after museum integration | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-PRJ-02-01` | Compare the first flagship candidates | ready | high | `PRJ-02` | `CAP-PRJ-003`, `CAP-LIB-001`, `CAP-SDK-001`, `CAP-SDK-002` | `active/WI-PRJ-02-01.md` | 2026-07-17 |
+| `WI-PRJ-03-01` | Integrate museum Signal and Approach | ready | high | `PRJ-03` | `CAP-PRJ-004` | `active/WI-PRJ-03-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -35,6 +35,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-PRJ-02-01` | done | `PRJ-02` | Equal deterministic LifeInbox/Sudoku spikes accepted; LifeInbox selected for the first complete slice | `EV-PRJ-02-01`, `EV-PRJ-02-02` | 2026-07-18 |
 | `WI-QA-06-01` | done | `QA-06` | Plans, packages, capabilities, evidence, work items, and dashboard reconciled; six structural checks added | `EV-QA-06-01` | 2026-07-17 |
 | `WI-PRJ-01-01` | done | `PRJ-01` | Nine canonical exhibits, three lazy flagship manifests, stable anchors, semantic fallbacks, and Production route smoke accepted | `EV-PRJ-01-01` through `EV-PRJ-01-03` | 2026-07-17 |
 | `WI-QA-01-02` | done | `QA-01` | Aggregate tests/build, protected Preview, production-safe deployment, live routes, and structured AI sources accepted | `EV-QA-01-02` through `EV-QA-01-04` | 2026-07-17 |

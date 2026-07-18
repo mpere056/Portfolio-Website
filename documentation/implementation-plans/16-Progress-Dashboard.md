@@ -40,7 +40,7 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 2 | `PRJ-02` and `PRJ-03` are bounded; `PRJ-02` starts first under the accepted sequence |
+| `ready` | 1 | `PRJ-03` is the bounded museum Signal/Approach handoff |
 | `in-progress` | 0 | No package currently sits between coherent checkpoints |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
 | `pending` | 19 | Valid packages waiting on accepted upstream work, review, or sequencing |
@@ -48,7 +48,7 @@ This distinction prevents two errors:
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
-| `complete` | 32 | Phase 1, Phase 2, `PRJ-01`, and the `QA-06` reconciliation have accepted evidence |
+| `complete` | 33 | Phase 1, Phase 2, `PRJ-01`, `PRJ-02`, and `QA-06` have accepted evidence |
 
 Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
@@ -98,8 +98,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-PRJ-02-01` | ready | `PRJ-02` | `PRJ-01` and `QA-06` accepted; sequence fixed at `1286931` | Define equal deterministic LifeInbox and Sudoku interaction fixtures | 2026-07-17 |
-| Next | Museum Signal/Approach integration | ready | `PRJ-03` | Stable registry, anchors, graph response, and legacy rollback are named | Create the work item only after `PRJ-02` records its selection | 2026-07-17 |
+| Now | `WI-PRJ-03-01` | ready | `PRJ-03` | Equal spikes accepted and LifeInbox selected | Add the `museumV2` server branch and lightweight Signal/Approach shell | 2026-07-18 |
+| Next | Selected LifeInbox state seed | pending | `LPS-06` | Lifecycle schema accepted and LifeInbox selected | Record the minimum truthful lifecycle/current-state fixture | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -165,7 +165,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 68 | Includes all explicitly registered Phase 1/2 records, three `PRJ-01` records, and the accepted planning-integrity gate |
+| Accepted | 70 | Adds equal deterministic candidate-spike and first-flagship selection evidence |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
