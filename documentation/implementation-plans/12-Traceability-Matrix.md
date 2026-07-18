@@ -50,7 +50,7 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-28` | Musical identity later with Mark | `10` | `LTR-02` integration hooks only | No motif planned without collaboration |
 | `V-29` | Studio waits for feedback | `09` | `STU-GATE-01` | No implementation beyond allowed preparation |
 | `V-30` | Anti-Resume backlog only | `10` | None | Recorded only, no detailed tasks |
-| `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `05`, `08` | `ART-01`, `QA-02`, `PRJ-05` to `PRJ-07` | Selected direction, keyframes, rejection tests, representative remediation, and Mark's creative acceptance |
+| `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `05`, `08` | `ART-01`, `QA-02`, `PRJ-05` to `PRJ-07` | `EV-ART-01-01` accepts the Impossible Observatory direction; keyframes, rejection tests, representative remediation, and renewed Mark acceptance remain |
 
 ## Requirement To Capability Control
 

@@ -74,6 +74,9 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `2026-07-18-Aesthetic-Direction-Review.md` | Three coherent aesthetic directions and recommended synthesis for Mark's review | Active review |
 | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
 | `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
+| `2026-07-18-Aesthetic-Direction-Review.md` | Original A/B/C comparison and Mark's selected synthesis outcome | Resolved review |
+| `2026-07-18-Impossible-Observatory-Selection-Decision.md` | Selected visual world, reference analysis, material/color/motion vocabulary, project translations, guardrails | Approved decision |
+| `2026-07-18-First-Art-Direction-Keyframe-Briefs.md` | Museum Signal and LifeInbox Handle/Understand visual production briefs | Active execution brief |
 | `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
 | `../implementation-evidence/README.md` | Evidence registry, acceptance rules, and package record template | Active evidence control |
 

@@ -14,15 +14,15 @@ Phase 1, Phase 2, and the functional first Phase 3 flagship slice are live on ve
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-01` | in-review | `ART-01` | Live debt audited; charter and three directions prepared | Record Mark's direction choice or refinements | 2026-07-18 |
+| Now | `WI-ART-01-01` | in-progress | `ART-01` | Impossible Observatory selected; reference language and three keyframe briefs recorded | Produce three Museum Signal visual keyframes and reject one explicitly | 2026-07-18 |
 | Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
-| Next | Museum/LifeInbox keyframes | pending | `ART-01` | Waits on selected aesthetic direction | Compose three real-content keyframes before styling code | 2026-07-18 |
+| Next | LifeInbox Handle/Understand keyframes | pending | `ART-01` | Waits on selected Museum keyframe world | Preserve one captured specimen across both depth frames | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-01` | Establish portfolio art direction | in-review | high | `ART-01` | `CAP-ART-001`, `CAP-ART-002` | `active/WI-ART-01-01.md` | 2026-07-18 |
+| `WI-ART-01-01` | Establish portfolio art direction | in-progress | high | `ART-01` | `CAP-ART-001`, `CAP-ART-002` | `active/WI-ART-01-01.md` | 2026-07-18 |
 | `WI-LPS-02-01` | Review portfolio project lifecycles | in-review | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.

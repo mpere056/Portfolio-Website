@@ -32,7 +32,7 @@ This distinction prevents two errors:
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability while Phase 4 begins | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 3 card complete | on-track | Contextual Firebase/Gemini response returns one validated LifeInbox door | Keep the one-card boundary; `/chat` migration remains later | Stabilize production before `AI-05` |
 | `O-03` First flagship proof | released; aesthetic revision active | watch | Functional LifeInbox Signal-to-Understand slice is live; creative gate reopened | `ART-01` keyframes and representative remediation | Renew `QA-02` creative acceptance without discarding valid evidence |
-| `O-04` Portfolio museum | Phase 4 art direction active | watch | Live aesthetic audit, anti-generic charter, and direction options documented | Mark selects or refines the visual world | Museum/LifeInbox keyframes establish the standard for three distinct flagships |
+| `O-04` Portfolio museum | Phase 4 art direction active | watch | Impossible Observatory selected; reference language and first three keyframe briefs accepted | Render and reject/choose Museum Signal alternatives | Museum/LifeInbox keyframes establish the standard for three distinct flagships |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | foundation accepted | on-track | Lifecycle schema and validation accepted in `LPS-01` | One reviewed selected-flagship seed before the full first slice | Complete `LPS-06`, then defer portfolio-wide `LPS-02`/`LPS-03` review to Phase 4 |
 
@@ -99,9 +99,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-01` | in-review | `ART-01` | Live debt audited; charter and three directions prepared | Record Mark's selected direction or refinements | 2026-07-18 |
+| Now | `WI-ART-01-01` | in-progress | `ART-01` | Impossible Observatory selected; reference language and keyframe briefs recorded | Produce three Museum Signal visual keyframes and reject one explicitly | 2026-07-18 |
 | Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project proposal is prepared; only LifeInbox is already accepted | Apply Mark's approval or corrections to the proposal | 2026-07-18 |
-| Next | Museum/LifeInbox keyframes | pending | `ART-01` | Waits on selected direction | Compose real-content Signal, Approach, and deep-state alternatives | 2026-07-18 |
+| Next | LifeInbox Handle/Understand keyframes | pending | `ART-01` | Waits on selected Museum world | Preserve one captured specimen across both depth frames | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -109,7 +109,6 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-01` | Select Direction A, B, C, or refine the recommended synthesis and aesthetic axes | Mark | `2026-07-18-Aesthetic-Direction-Review.md` | 2026-07-18 | Produce museum/LifeInbox keyframes |
 | `WI-LPS-02-01` | Approve the nine proposed lifecycles or correct only the exceptions | Mark | `2026-07-18-Portfolio-Lifecycle-Classification-Proposal.md` | 2026-07-18 | Record the reviewed set, then open `LPS-03` |
 
 ## Blocked Or Paused
@@ -126,7 +125,7 @@ No Phase 2 or Phase 3 functional package is partial. One live creative claim is 
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ART-002` / `CAP-QA-002 Q` | `WI-ART-01-01` | Museum and LifeInbox functionality, content, routing, tests, rollout, and rollback work | Authored silhouettes, material dialects, keyframes, representative remediation, and renewed Mark review | Current functional release remains live under independent rollback flags | Select direction, then create keyframes before code | Direct Mark feedback and live 2026-07-18 audit; new evidence pending |
+| `CAP-ART-002` / `CAP-QA-002 Q` | `WI-ART-01-01` | Selected direction, real-content briefs, and all Museum/LifeInbox functionality, content, routing, tests, rollout, and rollback work | Rendered silhouettes, chosen keyframe, representative remediation, and renewed Mark review | Current functional release remains live under independent rollback flags | Produce three Museum Signal keyframes and reject one | `EV-ART-01-01`; remediation evidence pending |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -143,7 +142,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Dormant exploration-store adoption | `EXP-01` | resolved | Accepted by six memory-backed persistence fixtures; first UI consumer remains in `EXP-02` |
 | Phase 2 dependency alignment | `AI-03`, `KG-06`, `EXP-07`, `LPS-04` | resolved | `KG-06` now precedes `AI-03`; final disturbances move with `LPS-04` to Phase 6 |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
-| Portfolio aesthetic direction | `ART-01`, renewed `QA-02`, Phase 4 flagship styling | in-review | Mark selects or refines A, B, C, or the recommended synthesis |
+| Portfolio aesthetic direction | `ART-01`, renewed `QA-02`, Phase 4 flagship styling | resolved | Impossible Observatory of Living Instruments selected; keyframe rendering is active |
 | First flagship selection | `PRJ-04` | resolved | LifeInbox selected; Sudoku spike retained for `PRJ-06` |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
 | Skill evidence presentation | Experimental | waits on prototype | Test whether evidence improves understanding without becoming a generic skill tree |
@@ -167,7 +166,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 84 | Adds verified production promotion, public route/card flow, and rollback evidence |
+| Accepted | 85 | Adds the reviewed Impossible Observatory of Living Instruments direction decision |
 | Candidate | 0 | No collected evidence currently waits for acceptance review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
@@ -178,6 +177,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-18 | Selected Impossible Observatory of Living Instruments | `ART-01`, `CAP-ART-001`, `V-31`, renewed `QA-02` | Nine references translated into accepted material, color, motion, project, and anti-copy constraints; first keyframe briefs ready |
 | 2026-07-18 | Promoted Phase 3 to Production | `QA-05`, `CAP-QA-005`, `O-01` through `O-03` | `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc` Ready; public museum, subdomains, AI card, Handle route, and rollback pass |
 | 2026-07-18 | Completed and accepted Phase 3 first flagship | `AI-04`, `PRJ-04`, `QA-02`, `O-02`, `O-03` | Validated archive door, LifeInbox full depth, 157-test/build gate, lazy chunk, and corrected live Preview pass |
 | 2026-07-17 | Reconciled post-Phase-2 implementation truth and strengthened Phase 3 sequencing | `QA-06`, package registry, capability ledger, evidence registry, decisions, architecture, roadmap | Missing evidence and stale status/dependency claims resolved; six integrity checks and the 140-test aggregate gate pass at `1286931` |

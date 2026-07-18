@@ -7,7 +7,7 @@ Last updated: 2026-07-18
 | Field | Value |
 | --- | --- |
 | Plan ID | `ART` |
-| Status | Active; direction review prepared |
+| Status | Active; Impossible Observatory of Living Instruments selected |
 | Upstream | Comprehensive vision, accepted depth grammar, Mark's aesthetic feedback, live Phase 3 audit |
 | Downstream | Museum remediation, Dreamlife, Sudoku Together, About depth, AI cards, stimulation, quality gates |
 | Primary outputs | Art-direction charter, selected visual world, project dialects, keyframes, rejection tests, creative evidence |
@@ -21,6 +21,22 @@ The implemented ideas are structurally unusual, but the current visual execution
 The previous plans named taste and project identity, but mostly evaluated them at the end. That is too late. A technically complete interaction can already be visually committed to a generic structure before creative review occurs.
 
 Art direction is therefore a build input and tracked capability, not decoration or a final polish pass.
+
+## Selected Direction
+
+Mark selected the synthesis with the Impossible Observatory as the dominant world. The durable decision is [Impossible Observatory Of Living Instruments](2026-07-18-Impossible-Observatory-Selection-Decision.md).
+
+The selection adds these confirmed qualities:
+
+- Abstract, translucent, diagrammatic, and biomorphic forms.
+- Luminous impossible matter rather than generic glow.
+- Pearlescent cools, coral/magenta life, verdigris, and selective gold concentrated inside focal phenomena.
+- Familiar artifacts that contain impossible interiors.
+- Strong distant silhouette with dense local detail.
+- Organic/digital hybrids, precise waveforms, and painterly human interference.
+- Wonder with slight strangeness, without horror, sterile sci-fi, or vaporwave convention.
+
+The first implementation briefs are [Museum and LifeInbox keyframe briefs](2026-07-18-First-Art-Direction-Keyframe-Briefs.md).
 
 ## Live Audit: 2026-07-18
 
@@ -237,8 +253,8 @@ These are manual, repeatable prompts rather than numeric scores:
 
 ## Phase 4 Sequence
 
-1. Select or refine the portfolio-level aesthetic direction in `WI-ART-01-01`.
-2. Create museum and LifeInbox keyframes using the same real content currently in production.
+1. Use the selected Impossible Observatory of Living Instruments direction in `WI-ART-01-01`.
+2. Create museum and LifeInbox keyframes from the accepted briefs using the same real content currently in production.
 3. Re-art-direct one LifeInbox flow and the museum lobby before expanding the system.
 4. Re-run the creative portion of `QA-02`; retain all still-valid functional evidence.
 5. Establish Dreamlife and Sudoku dialect keyframes before `PRJ-05` and `PRJ-06` styling.
@@ -254,4 +270,3 @@ Lifecycle review `LPS-02` can remain in human review during steps 1 and 2. `LPS-
 - Static keyframes and rejected alternatives exist before full implementation.
 - Utility controls, typography, material, motion, and darkness follow explicit hierarchies.
 - No flagship is promoted with placeholder or generic-template creative status.
-

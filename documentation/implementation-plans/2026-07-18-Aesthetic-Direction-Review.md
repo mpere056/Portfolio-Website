@@ -5,6 +5,12 @@ Package: `ART-01`
 Work item: `WI-ART-01-01`
 Reviewer: Mark
 
+## Review Outcome
+
+Selected on 2026-07-18: the synthesis, leaning substantially further toward the Impossible Observatory.
+
+The selected direction is now named the **Impossible Observatory of Living Instruments**. The Observatory defines the world; instrument precision and causal behavior support it; human artifacts and painterly traces keep it personal. The durable interpretation of Mark's nine references is recorded in [the selection decision](2026-07-18-Impossible-Observatory-Selection-Decision.md).
+
 ## What Is Already Decided
 
 The site remains exploratory, mostly dark at first, increasingly deep, knowledge-graph-aware, musical when appropriate, and composed as one world across several durable places. It should communicate projects through experience and evidence rather than claims. It should not become a conventional portfolio grid, game interface, sci-fi HUD, or generic luxury-dark landing page.
@@ -86,19 +92,19 @@ This direction is personal, approachable, and especially strong for About, music
 
 It could become a familiar desk/portfolio metaphor, overly nostalgic, visually busy, or less convincing for ambitious AI products.
 
-## Recommended Synthesis
+## Originally Recommended Synthesis
 
-Use Direction A as the structural world, borrow Direction B's impossible spatial moments for deep transitions and Dreamlife, and borrow Direction C's human traces for About, evidence, and historical projects.
+The initial recommendation used Direction A as the structural world, with Direction B for impossible spatial moments and Direction C for human traces. Mark's review changed that hierarchy: Direction B is now structurally dominant.
 
 This is not permission to mix all visual ingredients everywhere. The hierarchy would be:
 
-1. Direction A defines the shared material and compositional discipline.
-2. Direction B appears when entering ideas, futures, graph relationships, or system depth.
-3. Direction C appears where personal authorship, history, music, or evidence needs warmth.
+1. Direction B defines shared space, atmosphere, and deep transitions.
+2. Direction A supplies precise instruments, crafted objects, music, and causal behavior.
+3. Direction C supplies personal authorship, history, evidence, and tactile warmth.
 
 ## Review Prompts
 
-Mark can choose one direction, approve the synthesis, or describe a correction using these axes:
+These prompts are retained as the historical review frame. The primary direction is resolved; remaining choices will be evaluated through keyframes rather than another abstract questionnaire.
 
 - More **precise instrument** or more **impossible phenomenon**?
 - More **pristine and minimal** or more **human traces and texture**?
@@ -116,5 +122,4 @@ Avoid: antique or steampunk feeling
 Overall feeling: balanced, slightly cinematic
 ```
 
-This response selects a starting art direction, not every font, color, material, or motion. Those choices will be tested in real keyframes before implementation.
-
+Mark's response selected the starting direction. Exact font, color, material balance, and motion remain keyframe decisions before implementation.

@@ -485,24 +485,24 @@ Until a capability receives its own detail record, these defaults apply:
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
-| `CAP-ART-001` | Selected portfolio art direction and project material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: ready-for-review; C: working; A: not-applicable; I: not-started; T: not-applicable; Q: ready-for-review; R: not-applicable` | in-progress |
-| `CAP-ART-002` | Museum/LifeInbox keyframes, representative remediation, and anti-generic acceptance | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: working; C: not-started; A: accepted; I: not-started; T: not-started; Q: not-started; R: not-started` | in-progress |
+| `CAP-ART-001` | Selected portfolio art direction and project material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: not-applicable; I: not-applicable; T: not-applicable; Q: accepted; R: not-applicable` | verified |
+| `CAP-ART-002` | Museum/LifeInbox keyframes, representative remediation, and anti-generic acceptance | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: accepted; C: working; A: accepted; I: not-started; T: not-started; Q: working; R: not-started` | in-progress |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
 - Owner: Mark and Codex
-- Lifecycle: in-progress
+- Lifecycle: verified
 - Health: watch
-- Confidence: high on the diagnosed debt; medium on the unselected direction
-- Dimension states: `S/Q ready-for-review; C working; I not-started; A/T/R not-applicable`
+- Confidence: high
+- Dimension states: `S/C/Q accepted; A/I/T/R not-applicable`
 - Package: `ART-01`
-- Works now: a live audit, non-negotiable principles, explicit rejection list, shared depth responsibilities, and three coherent direction options with a recommended synthesis are documented.
-- Named gaps: Mark has not selected the warmth, surrealism, material balance, or intimate/cinematic emphasis; project keyframes do not yet exist.
+- Works now: Mark selected the Impossible Observatory of Living Instruments with an abstract Observatory emphasis; nine references are translated into material, color, composition, motion, project, and anti-copy guardrails.
+- Named gaps: no direction-selection gap remains. Exact rendering decisions move to `CAP-ART-002` keyframes.
 - Safe exposure: documentation only; current Production remains functional and explicitly under aesthetic revision.
-- Evidence: direct Mark feedback and 2026-07-18 live browser inspection; acceptance evidence is not yet registered.
-- Work item: `WI-ART-01-01` (in-review).
-- Next checkpoint: Mark selects or refines a direction, then current production content is composed into museum and LifeInbox keyframes.
-- Last assessed: 2026-07-18 against Production `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n`.
+- Evidence: `EV-ART-01-01`.
+- Work item: `WI-ART-01-01` (in-progress).
+- Next checkpoint: produce three Museum Signal visual keyframes from the accepted briefs.
+- Last assessed: 2026-07-18 after Mark's nine-reference direction review.
 
 ### CAP-ART-002: Museum And LifeInbox Aesthetic Remediation
 
@@ -510,14 +510,14 @@ Until a capability receives its own detail record, these defaults apply:
 - Lifecycle: in-progress
 - Health: watch
 - Confidence: high on implementation starting points; medium until keyframes are selected
-- Dimension states: `S working; A accepted; C/I/T/Q/R not-started`
+- Dimension states: `S/A accepted; C/Q working; I/T/R not-started`
 - Package: `ART-01`
-- Works now: the museum and LifeInbox have stable content, interactions, routes, feature flags, and fallbacks suitable for re-composition without rewriting product logic.
-- Named gaps: uniform signal cards, nested dark panels, generic form/button/card treatment, weak project silhouettes, and competing floating controls remain live; no remediation code is started.
+- Works now: the museum and LifeInbox have stable content, interactions, routes, flags, and fallbacks plus implementation-specific Signal, Handle, and Understand keyframe briefs in the selected world.
+- Named gaps: visual keyframes, rejected alternative, chosen composition, and remediation code remain; current uniform cards, nested panels, generic form treatment, weak silhouettes, and floating controls remain live.
 - Safe exposure: current release stays live under existing independent rollback flags while visual replacement is developed in Preview.
 - Evidence: none accepted yet; keyframes, one rejected alternative, stable captures, diagnostic record, and Mark review are required.
-- Work item: `WI-ART-01-01` (in-review).
-- Next checkpoint: three keyframe briefs, then one selected museum/LifeInbox visual prototype.
+- Work item: `WI-ART-01-01` (in-progress).
+- Next checkpoint: three rendered Museum Signal keyframes and one explicit rejection rationale.
 - Last assessed: 2026-07-18.
 
 ## Museum And Shared Case-Study System
