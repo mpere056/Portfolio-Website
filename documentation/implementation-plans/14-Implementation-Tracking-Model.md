@@ -52,7 +52,7 @@ Every active capability is assessed across seven dimensions.
 | `A` | Architecture and data | Are contracts, IDs, schemas, state ownership, migrations, and integration boundaries ready? |
 | `I` | Implementation | Does the capability work in code across its intended happy path and fallbacks? |
 | `T` | Automated verification | Do deterministic tests and repeatable browser checks cover the important behavior? |
-| `Q` | Creative and manual QA | Has accuracy, taste, pacing, discoverability, stimulation, and failure behavior been reviewed? |
+| `Q` | Creative and manual QA | Have accuracy, interaction clarity, authored art direction, hierarchy, material, typography, pacing, distinctiveness, stimulation, and failure behavior been reviewed? |
 | `R` | Rollout | Is it available at the intended environment and protected by flags, monitoring, and rollback where needed? |
 
 Use `-` only when a dimension genuinely does not apply. For example, a low-level TypeScript contract may not need authored content. Do not use `-` to avoid unfinished work.
@@ -148,6 +148,10 @@ These gates prevent promotion regardless of how much surrounding work appears fi
 - Failure fallback for AI, graph, 3D, and project demonstrations.
 - Production build, preview review, live route verification, and rollback readiness.
 - Mark's explicit approval for feedback-gated or taste-sensitive work.
+
+For major visual surfaces, `Q` is two inseparable checks: experiential clarity and authored aesthetic quality. Passing usability, route, or screenshot-stability review cannot accept the aesthetic check. The required creative record and anti-generic diagnostics are defined in `18-Art-Direction-And-Aesthetic-Quality.md`.
+
+When Mark's direct feedback invalidates an accepted taste claim, reopen only the affected package/dimension. Preserve still-valid implementation and rollout evidence, name the aesthetic debt, and create a restartable remediation item rather than pretending all work is either complete or discarded.
 
 ## Package State Rules
 

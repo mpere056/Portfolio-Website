@@ -35,7 +35,7 @@ Every project receives one reviewed lifecycle classification using the accepted 
 - Branch/worktree: `main`; unrelated local changes remain outside this work item.
 - Verification command: `npm exec vitest run tests/planningIntegrity.test.ts` after registry updates.
 - Verification result: 39 test files and 157 tests pass; strict TypeScript passes; content validation passes with 50 nodes and 19 relationships.
-- Route/preview: Production `dpl_FH5HAHM1zXBf6t4PyoPthA4CSr1u` is Ready on all portfolio aliases.
+- Route/preview: Production `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n` is Ready on all portfolio aliases.
 - Feature flags: accepted Phase 3 flags remain unchanged.
 - Browser/test data: no browser state is required for the classification review.
 

@@ -233,6 +233,8 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ## Phase 4: Museum Framework And Remaining Flagships
 
+Phase 4 begins with two human review tracks: the `LPS-02` lifecycle set and `ART-01` portfolio art direction. The live Phase 3 functionality remains valid, but Mark's 2026-07-18 feedback reopens its creative acceptance: the museum and LifeInbox currently rely too heavily on generic dark cards, panels, pills, and glow. Museum/LifeInbox keyframes and one representative remediation must pass the renewed creative gate before the visual system is multiplied into Dreamlife, Sudoku, or smaller projects.
+
 ### Goals
 
 - Extract stable reusable exhibit infrastructure from the first slice.
@@ -240,6 +242,8 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ### Work
 
+- Select or refine one portfolio art direction and create museum/LifeInbox keyframes from current production content.
+- Re-art-direct the museum lobby and one LifeInbox depth flow before extracting new visual primitives.
 - Extend the accepted exhibit registry and loader only where the first slice proves a reusable need.
 - Keep shared depth/destination state separate from project-specific interaction state.
 - Build missing flagship experiences.
@@ -249,6 +253,7 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ### Exit Criteria
 
+- Museum, LifeInbox, Dreamlife, and Sudoku pass the authored-aesthetic diagnostics in `18-Art-Direction-And-Aesthetic-Quality.md`.
 - Three flagship exhibits are complete.
 - Shared museum infrastructure does not erase their distinct product behavior.
 - Smaller projects have a coherent lighter presentation.

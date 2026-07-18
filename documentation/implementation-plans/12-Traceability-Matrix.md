@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -50,6 +50,7 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-28` | Musical identity later with Mark | `10` | `LTR-02` integration hooks only | No motif planned without collaboration |
 | `V-29` | Studio waits for feedback | `09` | `STU-GATE-01` | No implementation beyond allowed preparation |
 | `V-30` | Anti-Resume backlog only | `10` | None | Recorded only, no detailed tasks |
+| `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `05`, `08` | `ART-01`, `QA-02`, `PRJ-05` to `PRJ-07` | Selected direction, keyframes, rejection tests, representative remediation, and Mark's creative acceptance |
 
 ## Requirement To Capability Control
 
@@ -68,16 +69,17 @@ Traceability is complete only when:
 
 Legend: `R` means row requires column. `P` means partial or prototype dependency.
 
-| Workstream | ARC | EXP | KG | AI | PRJ | ABT | LPS | QA |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `ARC` Interfaces | - | | | | | | | |
-| `EXP` Experience | R | - | P | P | | | | R |
-| `KG` Knowledge | R | | - | | | | P | R |
-| `AI` Global AI | R | P | R | - | | | P | R |
-| `PRJ` Museum | R | R | R | P | - | | R | R |
-| `ABT` About | R | R | R | P | | - | | R |
-| `LPS` Project state | R | | R | | | | - | R |
-| `QA` Quality | R | | | | | | | - |
+| Workstream | ARC | EXP | KG | AI | ART | PRJ | ABT | LPS | QA |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `ARC` Interfaces | - | | | | | | | | |
+| `EXP` Experience | R | - | P | P | P | | | | R |
+| `KG` Knowledge | R | | - | | | | | P | R |
+| `AI` Global AI | R | P | R | - | P | | | P | R |
+| `ART` Art direction | | R | P | P | - | P | P | | R |
+| `PRJ` Museum | R | R | R | P | R | - | | R | R |
+| `ABT` About | R | R | R | P | R | | - | | R |
+| `LPS` Project state | R | | R | | | | | - | R |
+| `QA` Quality | R | | | | R | | | | - |
 
 ## Phase To Work-Package Traceability
 
@@ -87,7 +89,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 1 Structural foundation | `BAS-03`, `ARC-02` to `ARC-05`, `KG-01` to `KG-04`, `LPS-01`, `EXP-01`, `AI-01` | Flags, schemas, graph, persistence, context validate |
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
 | Phase 3 First flagship | complete: `PRJ-01` through `PRJ-04`, `LPS-06`, `AI-04`, `QA-02` | LifeInbox full vertical slice passes product, route, state, AI, fallback, performance, creative, and corrected Preview acceptance |
-| Phase 4 Remaining flagships | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` | Three flagship experiences, generalized routes, reviewed classifications, and lighter projects are coherent |
+| Phase 4 Remaining flagships | `ART-01`, creative re-review of `QA-02`, `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` | Museum/LifeInbox art direction is corrected; three distinct flagship experiences, generalized routes, reviewed classifications, and lighter projects are coherent |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |
 | Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |

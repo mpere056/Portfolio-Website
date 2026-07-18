@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-18
-Implementation commit baseline: `4d56565`; Production: `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`
+Implementation commit baseline: `b5fe180`; Production: `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `4d56565`; Production: `dpl_61cYUeR8aYVkx6gYYjEb
 
 ## Current Program State
 
-**Phase 1, Phase 2, and the complete first Phase 3 flagship vertical slice are accepted.**
+**Phase 1, Phase 2, and the functional first Phase 3 flagship vertical slice are live; the first-slice creative gate is reopened.**
 
-Through `4d56565`, Phase 3 selects LifeInbox after equal deterministic spikes, ships the nine-signal museum, renders reviewed living state, returns a validated AI archive door, and supports Handle, Enter, Understand, one exploded trust layer, evidence, persistence, project-world handoff, lazy loading, and explicit rollback. The aggregate gate passes 39 files and 157 tests, strict TypeScript, 50-node/19-relationship validation, lint with ten pre-existing warnings and no errors, production build, desktop/narrow browser review, corrected Preview, and public Production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`.
+Through `b5fe180`, Phase 3 selects LifeInbox after equal deterministic spikes, ships the nine-signal museum, renders reviewed living state, returns a validated AI archive door, and supports Handle, Enter, Understand, one exploded trust layer, evidence, persistence, project-world handoff, lazy loading, and explicit rollback. The aggregate gate passes 39 files and 157 tests, strict TypeScript, 50-node/19-relationship validation, lint without errors, production build, desktop/narrow browser review, and public Production. Mark's later direct review found the museum and LifeInbox aesthetics too generic and plain. Functional evidence is retained; `QA-02` creative status is reopened and `ART-01` is the active correction path.
 
 This distinction prevents two errors:
 
@@ -31,8 +31,8 @@ This distinction prevents two errors:
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability while Phase 4 begins | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 3 card complete | on-track | Contextual Firebase/Gemini response returns one validated LifeInbox door | Keep the one-card boundary; `/chat` migration remains later | Stabilize production before `AI-05` |
-| `O-03` First flagship proof | Phase 3 complete | on-track | Complete LifeInbox Signal-to-Understand slice and `QA-02` accepted | Production promotion and live smoke only | Begin one bounded Phase 4 package after release |
-| `O-04` Portfolio museum | not active | not-active | Target flagship set documented | Stable first flagship framework | Three distinct flagship exhibits pass their gates |
+| `O-03` First flagship proof | released; aesthetic revision active | watch | Functional LifeInbox Signal-to-Understand slice is live; creative gate reopened | `ART-01` keyframes and representative remediation | Renew `QA-02` creative acceptance without discarding valid evidence |
+| `O-04` Portfolio museum | Phase 4 art direction active | watch | Live aesthetic audit, anti-generic charter, and direction options documented | Mark selects or refines the visual world | Museum/LifeInbox keyframes establish the standard for three distinct flagships |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | foundation accepted | on-track | Lifecycle schema and validation accepted in `LPS-01` | One reviewed selected-flagship seed before the full first slice | Complete `LPS-06`, then defer portfolio-wide `LPS-02`/`LPS-03` review to Phase 4 |
 
@@ -41,16 +41,16 @@ This distinction prevents two errors:
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
 | `ready` | 0 | No package is waiting in the ready lane while selected state is active |
-| `in-progress` | 0 | No implementation package is partially active |
+| `in-progress` | 1 | `ART-01` has audited debt and review-ready directions; keyframes and remediation remain |
 | `implemented` | 0 | Implemented packages have either passed acceptance or remain pending |
 | `pending` | 14 | Valid Phase 4+ packages waiting on accepted upstream work, review, or sequencing |
-| `reopened` | 0 | No accepted package currently has an unresolved contract regression |
+| `reopened` | 1 | `QA-02` retains valid functional evidence but its creative dimension needs renewed acceptance |
 | `decision-gated` | 1 | Project lifecycle classification needs Mark's approval |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
-| `complete` | 39 | Adds the verified Phase 3 production promotion and rollback workflow |
+| `complete` | 38 | Functional Phase 3 packages remain accepted; `QA-02` moved to reopened rather than erasing history |
 
-Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
+Counts include only the 59 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
 ## Current Execution Queue
 
@@ -88,7 +88,8 @@ Counts include only the 58 package rows in `13-Execution-Work-Packages.md`; feed
 | 30 | `LPS-06` | Selected flagship state seed | complete | `PRJ-02` selection | One source-reviewed lifecycle and current-state fixture accepted |
 | 31 | `AI-04` | Archive cards and selected-destination flow | complete | `AI-03`, `ARC-03`, `PRJ-01` | Invalid cards fail closed and selected live card response passes |
 | 32 | `PRJ-04` | First full flagship slice | complete | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
-| 33 | `QA-02` | First vertical-slice quality gate | complete | `PRJ-04` | Functional, visual, performance, stimulation, creative, Preview, and rollback evidence accepted |
+| 33 | `QA-02` | First vertical-slice quality gate | reopened | `PRJ-04`; renewed creative gate waits on `ART-01` | Functional, performance, stimulation, Preview, and rollback evidence retained; authored aesthetic acceptance remains |
+| 34 | `ART-01` | Authored portfolio art direction | in-progress | Live Phase 3 audit and Mark feedback | Direction review, real-content keyframes, representative remediation, and renewed creative evidence |
 
 The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
 
@@ -98,8 +99,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project proposal is prepared; only LifeInbox is already accepted | Apply Mark's approval or corrections to the proposal | 2026-07-18 |
-| Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after the review gate resolves | 2026-07-18 |
+| Now | `WI-ART-01-01` | in-review | `ART-01` | Live debt audited; charter and three directions prepared | Record Mark's selected direction or refinements | 2026-07-18 |
+| Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project proposal is prepared; only LifeInbox is already accepted | Apply Mark's approval or corrections to the proposal | 2026-07-18 |
+| Next | Museum/LifeInbox keyframes | pending | `ART-01` | Waits on selected direction | Compose real-content Signal, Approach, and deep-state alternatives | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -107,6 +109,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ART-01-01` | Select Direction A, B, C, or refine the recommended synthesis and aesthetic axes | Mark | `2026-07-18-Aesthetic-Direction-Review.md` | 2026-07-18 | Produce museum/LifeInbox keyframes |
 | `WI-LPS-02-01` | Approve the nine proposed lifecycles or correct only the exceptions | Mark | `2026-07-18-Portfolio-Lifecycle-Classification-Proposal.md` | 2026-07-18 | Record the reviewed set, then open `LPS-03` |
 
 ## Blocked Or Paused
@@ -119,11 +122,11 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No Phase 2 or Phase 3 implementation package is partial. Remaining work is explicitly Phase 4+, decision-gated, prototype, or later scope.
+No Phase 2 or Phase 3 functional package is partial. One live creative claim is explicitly reopened from direct feedback rather than hidden behind the earlier aggregate acceptance.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| None | - | Phase 3 has no partial accepted capability | - | Approved flag-controlled release | Begin only one bounded Phase 4 package | `EV-QA-02-01` through `03` |
+| `CAP-ART-002` / `CAP-QA-002 Q` | `WI-ART-01-01` | Museum and LifeInbox functionality, content, routing, tests, rollout, and rollback work | Authored silhouettes, material dialects, keyframes, representative remediation, and renewed Mark review | Current functional release remains live under independent rollback flags | Select direction, then create keyframes before code | Direct Mark feedback and live 2026-07-18 audit; new evidence pending |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -140,6 +143,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Dormant exploration-store adoption | `EXP-01` | resolved | Accepted by six memory-backed persistence fixtures; first UI consumer remains in `EXP-02` |
 | Phase 2 dependency alignment | `AI-03`, `KG-06`, `EXP-07`, `LPS-04` | resolved | `KG-06` now precedes `AI-03`; final disturbances move with `LPS-04` to Phase 6 |
 | Project lifecycle classification | `LPS-02` and living state | decision-gated | Present a concise classification set for Mark's approval |
+| Portfolio aesthetic direction | `ART-01`, renewed `QA-02`, Phase 4 flagship styling | in-review | Mark selects or refines A, B, C, or the recommended synthesis |
 | First flagship selection | `PRJ-04` | resolved | LifeInbox selected; Sudoku spike retained for `PRJ-06` |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
 | Skill evidence presentation | Experimental | waits on prototype | Test whether evidence improves understanding without becoming a generic skill tree |

@@ -45,6 +45,7 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-18 | Treat authored art direction as a build input and reopen the first-slice creative gate without discarding valid functional evidence | Confirmed | `ART-01` precedes further flagship styling; museum/LifeInbox receive keyframes and representative remediation; `QA-02` retains contract, logic, browser, performance, rollout, and rollback evidence while creative acceptance is renewed | [Art Direction And Aesthetic Quality](18-Art-Direction-And-Aesthetic-Quality.md) and [Aesthetic Direction Review](2026-07-18-Aesthetic-Direction-Review.md) |
 | 2026-07-18 | Promote the accepted exploration shell, museum, global AI, and LifeInbox depth together with independent rollback flags | Approved for execution | The visitor-facing site will stop serving the dormant legacy presentation; unimplemented project/prototype flags remain off | [Phase 3 Production Promotion Decision](2026-07-18-Phase-3-Production-Promotion-Decision.md) |
 | 2026-07-17 | Sequence Phase 3 around equal candidate spikes, feature-flagged museum integration, one selected-project state seed, validated AI cards, one converged slice, and a full quality gate | Confirmed | Portfolio-wide lifecycle review no longer blocks the first slice; selected-project handoff is bounded in `PRJ-04`; generalized route/history work remains `PRJ-08` | [Phase 3 Vertical-Slice Sequencing Decision](2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md) |
 | 2026-07-16 | Use a technically multi-route portfolio that behaves as one continuous exploratory world | Confirmed | Durable routes provide loading/share/history boundaries; semantic destinations own depth; flagship subdomains own substantial Enter/Understand states; cross-origin state uses bounded cookie and URL handoff rather than shared local storage | [Information Architecture And Routing Decision](2026-07-16-Information-Architecture-And-Routing-Decision.md) |
@@ -123,8 +124,8 @@ These remain recorded without detailed planning.
 
 Resolve these in order as implementation approaches them.
 
-1. Choose the first flagship vertical slice after the equal LifeInbox and Sudoku feasibility spikes.
-2. Confirm the selected flagship lifecycle and minimum public current/final state for `LPS-06`.
+1. Select or refine the portfolio aesthetic direction from the 2026-07-18 review before multiplying Phase 4 visual styling.
+2. Approve or correct the portfolio lifecycle classification proposal.
 3. Select the first About event for a memory-room prototype when Phase 5 approaches.
 4. Decide whether the skill experiment is called a skill tree or evidence map after seeing it.
 

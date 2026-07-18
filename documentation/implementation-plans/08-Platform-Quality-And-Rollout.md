@@ -209,9 +209,22 @@ For every milestone, manually review:
 - Does the deeper layer feel earned?
 - Are sound and lighting tasteful?
 
+The 2026-07-18 aesthetic review showed that this checklist was too permissive: a milestone could answer these questions positively while still using an interchangeable dark-card visual system. Manual creative QA now also requires the structured record in `18-Art-Direction-And-Aesthetic-Quality.md`.
+
+For major visual surfaces, `Q: accepted` requires:
+
+- A written emotional and interaction thesis.
+- Selected Signal, Approach, and deep-state keyframes using real content.
+- At least one rejected alternative with a reason.
+- Silhouette, swap, crop, darkness, stillness, deepening, and furniture checks.
+- A project-specific material and motion dialect.
+- Mark's explicit review for the direction and representative implementation.
+
+Automated visual regression proves stability, not taste. A stable screenshot of a generic composition is not creative acceptance.
+
 ## First Flagship Quality Gate
 
-`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. It was accepted on 2026-07-18 with evidence in `documentation/implementation-evidence/QA-02.md` and requires:
+`QA-02` evaluates the converged `PRJ-04` journey, not isolated components. Its original 2026-07-18 evidence remains valid for contracts, logic, browser behavior, performance, stimulation, Preview, rollout, and rollback. Its creative dimension is reopened after Mark's direct feedback that the live museum and LifeInbox treatment feels too plain and average. Renewed creative acceptance depends on `ART-01` keyframes and representative remediation; historical evidence is retained rather than erased.
 
 | Gate | Required proof |
 | --- | --- |

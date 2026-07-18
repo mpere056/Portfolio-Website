@@ -7,7 +7,7 @@ const plans = path.join(root, 'documentation', 'implementation-plans');
 const work = path.join(root, 'documentation', 'implementation-work');
 const evidence = path.join(root, 'documentation', 'implementation-evidence');
 
-const packagePattern = /(?:BAS|ARC|KG|EXP|AI|LPS|PRJ|ABT|QA|PXP)-\d+/g;
+const packagePattern = /(?:BAS|ARC|KG|EXP|AI|LPS|ART|PRJ|ABT|QA|PXP)-\d+/g;
 const evidencePattern = /EV-[A-Z0-9]+-\d+-\d+/g;
 
 function read(relativePath: string) {
@@ -38,7 +38,7 @@ describe('implementation planning integrity', () => {
   const packageDocument = read('documentation/implementation-plans/13-Execution-Work-Packages.md');
   const packageRows = tableRows(packageDocument)
     .map(cells)
-    .filter(row => /^(?:BAS|ARC|KG|EXP|AI|LPS|PRJ|ABT|QA|PXP)-\d+$/.test(row[0]));
+    .filter(row => /^(?:BAS|ARC|KG|EXP|AI|LPS|ART|PRJ|ABT|QA|PXP)-\d+$/.test(row[0]));
   const packages = new Map(packageRows.map(row => [row[0], row.at(-1)!]));
 
   it('keeps package IDs unique and every package dependency resolvable', () => {

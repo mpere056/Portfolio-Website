@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 and Phase 2 are complete; `PRJ-01` is complete and deployed; `QA-06` accepted the reconciled planning baseline and structural tracking guard at `1286931`; `PRJ-02` is Now and `PRJ-03` is ready/Next.
+Current checkpoint: Phase 1 through the functional Phase 3 slice are live. Phase 4 has begun with lifecycle and aesthetic-direction reviews; Mark's feedback reopened only the insufficient creative dimension of `QA-02`, while its functional, architectural, test, deployment, and rollback evidence remains valid.
 
 ## Document Authority
 
@@ -70,6 +70,8 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `15-Capability-Coverage-Ledger.md` | Granular target capabilities and multidimensional status | Active status source |
 | `16-Progress-Dashboard.md` | Current focus, checkpoints, gaps, gates, risks, and next work | Active summary |
 | `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
+| `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
+| `2026-07-18-Aesthetic-Direction-Review.md` | Three coherent aesthetic directions and recommended synthesis for Mark's review | Active review |
 | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
 | `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
 | `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
@@ -85,6 +87,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |
 | What pages should exist and how should depth affect URLs? | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | `00-System-Architecture-And-Interfaces.md` |
 | What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
+| How do we prevent generic aesthetics? | `18-Art-Direction-And-Aesthetic-Quality.md` | Owning experience plan and `08-Platform-Quality-And-Rollout.md` |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
 | Where exactly did unfinished work stop? | `../implementation-work/README.md` | Its linked work-item resume packet |
@@ -135,6 +138,7 @@ Large features must not be represented by one optimistic status.
 ## Shared Implementation Rules
 
 - Do not build multiple flagship experiences simultaneously.
+- Do not begin production styling for a major surface before its art-direction thesis and representative keyframes are reviewed.
 - Prefer one complete depth journey over many partially interactive objects.
 - Keep authored MDX as the factual source; generated content may assist but must not silently replace authored facts.
 - Build the relationship graph before relying on semantic lighting or graph-driven AI navigation.

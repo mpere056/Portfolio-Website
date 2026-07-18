@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 
 ## Plan Metadata
 
@@ -101,6 +101,12 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `LPS-05` | Editorial workflow and AI precedence | `LPS-03`, `KG-06` | Update checklist, current-state retrieval precedence | Conflict fixture resolves to current state | pending |
 | `LPS-06` | Selected flagship state seed | `LPS-01`, `PRJ-02` | One source-reviewed lifecycle and minimum current/final state for the selected first flagship, with Mark correction path | Review record, lifecycle validation, public evidence links, and rendered fallback fixture | complete |
 
+## Art Direction Packages
+
+| ID | Package | Depends on | Deliverables | Exit evidence | Current status |
+| --- | --- | --- | --- | --- | --- |
+| `ART-01` | Authored portfolio art direction | Accepted depth grammar, live Phase 3 audit, Mark feedback | Direction charter, selected visual world, museum/LifeInbox keyframes, project dialects, representative remediation, anti-generic review | Selected and rejected keyframes, diagnostic record, browser captures, Mark acceptance, renewed `QA-02` creative evidence | in-progress |
+
 ## Project Museum Packages
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
@@ -109,9 +115,9 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `PRJ-02` | Flagship feasibility spikes | `PRJ-01` | LifeInbox and Sudoku interaction spikes | Selection decision for first slice | complete |
 | `PRJ-03` | Museum navigation and identity layers | `PRJ-01`, `EXP-05` | Server exhibit-view adoption behind `museumV2`, lightweight Signal, authored Approach, exact anchors, legacy rollback | Flag-off parity, fallback integration, and overview-to-Approach browser flow | complete |
 | `PRJ-04` | First full flagship slice | `PRJ-02`, `PRJ-03`, `AI-04`, `LPS-06` | Selected Handle/Enter/Understand journey, one exploded layer, evidence, state, persistence, minimum subdomain handoff | Phase 3 vertical-slice evidence | complete |
-| `PRJ-05` | Dreamlife experience | `PRJ-04` framework | Future paths, reaction, experiment, exploded layers | Authored scenario and interaction QA | pending |
-| `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework | LifeInbox or Sudoku experience not selected first | Product and architecture QA | pending |
-| `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06` | Standard/archive/related tiers and selected easter eggs | Every project assigned a tier | pending |
+| `PRJ-05` | Dreamlife experience | `PRJ-04` framework, `ART-01`, `LPS-03` | Future paths, reaction, experiment, exploded layers, accepted Dreamlife visual dialect | Authored scenario, keyframes, interaction QA, creative review | pending |
+| `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework, `ART-01`, `LPS-03` | Sudoku experience and accepted project visual dialect | Product, architecture, keyframe, and creative QA | pending |
+| `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06`, `ART-01`, `LPS-02` | Standard/archive/related tiers, selected easter eggs, coherent archive composition | Every project assigned a tier; archive passes swap and silhouette review | pending |
 | `PRJ-08` | Generalized direct routes and subdomain integration | `PRJ-04`, `ARC-03` | `/projects/[slug]`, all-project canonical metadata, compatibility redirects, reusable URL/history and cross-origin state rules | Back/refresh/redirect tests and live Preview route matrix | pending |
 
 ## About Packages
@@ -128,7 +134,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | complete |
-| `QA-02` | First vertical-slice quality gate | `PRJ-04` | Logic, browser, visual, performance, creative review | Signed milestone checklist | complete |
+| `QA-02` | First vertical-slice quality gate | `PRJ-04`; creative re-review depends on `ART-01` | Logic, browser, visual, performance, creative review | Functional evidence retained; renewed signed creative record required | reopened |
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | complete |

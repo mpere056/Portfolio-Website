@@ -10,17 +10,19 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1, Phase 2, and the first Phase 3 flagship slice are fully accepted and live. The latest verified production deployment, `dpl_FH5HAHM1zXBf6t4PyoPthA4CSr1u`, serves the museum, global archive, and LifeInbox Signal-to-Understand journey on every portfolio alias. Phase 4 has begun with the portfolio lifecycle review gate.
+Phase 1, Phase 2, and the functional first Phase 3 flagship slice are live on verified Production `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n`. Mark's 2026-07-18 feedback reopened only the aesthetic acceptance of the museum/LifeInbox slice; its contracts, product truth, routes, tests, deployment, and rollback remain accepted. Phase 4 now has two explicit human reviews: portfolio art direction and project lifecycle classification.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
-| Next | Remaining flagship state records | pending | `LPS-03` | Waits on approved lifecycle set | Author only after `WI-LPS-02-01` is reviewed | 2026-07-18 |
+| Now | `WI-ART-01-01` | in-review | `ART-01` | Live debt audited; charter and three directions prepared | Record Mark's direction choice or refinements | 2026-07-18 |
+| Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
+| Next | Museum/LifeInbox keyframes | pending | `ART-01` | Waits on selected aesthetic direction | Compose three real-content keyframes before styling code | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| `WI-ART-01-01` | Establish portfolio art direction | in-review | high | `ART-01` | `CAP-ART-001`, `CAP-ART-002` | `active/WI-ART-01-01.md` | 2026-07-18 |
 | `WI-LPS-02-01` | Review portfolio project lifecycles | in-review | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
@@ -36,7 +38,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
 | `WI-QA-05-01` | done | `QA-05` | Approved Phase 3 flags promoted; public museum, subdomains, AI card, exact Handle route, and rollback verified | `EV-QA-05-01` | 2026-07-18 |
-| `WI-QA-02-01` | done | `QA-02` | Full first-slice logic, browser, creative, performance, Preview, and rollback gate accepted | `EV-QA-02-01` through `EV-QA-02-03` | 2026-07-18 |
+| `WI-QA-02-01` | done | `QA-02` | Original first-slice gate accepted; later aesthetic feedback is tracked separately by reopened `QA-02` and `WI-ART-01-01` | `EV-QA-02-01` through `EV-QA-02-03` | 2026-07-18 |
 | `WI-PRJ-04-01` | done | `PRJ-04` | LifeInbox Signal-to-Understand journey, exploded trust layer, persistence, evidence, and handoff accepted | `EV-PRJ-04-01` through `EV-PRJ-04-03` | 2026-07-18 |
 | `WI-AI-04-01` | done | `AI-04` | Fail-closed archive cards and real selected-destination response accepted | `EV-AI-04-01`, `EV-AI-04-02` | 2026-07-18 |
 | `WI-LPS-06-01` | done | `LPS-06` | Source-grounded evolving LifeInbox state, evidence, museum rendering, and correction path accepted | `EV-LPS-06-01`, `EV-LPS-06-02` | 2026-07-18 |

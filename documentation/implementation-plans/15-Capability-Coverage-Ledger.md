@@ -481,6 +481,45 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: `AI-04` may target the validated LifeInbox destination and safe state.
 - Last assessed: 2026-07-18 at the 50-node/19-edge content checkpoint.
 
+## Art Direction And Aesthetic Quality
+
+| Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
+| --- | --- | --- | --- | --- | ---: | --- | --- |
+| `CAP-ART-001` | Selected portfolio art direction and project material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: ready-for-review; C: working; A: not-applicable; I: not-started; T: not-applicable; Q: ready-for-review; R: not-applicable` | in-progress |
+| `CAP-ART-002` | Museum/LifeInbox keyframes, representative remediation, and anti-generic acceptance | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: working; C: not-started; A: accepted; I: not-started; T: not-started; Q: not-started; R: not-started` | in-progress |
+
+### CAP-ART-001: Selected Portfolio Art Direction
+
+- Owner: Mark and Codex
+- Lifecycle: in-progress
+- Health: watch
+- Confidence: high on the diagnosed debt; medium on the unselected direction
+- Dimension states: `S/Q ready-for-review; C working; I not-started; A/T/R not-applicable`
+- Package: `ART-01`
+- Works now: a live audit, non-negotiable principles, explicit rejection list, shared depth responsibilities, and three coherent direction options with a recommended synthesis are documented.
+- Named gaps: Mark has not selected the warmth, surrealism, material balance, or intimate/cinematic emphasis; project keyframes do not yet exist.
+- Safe exposure: documentation only; current Production remains functional and explicitly under aesthetic revision.
+- Evidence: direct Mark feedback and 2026-07-18 live browser inspection; acceptance evidence is not yet registered.
+- Work item: `WI-ART-01-01` (in-review).
+- Next checkpoint: Mark selects or refines a direction, then current production content is composed into museum and LifeInbox keyframes.
+- Last assessed: 2026-07-18 against Production `dpl_GrUZykoAFe7Vcw6L12FUU5vsrS8n`.
+
+### CAP-ART-002: Museum And LifeInbox Aesthetic Remediation
+
+- Owner: Codex with Mark creative review
+- Lifecycle: in-progress
+- Health: watch
+- Confidence: high on implementation starting points; medium until keyframes are selected
+- Dimension states: `S working; A accepted; C/I/T/Q/R not-started`
+- Package: `ART-01`
+- Works now: the museum and LifeInbox have stable content, interactions, routes, feature flags, and fallbacks suitable for re-composition without rewriting product logic.
+- Named gaps: uniform signal cards, nested dark panels, generic form/button/card treatment, weak project silhouettes, and competing floating controls remain live; no remediation code is started.
+- Safe exposure: current release stays live under existing independent rollback flags while visual replacement is developed in Preview.
+- Evidence: none accepted yet; keyframes, one rejected alternative, stable captures, diagnostic record, and Mark review are required.
+- Work item: `WI-ART-01-01` (in-review).
+- Next checkpoint: three keyframe briefs, then one selected museum/LifeInbox visual prototype.
+- Last assessed: 2026-07-18.
+
 ## Museum And Shared Case-Study System
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
@@ -587,13 +626,29 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
-| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
+| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22`, `V-31` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: accepted` | reopened |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-QA-006` | Tracking integrity and evidence reconciliation | `QA-06` | Platform | All active outcomes | 2 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-PXP-001` | Evidence-backed skill map prototype and decision | `PXP-01` | `V-24` | Experimental | 2 | `U/U/U/U/U/U/U` | deferred |
 | `CAP-PXP-002` | Rare site-help request prototype and decision | `PXP-03` | `V-21` | Experimental | 1 | `U/U/U/U/U/U/U` | deferred |
+
+### CAP-QA-002: Reopened First-Slice Creative Gate
+
+- Owner: Codex with Mark creative acceptance
+- Lifecycle: reopened
+- Health: watch
+- Confidence: high
+- Dimension states: `S/C/A/I/T/R accepted; Q working`
+- Package: `QA-02`
+- Works now: the 157-test aggregate, strict types, validated content, browser depth flow, sound-off/reduced-motion behavior, lazy loading, Preview, Production, and rollback evidence remain valid.
+- Named gaps: the original visual review did not prevent an interchangeable rounded-card museum or conventional dark-panel LifeInbox treatment. `V-31` now requires selected/rejected keyframes, distinct silhouettes, material and motion dialects, anti-generic diagnostics, and Mark acceptance.
+- Safe exposure: the functional release remains live under independent rollback flags while remediation is developed and reviewed in Preview.
+- Evidence: `EV-QA-02-01` and `EV-QA-02-03` remain sufficient; `EV-QA-02-02` remains sufficient for browser/stimulation claims but not the renewed aesthetic claim.
+- Work item: historical `WI-QA-02-01` remains done; active correction is `WI-ART-01-01`.
+- Next checkpoint: `CAP-ART-002` produces representative remediation, then the creative dimension receives new evidence or remains open.
+- Last assessed: 2026-07-18 after Mark's direct live feedback.
 
 ### CAP-QA-001: Foundation Unit And Browser Test Harness
 

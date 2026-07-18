@@ -95,6 +95,16 @@ The experience should begin relatively calm. Richer sound, movement, particles, 
 
 The mobile experience does not need to reproduce the desktop world one-to-one. Both can share content, knowledge relationships, AI context, and discovery state while using different interaction models.
 
+### Aesthetics Are Structural
+
+The approved ideas require an equally authored visual world. Art direction must begin before component styling, not arrive as a polish pass after interactions are complete.
+
+The site should not depend on the familiar premium-portfolio formula of dark gradients, equal rounded cards, muted body copy, pill controls, generic glow, and one large serif heading. Individual ingredients may still appear when they have a purpose, but they cannot become the default composition.
+
+Each major scene needs a focal artifact or phenomenon, deliberate hierarchy, material logic, and one memorable gesture. Projects share the five-stage depth grammar while retaining distinct silhouettes and behaviors. A visitor should be able to feel the difference between LifeInbox, Dreamlife, and Sudoku Together before reading their names.
+
+The active implementation and review standard is [Art Direction And Aesthetic Quality](implementation-plans/18-Art-Direction-And-Aesthetic-Quality.md).
+
 ## 3. The Universal Grammar Of Depth
 
 Every major object, memory, project, or offering should use the same five-stage depth grammar.

@@ -18,6 +18,8 @@ Last updated: 2026-07-17
 
 Transform the existing project page and project subdomains into an inspectable museum of systems with increasing depth, focused product demonstrations, and project-specific exploded case studies.
 
+Art-direction correction: the 2026-07-18 live audit found that the accepted functional shell is too dependent on a uniform rounded-card grid and that the first LifeInbox depth layer reads like a conventional dark application panel. These are working implementation foundations, not the final aesthetic target. All Phase 4 visual work follows `18-Art-Direction-And-Aesthetic-Quality.md`.
+
 ## Existing Foundation
 
 - `src/app/projects/page.tsx`
@@ -105,6 +107,9 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 - Preserve a fast project overview for direct visitors.
 - Treat `/projects` as the museum lobby rather than the canonical full home of each flagship.
 - Replace generic card-only browsing with exhibits that signal depth.
+- Give each project or coherent historical cluster a distinct silhouette and material/behavior signal; accent color and title are insufficient identity.
+- Let project relationships affect composition, sight lines, or neighboring signals rather than adding equal decorative glow to every card.
+- Consolidate tour, AI, sound, and navigation furniture into a clear utility hierarchy that does not compete with exhibits.
 - Keep stable anchors and direct links for every project.
 - Allow AI cards and the guided tour to open a project at a safe requested stage.
 - Add `/projects/[slug]` as the planned stable direct-entry family; flagship entries transition or redirect to canonical project subdomains, while smaller projects may render in the museum shell.
@@ -372,6 +377,21 @@ For each flagship:
 - Define low-cost placeholder assets for logic prototypes.
 - Replace placeholders only after interaction proves itself.
 - Produce static poster frames for loading and lower stimulation.
+- Produce Signal, Approach, and one deepest-state keyframe before production styling for each flagship.
+- Preserve at least one rejected composition and the written reason it failed the art-direction diagnostics.
+
+## Aesthetic Acceptance
+
+Project modules own an art-direction thesis, focal artifact, material dialect, one dominant gesture, and depth-specific visual transformation. Shared orchestration must not impose a universal card, panel, pill, heading, or animation treatment.
+
+Before implementation expands, review each flagship against:
+
+- The silhouette, swap, crop, darkness, stillness, deepening, and furniture tests in `18-Art-Direction-And-Aesthetic-Quality.md`.
+- One calm keyframe and one standard-stimulation keyframe using real content.
+- One visual explanation of how Handle becomes Enter and Understand rather than merely appending sections.
+- One explicit list of generic patterns rejected for that project.
+
+Creative acceptance requires Mark's review. Passing interaction and route tests cannot substitute for authored visual identity.
 
 ## Testing
 
@@ -399,6 +419,10 @@ For each flagship:
 ### Visual And Interaction
 
 - Desktop pointer and keyboard.
+- Selected and rejected keyframes at stable frames.
+- Project silhouette with names and accent colors suppressed.
+- Swap test proving the composition is not interchangeable with another flagship.
+- Utility-control hierarchy without floating-widget competition.
 - Loading on cold cache.
 - Lower stimulation.
 - Model or asset failure.
