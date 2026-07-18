@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import MuseumShell from '@/components/museum/MuseumShell';
 import { loadMuseumExhibits } from '@/lib/museum/loadExhibits';
-import { resolveMuseumHash } from '@/lib/museum/navigation';
+import { resolveMuseumHash, resolveMuseumStage } from '@/lib/museum/navigation';
 
 describe('museum Signal and Approach shell', () => {
   it('renders all canonical signals without loading a flagship interaction', async () => {
@@ -22,5 +22,10 @@ describe('museum Signal and Approach shell', () => {
     expect(resolveMuseumHash('#discord-sudoku-activity', exhibits)).toBe('discord-sudoku-activity');
     expect(resolveMuseumHash('#unknown', exhibits)).toBeUndefined();
     expect(resolveMuseumHash('#museum-lobby', exhibits)).toBeUndefined();
+    const lifeInbox = exhibits.find(exhibit => exhibit.slug === 'lifeinbox');
+    expect(resolveMuseumStage('?stage=handle', lifeInbox)).toBe('handle');
+    expect(resolveMuseumStage('?stage=understand', lifeInbox)).toBe('understand');
+    expect(resolveMuseumStage('?stage=handle', exhibits.find(exhibit => exhibit.slug === 'dreamlife'))).toBe('approach');
+    expect(resolveMuseumStage('?stage=unsafe', lifeInbox)).toBe('approach');
   });
 });

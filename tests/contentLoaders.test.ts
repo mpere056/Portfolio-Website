@@ -7,8 +7,8 @@ import { getTimelineEntries } from '@/lib/timeline';
 describe('shared content loaders', () => {
   it('recursively loads the complete managed corpus with canonical identities', async () => {
     const records = await loadContentRecords();
-    expect(records).toHaveLength(39);
-    expect(records.filter(record => record.nodeId)).toHaveLength(39);
+    expect(records).toHaveLength(40);
+    expect(records.filter(record => record.nodeId)).toHaveLength(40);
     expect(records.find(record => record.relativePath === 'projects/dreamlife.mdx')).toMatchObject({
       kind: 'project',
       nodeId: 'project:dreamlife',

@@ -102,4 +102,15 @@ export interface MuseumExhibitLoadResult {
   issues: readonly ExhibitRegistryIssue[];
 }
 
+export interface CaseStudyLayer {
+  id: string;
+  question: string;
+  title: string;
+  summary: string;
+  graphNodeIds: readonly NodeId[];
+  visualKey: string;
+  evidenceNodeIds: readonly NodeId[];
+  revealAfter?: readonly string[];
+}
+
 export type DestinationLookup = Readonly<Record<string, DestinationDefinition>>;

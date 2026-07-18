@@ -22,6 +22,7 @@ import type {
 } from './types';
 
 export const INITIAL_EXHIBIT_STAGES = ['signal', 'approach'] as const satisfies readonly DepthStage[];
+const LIFEINBOX_STAGES = ['signal', 'approach', 'handle', 'enter', 'understand'] as const satisfies readonly DepthStage[];
 const LAYER_ID = /^layer:[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function unique<T>(items: readonly T[]) {
@@ -75,9 +76,9 @@ function toExhibitDefinition(
       ...(project.heroModel ? { heroModel: project.heroModel } : {}),
       ...(firstMedia ? { posterSrc: firstMedia.poster ?? firstMedia.src } : {}),
     },
-    supportedStages: INITIAL_EXHIBIT_STAGES,
+    supportedStages: project.nodeId === 'project:lifeinbox' ? LIFEINBOX_STAGES : INITIAL_EXHIBIT_STAGES,
     ...(project.experienceId ? { experienceId: project.experienceId } : {}),
-    layerIds: [],
+    layerIds: project.nodeId === 'project:lifeinbox' ? ['layer:lifeinbox-local-trust'] : [],
     evidenceNodeIds: unique(project.relatedPostIds),
     relatedNodeIds: unique([...project.capabilityIds, ...project.relatedTimelineIds]),
     hiddenDiscoveryIds: [],

@@ -19,7 +19,9 @@ describe('museum exhibit registry', () => {
       expect(exhibit).toMatchObject({
         projectId: project.nodeId,
         slug: project.slug,
-        supportedStages: ['signal', 'approach'],
+        supportedStages: project.nodeId === 'project:lifeinbox'
+          ? ['signal', 'approach', 'handle', 'enter', 'understand']
+          : ['signal', 'approach'],
       });
       expect(resolveExhibitEntry(registry, project.slug)).toMatchObject({
         href: `/projects#${project.slug}`,
@@ -51,6 +53,12 @@ describe('museum exhibit registry', () => {
     });
     expect(resolveExhibitEntry(registry, 'lifeinbox', 'enter')).toMatchObject({
       href: '/projects#lifeinbox',
+      stage: 'enter',
+      usedFallback: false,
+      usedStageFallback: false,
+    });
+    expect(resolveExhibitEntry(registry, 'dreamlife', 'enter')).toMatchObject({
+      href: '/projects#dreamlife',
       stage: 'signal',
       usedFallback: false,
       usedStageFallback: true,

@@ -1,13 +1,21 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import type { MuseumExhibitView } from '@/lib/museum/types';
-import { resolveMuseumHash } from '@/lib/museum/navigation';
+import type { DepthStage } from '@/lib/portfolioContracts';
+import { resolveMuseumHash, resolveMuseumStage } from '@/lib/museum/navigation';
 import ExhibitFallback from './ExhibitFallback';
+import ExhibitExperienceBoundary from './ExhibitExperienceBoundary';
+import MuseumSelectionContext from './MuseumSelectionContext';
 import ProjectStateSummary from './ProjectStateSummary';
 import styles from './MuseumShell.module.css';
 
 const SIGNAL_COLORS = ['#c98b57', '#78aaa0', '#d2b66e', '#8a9fc4', '#c77968', '#87a578'];
+const LifeInboxExperience = dynamic(() => import('./LifeInboxExperience'), {
+  ssr: false,
+  loading: () => <div className="mt-8 rounded-[2rem] border border-amber-100/10 bg-[#100e0a] p-8 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-amber-100/45">Opening the local trust boundary...</div>,
+});
 
 interface MuseumShellProps {
   exhibits: readonly MuseumExhibitView[];
@@ -15,22 +23,51 @@ interface MuseumShellProps {
 
 export default function MuseumShell({ exhibits }: MuseumShellProps) {
   const [selectedSlug, setSelectedSlug] = useState<string>();
+  const [selectedStage, setSelectedStage] = useState<DepthStage>('approach');
   const approachRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const syncHash = () => setSelectedSlug(resolveMuseumHash(window.location.hash, exhibits));
-    syncHash();
-    window.addEventListener('hashchange', syncHash);
-    return () => window.removeEventListener('hashchange', syncHash);
+    const syncLocation = () => {
+      const slug = resolveMuseumHash(window.location.hash, exhibits);
+      const exhibit = exhibits.find(item => item.slug === slug);
+      setSelectedSlug(slug);
+      setSelectedStage(resolveMuseumStage(window.location.search, exhibit));
+    };
+    syncLocation();
+    window.addEventListener('hashchange', syncLocation);
+    window.addEventListener('popstate', syncLocation);
+    return () => {
+      window.removeEventListener('hashchange', syncLocation);
+      window.removeEventListener('popstate', syncLocation);
+    };
   }, [exhibits]);
 
   useEffect(() => {
     if (!selectedSlug || !approachRef.current) return;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     approachRef.current.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-  }, [selectedSlug]);
+  }, [selectedSlug, selectedStage]);
 
   const selected = exhibits.find(exhibit => exhibit.slug === selectedSlug);
+  const navigateToStage = (exhibit: MuseumExhibitView, stage: DepthStage) => {
+    const url = new URL(window.location.href);
+    url.hash = exhibit.slug;
+    if (stage === 'approach') url.searchParams.delete('stage');
+    else url.searchParams.set('stage', stage);
+    window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
+    setSelectedSlug(exhibit.slug);
+    setSelectedStage(stage);
+  };
+
+  const returnToSignals = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('stage');
+    url.hash = 'museum-lobby';
+    window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
+    setSelectedSlug(undefined);
+    setSelectedStage('approach');
+    document.getElementById('museum-lobby')?.scrollIntoView({ block: 'start' });
+  };
 
   return (
     <main id="museum-lobby" aria-label="Project museum" className={styles.museum}>
@@ -60,7 +97,7 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
                 data-selected={selectedSignal}
                 className={styles.signal}
                 style={{ '--signal-color': SIGNAL_COLORS[index % SIGNAL_COLORS.length], animationDelay: `${Math.min(index * 70, 420)}ms` } as React.CSSProperties}
-                onClick={() => setSelectedSlug(exhibit.slug)}
+                onClick={(event) => { event.preventDefault(); navigateToStage(exhibit, 'approach'); }}
               >
                 <span className={styles.signalIndex}>{String(index + 1).padStart(2, '0')}</span>
                 <p className="font-mono text-[0.62rem] uppercase tracking-[0.26em] text-[#f4efe5]/35">{exhibit.year} / Signal</p>
@@ -73,6 +110,7 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
 
         {selected ? (
           <section ref={approachRef} aria-live="polite" aria-label={`${selected.name} approach`} className={styles.approach}>
+            <MuseumSelectionContext exhibit={selected} stage={selectedStage} />
             <div className={styles.approachGrid}>
               <div>
                 <p className="font-mono text-[0.66rem] uppercase tracking-[0.28em] text-[#d8b98c]/55">Approach / {selected.year}</p>
@@ -85,15 +123,25 @@ export default function MuseumShell({ exhibits }: MuseumShellProps) {
                   {selected.tech.map(technology => <span key={technology}>{technology}</span>)}
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <a href={selected.projectHref} className="rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]">
+                  {selected.projectId === 'project:lifeinbox' && selectedStage === 'approach' ? (
+                    <button type="button" onClick={() => navigateToStage(selected, 'handle')} className="rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]">
+                      Handle a thought
+                    </button>
+                  ) : null}
+                  <a href={selected.projectHref} className={selected.projectId === 'project:lifeinbox' ? 'rounded-full border border-[#f4efe5]/15 px-5 py-2.5 text-sm text-[#f4efe5]/60 transition hover:border-[#f4efe5]/35 hover:text-[#f4efe5]' : 'rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]'}>
                     Enter project world
                   </a>
-                  <a href="#museum-lobby" onClick={() => setSelectedSlug(undefined)} className="rounded-full border border-[#f4efe5]/15 px-5 py-2.5 text-sm text-[#f4efe5]/60 transition hover:border-[#f4efe5]/35 hover:text-[#f4efe5]">
+                  <button type="button" onClick={returnToSignals} className="rounded-full border border-[#f4efe5]/15 px-5 py-2.5 text-sm text-[#f4efe5]/60 transition hover:border-[#f4efe5]/35 hover:text-[#f4efe5]">
                     Return to signals
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
+            {selected.projectId === 'project:lifeinbox' && ['handle', 'enter', 'understand'].includes(selectedStage) ? (
+              <ExhibitExperienceBoundary projectHref={selected.projectHref}>
+                <LifeInboxExperience stage={selectedStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} />
+              </ExhibitExperienceBoundary>
+            ) : null}
           </section>
         ) : null}
       </div>

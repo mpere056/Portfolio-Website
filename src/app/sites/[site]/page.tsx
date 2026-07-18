@@ -193,6 +193,9 @@ function LifeInboxSite({ project }: { project: Project }) {
               <a href="/blog" className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
                 Read Field Notes
               </a>
+              <a href={`${portfolioOrigin}/projects?stage=understand#lifeinbox`} className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
+                Return to Museum Exhibit
+              </a>
             </div>
           </div>
 
