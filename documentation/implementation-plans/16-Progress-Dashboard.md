@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-18
-Implementation commit baseline: `dd11a4f`; latest verified Production: `dpl_8pdvQ6fH9HDgoXaPm8gZs5KxwWxc`
+Implementation commit baseline and latest verified Production: `806841d`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `dd11a4f`; latest verified Production: `dpl_8pdv
 
 ## Current Program State
 
-**Phase 1 through Phase 4 functionality is live. A complete reference-rich replacement is implemented locally and awaits deployment verification plus Mark's creative review.**
+**Phase 1 through Phase 4 functionality and the complete reference-rich replacement are live at `806841d`; Mark's creative review remains.**
 
-The functional Production baseline remains valid. The replacement sequence now adds six original material studies, three real Museum keyframes, a selected/reassigned composition decision, a typed/tested production art registry, a phenomenon-led Museum, project-specific flagship materials, and supporting-route translations across Home, About, AI, subdomains, and reading. Local focused tests, lint, the 35-page production build, and browser composition review pass. `ART-01` and `ART-03` through `ART-06` are implemented candidates rather than accepted packages; renewed `QA-02`, public verification, and Mark review remain the honest boundary.
+The replacement sequence adds six original material studies, three real Museum keyframes, a selected/reassigned composition decision, a typed/tested production art registry, a phenomenon-led Museum, project-specific flagship materials, and supporting-route translations across Home, About, AI, subdomains, and reading. Forty-two test files/166 tests, 58-node/28-relationship content validation, lint without errors, the 35-page build, local browser composition/no-console-error review, and public `200`/art-marker verification pass. `ART-01` and `ART-03` through `ART-06` are implemented candidates rather than accepted packages; renewed `QA-02` and Mark review remain the honest boundary.
 
 This distinction prevents two errors:
 
@@ -89,13 +89,13 @@ Counts include only the 64 package rows in `13-Execution-Work-Packages.md`; feed
 | 30 | `LPS-06` | Selected flagship state seed | complete | `PRJ-02` selection | One source-reviewed lifecycle and current-state fixture accepted |
 | 31 | `AI-04` | Archive cards and selected-destination flow | complete | `AI-03`, `ARC-03`, `PRJ-01` | Invalid cards fail closed and selected live card response passes |
 | 32 | `PRJ-04` | First full flagship slice | complete | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
-| 33 | `QA-02` | First vertical-slice quality gate | reopened | Functional and Production gates remain; replacement candidate is implemented locally | Public verification and Mark acceptance without discarding valid evidence |
+| 33 | `QA-02` | First vertical-slice quality gate | reopened | Functional, local, build, and public gates pass for the replacement | Mark acceptance without discarding valid evidence |
 | 34 | `ART-01` | Direction and first keyframe selection | implemented | Observatory direction, studies, coverage, and keyframes exist | Mark reviews the selected/reassigned route result |
 | 35 | `ART-02` | Aesthetic runtime foundation | complete | `ART-01` selected packets | CSS/SVG material, depth, calm, fallback, and capture roles pass build |
-| 36 | `ART-03` | Museum and LifeInbox remediation | implemented | Phenomenon ecology and receiving-vessel materials pass local gates | Public route verification and Mark review |
-| 37 | `ART-04` | Project and archive dialect packets | implemented | Nacre, diagram-organism, and historical landmarks are integrated | Public deep-state verification and Mark review |
-| 38 | `ART-05` | Supporting-route translation | implemented | Home, About, AI, subdomains, and reading have explicit assignments | Public route verification and Mark review |
-| 39 | `ART-06` | Whole-portfolio maturation | implemented | Typed asset registry, optimized derivatives, reduced motion, build, and local browser matrix pass | Public matrix and Mark acceptance |
+| 36 | `ART-03` | Museum and LifeInbox remediation | implemented | Phenomenon ecology and receiving-vessel materials pass local and public gates | Mark review |
+| 37 | `ART-04` | Project and archive dialect packets | implemented | Nacre, diagram-organism, and historical landmarks are live | Mark review |
+| 38 | `ART-05` | Supporting-route translation | implemented | Home, About, AI, subdomains, and reading are live | Mark review |
+| 39 | `ART-06` | Whole-portfolio maturation | implemented | Registry, optimized derivatives, reduced motion, build, browser, and public matrix pass | Mark acceptance |
 | 40 | `LPS-02`, `LPS-03` | Portfolio lifecycle and state corpus | complete | Lifecycle schema and delegated Phase 4 implementation | Nine records, correction paths, and graph relationships validate |
 | 41 | `PRJ-05` | Dreamlife experience | complete | Flagship depth framework and reviewed state | Future prism, reaction, experiment, loop, and evidence pass |
 | 42 | `PRJ-06` | Sudoku Together experience | complete | Flagship depth framework and reviewed state | Valid board, synthetic participant, and architecture pass |
@@ -111,9 +111,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-06-01` | in-review | `ART-06` | Integrated local candidate passes build and browser review | Deploy and verify the public route matrix | 2026-07-18 |
-| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement is implemented locally | Collect Mark's creative review after public verification | 2026-07-18 |
-| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects are implemented locally | Revise only named route/material mismatches from review | 2026-07-18 |
+| Now | `WI-ART-06-01` | in-review | `ART-06` | `806841d` passes local and public verification | Collect Mark's cross-route creative review | 2026-07-18 |
+| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement is live | Collect Mark's Museum/LifeInbox creative review | 2026-07-18 |
+| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects are live at `806841d` | Revise only named route/material mismatches from review | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -121,7 +121,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-02` through `WI-ART-06-01` | Does the integrated route system now meet the approved artistic standard without becoming decorative or templated? | Mark | Museum keyframes, material studies, local route captures, candidate deployment | 2026-07-18 | Verify public routes, then review by route/material mismatch |
+| `WI-ART-01-02` through `WI-ART-06-01` | Does the integrated route system now meet the approved artistic standard without becoming decorative or templated? | Mark | Museum keyframes, material studies, local captures, Production `806841d` | 2026-07-18 | Review by route/material mismatch |
 
 ## Blocked Or Paused
 
@@ -138,9 +138,9 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional work r
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002` | `WI-ART-01-02` | Six studies, all-reference coverage, three Museum keyframes, and selected/reassigned route decision are committed | Mark route-level acceptance | Full-resolution decision artifacts remain separate from optimized runtime assets | Review the deployed Museum and supporting assignments | `EV-ART-01-02` candidate evidence |
-| `CAP-ART-004` | `WI-ART-03-01` | Phenomenon-led Museum and LifeInbox vessel material pass local tests/build/browser review | Public verification and Mark acceptance | Keep `dd11a4f` as rejected comparison and rollback baseline | Verify public Museum and LifeInbox depth | `EV-ART-03-02` candidate evidence |
-| `CAP-ART-005` | `WI-ART-04-01` | Dreamlife nacre, Sudoku diagram organism, and historical landmarks are implemented | Public deep-state verification and Mark acceptance | Functional worlds and direct routes remain intact | Verify public flagship deep states | `EV-ART-04-02` candidate evidence |
-| `CAP-ART-006` | `WI-ART-05-01`, `WI-ART-06-01` | Home, About, AI, project worlds, reading, asset registry, optimization, and reduced motion are implemented | Public route matrix, performance observation, and Mark acceptance | Mobile-specific art and musical identity remain later | Deploy and review the public matrix | `EV-ART-05-01`, `EV-ART-06-01` candidate evidence |
+| `CAP-ART-004` | `WI-ART-03-01` | Phenomenon-led Museum and LifeInbox vessel material pass local and public verification | Mark acceptance | Keep `dd11a4f` as rejected comparison and rollback baseline | Review live Museum and LifeInbox depth | `EV-ART-03-02` candidate evidence |
+| `CAP-ART-005` | `WI-ART-04-01` | Dreamlife nacre, Sudoku diagram organism, and historical landmarks are live | Mark acceptance | Functional worlds and direct routes remain intact | Review live flagship deep states | `EV-ART-04-02` candidate evidence |
+| `CAP-ART-006` | `WI-ART-05-01`, `WI-ART-06-01` | Home, About, AI, project worlds, reading, registry, optimization, reduced motion, and public matrix are live | Mark acceptance and later performance observation under normal use | Mobile-specific art and musical identity remain later | Review the live public matrix | `EV-ART-05-01`, `EV-ART-06-01` candidate evidence |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -193,6 +193,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-18 | Promoted the complete reference-rich visual sequence | `ART-01`, `ART-03` through `ART-06`, renewed `QA-02` | `806841d` is live; main Museum and all three project domains return `200` with their assigned art markers |
 | 2026-07-18 | Implemented the full reference-rich visual replacement sequence locally | `ART-01`, `ART-03` through `ART-06`, `CAP-ART-002/004/005/006`, renewed `QA-02` | Original assets, selected/reassigned keyframes, typed registry, major-route translations, tests/build, and local browser matrix are candidate-ready |
 | 2026-07-18 | Reopened visual production after reference-coverage review | `ART-01`, `ART-03`, `ART-04`, renewed `QA-02`, `CAP-ART-002/004/005` | All nine references now have route ownership; material studies and real keyframes precede replacement implementation |
 | 2026-07-18 | Integrated art direction across the implementation program | `ART-01` through `ART-06`, `CAP-ART-001` through `006`, `V-31`, route and quality plans | Six-layer model, art-packet contract, route coverage, package gates, and partial-work checkpoints prevent aesthetics from becoming a detached or vague polish pass |

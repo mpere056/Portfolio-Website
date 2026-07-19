@@ -517,7 +517,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S/A accepted; C implemented; T accepted; Q in-review; I/R not-applicable`
 - Package: `ART-01`
 - Works now: six original material studies, all-reference coverage, three real Museum alternatives, one selected/reassigned decision, production asset assignments, and stable project coordinates are committed and implemented.
-- Named gaps: public verification and Mark's route-level acceptance remain; musical identity and mobile-specific composition remain later.
+- Named gaps: Mark's route-level acceptance remains; musical identity and mobile-specific composition remain later.
 - Safe exposure: design documentation only; current release stays live while visual inputs are selected.
 - Evidence: `EV-ART-01-02` is candidate evidence; `EV-ART-01-01` remains accepted direction evidence.
 - Work item: `WI-ART-01-01` (direction decision done); `WI-ART-01-02` owns the reopened visual-production work.
@@ -533,7 +533,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S/A/I/T/R accepted; C implemented; Q in-review`
 - Package: `ART-03`
 - Works now: the replacement Museum uses a phenomenon-led ecology with nine semantic coordinates; LifeInbox carries a spectral receiving vessel through the existing trust-boundary experience; local tests, build, and browser review pass.
-- Named gaps: public verification and Mark acceptance remain.
+- Named gaps: Mark acceptance remains.
 - Safe exposure: current Production remains the known-good functional baseline; aesthetic work proceeds behind existing rollback boundaries.
 - Evidence: `EV-ART-03-01` preserves the failed comparison; `EV-ART-03-02` records the replacement candidate.
 - Work item: `WI-ART-03-01` (in-review).
@@ -569,7 +569,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Safe exposure: all artwork is subordinate to semantic HTML, route truth, failure isolation, and existing rollback boundaries.
 - Evidence: `EV-ART-05-01` and `EV-ART-06-01` are candidate evidence.
 - Work items: `WI-ART-05-01`, `WI-ART-06-01` (in-review).
-- Next checkpoint: deploy and verify the public route matrix, then collect Mark's review by route/material mismatch.
+- Next checkpoint: collect Mark's review of the live route matrix by route/material mismatch.
 - Last assessed: 2026-07-18 after local integrated build and browser review.
 
 ## Museum And Shared Case-Study System

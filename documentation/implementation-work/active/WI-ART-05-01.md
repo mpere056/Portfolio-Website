@@ -21,7 +21,7 @@ The supporting-route translation is implemented. Home uses the painterly presenc
 ## Resume Packet
 
 - Last completed artifact: Home, About, AI, project-world, and reading-surface translations from the shared production asset registry.
-- Next exact action: verify the public routes after deployment and collect Mark's route-specific review.
+- Next exact action: collect Mark's route-specific review from the live deployment.
 - Preserve: first-note persistence, timeline scrolling, AI failure isolation, article readability, and independent mobile treatment.
 - Do not claim: this package completes About event inspection or the later musical identity work.
 
@@ -31,4 +31,5 @@ The supporting-route translation is implemented. Home uses the painterly presenc
 - [x] Supporting routes are related without sharing one layout.
 - [x] Reading surfaces remain calmer than exhibits.
 - [x] Semantic content and controls remain above decorative artwork.
-- [ ] Public route verification and Mark acceptance remain.
+- [x] Main and project-domain route-marker verification passes at `806841d`.
+- [ ] Mark acceptance remains.

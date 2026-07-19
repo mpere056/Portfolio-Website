@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 through Phase 4 functionality remains live on verified Production. The complete reference-rich replacement sequence is now implemented locally: selected/reassigned Museum keyframes, typed production art registry, phenomenon-led Museum, project-specific flagship materials, Home/About/AI translations, subdomain worlds, and calmer reading surfaces. All aesthetic packages are waiting on deployment verification and Mark's creative review; implementation is not being mislabeled as acceptance.
+Phase 1 through Phase 4 functionality and the complete reference-rich replacement sequence are live on verified Production at `806841d`: selected/reassigned Museum keyframes, typed production art registry, phenomenon-led Museum, project-specific flagship materials, Home/About/AI translations, subdomain worlds, and calmer reading surfaces. All aesthetic packages now wait only on Mark's creative review; implementation and deployment are not being mislabeled as acceptance.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-06-01` | in-review | `ART-06` | Integrated local candidate passes build and browser composition review | Deploy and verify the public route matrix | 2026-07-18 |
-| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement implemented locally | Collect Mark's creative review after public verification | 2026-07-18 |
-| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects implemented locally | Revise only named route/material mismatches from review | 2026-07-18 |
+| Now | `WI-ART-06-01` | in-review | `ART-06` | `806841d` passes build, browser review, and public route-marker verification | Collect Mark's cross-route creative review | 2026-07-18 |
+| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement is live on Production | Collect Mark's Museum/LifeInbox creative review | 2026-07-18 |
+| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects live at `806841d` | Revise only named route/material mismatches from review | 2026-07-18 |
 
 ## Active And Unfinished Items
 

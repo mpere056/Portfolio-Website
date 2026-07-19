@@ -21,7 +21,7 @@ Dreamlife, Sudoku Together, and the historical Museum field now have original pr
 ## Resume Packet
 
 - Last completed artifact: route-specific material layers in flagship experiences and all three project worlds, backed by `src/lib/artDirection.ts`.
-- Next exact action: verify public deep states and ask Mark whether any route loses its silhouette without title/accent cues.
+- Next exact action: ask Mark whether any live route loses its silhouette without title/accent cues.
 - Preserve: working project interactions, lifecycle truth, canonical routes, direct-depth restoration, and project-specific behavior.
 - Do not claim: different accent color, border geometry, or diagram arrangement proves an accepted project dialect.
 
@@ -31,4 +31,5 @@ Dreamlife, Sudoku Together, and the historical Museum field now have original pr
 - [x] Sudoku visibly uses diagram-organism depth behind the precise shared board.
 - [x] Historical work occupies painterly, aperture, ecological, waveform, camera, and crystalline landmarks.
 - [x] Calm/fallback behavior and functional tests remain valid locally.
-- [ ] Public deep-state verification and Mark acceptance remain.
+- [x] Public project domains return `200` with their route-specific art markers at `806841d`.
+- [ ] Mark acceptance remains.

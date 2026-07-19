@@ -233,7 +233,7 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ## Phase 4: Museum Framework And Remaining Flagships
 
-Implementation checkpoint, 2026-07-18: all Phase 4 functional code and content packages remain live. Mark rejected the first creative candidate; the complete keyframe-first replacement across `ART-01` and `ART-03` through `ART-06` is now implemented locally without reopening behavior, content, route, lifecycle, or deployment foundations. Public verification and the creative dimension of `QA-02` remain before acceptance.
+Implementation checkpoint, 2026-07-18: all Phase 4 functional code/content and the complete keyframe-first replacement across `ART-01` and `ART-03` through `ART-06` are live and publicly verified at `806841d`. Mark rejected the first creative candidate; the replacement preserves behavior, content, routes, lifecycle, and deployment foundations. The creative dimension of `QA-02` now waits only on Mark acceptance.
 
 Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. Lifecycle truth now drives current and historical depth, while the Observatory implementation remains a functional baseline rather than an accepted artistic result. The corrected path produces six material studies, all-nine-reference route accountability, real selected/rejected keyframes, and art packets before replacement runtime work.
 

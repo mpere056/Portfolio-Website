@@ -16,12 +16,12 @@
 
 ## Current Truth
 
-One typed art registry now owns production assets and nine Museum coordinates. Full-resolution decision artifacts remain in documentation while optimized WebP derivatives are served in production. Major routes have independent compositions, reduced-motion disables autonomous art drift, and browser review has confirmed the local Museum, Home, About, and Dreamlife compositions. Automated asset, mapping, interaction, lint, type, and production-build gates pass locally.
+One typed art registry now owns production assets and nine Museum coordinates. Full-resolution decision artifacts remain in documentation while optimized WebP derivatives are served in production. Major routes have independent compositions, reduced-motion disables autonomous art drift, and browser review confirms Museum, Home, About, all project worlds, and reading locally. Automated asset, mapping, interaction, lint, type, and production-build gates pass. Commit `806841d` is live, and the main Museum plus all three project domains return `200` with their new art markers.
 
 ## Resume Packet
 
-- Last completed artifact: local desktop capture review and production-build gate for the integrated sequence.
-- Next exact action: deploy, verify public routes and console state, then collect Mark's final creative review.
+- Last completed artifact: public Production route-marker verification for `806841d`.
+- Next exact action: collect Mark's final creative review.
 - Named later boundary: mobile-specific art direction and the closely co-authored musical identity remain separate work.
 - If performance regresses: preserve semantic content and reduce art resolution/priority before removing project identity.
 
@@ -31,4 +31,5 @@ One typed art registry now owns production assets and nine Museum coordinates. F
 - [x] Full-resolution source studies and optimized production assets are separated.
 - [x] Major route classes have local browser captures and no known composition blocker.
 - [x] Reduced-motion and semantic fallback paths remain intact.
-- [ ] Production route/console verification and Mark acceptance remain.
+- [x] Production main/subdomain route-marker verification passes.
+- [ ] Mark acceptance remains.
