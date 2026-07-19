@@ -16,21 +16,22 @@
 
 ## Current Truth
 
-The Observatory direction remains accepted, but the visual-production gate was skipped or accepted too loosely. The Production candidate at `dd11a4f` is a useful functional baseline and rejected creative comparison. No new broad styling should begin until original material studies and real route keyframes visibly translate all nine references.
+The Observatory direction remains accepted, but the visual-production gate was skipped or accepted too loosely. The Production candidate at `dd11a4f` is a useful functional baseline and rejected creative comparison. Six original material studies have now been produced and accepted by Mark; the labeled coverage record accounts for every `R1` through `R9` family. The active checkpoint is the three-composition Museum Signal keyframe round.
 
 ## Resume Packet
 
 - Last known good: the selected direction, nine-reference written analysis, route/depth architecture, working Production interactions, and existing rollback boundaries remain valid.
 - Source of truth: `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md`.
-- Next exact action: create six original material studies and one labeled contact sheet mapping each study to `R1` through `R9` qualities.
-- Then: create three Museum Signal keyframes using the real nine projects, retain one rejected direction, and create LifeInbox Handle/Understand keyframes from the selected material world.
+- Last completed artifact: six accepted studies and the labeled contact sheet under `documentation/art-direction/2026-07-18-material-studies/`.
+- Next exact action: create three Museum Signal keyframes using the real nine projects: phenomenon-led ecology, artifact-led observatory, and painterly/diagrammatic field.
+- Then: retain one rejected Museum direction, complete the selected Museum packet, and create LifeInbox Handle/Understand keyframes from the selected material world.
 - Do not claim: a runtime screenshot, color palette, CSS gradient, or generic glow is a material study or accepted keyframe.
 - Preserve: the supplied screenshots as external taste references only; never copy or commit them as production assets.
 
 ## Acceptance
 
-- Six original material studies cover living ecology, impossible artifact, liquid nacre, painterly presence, diagram organism, and spectral performance.
-- A contact sheet accounts for visible translations of all `R1` through `R9` qualities.
+- [x] Six original material studies cover living ecology, impossible artifact, liquid nacre, painterly presence, diagram organism, and spectral performance.
+- [x] A contact sheet accounts for visible translations of all `R1` through `R9` qualities.
 - Three materially and compositionally distinct Museum Signal keyframes use the actual project set.
 - One Museum direction is explicitly rejected with reasons.
 - Selected Museum, LifeInbox Handle, and LifeInbox Understand art packets are complete.

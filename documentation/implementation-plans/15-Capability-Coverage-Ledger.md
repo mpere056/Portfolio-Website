@@ -516,12 +516,12 @@ Until a capability receives its own detail record, these defaults apply:
 - Confidence: high on content and direction; medium until keyframes are selected
 - Dimension states: `S/A accepted; C/Q working; I/T/R not-applicable`
 - Package: `ART-01`
-- Works now: the museum and LifeInbox have stable real content and implementation-specific Signal, Handle, and Understand briefs in the selected world.
-- Named gaps: six material studies covering all reference families, a labeled reference contact sheet, three rendered Museum alternatives, one explicit rejection, selected Museum packet, LifeInbox Handle/Understand keyframes, complete packet fields, and Mark review remain. The deployed runtime cannot substitute for these inputs.
+- Works now: the museum and LifeInbox have stable real content and implementation-specific Signal, Handle, and Understand briefs; six original material studies and a labeled contact sheet visibly cover every `R1` through `R9` family and are accepted by Mark as visual-production inputs.
+- Named gaps: three rendered Museum alternatives, one explicit rejection, selected Museum packet, LifeInbox Handle/Understand keyframes, complete packet fields, and Mark route-keyframe review remain. The deployed runtime cannot substitute for these inputs.
 - Safe exposure: design documentation only; current release stays live while visual inputs are selected.
 - Evidence: none accepted yet; selected/rejected keyframes, packet records, diagnostic rationale, and Mark review are required.
 - Work item: `WI-ART-01-01` (direction decision done); `WI-ART-01-02` owns the reopened visual-production work.
-- Next checkpoint: produce six original material studies and a labeled `R1` through `R9` contact sheet before the three Museum alternatives.
+- Next checkpoint: produce the phenomenon-led, artifact-led, and painterly/diagrammatic Museum Signal alternatives with the real nine-project set.
 - Last assessed: 2026-07-18.
 
 ### CAP-ART-004: Reopened Museum And LifeInbox Remediation

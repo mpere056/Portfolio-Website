@@ -111,7 +111,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-02` | in-progress | `ART-01` | Direction, real content, route architecture, and Production baseline remain valid | Produce six material studies and labeled `R1`-`R9` contact sheet | 2026-07-18 |
+| Now | `WI-ART-01-02` | in-progress | `ART-01` | Six material studies accepted; `R1`-`R9` contact sheet complete | Produce three real-content Museum Signal keyframes | 2026-07-18 |
 | Next | `WI-ART-03-01` | ready | `ART-03` | Functional Museum/LifeInbox and rollback boundaries remain valid | Implement selected packets after keyframe review | 2026-07-18 |
 | Later | `WI-ART-04-01` | ready | `ART-04` | Functional project worlds and basic distinction remain valid | Deepen project/archive dialects after `ART-03` | 2026-07-18 |
 
@@ -137,7 +137,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional work r
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ART-002` | `WI-ART-01-02` | Selected direction, complete reference analysis, real-content briefs, and stable functional inputs | Six material studies, `R1`-`R9` contact sheet, rendered alternatives, selected packets, and Mark review | Visual production does not disturb the current release | Produce the six family studies before Museum alternatives | `EV-ART-01-01` accepts direction only |
+| `CAP-ART-002` | `WI-ART-01-02` | Selected direction, six accepted material studies, `R1`-`R9` contact sheet, real-content briefs, and stable functional inputs | Three Museum alternatives, selected/rejected packet evidence, LifeInbox keyframes, and Mark review | Visual production does not disturb the current release | Produce the three Museum Signal alternatives | `EV-ART-01-01` accepts direction only; study evidence pending registration at package exit |
 | `CAP-ART-004` | `WI-ART-03-01` | Functional deployed Museum/LifeInbox, tests, routes, and rollback | Selected reference-rich runtime, calm/fallback, crop/detail captures, Mark review | Keep `dd11a4f` as known-good baseline | Wait for `WI-ART-01-02`, then implement selected packets | `EV-ART-03-01` failed creative gate |
 | `CAP-ART-005` | `WI-ART-04-01` | Functional distinct Dreamlife, Sudoku, and historical compositions | Liquid-nacre, waveform-organism, and painterly/specimen packets plus runtime | Existing project worlds remain live | Start after accepted `ART-03` replacement | `EV-ART-04-01` accepted narrowly |
 
