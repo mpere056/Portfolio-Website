@@ -8,7 +8,7 @@ const validSource = {
   summary: 'A life-design product.',
   destination: {
     id: 'destination:museum-project-dreamlife' as const,
-    href: '/projects#dreamlife',
+    href: '/projects/dreamlife',
     targetOrigin: 'main' as const,
   },
 };

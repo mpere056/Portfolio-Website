@@ -13,7 +13,7 @@ const lifeInboxSource = {
   summary: 'A local-first capture system.',
   destination: {
     id: 'destination:museum-project-lifeinbox' as const,
-    href: '/projects#lifeinbox',
+    href: '/projects/lifeinbox',
     targetOrigin: 'main' as const,
   },
 };
@@ -26,12 +26,12 @@ describe('validated portfolio archive cards', () => {
       destinationId: 'destination:museum-project-lifeinbox',
       requestedDepth: 'handle',
       safeState: { stage: 'handle' },
-      href: '/projects?stage=handle#lifeinbox',
+      href: '/projects/lifeinbox?stage=handle',
     });
 
     const html = renderToStaticMarkup(<ArchiveCardDoor card={cards[0]} />);
     expect(html).toContain('Archive door / Handle');
-    expect(html).toContain('href="/projects?stage=handle#lifeinbox"');
+    expect(html).toContain('href="/projects/lifeinbox?stage=handle"');
     expect(html).not.toContain('javascript:');
   });
 

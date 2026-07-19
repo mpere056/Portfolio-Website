@@ -24,12 +24,14 @@ export default function ChatUI({
   resetSignal,
   onActivityChange,
   context,
+  initialPrompt,
   onArchiveCardOpen,
 }: {
   compact?: boolean;
   resetSignal?: number;
   onActivityChange?: (state: 'idle' | 'responding' | 'error', message?: string) => void;
   context?: PortfolioAIContext;
+  initialPrompt?: string;
   onArchiveCardOpen?: (card: ResolvedArchiveCard) => void;
 } = {}) {
   const {
@@ -58,6 +60,10 @@ export default function ChatUI({
     setInput('');
     setData(undefined);
   }, [resetSignal, setData, setInput, setMessages]);
+
+  useEffect(() => {
+    if (initialPrompt && messages.length === 0) setInput(initialPrompt);
+  }, [initialPrompt, messages.length, setInput]);
 
   const handlePromptClick = useCallback((prompt: string) => {
     setInput(prompt);

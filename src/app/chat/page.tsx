@@ -1,18 +1,13 @@
-import ChatUI from '@/components/ChatUI';
-import NavHomeIcon from '@/components/NavHomeIcon';
+import { redirect } from 'next/navigation';
 
-export default function ChatPage() {
-  return (
-    <div className="flex flex-col h-screen bg-[#07070d] text-white">
-      <NavHomeIcon />
-      <div className="flex-shrink-0 text-center py-4 px-4">
-        <h1 className="text-xl sm:text-2xl font-bold">
-          <span className="bg-[linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa)] bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">AI Chat</span>
-        </h1>
-      </div>
-      <div className="flex-1 min-h-0">
-        <ChatUI />
-      </div>
-    </div>
-  );
+export default async function LegacyChatPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ prompt?: string | string[] }>;
+}) {
+  const { prompt: rawPrompt } = await searchParams;
+  const prompt = Array.isArray(rawPrompt) ? rawPrompt[0] : rawPrompt;
+  const query = new URLSearchParams({ archive: 'open' });
+  if (prompt?.trim()) query.set('prompt', prompt.trim().slice(0, 500));
+  redirect(`/?${query.toString()}`);
 }

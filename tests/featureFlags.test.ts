@@ -19,15 +19,17 @@ describe('feature flags', () => {
       semanticLighting: true,
       meaningfulDiscoveries: true,
       museumV2: true,
+      dreamlifeExperience: true,
       lifeinboxExperience: true,
+      sudokuExperience: true,
     });
     expect(resolveFeatureFlags({ environment: 'production' })).toMatchObject({
       experienceFoundation: true,
       globalAI: true,
       museumV2: true,
       lifeinboxExperience: true,
-      dreamlifeExperience: false,
-      sudokuExperience: false,
+      dreamlifeExperience: true,
+      sudokuExperience: true,
       ambientPresence: false,
     });
   });

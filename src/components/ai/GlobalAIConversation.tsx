@@ -6,7 +6,7 @@ import { useExplorationWorld } from '@/components/experience/ExplorationWorldPro
 import type { ResolvedArchiveCard } from '@/lib/ai/archiveCards';
 
 export default function GlobalAIConversation() {
-  const { context, shell, reportRequestState, close } = usePortfolioAI();
+  const { context, shell, initialPrompt, reportRequestState, close } = usePortfolioAI();
   const { store } = useExplorationWorld();
   const handleArchiveCardOpen = (card: ResolvedArchiveCard) => {
     store.getState().applyDepthTransition(card.sourceNodeIds[0], {
@@ -22,6 +22,7 @@ export default function GlobalAIConversation() {
       resetSignal={shell.conversationVersion}
       onActivityChange={reportRequestState}
       context={context}
+      initialPrompt={initialPrompt}
       onArchiveCardOpen={handleArchiveCardOpen}
     />
   );

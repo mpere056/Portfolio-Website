@@ -18,7 +18,7 @@ Last updated: 2026-07-17
 
 Represent evolving, maintained, complete, and archived projects honestly and consistently across project pages, AI answers, blogs, guided tours, and returning-visitor disturbances.
 
-Phase 1 status: `LPS-01` is complete at `afa5f67`. Lifecycle-specific required sections, content-version/date validation, and evolving-only constraints are tested. No real project has been classified; `LPS-02` remains explicitly decision-gated on Mark's portfolio-wide review.
+Phase 1 status: `LPS-01` is complete at `afa5f67`. Phase 4 status: `LPS-02` and `LPS-03` are complete through nine corrected lifecycle records, lifecycle-specific rendering, and nine reviewed state-to-project graph edges. Future wording remains editable through each record's correction path.
 
 Phase 3 sequencing: `LPS-06` creates one reviewed state seed only after `PRJ-02` selects the first flagship. This lets Approach/Understand make truthful present-tense claims without treating the other eight projects as classified. The seed is later absorbed into `LPS-03`, not maintained as a parallel source.
 

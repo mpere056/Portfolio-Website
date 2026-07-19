@@ -14,7 +14,7 @@ function projectHref(project: Project, definition?: MuseumExhibitDefinition) {
   const destination = definition
     ? DESTINATION_REGISTRY[definition.projectDestinationId as keyof typeof DESTINATION_REGISTRY]
     : undefined;
-  return destination?.href || project.liveUrl || project.repoUrl || `/projects#${project.slug}`;
+  return destination?.href || project.liveUrl || project.repoUrl || `/projects/${project.slug}`;
 }
 
 export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
@@ -62,7 +62,7 @@ export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
       summary: project.summary,
       tech: project.tech,
       destinationId: valid && entry ? entry.destinationId : 'destination:projects',
-      href: valid && entry ? entry.href : `/projects#${project.slug}`,
+      href: valid && entry ? entry.href : `/projects/${project.slug}`,
       projectHref: projectHref(project, definition),
       visual: definition?.visual ?? { key: project.nodeId },
       supportedStages: definition?.supportedStages ?? ['signal'],

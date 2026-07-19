@@ -24,8 +24,8 @@ const ALL_DISABLED = Object.fromEntries(
 ) as Record<FeatureFlagName, boolean>;
 
 const DEFAULTS: Readonly<Record<PortfolioEnvironment, FeatureFlags>> = {
-  development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, lifeinboxExperience: true },
-  preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, lifeinboxExperience: true },
+  development: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, dreamlifeExperience: true, lifeinboxExperience: true, sudokuExperience: true },
+  preview: { ...ALL_DISABLED, experienceFoundation: true, firstNote: true, guidedTour: true, globalAI: true, semanticLighting: true, meaningfulDiscoveries: true, museumV2: true, dreamlifeExperience: true, lifeinboxExperience: true, sudokuExperience: true },
   production: {
     ...ALL_DISABLED,
     experienceFoundation: true,
@@ -35,7 +35,9 @@ const DEFAULTS: Readonly<Record<PortfolioEnvironment, FeatureFlags>> = {
     semanticLighting: true,
     meaningfulDiscoveries: true,
     museumV2: true,
+    dreamlifeExperience: true,
     lifeinboxExperience: true,
+    sudokuExperience: true,
   },
   test: { ...ALL_DISABLED },
 };

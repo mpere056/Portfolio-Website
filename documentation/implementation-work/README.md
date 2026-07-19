@@ -10,20 +10,19 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1, Phase 2, and the functional first Phase 3 flagship slice remain live on verified Production. Mark's 2026-07-18 feedback reopened only the aesthetic acceptance of the museum/LifeInbox slice; its contracts, product truth, routes, tests, deployment, and rollback remain accepted. The Impossible Observatory is selected, and aesthetic delivery is now split into `ART-01` through `ART-06` so keyframes, runtime foundation, remediation, route translations, and whole-site review remain independently restartable.
+Phase 1 through Phase 3 remain live on verified Production. Phase 4 implementation is complete as a locally verified release candidate: Observatory remediation, all flagship depth, lifecycle state, canonical routes, project-world dialects, and AI migration are implemented. The only active item is deployed aesthetic review; do not mark `ART-03` or renewed `QA-02` accepted before Mark reviews the public result.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-01` | in-progress | `ART-01` | Impossible Observatory and cross-plan art-packet delivery model recorded | Produce three Museum Signal visual keyframes and reject one explicitly | 2026-07-18 |
-| Review | `WI-LPS-02-01` | in-review | `LPS-02` | Nine-project lifecycle proposal is prepared without inferring activity from Git history | Apply Mark's approval or corrections to the proposed set | 2026-07-18 |
-| Next | LifeInbox Handle/Understand art packets | pending | `ART-01` | Waits on selected Museum keyframe world | Preserve one captured specimen across both depth frames and complete packet semantics | 2026-07-18 |
+| Now | `WI-ART-03-01` | in-review | `ART-03` | Local release-candidate gate passes | Deploy exact commit and complete Mark aesthetic review | 2026-07-18 |
+| Review | `WI-ART-03-01` | in-review | `QA-02` | Functional and local creative evidence collected | Accept or record exact remediation after public review | 2026-07-18 |
+| Next | Phase 5 selection | pending | `ART-05` / `ABT-01` | Waits on Phase 4 review | Choose the next bounded package after acceptance | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-01` | Establish portfolio art direction | in-progress | high | `ART-01` | `CAP-ART-001`, `CAP-ART-002` | `active/WI-ART-01-01.md` | 2026-07-18 |
-| `WI-LPS-02-01` | Review portfolio project lifecycles | in-review | normal | `LPS-02` | `CAP-LPS-002` | `active/WI-LPS-02-01.md` | 2026-07-18 |
+| `WI-ART-03-01` | Review the Phase 4 release candidate | in-review | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -37,6 +36,8 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-LPS-02-01` | done | `LPS-02` | Nine lifecycle classifications and state corpus recorded with correction paths | `EV-LPS-02-01`, `EV-LPS-03-01` | 2026-07-18 |
+| `WI-ART-01-01` | done | `ART-01` | Impossible Observatory direction and implementation-backed art packets complete | `EV-ART-01-01` | 2026-07-18 |
 | `WI-QA-05-01` | done | `QA-05` | Approved Phase 3 flags promoted; public museum, subdomains, AI card, exact Handle route, and rollback verified | `EV-QA-05-01` | 2026-07-18 |
 | `WI-QA-02-01` | done | `QA-02` | Original first-slice gate accepted; later aesthetic feedback is tracked separately by reopened `QA-02` and `WI-ART-01-01` | `EV-QA-02-01` through `EV-QA-02-03` | 2026-07-18 |
 | `WI-PRJ-04-01` | done | `PRJ-04` | LifeInbox Signal-to-Understand journey, exploded trust layer, persistence, evidence, and handoff accepted | `EV-PRJ-04-01` through `EV-PRJ-04-03` | 2026-07-18 |

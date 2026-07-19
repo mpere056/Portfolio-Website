@@ -11,25 +11,45 @@ import MuseumSelectionContext from './MuseumSelectionContext';
 import ProjectStateSummary from './ProjectStateSummary';
 import styles from './MuseumShell.module.css';
 
-const SIGNAL_COLORS = ['#c98b57', '#78aaa0', '#d2b66e', '#8a9fc4', '#c77968', '#87a578'];
-const LifeInboxExperience = dynamic(() => import('./LifeInboxExperience'), {
-  ssr: false,
-  loading: () => <div className="mt-8 rounded-[2rem] border border-amber-100/10 bg-[#100e0a] p-8 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-amber-100/45">Opening the local trust boundary...</div>,
-});
+const LifeInboxExperience = dynamic(() => import('./LifeInboxExperience'), { ssr: false, loading: () => <ExperienceLoading label="Receiving the local specimen" /> });
+const DreamlifeExperience = dynamic(() => import('./DreamlifeExperience'), { ssr: false, loading: () => <ExperienceLoading label="Refracting possible futures" /> });
+const SudokuTogetherExperience = dynamic(() => import('./SudokuTogetherExperience'), { ssr: false, loading: () => <ExperienceLoading label="Tuning the shared board" /> });
+
+const DIALECTS: Record<string, string> = {
+  lifeinbox: 'receiver',
+  dreamlife: 'prism',
+  'discord-sudoku-activity': 'lattice',
+  'story-app': 'folio',
+  'group-finder': 'caliper',
+  'discord-bot': 'specter',
+  'discord-sync-messaging': 'echo',
+  'game-mod': 'coral',
+  'kitsune-karuta': 'archive',
+};
+
+function ExperienceLoading({ label }: { label: string }) {
+  return <div className={styles.experienceLoading}><span />{label}...</div>;
+}
 
 interface MuseumShellProps {
   exhibits: readonly MuseumExhibitView[];
-  lifeInboxExperienceEnabled: boolean;
+  initialSlug?: string;
+  enabledExperiences: {
+    dreamlife: boolean;
+    lifeinbox: boolean;
+    sudoku: boolean;
+  };
 }
 
-export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: MuseumShellProps) {
-  const [selectedSlug, setSelectedSlug] = useState<string>();
+export default function MuseumShell({ exhibits, initialSlug, enabledExperiences }: MuseumShellProps) {
+  const [selectedSlug, setSelectedSlug] = useState<string | undefined>(initialSlug);
   const [selectedStage, setSelectedStage] = useState<DepthStage>('approach');
   const approachRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const syncLocation = () => {
-      const slug = resolveMuseumHash(window.location.hash, exhibits);
+      const slug = resolveMuseumHash(window.location.hash, exhibits)
+        ?? (exhibits.some(item => item.slug === initialSlug) ? initialSlug : undefined);
       const exhibit = exhibits.find(item => item.slug === slug);
       setSelectedSlug(slug);
       setSelectedStage(resolveMuseumStage(window.location.search, exhibit));
@@ -41,7 +61,7 @@ export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: Mu
       window.removeEventListener('hashchange', syncLocation);
       window.removeEventListener('popstate', syncLocation);
     };
-  }, [exhibits]);
+  }, [exhibits, initialSlug]);
 
   useEffect(() => {
     if (!selectedSlug || !approachRef.current) return;
@@ -50,11 +70,12 @@ export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: Mu
   }, [selectedSlug, selectedStage]);
 
   const selected = exhibits.find(exhibit => exhibit.slug === selectedSlug);
-  const activeStage = selected?.projectId === 'project:lifeinbox'
-    && !lifeInboxExperienceEnabled
-    && ['handle', 'enter', 'understand'].includes(selectedStage)
-    ? 'approach'
-    : selectedStage;
+  const experienceEnabled = selected?.projectId === 'project:lifeinbox' ? enabledExperiences.lifeinbox
+    : selected?.projectId === 'project:dreamlife' ? enabledExperiences.dreamlife
+      : selected?.projectId === 'project:discord-sudoku-activity' ? enabledExperiences.sudoku
+        : false;
+  const activeStage = selected && !experienceEnabled && ['handle', 'enter', 'understand'].includes(selectedStage) ? 'approach' : selectedStage;
+
   const navigateToStage = (exhibit: MuseumExhibitView, stage: DepthStage) => {
     const url = new URL(window.location.href);
     url.hash = exhibit.slug;
@@ -67,6 +88,7 @@ export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: Mu
 
   const returnToSignals = () => {
     const url = new URL(window.location.href);
+    url.pathname = '/projects';
     url.searchParams.delete('stage');
     url.hash = 'museum-lobby';
     window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
@@ -77,22 +99,22 @@ export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: Mu
 
   return (
     <main id="museum-lobby" aria-label="Project museum" className={styles.museum}>
+      <div className={styles.noise} aria-hidden="true" />
       <div className={styles.field}>
-        <header className="max-w-4xl pt-8">
-          <p className="font-mono text-[0.68rem] uppercase tracking-[0.34em] text-[#d8b98c]/55">Museum of working systems</p>
-          <h1 className="mt-5 font-serif text-5xl font-medium leading-[0.92] tracking-[-0.045em] text-[#f4efe5] md:text-8xl">
-            Move toward<br />what catches light.
-          </h1>
-          <p className="mt-7 max-w-xl text-sm leading-7 text-[#f4efe5]/48 md:text-base">
-            Nine projects begin as signals. Hover, focus, or choose one to let its problem and shape emerge. Deeper product behavior loads only after you enter it.
-          </p>
+        <header className={styles.intro}>
+          <p className={styles.orientation}>Museum of working systems</p>
+          <h1>Move toward<br />what catches light.</h1>
+          <p>Nine projects wait as instruments, specimens, and historical traces. Each reveals a different kind of thinking when approached.</p>
         </header>
 
         <nav aria-label="Project signals" className={styles.signals}>
+          <svg className={styles.sightLines} viewBox="0 0 1200 820" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M170 220 C360 120 430 400 610 330 S880 110 1040 250" />
+            <path d="M250 620 C420 470 550 690 760 540 S960 520 1080 650" />
+            <path d="M610 330 C620 430 650 470 760 540" />
+          </svg>
           {exhibits.map((exhibit, index) => {
-            if (exhibit.status === 'fallback') {
-              return <ExhibitFallback key={exhibit.projectId} exhibit={exhibit} />;
-            }
+            if (exhibit.status === 'fallback') return <ExhibitFallback key={exhibit.projectId} exhibit={exhibit} />;
             const selectedSignal = exhibit.slug === selectedSlug;
             return (
               <a
@@ -101,51 +123,45 @@ export default function MuseumShell({ exhibits, lifeInboxExperienceEnabled }: Mu
                 href={`#${exhibit.slug}`}
                 aria-current={selectedSignal ? 'location' : undefined}
                 data-selected={selectedSignal}
+                data-dialect={DIALECTS[exhibit.slug] ?? 'archive'}
                 className={styles.signal}
-                style={{ '--signal-color': SIGNAL_COLORS[index % SIGNAL_COLORS.length], animationDelay: `${Math.min(index * 70, 420)}ms` } as React.CSSProperties}
-                onClick={(event) => { event.preventDefault(); navigateToStage(exhibit, 'approach'); }}
+                style={{ '--signal-order': index } as React.CSSProperties}
+                onClick={event => { event.preventDefault(); navigateToStage(exhibit, 'approach'); }}
               >
-                <span className={styles.signalIndex}>{String(index + 1).padStart(2, '0')}</span>
-                <p className="font-mono text-[0.62rem] uppercase tracking-[0.26em] text-[#f4efe5]/35">{exhibit.year} / Signal</p>
-                <h2 className="mt-12 max-w-[13rem] font-serif text-3xl font-medium leading-none tracking-[-0.025em] md:text-4xl">{exhibit.name}</h2>
-                <p className={`${styles.signalHeadline} mt-5 text-sm leading-6 text-[#f4efe5]/55`}>{exhibit.headline}</p>
+                <span className={styles.phenomenon} aria-hidden="true"><i /><i /><i /></span>
+                <span className={styles.annotation}><small>{exhibit.year}</small><strong>{exhibit.name}</strong><em>{exhibit.headline}</em></span>
               </a>
             );
           })}
         </nav>
 
+        <p className={styles.freeExplore}>Focus or hover to classify a signal. Deeper behavior is loaded only when invited.</p>
+
         {selected ? (
-          <section ref={approachRef} aria-live="polite" aria-label={`${selected.name} approach`} className={styles.approach}>
+          <section ref={approachRef} aria-live="polite" aria-label={`${selected.name} approach`} className={styles.approach} data-dialect={DIALECTS[selected.slug] ?? 'archive'}>
             <MuseumSelectionContext exhibit={selected} stage={activeStage} />
-            <div className={styles.approachGrid}>
-              <div>
-                <p className="font-mono text-[0.66rem] uppercase tracking-[0.28em] text-[#d8b98c]/55">Approach / {selected.year}</p>
-                <h2 className="mt-4 max-w-3xl font-serif text-5xl font-medium leading-[0.95] tracking-[-0.035em] md:text-7xl">{selected.headline}</h2>
-                <p className="mt-7 max-w-2xl text-base leading-8 text-[#f4efe5]/58">{selected.summary}</p>
-                {selected.projectState ? <ProjectStateSummary state={selected.projectState} /> : null}
-              </div>
-              <div>
-                <div className={styles.tech} aria-label={`${selected.name} technologies`}>
-                  {selected.tech.map(technology => <span key={technology}>{technology}</span>)}
-                </div>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  {selected.projectId === 'project:lifeinbox' && activeStage === 'approach' && lifeInboxExperienceEnabled ? (
-                    <button type="button" onClick={() => navigateToStage(selected, 'handle')} className="rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]">
-                      Handle a thought
-                    </button>
-                  ) : null}
-                  <a href={selected.projectHref} className={selected.projectId === 'project:lifeinbox' ? 'rounded-full border border-[#f4efe5]/15 px-5 py-2.5 text-sm text-[#f4efe5]/60 transition hover:border-[#f4efe5]/35 hover:text-[#f4efe5]' : 'rounded-full bg-[#ead6b5] px-5 py-2.5 text-sm font-semibold text-[#17130f] transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead6b5]'}>
-                    Enter project world
-                  </a>
-                  <button type="button" onClick={returnToSignals} className="rounded-full border border-[#f4efe5]/15 px-5 py-2.5 text-sm text-[#f4efe5]/60 transition hover:border-[#f4efe5]/35 hover:text-[#f4efe5]">
-                    Return to signals
-                  </button>
-                </div>
-              </div>
+            <button type="button" onClick={returnToSignals} className={styles.returnControl}>Return to the field</button>
+            <div className={styles.approachPhenomenon} aria-hidden="true"><i /><i /><i /></div>
+            <div className={styles.approachCopy}>
+              <p className={styles.orientation}>Approach / {selected.year}</p>
+              <h2>{selected.headline}</h2>
+              <p>{selected.summary}</p>
+              {selected.projectState ? <ProjectStateSummary state={selected.projectState} /> : null}
             </div>
-            {selected.projectId === 'project:lifeinbox' && lifeInboxExperienceEnabled && ['handle', 'enter', 'understand'].includes(activeStage) ? (
+            <aside className={styles.approachNotes}>
+              <p>material record</p>
+              <ul>{selected.tech.map(technology => <li key={technology}>{technology}</li>)}</ul>
+              <div className={styles.approachActions}>
+                {experienceEnabled && activeStage === 'approach' ? <button type="button" onClick={() => navigateToStage(selected, 'handle')}>Handle the instrument</button> : null}
+                <a href={selected.projectHref}>Enter project world</a>
+              </div>
+            </aside>
+
+            {experienceEnabled && ['handle', 'enter', 'understand'].includes(activeStage) ? (
               <ExhibitExperienceBoundary projectHref={selected.projectHref}>
-                <LifeInboxExperience stage={activeStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} />
+                {selected.projectId === 'project:lifeinbox' ? <LifeInboxExperience stage={activeStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} /> : null}
+                {selected.projectId === 'project:dreamlife' ? <DreamlifeExperience stage={activeStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} /> : null}
+                {selected.projectId === 'project:discord-sudoku-activity' ? <SudokuTogetherExperience stage={activeStage} onStageChange={stage => navigateToStage(selected, stage)} projectHref={selected.projectHref} /> : null}
               </ExhibitExperienceBoundary>
             ) : null}
           </section>

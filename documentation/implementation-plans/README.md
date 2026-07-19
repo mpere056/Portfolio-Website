@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 through the functional Phase 3 slice are live. Phase 4 has begun with lifecycle and aesthetic-direction reviews; Mark's feedback reopened only the insufficient creative dimension of `QA-02`, while its functional, architectural, test, deployment, and rollback evidence remains valid.
+Current checkpoint: Phase 1 through the functional Phase 3 slice are live. Phase 4 implementation is a locally verified release candidate: all three flagship depth experiences, nine lifecycle records, connected state graph, canonical project routes, project-world dialects, and site-wide AI migration are implemented. Production deployment and Mark's renewed aesthetic acceptance remain the two release gates; prior Phase 3 functional evidence remains valid.
 
 ## Document Authority
 

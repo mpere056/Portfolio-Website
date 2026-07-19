@@ -22,7 +22,12 @@ import type {
 } from './types';
 
 export const INITIAL_EXHIBIT_STAGES = ['signal', 'approach'] as const satisfies readonly DepthStage[];
-const LIFEINBOX_STAGES = ['signal', 'approach', 'handle', 'enter', 'understand'] as const satisfies readonly DepthStage[];
+const FLAGSHIP_STAGES = ['signal', 'approach', 'handle', 'enter', 'understand'] as const satisfies readonly DepthStage[];
+const FLAGSHIP_LAYERS: Partial<Record<ProjectNodeId, readonly string[]>> = {
+  'project:dreamlife': ['layer:dreamlife-future-loop'],
+  'project:lifeinbox': ['layer:lifeinbox-local-trust'],
+  'project:discord-sudoku-activity': ['layer:sudoku-shared-presence'],
+};
 const LAYER_ID = /^layer:[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function unique<T>(items: readonly T[]) {
@@ -41,7 +46,7 @@ function findMuseumDestination(
     destination.status === 'canonical'
     && destination.targetOrigin === 'main'
     && destination.nodeId === project.nodeId
-    && destination.href === `/projects#${project.slug}`
+    && destination.href === `/projects/${project.slug}`
     && (destination.kind === 'museum-exhibit' || destination.kind === 'project')
   ));
 }
@@ -76,9 +81,9 @@ function toExhibitDefinition(
       ...(project.heroModel ? { heroModel: project.heroModel } : {}),
       ...(firstMedia ? { posterSrc: firstMedia.poster ?? firstMedia.src } : {}),
     },
-    supportedStages: project.nodeId === 'project:lifeinbox' ? LIFEINBOX_STAGES : INITIAL_EXHIBIT_STAGES,
+    supportedStages: FLAGSHIP_LAYERS[project.nodeId] ? FLAGSHIP_STAGES : INITIAL_EXHIBIT_STAGES,
     ...(project.experienceId ? { experienceId: project.experienceId } : {}),
-    layerIds: project.nodeId === 'project:lifeinbox' ? ['layer:lifeinbox-local-trust'] : [],
+    layerIds: FLAGSHIP_LAYERS[project.nodeId] ?? [],
     evidenceNodeIds: unique(project.relatedPostIds),
     relatedNodeIds: unique([...project.capabilityIds, ...project.relatedTimelineIds]),
     hiddenDiscoveryIds: [],
@@ -150,7 +155,7 @@ export function validateExhibitDefinitions(
       }
       if (destination.targetOrigin !== 'main') issues.push({ ...context, code: 'invalid-destination-origin' });
       if (destination.nodeId !== definition.projectId) issues.push({ ...context, code: 'destination-node-mismatch' });
-      if (destination.href !== `/projects#${definition.slug}`) {
+      if (destination.href !== `/projects/${definition.slug}`) {
         issues.push({ ...context, code: 'destination-anchor-mismatch' });
       }
     }

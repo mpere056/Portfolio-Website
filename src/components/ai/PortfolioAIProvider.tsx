@@ -27,6 +27,7 @@ import type { PortfolioAIContext } from '@/lib/portfolioContracts';
 
 export interface PortfolioAIValue {
   enabled: boolean;
+  initialPrompt?: string;
   context: PortfolioAIContext;
   shell: AIShellState;
   presentation: ReturnType<typeof getAIShellPresentation>;
@@ -61,6 +62,7 @@ export function PortfolioAIProvider({
     contextStore.getState,
   );
   const [shell, setShell] = useState(INITIAL_AI_SHELL_STATE);
+  const [initialPrompt, setInitialPrompt] = useState<string>();
 
   const applyEvent = useCallback((event: AIShellEvent) => {
     setShell(current => transitionAIShell(current, event));
@@ -69,6 +71,15 @@ export function PortfolioAIProvider({
   useEffect(() => {
     contextStore.getState().setRoute(pathname);
   }, [contextStore, pathname]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const prompt = params.get('prompt')?.trim();
+    if (prompt) setInitialPrompt(prompt.slice(0, 500));
+    if (prompt || params.get('archive') === 'open') {
+      applyEvent({ type: 'surface.opened' });
+    }
+  }, [applyEvent, pathname]);
 
   const activeContext = contextState.activeContext;
   const contextAvailable = Boolean(
@@ -104,6 +115,7 @@ export function PortfolioAIProvider({
     <AIContextStoreContext.Provider value={contextStore}>
       <PortfolioAIContextValue.Provider value={{
         enabled,
+        initialPrompt,
         context: activeContext,
         shell,
         presentation: getAIShellPresentation(shell, activeContext),

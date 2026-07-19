@@ -19,12 +19,12 @@ describe('museum exhibit registry', () => {
       expect(exhibit).toMatchObject({
         projectId: project.nodeId,
         slug: project.slug,
-        supportedStages: project.nodeId === 'project:lifeinbox'
+        supportedStages: project.experienceId
           ? ['signal', 'approach', 'handle', 'enter', 'understand']
           : ['signal', 'approach'],
       });
       expect(resolveExhibitEntry(registry, project.slug)).toMatchObject({
-        href: `/projects#${project.slug}`,
+        href: `/projects/${project.slug}`,
         usedFallback: false,
       });
     }
@@ -52,16 +52,16 @@ describe('museum exhibit registry', () => {
       usedStageFallback: true,
     });
     expect(resolveExhibitEntry(registry, 'lifeinbox', 'enter')).toMatchObject({
-      href: '/projects#lifeinbox',
+      href: '/projects/lifeinbox',
       stage: 'enter',
       usedFallback: false,
       usedStageFallback: false,
     });
     expect(resolveExhibitEntry(registry, 'dreamlife', 'enter')).toMatchObject({
-      href: '/projects#dreamlife',
-      stage: 'signal',
+      href: '/projects/dreamlife',
+      stage: 'enter',
       usedFallback: false,
-      usedStageFallback: true,
+      usedStageFallback: false,
     });
   });
 
@@ -88,7 +88,7 @@ describe('museum experience loaders', () => {
       manifest: {
         id: 'experience:dreamlife' as const,
         projectId: 'project:dreamlife' as const,
-        supportedStages: ['signal', 'approach'] as const,
+        supportedStages: ['signal', 'approach', 'handle', 'enter', 'understand'] as const,
         evidenceNodeIds: ['post:dreamlife:building-a-life-design-loop' as const],
       },
     }));
@@ -129,7 +129,7 @@ describe('museum experience loaders', () => {
     await expect(invalid.load(dreamlife)).resolves.toEqual({ status: 'invalid' });
   });
 
-  it('rejects manifests that claim unimplemented depth', async () => {
+  it('rejects malformed manifest depth sequences', async () => {
     const registry = createExhibitRegistry(await getProjects());
     const dreamlife = registry.bySlug.get('dreamlife')!;
     const loaders = createExperienceLoaderRegistry({
@@ -137,7 +137,7 @@ describe('museum experience loaders', () => {
         manifest: {
           id: 'experience:dreamlife',
           projectId: 'project:dreamlife',
-          supportedStages: ['signal', 'approach', 'handle'],
+          supportedStages: ['signal', 'understand', 'approach'],
           evidenceNodeIds: [],
         },
       }),

@@ -21,7 +21,7 @@ describe('museum exhibit server boundary', () => {
     expect(markup).toContain('Project museum');
     expect(markup).toContain('id="lifeinbox"');
     expect(markup).toContain('Local-first Android inbox for life admin');
-    expect(markup).toContain('href="/projects#lifeinbox"');
+    expect(markup).toContain('href="/projects/lifeinbox"');
     expect(markup).toContain('https://lifeinbox.marknperera.ca/');
   });
 
@@ -37,7 +37,7 @@ describe('museum exhibit server boundary', () => {
       <ExhibitFallback exhibit={exhibits.find(exhibit => exhibit.slug === 'lifeinbox')!} />,
     );
     expect(markup).toContain('LifeInbox');
-    expect(markup).toContain('href="/projects#lifeinbox"');
+    expect(markup).toContain('href="/projects/lifeinbox"');
     expect(markup).toContain('https://lifeinbox.marknperera.ca/');
   });
 });

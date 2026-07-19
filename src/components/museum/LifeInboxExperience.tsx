@@ -9,12 +9,13 @@ import {
   organizeLifeInboxEntry,
 } from '@/lib/museum/spikes/lifeInboxSpike';
 import type { LifeInboxSpikeState } from '@/lib/museum/spikes/lifeInboxSpike';
+import styles from './FlagshipExperiences.module.css';
 
 const SYSTEM_STEPS = [
   { id: 'capture', label: 'Local capture', detail: 'SQLite accepts the thought before network or analysis.' },
   { id: 'sync', label: 'Private sync', detail: 'Dirty state can move through the owned server boundary.' },
-  { id: 'enrich', label: 'Illustrative enrichment', detail: 'Organization is shown separately from what was actually stored.' },
-  { id: 'resurface', label: 'Useful return', detail: 'The reminder becomes something the person can act on later.' },
+  { id: 'enrich', label: 'Illustrative enrichment', detail: 'Organization is shown separately from what was stored.' },
+  { id: 'resurface', label: 'Useful return', detail: 'A reminder becomes something the person can act on later.' },
 ] as const;
 
 export default function LifeInboxExperience({
@@ -38,41 +39,55 @@ export default function LifeInboxExperience({
     });
   }, [stage, store]);
 
-  const captureLocally = () => setCapture(current => captureLifeInboxEntry(current));
-  const revealOrganization = () => setCapture(current => organizeLifeInboxEntry(current));
+  const reset = () => {
+    setCapture(initialLifeInboxSpikeState);
+    setSelectedLayer('capture');
+    onStageChange('handle');
+  };
+  const specimenLabel = capture.rawText || initialLifeInboxSpikeState.rawText;
 
   return (
-    <section aria-label="LifeInbox depth experience" className="mt-8 overflow-hidden rounded-[2rem] border border-amber-100/15 bg-[#100e0a] text-stone-100 shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/8 px-5 py-4 sm:px-7">
-        <div className="flex flex-wrap gap-2" aria-label="Exhibit depth">
-          {(['handle', 'enter', 'understand'] as const).map((item, index) => (
-            <span key={item} className={stage === item ? 'font-mono text-[0.62rem] uppercase tracking-[0.2em] text-amber-100' : 'font-mono text-[0.62rem] uppercase tracking-[0.2em] text-white/28'}>
-              {index + 3}. {item}
-            </span>
+    <section aria-label="LifeInbox depth experience" className={styles.experience}>
+      <div className={styles.rail}>
+        <div className={styles.depthMarks} aria-label="Exhibit depth">
+          {(['handle', 'enter', 'understand'] as const).map(item => (
+            <span key={item} data-active={stage === item}>{item}</span>
           ))}
         </div>
-        <button type="button" onClick={() => { setCapture(initialLifeInboxSpikeState); onStageChange('handle'); }} className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/50 hover:text-white">Reset experiment</button>
+        <button type="button" onClick={reset} className={styles.textButton}>Reset specimen</button>
       </div>
 
       {stage === 'handle' ? (
-        <div className="grid gap-7 p-5 sm:p-7 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className={`${styles.stage} ${styles.captureLayout}`}>
           <div>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-amber-100/50">Handle / a synthetic thought</p>
-            <h3 className="mt-3 font-serif text-4xl leading-none">Trust begins before intelligence.</h3>
-            <p className="mt-4 text-sm leading-7 text-stone-300/55">This small simulation separates the verified local save from the later illustrative organization. Nothing here sends personal information anywhere.</p>
-          </div>
-          <div>
-            <label htmlFor="lifeinbox-capture" className="text-xs text-stone-300/50">A messy thought</label>
-            <textarea id="lifeinbox-capture" value={capture.rawText} disabled={capture.stage !== 'empty'} onChange={event => setCapture({ ...capture, rawText: event.target.value })} className="mt-2 min-h-24 w-full resize-none rounded-2xl border border-white/10 bg-black/35 p-4 outline-none focus:border-amber-100/40 disabled:text-white/60" />
-            <div className="mt-3 flex flex-wrap gap-3">
-              {capture.stage === 'empty' ? <button type="button" onClick={captureLocally} className="rounded-full bg-amber-100 px-5 py-2.5 text-sm font-semibold text-stone-950">Capture locally</button> : null}
-              {capture.stage === 'captured' ? <button type="button" onClick={revealOrganization} className="rounded-full bg-amber-100 px-5 py-2.5 text-sm font-semibold text-stone-950">Reveal organization</button> : null}
-              {capture.stage === 'organized' ? <button type="button" onClick={() => onStageChange('enter')} className="rounded-full bg-amber-100 px-5 py-2.5 text-sm font-semibold text-stone-950">Enter the system</button> : null}
+            <p className={styles.eyebrow}>Handle / a synthetic thought</p>
+            <h3 className={styles.title}>Trust begins before intelligence.</h3>
+            <p className={styles.intro}>A thought becomes dependable the instant it crosses the local boundary. Nothing here sends personal information anywhere; organization remains visibly separate so this simulation never claims to run the private service.</p>
+            <div className={styles.actions}>
+              {capture.stage === 'empty' ? <button type="button" onClick={() => setCapture(current => captureLifeInboxEntry(current))} className={styles.primaryAction}>Settle locally</button> : null}
+              {capture.stage === 'captured' ? <button type="button" onClick={() => setCapture(current => organizeLifeInboxEntry(current))} className={styles.primaryAction}>Open outer membrane</button> : null}
+              {capture.stage === 'organized' ? <button type="button" onClick={() => onStageChange('enter')} className={styles.primaryAction}>Enter the boundaries</button> : null}
             </div>
-            {capture.stage !== 'empty' ? (
-              <div aria-live="polite" className="mt-5 grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-emerald-200/15 bg-emerald-950/20 p-4"><p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-emerald-100/55">Verified boundary</p><p className="mt-2 text-sm">Saved locally as <span className="text-emerald-100">{capture.localId}</span></p></div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-4"><p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-white/40">Illustrative result</p><p className="mt-2 text-sm">{capture.destination ? `${capture.destination.title} / ${capture.destination.schedule}` : 'Not organized yet'}</p></div>
+          </div>
+
+          <div className={styles.receiver} aria-live="polite">
+            {capture.stage === 'empty' ? (
+              <>
+                <label htmlFor="lifeinbox-capture" className="sr-only">A messy thought</label>
+                <textarea
+                  id="lifeinbox-capture"
+                  value={capture.rawText}
+                  onChange={event => setCapture({ ...capture, rawText: event.target.value })}
+                  className={styles.thoughtInput}
+                />
+              </>
+            ) : (
+              <div className={styles.specimen}><span>{specimenLabel}</span></div>
+            )}
+            {capture.stage !== 'empty' ? <p className={styles.notation}>verified local row<br />{capture.localId}<br />network not required</p> : null}
+            {capture.stage === 'organized' ? (
+              <div className={styles.orbit} aria-label="Illustrative organization membrane">
+                <p className={styles.orbitLabel}>{capture.destination?.title}<br />{capture.destination?.schedule}<br />illustrative, outside the stored core</p>
               </div>
             ) : null}
           </div>
@@ -80,29 +95,47 @@ export default function LifeInboxExperience({
       ) : null}
 
       {stage === 'enter' || stage === 'understand' ? (
-        <div className="p-5 sm:p-7">
-          <div className="max-w-2xl">
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-amber-100/50">{stage} / exploded behavior</p>
-            <h3 className="mt-3 font-serif text-4xl leading-none">One thought, four different promises.</h3>
-            <p className="mt-4 text-sm leading-7 text-stone-300/55">Move across the system. The brighter boundary is the one this exhibit can prove most directly.</p>
-          </div>
-          <div className="mt-7 grid gap-3 lg:grid-cols-4">
+        <div className={`${styles.stage} ${styles.boundaryField}`}>
+          <div className={styles.shells} aria-label="LifeInbox trust boundaries">
             {SYSTEM_STEPS.map((item, index) => (
-              <button key={item.id} type="button" onClick={() => setSelectedLayer(item.id)} className={selectedLayer === item.id ? 'rounded-2xl border border-amber-100/35 bg-amber-100/[0.08] p-4 text-left' : 'rounded-2xl border border-white/8 bg-white/[0.02] p-4 text-left hover:border-white/20'}>
-                <span className="font-mono text-[0.58rem] text-white/30">0{index + 1}</span>
-                <strong className="mt-8 block font-serif text-xl font-medium">{item.label}</strong>
-                <span className="mt-2 block text-xs leading-5 text-white/45">{item.detail}</span>
-              </button>
+              <button
+                key={item.id}
+                type="button"
+                aria-label={`Inspect ${item.label}`}
+                data-active={selectedLayer === item.id}
+                className={styles.layerButton}
+                style={{ '--rotation': `${index % 2 ? 12 : -9}deg` } as React.CSSProperties}
+                onClick={() => setSelectedLayer(item.id)}
+              />
             ))}
+            <div className={`${styles.specimen} ${styles.centralSpecimen}`}><span>{specimenLabel}</span></div>
           </div>
-          {stage === 'enter' ? (
-            <div className="mt-6 flex flex-wrap gap-3"><button type="button" onClick={() => onStageChange('understand')} className="rounded-full bg-amber-100 px-5 py-2.5 text-sm font-semibold text-stone-950">Inspect the trust boundary</button><a href={projectHref} className="rounded-full border border-white/12 px-5 py-2.5 text-sm text-white/60 hover:text-white">Continue to project world</a></div>
-          ) : (
-            <div className="mt-6 grid gap-5 rounded-2xl border border-emerald-100/15 bg-emerald-950/15 p-5 lg:grid-cols-[1fr_auto]">
-              <div><p className="font-mono text-[0.58rem] uppercase tracking-[0.22em] text-emerald-100/55">Understand / local trust layer</p><h4 className="mt-2 font-serif text-2xl">Fast capture is an architectural claim.</h4><p className="mt-3 max-w-2xl text-sm leading-6 text-white/52">Local SQLite makes the initial save independent of connectivity. Sync and AI enrichment are later boundaries, so the interface must distinguish what is stored now from what may happen next. The demo mirrors that distinction instead of pretending to run the production service.</p></div>
-              <div className="flex flex-col items-start gap-2 lg:items-end"><a href="https://github.com/mpere056/LifeInbox-Option-B" className="text-sm text-emerald-100/75 underline decoration-emerald-100/25 underline-offset-4">Source repository</a><a href="https://lifeinbox.marknperera.ca/blog/local-first-capture-needs-trust" className="text-sm text-emerald-100/75 underline decoration-emerald-100/25 underline-offset-4">Trust field note</a><a href={projectHref} className="mt-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-950">Enter LifeInbox</a></div>
+
+          <div>
+            <p className={styles.eyebrow}>{stage} / one thought, four promises</p>
+            <h3 className={styles.title}>{stage === 'enter' ? 'Open the system without losing the original.' : 'Every promise begins at a different boundary.'}</h3>
+            <div className={styles.layerLegend}>
+              {SYSTEM_STEPS.map((item, index) => (
+                <button key={item.id} type="button" data-active={selectedLayer === item.id} onClick={() => setSelectedLayer(item.id)}>
+                  <span>0{index + 1}</span>
+                  <span><strong>{item.label}</strong><span>{item.detail}</span></span>
+                </button>
+              ))}
             </div>
-          )}
+            {stage === 'enter' ? (
+              <div className={styles.actions}>
+                <button type="button" onClick={() => onStageChange('understand')} className={styles.primaryAction}>Inspect the proof</button>
+                <a href={projectHref} className={styles.secondaryAction}>Enter project world</a>
+              </div>
+            ) : (
+              <div className={styles.evidenceNotes}>
+                <p className={styles.intro}>Local SQLite proves the immediate save. Sync and enrichment are later boundaries, so the interface distinguishes what is stored now from what may happen next.</p>
+                <a href="https://github.com/mpere056/LifeInbox-Option-B">Source repository / local-first implementation</a>
+                <a href="https://lifeinbox.marknperera.ca/blog/local-first-capture-needs-trust">Field note / why capture needs trust</a>
+                <a href={projectHref}>Continue through the LifeInbox instrument</a>
+              </div>
+            )}
+          </div>
         </div>
       ) : null}
     </section>

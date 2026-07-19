@@ -11,7 +11,7 @@ const signal: SemanticFieldSignal = {
   relationshipId: 'relationship:dreamlife-documented',
   sourceDestinationId: 'destination:museum-project-dreamlife',
   sourceTitle: 'Dreamlife',
-  sourceHref: '/projects#dreamlife',
+  sourceHref: '/projects/dreamlife',
   targetDestinationId: 'destination:post-dreamlife-building-a-life-design-loop',
   targetTitle: 'Building a life-design loop',
   targetHref: 'https://dreamlife.marknperera.ca/blog/building-a-life-design-loop',

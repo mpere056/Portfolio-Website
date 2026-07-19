@@ -5,20 +5,47 @@ interface ProjectStateSummaryProps {
 }
 
 export default function ProjectStateSummary({ state }: ProjectStateSummaryProps) {
+  const sectionLabels = state.lifecycle === 'evolving'
+    ? [
+        ['stableFoundation', 'Stable foundation'],
+        ['currentQuestion', 'Current question'],
+        ['latestMeaningfulChange', 'Latest meaningful change'],
+        ['nextExperiment', 'Next validation'],
+      ] as const
+    : state.lifecycle === 'maintained'
+      ? [
+          ['stableRole', 'Stable role'],
+          ['latestMeaningfulMaintenanceChange', 'Latest maintenance change'],
+        ] as const
+      : state.lifecycle === 'complete'
+        ? [
+            ['finalOutcome', 'Final outcome'],
+            ['finalMeaningfulState', 'Final meaningful state'],
+            ['mainLesson', 'Main lesson'],
+            ['laterWorkInfluenced', 'Later work influenced'],
+          ] as const
+        : [
+            ['archiveReason', 'Why it rests'],
+            ['historicalImportance', 'Historical importance'],
+            ['lastVerifiedState', 'Last verified state'],
+          ] as const;
+
   return (
-    <aside aria-label="Current project state" className="mt-10 rounded-[1.6rem] border border-[#d9bc8f]/15 bg-[#d9bc8f]/[0.045] p-5 md:p-6">
+    <aside aria-label="Current project state" className="mt-10 border-l border-[#d9bc8f]/25 bg-[linear-gradient(90deg,rgba(217,188,143,0.045),transparent)] p-5 md:p-6">
       <div className="flex flex-wrap items-center gap-3">
         <p className="font-mono text-[0.64rem] uppercase tracking-[0.26em] text-[#d9bc8f]/60">Living state / {state.lifecycle}</p>
         <span className="text-xs text-[#f4efe5]/30">Reviewed {state.updatedAt}</span>
       </div>
       <p className="mt-4 max-w-2xl text-sm leading-7 text-[#f4efe5]/60">{state.summary}</p>
       <details className="mt-4 border-t border-[#f4efe5]/10 pt-4">
-        <summary className="cursor-pointer text-sm text-[#ead6b5]">What is stable and what is still open?</summary>
+        <summary className="cursor-pointer text-sm text-[#ead6b5]">Inspect the reviewed state</summary>
         <dl className="mt-5 grid gap-5 text-sm md:grid-cols-2">
-          <div><dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/35">Stable foundation</dt><dd className="mt-2 leading-6 text-white/58">{state.sections.stableFoundation}</dd></div>
-          <div><dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/35">Current question</dt><dd className="mt-2 leading-6 text-white/58">{state.sections.currentQuestion}</dd></div>
-          <div><dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/35">Latest meaningful change</dt><dd className="mt-2 leading-6 text-white/58">{state.sections.latestMeaningfulChange}</dd></div>
-          <div><dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/35">Next validation</dt><dd className="mt-2 leading-6 text-white/58">{state.sections.nextExperiment}</dd></div>
+          {sectionLabels.map(([key, label]) => (
+            <div key={key}>
+              <dt className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-white/35">{label}</dt>
+              <dd className="mt-2 leading-6 text-white/58">{state.sections[key]}</dd>
+            </div>
+          ))}
         </dl>
       </details>
       <div className="mt-5 flex flex-wrap gap-3">
@@ -28,4 +55,3 @@ export default function ProjectStateSummary({ state }: ProjectStateSummaryProps)
     </aside>
   );
 }
-

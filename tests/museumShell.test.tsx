@@ -7,7 +7,7 @@ import { resolveMuseumHash, resolveMuseumStage } from '@/lib/museum/navigation';
 describe('museum Signal and Approach shell', () => {
   it('renders all canonical signals without loading a flagship interaction', async () => {
     const { exhibits } = await loadMuseumExhibits();
-    const html = renderToStaticMarkup(<MuseumShell exhibits={exhibits} lifeInboxExperienceEnabled />);
+    const html = renderToStaticMarkup(<MuseumShell exhibits={exhibits} enabledExperiences={{ dreamlife: true, lifeinbox: true, sudoku: true }} />);
 
     expect(exhibits).toHaveLength(9);
     for (const exhibit of exhibits) expect(html).toContain(`href="#${exhibit.slug}"`);
@@ -25,7 +25,7 @@ describe('museum Signal and Approach shell', () => {
     const lifeInbox = exhibits.find(exhibit => exhibit.slug === 'lifeinbox');
     expect(resolveMuseumStage('?stage=handle', lifeInbox)).toBe('handle');
     expect(resolveMuseumStage('?stage=understand', lifeInbox)).toBe('understand');
-    expect(resolveMuseumStage('?stage=handle', exhibits.find(exhibit => exhibit.slug === 'dreamlife'))).toBe('approach');
+    expect(resolveMuseumStage('?stage=handle', exhibits.find(exhibit => exhibit.slug === 'dreamlife'))).toBe('handle');
     expect(resolveMuseumStage('?stage=unsafe', lifeInbox)).toBe('approach');
   });
 });

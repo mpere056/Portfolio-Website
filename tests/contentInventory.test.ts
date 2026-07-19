@@ -91,8 +91,8 @@ describe('scanContentInventory', () => {
   it('keeps the current repository corpus fully discoverable and free of structural errors', () => {
     const inventory = scanContentInventory(path.join(process.cwd(), 'src', 'content'));
 
-    expect(inventory.summary.byKind).toEqual({ project: 9, about: 20, misc: 8, blog: 3, unclassified: 0 });
-    expect(inventory.summary.totalNodes).toBe(40);
+    expect(inventory.summary.byKind).toEqual({ project: 9, about: 20, misc: 16, blog: 3, unclassified: 0 });
+    expect(inventory.summary.totalNodes).toBe(48);
     expect(inventory.summary.issues.error).toBe(0);
     expect(inventory.nodes.filter((node) => node.identifierSource === 'filename-fallback')).toHaveLength(1);
     expect(inventory.nodes.filter((node) => node.kind === 'blog' && !node.includedInCurrentAiIngestion)).toHaveLength(0);

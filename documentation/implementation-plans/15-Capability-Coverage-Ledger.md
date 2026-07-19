@@ -435,7 +435,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-AI-005` | Contextual graph retrieval with public source enforcement | `AI-03` | `V-09`, `V-11` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-AI-006` | Structured archive-card generation and validation | `AI-04` | `V-10` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-AI-007` | In-page, route, and cross-subdomain destination flow | `AI-04` | `V-10` | `O-02` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-selected-slice |
-| `CAP-AI-008` | Existing chat migration and deep-link compatibility | `AI-05` | `V-09`, `V-10` | `O-02` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-AI-008` | Existing chat migration and deep-link compatibility | `AI-05` | `V-09`, `V-10` | `O-02` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-AI-05-01`) |
 
 ### CAP-AI-003 Through CAP-AI-005: Quiet Contextual Global AI
 
@@ -458,8 +458,8 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-LPS-001` | Lifecycle schema and section requirements | `LPS-01` | `V-19` | `O-06` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
-| `CAP-LPS-002` | Reviewed classification for every project | `LPS-02` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-LPS-003` | Edited current-state records for three flagships | `LPS-03` | `V-19` | `O-03` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-LPS-002` | Reviewed classification for every project | `LPS-02` | `V-19` | `O-06` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified (`EV-LPS-02-01`) |
+| `CAP-LPS-003` | Edited current-state records for three flagships | `LPS-03` | `V-19` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-LPS-03-01`) |
 | `CAP-LPS-004` | Meaningful content-version and update metadata | `LPS-04` | `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-005` | Editorial update, freshness, and review workflow | `LPS-05` | `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-LPS-006` | AI precedence for edited current state over historical material | `LPS-05` | `V-09`, `V-19` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
@@ -486,10 +486,10 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-ART-001` | Selected portfolio art direction and starting material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: not-applicable; I: not-applicable; T: not-applicable; Q: accepted; R: not-applicable` | verified |
-| `CAP-ART-002` | Museum/LifeInbox keyframes and accepted art packets | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 3 | `S: accepted; C: working; A: accepted; I: not-applicable; T: not-applicable; Q: working; R: not-applicable` | in-progress |
-| `CAP-ART-003` | Semantic aesthetic runtime, utility, calm, fallback, and capture foundation | `ART-02` | `V-04`, `V-22`, `V-31` | `O-01`, `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-ART-004` | Museum/LifeInbox representative aesthetic remediation | `ART-03` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-ART-005` | Distinct project and archive dialect packets | `ART-04` | `V-03`, `V-14`, `V-31` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ART-002` | Museum/LifeInbox keyframes and accepted art packets | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: not-applicable; Q: accepted; R: not-applicable` | verified (`EV-ART-01-01`) |
+| `CAP-ART-003` | Semantic aesthetic runtime, utility, calm, fallback, and capture foundation | `ART-02` | `V-04`, `V-22`, `V-31` | `O-01`, `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-ART-02-01`) |
+| `CAP-ART-004` | Museum/LifeInbox representative aesthetic remediation | `ART-03` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: accepted` | in-review (`EV-ART-03-01`) |
+| `CAP-ART-005` | Distinct project and archive dialect packets | `ART-04` | `V-03`, `V-14`, `V-31` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-ART-04-01`) |
 | `CAP-ART-006` | Supporting-route translation and whole-portfolio coherence | `ART-05`, `ART-06` | `V-04`, `V-05`, `V-09`, `V-31` | `O-01`, `O-02`, `O-04`, `O-05` | 5 | `U/U/U/U/U/U/U` | unassessed |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
@@ -504,7 +504,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Named gaps: no direction-selection gap remains. Exact rendering decisions move to `CAP-ART-002` keyframes.
 - Safe exposure: documentation only; current Production remains functional and explicitly under aesthetic revision.
 - Evidence: `EV-ART-01-01`.
-- Work item: `WI-ART-01-01` (in-progress).
+- Work item: `WI-ART-01-01` (done).
 - Next checkpoint: produce three Museum Signal visual keyframes from the accepted briefs.
 - Last assessed: 2026-07-18 after Mark's nine-reference direction review.
 
@@ -520,8 +520,8 @@ Until a capability receives its own detail record, these defaults apply:
 - Named gaps: three rendered Museum alternatives, one explicit rejection, selected Museum packet, LifeInbox Handle/Understand keyframes, complete packet fields, and Mark review remain.
 - Safe exposure: design documentation only; current release stays live while visual inputs are selected.
 - Evidence: none accepted yet; selected/rejected keyframes, packet records, diagnostic rationale, and Mark review are required.
-- Work item: `WI-ART-01-01` (in-progress).
-- Next checkpoint: three rendered Museum Signal keyframes and one explicit rejection rationale; implementation then moves to `ART-02` and `ART-03` rather than remaining hidden inside this capability.
+- Work item: `WI-ART-01-01` (done); deployed remediation review is tracked by `WI-ART-03-01`.
+- Next checkpoint: Mark reviews the implementation-backed Observatory keyframe in Production; any correction belongs to `ART-03`, not this completed direction capability.
 - Last assessed: 2026-07-18.
 
 ## Museum And Shared Case-Study System
@@ -534,8 +534,8 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-PRJ-004` | Museum signal and approach navigation | `PRJ-03` | `V-03`, `V-14` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: planned` | verified-foundation |
 | `CAP-PRJ-005` | Shared Handle, Enter, and Understand integration | `PRJ-04` | `V-03`, `V-14`, `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
-| `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified (`EV-PRJ-07-01`) |
+| `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-08-01`) |
 
 ### CAP-PRJ-001: Typed Exhibit Registry, Loader, And Fallback Shell
 
@@ -608,12 +608,12 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-LIB-001` | Synthetic LifeInbox entry and local-first input interaction | `PRJ-04` | `V-17` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
 | `CAP-LIB-002` | LifeInbox routing, relationship, and organization autopsy | `PRJ-04` | `V-15`, `V-17` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-layer |
 | `CAP-LIB-003` | LifeInbox evidence, privacy, errors, and living state | `PRJ-04` | `V-17`, `V-19` | `O-03` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
-| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
-| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: not-applicable` | verified-foundation |
-| `CAP-SDK-003` | Sudoku collaboration architecture, validity, evidence, and fallback | `PRJ-04` or `PRJ-06` | `V-15`, `V-18` | `O-03` or `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-DRM-001` | Authored Dreamlife future-path scenario | `PRJ-05` | `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-DRM-002` | Dreamlife reaction, refinement, and experiment interaction | `PRJ-05` | `V-04`, `V-16` | `O-04` | 5 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-DRM-003` | Dreamlife exploded system, evidence, and living state | `PRJ-05` | `V-15`, `V-16`, `V-19` | `O-04` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-SDK-001` | Minimal valid single-player Sudoku interaction | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-06-01`) |
+| `CAP-SDK-002` | Clearly labeled deterministic computer participant | `PRJ-06` | `V-18` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-06-01`) |
+| `CAP-SDK-003` | Sudoku collaboration architecture, validity, evidence, and fallback | `PRJ-04` or `PRJ-06` | `V-15`, `V-18` | `O-03` or `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-06-01`) |
+| `CAP-DRM-001` | Authored Dreamlife future-path scenario | `PRJ-05` | `V-16` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-05-01`) |
+| `CAP-DRM-002` | Dreamlife reaction, refinement, and experiment interaction | `PRJ-05` | `V-04`, `V-16` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-05-01`) |
+| `CAP-DRM-003` | Dreamlife exploded system, evidence, and living state | `PRJ-05` | `V-15`, `V-16`, `V-19` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-05-01`) |
 
 ## About And Memory Depth
 
@@ -630,7 +630,7 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-QA-001` | Foundation unit and browser test harness | `QA-01` | Platform | `O-00` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |
-| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22`, `V-31` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: accepted` | reopened |
+| `CAP-QA-002` | Vertical-slice functional, visual, performance, and creative gate | `QA-02` | `V-04`, `V-22`, `V-31` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: working; R: accepted` | in-review (`EV-QA-02-04`) |
 | `CAP-QA-003` | Content validation, freshness, and production editorial gate | `QA-03` | `V-11`, `V-19`, `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-004` | Stimulation, sound, capability-tier, and frame-time QA | `QA-04` | `V-22` | `O-01` | 3 | `U/U/U/U/U/U/U` | unassessed |
 | `CAP-QA-005` | Feature promotion, live verification, and rollback workflow | `QA-05` | Platform | All active outcomes | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified |

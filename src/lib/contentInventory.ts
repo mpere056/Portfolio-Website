@@ -172,7 +172,7 @@ function runtimeIdentifierFor(
 function routesFor(kind: ContentKind, runtimeIdentifier?: string, site?: string) {
   switch (kind) {
     case 'project':
-      return runtimeIdentifier ? [`/projects#${runtimeIdentifier}`] : ['/projects'];
+      return runtimeIdentifier ? [`/projects/${runtimeIdentifier}`] : ['/projects'];
     case 'about':
       return ['/about'];
     case 'blog':

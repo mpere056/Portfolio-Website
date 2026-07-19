@@ -16,7 +16,7 @@ export default function NavHomeIcon() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Me' },
     { href: '/projects', label: 'Projects' },
-    { href: '/chat', label: 'Ask Me Anything [AI]' },
+    { href: '/?archive=open', label: 'Ask Me Anything [AI]' },
   ]), []);
 
   // Prefetch likely destinations for snappier navigation

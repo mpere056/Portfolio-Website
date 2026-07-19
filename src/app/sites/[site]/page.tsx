@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ProjectPreview from '@/components/ProjectPreview';
 import { getProjects, type Project } from '@/lib/projects';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
+import worldStyles from './ProjectWorlds.module.css';
 
 interface ProjectSitePageProps {
   params: Promise<{
@@ -72,7 +73,7 @@ function DreamlifeSite({ project }: { project: Project }) {
   ];
 
   return (
-    <main className="min-h-screen bg-[#fff3dc] text-[#22170d]">
+    <main className={`${worldStyles.world} ${worldStyles.dreamlife} min-h-screen bg-[#080710] text-[#f7f4ff]`}>
       <section className="relative overflow-hidden border-b border-[#22170d]/10 bg-[#ffdca8]">
         <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,126,79,0.35),transparent_24%),linear-gradient(rgba(34,23,13,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,23,13,0.08)_1px,transparent_1px)] [background-size:100%_100%,100%_100%,44px_44px,44px_44px]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#fff3dc] to-transparent" />
@@ -90,7 +91,7 @@ function DreamlifeSite({ project }: { project: Project }) {
               Dreamlife helps people explore possible lives through AI-generated story paths, daily reflection, highlight tagging, and conversational prototyping. This is the app that led to a six-figure build offer.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={`${portfolioOrigin}/chat?prompt=Tell%20me%20about%20Dreamlife`} className="rounded-full bg-[#22170d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#3b2716]">
+              <a href={`${portfolioOrigin}/?archive=open&prompt=Tell%20me%20about%20Dreamlife`} className="rounded-full bg-[#22170d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#3b2716]">
                 Ask Mark&apos;s AI
               </a>
               <a href="/blog" className="rounded-full border border-[#22170d]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#22170d]/40">
@@ -170,7 +171,7 @@ function LifeInboxSite({ project }: { project: Project }) {
   ];
 
   return (
-    <main className="min-h-screen bg-[#eef3ef] text-[#0e1c18]">
+    <main className={`${worldStyles.world} ${worldStyles.lifeinbox} min-h-screen bg-[#050909] text-[#edf8f3]`}>
       <section className="relative overflow-hidden border-b border-[#0e1c18]/10 bg-[#dcebe4]">
         <div className="absolute inset-0 [background-image:linear-gradient(120deg,rgba(14,28,24,0.08),transparent_34%),linear-gradient(rgba(14,28,24,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,28,24,0.07)_1px,transparent_1px)] [background-size:100%_100%,32px_32px,32px_32px]" />
         <SiteNav site="lifeinbox" brand="LifeInbox" textColor="text-[#0e1c18]" accentColor="border-[#0e1c18]/20" />
@@ -187,13 +188,13 @@ function LifeInboxSite({ project }: { project: Project }) {
               LifeInbox is a practical capture and organization system: local SQLite on Android, private sync, background AI enrichment, and reminder behavior tuned for actual daily use.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={project.repoUrl || `${portfolioOrigin}/projects#${project.slug}`} className="rounded-md bg-[#0e1c18] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d3c33]">
+              <a href={project.repoUrl || `${portfolioOrigin}/projects/${project.slug}`} className="rounded-md bg-[#0e1c18] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1d3c33]">
                 View Repository
               </a>
               <a href="/blog" className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
                 Read Field Notes
               </a>
-              <a href={`${portfolioOrigin}/projects?stage=understand#lifeinbox`} className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
+              <a href={`${portfolioOrigin}/projects/lifeinbox?stage=understand`} className="rounded-md border border-[#0e1c18]/20 px-5 py-3 text-sm font-semibold transition hover:border-[#0e1c18]/40">
                 Return to Museum Exhibit
               </a>
             </div>
@@ -280,7 +281,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
   ];
 
   return (
-    <main className="min-h-screen bg-[#081018] text-white">
+    <main className={`${worldStyles.world} ${worldStyles.sudoku} min-h-screen bg-[#030a0d] text-white`}>
       <section className="relative overflow-hidden border-b border-white/10 bg-[#0d1720]">
         <div className="absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:36px_36px]" />
         <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(8,16,24,0.97),rgba(23,47,57,0.78)_45%,rgba(8,16,24,0.98))]" />
@@ -298,7 +299,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
               Sudoku Together is a React and Vite Discord Activity with solo and co-op play, daily puzzles, streaks, XP, coins, cosmetics, Supabase persistence, and multiplayer synchronization through a Vercel proxy.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={project.repoUrl || `${portfolioOrigin}/projects#${project.slug}`} className="rounded-md bg-[#86efac] px-5 py-3 text-sm font-semibold text-[#081018] transition hover:bg-[#bbf7d0]">
+              <a href={project.repoUrl || `${portfolioOrigin}/projects/${project.slug}`} className="rounded-md bg-[#86efac] px-5 py-3 text-sm font-semibold text-[#081018] transition hover:bg-[#bbf7d0]">
                 View Code
               </a>
               <a href="/blog" className="rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/40 hover:text-white">
@@ -408,10 +409,10 @@ function ProjectFooter({ project, tone, prompt }: { project: Project; tone: 'war
             ))}
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={`${portfolioOrigin}/projects#${project.slug}`} className={`rounded-md px-5 py-3 text-sm font-semibold transition ${button}`}>
+            <a href={`${portfolioOrigin}/projects/${project.slug}`} className={`rounded-md px-5 py-3 text-sm font-semibold transition ${button}`}>
               Portfolio Details
             </a>
-            <a href={`${portfolioOrigin}/chat?prompt=${encodeURIComponent(prompt)}`} className={`rounded-md border px-5 py-3 text-sm font-semibold transition ${pill}`}>
+            <a href={`${portfolioOrigin}/?archive=open&prompt=${encodeURIComponent(prompt)}`} className={`rounded-md border px-5 py-3 text-sm font-semibold transition ${pill}`}>
               Ask Mark&apos;s AI
             </a>
           </div>
@@ -434,7 +435,7 @@ function SiteNav({ site, brand, textColor, accentColor }: { site: string; brand:
         <a href={`${portfolioOrigin}/projects`} className={`rounded-md border ${accentColor} px-3 py-2 opacity-75 transition hover:opacity-100`}>
           Projects
         </a>
-        <a href={`${portfolioOrigin}/chat`} className={`rounded-md border ${accentColor} px-3 py-2 opacity-75 transition hover:opacity-100`}>
+        <a href={`${portfolioOrigin}/?archive=open`} className={`rounded-md border ${accentColor} px-3 py-2 opacity-75 transition hover:opacity-100`}>
           Ask AI
         </a>
       </div>

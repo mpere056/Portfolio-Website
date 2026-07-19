@@ -52,7 +52,7 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
                 <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
                 <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
                 <NavPointer
-                  path="/chat"
+                  path="/?archive=open"
                   position={[-2, -1.5, -2]}
                   onActivate={portfolioAI.enabled ? portfolioAI.open : undefined}
                 >

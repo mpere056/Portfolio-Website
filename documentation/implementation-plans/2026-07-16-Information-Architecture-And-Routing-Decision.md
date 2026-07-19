@@ -101,7 +101,7 @@ Do not introduce Firebase accounts or persistent server visitor profiles merely 
 
 Environmental navigation is primary, but it must not trap visitors. A quiet universal orientation control remains available across durable places and through keyboard access. It need not look like a conventional navbar, literal compass, or checklist.
 
-AI remains globally available as one contextual system. `/archive` may expose a larger view of that same system; it is not a separate assistant. `/chat` remains a compatibility route until the global shell reliably handles reload, deep link, error, and cross-subdomain behavior.
+AI remains globally available as one contextual system. `/archive` may expose a larger view of that same system; it is not a separate assistant. Phase 4 `AI-05` completed the compatibility migration: `/chat` now redirects bounded prompt state into the global shell, and primary links target that shell directly.
 
 The guided tour, AI cards, semantic lighting, About consequences, project links, returning checkpoints, and future shared-state links all resolve through the same destination registry.
 

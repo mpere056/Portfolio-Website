@@ -15,7 +15,14 @@ export default async function ProjectsPage() {
     return (
       <>
         <NavHomeIcon />
-        <MuseumShell exhibits={exhibits} lifeInboxExperienceEnabled={flags.lifeinboxExperience} />
+        <MuseumShell
+          exhibits={exhibits}
+          enabledExperiences={{
+            dreamlife: flags.dreamlifeExperience,
+            lifeinbox: flags.lifeinboxExperience,
+            sudoku: flags.sudokuExperience,
+          }}
+        />
       </>
     );
   }

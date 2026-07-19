@@ -11,8 +11,8 @@ describe('knowledge graph compiler', () => {
   it('compiles the current corpus and reviewed initial subgraph deterministically', async () => {
     const graph = await loadKnowledgeGraph();
     expect(graph.issues).toEqual([]);
-    expect(graph.nodes).toHaveLength(50);
-    expect(graph.relationships).toHaveLength(19);
+    expect(graph.nodes).toHaveLength(58);
+    expect(graph.relationships).toHaveLength(28);
     expect(graph.relationships.map(relationship => relationship.id)).toEqual(
       [...graph.relationships].map(relationship => relationship.id).sort(),
     );
