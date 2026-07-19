@@ -3,7 +3,7 @@
 Date: 2026-07-18
 Direction: Impossible Observatory of Living Instruments
 Package: `ART-01`
-Status: Briefs ready; visual keyframes not yet produced
+Status: Reopened; briefs remain valid, visual keyframes were not produced to the required standard
 
 ## Purpose
 
@@ -12,6 +12,12 @@ These briefs use the current production content and interactions. They are not s
 These are visual-production inputs for `ART-01`. A selected output becomes implementation-ready only when its aesthetic art packet is completed using `19-Aesthetic-System-Integration-And-Delivery.md`; runtime primitives and production remediation belong to `ART-02` and `ART-03`.
 
 The first visual round should include three intentionally different compositions for Brief 1 and at least one strong composition for Briefs 2 and 3. Preserve one rejected museum alternative with a written reason.
+
+## Production Review Addendum
+
+The deployed Phase 4 implementation must not be treated as completion of this keyframe round. Mark's review found that most supplied reference qualities were not visibly present. The runtime composition is retained as a functional baseline and rejected creative candidate.
+
+Before these briefs return to implementation, complete the material-study and route-coverage work in [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md). In particular, the Museum must show living ecology, organic aperture/organism detail, and waveform resonance; LifeInbox must show a genuinely tactile alchemical vessel, complex impossible matter, condensation/vapor, and score-like evidence rather than only translucent boundaries.
 
 ## Brief 1: Museum Lobby / Signal
 

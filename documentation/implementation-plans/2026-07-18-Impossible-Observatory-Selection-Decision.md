@@ -193,3 +193,8 @@ The archive should return translucent fragments, annotations, specimens, or scor
 - Actual visual keyframes, a rejected alternative, and representative remediation remain required for `CAP-ART-002` and renewed `QA-02` creative acceptance.
 - The reference images remain outside source control; production assets must be original, licensed, generated for this project, or code-native.
 
+## Production Review Addendum
+
+Mark's later review does not reject this direction. It rejects the shallowness of its deployed translation. Most reference families were described in planning but were not visibly realized at image-level quality in the site.
+
+The direction remains selected. `ART-01` is reopened only for the material-study, keyframe, and art-packet work that was skipped or accepted too loosely. The accountable reference-to-route correction is [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md).

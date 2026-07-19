@@ -38,7 +38,22 @@ The selection adds these confirmed qualities:
 - Organic/digital hybrids, precise waveforms, and painterly human interference.
 - Wonder with slight strangeness, without horror, sterile sci-fi, or vaporwave convention.
 
-The first implementation briefs are [Museum and LifeInbox keyframe briefs](2026-07-18-First-Art-Direction-Keyframe-Briefs.md).
+The first implementation briefs are [Museum and LifeInbox keyframe briefs](2026-07-18-First-Art-Direction-Keyframe-Briefs.md). The complete nine-reference accountability and route assignment is defined in [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md).
+
+## Production Review Correction: Reference Coverage
+
+Mark's review of the deployed Phase 4 candidate found that the site looked somewhat better but that most of the supplied visual references could not actually be seen in the result. This is a failed creative gate, not a request for more generic polish.
+
+The planning error was allowing implementation-backed CSS/SVG compositions to substitute for the visual-production steps already named by this plan. The deployed work improved silhouette, project differentiation, and depth structure, but remained too dependent on simple geometry, gradients, glow, borders, and line diagrams. It did not yet produce enough original surface matter, intricate living form, painterly interference, impossible artifacts, theatrical vapor, or image-level local detail.
+
+Corrective requirements:
+
+- Produce six original material studies before another broad runtime pass.
+- Give all nine references accountable primary route homes without copying them.
+- Produce real visual keyframes with the exact portfolio content rather than treating a working browser scene as its own keyframe.
+- Use original raster/texture production, SVG notation, selective canvas/WebGL, and semantic HTML as a composed stack.
+- Require Home, Museum, and each flagship deepest scene to stand as artwork when interface furniture is removed.
+- Reopen `ART-01`, `ART-03`, `ART-04`, and the creative dimension of `QA-02` while retaining still-valid direction, behavior, content, route, and release evidence.
 
 ## Live Audit: 2026-07-18
 
@@ -206,18 +221,19 @@ Do not use the same easing, fade distance, and duration everywhere. Shared motio
 
 ## Art-Direction Workflow
 
-No major visual surface moves directly from wireframe logic to production styling.
+No major visual surface moves directly from wireframe logic to production styling. A browser implementation is not a substitute for a visual keyframe.
 
 1. Write a one-sentence emotional and interaction thesis.
-2. Assemble a small reference matrix by quality: material, composition, typography, motion, and atmosphere. Do not copy a whole reference.
-3. Create three deliberately different static keyframes for the same exact content.
-4. Run the rejection list and select one direction with a written reason.
-5. Produce Signal, Approach, and one deepest-state keyframe before component styling expands.
-6. Build one representative interactive moment with real typography and approximate materials.
-7. Capture stable desktop frames in calm and standard stimulation.
-8. Review with Mark before multiplying the visual system across projects.
-9. Implement shared primitives only after two scenes prove that they are genuinely shared.
-10. Re-run functional, performance, calm-path, and fallback gates after aesthetic integration.
+2. Assemble a small reference matrix by material, composition, typography, motion, atmosphere, and local-detail quality. Do not copy a whole reference.
+3. Produce focused original material studies for every visual family assigned to the surface.
+4. Create three deliberately different static keyframes for the same exact content.
+5. Run the rejection list and select one direction with a written reason.
+6. Produce Signal, Approach, and one deepest-state keyframe before component styling expands.
+7. Build one representative interactive moment with real typography and selected materials.
+8. Capture stable desktop frames in calm and standard stimulation.
+9. Review with Mark before multiplying the visual system across projects.
+10. Implement shared primitives only after two scenes prove that they are genuinely shared.
+11. Re-run functional, performance, calm-path, fallback, crop, close-detail, and reference-coverage gates after aesthetic integration.
 
 Placeholder visuals must be visibly labeled in tracking and cannot receive accepted creative status.
 
@@ -257,7 +273,7 @@ These are manual, repeatable prompts rather than numeric scores:
 
 ## Delivery Sequence
 
-1. `ART-01`: select Museum and LifeInbox keyframes and complete their art packets.
+1. `ART-01`: preserve the selected direction, produce the missing material studies, select real Museum and LifeInbox keyframes, and complete their art packets.
 2. `ART-02`: implement only the aesthetic runtime roles, utility hierarchy, calm behavior, and capture support proven necessary by those packets.
 3. `ART-03`: remediate the museum and LifeInbox, then re-run the creative portion of `QA-02` while retaining all still-valid functional evidence.
 4. `ART-04`: establish Dreamlife, Sudoku, and archive dialect packets before `PRJ-05` through `PRJ-07` styling.
@@ -271,7 +287,9 @@ Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02
 - Mark has selected or refined one portfolio-level direction.
 - The museum, LifeInbox, Dreamlife, and Sudoku each have an authored dialect within the shared depth grammar.
 - Museum and LifeInbox remediation passes the diagnostic tests and renewed `QA-02` creative gate.
-- Static keyframes and rejected alternatives exist before full implementation.
+- Six reference-family material studies, static keyframes, and rejected alternatives exist before full implementation.
+- Every supplied reference has an accountable primary route and visible translated quality; color or glow alone does not count as coverage.
+- Home, Museum, and each flagship deepest scene retain artistic composition when copy and utility controls are temporarily removed.
 - Accepted art packets connect each major keyframe to real content, behavior, semantic inputs, calm/fallback states, and a performance envelope.
 - Utility controls, typography, material, motion, and darkness follow explicit hierarchies.
 - No flagship is promoted with placeholder or generic-template creative status.

@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 through the functional Phase 3 slice are live. Phase 4 implementation is a locally verified release candidate: all three flagship depth experiences, nine lifecycle records, connected state graph, canonical project routes, project-world dialects, and site-wide AI migration are implemented. Production deployment and Mark's renewed aesthetic acceptance remain the two release gates; prior Phase 3 functional evidence remains valid.
+Current checkpoint: Phase 1 through Phase 4 functionality is live, including all three flagship depth experiences, nine lifecycle records, the connected state graph, canonical project routes, project worlds, and site-wide AI migration. Mark rejected the deployed Phase 4 creative candidate because most supplied visual-reference qualities were not visibly realized. Functional evidence remains valid; `ART-01`, `ART-03`, `ART-04`, and renewed creative `QA-02` now follow the material-study and keyframe-first correction in `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md`.
 
 ## Document Authority
 
@@ -78,6 +78,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `2026-07-18-Aesthetic-Direction-Review.md` | Original A/B/C comparison and Mark's selected synthesis outcome | Resolved review |
 | `2026-07-18-Impossible-Observatory-Selection-Decision.md` | Selected visual world, reference analysis, material/color/motion vocabulary, project translations, guardrails | Approved decision |
 | `2026-07-18-First-Art-Direction-Keyframe-Briefs.md` | Museum Signal and LifeInbox Handle/Understand visual production briefs | Active execution brief |
+| `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md` | All-nine-reference accountability, route assignments, art-density tiers, scene stack, original-asset strategy, and corrected keyframe-first sequence | Active corrective decision and execution blueprint |
 | `../implementation-work/README.md` | Operational registry for active, paused, review, and recently closed work | Active work source |
 | `../implementation-evidence/README.md` | Evidence registry, acceptance rules, and package record template | Active evidence control |
 
@@ -92,6 +93,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | What pages should exist and how should depth affect URLs? | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | `00-System-Architecture-And-Interfaces.md` |
 | What does done mean for a feature? | Owning workstream plan | `08-Platform-Quality-And-Rollout.md` |
 | How do we prevent generic aesthetics? | `18-Art-Direction-And-Aesthetic-Quality.md` | `19-Aesthetic-System-Integration-And-Delivery.md` and the owning experience plan |
+| Where should each supplied visual reference be visible? | `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md` | `18`, `19`, and the owning route plan |
 | How does art direction connect to architecture and delivery? | `19-Aesthetic-System-Integration-And-Delivery.md` | `00`, `13`, and the owning feature plan |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |

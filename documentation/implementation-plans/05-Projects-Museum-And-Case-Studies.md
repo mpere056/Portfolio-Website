@@ -20,6 +20,8 @@ Transform the existing project page and project subdomains into an inspectable m
 
 Art-direction correction: the 2026-07-18 live audit found that the accepted functional shell is too dependent on a uniform rounded-card grid and that the first LifeInbox depth layer reads like a conventional dark application panel. These are working implementation foundations, not the final aesthetic target. All Phase 4 visual work follows `18-Art-Direction-And-Aesthetic-Quality.md`.
 
+Production review correction: the first remediation improved silhouettes and removed the most obvious card-grid treatment but still failed to visibly realize most of Mark's supplied reference qualities. Museum, LifeInbox, Dreamlife, Sudoku Together, and historical-project visual work now follows the explicit route assignments, material studies, original-asset strategy, scene stack, and keyframe-first gates in `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md`. Existing product behavior and content truth remain valid baselines, not accepted final art direction.
+
 ## Existing Foundation
 
 - `src/app/projects/page.tsx`

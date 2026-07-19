@@ -10,19 +10,21 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 through Phase 3 remain live on verified Production. Phase 4 implementation is complete as a locally verified release candidate: Observatory remediation, all flagship depth, lifecycle state, canonical routes, project-world dialects, and AI migration are implemented. The only active item is deployed aesthetic review; do not mark `ART-03` or renewed `QA-02` accepted before Mark reviews the public result.
+Phase 1 through Phase 4 functionality remains live on verified Production: flagship depth, lifecycle state, canonical routes, project worlds, and AI migration work. Mark rejected the deployed candidate's creative coverage because most of the supplied reference qualities were not visibly realized. The active path is keyframe-first: complete reference-family material studies and selected packets, replace Museum/LifeInbox, then deepen Dreamlife, Sudoku, and the historical archive.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-03-01` | in-review | `ART-03` | Local release-candidate gate passes | Deploy exact commit and complete Mark aesthetic review | 2026-07-18 |
-| Review | `WI-ART-03-01` | in-review | `QA-02` | Functional and local creative evidence collected | Accept or record exact remediation after public review | 2026-07-18 |
-| Next | Phase 5 selection | pending | `ART-05` / `ABT-01` | Waits on Phase 4 review | Choose the next bounded package after acceptance | 2026-07-18 |
+| Now | `WI-ART-01-02` | in-progress | `ART-01` | Direction and route truth remain accepted; visual input gate reopened | Produce six material studies and the labeled `R1` through `R9` contact sheet | 2026-07-18 |
+| Next | `WI-ART-03-01` | ready | `ART-03` | Functional Production baseline and rollback boundaries remain valid | Implement selected Museum and LifeInbox packets after keyframe review | 2026-07-18 |
+| Later | `WI-ART-04-01` | ready | `ART-04` | Distinct functional project worlds remain live | Produce and implement reference-rich project/archive packets after `ART-03` | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ART-03-01` | Review the Phase 4 release candidate | in-review | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
+| `WI-ART-01-02` | Produce reference-rich material studies and keyframes | in-progress | high | `ART-01` | `CAP-ART-002`, `CAP-QA-002` | `active/WI-ART-01-02.md` | 2026-07-18 |
+| `WI-ART-03-01` | Replace the Museum and LifeInbox creative candidate | ready | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
+| `WI-ART-04-01` | Deepen project and historical art dialects | ready | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -37,7 +39,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
 | `WI-LPS-02-01` | done | `LPS-02` | Nine lifecycle classifications and state corpus recorded with correction paths | `EV-LPS-02-01`, `EV-LPS-03-01` | 2026-07-18 |
-| `WI-ART-01-01` | done | `ART-01` | Impossible Observatory direction and implementation-backed art packets complete | `EV-ART-01-01` | 2026-07-18 |
+| `WI-ART-01-01` | done | `ART-01` | Impossible Observatory direction and reference interpretation accepted; visual production later reopened separately | `EV-ART-01-01` | 2026-07-18 |
 | `WI-QA-05-01` | done | `QA-05` | Approved Phase 3 flags promoted; public museum, subdomains, AI card, exact Handle route, and rollback verified | `EV-QA-05-01` | 2026-07-18 |
 | `WI-QA-02-01` | done | `QA-02` | Original first-slice gate accepted; later aesthetic feedback is tracked separately by reopened `QA-02` and `WI-ART-01-01` | `EV-QA-02-01` through `EV-QA-02-03` | 2026-07-18 |
 | `WI-PRJ-04-01` | done | `PRJ-04` | LifeInbox Signal-to-Understand journey, exploded trust layer, persistence, evidence, and handoff accepted | `EV-PRJ-04-01` through `EV-PRJ-04-03` | 2026-07-18 |

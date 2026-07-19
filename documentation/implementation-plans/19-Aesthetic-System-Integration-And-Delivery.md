@@ -8,7 +8,7 @@ Last updated: 2026-07-18
 | --- | --- |
 | Plan ID | `ART-X` |
 | Status | Active integration control |
-| Upstream | [Selected direction](2026-07-18-Impossible-Observatory-Selection-Decision.md), [Art direction](18-Art-Direction-And-Aesthetic-Quality.md), [Architecture](00-System-Architecture-And-Interfaces.md), accepted depth grammar |
+| Upstream | [Selected direction](2026-07-18-Impossible-Observatory-Selection-Decision.md), [reference coverage](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md), [Art direction](18-Art-Direction-And-Aesthetic-Quality.md), [Architecture](00-System-Architecture-And-Interfaces.md), accepted depth grammar |
 | Downstream | Home, museum, project subdomains, About, AI doors, blogs, utility states, quality and rollout |
 | Primary outputs | Cross-plan ownership, aesthetic contracts, delivery packages, surface coverage, handoff gates |
 | Execution packages | `ART-01` through `ART-06` in [Work Packages](13-Execution-Work-Packages.md) |
@@ -44,6 +44,8 @@ Shared code should encode behavior, roles, constraints, and quality. It must not
 | 6. Proof and release | `QA`, evidence registry, Mark review | Keyframes, code, tests, stable captures, diagnostics | Accepted creative dimension and safe rollout | Accepting aesthetics from route correctness or one attractive screenshot |
 
 No major visual surface may skip from layer 2 to layer 4. Aesthetic work is incomplete when its art packet exists but its runtime, calm path, fallback, or creative evidence does not.
+
+Material studies and static keyframes are mandatory layer-3 evidence. A styled runtime scene cannot retroactively serve as the keyframe that was supposed to direct it. The required reference families, page assignments, asset media, scene stack, and visual-production rounds are defined in [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md).
 
 ## Aesthetic Art Packet Contract
 
@@ -168,6 +170,8 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 
 ### `ART-01`: Direction And First Keyframe Selection
 
+- Preserve the accepted Observatory direction while reopening the skipped visual-production dimension.
+- Produce six original material studies covering every assigned reference family.
 - Finish the three Museum Signal alternatives using the same real project set.
 - Reject at least one with a written diagnostic.
 - Select or revise one with Mark.
@@ -184,6 +188,7 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 
 ### `ART-03`: Museum And LifeInbox Remediation
 
+- Treat the deployed `dd11a4f` scene as a functional baseline and rejected creative candidate, not the target keyframe.
 - Implement the selected museum Signal/Approach composition behind an independent flag.
 - Implement the selected LifeInbox Handle/Understand transformation while retaining product behavior.
 - Integrate AI, tour, sound/stimulation, loading, error, fallback, history, and subdomain return states.
@@ -192,6 +197,7 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 
 ### `ART-04`: Remaining Project And Archive Dialects
 
+- Treat basic composition distinction as retained evidence, not sufficient artistic acceptance.
 - Create Dreamlife, Sudoku Together, and smaller-project archive packets from reviewed content and state.
 - Prove distinct silhouettes and manipulation languages before `PRJ-05` through `PRJ-07` styling.
 - Keep project code in `PRJ-*`; this package owns creative packets and review evidence.
@@ -214,7 +220,7 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 
 ## Sequencing Rules
 
-1. Complete `ART-01` before new production styling.
+1. Complete the reopened `ART-01` material studies, keyframes, and packets before new production styling.
 2. Implement only the minimum `ART-02` foundation needed by the selected packets.
 3. Finish `ART-03` and renew `QA-02` before multiplying the language into other projects.
 4. Resolve `LPS-02`/`LPS-03` before `ART-04` uses current-state cues for Dreamlife and Sudoku.

@@ -105,12 +105,12 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
-| `ART-01` | Direction and first keyframe selection | Accepted depth grammar, live Phase 3 audit, Mark feedback | Impossible Observatory charter and implementation-backed Museum/LifeInbox packets | Reference translation, diagnostic rationale, selected runtime keyframe, Mark direction acceptance | complete |
+| `ART-01` | Direction and first keyframe selection | Accepted depth grammar, live Phase 3 audit, Mark feedback | Accepted Observatory charter plus six missing material studies, three Museum alternatives, and real LifeInbox keyframes/packets | Direction evidence remains accepted; reference contact sheet, selected/rejected visual keyframes, complete packets, and Mark review remain | reopened |
 | `ART-02` | Aesthetic runtime foundation | `ART-01`, `EXP-05`, `ARC-04` | Semantic material roles, observatory field, flagship depth rail, stimulation/calm/fallback support, stable CSS/SVG primitives | Focused tests, production build, reduced-motion path, no universal composition API | complete |
-| `ART-03` | Museum and LifeInbox remediation | `ART-01`, `ART-02`, `PRJ-04` | Observatory signal field and LifeInbox receiving instrument implemented behind independent flags | Production route matrix at `dd11a4f`, diagnostics, full regression/build; Mark review remains | implemented |
-| `ART-04` | Project and archive dialect packets | `ART-03`, `LPS-03` | Dreamlife prism, Sudoku lattice, and lifecycle-driven archive dialects | Distinct silhouette, real-content, swap, and state review | complete |
-| `ART-05` | Home, About, AI, reading, and utility translation | `ART-03`, `ABT-01`, `AI-04` | Route-class art packets, AI host states, event/memory packets, reading and support-state hierarchy | Route coverage record, representative keyframes, calm/fallback review, named later gaps | pending |
-| `ART-06` | Whole-portfolio coherence and production maturation | `ART-03`, `ART-04`, `ART-05`, `PRJ-05`, `PRJ-06`, `PRJ-07` | Cross-route material, type, motion, darkness, transition, fatigue, and asset-loading review | Desktop route/depth capture matrix, production evidence, Mark acceptance, explicit mobile/music exclusions | pending |
+| `ART-03` | Museum and LifeInbox remediation | `ART-01`, `ART-02`, `PRJ-04` | Replace the functional `dd11a4f` baseline with selected ecology/organism Museum and alchemical-vessel LifeInbox packets | Reference coverage, artwork, material-physics, crop/detail, diagnostics, full regression/build, and Mark review | reopened |
+| `ART-04` | Project and archive dialect packets | `ART-03`, `LPS-03` | Rebuild Dreamlife with liquid nacre, Sudoku with waveform anatomy, and historical work with painterly/specimen richness | Retained swap distinction plus reference coverage, original assets, deep-state keyframes, state truth, and Mark review | reopened |
+| `ART-05` | Home, About, AI, reading, and utility translation | `ART-03`, `ABT-01`, `AI-04` | Home painterly threshold; illuminated About archive; liquid/crystalline AI; manuscript reading; inherited support states | Route/reference coverage record, representative keyframes, calm/fallback review, original-asset manifest, named later gaps | pending |
+| `ART-06` | Whole-portfolio coherence and production maturation | `ART-03`, `ART-04`, `ART-05`, `PRJ-05`, `PRJ-06`, `PRJ-07` | Cross-route reference coverage, material, type, motion, darkness, transition, fatigue, and asset-loading review | Desktop route/depth capture matrix, all-nine-reference accountability, production evidence, Mark acceptance, explicit mobile/music exclusions | pending |
 
 ## Project Museum Packages
 
@@ -139,7 +139,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
 | `QA-01` | Foundation test harness | `BAS-01`, `ARC-02` | Unit fixtures, browser-tool decision, preview checklist | One automated foundation flow | complete |
-| `QA-02` | First vertical-slice quality gate | `PRJ-04`; creative re-review depends on `ART-03` | Logic, browser, visual, performance, creative review | Functional evidence and deployed release-candidate route/build evidence complete; Mark aesthetic acceptance remains | in-review |
+| `QA-02` | First vertical-slice quality gate | `PRJ-04`; creative re-review depends on `ART-03` | Logic, browser, visual, performance, creative review | Functional evidence remains accepted; deployed creative candidate failed reference coverage and awaits a keyframe-first replacement | reopened |
 | `QA-03` | Content and editorial production gate | `KG-03`, `LPS-05` | Build validation, freshness checks, live route checklist | Production-like content validation | pending |
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | complete |

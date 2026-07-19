@@ -233,9 +233,9 @@ Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` t
 
 ## Phase 4: Museum Framework And Remaining Flagships
 
-Implementation checkpoint, 2026-07-18: all Phase 4 code and content packages are implemented and pass the local aggregate gate. `ART-03` and `QA-02` remain in review until the release candidate is deployed and Mark reviews the renewed aesthetics. This is an acceptance boundary, not unfinished feature code.
+Implementation checkpoint, 2026-07-18: all Phase 4 functional code and content packages are implemented, deployed, and retain their aggregate evidence. Mark's Production review rejected the creative candidate because most supplied reference qualities were not visibly realized. `ART-01`, `ART-03`, `ART-04`, and the creative dimension of `QA-02` are reopened without reopening behavior, content, route, lifecycle, or deployment work.
 
-Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. Those decisions now feed an implemented local release candidate: lifecycle truth drives current and historical depth, and the Impossible Observatory replaces the representative generic card/panel composition. The live Phase 3 functionality remains valid while the deployed creative re-review is completed.
+Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. Lifecycle truth now drives current and historical depth, while the Observatory implementation remains a functional baseline rather than an accepted artistic result. The corrected path produces six material studies, all-nine-reference route accountability, real selected/rejected keyframes, and art packets before replacement runtime work.
 
 ### Phase 4A: Select The Representative World
 
