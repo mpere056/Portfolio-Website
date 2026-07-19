@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import ProjectReadingArtwork from '@/components/sites/ProjectReadingArtwork';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 import { getSiteBlogPost, getSiteBlogPosts, renderSimpleMarkdown } from '@/lib/siteBlogs';
 
@@ -56,8 +57,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const blocks = renderSimpleMarkdown(post.body);
 
   return (
-    <main className={`min-h-screen ${classes.page}`}>
-      <nav className="mx-auto flex w-full max-w-4xl items-center justify-between px-5 py-5 sm:px-8">
+    <main className={`relative isolate min-h-screen overflow-hidden ${classes.page}`}>
+      <ProjectReadingArtwork site={site.subdomain as keyof typeof SITE_THEMES} />
+      <nav className="relative z-[1] mx-auto flex w-full max-w-4xl items-center justify-between px-5 py-5 sm:px-8">
         <a href="/blog" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
           Back to Blog
         </a>
@@ -66,7 +68,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </a>
       </nav>
 
-      <header className={`border-y ${classes.hero}`}>
+      <header className={`relative z-[1] border-y ${classes.hero}`}>
         <div className="mx-auto w-full max-w-4xl px-5 py-14 sm:px-8">
           <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] opacity-60">
             <span>{formatDate(post.date)}</span>
@@ -79,7 +81,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </header>
 
-      <article className="mx-auto grid w-full max-w-4xl gap-10 px-5 pb-24 pt-12 sm:px-8 lg:grid-cols-[160px_1fr]">
+      <article className="relative z-[1] mx-auto grid w-full max-w-4xl gap-10 px-5 pb-24 pt-12 sm:px-8 lg:grid-cols-[160px_1fr]">
         <aside className={`border-t pt-5 text-sm leading-6 ${classes.aside}`}>
           <p className="font-semibold uppercase tracking-[0.16em] opacity-70">Filed under</p>
           <div className="mt-4 flex flex-wrap gap-2 lg:flex-col">
@@ -101,8 +103,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 function getThemeClasses(theme: 'warm' | 'green' | 'dark') {
   if (theme === 'dark') {
     return {
-      page: 'bg-[#081018] text-white',
-      hero: 'border-white/10 bg-[#0d1720]',
+      page: 'bg-[#03090b] text-white',
+      hero: 'border-white/10 bg-black/20 backdrop-blur-[2px]',
       navBorder: 'border-white/20',
       bodyText: 'text-white/70',
       aside: 'border-white/10 text-white/55',
@@ -112,22 +114,22 @@ function getThemeClasses(theme: 'warm' | 'green' | 'dark') {
 
   if (theme === 'warm') {
     return {
-      page: 'bg-[#fff3dc] text-[#22170d]',
-      hero: 'border-[#22170d]/10 bg-[#ffdca8]',
-      navBorder: 'border-[#22170d]/20',
-      bodyText: 'text-[#5c4230]',
-      aside: 'border-[#22170d]/10 text-[#5c4230]',
-      article: 'text-[#4a3525]',
+      page: 'bg-[#070710] text-[#f8f3ff]',
+      hero: 'border-white/10 bg-black/15 backdrop-blur-[2px]',
+      navBorder: 'border-white/20',
+      bodyText: 'text-white/65',
+      aside: 'border-white/10 text-white/50',
+      article: 'text-white/72',
     };
   }
 
   return {
-    page: 'bg-[#eef3ef] text-[#0e1c18]',
-    hero: 'border-[#0e1c18]/10 bg-[#dcebe4]',
-    navBorder: 'border-[#0e1c18]/20',
-    bodyText: 'text-[#40534d]',
-    aside: 'border-[#0e1c18]/10 text-[#40534d]',
-    article: 'text-[#263a34]',
+    page: 'bg-[#040807] text-[#edf8f3]',
+    hero: 'border-white/10 bg-black/20 backdrop-blur-[2px]',
+    navBorder: 'border-white/20',
+    bodyText: 'text-white/64',
+    aside: 'border-white/10 text-white/48',
+    article: 'text-white/72',
   };
 }
 

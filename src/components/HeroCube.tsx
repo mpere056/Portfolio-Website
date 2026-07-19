@@ -2,6 +2,7 @@
 
 import * as THREE from 'three'
 import { memo, useRef, useMemo, useEffect } from 'react'
+import Image from 'next/image'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
 import { Html, OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
 import { EffectComposer, N8AO, Bloom } from '@react-three/postprocessing'
@@ -13,6 +14,7 @@ import { BufferGeometry } from 'three';
 import { FirstNoteExperience } from './experience/FirstNoteExperience';
 import type { FirstNotePresentation } from '@/lib/experience/firstNote';
 import { usePortfolioAI } from './ai/PortfolioAIProvider';
+import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 
 extend({ RoundedBoxGeometry })
 
@@ -25,6 +27,17 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
           className="relative h-screen w-screen overflow-hidden bg-[#07070d]"
           style={{ backgroundColor: '#07070d' }}
         >
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] opacity-30 mix-blend-screen [mask-image:radial-gradient(ellipse_at_center,black_12%,rgba(0,0,0,.8)_48%,transparent_82%)]">
+            <Image
+              src={ART_DIRECTION_ASSETS.home.src}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center saturate-75 contrast-125 brightness-75 motion-safe:animate-[homePresence_14s_ease-in-out_infinite_alternate]"
+            />
+          </div>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_56%,transparent_0,rgba(7,7,13,.12)_30%,rgba(7,7,13,.88)_86%)]" />
           <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw', zIndex: 0 }}>
             <ResponsiveCamera />
             <color attach="background" args={['#07070d']} />

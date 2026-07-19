@@ -332,12 +332,12 @@ Mark reviews the selected keyframes before broad runtime implementation and revi
 
 ## Tracking Decision
 
-- `ART-01` is reopened only for the keyframe and art-packet dimension; its selected direction remains accepted.
+- `ART-01` has an implemented candidate for the keyframe and art-packet dimension; its selected direction remains accepted and route-level review remains.
 - `ART-02` remains complete as a valid minimum runtime foundation, but later packages may add packet-driven primitives.
-- `ART-03` is reopened because the deployed Museum and LifeInbox candidate failed visual-reference coverage.
-- `ART-04` is reopened because distinct basic dialects are not sufficient evidence of artistic richness.
-- `ART-05` remains pending but now owns explicit Home, About, AI, reading, and utility reference assignments.
-- `ART-06` remains pending and owns the final all-route reference-coverage and coherence matrix.
+- `ART-03` has an implemented replacement candidate for the failed Museum/LifeInbox treatment.
+- `ART-04` has implemented reference-rich Dreamlife, Sudoku, and historical material layers.
+- `ART-05` has implemented explicit Home, About, AI, reading, and utility reference assignments.
+- `ART-06` has implemented the shared asset registry, optimization, reduced-motion, and local route matrix; public and Mark review remain.
 - The functional, content, routing, state, deployment, and rollback evidence from Phases 1 through 4 remains valid.
 - Renewed `QA-02` creative acceptance remains reopened until the new keyframe-first implementation passes Mark review.
 

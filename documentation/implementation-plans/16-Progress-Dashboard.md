@@ -15,9 +15,9 @@ Implementation commit baseline: `dd11a4f`; latest verified Production: `dpl_8pdv
 
 ## Current Program State
 
-**Phase 1 through Phase 4 functionality is live. The Phase 4 creative candidate failed Mark's reference-coverage review and its visual-production path is reopened.**
+**Phase 1 through Phase 4 functionality is live. A complete reference-rich replacement is implemented locally and awaits deployment verification plus Mark's creative review.**
 
-Phase 4 implements the Observatory shell, all flagship interactions, nine reviewed lifecycle records and graph links, canonical project routes, project-world dialects, and `/chat` migration into the quiet site-wide archive. Commit `dd11a4f` remains live and passes 41 test files and 163 tests, strict TypeScript, 58-node/28-relationship content validation, lint without errors, a 35-page production build, and public route checks. Mark's Production review found the visuals somewhat improved but far below the supplied references' artistic richness: most living ecology, impossible artifact, liquid nacre, organic aperture, alchemical vessel, painterly presence, crystalline vapor, intricate organism, and waveform-apparition qualities were not visibly realized. Functional evidence is retained. `ART-01`, `ART-03`, `ART-04`, and the creative dimension of `QA-02` are reopened through a material-study and keyframe-first correction.
+The functional Production baseline remains valid. The replacement sequence now adds six original material studies, three real Museum keyframes, a selected/reassigned composition decision, a typed/tested production art registry, a phenomenon-led Museum, project-specific flagship materials, and supporting-route translations across Home, About, AI, subdomains, and reading. Local focused tests, lint, the 35-page production build, and browser composition review pass. `ART-01` and `ART-03` through `ART-06` are implemented candidates rather than accepted packages; renewed `QA-02`, public verification, and Mark review remain the honest boundary.
 
 This distinction prevents two errors:
 
@@ -42,10 +42,10 @@ This distinction prevents two errors:
 | --- | ---: | --- |
 | `ready` | 0 | No package is waiting in the ready lane while selected state is active |
 | `in-progress` | 0 | No package is partially coded at this checkpoint |
-| `implemented` | 0 | No package is waiting on review as a merely implemented candidate |
+| `implemented` | 5 | `ART-01` and `ART-03` through `ART-06` are coded and locally verified, awaiting public and creative review |
 | `in-review` | 0 | Mark's review resolved the previous candidates as insufficient |
-| `pending` | 10 | Phase 5+ and later packages wait on their intended sequence or feedback gates |
-| `reopened` | 4 | `ART-01`, `ART-03`, `ART-04`, and `QA-02` retain valid foundations but require new creative evidence |
+| `pending` | 8 | Phase 5+ and later packages wait on their intended sequence or feedback gates |
+| `reopened` | 1 | Renewed creative `QA-02` waits on public verification and Mark acceptance |
 | `decision-gated` | 0 | Phase 4 lifecycle classification is recorded with correction paths |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
@@ -89,13 +89,13 @@ Counts include only the 64 package rows in `13-Execution-Work-Packages.md`; feed
 | 30 | `LPS-06` | Selected flagship state seed | complete | `PRJ-02` selection | One source-reviewed lifecycle and current-state fixture accepted |
 | 31 | `AI-04` | Archive cards and selected-destination flow | complete | `AI-03`, `ARC-03`, `PRJ-01` | Invalid cards fail closed and selected live card response passes |
 | 32 | `PRJ-04` | First full flagship slice | complete | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
-| 33 | `QA-02` | First vertical-slice quality gate | reopened | Functional and Production gates remain; `EV-QA-02-04` failed creative review | Accept a new keyframe-first candidate without discarding valid evidence |
-| 34 | `ART-01` | Direction and first keyframe selection | reopened | Observatory direction remains accepted; visual-production gate was skipped | Six material studies, `R1`-`R9` contact sheet, selected/rejected real keyframes |
+| 33 | `QA-02` | First vertical-slice quality gate | reopened | Functional and Production gates remain; replacement candidate is implemented locally | Public verification and Mark acceptance without discarding valid evidence |
+| 34 | `ART-01` | Direction and first keyframe selection | implemented | Observatory direction, studies, coverage, and keyframes exist | Mark reviews the selected/reassigned route result |
 | 35 | `ART-02` | Aesthetic runtime foundation | complete | `ART-01` selected packets | CSS/SVG material, depth, calm, fallback, and capture roles pass build |
-| 36 | `ART-03` | Museum and LifeInbox remediation | reopened | Functional `dd11a4f` baseline and rollback remain | Implement selected ecology/organism Museum and alchemical-vessel LifeInbox packets |
-| 37 | `ART-04` | Project and archive dialect packets | reopened | Basic swap distinction and functional worlds remain valid | Deepen Dreamlife, Sudoku, and historical worlds with assigned reference families |
-| 38 | `ART-05` | Supporting-route translation | pending | `ART-03`, reviewed About/AI inputs | Home, About, AI, reading, utility, and support-state coverage is explicit |
-| 39 | `ART-06` | Whole-portfolio maturation | pending | Representative project and supporting route implementations | Related-but-not-templated route matrix passes production creative review |
+| 36 | `ART-03` | Museum and LifeInbox remediation | implemented | Phenomenon ecology and receiving-vessel materials pass local gates | Public route verification and Mark review |
+| 37 | `ART-04` | Project and archive dialect packets | implemented | Nacre, diagram-organism, and historical landmarks are integrated | Public deep-state verification and Mark review |
+| 38 | `ART-05` | Supporting-route translation | implemented | Home, About, AI, subdomains, and reading have explicit assignments | Public route verification and Mark review |
+| 39 | `ART-06` | Whole-portfolio maturation | implemented | Typed asset registry, optimized derivatives, reduced motion, build, and local browser matrix pass | Public matrix and Mark acceptance |
 | 40 | `LPS-02`, `LPS-03` | Portfolio lifecycle and state corpus | complete | Lifecycle schema and delegated Phase 4 implementation | Nine records, correction paths, and graph relationships validate |
 | 41 | `PRJ-05` | Dreamlife experience | complete | Flagship depth framework and reviewed state | Future prism, reaction, experiment, loop, and evidence pass |
 | 42 | `PRJ-06` | Sudoku Together experience | complete | Flagship depth framework and reviewed state | Valid board, synthetic participant, and architecture pass |
@@ -111,9 +111,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-02` | in-progress | `ART-01` | Six material studies accepted; `R1`-`R9` contact sheet complete | Produce three real-content Museum Signal keyframes | 2026-07-18 |
-| Next | `WI-ART-03-01` | ready | `ART-03` | Functional Museum/LifeInbox and rollback boundaries remain valid | Implement selected packets after keyframe review | 2026-07-18 |
-| Later | `WI-ART-04-01` | ready | `ART-04` | Functional project worlds and basic distinction remain valid | Deepen project/archive dialects after `ART-03` | 2026-07-18 |
+| Now | `WI-ART-06-01` | in-review | `ART-06` | Integrated local candidate passes build and browser review | Deploy and verify the public route matrix | 2026-07-18 |
+| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement is implemented locally | Collect Mark's creative review after public verification | 2026-07-18 |
+| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects are implemented locally | Revise only named route/material mismatches from review | 2026-07-18 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -121,7 +121,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| None | No visual artifact is currently waiting for review; Mark's latest feedback is recorded | - | - | - | Produce material studies and keyframes first |
+| `WI-ART-01-02` through `WI-ART-06-01` | Does the integrated route system now meet the approved artistic standard without becoming decorative or templated? | Mark | Museum keyframes, material studies, local route captures, candidate deployment | 2026-07-18 | Verify public routes, then review by route/material mismatch |
 
 ## Blocked Or Paused
 
@@ -137,9 +137,10 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional work r
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ART-002` | `WI-ART-01-02` | Selected direction, six accepted material studies, `R1`-`R9` contact sheet, real-content briefs, and stable functional inputs | Three Museum alternatives, selected/rejected packet evidence, LifeInbox keyframes, and Mark review | Visual production does not disturb the current release | Produce the three Museum Signal alternatives | `EV-ART-01-01` accepts direction only; study evidence pending registration at package exit |
-| `CAP-ART-004` | `WI-ART-03-01` | Functional deployed Museum/LifeInbox, tests, routes, and rollback | Selected reference-rich runtime, calm/fallback, crop/detail captures, Mark review | Keep `dd11a4f` as known-good baseline | Wait for `WI-ART-01-02`, then implement selected packets | `EV-ART-03-01` failed creative gate |
-| `CAP-ART-005` | `WI-ART-04-01` | Functional distinct Dreamlife, Sudoku, and historical compositions | Liquid-nacre, waveform-organism, and painterly/specimen packets plus runtime | Existing project worlds remain live | Start after accepted `ART-03` replacement | `EV-ART-04-01` accepted narrowly |
+| `CAP-ART-002` | `WI-ART-01-02` | Six studies, all-reference coverage, three Museum keyframes, and selected/reassigned route decision are committed | Mark route-level acceptance | Full-resolution decision artifacts remain separate from optimized runtime assets | Review the deployed Museum and supporting assignments | `EV-ART-01-02` candidate evidence |
+| `CAP-ART-004` | `WI-ART-03-01` | Phenomenon-led Museum and LifeInbox vessel material pass local tests/build/browser review | Public verification and Mark acceptance | Keep `dd11a4f` as rejected comparison and rollback baseline | Verify public Museum and LifeInbox depth | `EV-ART-03-02` candidate evidence |
+| `CAP-ART-005` | `WI-ART-04-01` | Dreamlife nacre, Sudoku diagram organism, and historical landmarks are implemented | Public deep-state verification and Mark acceptance | Functional worlds and direct routes remain intact | Verify public flagship deep states | `EV-ART-04-02` candidate evidence |
+| `CAP-ART-006` | `WI-ART-05-01`, `WI-ART-06-01` | Home, About, AI, project worlds, reading, asset registry, optimization, and reduced motion are implemented | Public route matrix, performance observation, and Mark acceptance | Mobile-specific art and musical identity remain later | Deploy and review the public matrix | `EV-ART-05-01`, `EV-ART-06-01` candidate evidence |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -182,7 +183,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 94 | Functional evidence and the selected direction remain valid; `ART-04` evidence is narrow rather than final creative acceptance |
-| Candidate | 0 | No creative candidate is waiting for review after Mark resolved the deployed candidate |
+| Candidate | 5 | Integrated art inputs, first-slice remediation, project dialects, supporting routes, and whole-system maturity await public and Mark review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 6 | Four retained infrastructure failures plus rejected `ART-03` and renewed `QA-02` creative candidates |
 
@@ -192,6 +193,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-18 | Implemented the full reference-rich visual replacement sequence locally | `ART-01`, `ART-03` through `ART-06`, `CAP-ART-002/004/005/006`, renewed `QA-02` | Original assets, selected/reassigned keyframes, typed registry, major-route translations, tests/build, and local browser matrix are candidate-ready |
 | 2026-07-18 | Reopened visual production after reference-coverage review | `ART-01`, `ART-03`, `ART-04`, renewed `QA-02`, `CAP-ART-002/004/005` | All nine references now have route ownership; material studies and real keyframes precede replacement implementation |
 | 2026-07-18 | Integrated art direction across the implementation program | `ART-01` through `ART-06`, `CAP-ART-001` through `006`, `V-31`, route and quality plans | Six-layer model, art-packet contract, route coverage, package gates, and partial-work checkpoints prevent aesthetics from becoming a detached or vague polish pass |
 | 2026-07-18 | Selected Impossible Observatory of Living Instruments | `ART-01`, `CAP-ART-001`, `V-31`, renewed `QA-02` | Nine references translated into accepted material, color, motion, project, and anti-copy constraints; first keyframe briefs ready |

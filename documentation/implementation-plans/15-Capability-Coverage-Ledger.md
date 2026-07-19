@@ -486,11 +486,11 @@ Until a capability receives its own detail record, these defaults apply:
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | `CAP-ART-001` | Selected portfolio art direction and starting material dialects | `ART-01` | `V-31` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: not-applicable; I: not-applicable; T: not-applicable; Q: accepted; R: not-applicable` | verified |
-| `CAP-ART-002` | Museum/LifeInbox keyframes and accepted art packets | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 3 | `S: accepted; C: working; A: accepted; I: not-applicable; T: not-applicable; Q: working; R: not-applicable` | reopened |
+| `CAP-ART-002` | Museum/LifeInbox keyframes and accepted art packets | `ART-01` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 3 | `S: accepted; C: implemented; A: accepted; I: not-applicable; T: accepted; Q: in-review; R: not-applicable` | implemented (`EV-ART-01-02`) |
 | `CAP-ART-003` | Semantic aesthetic runtime, utility, calm, fallback, and capture foundation | `ART-02` | `V-04`, `V-22`, `V-31` | `O-01`, `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-ART-02-01`) |
-| `CAP-ART-004` | Museum/LifeInbox representative aesthetic remediation | `ART-03` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: working; T: accepted; Q: working; R: accepted` | reopened (`EV-ART-03-01` failed creative gate) |
-| `CAP-ART-005` | Distinct project and archive dialect packets | `ART-04` | `V-03`, `V-14`, `V-31` | `O-04` | 5 | `S: accepted; C: working; A: accepted; I: working; T: accepted; Q: working; R: accepted` | reopened (`EV-ART-04-01` retained narrowly) |
-| `CAP-ART-006` | Supporting-route translation and whole-portfolio coherence | `ART-05`, `ART-06` | `V-04`, `V-05`, `V-09`, `V-31` | `O-01`, `O-02`, `O-04`, `O-05` | 5 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-ART-004` | Museum/LifeInbox representative aesthetic remediation | `ART-03` | `V-03`, `V-04`, `V-31` | `O-03`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-03-02`) |
+| `CAP-ART-005` | Distinct project and archive dialect packets | `ART-04` | `V-03`, `V-14`, `V-31` | `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-04-02`) |
+| `CAP-ART-006` | Supporting-route translation and whole-portfolio coherence | `ART-05`, `ART-06` | `V-04`, `V-05`, `V-09`, `V-31` | `O-01`, `O-02`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-05-01`, `EV-ART-06-01`) |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -511,50 +511,66 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-ART-002: Museum And LifeInbox Keyframes And Art Packets
 
 - Owner: Codex with Mark creative review
-- Lifecycle: reopened
+- Lifecycle: implemented; awaiting Mark review
 - Health: watch
-- Confidence: high on content and direction; medium until keyframes are selected
-- Dimension states: `S/A accepted; C/Q working; I/T/R not-applicable`
+- Confidence: high on content, direction, and implementation; creative acceptance pending
+- Dimension states: `S/A accepted; C implemented; T accepted; Q in-review; I/R not-applicable`
 - Package: `ART-01`
-- Works now: the museum and LifeInbox have stable real content and implementation-specific Signal, Handle, and Understand briefs; six original material studies and a labeled contact sheet visibly cover every `R1` through `R9` family and are accepted by Mark as visual-production inputs.
-- Named gaps: three rendered Museum alternatives, one explicit rejection, selected Museum packet, LifeInbox Handle/Understand keyframes, complete packet fields, and Mark route-keyframe review remain. The deployed runtime cannot substitute for these inputs.
+- Works now: six original material studies, all-reference coverage, three real Museum alternatives, one selected/reassigned decision, production asset assignments, and stable project coordinates are committed and implemented.
+- Named gaps: public verification and Mark's route-level acceptance remain; musical identity and mobile-specific composition remain later.
 - Safe exposure: design documentation only; current release stays live while visual inputs are selected.
-- Evidence: none accepted yet; selected/rejected keyframes, packet records, diagnostic rationale, and Mark review are required.
+- Evidence: `EV-ART-01-02` is candidate evidence; `EV-ART-01-01` remains accepted direction evidence.
 - Work item: `WI-ART-01-01` (direction decision done); `WI-ART-01-02` owns the reopened visual-production work.
-- Next checkpoint: produce the phenomenon-led, artifact-led, and painterly/diagrammatic Museum Signal alternatives with the real nine-project set.
+- Next checkpoint: verify the public candidate and collect Mark's route-level review.
 - Last assessed: 2026-07-18.
 
 ### CAP-ART-004: Reopened Museum And LifeInbox Remediation
 
 - Owner: Codex with Mark creative review
-- Lifecycle: reopened
+- Lifecycle: implemented; awaiting Mark review
 - Health: watch
-- Confidence: high on function; low on creative acceptance until new keyframes exist
-- Dimension states: `S/C/A/T/R accepted; I/Q working`
+- Confidence: high on function and local integration; creative acceptance pending
+- Dimension states: `S/A/I/T/R accepted; C implemented; Q in-review`
 - Package: `ART-03`
-- Works now: the Observatory shell and LifeInbox depth are functional, truthful, tested, deployed, and materially more distinct than the original card grid.
-- Named gaps: the deployed candidate lacks image-level living ecology, intricate organism detail, painterly surface, tactile alchemical vessel matter, condensation/vapor, and a sufficiently transformative deep state. It failed the reference-coverage, artwork, material-physics, crop, and close-detail gates.
+- Works now: the replacement Museum uses a phenomenon-led ecology with nine semantic coordinates; LifeInbox carries a spectral receiving vessel through the existing trust-boundary experience; local tests, build, and browser review pass.
+- Named gaps: public verification and Mark acceptance remain.
 - Safe exposure: current Production remains the known-good functional baseline; aesthetic work proceeds behind existing rollback boundaries.
-- Evidence: `EV-ART-03-01` records the failed creative candidate without invalidating its code/build/deployment observations.
-- Work item: `WI-ART-03-01` (ready after `WI-ART-01-02`).
-- Next checkpoint: implement only the selected Museum and LifeInbox packets after Mark reviews their keyframes.
+- Evidence: `EV-ART-03-01` preserves the failed comparison; `EV-ART-03-02` records the replacement candidate.
+- Work item: `WI-ART-03-01` (in-review).
+- Next checkpoint: verify public Museum/LifeInbox routes and collect Mark review.
 - Last assessed: 2026-07-18 after Mark's Production reference-coverage feedback.
 
 ### CAP-ART-005: Reopened Project And Archive Dialects
 
 - Owner: Codex with Mark creative review
-- Lifecycle: reopened
+- Lifecycle: implemented; awaiting Mark review
 - Health: watch
-- Confidence: high on distinct basic composition; low on artistic richness
-- Dimension states: `S/A/T/R accepted; C/I/Q working`
+- Confidence: high on distinct composition and local integration; creative acceptance pending
+- Dimension states: `S/A/I/T/R accepted; C implemented; Q in-review`
 - Package: `ART-04`
-- Works now: Dreamlife, Sudoku Together, and historical projects have distinct functional compositions, truthful depth, and stable routes.
-- Named gaps: Dreamlife needs original liquid-nacre form and intricate future anatomy; Sudoku needs waveform-apparition and diagram-organism depth; historical work needs painterly/specimen material. Current prism/lattice/silhouette distinction is too simple to satisfy the reference standard.
+- Works now: Dreamlife uses liquid nacre/pearl refraction; Sudoku uses diagram-organism depth; historical projects occupy distinct ecological, aperture, folio, waveform, camera, and crystalline landmarks.
+- Named gaps: public deep-state verification and Mark acceptance remain.
 - Safe exposure: existing worlds remain live and functional until replacement packets pass review.
-- Evidence: `EV-ART-04-01` remains accepted only for basic swap distinction, not reference richness or final creative quality.
-- Work item: `WI-ART-04-01` (ready after `ART-03`).
-- Next checkpoint: produce Dreamlife, Sudoku, and historical archive deep-state keyframes from the accepted route assignments.
+- Evidence: `EV-ART-04-01` remains accepted for basic swap distinction; `EV-ART-04-02` records the reference-rich candidate.
+- Work item: `WI-ART-04-01` (in-review).
+- Next checkpoint: verify public flagship deep states and collect Mark review.
 - Last assessed: 2026-07-18 after Mark's Production reference-coverage feedback.
+
+### CAP-ART-006: Supporting Routes And Whole-Portfolio Coherence
+
+- Owner: Codex with Mark creative review
+- Lifecycle: implemented; awaiting Mark review
+- Health: on-track
+- Confidence: high on local integration; public and creative acceptance pending
+- Dimension states: `S/A/I/T/R accepted; C implemented; Q in-review`
+- Packages: `ART-05`, `ART-06`
+- Works now: Home, About, the global AI archive, all three project worlds, and project reading surfaces receive explicit related-but-not-templated materials from one tested asset registry. Optimized runtime assets remain separate from full-resolution decision evidence, and reduced-motion disables autonomous art drift.
+- Named gaps: public route/console verification, performance observation, and Mark acceptance remain. Mobile-specific art direction and the musical identity are explicit later work.
+- Safe exposure: all artwork is subordinate to semantic HTML, route truth, failure isolation, and existing rollback boundaries.
+- Evidence: `EV-ART-05-01` and `EV-ART-06-01` are candidate evidence.
+- Work items: `WI-ART-05-01`, `WI-ART-06-01` (in-review).
+- Next checkpoint: deploy and verify the public route matrix, then collect Mark's review by route/material mismatch.
+- Last assessed: 2026-07-18 after local integrated build and browser review.
 
 ## Museum And Shared Case-Study System
 

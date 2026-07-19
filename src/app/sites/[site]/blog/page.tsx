@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import ProjectReadingArtwork from '@/components/sites/ProjectReadingArtwork';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 import { getSiteBlogPosts } from '@/lib/siteBlogs';
 
@@ -61,9 +62,10 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
   const classes = getThemeClasses(copy.theme);
 
   return (
-    <main className={`min-h-screen ${classes.page}`}>
+    <main className={`relative isolate min-h-screen overflow-hidden ${classes.page}`}>
+      <ProjectReadingArtwork site={site.subdomain as keyof typeof SITE_COPY} />
       <BlogNav site={site.subdomain} label={copy.label} classes={classes} />
-      <section className={`border-y ${classes.hero}`}>
+      <section className={`relative z-[1] border-y ${classes.hero}`}>
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1fr]">
           <div>
             <p className={`text-sm font-semibold uppercase tracking-[0.2em] ${classes.accentText}`}>Blog</p>
@@ -75,7 +77,7 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-6xl gap-4 px-5 py-16 sm:px-8">
+      <section className="relative z-[1] mx-auto grid w-full max-w-6xl gap-4 px-5 py-16 sm:px-8">
         {posts.length === 0 ? (
           <div className={`rounded-lg border p-6 ${classes.card}`}>
             <p className={classes.bodyText}>Posts are coming soon.</p>
@@ -106,7 +108,7 @@ export default async function BlogIndexPage({ params }: BlogIndexPageProps) {
 
 function BlogNav({ site, label, classes }: { site: string; label: string; classes: ReturnType<typeof getThemeClasses> }) {
   return (
-    <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
+    <nav className="relative z-[1] mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
       <Link href="/" className="text-sm font-semibold opacity-80 transition hover:opacity-100">
         {label}
       </Link>
@@ -125,8 +127,8 @@ function BlogNav({ site, label, classes }: { site: string; label: string; classe
 function getThemeClasses(theme: 'warm' | 'green' | 'dark') {
   if (theme === 'dark') {
     return {
-      page: 'bg-[#081018] text-white',
-      hero: 'border-white/10 bg-[#0d1720]',
+      page: 'bg-[#03090b] text-white',
+      hero: 'border-white/10 bg-black/20 backdrop-blur-[2px]',
       card: 'border-white/10 bg-white/[0.045] hover:border-[#86efac]/35',
       navBorder: 'border-white/20',
       accentText: 'text-[#86efac]',
@@ -136,22 +138,22 @@ function getThemeClasses(theme: 'warm' | 'green' | 'dark') {
 
   if (theme === 'warm') {
     return {
-      page: 'bg-[#fff3dc] text-[#22170d]',
-      hero: 'border-[#22170d]/10 bg-[#ffdca8]',
-      card: 'border-[#22170d]/10 bg-white/60 hover:border-[#22170d]/25',
-      navBorder: 'border-[#22170d]/20',
-      accentText: 'text-[#8a4324]',
-      bodyText: 'text-[#5c4230]',
+      page: 'bg-[#070710] text-[#f8f3ff]',
+      hero: 'border-white/10 bg-black/15 backdrop-blur-[2px]',
+      card: 'border-white/10 bg-white/[0.045] hover:border-[#d6b9ff]/30',
+      navBorder: 'border-white/20',
+      accentText: 'text-[#e8b3dc]',
+      bodyText: 'text-white/65',
     };
   }
 
   return {
-    page: 'bg-[#eef3ef] text-[#0e1c18]',
-    hero: 'border-[#0e1c18]/10 bg-[#dcebe4]',
-    card: 'border-[#0e1c18]/10 bg-white/65 hover:border-[#0e1c18]/25',
-    navBorder: 'border-[#0e1c18]/20',
-    accentText: 'text-[#356b5d]',
-    bodyText: 'text-[#40534d]',
+    page: 'bg-[#040807] text-[#edf8f3]',
+    hero: 'border-white/10 bg-black/20 backdrop-blur-[2px]',
+    card: 'border-white/10 bg-white/[0.04] hover:border-[#f2bd73]/30',
+    navBorder: 'border-white/20',
+    accentText: 'text-[#f2bd73]',
+    bodyText: 'text-white/64',
   };
 }
 

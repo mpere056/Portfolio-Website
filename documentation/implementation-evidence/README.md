@@ -60,6 +60,11 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | Evidence ID | Package | Status | Durable record |
 | --- | --- | --- | --- |
 | `EV-ART-01-01` | `ART-01` | accepted | `ART-01.md` |
+| `EV-ART-01-02` | `ART-01` | candidate | `ART-01.md` |
+| `EV-ART-03-02` | `ART-03` | candidate | `ART-03.md` |
+| `EV-ART-04-02` | `ART-04` | candidate | `ART-04.md` |
+| `EV-ART-05-01` | `ART-05` | candidate | `ART-05.md` |
+| `EV-ART-06-01` | `ART-06` | candidate | `ART-06.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -185,9 +190,14 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-QA-02-03` | `QA-02` | `CAP-QA-002` | preview | accepted | Vercel `dpl_BGDDAtggEihci1DMz4zj1r1vAS9X` | 2026-07-18 | `QA-02.md` |
 | `EV-QA-05-01` | `QA-05` | `CAP-QA-005` | production | accepted | `4d56565`, Vercel `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`, live routes and card | 2026-07-18 | `QA-05.md` |
 | `EV-ART-01-01` | `ART-01` | `CAP-ART-001` | creative-decision | accepted | Impossible Observatory of Living Instruments selected from synthesis and nine-reference review | 2026-07-18 | `ART-01.md` |
+| `EV-ART-01-02` | `ART-01` | `CAP-ART-002` | creative-review | candidate | six studies, all-reference coverage, three Museum keyframes, and selected/reassigned route decision | 2026-07-18 | `ART-01.md` |
 | `EV-ART-02-01` | `ART-02` | `CAP-ART-003` | integration-test | accepted | shared CSS/SVG runtime, reduced-motion, type/lint/build gate | 2026-07-18 | `ART-02.md` |
 | `EV-ART-03-01` | `ART-03` | `CAP-ART-004` | creative-review | failed | Production `dd11a4f` passed functional gates but failed Mark's reference-coverage review | 2026-07-18 | `ART-03.md` |
+| `EV-ART-03-02` | `ART-03` | `CAP-ART-004` | browser-flow | candidate | phenomenon-led Museum and spectral LifeInbox pass local test/build/browser gates | 2026-07-18 | `ART-03.md` |
 | `EV-ART-04-01` | `ART-04` | `CAP-ART-005` | creative-review | accepted | Dreamlife prism, Sudoku lattice, lifecycle archive swap review | 2026-07-18 | `ART-04.md` |
+| `EV-ART-04-02` | `ART-04` | `CAP-ART-005` | browser-flow | candidate | nacre Dreamlife, diagram-organism Sudoku, and historical landmarks integrated | 2026-07-18 | `ART-04.md` |
+| `EV-ART-05-01` | `ART-05` | `CAP-ART-006` | integration-test | candidate | Home, About, AI, subdomains, and reading surfaces translated | 2026-07-18 | `ART-05.md` |
+| `EV-ART-06-01` | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | integration-test | candidate | typed asset registry, optimized derivatives, reduced motion, local matrix, and build | 2026-07-18 | `ART-06.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

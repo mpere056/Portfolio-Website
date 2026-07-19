@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import type { MuseumExhibitView } from '@/lib/museum/types';
 import type { DepthStage } from '@/lib/portfolioContracts';
+import { ART_DIRECTION_ASSETS, getMuseumSignalPosition } from '@/lib/artDirection';
 import { resolveMuseumHash, resolveMuseumStage } from '@/lib/museum/navigation';
 import ExhibitFallback from './ExhibitFallback';
 import ExhibitExperienceBoundary from './ExhibitExperienceBoundary';
@@ -108,6 +110,17 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
         </header>
 
         <nav aria-label="Project signals" className={styles.signals}>
+          <div className={styles.ecology} aria-hidden="true">
+            <Image
+              src={ART_DIRECTION_ASSETS.museum.src}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 1400px"
+              className={styles.ecologyImage}
+            />
+            <span className={styles.ecologyVeil} />
+          </div>
           <svg className={styles.sightLines} viewBox="0 0 1200 820" preserveAspectRatio="none" aria-hidden="true">
             <path d="M170 220 C360 120 430 400 610 330 S880 110 1040 250" />
             <path d="M250 620 C420 470 550 690 760 540 S960 520 1080 650" />
@@ -116,6 +129,7 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
           {exhibits.map((exhibit, index) => {
             if (exhibit.status === 'fallback') return <ExhibitFallback key={exhibit.projectId} exhibit={exhibit} />;
             const selectedSignal = exhibit.slug === selectedSlug;
+            const position = getMuseumSignalPosition(exhibit.slug, index);
             return (
               <a
                 id={exhibit.slug}
@@ -124,8 +138,13 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
                 aria-current={selectedSignal ? 'location' : undefined}
                 data-selected={selectedSignal}
                 data-dialect={DIALECTS[exhibit.slug] ?? 'archive'}
+                data-align={position.align}
                 className={styles.signal}
-                style={{ '--signal-order': index } as React.CSSProperties}
+                style={{
+                  '--signal-order': index,
+                  '--x': `${position.x}%`,
+                  '--y': `${position.y}%`,
+                } as React.CSSProperties}
                 onClick={event => { event.preventDefault(); navigateToStage(exhibit, 'approach'); }}
               >
                 <span className={styles.phenomenon} aria-hidden="true"><i /><i /><i /></span>

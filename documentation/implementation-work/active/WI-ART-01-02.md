@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | in-review |
 | Priority | high |
 | Package | `ART-01` |
 | Capabilities | `CAP-ART-002`, `CAP-QA-002` |
@@ -16,15 +16,15 @@
 
 ## Current Truth
 
-The Observatory direction remains accepted, but the visual-production gate was skipped or accepted too loosely. The Production candidate at `dd11a4f` is a useful functional baseline and rejected creative comparison. Six original material studies have now been produced and accepted by Mark; the labeled coverage record accounts for every `R1` through `R9` family. The active checkpoint is the three-composition Museum Signal keyframe round.
+The Observatory direction remains accepted. Six original material studies and the labeled `R1` through `R9` coverage record are committed under `documentation/art-direction/2026-07-18-material-studies/`. Three real-content Museum keyframes are archived under `documentation/art-direction/2026-07-18-museum-keyframes/`; the phenomenon-led ecology is selected, the artifact-led observatory is reassigned to About/AI, and the painterly field is reassigned to Home/history. Their rationale and runtime constraints are recorded beside the keyframes. Production implementation now exists and the package is waiting on Mark's route-level creative review rather than more untracked ideation.
 
 ## Resume Packet
 
 - Last known good: the selected direction, nine-reference written analysis, route/depth architecture, working Production interactions, and existing rollback boundaries remain valid.
 - Source of truth: `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md`.
-- Last completed artifact: six accepted studies and the labeled contact sheet under `documentation/art-direction/2026-07-18-material-studies/`.
-- Next exact action: create three Museum Signal keyframes using the real nine projects: phenomenon-led ecology, artifact-led observatory, and painterly/diagrammatic field.
-- Then: retain one rejected Museum direction, complete the selected Museum packet, and create LifeInbox Handle/Understand keyframes from the selected material world.
+- Last completed artifact: selected/reassigned Museum keyframe decision plus production asset registry and route implementation.
+- Next exact action: Mark reviews `/projects`, LifeInbox Handle/Understand, and the selected/reassigned route translations after deployment.
+- If revision is requested: begin from the named route, depth, and material mismatch rather than generating another broad style pass.
 - Do not claim: a runtime screenshot, color palette, CSS gradient, or generic glow is a material study or accepted keyframe.
 - Preserve: the supplied screenshots as external taste references only; never copy or commit them as production assets.
 
@@ -32,7 +32,7 @@ The Observatory direction remains accepted, but the visual-production gate was s
 
 - [x] Six original material studies cover living ecology, impossible artifact, liquid nacre, painterly presence, diagram organism, and spectral performance.
 - [x] A contact sheet accounts for visible translations of all `R1` through `R9` qualities.
-- Three materially and compositionally distinct Museum Signal keyframes use the actual project set.
-- One Museum direction is explicitly rejected with reasons.
-- Selected Museum, LifeInbox Handle, and LifeInbox Understand art packets are complete.
-- Mark reviews the visual inputs before `WI-ART-03-01` begins implementation.
+- [x] Three materially and compositionally distinct Museum Signal keyframes use the actual project set.
+- [x] One Museum direction is explicitly rejected for the lobby and reassigned with reasons.
+- [x] Selected Museum and LifeInbox material assignments are encoded in the shared art registry and production scenes.
+- [ ] Mark accepts the route-level visual result.

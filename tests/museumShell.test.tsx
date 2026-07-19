@@ -12,6 +12,8 @@ describe('museum Signal and Approach shell', () => {
     expect(exhibits).toHaveLength(9);
     for (const exhibit of exhibits) expect(html).toContain(`href="#${exhibit.slug}"`);
     expect(html).toContain('Move toward');
+    expect(html).toContain('%2Fimages%2Fart-direction%2Fmuseum-signal-ecology.webp');
+    expect(html).toContain('--x:9%');
     expect(html).not.toContain('Capture locally');
     expect(html).not.toContain('Sudoku board');
   });

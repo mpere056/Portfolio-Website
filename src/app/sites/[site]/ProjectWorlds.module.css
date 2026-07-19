@@ -18,6 +18,41 @@
   pointer-events: none;
 }
 
+.worldArtwork {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: 100svh;
+  min-height: 44rem;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .58;
+  mask-image: linear-gradient(to bottom, black 0 74%, transparent 100%);
+}
+
+.worldArtwork img {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(1.12) brightness(.62);
+  transform: scale(1.035);
+  animation: worldArtworkDrift 16s ease-in-out infinite alternate;
+}
+
+.worldArtwork span {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 65% 44%, transparent, rgba(3,6,8,.24) 48%, rgba(3,6,8,.92)), linear-gradient(to bottom, rgba(3,6,8,.16), rgba(3,6,8,.78));
+}
+
+.worldArtwork[data-world='dreamlife'] { opacity: .7; mix-blend-mode: screen; }
+.worldArtwork[data-world='dreamlife'] img { object-position: 62% center; filter: saturate(.9) contrast(1.08) brightness(.68); }
+.worldArtwork[data-world='lifeinbox'] { opacity: .84; mix-blend-mode: screen; }
+.worldArtwork[data-world='lifeinbox'] img { object-position: 64% center; filter: saturate(.88) contrast(1.1) brightness(.78); }
+.worldArtwork[data-world='lifeinbox'] span { background: linear-gradient(90deg, rgba(3,7,6,.9), rgba(3,7,6,.58) 38%, transparent 72%), linear-gradient(to bottom, rgba(3,7,6,.08), rgba(3,7,6,.72)); }
+.worldArtwork[data-world='sudoku'] { opacity: .72; mix-blend-mode: screen; }
+.worldArtwork[data-world='sudoku'] img { object-position: 68% center; filter: saturate(.72) contrast(1.14) brightness(.76); }
+.worldArtwork[data-world='sudoku'] span { background: linear-gradient(90deg, rgba(2,8,10,.92), rgba(2,8,10,.58) 42%, transparent 74%), linear-gradient(to bottom, rgba(2,8,10,.08), rgba(2,8,10,.76)); }
+
 .world::before {
   inset: 0;
   opacity: 0.24;
@@ -38,6 +73,7 @@
 
 .world :global(section) {
   position: relative;
+  z-index: 1;
   border-color: var(--world-line) !important;
   background-color: transparent !important;
 }
@@ -106,7 +142,7 @@
 .lifeinbox :global(section:first-of-type > div:first-child) { opacity: 0.2 !important; }
 .lifeinbox :global([class*="bg-\[\#07110e\]"]) {
   border-radius: 46% 54% 42% 58% / 30% 28% 72% 70% !important;
-  background: rgba(6, 13, 11, 0.72) !important;
+  background: rgba(6, 13, 11, 0.48) !important;
   box-shadow: inset 0 0 5rem rgba(242, 189, 115, 0.08) !important;
 }
 .lifeinbox :global([class*="text-emerald"]) { color: #f2bd73 !important; }
@@ -132,11 +168,36 @@
 .sudoku :global([class*="bg-sky"]),
 .sudoku :global([class*="bg-cyan"]) { background: rgba(131, 255, 225, 0.12) !important; }
 
+.sudokuPanel {
+  border-color: rgba(143, 255, 231, .22) !important;
+  background: rgba(2, 10, 12, .66) !important;
+  box-shadow: 0 0 6rem rgba(66, 232, 202, .09) !important;
+  backdrop-filter: blur(8px);
+}
+
+.sudokuGrid {
+  border-color: rgba(216, 255, 244, .72) !important;
+  background: rgba(2, 10, 12, .5) !important;
+}
+
+.sudokuCell {
+  border-color: rgba(216, 255, 244, .18) !important;
+  color: rgba(236, 255, 250, .85) !important;
+  background: rgba(2, 10, 12, .54) !important;
+  text-shadow: 0 0 1rem rgba(131, 255, 225, .18);
+}
+
 @media (max-width: 760px) {
+  .worldArtwork { height: 72svh; min-height: 36rem; opacity: .42; }
+  .worldArtwork img { object-position: 64% center; }
   .world::after { width: 90vw; height: 90vw; right: -48vw; top: 18vh; opacity: 0.55; }
   .dreamlife :global(section:first-of-type)::after { width: 72vw; right: -24vw; top: 34%; opacity: 0.24; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .world *, .world *::before, .world *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes worldArtworkDrift {
+  to { transform: scale(1.07) translate3d(-.7%, -.45%, 0); filter: saturate(1) contrast(1.08) brightness(.7); }
 }

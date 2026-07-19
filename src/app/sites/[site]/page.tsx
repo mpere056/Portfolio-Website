@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import ProjectPreview from '@/components/ProjectPreview';
+import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 import { getProjects, type Project } from '@/lib/projects';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
 import worldStyles from './ProjectWorlds.module.css';
@@ -74,10 +76,11 @@ function DreamlifeSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.dreamlife} min-h-screen bg-[#080710] text-[#f7f4ff]`}>
+      <WorldArtwork world="dreamlife" src={ART_DIRECTION_ASSETS.dreamlife.src} />
       <section className="relative overflow-hidden border-b border-[#22170d]/10 bg-[#ffdca8]">
         <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,126,79,0.35),transparent_24%),linear-gradient(rgba(34,23,13,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,23,13,0.08)_1px,transparent_1px)] [background-size:100%_100%,100%_100%,44px_44px,44px_44px]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#fff3dc] to-transparent" />
-        <SiteNav site="dreamlife" brand="Dreamlife" textColor="text-[#22170d]" accentColor="border-[#22170d]/20" />
+        <SiteNav site="dreamlife" brand="Dreamlife" textColor="text-white" accentColor="border-white/20" />
 
         <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(420px,1fr)]">
           <div>
@@ -101,8 +104,8 @@ function DreamlifeSite({ project }: { project: Project }) {
           </div>
 
           <div className="relative min-h-[520px]">
-            <div className="absolute inset-x-12 bottom-0 top-14 rounded-[44px] bg-[#f9c780]" />
-            <div className="absolute inset-0 overflow-hidden rounded-[32px] border border-[#22170d]/10 bg-[#fffaf1]/80 shadow-[0_30px_90px_rgba(123,66,28,0.24)]">
+            <div className="absolute inset-x-12 bottom-0 top-14 rounded-[44px] border border-white/10 bg-[#b9b4ff]/10 backdrop-blur-sm" />
+            <div className="absolute inset-0 overflow-hidden rounded-[32px] border border-white/10 bg-[#080b15]/55 shadow-[0_30px_90px_rgba(0,0,0,0.34)] backdrop-blur-sm">
               <ProjectPreview
                 modelName={project.heroModel}
                 cameraPosition={project.cardCameraPosition || project.cameraPosition}
@@ -110,7 +113,7 @@ function DreamlifeSite({ project }: { project: Project }) {
                 className="absolute inset-0"
               />
             </div>
-            <div className="absolute bottom-8 right-6 z-10 max-w-[260px] rounded-3xl border border-[#22170d]/10 bg-white/85 p-5 shadow-[0_18px_45px_rgba(123,66,28,0.18)]">
+            <div className="absolute bottom-8 right-6 z-10 max-w-[260px] rounded-3xl border border-white/10 bg-black/45 p-5 shadow-[0_18px_45px_rgba(0,0,0,0.24)] backdrop-blur-xl">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8a4324]">Prototype prompt</p>
               <p className="mt-2 text-sm leading-6 text-[#5c4230]">What would change this week if the Wild Card path became slightly more real?</p>
             </div>
@@ -172,9 +175,10 @@ function LifeInboxSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.lifeinbox} min-h-screen bg-[#050909] text-[#edf8f3]`}>
+      <WorldArtwork world="lifeinbox" src={ART_DIRECTION_ASSETS.lifeinbox.src} />
       <section className="relative overflow-hidden border-b border-[#0e1c18]/10 bg-[#dcebe4]">
         <div className="absolute inset-0 [background-image:linear-gradient(120deg,rgba(14,28,24,0.08),transparent_34%),linear-gradient(rgba(14,28,24,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,28,24,0.07)_1px,transparent_1px)] [background-size:100%_100%,32px_32px,32px_32px]" />
-        <SiteNav site="lifeinbox" brand="LifeInbox" textColor="text-[#0e1c18]" accentColor="border-[#0e1c18]/20" />
+        <SiteNav site="lifeinbox" brand="LifeInbox" textColor="text-white" accentColor="border-white/20" />
 
         <div className="relative mx-auto grid min-h-[calc(100vh-4.5rem)] w-full max-w-7xl items-center gap-10 px-5 pb-24 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,1fr)]">
           <div>
@@ -282,6 +286,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.sudoku} min-h-screen bg-[#030a0d] text-white`}>
+      <WorldArtwork world="sudoku" src={ART_DIRECTION_ASSETS.sudoku.src} />
       <section className="relative overflow-hidden border-b border-white/10 bg-[#0d1720]">
         <div className="absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:36px_36px]" />
         <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(8,16,24,0.97),rgba(23,47,57,0.78)_45%,rgba(8,16,24,0.98))]" />
@@ -309,14 +314,12 @@ function SudokuTogetherSite({ project }: { project: Project }) {
           </div>
 
           <div className="relative">
-            <div className="rounded-lg border border-white/10 bg-[#f8fafc] p-3 shadow-[0_32px_100px_rgba(0,0,0,0.42)]">
-              <div className="grid aspect-square grid-cols-9 overflow-hidden rounded-md border-2 border-[#101820] bg-white">
+            <div className={`${worldStyles.sudokuPanel} rounded-lg border p-3`}>
+              <div className={`${worldStyles.sudokuGrid} grid aspect-square grid-cols-9 overflow-hidden rounded-md border-2`}>
                 {cells.map((value, index) => (
                   <div
                     key={`${value}-${index}`}
-                    className={`grid place-items-center border-[#101820]/25 text-lg font-semibold text-[#101820] ${
-                      value ? 'bg-[#eef6ff]' : 'bg-white'
-                    } ${(index + 1) % 3 === 0 && (index + 1) % 9 !== 0 ? 'border-r-2' : 'border-r'} ${
+                    className={`${worldStyles.sudokuCell} grid place-items-center text-lg font-semibold ${(index + 1) % 3 === 0 && (index + 1) % 9 !== 0 ? 'border-r-2' : 'border-r'} ${
                       (index >= 18 && index < 27) || (index >= 45 && index < 54) ? 'border-b-2' : 'border-b'
                     }`}
                   >
@@ -419,6 +422,15 @@ function ProjectFooter({ project, tone, prompt }: { project: Project; tone: 'war
         </div>
       </div>
     </section>
+  );
+}
+
+function WorldArtwork({ world, src }: { world: 'dreamlife' | 'lifeinbox' | 'sudoku'; src: string }) {
+  return (
+    <div className={worldStyles.worldArtwork} data-world={world} aria-hidden="true">
+      <Image src={src} alt="" fill priority sizes="100vw" />
+      <span />
+    </div>
   );
 }
 

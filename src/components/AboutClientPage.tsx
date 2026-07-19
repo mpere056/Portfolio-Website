@@ -4,10 +4,12 @@ import HireMeDrawer from '@/components/HireMeDrawer';
 import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import TimelineEntry from '@/components/TimelineEntry';
 import { Canvas } from '@react-three/fiber';
+import Image from 'next/image';
 import { Suspense, useMemo, useRef, useEffect } from 'react';
 import Background from '@/components/Background';
 import TimelineIndicator from './TimelineIndicator';
 import SmoothSnapScroll from './SmoothSnapScroll';
+import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 
 interface AboutClientPageProps {
   entries: TimelineEntryType[];
@@ -110,7 +112,17 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
   };
 
   return (
-    <div className="h-screen w-screen relative">
+    <div className="h-screen w-screen relative overflow-hidden bg-[#05070a]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-[min(70vw,1000px)] opacity-25 mix-blend-screen [mask-image:linear-gradient(90deg,transparent,black_30%,black_75%,transparent)]">
+        <Image
+          src={ART_DIRECTION_ASSETS.about.src}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 70vw"
+          className="object-cover object-center saturate-75 contrast-125 brightness-75"
+        />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(5,7,10,.9),transparent_42%,rgba(5,7,10,.4))]" />
       <Suspense fallback={null}>
         <Canvas>
           <Background colors={colors} textures={textures} opacities={opacities} />

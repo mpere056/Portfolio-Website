@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { useExplorationWorld } from '@/components/experience/ExplorationWorldProvider';
+import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 import type { DepthStage } from '@/lib/portfolioContracts';
 import styles from './FlagshipExperiences.module.css';
 
@@ -65,6 +67,9 @@ export default function SudokuTogetherExperience({
 
   return (
     <section aria-label="Sudoku Together depth experience" className={`${styles.experience} ${styles.sudoku}`}>
+      <div className={styles.experienceArtwork} aria-hidden="true">
+        <Image src={ART_DIRECTION_ASSETS.sudoku.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
+      </div>
       <div className={styles.rail}>
         <div className={styles.depthMarks} aria-label="Exhibit depth">{(['handle', 'enter', 'understand'] as const).map(item => <span key={item} data-active={stage === item}>{item}</span>)}</div>
         <button type="button" className={styles.textButton} onClick={reset}>Reset room</button>

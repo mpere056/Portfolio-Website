@@ -10,21 +10,23 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 through Phase 4 functionality remains live on verified Production: flagship depth, lifecycle state, canonical routes, project worlds, and AI migration work. Mark rejected the deployed candidate's creative coverage because most of the supplied reference qualities were not visibly realized. The active path is keyframe-first: complete reference-family material studies and selected packets, replace Museum/LifeInbox, then deepen Dreamlife, Sudoku, and the historical archive.
+Phase 1 through Phase 4 functionality remains live on verified Production. The complete reference-rich replacement sequence is now implemented locally: selected/reassigned Museum keyframes, typed production art registry, phenomenon-led Museum, project-specific flagship materials, Home/About/AI translations, subdomain worlds, and calmer reading surfaces. All aesthetic packages are waiting on deployment verification and Mark's creative review; implementation is not being mislabeled as acceptance.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-01-02` | in-progress | `ART-01` | Direction and route truth remain accepted; visual input gate reopened | Produce six material studies and the labeled `R1` through `R9` contact sheet | 2026-07-18 |
-| Next | `WI-ART-03-01` | ready | `ART-03` | Functional Production baseline and rollback boundaries remain valid | Implement selected Museum and LifeInbox packets after keyframe review | 2026-07-18 |
-| Later | `WI-ART-04-01` | ready | `ART-04` | Distinct functional project worlds remain live | Produce and implement reference-rich project/archive packets after `ART-03` | 2026-07-18 |
+| Now | `WI-ART-06-01` | in-review | `ART-06` | Integrated local candidate passes build and browser composition review | Deploy and verify the public route matrix | 2026-07-18 |
+| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement implemented locally | Collect Mark's creative review after public verification | 2026-07-18 |
+| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects implemented locally | Revise only named route/material mismatches from review | 2026-07-18 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-02` | Produce reference-rich material studies and keyframes | in-progress | high | `ART-01` | `CAP-ART-002`, `CAP-QA-002` | `active/WI-ART-01-02.md` | 2026-07-18 |
-| `WI-ART-03-01` | Replace the Museum and LifeInbox creative candidate | ready | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
-| `WI-ART-04-01` | Deepen project and historical art dialects | ready | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-18 |
+| `WI-ART-01-02` | Produce reference-rich material studies and keyframes | in-review | high | `ART-01` | `CAP-ART-002`, `CAP-QA-002` | `active/WI-ART-01-02.md` | 2026-07-18 |
+| `WI-ART-03-01` | Replace the Museum and LifeInbox creative candidate | in-review | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
+| `WI-ART-04-01` | Deepen project and historical art dialects | in-review | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-18 |
+| `WI-ART-05-01` | Translate the Observatory across supporting routes | in-review | high | `ART-05` | `CAP-ART-006` | `active/WI-ART-05-01.md` | 2026-07-18 |
+| `WI-ART-06-01` | Mature and verify the whole-portfolio art system | in-review | high | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | `active/WI-ART-06-01.md` | 2026-07-18 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

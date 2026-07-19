@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useExplorationWorld } from '@/components/experience/ExplorationWorldProvider';
+import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 import type { DepthStage } from '@/lib/portfolioContracts';
 import {
   captureLifeInboxEntry,
@@ -48,6 +50,9 @@ export default function LifeInboxExperience({
 
   return (
     <section aria-label="LifeInbox depth experience" className={styles.experience}>
+      <div className={styles.experienceArtwork} aria-hidden="true">
+        <Image src={ART_DIRECTION_ASSETS.lifeinbox.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
+      </div>
       <div className={styles.rail}>
         <div className={styles.depthMarks} aria-label="Exhibit depth">
           {(['handle', 'enter', 'understand'] as const).map(item => (
