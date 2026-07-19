@@ -186,7 +186,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-QA-05-01` | `QA-05` | `CAP-QA-005` | production | accepted | `4d56565`, Vercel `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`, live routes and card | 2026-07-18 | `QA-05.md` |
 | `EV-ART-01-01` | `ART-01` | `CAP-ART-001` | creative-decision | accepted | Impossible Observatory of Living Instruments selected from synthesis and nine-reference review | 2026-07-18 | `ART-01.md` |
 | `EV-ART-02-01` | `ART-02` | `CAP-ART-003` | integration-test | accepted | shared CSS/SVG runtime, reduced-motion, type/lint/build gate | 2026-07-18 | `ART-02.md` |
-| `EV-ART-03-01` | `ART-03` | `CAP-ART-004` | creative-review | candidate | local Observatory/LifeInbox browser matrix; Mark review pending | 2026-07-18 | `ART-03.md` |
+| `EV-ART-03-01` | `ART-03` | `CAP-ART-004` | creative-review | candidate | Production `dd11a4f` Observatory/LifeInbox route matrix; Mark review pending | 2026-07-18 | `ART-03.md` |
 | `EV-ART-04-01` | `ART-04` | `CAP-ART-005` | creative-review | accepted | Dreamlife prism, Sudoku lattice, lifecycle archive swap review | 2026-07-18 | `ART-04.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
@@ -195,7 +195,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-PRJ-06-01` | `PRJ-06` | `CAP-SDK-001`, `CAP-SDK-002`, `CAP-SDK-003` | browser-flow | accepted | valid Sudoku, synthetic participant, architecture trace | 2026-07-18 | `PRJ-06.md` |
 | `EV-PRJ-07-01` | `PRJ-07` | `CAP-PRJ-007` | content-review | accepted | all historical tiers and lifecycle-specific state depth | 2026-07-18 | `PRJ-07.md` |
 | `EV-PRJ-08-01` | `PRJ-08` | `CAP-PRJ-008` | integration-test | accepted | nine static routes, metadata, history/depth and build | 2026-07-18 | `PRJ-08.md` |
-| `EV-QA-02-04` | `QA-02` | `CAP-QA-002` | creative-review | candidate | 41 files/163 tests, content/type/lint/build/browser release candidate | 2026-07-18 | `QA-02.md` |
+| `EV-QA-02-04` | `QA-02` | `CAP-QA-002` | creative-review | candidate | 41 files/163 tests, content/type/lint/build and Production browser candidate | 2026-07-18 | `QA-02.md` |
 
 ## Required Evidence Fields
 

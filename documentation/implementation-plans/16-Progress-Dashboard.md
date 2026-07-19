@@ -15,9 +15,9 @@ Implementation commit baseline: `519dd47`; latest verified Production: `dpl_8pdv
 
 ## Current Program State
 
-**Phase 1 through Phase 3 are live. Phase 4 implementation is complete as a local release candidate; deployment and renewed Mark aesthetic acceptance remain.**
+**Phase 1 through Phase 4 are live. Phase 4 implementation and Production deployment are complete; renewed Mark aesthetic acceptance remains.**
 
-Phase 4 now implements the Impossible Observatory signal field, a receiving-instrument LifeInbox slice, Dreamlife future prism, playable Sudoku lattice, nine reviewed lifecycle records connected by graph edges, lifecycle-specific historical depth, static canonical project routes, three project-world dialects, and `/chat` migration into the quiet site-wide archive. The release candidate passes 41 test files and 163 tests, strict TypeScript, 58-node/28-relationship content validation, lint without errors, a production build with 35 static pages, and local browser flows for direct depth, Dreamlife, Sudoku, and all project worlds. Functional Phase 3 evidence is retained. `ART-03` and `QA-02` are in review because Mark has not yet reviewed the deployed aesthetic result.
+Phase 4 implements the Impossible Observatory signal field, a receiving-instrument LifeInbox slice, Dreamlife future prism, playable Sudoku lattice, nine reviewed lifecycle records connected by graph edges, lifecycle-specific historical depth, static canonical project routes, three project-world dialects, and `/chat` migration into the quiet site-wide archive. Commit `dd11a4f` is live and passes 41 test files and 163 tests, strict TypeScript, 58-node/28-relationship content validation, lint without errors, a production build with 35 static pages, and public browser checks for the Museum, direct Dreamlife Understand restoration, and all three project domains. Functional Phase 3 evidence is retained. `ART-03` and `QA-02` remain in review only because Mark has not yet reviewed the deployed aesthetic result.
 
 This distinction prevents two errors:
 
@@ -30,9 +30,9 @@ This distinction prevents two errors:
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability through Phase 4 deployment | Review returning-visitor behavior after normal use |
-| `O-02` Quiet global AI | Phase 4 migration implemented | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Verify after Production deployment | Keep the global instrument quiet and contextual |
-| `O-03` First flagship proof | release-candidate remediation | review | LifeInbox receiving instrument passes functional and local creative QA | Mark review of deployed composition | Renew `QA-02` without discarding valid Phase 3 evidence |
-| `O-04` Portfolio museum | Phase 4 implementation complete | review | Observatory field, three flagship dialects, historical signals, direct routes, and state depth pass local QA | Production route matrix and Mark aesthetic review | Accept or record precise remediation notes |
+| `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
+| `O-03` First flagship proof | deployed remediation | review | LifeInbox receiving instrument passes functional, creative-candidate, and Production gates | Mark review of deployed composition | Renew `QA-02` without discarding valid Phase 3 evidence |
+| `O-04` Portfolio museum | Phase 4 live | review | Observatory field, three flagship dialects, historical signals, direct routes, and state depth pass Production QA | Mark aesthetic review | Accept or record precise remediation notes |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -89,10 +89,10 @@ Counts include only the 64 package rows in `13-Execution-Work-Packages.md`; feed
 | 30 | `LPS-06` | Selected flagship state seed | complete | `PRJ-02` selection | One source-reviewed lifecycle and current-state fixture accepted |
 | 31 | `AI-04` | Archive cards and selected-destination flow | complete | `AI-03`, `ARC-03`, `PRJ-01` | Invalid cards fail closed and selected live card response passes |
 | 32 | `PRJ-04` | First full flagship slice | complete | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04` | Handle/Enter/Understand journey and minimum subdomain handoff accepted |
-| 33 | `QA-02` | First vertical-slice quality gate | in-review | Local renewed gate passes; deployed Mark review remains | Accept the deployed aesthetics or record precise remediation |
+| 33 | `QA-02` | First vertical-slice quality gate | in-review | Renewed code and Production gates pass; Mark review remains | Accept the deployed aesthetics or record precise remediation |
 | 34 | `ART-01` | Direction and first keyframe selection | complete | Mark's references and Observatory selection | Runtime-backed packets and decision evidence accepted |
 | 35 | `ART-02` | Aesthetic runtime foundation | complete | `ART-01` selected packets | CSS/SVG material, depth, calm, fallback, and capture roles pass build |
-| 36 | `ART-03` | Museum and LifeInbox remediation | implemented | `ART-01`, `ART-02`, `PRJ-04` | Deploy exact candidate and complete Mark review |
+| 36 | `ART-03` | Museum and LifeInbox remediation | implemented | `ART-01`, `ART-02`, `PRJ-04` | Complete Mark review of deployed commit `dd11a4f` |
 | 37 | `ART-04` | Project and archive dialect packets | complete | `ART-03`, `LPS-03` | Dreamlife prism, Sudoku lattice, and historical dialects pass swap review |
 | 38 | `ART-05` | Supporting-route translation | pending | `ART-03`, reviewed About/AI inputs | Home, About, AI, reading, utility, and support-state coverage is explicit |
 | 39 | `ART-06` | Whole-portfolio maturation | pending | Representative project and supporting route implementations | Related-but-not-templated route matrix passes production creative review |
@@ -111,7 +111,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-03-01` | in-review | `ART-03` | Local Phase 4 release candidate passes code, content, build, and browser gates | Deploy exact commit and ask Mark to review renewed aesthetics | 2026-07-18 |
+| Now | `WI-ART-03-01` | in-review | `ART-03` | Commit `dd11a4f` passes code, content, build, and public Production route gates | Ask Mark to review renewed aesthetics | 2026-07-18 |
 | Review | `WI-ART-03-01` | in-review | `QA-02` | Observatory, LifeInbox, Dreamlife, Sudoku, archive, routes, and domains are implemented | Accept or record exact visual remediation after public review | 2026-07-18 |
 | Next | Phase 5 selection | pending | `ART-05` / `ABT-01` | Waits on Phase 4 aesthetic acceptance | Choose About depth or supporting-route translation after review | 2026-07-18 |
 
@@ -181,7 +181,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 94 | Includes nine new accepted Phase 4 evidence records plus the earlier direction decision |
-| Candidate | 2 | `ART-03` and renewed `QA-02` wait for deployed Mark aesthetic review |
+| Candidate | 2 | Deployed `ART-03` and renewed `QA-02` wait only for Mark aesthetic review |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 4 | Retained preview failures drove embedding, credential, model, and resilience repairs |
 
