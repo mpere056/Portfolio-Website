@@ -2,7 +2,7 @@
 
 Last updated: 2026-07-19
 
-Status: implemented candidate under `ART-09`; local verification passes, Production and Mark acceptance remain.
+Status: implemented interaction baseline under `ART-09` and live in Production. Pervasive ambient acceptance moves to `ART-13` under [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md); this packet remains the route-distinction, product-state, and fallback source to preserve.
 
 ## Route Ownership
 

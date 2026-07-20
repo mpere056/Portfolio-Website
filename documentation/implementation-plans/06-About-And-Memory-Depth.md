@@ -57,6 +57,9 @@ About belongs to the same Observatory but is not another project museum. Its dia
 - A memory room is a deeper material change centered on one real artifact, not a decorative 3D room or a duplicate project exhibit.
 - AI remains the same quiet instrument but adapts to archive/reading context through `ART-05`.
 - Sensitive, unavailable, or text-heavy events still receive a composed semantic fallback.
+- The archive remains quietly alive before inspection: illumination migrates across paper and glass, dust or trace matter drifts at restrained density, and distant layers change through atmosphere without competing with chronology.
+- Structural timeline marks may remain fixed, but they participate through changing light, refraction, shadow, or occlusion. The standard experience must not read as a static archive image beneath animated UI.
+- Event inspection modulates the existing ambient field instead of starting an unrelated effect system; consequence traces can condense, align, or brighten from the same temporal material vocabulary.
 
 Before broad visual implementation, `ART-05` produces one event-inspection packet and one memory-room packet using reviewed content. `ABT-02` and `ABT-03` own behavior and implementation; their creative dimension cannot be accepted from the museum packet alone.
 
@@ -212,6 +215,9 @@ Chronology remains one durable `/about` route. Do not create one page per timeli
 - Hidden discoveries remain outside guided tour.
 - Memory-room asset failure returns safely to timeline.
 - Keyboard navigation through events and consequences.
+- Ten-to-thirty-second no-input observation confirms restrained ambient life without harming reading.
+- Timeline anchors remain legible while illumination, trace matter, and depth occlusion use independent temporal bands.
+- Reduced motion and stable-frame modes preserve the same authored archive hierarchy.
 
 ## Cross-Plan Handoff
 

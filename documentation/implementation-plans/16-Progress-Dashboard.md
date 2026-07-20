@@ -15,9 +15,9 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 ## Current Program State
 
-**The replacement Phase 4 visual candidate is live at `fce50af`; the one-viewport Museum and direct-surface Dreamlife, LifeInbox, and Sudoku Together public checks pass. Mark acceptance remains in review.**
+**The Phase 4 interaction candidate is live at `fce50af`; its geometry and interaction checks pass, but pervasive ambient-world acceptance is now explicitly open and `ART-12` is ready.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. Production `fce50af` keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Content, TypeScript, zero-error lint, 48 files/193 tests, the 35-page build, and the public 1912x948 geometry/interaction matrix pass; sustained observation and Mark acceptance remain.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. Production `fce50af` fixed that first problem: it keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Mark's next observation correctly exposed a deeper issue: the dominant raster art still reads as static while smaller interaction layers move. Content, TypeScript, zero-error lint, 48 files/193 tests, the 35-page build, and public geometry/interaction checks remain known-good; no `V-33` ambient acceptance is claimed.
 
 This distinction prevents two errors:
 
@@ -31,8 +31,8 @@ This distinction prevents two errors:
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability through Phase 4 deployment | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
-| `O-03` First flagship proof | visual remediation local | watch | Distinct direct-surface Dreamlife, LifeInbox, and Sudoku scenes pass focused route and pointer checks | Aggregate, Production, and Mark review | Deploy and review the three corrected project worlds |
-| `O-04` Portfolio museum | visual acceptance reopened | watch | Local Museum fits one desktop viewport with nine visible signals, zero hit-region collisions, and contained depth | Aggregate, Production, and Mark review | Deploy and review the corrected Museum interaction |
+| `O-03` First flagship proof | ambient extension pending | watch | Direct-surface product interaction is live and known-good | Route-specific decomposed material packs and idle-life review | Complete the Museum ambient proof before beginning flagships sequentially |
+| `O-04` Portfolio museum | ambient implementation ready | watch | Production Museum fits one desktop viewport with nine visible signals, zero hit-region collisions, and contained depth | Pervasive no-input material life without regression | Begin `ART-12` with the Museum source-region atlas and motion coverage ledger |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -40,18 +40,18 @@ This distinction prevents two errors:
 
 | Package state | Count | Meaning now |
 | --- | ---: | --- |
-| `ready` | 0 | No package is waiting to begin at this checkpoint |
+| `ready` | 1 | `ART-12` has resolved dependencies and a restart-ready first action |
 | `in-progress` | 0 | No package is partially coded at this checkpoint |
-| `implemented` | 10 | `ART-01`, `ART-03` through `ART-06`, and local `ART-07` through `ART-11` candidates are coded; the earlier sequence is public while dynamic candidates await deployment and review |
+| `implemented` | 10 | `ART-01`, `ART-03` through `ART-06`, and `ART-07` through `ART-11` are coded and public; their interaction evidence remains valid while ambient creative acceptance moves to `ART-12` through `ART-15` |
 | `in-review` | 0 | Mark's review resolved the previous candidates as insufficient |
-| `pending` | 8 | Phase 5+ packages wait on their intended sequence or feedback gates |
+| `pending` | 11 | Phase 5+ and ambient route-expansion packages wait on their intended sequence or feedback gates |
 | `reopened` | 1 | Renewed creative `QA-02` retains valid public/functional evidence and waits on the evolving creative acceptance path |
 | `decision-gated` | 0 | Phase 4 lifecycle classification is recorded with correction paths |
 | `prototype` | 3 | Bounded experiments, not committed product scope |
 | `later` | 1 | Ambient presence is intentionally outside near-term delivery |
 | `complete` | 46 | Functional packages remain accepted; only invalidated aesthetic dimensions were reopened |
 
-Counts include only the 69 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
+Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
 
 ## Current Execution Queue
 
@@ -107,6 +107,10 @@ Counts include only the 69 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | ready | `fce50af` preserves the one-screen functional baseline and Mark has accepted the pervasive ambient direction | Source atlas, reviewed material contact sheet, motion ledger, scene clock, no-input diagnostics, and Mark review pass |
+| 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12` Museum ambient proof accepted | Dreamlife, LifeInbox, and Sudoku pass sequential route-specific idle-life and interaction gates |
+| 53 | `ART-14` | Supporting ambient worlds | pending | `ART-12`, `ART-13`, and relevant supporting-route content ready | Home, About, AI, and reading pass restrained ambient and route-distinction gates |
+| 54 | `ART-15` | Pervasive motion maturation | pending | `ART-12` through `ART-14`, `QA-04` | No unexplained dominant dead zones; performance, capability, Production, and Mark review pass |
 
 The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
 
@@ -116,9 +120,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes the aggregate and public visual interaction matrix | Collect Mark acceptance and longer performance observation | 2026-07-20 |
-| Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Review supporting-route restraint and distinction | 2026-07-19 |
-| Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement remains live | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
+| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient requirement, production sequence, and known-good `fce50af` baseline are documented | Create the Museum source-region atlas and motion coverage ledger | 2026-07-20 |
+| Next | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes the aggregate and public visual interaction matrix | Preserve evidence while `ART-12` supersedes its ambient creative acceptance boundary | 2026-07-20 |
+| Later | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Revisit during `ART-14` from route-specific ambient briefs | 2026-07-20 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -143,7 +147,7 @@ No work item is currently blocked or paused.
 
 ## Partial Implementation Watchlist
 
-No Phase 2 or Phase 3 functional package is partial. Phase 4's functional work remains live. Four aesthetic package dimensions are explicitly reopened from direct feedback rather than hidden behind the aggregate release.
+No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and interaction work remains live. Ambient-world completeness is explicitly new work rather than hidden inside earlier candidate evidence.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -156,6 +160,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional work r
 | `CAP-ART-011`; `CAP-ART-008/012` flagship slices | `WI-ART-09-01` | Distinct Dreamlife and Sudoku packets, state models, CSS/SVG layers, truthful ownership reducer, calm fallback, 180 tests, build, and bounded browser flows pass | Preview/Production, sustained performance, Mark acceptance, and supporting-route packs | Keep Production `806841d`; preserve each product language and still fallback | Review flagships together, then author bounded `ART-10` packets | `EV-ART-09-01` candidate evidence |
 | `CAP-ART-011`; `CAP-ART-008/012` supporting slices | `WI-ART-10-01` | Distinct Home, About, AI, and reading layers follow threshold, event, context/activity, and bounded scroll state; 184 tests/build/browser gates pass | Production and Mark acceptance | Keep Production `806841d`; reading remains loop-free and all fallback art remains semantic | Review the supporting routes as a family | `EV-ART-10-01` candidate evidence |
 | `CAP-ART-012`; dynamic matrix | `WI-ART-11-01` | Eight-route typed policy, unique layer signatures, one-scheduler limit, hidden/reduced/fallback rules, lifecycle fixes, 188 tests, build, and route swaps pass | Sustained performance/context-loss observation, Production, and Mark acceptance | Keep route renderers local; policy audits but never renders | Review, promote, then record the exact deployed commit | `EV-ART-11-01` candidate evidence |
+| `CAP-ART-013/014`; Museum ambient proof | `WI-ART-12-01` | One-viewport Museum, nine signals, contained depth, interaction drivers, semantic fallback, and Production `fce50af` are known-good | Region atlas, decomposed asset pack, coordinated scene clock, material-specific idle life, motion coverage, diagnostics, performance, and Mark review | Preserve `fce50af`; do not replace semantic controls or remove stable poster/reduced-motion paths | Create the Museum source-region atlas and motion coverage ledger before asset generation | No `V-33` evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -173,7 +178,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Phase 2 dependency alignment | `AI-03`, `KG-06`, `EXP-07`, `LPS-04` | resolved | `KG-06` now precedes `AI-03`; final disturbances move with `LPS-04` to Phase 6 |
 | Project lifecycle classification | `LPS-02` and living state | resolved | Nine records are implemented with explicit correction paths |
 | Portfolio aesthetic direction | `ART-01` through `ART-06`, renewed `QA-02`, Phase 4+ styling | resolved | Impossible Observatory selected; art-packet selection is active and downstream gates are explicitly sequenced |
-| Dynamic scene architecture | `ART-07` through `ART-11`, `V-32` | resolved at general level | Route-owned layered scenes, bounded shared drivers/lifecycle, renderer decision per packet, and Museum-first sequence are approved; exact route techniques remain intentionally local |
+| Dynamic scene architecture | `ART-07` through `ART-15`, `V-32`, `V-33` | resolved at general level | Route-owned layered scenes, bounded shared drivers/lifecycle, pervasive ambient participation, decomposition-first asset production, one coordinated route clock, and Museum-first sequence are approved; exact route techniques remain intentionally local |
 | First flagship selection | `PRJ-04` | resolved | LifeInbox selected; Sudoku spike retained for `PRJ-06` |
 | Memory-room continuation | About expansion | waits on prototype | Keep, revise, or remove after one bounded room |
 | Skill evidence presentation | Experimental | waits on prototype | Test whether evidence improves understanding without becoming a generic skill tree |
@@ -190,7 +195,8 @@ This section is intentionally selective. The capability ledger remains the compl
 | Several flagship demos start before one finishes | Multiple project branches without `O-03` evidence | Stop expansion and complete the selected first slice | `PRJ-04` |
 | Creative ambition outpaces loading and fallbacks | Main path depends on all heavy assets and services | Preserve staged loading, flags, posters, and error boundaries | `QA-02`, `QA-04` |
 | A shared visual system erases project identity | New surfaces inherit the same silhouette, panel, or transition | Share semantic roles only after two accepted scenes; keep composition in owning packets | `ART-02`, `ART-04`, `ART-06` |
-| Dynamic ambition becomes generic spectacle or a performance trap | The same shader appears everywhere, motion lacks a named cause, or multiple loops run while hidden | Require route packets, causal driver matrices, one dominant scheduler, still/failure frames, capability tiers, and route-swap review | `ART-07` through `ART-11` |
+| Dynamic ambition becomes generic spectacle or a performance trap | The same shader appears everywhere, motion lacks a named cause, or multiple loops run while hidden | Require route packets, causal driver matrices, one dominant scheduler, still/failure frames, capability tiers, and route-swap review | `ART-07` through `ART-15` |
+| Dominant artwork remains a static poster beneath animated decoration | Idle recordings show unchanged major regions while only particles, labels, or cursor effects move | Require source-region atlases, motion coverage ledgers, decomposed plates/maps, no-input diagnostics, and direct or indirect temporal participation for every dominant region | `ART-12` through `ART-15` |
 | Resume context becomes stale | Active work item unchanged for 14 days | Mark stale, verify known-good point, and refresh next exact action | `QA-06` |
 | Unsupported runtime or framework reaches deployment cutoff | Vercel continues selecting Node.js 20 or bridge work stalls | Prioritize `BAS-06`; preserve `BAS-07` as a separate follow-on with rollback to the bridge | `BAS-06`, `BAS-07` |
 | Replacement datastore accidentally requires billing or exposes client access | Billing/trial prompt appears or rules permit public reads | Stop; retain Spark, deny-all rules, server-only credentials, and current production rollback | `BAS-08` |

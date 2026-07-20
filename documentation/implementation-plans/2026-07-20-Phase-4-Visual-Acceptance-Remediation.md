@@ -3,7 +3,9 @@
 Date: 2026-07-20
 Package: `ART-11`
 Work item: `WI-ART-11-01`
-Status: Production candidate at `fce50af`; Mark acceptance and sustained observation remain
+Status: interaction and one-viewport remediation live at `fce50af`; Mark's sustained observation superseded ambient creative acceptance into `ART-12` through `ART-15`
+
+This record remains valid evidence for geometry, interaction perceptibility, and rollback behavior. It is not evidence that dominant visual regions remain alive during normal idle. The corrective ambient production model is [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md).
 
 ## Why Acceptance Reopened
 

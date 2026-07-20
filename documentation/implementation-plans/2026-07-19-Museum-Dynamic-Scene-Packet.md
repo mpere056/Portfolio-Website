@@ -2,7 +2,7 @@
 
 Last updated: 2026-07-19
 
-Status: implemented candidate under `ART-07`; local verification passes, Production and Mark acceptance remain.
+Status: implemented interaction baseline under `ART-07` and live in Production. Pervasive ambient acceptance is superseded by `ART-12` and [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md); this packet remains the causal-interaction and fallback source to preserve.
 
 ## Scene Thesis
 
@@ -20,7 +20,7 @@ The executable manifest is `MUSEUM_SCENE_LAYERS` in `src/lib/museum/scene.ts`.
 
 | Layer | Medium | Role | Driver | Calm/failure state |
 | --- | --- | --- | --- | --- |
-| `museum:matte` | Optimized raster | Stable ecology and silhouette | None | Always visible |
+| `museum:matte` | Optimized raster | Ecology checksum, first frame, reduced-motion and failure silhouette | None | Always available; must not remain the dominant unchanged standard scene after `ART-12` |
 | `museum:membrane` | Masked raster/CSS | Local refractive response | Pointer and active signal | Settles on the active signal; absent effects reveal the matte |
 | `museum:particles` | Canvas 2D | Atmospheric matter gathering around attention | Active signal and stimulation | Zero particles under reduced motion/hidden state; missing context leaves the matte |
 | `museum:aperture` | Masked raster/CSS | Project selection opens local material detail | Hover, focus, and selected project | Static local emphasis remains |

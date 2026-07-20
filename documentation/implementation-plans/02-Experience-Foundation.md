@@ -246,8 +246,9 @@ Systems that consume it:
 - Scroll snapping aggressiveness.
 - Background movement.
 - Semantic-lighting intensity.
+- Ambient material amplitude, density, and temporal complexity.
 
-Stimulation changes density, movement, sound, and effect complexity; it does not remove information or reduce the scene to lower opacity. Every major art packet defines a composed calm profile. Reduced motion preserves the same focal hierarchy and settled spatial meaning, while capability fallbacks preserve the same visitor truth with simpler materials.
+Stimulation changes density, movement, sound, and effect complexity; it does not remove information or reduce the scene to lower opacity. Every major art packet defines a composed calm profile and an ambient participation contract. At standard stimulation, normal idle retains quiet material life throughout the dominant composition; lower stimulation simplifies and slows it rather than leaving one static poster with animated ornaments. Reduced motion preserves the same focal hierarchy and settled spatial meaning, while capability fallbacks preserve the same visitor truth with simpler materials.
 
 Rules:
 
@@ -256,6 +257,9 @@ Rules:
 - Keep essential feedback visible without color or sound alone.
 - Persist preferences.
 - Avoid re-rendering full 3D scenes on every small control change.
+- Let interaction modulate an already-living material system rather than switching motion on only after pointer movement.
+- Keep atmosphere, organic matter, mechanisms, flow, illumination, and occlusion on independently phased temporal bands where the route contains them.
+- Treat a motionless dominant visual region as an acceptance defect unless its stillness is structurally meaningful and changing light, atmosphere, reflection, shadow, or occlusion keeps it temporally situated.
 
 ## Meaningful Easter Eggs
 

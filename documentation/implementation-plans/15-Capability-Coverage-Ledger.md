@@ -497,6 +497,10 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-010` | LifeInbox state-driven dynamic material transformation | `ART-08` | `V-03`, `V-04`, `V-15`, `V-17`, `V-32` | `O-03`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-08-01`) |
 | `CAP-ART-011` | Distinct flagship and supporting-route dynamic compositions | `ART-09`, `ART-10` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-18`, `V-32` | `O-01`, `O-02`, `O-04`, `O-05` | 8 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-09-01`, `EV-ART-10-01`) |
 | `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-11-03`, `EV-ART-11-04`) |
+| `CAP-ART-013` | Ambient participation contract, motion coverage ledger, and coordinated scene clock | `ART-12` | `V-22`, `V-31`, `V-32`, `V-33` | `O-01`, `O-04` | 3 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-ART-014` | Decomposed material production pipeline and Museum ambient proof | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -588,7 +592,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Package: `ART-07`
 - Works now: the Museum has an executable seven-layer manifest; bounded frame/proximity/path logic; masked membrane and aperture; one visibility-aware Canvas field; reviewed graph filaments/readouts; project-specific Approach material; stimulation/reduced-motion handling; and stable semantic fallback.
 - Named gaps: longer performance observation, context-loss observation, and Mark creative acceptance remain.
-- Safe exposure: Production `9c3a743` is live; Canvas/SVG/CSS failure leaves the existing matte and semantic project controls.
+- Safe exposure: Production `fce50af` is live; Canvas/SVG/CSS failure leaves the existing matte and semantic project controls.
 - Evidence: `EV-ART-07-01` candidate evidence.
 - Work item: `WI-ART-07-01` (in-review).
 - Next checkpoint: collect Mark's combined Museum/LifeInbox interaction review, then commit, deploy, and verify both candidate routes.
@@ -603,12 +607,28 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `CAP-ART-010 C/I/T implemented and Q in-review; CAP-ART-011 I/T implemented and Q in-review; CAP-ART-012 I implemented, T/R accepted, and Q in-review`
 - Packages: `ART-08` through `ART-11`
 - Works now: The local Museum is a one-viewport field with collision-free signals and contained increasing depth. Dreamlife, LifeInbox, and Sudoku Together now place distinct pointer-driven dynamic scenes on their direct landing surfaces while preserving route behavior, evidence, calm state, and still fallback.
-- Named gaps: sustained performance observation and Mark acceptance.
-- Safe exposure: Production `9c3a743` is live. Renderer failure leaves each route's matte, semantic controls, product state, and evidence.
+- Named gaps: sustained performance observation, Mark acceptance, and the newly explicit pervasive ambient requirement. The interactive layers work, but dominant raster regions remain too inert during normal idle.
+- Safe exposure: Production `fce50af` is live. Renderer failure leaves each route's matte, semantic controls, product state, and evidence.
 - Evidence: `EV-ART-11-03` records the failed public creative review; `EV-ART-11-04` records the local corrective candidate.
 - Work item: `WI-ART-11-01` is in-review.
 - Next checkpoint: collect Mark acceptance and longer normal-use performance observation.
 - Last assessed: 2026-07-20.
+
+### CAP-ART-013 Through CAP-ART-016: Pervasive Ambient Worlds
+
+- Owner: Codex with Mark creative review
+- Lifecycle: `CAP-ART-013/014` ready; `CAP-ART-015/016` planned
+- Health: on-track
+- Confidence: high in the corrected production model; implementation evidence does not yet exist
+- Dimension states: strategy accepted; all implementation, test, quality, and release dimensions not-started
+- Packages: `ART-12` through `ART-15`
+- Works now: Production `fce50af` supplies one-viewport geometry, route-owned interactive drivers, semantic fallbacks, and known-good functional behavior to preserve.
+- Named gaps: source-region atlases, transparent plates, clean background fills, alpha/depth/flow/displacement/emission/occlusion maps, material-specific idle behavior, coordinated scene clock, motion coverage ledgers, no-input captures, dead-zone closure, and Production acceptance.
+- Safe exposure: retain `fce50af` as the public and rollback baseline until a Museum ambient candidate passes aggregate checks; stable posters remain available for reduced motion and renderer failure.
+- Evidence: none accepted for `V-33`; existing `EV-ART-11-03/04` document the interaction candidate and the newly superseded creative acceptance boundary.
+- Work item: `WI-ART-12-01` is ready.
+- Next checkpoint: map the Museum source regions and motion coverage before generating or integrating any new asset.
+- Last assessed: 2026-07-20 after Mark clarified that all meaningful regions should remain subtly alive.
 
 ## Museum And Shared Case-Study System
 

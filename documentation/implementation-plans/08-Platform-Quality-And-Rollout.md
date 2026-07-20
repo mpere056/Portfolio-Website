@@ -261,7 +261,7 @@ Full text duplication of every visual experience is not required. Core routes, p
 
 ## Dynamic Scene Quality Gate
 
-`ART-07` through `ART-11` add route-owned DOM/SVG/Canvas/WebGL/shader composition without treating technical spectacle as quality. Each dynamic route records:
+`ART-07` through `ART-15` add route-owned DOM/SVG/Canvas/WebGL/shader composition without treating technical spectacle as quality. Each dynamic route records:
 
 - A strong still checksum before continuous rendering starts.
 - A driver matrix naming trigger, affected layers, meaning, settlement, and calm behavior.
@@ -270,16 +270,22 @@ Full text duplication of every visual experience is not required. Core routes, p
 - Browser checks for pointer, keyboard focus, resize, hidden-tab pause/resume, lower stimulation, reduced motion, renderer failure, and context loss where applicable.
 - Asset weight, first useful frame, main-thread behavior, DPR cap, steady-state rendering, and memory observations.
 - Stable standard and calm captures plus actual interaction review by Mark.
+- A source-region atlas and reviewed decomposed-asset contact sheet when the route uses generated or extracted plates.
+- A motion coverage ledger naming direct or indirect temporal participation for every dominant visual region.
+- Ten-to-thirty-second idle-life captures, interaction captures, and stable-frame comparisons from the same scene state.
+- Dead-zone, material-credibility, temporal-independence, and foreground/background passage findings.
 
 Default safeguards:
 
-- Load semantic content and the stable matte before continuous effects.
+- Load semantic content and a strong checksum/poster before continuous materials; do not leave that poster as the dominant unchanged standard-stimulation scene.
 - Use at most one dominant continuous Canvas/WebGL scheduler per route unless measurement and review justify an exception.
-- Pause offscreen, hidden, reduced, or settled scenes and avoid competing animation loops.
+- Pause offscreen, hidden, reduced, or explicit stable-frame scenes and avoid competing animation loops. Normal idle is not a pause condition.
 - Keep core controls in semantic DOM and outside decorative hit testing.
 - Fall back to the approved still composition when shaders, WebGL, assets, or capability checks fail.
+- Use one coordinated route clock with independently phased material bands rather than multiple unsynchronized frame loops or one global breathing waveform.
+- Cap DPR, texture memory, particle density, and shader passes per route packet; measure the fully animated idle state rather than only its stable poster.
 
-The cause, layer-independence, settlement, still-checksum, depth-transformation, semantic, restraint, route-swap, and failure diagnostics in Plan `20` are required creative evidence. Frame stability proves implementation behavior, not taste.
+The cause, layer-independence, settlement, still-checksum, depth-transformation, semantic, restraint, route-swap, failure, idle-life, dead-zone, material-credibility, temporal-independence, foreground/background, interaction-continuity, freeze, and fatigue diagnostics in Plan `20` and the ambient-world plan are required creative evidence. Frame stability proves implementation behavior, not taste.
 
 ## Privacy And Security
 

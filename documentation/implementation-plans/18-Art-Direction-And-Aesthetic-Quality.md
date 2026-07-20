@@ -1,6 +1,6 @@
 # Art Direction And Aesthetic Quality Plan
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -11,8 +11,8 @@ Last updated: 2026-07-19
 | Upstream | Comprehensive vision, accepted depth grammar, Mark's aesthetic feedback, live Phase 3 audit |
 | Downstream | [Aesthetic integration](19-Aesthetic-System-Integration-And-Delivery.md), museum remediation, Dreamlife, Sudoku Together, About depth, AI cards, stimulation, quality gates |
 | Primary outputs | Art-direction charter, selected visual world, project dialects, keyframes, rejection tests, creative evidence |
-| Execution packages | `ART-01` through `ART-11` in [Work Packages](13-Execution-Work-Packages.md) |
-| Capability tracking | `CAP-ART-001` through `CAP-ART-012` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+| Execution packages | `ART-01` through `ART-15` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-001` through `CAP-ART-016` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Why This Plan Exists
 
@@ -114,6 +114,12 @@ High-class visual restraint depends on exact proportion, material contrast, typo
 ### Evidence Is Part Of The Art Direction
 
 Architecture, source material, and project state should appear as authored artifacts: traces, layers, annotations, specimens, receipts, or diagrams. They should not default to a generic documentation panel.
+
+### Structural Stillness Is Not Temporal Inertness
+
+Buildings, boards, books, text, and evidence may remain spatial anchors. The dominant visual world around and across them must still participate in time through material deformation, flow, rotation, atmosphere, illumination, reflection, shadow, refraction, or occlusion. A static poster with particles or pointer parallax above it fails this principle.
+
+Every major scene needs a motion coverage ledger that names each dominant region and its material-specific ambient behavior. Coral sways from planted roots; gas curls and changes density; streams transport matter; mechanisms rotate around credible pivots; glass carries changing refraction; foreground matter crosses depth; architecture receives changing light, fog, and shadow without wobbling.
 
 ## Explicit Rejection List
 
@@ -229,6 +235,10 @@ The approved static keyframe remains the composition checksum, but it is not the
 - Use WebGL, shaders, or 3D for effects such as fluid refraction, distortion, caustics, volumetric matter, feedback, or genuine spatial objects when simpler media cannot carry the idea.
 - Keep one still hierarchy that survives when every continuous effect is paused or unavailable.
 - Do not repeat one shader, particle field, or parallax grammar as the identity of every route.
+- Produce transparent foreground, midground, and atmospheric plates plus reviewed masks and motion maps when fused source art prevents material-specific movement.
+- Compose ambient life, visitor response, semantic state, and depth transition simultaneously; interaction should modulate the living material already underway.
+- Use independent temporal bands so atmosphere, organic matter, mechanisms, flows, light, and foreground occluders do not pulse together.
+- Treat unchanged dominant pixels as a creative defect even when overlays technically animate.
 
 The full scene model, packet extension, renderer ladder, and tracking rules live in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
 
@@ -272,6 +282,10 @@ The `Q` dimension cannot be accepted from a statement such as “looks good” o
 | Layer behavior | Do meaningful materials respond independently rather than moving as one poster? |
 | Settlement | Does interaction reach an authored inspectable state instead of remaining in constant motion? |
 | Failure | Does the scene retain identity and meaning without Canvas, WebGL, shaders, or optional layers? |
+| Idle life | What changes when the visitor does nothing, and does it belong to the depicted material? |
+| Motion coverage | Does every dominant region move or receive changing light, atmosphere, reflection, shadow, or occlusion? |
+| Temporal independence | Do atmosphere, organic matter, mechanisms, streams, and light follow different rhythms? |
+| Anchoring | Do buildings, grids, roots, pivots, and text stay credible while the surrounding world remains alive? |
 
 Evidence includes the selected keyframes, at least one rejected alternative, stable browser captures, a short rationale, and Mark's acceptance for taste-sensitive milestones.
 

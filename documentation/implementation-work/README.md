@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's replacement visual candidate is live at `fce50af`. Mark's screenshots rejected the prior scrolling Museum lobby and imperceptible direct-surface project dynamics; the replacement now passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix. Sustained observation and Mark acceptance remain.
+Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix, but Mark's longer observation showed that the dominant artwork remains too static during normal idle. `WI-ART-12-01` is the active correction; prior dynamic work remains valid evidence and a known-good baseline rather than being misreported as ambient-world completion.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes aggregate and public visual interaction gates | Collect Mark visual acceptance and longer performance observation | 2026-07-20 |
-| Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading have distinct causal scene behavior | Review supporting-route restraint and distinction | 2026-07-19 |
-| Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement is live on Production | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
+| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient contract and corrected execution sequence are documented | Create the Museum source-region atlas and motion coverage ledger | 2026-07-20 |
+| Next | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes aggregate and public visual interaction gates | Preserve the known-good interaction baseline while ambient acceptance moves to `ART-12` | 2026-07-20 |
+| Later | `WI-ART-10-01` | in-review | `ART-10` | Supporting routes have distinct causal scene behavior | Revisit their ambient material systems in `ART-14` | 2026-07-20 |
 
 ## Active And Unfinished Items
 
@@ -32,6 +32,7 @@ Phase 4's replacement visual candidate is live at `fce50af`. Mark's screenshots 
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | in-review | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-19 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | in-review | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-19 |
 | `WI-ART-11-01` | Mature the dynamic scene system | in-review | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
+| `WI-ART-12-01` | Prove pervasive ambient life in the Museum | ready | high | `ART-12` | `CAP-ART-013`, `CAP-ART-014` | `active/WI-ART-12-01.md` | 2026-07-20 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

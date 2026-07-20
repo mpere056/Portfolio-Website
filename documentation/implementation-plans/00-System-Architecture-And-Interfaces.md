@@ -167,9 +167,9 @@ It must not consume:
 
 Shared aesthetic code owns semantic roles such as emitter, lens, trace, membrane, paper record, calm profile, utility hierarchy, and stable-frame behavior. Owning feature modules retain focal artifact, silhouette, composition, dominant manipulation, and deep-state transformation.
 
-The implemented raster compositions remain valid stable mattes, keyframe checksums, loading posters, and fallbacks. Dynamic scenes add independently addressable authored layers above or alongside those mattes. Shared code may normalize pointer/focus, depth, selection, relationship, AI, discovery, stimulation, visibility, and capability inputs, but the owning route maps them to material response through local testable scene state.
+The implemented raster compositions remain valid keyframe checksums, loading posters, reduced-motion states, and fallbacks. In the standard experience they are anchor mattes only: a dominant unchanged raster must not remain the perceived scene while small overlays move above it. Dynamic scenes decompose focal forms, atmosphere, illumination, occlusion, flow, and foreground material into independently addressable authored layers. Shared code may normalize pointer/focus, depth, selection, relationship, AI, discovery, stimulation, visibility, capability, and elapsed-time inputs, but the owning route maps them to material response through local testable scene state.
 
-Continuous rendering is route-scoped and lifecycle-aware. A route normally owns at most one dominant Canvas/WebGL scheduler, pauses it when hidden or settled, and leaves semantic DOM available if the renderer or an asset fails. No raw renderer object, pointer coordinate stream, camera matrix, or frame value enters durable experience persistence.
+Continuous rendering is route-scoped and lifecycle-aware. A route normally owns at most one dominant Canvas/WebGL scheduler, pauses it when hidden, replaced by a stable-frame mode, or outside its visibility contract, and leaves semantic DOM available if the renderer or an asset fails. Normal idle is not a settled pause condition: standard-stimulation scenes retain subtle route-authored ambient life. No raw renderer object, pointer coordinate stream, camera matrix, or frame value enters durable experience persistence.
 
 ## Canonical Identifier Contract
 
@@ -483,16 +483,25 @@ interface SceneDriverSnapshot {
   input: 'pointer' | 'keyboard' | 'coarse' | 'unknown';
 }
 
+interface SceneTemporalFrame {
+  elapsedMs: number;
+  deltaMs: number;
+  phaseSeed: number;
+  stimulation: number;
+  reducedMotion: boolean;
+  visibility: 'visible' | 'hidden';
+}
+
 interface SceneLifecycle {
   requestStableFrame(reason: 'capture' | 'restore' | 'reduced-motion' | 'fallback'): void;
-  pause(reason: 'offscreen' | 'hidden' | 'settled'): void;
+  pause(reason: 'offscreen' | 'hidden' | 'stable-frame'): void;
   resume(): void;
 }
 ```
 
-The exact implementation may change after `ART-07`; these fields document ownership and persistence boundaries. Route modules own layer manifests, scene reducers, renderer selection, shader uniforms, local choreography, and dominant gestures. Shared infrastructure may own normalized inputs, visibility, stimulation, capability tiering, context-loss recovery, and stable-frame signaling only after the Museum proof demonstrates a reusable need.
+The exact implementation may change during `ART-12`; these fields document ownership and persistence boundaries. A single route-owned clock may derive slow independent temporal bands for atmosphere, organic sway, mechanical rotation, directional flow, illumination, and foreground occlusion. Those bands must not collapse into one synchronized sine wave. Route modules own layer manifests, scene reducers, renderer selection, shader uniforms, temporal mapping, local choreography, and dominant gestures. Shared infrastructure may own normalized inputs, visibility, stimulation, capability tiering, context-loss recovery, clock hygiene, and stable-frame signaling only after the Museum ambient proof demonstrates a reusable need.
 
-Static material manifests may describe asset role, provenance, dimensions, alpha, renderer intent, driver, calm behavior, and budget. They must not contain factual project claims or become a universal layout configuration. The full production and tracking model lives in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+Material manifests may describe asset role, provenance, dimensions, alpha, renderer intent, ambient and responsive drivers, motion masks/maps, calm behavior, and budget. They must not contain factual project claims or become a universal layout configuration. Generated transparent plates are production ingredients rather than finished compositions and require provenance, edge, alpha, scaling, and loop review. The full production and tracking model lives in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`; the pervasive ambient correction lives in `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`.
 
 ## Cross-System Events
 

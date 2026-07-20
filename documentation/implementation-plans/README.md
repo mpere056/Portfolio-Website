@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: the complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. `ART-07` through `ART-11` provide route-owned scenes and an executable coherence policy across Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading. CSS/SVG/Canvas/WebGL/DOM materials, real semantic or visitor state, explicit lifecycle restraint, calm behavior, and stable fallbacks pass 47 files/188 tests, content, type, lint, build, and six-surface public verification. Sustained observation and Mark creative acceptance remain.
+Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. It preserves the one-viewport Museum, distinct route-owned interaction, semantic fallbacks, and 48 files/193 tests plus the 35-page build. Mark's 2026-07-20 observation identified the next acceptance gap: dominant raster regions remain too static during normal idle. `ART-12` is ready to begin the pervasive ambient-world correction; `ART-13` through `ART-15` sequence flagship, supporting-route, and production maturation work without discarding the known-good functional baseline.
 
 ## Document Authority
 
@@ -73,6 +73,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
 | `19-Aesthetic-System-Integration-And-Delivery.md` | Cross-plan aesthetic contracts, route coverage, package sequencing, and partial-work handoffs | Active aesthetic integration control |
 | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | Layered material packs, route-owned scene logic, renderer decisions, causal motion, performance, and resumable delivery | Active dynamic-scene control |
+| `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and corrected execution sequence | Active corrective execution blueprint |
 | `2026-07-19-Museum-Dynamic-Scene-Packet.md` | Executable Museum layer inventory, driver matrix, renderer decision, choreography, calm/failure matrix, and route ledger | Implemented candidate packet |
 | `2026-07-19-LifeInbox-Dynamic-Scene-Packet.md` | Executable LifeInbox state/material inventory, renderer decision, calm/failure matrix, acceptance gates, and resume ledger | Implemented candidate packet |
 | `2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md` | Distinct Dreamlife refraction/recombination and Sudoku presence/version packets, truth correction, and resume ledger | Implemented candidate packet |
@@ -100,6 +101,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | Where should each supplied visual reference be visible? | `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md` | `18`, `19`, and the owning route plan |
 | How does art direction connect to architecture and delivery? | `19-Aesthetic-System-Integration-And-Delivery.md` | `00`, `13`, and the owning feature plan |
 | How do static compositions become meaningful dynamic scenes? | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | `18`, `19`, `00`, and the owning route plan |
+| How do we prevent a static matte from dominating an otherwise dynamic route? | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | `20`, `08`, and the owning route packet |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
 | Where exactly did unfinished work stop? | `../implementation-work/README.md` | Its linked work-item resume packet |
@@ -152,7 +154,7 @@ Large features must not be represented by one optimistic status.
 
 - Do not build multiple flagship experiences simultaneously.
 - Do not begin production styling for a major surface before its art-direction thesis and representative keyframes are reviewed.
-- Treat approved static compositions as scene checksums, posters, and fallbacks; dynamic implementation must use independently addressable layers with named causes rather than whole-poster drift.
+- Treat approved static compositions as scene checksums, loading posters, reduced-motion states, and fallbacks; the standard experience must use independently addressable layers with named interactive and ambient causes rather than whole-poster drift or animated decoration over an unchanged matte.
 - Choose DOM, SVG, masks, Canvas, WebGL, shaders, or 3D per route from the smallest credible rendering need; do not build one universal dynamic-background engine.
 - Prefer one complete depth journey over many partially interactive objects.
 - Keep authored MDX as the factual source; generated content may assist but must not silently replace authored facts.

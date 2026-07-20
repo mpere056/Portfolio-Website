@@ -2,7 +2,7 @@
 
 Last updated: 2026-07-19
 
-Status: implemented candidate under `ART-08`; local verification passes, Production and Mark acceptance remain.
+Status: implemented interaction baseline under `ART-08` and live in Production. Pervasive ambient acceptance moves to `ART-13` under [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md); this packet remains the product-state and fallback source to preserve.
 
 ## Scene Thesis
 
@@ -10,7 +10,7 @@ LifeInbox is a receiving instrument, not an abstract particle effect. An untrust
 
 ## Stable Checksum
 
-- Keep the approved LifeInbox vessel artwork as the stable matte and failure frame.
+- Keep the approved LifeInbox vessel artwork as the checksum, loading, reduced-motion, and failure frame; do not leave it as the dominant unchanged standard scene after `ART-13`.
 - Keep the existing synthetic capture reducer and explicit statement that no personal data is sent.
 - Preserve Handle, Enter, Understand, direct-route, project-world, repository, field-note, and museum-return behavior.
 

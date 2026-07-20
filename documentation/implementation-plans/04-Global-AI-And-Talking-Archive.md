@@ -147,8 +147,12 @@ The global AI is a quiet talking instrument inside the current world, not a deta
 - AI does not generate runtime art direction, factual scene content, or unvalidated visual destinations.
 - Two host-surface keyframes are required before the AI visual language is generalized: one museum/project context and one About or reading context.
 - Keyboard focus, source inspection, close/recovery, lower stimulation, streaming, empty, and error states are included in the art packet rather than added after styling.
+- The dormant instrument participates in the host route's existing ambient clock through one restrained material cue; it must not run a competing animation loop or remain a generic static pill above a living world.
+- Listening and responding modulate that established material state. They do not start an unrelated pulse, equalizer, or glow effect.
+- The active reading surface keeps text spatially stable while translucency, refraction, trace matter, or destination-door illumination can evolve slowly around it.
+- Stable-frame, reduced-motion, streaming, and error modes preserve the same hierarchy without requiring continuous motion.
 
-`ART-05` owns the global AI visual packet. `AI-05` owns chat-surface behavior and route migration; neither package may silently restyle the other.
+`ART-05` owns the global AI visual packet. `ART-14` owns its restrained ambient-world extension. `AI-05` owns chat-surface behavior and route migration; none of these packages may silently restyle or reimplement the others.
 
 ## AI-04 Delivery Increments
 

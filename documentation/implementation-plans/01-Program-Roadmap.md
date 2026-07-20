@@ -288,7 +288,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` are implemented in replacement Production candidate `fce50af`. Phase 4 visual acceptance reopened on 2026-07-20 after the prior Museum required scrolling and direct project dynamics were imperceptible. The replacement makes the Museum a one-viewport field and places distinct, perceptible dynamic scenes on Dreamlife, LifeInbox, and Sudoku Together; aggregate and public geometry/interaction checks pass. Sustained observation and Mark creative acceptance remain. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md`.
+Current checkpoint: `ART-07` through `ART-11` are implemented in Production `fce50af`. The candidate fixes the scrolling Museum and makes direct project interaction visible, but Mark's longer observation exposed a deeper gap: the dominant raster compositions remain temporally inert whenever the pointer is still. Interaction completeness is preserved; ambient-world acceptance is not. `ART-12` through `ART-15` now own that correction. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md` and `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`.
 
 Execution order:
 
@@ -297,6 +297,10 @@ Execution order:
 3. `ART-09` implements Dreamlife and Sudoku separately from their own packets, one active route at a time.
 4. `ART-10` translates the model to Home, About, AI, and reading without forcing Museum behavior onto supporting routes.
 5. `ART-11` matures renderer loading, calm/fallback behavior, temporal restraint, route distinction, and Production evidence.
+6. `ART-12` defines the ambient participation contract, maps every Museum source region, produces reviewed decomposed material assets, and proves pervasive idle life in the one-viewport Museum.
+7. `ART-13` implements Dreamlife, LifeInbox, and Sudoku Together sequentially from distinct transparent plates, masks/maps, temporal bands, and material behaviors.
+8. `ART-14` gives Home, About, AI, and reading restrained route-specific ambient systems.
+9. `ART-15` closes cross-route dead zones, synchronized loops, implausible material motion, fatigue, capability, and Production gaps.
 
 The rendering medium is selected inside each route packet. DOM, SVG, masks, Canvas, WebGL, shaders, and existing 3D are available tools, not portfolio-wide requirements. The detailed model and resumable route ledger live in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
 
@@ -307,6 +311,9 @@ Exit criteria:
 - Shared code owns drivers and lifecycle only; route modules retain composition, material response, and choreography.
 - Standard, lower-stimulation, reduced-motion, renderer-failure, and hidden-tab paths pass route-specific QA.
 - Expansion beyond the Museum proof occurs only after its packet, runtime, performance, and Mark review establish a known-good pattern.
+- At standard stimulation, every dominant visual region participates over time through direct material motion or changing atmosphere, illumination, reflection, shadow, or occlusion.
+- Ten-to-thirty-second no-input captures pass idle-life, dead-zone, material-credibility, temporal-independence, and foreground/background diagnostics.
+- Static posters remain loading, capture, reduced-motion, and failure assets rather than the perceived standard scene.
 
 ## Phase 5: About Depth
 

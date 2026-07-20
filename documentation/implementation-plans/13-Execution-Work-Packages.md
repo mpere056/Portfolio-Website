@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -116,6 +116,10 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ART-09` | Remaining flagship dynamic compositions | `ART-07`, `ART-08`, `PRJ-05`, `PRJ-06` | Separate Dreamlife refraction and Sudoku shared-presence scene packets, materials, and runtimes | Causal, distinction, calm, test, build, and Production gates pass; sustained observation and Mark acceptance remain | implemented |
 | `ART-10` | Supporting-route dynamic compositions | `ART-07`, `ART-09`, `ART-05`, `ABT-01`, `AI-05` | Independently reasoned Home, About, AI, and reading dynamics with restrained route-specific layer packs | Threshold, inspected event, AI door, reading calm, fallback, 184 tests, build, and Production gates pass; Mark acceptance remains | implemented |
 | `ART-11` | Dynamic scene coherence and production maturation | `ART-07`, `ART-08`, `ART-09`, `ART-10` | Cross-route temporal, renderer, asset, context-loss, capability-tier, calm, and repetition review | Typed matrix, lifecycle correction, 188 tests, build, and six-surface Production verification pass; sustained observation and Mark acceptance remain | implemented |
+| `ART-12` | Ambient contract, asset decomposition, and Museum proof | `ART-11`, Mark's 2026-07-20 ambient feedback | Ambient participation contract, Museum source-region atlas, motion coverage ledger, transparent/mask/map contact sheet, coordinated clock, and one-viewport pervasive ambient scene | No-input, interaction, calm, stable, dead-zone, material, temporal-independence, foreground/background, performance, and Mark review pass for `/projects` | ready |
+| `ART-13` | Flagship ambient worlds | `ART-12`, `PRJ-05`, `PRJ-06` | Sequential Dreamlife, LifeInbox, and Sudoku decomposed material packs with route-owned atmosphere, organic/mechanical/flow/illumination behavior and motion ledgers | Each flagship passes its idle-life and product-interaction matrix before the next begins; Production and Mark review pass | pending |
+| `ART-14` | Supporting-route ambient worlds | `ART-12`, `ART-13`, `ART-10`, `ABT-01`, `AI-05` | Restrained Home, About, AI, and reading ambient systems with route-specific temporal density and reading-safe behavior | Representative no-input, reading, context, calm, fallback, and route-distinction reviews pass | pending |
+| `ART-15` | Pervasive motion maturation | `ART-12`, `ART-13`, `ART-14`, `QA-04` | Cross-route dead-zone closure, temporal desynchronization, material-credibility correction, asset/performance budgets, fatigue review, and Production evidence | Motion coverage ledgers contain no unexplained dominant dead zones; capability matrix, sustained observation, Production, and Mark acceptance pass | pending |
 
 ## Project Museum Packages
 

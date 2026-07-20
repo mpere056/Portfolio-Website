@@ -1,6 +1,6 @@
 # Dynamic Scene Composition And Layered Materials
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -11,8 +11,8 @@ Last updated: 2026-07-19
 | Upstream | Art direction, aesthetic integration, experience foundation, route owners, reviewed graph and lifecycle state |
 | Downstream | Route scene packets, layered material production, runtime implementation, QA, and release evidence |
 | Primary output | Distinct route-owned environments whose materials respond meaningfully to visitors and semantic state |
-| Execution packages | `ART-07` through `ART-11` in [Work Packages](13-Execution-Work-Packages.md) |
-| Capability tracking | `CAP-ART-007` through `CAP-ART-012` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+| Execution packages | `ART-07` through `ART-15` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-007` through `CAP-ART-016` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Purpose
 
@@ -20,13 +20,16 @@ Move the Impossible Observatory from strong still compositions toward responsive
 
 The production WebP artwork remains valid as keyframe evidence, stable settled frames, loading posters, lower-capability fallbacks, and source material. The next limitation is that most route art currently moves as one flattened plane while meaningful interaction state lives elsewhere. Increasing parallax or adding particles around that plane would animate the frame more than the world.
 
-The target is a **dynamic scene model**:
+The target is a **pervasively temporal dynamic scene model**:
 
 - Each route owns a composition, material vocabulary, dominant gesture, and causal response.
 - Static studies are decomposed or supplemented into authored layers with specific jobs.
 - DOM, SVG, masks, Canvas, WebGL, shaders, and existing 3D are selected per scene rather than imposed globally.
 - Shared runtime code supplies bounded inputs, lifecycle, stimulation, performance, and stable fallback behavior.
 - Motion reveals product truth, relationship, memory, or depth instead of decorating empty space.
+- Every dominant visible region participates in time during idle observation through material motion, changing light, atmosphere, reflection, shadow, or occlusion.
+
+The corrective sequence, route decomposition briefs, and acceptance diagnostics live in [Pervasive Ambient Worlds Implementation Plan](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md).
 
 This plan intentionally does not prescribe the final implementation of every route. Each route receives a focused dynamic scene packet immediately before its implementation package begins.
 
@@ -38,14 +41,15 @@ What already works:
 - Depth, selection, graph relationships, discovery, tour, AI context, stimulation, reduced motion, and persistence already provide meaningful state.
 - Semantic HTML, calm behavior, direct routes, subdomain handoff, and stable screenshots already protect the core experience.
 
-What remains:
+What remains after the `fce50af` Production candidate:
 
-- Most artwork is a single flattened WebP with autonomous scale or drift.
-- Existing environmental response is concentrated in an instrument rather than embodied by the route environment.
-- Route materials cannot yet refract, separate, accumulate, settle, reveal, or transform independently in response to meaningful state.
-- No canonical scene packet records layer inventory, drivers, renderer choice, choreography, budgets, and fallbacks together.
+- Pointer and semantic response exist, but the dominant raster still reads as an unchanged poster during idle observation.
+- Existing overlays animate while coral, gas, architecture, mechanisms, streams, and other depicted materials remain visually fused.
+- Route packets do not yet prove ambient motion coverage for every dominant material region.
+- The current scheduler contract does not expose reviewed independent temporal channels for organic, mechanical, atmospheric, flow, illumination, and occlusion behavior.
+- Transparent foreground/midground plates and route-specific displacement, flow, depth, emission, and occlusion maps remain to be produced.
 
-The earlier material sequence is therefore an implemented **static material foundation**, not failed work. `ART-07` through `ART-11` are the dynamic composition follow-on.
+The earlier material sequence remains a valid keyframe and functional foundation. `ART-07` through `ART-11` prove interaction response and route distinction; `ART-12` through `ART-15` correct the remaining idle-poster problem.
 
 ## Dynamic Scene Model
 
@@ -55,7 +59,7 @@ A route scene is an authored composition with independently addressable layers a
 
 | Layer class | Responsibility | Typical media | Motion rule |
 | --- | --- | --- | --- |
-| Stable matte | Establish silhouette, value structure, and guaranteed settled frame | Optimized raster, gradient, paper or field texture | Usually still; may receive subtle global light only |
+| Anchor matte | Establish silhouette, value structure, architecture, and guaranteed fallback | Optimized raster, gradient, paper or field texture | May remain structurally fixed, but no dominant region stays temporally inert in the standard scene; light, atmosphere, reflection, shadow, or occlusion crosses it |
 | Ambient field | Give the world atmosphere and temporal life | CSS fields, Canvas particles, shader noise, restrained video texture | Autonomous but low-amplitude, pausable, and stimulation-aware |
 | Responsive material | React to proximity, pointer velocity, focus, scroll, or selection | Transparent raster plates, SVG membranes, masks, displacement fields | Must have a named input and return-to-rest behavior |
 | Stateful material | Express depth, lifecycle, discovery, project state, or AI activity | DOM/SVG state diagrams, Canvas traces, shader uniforms | Changes only from validated semantic state |
@@ -78,6 +82,12 @@ Every non-trivial response records:
 
 If a response cannot name its cause and meaning, it is ambient decoration and must remain subordinate or be removed.
 
+### Ambient Participation Contract
+
+Ambient behavior does not need a visitor trigger, but it does need a material explanation and a bounded lifecycle. Every dominant region records its material, structural anchor, temporal channels, independent rhythm, interaction continuity, calm behavior, and failure frame.
+
+Architecture may remain spatially fixed while atmosphere, illumination, reflection, shadow, or foreground matter changes across it. Decorative motes, whole-poster parallax, and one global brightness pulse cannot satisfy a dominant region's ambient contract.
+
 ## Authored Layer Material Packs
 
 Generate additional static assets as production ingredients, not finished pages. A route pack may contain:
@@ -91,6 +101,8 @@ Generate additional static assets as production ingredients, not finished pages.
 - Particle sprites, dust, droplets, spectral grains, or small specimen fragments.
 - Close-detail plates that can be revealed at deeper stages.
 - A flattened approved still used as the visual checksum and fallback.
+- Transparent generated or manually produced foreground, midground, and atmospheric plates with cleaned alpha edges and reviewed camera/light continuity.
+- Region masks and depth, flow, displacement, emission, and occlusion maps that let fused source artwork behave as separate materials.
 
 Do not mechanically slice a finished image into arbitrary depth strips. Every layer needs a compositional or semantic role, clean edges at intended scale, and a known interaction driver or stable purpose.
 
@@ -171,6 +183,8 @@ Before route implementation, extend its existing art packet with a **dynamic sce
 | Performance envelope | Asset, hydration, DPR, frame, memory, and visibility budgets |
 | Test and capture matrix | Reducer fixtures, interactions, stable frames, and route-specific visual checks |
 | Resume state | Known-good artifact, named gaps, and one exact next action |
+| Motion coverage ledger | Every dominant region, temporal channel, depth band, asset ingredient, calm state, verification, and current named status |
+| Temporal score | Independent ambient rhythms plus intentional transition or semantic synchronization |
 
 The packet is specific enough to direct one route and deliberately too specific to become a global template.
 
@@ -187,7 +201,7 @@ The packet is specific enough to direct one route and deliberately too specific 
 
 The still composition is a first-class design state, not a degraded afterthought.
 
-- Reduced motion removes autonomous drift, continuous parallax, and simulated inertia while retaining immediate discrete state changes that communicate cause.
+- Reduced motion removes autonomous deformation, traversal, continuous parallax, and simulated inertia while retaining immediate discrete state changes that communicate cause and a complete materially authored still frame.
 - Lower stimulation decreases layer count, amplitude, frequency, refraction, particle density, and sound without hiding meaning.
 - Sound remains optional and never unlocks required visual or navigation state.
 - Hidden tabs and offscreen scenes pause continuous work and settle safely on return.
@@ -221,6 +235,12 @@ The still composition is a first-class design state, not a degraded afterthought
 - **Restraint test:** removing one effect improves or harms a named purpose rather than merely changing spectacle.
 - **Route swap test:** moving the dynamic behavior to another route would break its metaphor.
 - **Failure test:** disabling Canvas/WebGL retains identity, meaning, and navigation.
+- **Idle-life test:** without pointer input, each dominant material region changes itself or receives changing light, atmosphere, reflection, shadow, or occlusion over its authored interval.
+- **Dead-zone test:** hiding UI and micro-particles reveals no dominant temporally inert poster region.
+- **Material-credibility test:** roots, pivots, flow direction, structural anchors, and lighting implications remain believable.
+- **Temporal-independence test:** organic, mechanical, atmospheric, flow, and illumination systems do not share one synchronized drift or pulse.
+- **Foreground/background test:** authored temporal behavior exists both behind and in front of the focal object.
+- **Interaction-continuity test:** pointer and semantic state modulate existing material behavior rather than launching unrelated effects.
 
 Automated screenshot stability and frame measurements cannot grant creative acceptance. Mark reviews representative standard and calm captures plus the actual interaction.
 
@@ -228,10 +248,10 @@ Automated screenshot stability and frame measurements cannot grant creative acce
 
 Each packet sets route-specific budgets, but all scenes follow these defaults until measurement justifies an exception:
 
-- Load the stable matte and semantic content before continuous effects.
+- Load the checksum/poster and semantic content before continuous materials; replace poster dominance as the standard scene becomes ready.
 - Lazy-load non-critical material plates and renderers near visibility.
 - Cap DPR and simulation density rather than relying on device maximums.
-- Stop animation loops when offscreen, hidden, reduced, or settled.
+- Stop animation loops when offscreen, hidden, reduced, or in an explicit stable-frame mode. Normal standard-stimulation idle remains subtly alive.
 - Avoid multiple independent requestAnimationFrame loops; one route scheduler coordinates continuous render work.
 - Prefer transform/opacity for DOM movement and measure SVG filters before broad use.
 - Record asset weight, first useful frame, main-thread cost, steady-state frame behavior, and memory/context-loss observations in QA evidence.
@@ -244,10 +264,14 @@ Each route has one Dynamic Scene Ledger row with these fields:
 | --- | --- |
 | Packet state | `planned`, `drafted`, `reviewed` |
 | Layer pack state | `missing`, `producing`, `material-ready`, `integrated` |
+| Source-region atlas | Named structural, organic, atmospheric, flow, mechanical, illumination, and occlusion regions plus unmapped gaps |
+| Asset contact sheet | Reviewed transparent plates, clean fills, masks/maps, vectors/sprites, provenance, and rejected assets |
 | Runtime state | `not-started`, `driver-ready`, `integrating`, `runtime-ready` |
 | Drivers wired | Named drivers only, never a percentage |
+| Motion coverage ledger | Every dominant region's direct or indirect temporal participation, temporal band, fallback, and remaining dead zone |
+| Temporal score | Ordered material channels, periods/phase relationships, and any accidental synchronization to correct; never a completion percentage |
 | Calm/fallback | Named implemented states and named gaps |
-| Verification | Tests, captures, Preview, Production, and Mark review separately |
+| Verification | Logic tests, idle-life/interaction/stable captures, diagnostics, Preview, Production, and Mark review separately |
 | Known-good point | Commit, artifact, route, or reproducible local state |
 | Next exact action | One observable implementation or review action |
 
@@ -286,12 +310,39 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 - Consolidate only proven shared infrastructure and remove ornamental effects that lack causal value.
 - Capture the representative dynamic route matrix and collect Production and Mark acceptance.
 
+### `ART-12`: Ambient Contract, Asset Decomposition, And Museum Proof
+
+- Add the motion coverage ledger, temporal score, and source-region atlas.
+- Produce transparent plates, semantic masks, depth/flow/displacement maps, vectors, sprites, and one reviewed contact sheet before compositor implementation.
+- Replace the Museum's static-matte reading with material-specific coral, gas, stream, mechanism, illumination, and occlusion behavior under one route scheduler.
+- Preserve the one-screen lobby, project access, graph meaning, depth containment, calm state, and fallback.
+
+### `ART-13`: Flagship Ambient Worlds
+
+- Implement Dreamlife, LifeInbox, and Sudoku one at a time from route-specific decomposition packs.
+- Give every dominant region a named ambient channel before adding deeper interaction choreography.
+- Reuse lifecycle and temporal normalization only where `ART-12` proves a genuinely shared need.
+
+### `ART-14`: Supporting Ambient Worlds
+
+- Implement Home, About, AI, and reading separately.
+- Keep text and controls spatially stable while surrounding matter, light, atmosphere, and contextual traces remain alive.
+- Preserve mobile and musical identity as independent later design work.
+
+### `ART-15`: Pervasive Motion Maturation
+
+- Run idle-life, dead-zone, material-credibility, temporal-independence, foreground/background, interaction-continuity, freeze, fatigue, performance, and capability diagnostics.
+- Remove repeated or ornamental behavior and repair any scene still dominated by unchanged pixels.
+- Collect exact Production evidence and Mark creative acceptance.
+
 ## Completion Criteria
 
-- Major route classes use route-owned layered scenes rather than one moving raster plane.
+- Major route classes use route-owned decomposed scenes rather than one moving raster plane or a still raster with animated decoration.
+- Every dominant material region passes the ambient participation contract in standard stimulation.
+- Architecture and semantic anchors may remain structurally fixed, but changing atmosphere, illumination, reflection, shadow, or occlusion keeps them temporally involved.
 - At least one meaningful route response is driven by visitor action and one by reviewed semantic state.
 - Every dynamic route has a reviewed packet, material manifest, stable frame, calm policy, failure composition, and restart-ready ledger state.
 - Shared runtime normalizes drivers and lifecycle without owning project composition.
 - DOM, SVG, Canvas, WebGL, shaders, and 3D are selected by demonstrated need and degrade safely.
 - Continuous effects pause correctly and remain inside measured performance envelopes.
-- Mark accepts the representative dynamic interactions as an authored extension of the Impossible Observatory.
+- Mark accepts the representative dynamic and ambient worlds as an authored extension of the Impossible Observatory.

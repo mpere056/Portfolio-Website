@@ -384,6 +384,10 @@ For each flagship:
 - Extend accepted keyframes into route-specific layer material packs: stable matte, transparent depth/focal plates, masks or maps, vector traces, optional particle sprites, and one flattened checksum/fallback.
 - Record every layer's role, provenance, intended renderer, driver, calm behavior, and performance tier before runtime integration.
 - Do not mechanically cut a flattened image into parallax strips; independently addressable materials need compositional or semantic jobs.
+- Create a source-region atlas before generation or extraction: identify structural anchors, organic matter, atmosphere, flow fields, mechanisms, illumination zones, and foreground/background occluders.
+- Produce transparent plates, clean background fills, alpha masks, depth maps, flow maps, displacement maps, emission maps, and occlusion masks only where the material behavior needs them.
+- Review generated transparent assets at full scale for edge halos, baked shadows, incompatible perspective, repeated texture, false translucency, and loop seams before integration.
+- Maintain a motion coverage ledger for every dominant region. Record whether it moves directly or participates through changing atmosphere, light, reflection, shadow, or occlusion; record the temporal band, stimulation behavior, fallback, and remaining dead zone.
 
 ## Aesthetic Acceptance
 
@@ -401,8 +405,14 @@ Package ownership is explicit:
 - `ART-07` proves the dynamic-scene contract and first Museum layered response.
 - `ART-08` through `ART-10` add route-owned dynamic compositions without reopening accepted product behavior or copying the Museum renderer.
 - `ART-11` owns cross-route dynamic maturity, performance, fallback, and creative acceptance.
+- `ART-12` corrects the matte-first model by defining the ambient participation contract, decomposed-asset pipeline, coordinated scene clock, and Museum proof.
+- `ART-13` builds Dreamlife, LifeInbox, and Sudoku ambient worlds sequentially from route-specific material packs.
+- `ART-14` gives Home, About, AI, and reading their own restrained ambient systems without copying flagship density.
+- `ART-15` closes dead zones, temporal synchronization, material credibility, performance, and production acceptance across the portfolio.
 
 Each dynamic route receives the packet extension defined in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`: still checksum, layer inventory, driver matrix, dominant gesture, choreography, renderer decision, semantic adapters, calm/failure matrices, budget, tests, and resume state. Exact implementations are planned one route at a time.
+
+Each route also receives the ambient extension in `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`: source-region atlas, motion coverage ledger, decomposed asset contact sheet, temporal-band map, idle-life capture, dead-zone findings, and one exact next material increment. Interaction completeness does not imply ambient-world completeness.
 
 Before implementation expands, review each flagship against:
 
@@ -452,6 +462,11 @@ Creative acceptance requires Mark's review. Passing interaction and route tests 
 - Long text and narrow viewport stress tests.
 - Independently addressable layer response rather than whole-poster drift.
 - Pointer/focus, project selection, one reviewed relationship, settlement, hidden-tab pause, and stable-frame capture for the Museum proof.
+- Ten-to-thirty-second idle-life capture with no pointer input.
+- Dead-zone inspection across the complete one-viewport Museum field.
+- Material-credibility review for coral sway, gaseous advection, directional flow, mechanical pivots, and changing architectural illumination/occlusion where present.
+- Temporal-independence review proving that unrelated materials do not breathe in one synchronized loop.
+- Foreground/background passage review proving that depth is produced by more than scale and parallax.
 
 ## Risks
 

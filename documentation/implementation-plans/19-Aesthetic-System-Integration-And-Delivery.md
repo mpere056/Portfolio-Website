@@ -1,6 +1,6 @@
 # Aesthetic System Integration And Delivery Plan
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -11,8 +11,8 @@ Last updated: 2026-07-19
 | Upstream | [Selected direction](2026-07-18-Impossible-Observatory-Selection-Decision.md), [reference coverage](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md), [Art direction](18-Art-Direction-And-Aesthetic-Quality.md), [Architecture](00-System-Architecture-And-Interfaces.md), accepted depth grammar |
 | Downstream | Home, museum, project subdomains, About, AI doors, blogs, utility states, quality and rollout |
 | Primary outputs | Cross-plan ownership, aesthetic contracts, delivery packages, surface coverage, handoff gates |
-| Execution packages | `ART-01` through `ART-06` in [Work Packages](13-Execution-Work-Packages.md) |
-| Capability tracking | `CAP-ART-001` through `CAP-ART-006` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+| Execution packages | `ART-01` through `ART-15` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-001` through `CAP-ART-016` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Purpose
 
@@ -70,8 +70,10 @@ Required fields:
 | Fallback composition | The semantic HTML/CSS form when rich rendering or assets fail |
 | Performance envelope | Heavy assets, lazy boundary, poster needs, and capability-tier behavior |
 | Rejection triggers | Surface-specific ways the implementation could collapse into a generic template |
+| Motion coverage ledger | Every dominant region, structural anchor, temporal channels, depth band, asset ingredients, calm state, and verification status |
+| Temporal score | Independent ambient rhythms and intentional synchronization moments |
 
-Before `ART-07` through `ART-10` implementation, append the dynamic packet sections from Plan `20`: still checksum, named layer inventory, driver matrix, choreography, renderer decision, semantic adapters, calm/failure matrices, performance envelope, test/capture matrix, and exact resume state. These additions are route-specific and must not become a universal scene configuration.
+Before dynamic implementation, append the Plan `20` packet sections: still checksum, named layer inventory, driver matrix, choreography, renderer decision, semantic adapters, calm/failure matrices, performance envelope, test/capture matrix, motion coverage ledger, temporal score, source-region atlas, asset contact sheet, and exact resume state. These additions are route-specific and must not become a universal scene configuration.
 
 The packet must use real content and stable destination IDs. Placeholder copy, invented activity, and unreviewed facts cannot receive creative acceptance.
 
@@ -170,6 +172,8 @@ Back, refresh, deep links, and cross-subdomain return must restore a composed sa
 
 The same aesthetic laws should be recognizable across this matrix, but no two rows are required to share a layout.
 
+All durable visual route classes also receive `ART-12` through `ART-15` ambient coverage. Earlier assignments remain the source of silhouette, composition, content, and interaction truth; the ambient sequence decomposes those accepted inputs rather than replacing them with a shared effect template.
+
 ## Delivery Packages And Gates
 
 ### `ART-01`: Direction And First Keyframe Selection
@@ -254,6 +258,31 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 - Remove dynamics whose cause or meaning cannot be explained.
 - Exit with a representative Production route matrix and Mark acceptance.
 
+### `ART-12`: Ambient Contract, Asset Decomposition, And Museum Proof
+
+- Replace whole-poster motion assumptions with a region-level motion coverage ledger.
+- Audit and decompose the Museum into anchor, atmosphere, organic, mechanical, flow, illumination, foreground, and semantic layers.
+- Produce transparent assets, masks, vectors, sprites, and motion maps before selecting the final compositor.
+- Exit when the one-screen Museum remains alive without pointer input and no dominant dead zone remains.
+
+### `ART-13`: Flagship Ambient Worlds
+
+- Complete Dreamlife, LifeInbox, and Sudoku independently and sequentially.
+- Preserve each product's accepted interaction truth while adding material-specific idle life across every dominant region.
+- Exit each route separately through material, freeze, fatigue, performance, fallback, and Mark review gates.
+
+### `ART-14`: Supporting Ambient Worlds
+
+- Translate pervasive ambient life separately to Home, About, AI, and reading.
+- Keep reading text and core controls spatially stable while light, paper, atmosphere, traces, and contextual disturbances remain alive.
+- Do not promote mobile or musical identity from their later gates.
+
+### `ART-15`: Pervasive Motion Coherence And Production Maturation
+
+- Review motion coverage, temporal independence, foreground/background depth, material credibility, fatigue, capability tiers, and renderer lifecycle.
+- Remove repeated effects and repair any route still dominated by an unchanged matte.
+- Exit only with exact Production recordings/captures and Mark acceptance.
+
 ## Sequencing Rules
 
 1. Complete the reopened `ART-01` material studies, keyframes, and packets before new production styling.
@@ -267,6 +296,10 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 9. Do not start `ART-08` until the Museum packet and runtime prove a bounded shared driver/lifecycle seam.
 10. Implement `ART-09` routes one at a time, then translate supporting routes in `ART-10`.
 11. Run `ART-11` only after each representative route class has its own known-good dynamic checkpoint.
+12. Begin `ART-12` with the Museum source-region atlas and contact sheet, not renderer code.
+13. Do not start `ART-13` until Museum ambient behavior and one coordinated scheduler pass material, performance, calm, and fallback review.
+14. Complete one flagship ambient world before starting the next; begin `ART-14` only after all three have known-good checkpoints.
+15. Run `ART-15` only after every durable desktop route class has a named motion coverage ledger.
 
 ## Tracking Partial Aesthetic Work
 
@@ -286,6 +319,9 @@ Each capability and work item must state which of these checkpoints exist:
 - Layer material manifest and production derivatives.
 - Named drivers wired to named layers.
 - Renderer, hidden-tab, context-loss, and capability-tier behavior.
+- Motion coverage ledger and source-region atlas.
+- Transparent plate, mask, map, vector, and sprite contact sheet.
+- Idle-life, dead-zone, material, temporal-independence, foreground/background, freeze, and fatigue review.
 
 Do not collapse them into a percentage or the word `polish`. The next exact action should name one observable artifact, such as “render the artifact-led Museum Signal alternative” or “capture the reduced-motion LifeInbox Understand frame,” rather than “continue styling.”
 
@@ -300,3 +336,5 @@ Do not collapse them into a percentage or the word `polish`. The next exact acti
 - Whole-portfolio review proves one world with meaningful variation, not one visual template repeated across routes.
 - Dynamic routes preserve the accepted still composition while adding independently responsive, causally meaningful materials.
 - Rich renderer failure leaves an intentional semantic scene rather than a blank or broken experience.
+- No durable visual route is dominated by unchanged matte pixels during standard idle observation.
+- Structurally fixed objects remain credible while atmosphere, light, reflection, shadow, refraction, flow, or occlusion keeps their regions temporally alive.
