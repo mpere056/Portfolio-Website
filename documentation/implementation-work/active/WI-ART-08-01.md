@@ -42,7 +42,7 @@ The LifeInbox dynamic-scene candidate is implemented locally. Its existing synth
 - [x] Existing product truth, controls, direct routes, evidence, and fallback remain intact.
 - [x] Reduced-motion, hidden, and Canvas-failure states retain semantic meaning.
 - [x] Model/component tests, content, type, lint, build, and full local browser interaction pass.
-- [ ] Preview and Production verification pass after commit.
+- [x] Commit `9c3a743` and Production LifeInbox verification pass.
 - [ ] Mark reviews the route-specific transformation.
 
 ## Update History
@@ -52,3 +52,4 @@ The LifeInbox dynamic-scene candidate is implemented locally. Its existing synth
 - Activated after Mark explicitly requested continued implementation and completion of the remaining Phase 4 work.
 - Authored the route packet, pure frame/path model, eight-layer manifest, bounded Canvas field, CSS ingress/core/membrane materials, SVG boundary/return paths, and evidence response.
 - Passed 44 files/175 tests, 58-node/28-relationship validation, TypeScript, lint with zero errors, the 35-page build, and the complete local browser state flow.
+- Promoted the complete sequence at `9c3a743`; public LifeInbox verification is recorded by `EV-ART-11-02`.

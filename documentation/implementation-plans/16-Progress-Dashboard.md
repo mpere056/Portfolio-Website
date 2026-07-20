@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-19
-Implementation commit baseline and latest verified Production: `806841d`
+Implementation commit baseline and latest verified Production: `9c3a743`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline and latest verified Production: `806841d`
 
 ## Current Program State
 
-**Phase 1 through Phase 4 functionality and the complete reference-rich static material foundation are live at `806841d`; the complete eight-route dynamic scene sequence is implemented and locally verified as a candidate.**
+**The complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`; Mark creative acceptance remains in review.**
 
-The dynamic follow-on covers the Museum's graph-aware field, LifeInbox's material transformation, Dreamlife's future refraction, Sudoku's truthful presence system, Home's First Note threshold, About's inspected chronology, contextual AI, and quiet reading progress. Each route owns a distinct CSS/SVG/Canvas/WebGL/DOM language and keeps stable fallback art. The typed eight-route policy, lifecycle corrections, 47 test files/188 tests, 58-node/28-relationship validation, TypeScript, lint without errors, the 35-page build, and bounded browser-state review pass. Production still runs `806841d`; sustained observation, deployment, and Mark acceptance keep Phase 4E open after local implementation.
+The dynamic sequence covers the Museum's graph-aware field, LifeInbox's material transformation, Dreamlife's future refraction, Sudoku's truthful presence system, Home's First Note threshold, About's inspected chronology, contextual AI, and quiet reading progress. Each route owns a distinct CSS/SVG/Canvas/WebGL/DOM language and keeps stable fallback art. The typed eight-route policy, lifecycle corrections, 47 test files/188 tests, 58-node/28-relationship validation, TypeScript, lint without errors, the 35-page build, and six-surface public browser verification pass. Sustained observation and Mark acceptance keep Phase 4E in review.
 
 This distinction prevents two errors:
 
@@ -31,8 +31,8 @@ This distinction prevents two errors:
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability through Phase 4 deployment | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
-| `O-03` First flagship proof | LifeInbox dynamic candidate implemented locally | watch | Capture, settlement, separate membrane, exploded boundaries, reminder return, evidence, fallback, 175 tests, build, and browser flow pass | Preview, Production, performance observation, and Mark review | Review and deploy the LifeInbox candidate without copying its language to later routes |
-| `O-04` Portfolio museum | dynamic proof implemented locally | watch | Museum packet, seven-layer manifest, bounded driver model, causal response, graph evidence, calm/failure fallback, 171 tests, build, and browser review pass | Preview, Production, longer performance/context-loss observation, and Mark review | Review the local Museum interaction, then commit and deploy it |
+| `O-03` First flagship proof | LifeInbox dynamic candidate live | watch | Capture, settlement, boundaries, reminder return, fallback, 175 tests, build, and public route pass | Performance observation and Mark review | Review the live LifeInbox experience |
+| `O-04` Portfolio museum | dynamic proof live | watch | Museum packet, seven-layer manifest, bounded driver, graph evidence, fallback, 171 tests, build, and public route pass | Longer performance/context-loss observation and Mark review | Review the live Museum interaction |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -102,10 +102,10 @@ Counts include only the 69 package rows in `13-Execution-Work-Packages.md`; feed
 | 43 | `PRJ-07` | Historical project depth | complete | Lifecycle set and archive dialect | Every smaller project has truthful complete/archive depth |
 | 44 | `PRJ-08` | Canonical project routes | complete | Destination registry and museum framework | Nine static routes, metadata, refresh, compatibility, and handoffs pass |
 | 45 | `AI-05` | Global AI migration | complete | Global archive and canonical routes | Primary links and legacy prompt-preserving redirect pass |
-| 46 | `ART-07` | Dynamic scene contracts and Museum proof | implemented | Packet, seven-layer pack, deterministic scene reducer, causal independent response, graph evidence, calm/failure fallback, 171 tests, build, and local browser review pass | Preview, Production, longer performance/context-loss observation, and Mark review |
-| 47 | `ART-08` | LifeInbox dynamic material transformation | implemented | Eight-layer packet, deterministic state model, capture/settlement/membrane/boundary/return/evidence response, calm fallback, 175 tests, build, and browser flow pass | Preview, Production, sustained performance observation, and Mark review |
-| 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct seven-layer Dreamlife and Sudoku scenes, truthful board reducer, 180 tests, build, and bounded browser flows pass | Preview, Production, sustained performance observation, and Mark review |
-| 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading have distinct threshold-, event-, context-, and scroll-driven layers; 184 tests/build/browser gates pass | Production and Mark review |
+| 46 | `ART-07` | Dynamic scene contracts and Museum proof | implemented | Packet, seven layers, reducer, causal response, graph evidence, fallback, tests/build, and Production pass | Longer performance/context-loss observation and Mark review |
+| 47 | `ART-08` | LifeInbox dynamic material transformation | implemented | Eight layers, deterministic capture/settlement/boundary/return response, fallback, tests/build, and Production pass | Sustained performance observation and Mark review |
+| 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
+| 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
 
 The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
@@ -116,7 +116,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes pass the typed coherence matrix and 188-test local gate; Production `806841d` is rollback | Review the complete local matrix, then promote and verify the exact commit | 2026-07-19 |
+| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes are live from verified commit `9c3a743` | Review the complete public matrix and record named feedback | 2026-07-19 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement remains live | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 
@@ -199,7 +199,7 @@ This section is intentionally selective. The capability ledger remains the compl
 
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
-| Accepted | 94 | Functional evidence and the selected direction remain valid; `ART-04` evidence is narrow rather than final creative acceptance |
+| Accepted | 95 | Functional evidence, selected direction, and Phase 4 production rollout are valid; final creative acceptance remains open |
 | Candidate | 10 | Integrated static art inputs plus the complete local dynamic route sequence await named deployment and Mark review gates |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 6 | Four retained infrastructure failures plus rejected `ART-03` and renewed `QA-02` creative candidates |
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-19 | Promoted the complete Phase 4 dynamic scene sequence | `ART-07` through `ART-11`, `CAP-ART-008/011/012`, `EV-ART-11-02` | Commit `9c3a743`, Vercel `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`, and six public surfaces pass; creative review remains |
 | 2026-07-19 | Completed the local dynamic scene maturation pass | `ART-11`, `CAP-ART-008/011/012`, `WI-ART-11-01`, `EV-ART-11-01` | Eight-route policy, Home/About lifecycle corrections, 188 tests, build, and bounded route review pass; rollout and acceptance remain |
 | 2026-07-19 | Implemented supporting-route dynamic compositions | `ART-10`, `CAP-ART-008/011/012`, `WI-ART-10-01`, `EV-ART-10-01` | Home threshold, About chronology, AI context/activity, and passive reading layers pass 184 tests, build, and browser checks |
 | 2026-07-19 | Implemented distinct Dreamlife and Sudoku dynamic compositions | `ART-09`, `CAP-ART-008/011/012`, `WI-ART-09-01`, `EV-ART-09-01` | Route-owned refraction/loop and presence/version scenes, truthful ownership correction, 180 tests, build, and browser flows pass |

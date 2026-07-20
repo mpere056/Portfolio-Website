@@ -20,3 +20,20 @@ Verification:
 - Aggregate content, TypeScript, lint, test, build, and bounded route-swap results are recorded in the work item after execution.
 
 Not claimed: Preview, Production, sustained frame-time observation, cross-browser WebGL/context-loss recovery, or Mark acceptance.
+
+## EV-ART-11-02: Phase 4 Dynamic Production Promotion
+
+Status: accepted for rollout.
+
+Commit `9c3a743b4702314701b745b4a942d570d2696176` was pushed to GitHub `mpere056/Portfolio-Website` on `main`. Vercel Git deployment `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv` reached `READY` and `PROMOTED` on the Hobby plan with Node.js 24.
+
+Public browser verification passed:
+
+- `https://marknperera.ca/` serves the Home scene marker.
+- `https://marknperera.ca/about` serves the About scene marker.
+- `https://marknperera.ca/projects` serves the project Museum.
+- `https://dreamlife.marknperera.ca/` serves Dreamlife.
+- `https://lifeinbox.marknperera.ca/` serves LifeInbox.
+- `https://sudokutogether.marknperera.ca/` serves Sudoku Together.
+
+Not claimed: sustained frame-time observation, cross-browser WebGL/context-loss recovery, or Mark creative acceptance.

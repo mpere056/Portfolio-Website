@@ -16,13 +16,13 @@
 
 ## Current Truth
 
-Dreamlife and Sudoku are implemented as distinct local dynamic candidates. Dreamlife uses seven CSS/SVG nacre and loop layers driven by future, reaction, and depth. Sudoku uses seven DOM/CSS/SVG layers driven by selected cell, truthful ownership, synthetic presence, sync, and architecture depth. Forty-five files/180 tests, content, type, lint, build, and bounded browser flows pass. Production remains `806841d`.
+Dreamlife and Sudoku are implemented as distinct dynamic compositions live at `9c3a743`. Dreamlife uses seven CSS/SVG nacre and loop layers driven by future, reaction, and depth. Sudoku uses seven DOM/CSS/SVG layers driven by selected cell, truthful ownership, synthetic presence, sync, and architecture depth. Forty-five files/180 tests, content, type, lint, build, and public domain verification pass.
 
 ## Resume Packet
 
 - Last artifact: [Dreamlife And Sudoku Dynamic Scene Packet](../../implementation-plans/2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md).
 - Known-good point: local working tree on 2026-07-19; `EV-ART-09-01` records the exact proof and browser limitation.
-- Next exact action: review all four dynamic route classes together, then continue `ART-10` without reusing a flagship composition wholesale.
+- Next exact action: review both public flagship routes and record named creative or performance feedback.
 - Preserve: Dreamlife path/reaction/loop truth, Sudoku synthetic-participant labeling and architecture, direct routes, evidence, and still fallbacks.
 
 ## Acceptance
@@ -32,4 +32,5 @@ Dreamlife and Sudoku are implemented as distinct local dynamic candidates. Dream
 - [x] The routes do not share a composition engine or visual language.
 - [x] Reduced/hidden/failure paths preserve semantic state.
 - [x] Tests, content, type, lint, build, and bounded browser review pass.
-- [ ] Preview, Production, sustained performance observation, and Mark review pass.
+- [x] Commit `9c3a743` and Production Dreamlife/Sudoku verification pass.
+- [ ] Sustained performance observation and Mark review pass.

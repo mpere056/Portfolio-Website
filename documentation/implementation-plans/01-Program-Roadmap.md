@@ -288,7 +288,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` are implemented as local candidates. Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading each use an appropriate graph-, product-, context-, threshold-, event-, or scroll-driven scene with stable fallback. The typed coherence matrix and lifecycle corrections pass alongside 47 files/188 tests, content, type, lint, build, and bounded browser review. Production remains at `806841d`; sustained observation, deployment, and Mark acceptance remain separate from the locally complete Phase 4 implementation.
+Current checkpoint: `ART-07` through `ART-11` are implemented and live at `9c3a743`, production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading each use an appropriate graph-, product-, context-, threshold-, event-, or scroll-driven scene with stable fallback. The typed coherence matrix, lifecycle corrections, 47 files/188 tests, content, type, lint, build, and six-surface public browser verification pass. Sustained observation and Mark creative acceptance remain.
 
 Execution order:
 

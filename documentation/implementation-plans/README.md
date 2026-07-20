@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 through Phase 4 functionality and the complete static material foundation are live at `806841d`. `ART-07` through `ART-11` now provide locally verified dynamic scenes and an executable coherence policy across Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading. Route-owned CSS/SVG/Canvas/WebGL/DOM materials, real semantic or visitor state, explicit lifecycle restraint, calm behavior, and stable fallbacks pass 47 files/188 tests, content, type, lint, build, and bounded browser review. Phase 4 implementation is locally complete; Production, sustained observation, and Mark acceptance remain.
+Current checkpoint: the complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. `ART-07` through `ART-11` provide route-owned scenes and an executable coherence policy across Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading. CSS/SVG/Canvas/WebGL/DOM materials, real semantic or visitor state, explicit lifecycle restraint, calm behavior, and stable fallbacks pass 47 files/188 tests, content, type, lint, build, and six-surface public verification. Sustained observation and Mark creative acceptance remain.
 
 ## Document Authority
 

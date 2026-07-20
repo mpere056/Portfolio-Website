@@ -43,6 +43,7 @@ The Museum dynamic-scene candidate is implemented locally. The existing ecology 
 - [x] Project selection and one reviewed relationship produce legible causal responses.
 - [x] Standard, lower-stimulation, reduced-motion, hidden-tab, and renderer-failure paths settle safely.
 - [x] Reducer/driver tests, browser interaction checks, stable captures, production build, and no-console gate pass.
+- [x] Commit `9c3a743` and Production Museum verification pass.
 - [ ] Mark reviews the representative dynamic interaction before the model expands to other routes.
 
 ## Update History
@@ -54,3 +55,4 @@ The Museum dynamic-scene candidate is implemented locally. The existing ecology 
 - Implemented the pure scene frame, seven-layer manifest, masked raster/CSS materials, one bounded Canvas field, SVG graph filaments, semantic relationship readouts, and project-specific Approach plates.
 - Selected DOM/CSS, SVG, and Canvas 2D for the proof; explicitly deferred WebGL because this scene does not yet justify its failure and performance cost.
 - Passed 43 files/171 tests, 58-node/28-relationship validation, TypeScript, lint with zero errors, the 35-page production build, and local browser/no-console review.
+- Promoted the complete sequence at `9c3a743`; Production Museum verification is recorded by `EV-ART-11-02`.

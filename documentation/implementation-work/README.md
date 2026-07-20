@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 through Phase 4 functionality and the static material sequence remain live at `806841d`. `WI-ART-07-01` through `WI-ART-11-01` implement the complete representative dynamic scene sequence locally with route-owned materials, executable lifecycle policy, and stable fallbacks. The 188-test aggregate, content, type, lint, build, and bounded browser gates pass; deployment, sustained performance observation, and Mark acceptance remain.
+The complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. `WI-ART-07-01` through `WI-ART-11-01` retain route-owned materials, executable lifecycle policy, and stable fallbacks. The 188-test aggregate, content, type, lint, build, and six-surface public browser gates pass; sustained performance observation and Mark acceptance remain.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes pass the typed coherence matrix and aggregate local gate | Review the complete local matrix, then promote and verify the exact commit | 2026-07-19 |
+| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes are live from verified commit `9c3a743` | Review the complete public matrix and record named creative feedback | 2026-07-19 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading have distinct causal scene behavior | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement is live on Production | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 

@@ -16,13 +16,13 @@
 
 ## Current Truth
 
-All representative route classes now have local dynamic candidates, distinct layer manifests, and stable fallbacks. The typed policy matrix and lifecycle corrections are implemented. The 47-file/188-test aggregate and 35-page production build pass. Production remains `806841d` and is not yet evidence for the local dynamic candidates.
+All representative route classes have distinct layer manifests and stable fallbacks live at commit `9c3a743`, Vercel `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. The typed policy matrix, lifecycle corrections, 47-file/188-test aggregate, 35-page build, and six-surface public browser verification pass.
 
 ## Resume Packet
 
 - Last artifact: [Dynamic Scene Maturation Audit](../../implementation-plans/2026-07-19-Dynamic-Scene-Maturation-Audit.md).
 - Known-good point: typed eight-route matrix, lifecycle corrections, local aggregate gate, and bounded route browser matrix on 2026-07-19.
-- Next exact action: review the local route matrix, then commit, deploy, verify the exact Production commit and routes, and record sustained performance/creative observations.
+- Next exact action: review the public route matrix and record sustained performance and named creative observations.
 - Preserve: route-owned composition, one dominant scheduler per dynamic field, semantic fallbacks, quiet reading, and truthful product state.
 
 ## Acceptance
@@ -32,4 +32,5 @@ All representative route classes now have local dynamic candidates, distinct lay
 - [x] Renderer/listener lifecycle and capability-tier audit passes.
 - [x] Calm, hidden, reduced-motion, and stable fallback matrix passes.
 - [x] Aggregate tests, build, and browser route swap pass.
-- [ ] Preview, Production, and Mark review pass.
+- [x] Production deployment and six-surface public verification pass.
+- [ ] Sustained performance observation and Mark creative review pass.

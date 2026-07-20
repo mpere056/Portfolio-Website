@@ -496,7 +496,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-009` | Museum dynamic composition proof | `ART-07` | `V-02`, `V-03`, `V-12`, `V-14`, `V-32` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-07-01`) |
 | `CAP-ART-010` | LifeInbox state-driven dynamic material transformation | `ART-08` | `V-03`, `V-04`, `V-15`, `V-17`, `V-32` | `O-03`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-08-01`) |
 | `CAP-ART-011` | Distinct flagship and supporting-route dynamic compositions | `ART-09`, `ART-10` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-18`, `V-32` | `O-01`, `O-02`, `O-04`, `O-05` | 8 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-09-01`, `EV-ART-10-01`) |
-| `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-07-01`, `EV-ART-08-01`, `EV-ART-09-01`, `EV-ART-10-01`, `EV-ART-11-01`) |
+| `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: accepted` | implemented (`EV-ART-07-01`, `EV-ART-08-01`, `EV-ART-09-01`, `EV-ART-10-01`, `EV-ART-11-01`, `EV-ART-11-02`) |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -587,8 +587,8 @@ Until a capability receives its own detail record, these defaults apply:
 - Dimension states: `S/A/I/T accepted; C implemented; Q in-review; R not-started` for `CAP-ART-007/009`; `CAP-ART-008` is working across later route scope
 - Package: `ART-07`
 - Works now: the Museum has an executable seven-layer manifest; bounded frame/proximity/path logic; masked membrane and aperture; one visibility-aware Canvas field; reviewed graph filaments/readouts; project-specific Approach material; stimulation/reduced-motion handling; and stable semantic fallback.
-- Named gaps: explicit Preview/Production verification, longer performance observation, context-loss observation, and Mark creative acceptance remain. `CAP-ART-008` remains working because later route material packs do not exist.
-- Safe exposure: Production `806841d` remains the live fallback until the candidate is committed and deployed; Canvas/SVG/CSS failure leaves the existing matte and semantic project controls.
+- Named gaps: longer performance observation, context-loss observation, and Mark creative acceptance remain.
+- Safe exposure: Production `9c3a743` is live; Canvas/SVG/CSS failure leaves the existing matte and semantic project controls.
 - Evidence: `EV-ART-07-01` candidate evidence.
 - Work item: `WI-ART-07-01` (in-review).
 - Next checkpoint: collect Mark's combined Museum/LifeInbox interaction review, then commit, deploy, and verify both candidate routes.
@@ -604,7 +604,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Packages: `ART-08` through `ART-11`
 - Works now: LifeInbox owns its eight-layer receiving transformation; Dreamlife owns a seven-layer refraction/recombination scene; Sudoku owns a seven-layer presence/version scene plus a truthful board reducer. All preserve their behavior, evidence, calm state, and still fallback.
 - Named gaps: flagship Preview/Production/performance observation and Mark acceptance; supporting-route dynamic packets/runtimes; cross-route maturation; and final release evidence.
-- Safe exposure: Production `806841d` remains stable. Renderer failure leaves each route's matte, semantic controls, product state, and evidence.
+- Safe exposure: Production `9c3a743` is live. Renderer failure leaves each route's matte, semantic controls, product state, and evidence.
 - Evidence: `EV-ART-08-01` and `EV-ART-09-01` candidate evidence; `EV-ART-07-01` remains narrow Museum evidence.
 - Work items: `WI-ART-08-01` and `WI-ART-09-01` are in-review.
 - Next checkpoint: review all flagship languages together, then author supporting routes without copying a flagship composition wholesale.

@@ -16,13 +16,13 @@
 
 ## Current Truth
 
-Home, About, AI, and reading are locally implemented as four restrained dynamic compositions with separate drivers and material languages. No new renderer or autonomous loop was added. Forty-six files/184 tests, content, type, lint, build, and bounded browser flows pass. Production remains `806841d`.
+Home, About, AI, and reading are live at `9c3a743` as four restrained dynamic compositions with separate drivers and material languages. No new renderer or autonomous loop was added. Forty-six files/184 tests, content, type, lint, build, and public Home/About verification pass.
 
 ## Resume Packet
 
 - Last artifact: [Supporting-Route Dynamic Scene Packet](../../implementation-plans/2026-07-19-Supporting-Route-Dynamic-Scene-Packet.md).
 - Known-good point: local working tree on 2026-07-19; `EV-ART-10-01` records exact proof and the reading-scroll browser limitation.
-- Next exact action: run `ART-11` temporal, renderer, repetition, calm, capability-tier, and route-swap review across the representative matrix.
+- Next exact action: review the public supporting routes and record named creative feedback.
 - Preserve: First Note ownership, canonical timeline state, one global AI system, quiet reading, and existing static fallbacks.
 
 ## Acceptance
@@ -33,4 +33,5 @@ Home, About, AI, and reading are locally implemented as four restrained dynamic 
 - [x] Reading has no autonomous loop and settles under reduced motion.
 - [x] Supporting routes remain visibly and temporally distinct from all flagship routes.
 - [x] Tests, content, type, lint, build, and bounded browser review pass.
-- [ ] Preview, Production, long-session observation, and Mark review pass.
+- [x] Commit `9c3a743` and Production supporting-route verification pass.
+- [ ] Long-session observation and Mark review pass.
