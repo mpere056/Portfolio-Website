@@ -32,7 +32,7 @@ describe('Museum dynamic scene model', () => {
       reducedMotion: false,
     });
 
-    expect(frame.aperture).toEqual({ x: 0.09, y: 0.2 });
+    expect(frame.aperture).toEqual({ x: 0.13, y: 0.38 });
     expect(frame.energy).toBeGreaterThan(0.7);
     expect(frame.drift.x).toBeGreaterThan(0);
     expect(frame.drift.y).toBeGreaterThan(0);
@@ -67,8 +67,8 @@ describe('Museum dynamic scene model', () => {
   });
 
   it('creates bounded proximity and deterministic reviewed-relationship paths', () => {
-    expect(getMuseumSignalProximity({ x: 0.09, y: 0.2 }, 'lifeinbox', 0)).toBe(1);
+    expect(getMuseumSignalProximity({ x: 0.13, y: 0.38 }, 'lifeinbox', 0)).toBe(1);
     expect(getMuseumSignalProximity({ x: 1, y: 1 }, 'lifeinbox', 0)).toBe(0);
-    expect(getMuseumFilamentPath('lifeinbox', 0)).toBe('M108.0 164.0 C495.6 54.0 842.4 147.9 1128.0 98.4');
+    expect(getMuseumFilamentPath('lifeinbox', 0)).toBe('M156.0 311.6 C525.4 201.6 855.8 147.9 1128.0 98.4');
   });
 });

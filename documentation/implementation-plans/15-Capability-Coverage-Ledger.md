@@ -1,6 +1,6 @@
 # Capability Coverage Ledger
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -496,7 +496,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-009` | Museum dynamic composition proof | `ART-07` | `V-02`, `V-03`, `V-12`, `V-14`, `V-32` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-07-01`) |
 | `CAP-ART-010` | LifeInbox state-driven dynamic material transformation | `ART-08` | `V-03`, `V-04`, `V-15`, `V-17`, `V-32` | `O-03`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-08-01`) |
 | `CAP-ART-011` | Distinct flagship and supporting-route dynamic compositions | `ART-09`, `ART-10` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-18`, `V-32` | `O-01`, `O-02`, `O-04`, `O-05` | 8 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-09-01`, `EV-ART-10-01`) |
-| `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: accepted` | implemented (`EV-ART-07-01`, `EV-ART-08-01`, `EV-ART-09-01`, `EV-ART-10-01`, `EV-ART-11-01`, `EV-ART-11-02`) |
+| `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: working; T: working; Q: reopened; R: accepted-with-remediation-pending` | working (`EV-ART-11-03`, `EV-ART-11-04`) |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -597,18 +597,18 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-ART-010 Through CAP-ART-012: Route Expansion And Dynamic Maturity
 
 - Owner: Codex with Mark creative review
-- Lifecycle: all flagship routes implemented as candidates; supporting-route expansion and maturation pending
+- Lifecycle: reopened after direct production creative review; local remediation candidate implemented
 - Health: on-track
-- Confidence: high in the local flagship implementations and sequence; intentionally uncommitted on supporting-route techniques
-- Dimension states: `CAP-ART-010 C/I/T implemented and Q in-review; CAP-ART-011 working and Q in-review; CAP-ART-012 working; R not-started`
+- Confidence: high in the corrected local geometry and route-specific scene drivers; Production and Mark acceptance remain unproven
+- Dimension states: `CAP-ART-010 C/I/T implemented and Q in-review; CAP-ART-011 I/T working and Q reopened on direct project surfaces; CAP-ART-012 I/T working, Q reopened, and R accepted-with-remediation-pending`
 - Packages: `ART-08` through `ART-11`
-- Works now: LifeInbox owns its eight-layer receiving transformation; Dreamlife owns a seven-layer refraction/recombination scene; Sudoku owns a seven-layer presence/version scene plus a truthful board reducer. All preserve their behavior, evidence, calm state, and still fallback.
-- Named gaps: flagship Preview/Production/performance observation and Mark acceptance; supporting-route dynamic packets/runtimes; cross-route maturation; and final release evidence.
+- Works now: The local Museum is a one-viewport field with collision-free signals and contained increasing depth. Dreamlife, LifeInbox, and Sudoku Together now place distinct pointer-driven dynamic scenes on their direct landing surfaces while preserving route behavior, evidence, calm state, and still fallback.
+- Named gaps: aggregate gate, exact-candidate Production deployment, public geometry/interaction verification, sustained performance observation, and Mark acceptance.
 - Safe exposure: Production `9c3a743` is live. Renderer failure leaves each route's matte, semantic controls, product state, and evidence.
-- Evidence: `EV-ART-08-01` and `EV-ART-09-01` candidate evidence; `EV-ART-07-01` remains narrow Museum evidence.
-- Work items: `WI-ART-08-01` and `WI-ART-09-01` are in-review.
-- Next checkpoint: review all flagship languages together, then author supporting routes without copying a flagship composition wholesale.
-- Last assessed: 2026-07-19.
+- Evidence: `EV-ART-11-03` records the failed public creative review; `EV-ART-11-04` records the local corrective candidate.
+- Work item: `WI-ART-11-01` is in-progress.
+- Next checkpoint: run the aggregate gate, deploy the exact corrective candidate, repeat the public matrix, and request Mark review.
+- Last assessed: 2026-07-20.
 
 ## Museum And Shared Case-Study System
 

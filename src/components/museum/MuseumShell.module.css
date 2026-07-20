@@ -1,7 +1,8 @@
 .museum {
   --ink: #f5f3ee;
   --muted: rgba(245, 243, 238, 0.54);
-  min-height: 100vh;
+  height: 100svh;
+  min-height: 38rem;
   overflow: hidden;
   color: var(--ink);
   background:
@@ -23,28 +24,47 @@
 .field {
   position: relative;
   z-index: 1;
-  width: min(1440px, 100%);
+  width: min(1600px, 100%);
+  height: 100%;
   margin: 0 auto;
-  padding: clamp(6rem, 11vw, 10rem) clamp(1.2rem, 4vw, 4rem) 8rem;
+  padding: clamp(4.7rem, 7vh, 6.2rem) clamp(1rem, 3vw, 3rem) clamp(1rem, 2.5vh, 2rem);
 }
 
-.intro { position: relative; z-index: 4; max-width: 53rem; }
+.intro { position: absolute; z-index: 6; top: clamp(4.8rem, 8vh, 6.8rem); left: clamp(1.2rem, 4vw, 4rem); max-width: min(38rem, 48vw); pointer-events: none; transition: opacity 500ms ease, transform 700ms ease; }
 .orientation { margin: 0; color: rgba(210, 230, 234, 0.45); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; }
 .intro h1, .approachCopy h2 { margin: 1rem 0 0; font-family: var(--font-cormorant), Georgia, serif; font-weight: 400; letter-spacing: -0.055em; }
-.intro h1 { font-size: clamp(3.8rem, 8vw, 8.5rem); line-height: 0.75; }
-.intro > p:last-child { max-width: 35rem; margin: 2rem 0 0; color: var(--muted); font-size: 0.94rem; line-height: 1.8; }
+.intro h1 { font-size: clamp(3.2rem, 5.2vw, 6.2rem); line-height: 0.78; }
+.intro > p:last-child { max-width: 27rem; margin: 1.15rem 0 0; color: var(--muted); font-size: clamp(.7rem, .78vw, .84rem); line-height: 1.55; }
 
 .signals {
   position: relative;
-  height: clamp(42rem, 62vw, 58rem);
-  margin-top: 1rem;
+  height: 100%;
+  margin: 0;
   isolation: isolate;
+  transition: opacity 500ms ease, filter 700ms ease, transform 900ms cubic-bezier(.18,.72,.2,1);
+}
+
+.signals::before {
+  position: absolute;
+  z-index: 4;
+  width: clamp(15rem, 27vw, 30rem);
+  aspect-ratio: 1;
+  left: var(--scene-x);
+  top: var(--scene-y);
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(182, 238, 242, calc(.08 + var(--scene-energy) * .18));
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147, 229, 238, calc(.08 + var(--scene-energy) * .18)), transparent 64%);
+  box-shadow: 0 0 7rem rgba(116, 213, 226, calc(.06 + var(--scene-energy) * .14));
+  transform: translate(-50%, -50%) scale(calc(.72 + var(--scene-energy) * .32));
+  transition: left 180ms linear, top 180ms linear, opacity 300ms ease;
 }
 
 .ecology {
   position: absolute;
   z-index: -2;
-  inset: 0;
+  inset: clamp(8.5rem, 17vh, 11.5rem) 0 0;
   overflow: hidden;
   border-block: 1px solid rgba(196, 230, 233, 0.08);
   mask-image: linear-gradient(to bottom, transparent, black 8%, black 88%, transparent);
@@ -54,8 +74,8 @@
   z-index: 0;
   object-fit: cover;
   object-position: center;
-  opacity: 0.82;
-  filter: saturate(0.86) contrast(1.06) brightness(0.72);
+  opacity: 0.94;
+  filter: saturate(1.02) contrast(1.1) brightness(0.82);
   transform: scale(1.025);
   animation: ecologyArrive 1400ms cubic-bezier(.2,.75,.2,1) both;
 }
@@ -79,10 +99,10 @@
 .ecologyMembrane {
   z-index: 1;
   inset: -2%;
-  opacity: calc(.04 + var(--scene-energy) * .25);
+  opacity: calc(.12 + var(--scene-energy) * .48);
   filter: saturate(1.5) contrast(1.12) brightness(1.05) hue-rotate(-7deg);
   transform: translate3d(var(--scene-drift-x), var(--scene-drift-y), 0) scale(1.045);
-  mask-image: radial-gradient(circle 18rem at var(--scene-x) var(--scene-y), #000 0 22%, rgba(0,0,0,.78) 46%, transparent 76%);
+  mask-image: radial-gradient(circle 24rem at var(--scene-x) var(--scene-y), #000 0 24%, rgba(0,0,0,.86) 48%, transparent 78%);
   mix-blend-mode: screen;
   transition: opacity 500ms ease, transform 900ms cubic-bezier(.18,.72,.2,1);
 }
@@ -99,7 +119,7 @@
 
 .materialMesh {
   z-index: 3;
-  opacity: calc(.08 + var(--scene-energy) * .2);
+  opacity: calc(.14 + var(--scene-energy) * .38);
   background:
     repeating-radial-gradient(circle at var(--aperture-x) var(--aperture-y), transparent 0 2.7rem, rgba(181,232,238,.12) 2.75rem 2.8rem),
     linear-gradient(112deg, transparent 38%, rgba(255,191,149,.08) 49%, transparent 58%);
@@ -113,7 +133,7 @@
   z-index: 4;
   width: 100%;
   height: 100%;
-  opacity: calc(.5 + var(--scene-energy) * .5);
+  opacity: calc(.68 + var(--scene-energy) * .32);
 }
 
 .ecologyVeil {
@@ -144,7 +164,7 @@
 .signal {
   --x: 50%;
   --y: 50%;
-  --size: clamp(6.8rem, 9vw, 9.5rem);
+  --size: clamp(4.8rem, 6.5vw, 7.2rem);
   --signal: #94dcea;
   position: absolute;
   top: var(--y);
@@ -153,8 +173,8 @@
   aspect-ratio: 1;
   color: inherit;
   z-index: 2;
-  transform: translate(-50%, -50%) scale(calc(1 + var(--proximity) * .035));
-  opacity: calc(.48 + var(--proximity) * .34);
+  transform: translate(-50%, -50%) scale(calc(1 + var(--proximity) * .14));
+  opacity: calc(.56 + var(--proximity) * .42);
   outline: none;
   animation: signalArrive 900ms calc(var(--signal-order) * 70ms) both;
   transition: opacity 420ms ease, filter 420ms ease, transform 600ms cubic-bezier(.2,.75,.2,1);
@@ -212,7 +232,7 @@
   z-index: 3;
   left: 72%;
   top: 68%;
-  width: 13rem;
+  width: clamp(8.5rem, 10vw, 11rem);
   pointer-events: none;
   padding: .55rem .7rem;
   border-left: 1px solid color-mix(in srgb, var(--signal) 52%, transparent);
@@ -221,11 +241,11 @@
 }
 .signal[data-align='left'] .annotation { right: 72%; left: auto; border-right: 1px solid color-mix(in srgb, var(--signal) 52%, transparent); border-left: 0; text-align: right; background: linear-gradient(270deg, rgba(2,6,8,.68), transparent); }
 .annotation small { display: block; color: rgba(255,255,255,.28); font-size: .6rem; letter-spacing: .16em; }
-.annotation strong { display: block; margin-top: .35rem; font-family: var(--font-cormorant), Georgia, serif; font-size: 1.45rem; font-weight: 500; line-height: 1; }
+.annotation strong { display: block; margin-top: .25rem; font-family: var(--font-cormorant), Georgia, serif; font-size: clamp(.9rem, 1.15vw, 1.25rem); font-weight: 500; line-height: 1; }
 .annotation em { display: block; max-height: 0; margin-top: .5rem; overflow: hidden; color: rgba(255,255,255,.5); font-size: .7rem; font-style: normal; line-height: 1.45; opacity: 0; transition: max-height 350ms ease, opacity 350ms ease; }
 .signal:hover .annotation em, .signal:focus-visible .annotation em, .signal[data-selected='true'] .annotation em { max-height: 5rem; opacity: 1; }
 
-.freeExplore { margin: -1.5rem 0 0 auto; max-width: 22rem; color: rgba(255,255,255,.3); font-size: .68rem; line-height: 1.6; text-align: right; }
+.freeExplore { position: absolute; z-index: 7; right: clamp(1.2rem, 4vw, 4rem); bottom: clamp(1rem, 2.5vh, 2rem); margin: 0; max-width: 22rem; color: rgba(255,255,255,.34); font-size: .62rem; line-height: 1.5; text-align: right; }
 
 .relationshipReadout {
   position: absolute;
@@ -250,20 +270,34 @@
 
 .approach {
   --signal: #9fd8e3;
-  position: relative;
-  min-height: 48rem;
-  margin-top: 8rem;
-  padding: clamp(3rem, 7vw, 7rem) 0 0;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 12;
+  inset: clamp(4.5rem, 7vh, 6rem) clamp(1rem, 3vw, 3rem) clamp(1rem, 2.5vh, 2rem);
+  min-height: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: clamp(2rem, 5vw, 5rem);
   border-top: 1px solid rgba(255,255,255,.1);
+  background: linear-gradient(145deg, rgba(3,8,10,.97), rgba(4,8,11,.9));
+  box-shadow: 0 2rem 8rem rgba(0,0,0,.72);
+  backdrop-filter: blur(24px);
+  scrollbar-color: rgba(171,229,237,.22) transparent;
+  scrollbar-width: thin;
   animation: approachReveal 700ms ease-out both;
 }
+
+.museum[data-museum-view='depth'] .intro { opacity: .05; transform: translateY(-1rem); }
+.museum[data-museum-view='depth'] .signals { opacity: .2; filter: blur(8px) saturate(.6); transform: scale(1.035); pointer-events: none; }
+.museum[data-museum-view='depth'] .freeExplore { opacity: 0; }
 .approach[data-dialect='receiver'] { --signal: #efb76c; }
 .approach[data-dialect='prism'] { --signal: #a7c7ff; }
 .approach[data-dialect='lattice'] { --signal: #8fffe6; }
 .approach[data-dialect='specter'] { --signal: #ff72bb; }
 .approach[data-dialect='coral'] { --signal: #ff876c; }
 
-.returnControl { position: absolute; top: 1rem; right: 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.18); padding: .35rem 0; color: rgba(255,255,255,.45); background: transparent; cursor: pointer; }
+.returnControl { position: absolute; top: 1rem; right: clamp(1rem, 2vw, 2rem); border: 0; border-bottom: 1px solid rgba(255,255,255,.18); padding: .35rem 0; color: rgba(255,255,255,.45); background: transparent; cursor: pointer; }
 .returnControl:hover, .returnControl:focus-visible { color: white; }
 
 .approachPhenomenon { inset: auto; top: 8rem; right: 3%; width: min(35rem, 42vw); aspect-ratio: 1; opacity: .62; }
@@ -297,6 +331,9 @@
 @keyframes relationshipArrive { from { opacity: 0; transform: translateY(1rem); } }
 
 @media (max-width: 900px) {
+  .museum { height: auto; min-height: 100svh; overflow: visible; }
+  .field { height: auto; min-height: 100svh; padding-top: 6rem; }
+  .intro { position: relative; top: auto; left: auto; max-width: 100%; pointer-events: auto; }
   .signals { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 1rem; margin-top: 4rem; padding-top: 18rem; }
   .ecology { height: 21rem; mask-image: linear-gradient(to bottom, transparent, black 10%, black 70%, transparent); }
   .ecologyImage { object-position: 58% center; opacity: .68; }
@@ -309,6 +346,9 @@
   .annotation, .signal[data-align='left'] .annotation { right: auto; left: 8%; top: 70%; width: 85%; border-right: 0; border-left: 1px solid color-mix(in srgb, var(--signal) 52%, transparent); text-align: left; background: linear-gradient(90deg, rgba(2,6,8,.68), transparent); }
   .annotation em { max-height: 5rem; opacity: .7; }
   .relationshipReadout { position: relative; right: auto; bottom: auto; grid-column: 1 / -1; width: 100%; margin-top: 1rem; }
+  .approach { position: relative; inset: auto; margin-top: 3rem; overflow: visible; }
+  .museum[data-museum-view='depth'] .signals { display: none; }
+  .freeExplore { position: relative; right: auto; bottom: auto; margin: 2rem 0 0 auto; }
   .approachPhenomenon { position: relative; top: auto; right: auto; width: min(24rem, 82vw); margin: 2rem auto -7rem; opacity: .38; }
   .approachMaterial { inset: 2rem -1.2rem 0 12%; opacity: .62; }
   .approachCopy { padding-top: 0; }

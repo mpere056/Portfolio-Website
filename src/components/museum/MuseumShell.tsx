@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useExplorationWorld } from '@/components/experience/ExplorationWorldProvider';
@@ -66,7 +66,6 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
   const [hoveredSlug, setHoveredSlug] = useState<string>();
   const [pointer, setPointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
   const [sceneVisible, setSceneVisible] = useState(true);
-  const approachRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const syncLocation = () => {
@@ -86,12 +85,6 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
   }, [exhibits, initialSlug]);
 
   useEffect(() => {
-    if (!selectedSlug || !approachRef.current) return;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    approachRef.current.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-  }, [selectedSlug, selectedStage]);
-
-  useEffect(() => {
     const updateVisibility = () => setSceneVisible(document.visibilityState !== 'hidden');
     updateVisibility();
     document.addEventListener('visibilitychange', updateVisibility);
@@ -104,6 +97,7 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
     soundEnabled: world.stimulation.soundEnabled,
   });
   const activeSceneSlug = hoveredSlug ?? selectedSlug;
+  const activeExhibit = exhibits.find(exhibit => exhibit.slug === activeSceneSlug);
   const sceneFrame = getMuseumSceneFrame({
     pointer,
     activeSlug: activeSceneSlug,
@@ -136,7 +130,6 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
     window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`);
     setSelectedSlug(undefined);
     setSelectedStage('approach');
-    document.getElementById('museum-lobby')?.scrollIntoView({ block: 'start' });
   };
 
   const updateScenePointer = (event: React.PointerEvent<HTMLElement>) => {
@@ -163,7 +156,12 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
   } as React.CSSProperties;
 
   return (
-    <main id="museum-lobby" aria-label="Project museum" className={styles.museum}>
+    <main
+      id="museum-lobby"
+      aria-label="Project museum"
+      className={styles.museum}
+      data-museum-view={selected ? 'depth' : 'signals'}
+    >
       <div className={styles.noise} aria-hidden="true" />
       <div className={styles.field}>
         <header className={styles.intro}>
@@ -220,10 +218,10 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
               <path d="M250 620 C420 470 550 690 760 540 S960 520 1080 650" />
               <path d="M610 330 C620 430 650 470 760 540" />
             </g>
-            {selected?.semanticConnections.map((connection, index) => (
+            {activeExhibit?.semanticConnections.map((connection, index) => (
               <g key={connection.relationshipId} className={styles.semanticFilament} data-strength={connection.strength}>
                 <path
-                  d={getMuseumFilamentPath(selected.slug, index)}
+                  d={getMuseumFilamentPath(activeExhibit.slug, index)}
                   style={{ '--filament-order': index } as React.CSSProperties}
                 />
                 <circle
@@ -265,12 +263,12 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
               </a>
             );
           })}
-          {selected?.semanticConnections[0] ? (
-            <aside className={styles.relationshipReadout} data-relationship={selected.semanticConnections[0].relationshipId}>
-              <p>Reviewed connection</p>
-              <strong>{selected.semanticConnections[0].title}</strong>
-              <span>{selected.semanticConnections[0].explanation}</span>
-              <a href={selected.semanticConnections[0].href}>Follow the record</a>
+          {activeExhibit?.semanticConnections[0] ? (
+            <aside className={styles.relationshipReadout} data-relationship={activeExhibit.semanticConnections[0].relationshipId}>
+              <p>{selectedSlug === activeExhibit.slug ? 'Reviewed connection' : `${activeExhibit.name} connects to`}</p>
+              <strong>{activeExhibit.semanticConnections[0].title}</strong>
+              <span>{activeExhibit.semanticConnections[0].explanation}</span>
+              <a href={activeExhibit.semanticConnections[0].href}>Follow the record</a>
             </aside>
           ) : null}
         </nav>
@@ -279,7 +277,6 @@ export default function MuseumShell({ exhibits, initialSlug, enabledExperiences 
 
         {selected ? (
           <section
-            ref={approachRef}
             aria-live="polite"
             aria-label={`${selected.name} approach`}
             className={styles.approach}

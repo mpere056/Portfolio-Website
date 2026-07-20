@@ -22,7 +22,8 @@ describe('museum Signal and Approach shell', () => {
     expect(html).toContain('data-layer="museum:matte"');
     expect(html).toContain('data-layer="museum:membrane"');
     expect(html).toContain('data-layer="museum:particles"');
-    expect(html).toContain('--x:9%');
+    expect(html).toContain('data-museum-view="signals"');
+    expect(html).toContain('--x:13%');
     expect(html).not.toContain('Capture locally');
     expect(html).not.toContain('Sudoku board');
   });

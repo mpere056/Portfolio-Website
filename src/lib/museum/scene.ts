@@ -65,19 +65,19 @@ export function getMuseumSceneFrame({
     ? { x: activePosition.x / 100, y: activePosition.y / 100 }
     : normalizedPointer;
   const requestedEnergy = clamp(stimulation);
-  const energy = reducedMotion || !visible ? 0 : 0.18 + requestedEnergy * 0.82;
+  const energy = reducedMotion || !visible ? 0 : 0.38 + requestedEnergy * 0.62;
 
   return {
     pointer: reducedMotion ? aperture : normalizedPointer,
     aperture,
     energy,
     drift: {
-      x: (normalizedPointer.x - 0.5) * 22 * energy,
-      y: (normalizedPointer.y - 0.5) * 16 * energy,
+      x: (normalizedPointer.x - 0.5) * 48 * energy,
+      y: (normalizedPointer.y - 0.5) * 34 * energy,
     },
-    apertureStrength: activeSlug ? 0.34 + energy * 0.54 : 0,
-    filamentStrength: selectedSlug ? 0.36 + energy * 0.5 : 0.08,
-    particleCount: reducedMotion || !visible ? 0 : Math.round(12 + energy * 36),
+    apertureStrength: activeSlug ? 0.52 + energy * 0.48 : 0.08,
+    filamentStrength: activeSlug ? 0.46 + energy * 0.5 : 0.14,
+    particleCount: reducedMotion || !visible ? 0 : Math.round(26 + energy * 58),
     settled: reducedMotion || !visible,
   };
 }

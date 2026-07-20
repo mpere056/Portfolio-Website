@@ -26,15 +26,15 @@ export const ART_DIRECTION_ASSETS = {
 } as const;
 
 export const MUSEUM_SIGNAL_POSITIONS = {
-  lifeinbox: { x: 9, y: 20, align: 'right' },
-  'kitsune-karuta': { x: 27, y: 25, align: 'right' },
-  dreamlife: { x: 49, y: 12, align: 'right' },
-  'story-app': { x: 43, y: 45, align: 'left' },
-  'discord-sudoku-activity': { x: 77, y: 39, align: 'left' },
-  'group-finder': { x: 17, y: 72, align: 'right' },
-  'discord-sync-messaging': { x: 39, y: 70, align: 'right' },
-  'discord-bot': { x: 62, y: 72, align: 'left' },
-  'game-mod': { x: 89, y: 74, align: 'left' },
+  lifeinbox: { x: 13, y: 38, align: 'right' },
+  'kitsune-karuta': { x: 31, y: 34, align: 'right' },
+  dreamlife: { x: 61, y: 24, align: 'right' },
+  'story-app': { x: 43, y: 55, align: 'left' },
+  'discord-sudoku-activity': { x: 75, y: 49, align: 'left' },
+  'group-finder': { x: 15, y: 78, align: 'right' },
+  'discord-sync-messaging': { x: 37, y: 79, align: 'right' },
+  'discord-bot': { x: 61, y: 76, align: 'left' },
+  'game-mod': { x: 86, y: 76, align: 'left' },
 } as const;
 
 export type MuseumSignalSlug = keyof typeof MUSEUM_SIGNAL_POSITIONS;

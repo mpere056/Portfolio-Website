@@ -83,19 +83,19 @@ export default function MuseumParticleField({
 
       for (let index = 0; index < activeCount; index += 1) {
         const particle = particles[index];
-        const attraction = 0.025 + state.energy * 0.045;
+        const attraction = 0.48 + state.energy * 0.82;
         const orbit = now * 0.00008 * (0.6 + state.energy) + particle.phase;
         particle.x += (state.target.x - particle.x) * attraction * elapsed;
         particle.y += (state.target.y - particle.y) * attraction * elapsed;
         const x = (particle.x + Math.cos(orbit) * (0.025 + (index % 7) * 0.006)) * width;
         const y = (particle.y + Math.sin(orbit * 1.17) * (0.02 + (index % 5) * 0.007)) * height;
-        const alpha = 0.08 + state.energy * 0.24 * (1 - index / Math.max(activeCount, 1));
+        const alpha = 0.14 + state.energy * 0.42 * (1 - index / Math.max(activeCount, 1));
 
         context.beginPath();
         context.fillStyle = index % 4 === 0
           ? `rgba(255, 190, 144, ${alpha})`
           : `rgba(151, 227, 239, ${alpha})`;
-        context.arc(x, y, particle.radius + state.energy * 0.75, 0, Math.PI * 2);
+        context.arc(x, y, particle.radius + state.energy * 1.35, 0, Math.PI * 2);
         context.fill();
 
         if (index % 8 === 0) {

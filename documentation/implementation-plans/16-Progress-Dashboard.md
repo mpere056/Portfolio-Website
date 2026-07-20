@@ -1,6 +1,6 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-19
+Last reconciled: 2026-07-20
 Implementation commit baseline and latest verified Production: `9c3a743`
 
 ## Plan Metadata
@@ -15,9 +15,9 @@ Implementation commit baseline and latest verified Production: `9c3a743`
 
 ## Current Program State
 
-**The complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`; Mark creative acceptance remains in review.**
+**Phase 4 visual acceptance is reopened. Production `9c3a743` remains the functional rollback point, while a local one-viewport Museum and direct-surface Dreamlife, LifeInbox, and Sudoku Together scene remediation is in progress.**
 
-The dynamic sequence covers the Museum's graph-aware field, LifeInbox's material transformation, Dreamlife's future refraction, Sudoku's truthful presence system, Home's First Note threshold, About's inspected chronology, contextual AI, and quiet reading progress. Each route owns a distinct CSS/SVG/Canvas/WebGL/DOM language and keeps stable fallback art. The typed eight-route policy, lifecycle corrections, 47 test files/188 tests, 58-node/28-relationship validation, TypeScript, lint without errors, the 35-page build, and six-surface public browser verification pass. Sustained observation and Mark acceptance keep Phase 4E in review.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. The local corrective candidate keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Focused scene and route tests plus a 1912x948 browser geometry/interaction matrix pass; aggregate, deployment, public re-verification, sustained observation, and Mark acceptance remain.
 
 This distinction prevents two errors:
 
@@ -31,8 +31,8 @@ This distinction prevents two errors:
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
 | `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability through Phase 4 deployment | Review returning-visitor behavior after normal use |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
-| `O-03` First flagship proof | LifeInbox dynamic candidate live | watch | Capture, settlement, boundaries, reminder return, fallback, 175 tests, build, and public route pass | Performance observation and Mark review | Review the live LifeInbox experience |
-| `O-04` Portfolio museum | dynamic proof live | watch | Museum packet, seven-layer manifest, bounded driver, graph evidence, fallback, 171 tests, build, and public route pass | Longer performance/context-loss observation and Mark review | Review the live Museum interaction |
+| `O-03` First flagship proof | visual remediation local | watch | Distinct direct-surface Dreamlife, LifeInbox, and Sudoku scenes pass focused route and pointer checks | Aggregate, Production, and Mark review | Deploy and review the three corrected project worlds |
+| `O-04` Portfolio museum | visual acceptance reopened | watch | Local Museum fits one desktop viewport with nine visible signals, zero hit-region collisions, and contained depth | Aggregate, Production, and Mark review | Deploy and review the corrected Museum interaction |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -116,7 +116,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes are live from verified commit `9c3a743` | Review the complete public matrix and record named feedback | 2026-07-19 |
+| Now | `WI-ART-11-01` | in-progress | `ART-11` | Local Museum geometry and three direct project-world scenes pass focused verification | Run aggregate gate, deploy, and repeat the public visual matrix | 2026-07-20 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement remains live | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 
@@ -200,9 +200,9 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 95 | Functional evidence, selected direction, and Phase 4 production rollout are valid; final creative acceptance remains open |
-| Candidate | 10 | Integrated static art inputs plus the complete local dynamic route sequence await named deployment and Mark review gates |
+| Candidate | 11 | Integrated static art inputs plus the corrective local dynamic route sequence await aggregate, deployment, and Mark review gates |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
-| Failed | 6 | Four retained infrastructure failures plus rejected `ART-03` and renewed `QA-02` creative candidates |
+| Failed | 7 | Retained infrastructure and creative failures now include the explicit `ART-11` production visual-acceptance rejection |
 
 The evidence registry lives in `documentation/implementation-evidence/README.md`.
 

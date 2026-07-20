@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import ProjectPreview from '@/components/ProjectPreview';
+import ProjectWorldScene from '@/components/sites/ProjectWorldScene';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
 import { getProjects, type Project } from '@/lib/projects';
 import { getProjectSiteBySubdomain, PROJECT_SITES } from '@/lib/projectSites';
@@ -76,7 +76,7 @@ function DreamlifeSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.dreamlife} min-h-screen bg-[#080710] text-[#f7f4ff]`}>
-      <WorldArtwork world="dreamlife" src={ART_DIRECTION_ASSETS.dreamlife.src} />
+      <ProjectWorldScene world="dreamlife" src={ART_DIRECTION_ASSETS.dreamlife.src} />
       <section className="relative overflow-hidden border-b border-[#22170d]/10 bg-[#ffdca8]">
         <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,126,79,0.35),transparent_24%),linear-gradient(rgba(34,23,13,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(34,23,13,0.08)_1px,transparent_1px)] [background-size:100%_100%,100%_100%,44px_44px,44px_44px]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#fff3dc] to-transparent" />
@@ -175,7 +175,7 @@ function LifeInboxSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.lifeinbox} min-h-screen bg-[#050909] text-[#edf8f3]`}>
-      <WorldArtwork world="lifeinbox" src={ART_DIRECTION_ASSETS.lifeinbox.src} />
+      <ProjectWorldScene world="lifeinbox" src={ART_DIRECTION_ASSETS.lifeinbox.src} />
       <section className="relative overflow-hidden border-b border-[#0e1c18]/10 bg-[#dcebe4]">
         <div className="absolute inset-0 [background-image:linear-gradient(120deg,rgba(14,28,24,0.08),transparent_34%),linear-gradient(rgba(14,28,24,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,28,24,0.07)_1px,transparent_1px)] [background-size:100%_100%,32px_32px,32px_32px]" />
         <SiteNav site="lifeinbox" brand="LifeInbox" textColor="text-white" accentColor="border-white/20" />
@@ -286,7 +286,7 @@ function SudokuTogetherSite({ project }: { project: Project }) {
 
   return (
     <main className={`${worldStyles.world} ${worldStyles.sudoku} min-h-screen bg-[#030a0d] text-white`}>
-      <WorldArtwork world="sudoku" src={ART_DIRECTION_ASSETS.sudoku.src} />
+      <ProjectWorldScene world="sudoku" src={ART_DIRECTION_ASSETS.sudoku.src} />
       <section className="relative overflow-hidden border-b border-white/10 bg-[#0d1720]">
         <div className="absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:36px_36px]" />
         <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(8,16,24,0.97),rgba(23,47,57,0.78)_45%,rgba(8,16,24,0.98))]" />
@@ -422,15 +422,6 @@ function ProjectFooter({ project, tone, prompt }: { project: Project; tone: 'war
         </div>
       </div>
     </section>
-  );
-}
-
-function WorldArtwork({ world, src }: { world: 'dreamlife' | 'lifeinbox' | 'sudoku'; src: string }) {
-  return (
-    <div className={worldStyles.worldArtwork} data-world={world} aria-hidden="true">
-      <Image src={src} alt="" fill priority sizes="100vw" />
-      <span />
-    </div>
   );
 }
 

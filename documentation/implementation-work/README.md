@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-19
+Last reconciled: 2026-07-20
 
 ## Purpose
 
@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel production `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`. `WI-ART-07-01` through `WI-ART-11-01` retain route-owned materials, executable lifecycle policy, and stable fallbacks. The 188-test aggregate, content, type, lint, build, and six-surface public browser gates pass; sustained performance observation and Mark acceptance remain.
+Phase 4 visual acceptance is reopened. Production `9c3a743` remains the functional rollback point, but Mark's screenshots rejected the scrolling Museum lobby and imperceptible direct-surface project dynamics. `WI-ART-11-01` now owns a local one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together scene remediation; aggregate, deployment, public re-verification, and Mark acceptance remain.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes are live from verified commit `9c3a743` | Review the complete public matrix and record named creative feedback | 2026-07-19 |
+| Now | `WI-ART-11-01` | in-progress | `ART-11` | Local one-viewport Museum and three direct project-world scenes pass focused browser checks | Run aggregate gate, deploy, and repeat public visual acceptance matrix | 2026-07-20 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading have distinct causal scene behavior | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement is live on Production | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 
@@ -31,7 +31,7 @@ The complete Phase 4 dynamic scene sequence is live at `9c3a743`, Vercel product
 | `WI-ART-08-01` | Transform LifeInbox through product state | in-review | high | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | `active/WI-ART-08-01.md` | 2026-07-19 |
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | in-review | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-19 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | in-review | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-19 |
-| `WI-ART-11-01` | Mature the dynamic scene system | in-review | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-19 |
+| `WI-ART-11-01` | Mature the dynamic scene system | in-progress | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
