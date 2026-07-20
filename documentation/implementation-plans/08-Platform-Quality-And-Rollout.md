@@ -1,6 +1,6 @@
 # Platform, Quality, And Rollout Plan
 
-Last updated: 2026-07-17
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -258,6 +258,28 @@ Test:
 - Tab backgrounding and resume.
 
 Full text duplication of every visual experience is not required. Core routes, project identity, and essential controls must remain understandable.
+
+## Dynamic Scene Quality Gate
+
+`ART-07` through `ART-11` add route-owned DOM/SVG/Canvas/WebGL/shader composition without treating technical spectacle as quality. Each dynamic route records:
+
+- A strong still checksum before continuous rendering starts.
+- A driver matrix naming trigger, affected layers, meaning, settlement, and calm behavior.
+- A layer material manifest with provenance, dimensions, renderer intent, and budget.
+- Deterministic scene-state tests for semantic inputs, reset, pause, restore, and invalid state.
+- Browser checks for pointer, keyboard focus, resize, hidden-tab pause/resume, lower stimulation, reduced motion, renderer failure, and context loss where applicable.
+- Asset weight, first useful frame, main-thread behavior, DPR cap, steady-state rendering, and memory observations.
+- Stable standard and calm captures plus actual interaction review by Mark.
+
+Default safeguards:
+
+- Load semantic content and the stable matte before continuous effects.
+- Use at most one dominant continuous Canvas/WebGL scheduler per route unless measurement and review justify an exception.
+- Pause offscreen, hidden, reduced, or settled scenes and avoid competing animation loops.
+- Keep core controls in semantic DOM and outside decorative hit testing.
+- Fall back to the approved still composition when shaders, WebGL, assets, or capability checks fail.
+
+The cause, layer-independence, settlement, still-checksum, depth-transformation, semantic, restraint, route-swap, and failure diagnostics in Plan `20` are required creative evidence. Frame stability proves implementation behavior, not taste.
 
 ## Privacy And Security
 

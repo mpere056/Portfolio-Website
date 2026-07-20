@@ -1,9 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import { useExplorationWorld } from '@/components/experience/ExplorationWorldProvider';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
+import { createStimulationProfile } from '@/lib/experience/environment';
+import {
+  getLifeInboxBoundaryPath,
+  getLifeInboxSceneFrame,
+} from '@/lib/museum/lifeInboxScene';
 import type { DepthStage } from '@/lib/portfolioContracts';
 import {
   captureLifeInboxEntry,
@@ -11,6 +16,7 @@ import {
   organizeLifeInboxEntry,
 } from '@/lib/museum/spikes/lifeInboxSpike';
 import type { LifeInboxSpikeState } from '@/lib/museum/spikes/lifeInboxSpike';
+import LifeInboxMaterialField from './LifeInboxMaterialField';
 import styles from './FlagshipExperiences.module.css';
 
 const SYSTEM_STEPS = [
@@ -31,7 +37,37 @@ export default function LifeInboxExperience({
 }) {
   const [capture, setCapture] = useState<LifeInboxSpikeState>(initialLifeInboxSpikeState);
   const [selectedLayer, setSelectedLayer] = useState('capture');
-  const { store } = useExplorationWorld();
+  const [pointer, setPointer] = useState({ x: 0.5, y: 0.5 });
+  const [visible, setVisible] = useState(true);
+  const experienceRef = useRef<HTMLElement>(null);
+  const { store, state: world } = useExplorationWorld();
+
+  const stimulation = createStimulationProfile(world.stimulation.normalizedValue, {
+    reducedMotionRequested: world.stimulation.reducedMotionRequested,
+    soundEnabled: world.stimulation.soundEnabled,
+  });
+  const scene = getLifeInboxSceneFrame({
+    captureStage: capture.stage,
+    depthStage: stage,
+    selectedLayer,
+    pointer,
+    stimulation: stimulation.normalizedValue,
+    reducedMotion: world.stimulation.reducedMotionRequested,
+    visible,
+  });
+  const sceneStyle = {
+    '--lifeinbox-pointer-x': `${scene.pointer.x * 100}%`,
+    '--lifeinbox-pointer-y': `${scene.pointer.y * 100}%`,
+    '--lifeinbox-target-x': `${scene.target.x * 100}%`,
+    '--lifeinbox-target-y': `${scene.target.y * 100}%`,
+    '--lifeinbox-energy': scene.energy,
+    '--lifeinbox-ingress': scene.ingressStrength,
+    '--lifeinbox-settlement': scene.settlementStrength,
+    '--lifeinbox-membrane': scene.membraneStrength,
+    '--lifeinbox-explosion': scene.explosionStrength,
+    '--lifeinbox-evidence': scene.evidenceStrength,
+    '--lifeinbox-return': scene.returnStrength,
+  } as CSSProperties;
 
   useEffect(() => {
     store.getState().applyDepthTransition('project:lifeinbox', {
@@ -41,6 +77,16 @@ export default function LifeInboxExperience({
     });
   }, [stage, store]);
 
+  useEffect(() => {
+    const element = experienceRef.current;
+    if (!element || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(entries => {
+      setVisible(entries[0]?.isIntersecting ?? false);
+    }, { rootMargin: '160px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   const reset = () => {
     setCapture(initialLifeInboxSpikeState);
     setSelectedLayer('capture');
@@ -49,10 +95,57 @@ export default function LifeInboxExperience({
   const specimenLabel = capture.rawText || initialLifeInboxSpikeState.rawText;
 
   return (
-    <section aria-label="LifeInbox depth experience" className={styles.experience}>
-      <div className={styles.experienceArtwork} aria-hidden="true">
+    <section
+      ref={experienceRef}
+      aria-label="LifeInbox depth experience"
+      className={`${styles.experience} ${styles.lifeInboxScene}`}
+      data-capture-state={capture.stage}
+      data-depth-stage={stage}
+      data-selected-layer={selectedLayer}
+      data-scene-settled={scene.settled}
+      data-reduced-motion={world.stimulation.reducedMotionRequested}
+      style={sceneStyle}
+      onPointerMove={event => {
+        const bounds = event.currentTarget.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+        setPointer({
+          x: (event.clientX - bounds.left) / bounds.width,
+          y: (event.clientY - bounds.top) / bounds.height,
+        });
+      }}
+      onPointerLeave={() => setPointer({ x: 0.5, y: 0.5 })}
+    >
+      <div className={styles.experienceArtwork} aria-hidden="true" data-layer="lifeinbox:matte">
         <Image src={ART_DIRECTION_ASSETS.lifeinbox.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
       </div>
+      <div className={styles.lifeInboxArtworkEcho} aria-hidden="true" data-layer="lifeinbox:outer-membrane">
+        <Image src={ART_DIRECTION_ASSETS.lifeinbox.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
+      </div>
+      <div className={styles.lifeInboxIngress} aria-hidden="true" data-layer="lifeinbox:ingress" />
+      <LifeInboxMaterialField
+        target={scene.target}
+        energy={scene.energy}
+        count={scene.particleCount}
+        captureStage={capture.stage}
+        reducedMotion={world.stimulation.reducedMotionRequested || !visible}
+      />
+      <svg className={styles.lifeInboxPaths} viewBox="0 0 1040 620" aria-hidden="true" data-layer="lifeinbox:boundaries">
+        {SYSTEM_STEPS.map((item, index) => (
+          <path
+            key={item.id}
+            d={getLifeInboxBoundaryPath(index, scene.explosionStrength)}
+            data-active={selectedLayer === item.id}
+            className={styles.lifeInboxBoundaryPath}
+          />
+        ))}
+        <path
+          d="M804 144 C892 72 948 88 1008 34"
+          className={styles.lifeInboxReturnPath}
+          data-active={selectedLayer === 'resurface'}
+          data-layer="lifeinbox:return"
+        />
+        <circle cx="1008" cy="34" r="7" className={styles.lifeInboxReturnNode} />
+      </svg>
       <div className={styles.rail}>
         <div className={styles.depthMarks} aria-label="Exhibit depth">
           {(['handle', 'enter', 'understand'] as const).map(item => (
@@ -75,7 +168,7 @@ export default function LifeInboxExperience({
             </div>
           </div>
 
-          <div className={styles.receiver} aria-live="polite">
+          <div className={styles.receiver} aria-live="polite" data-layer="lifeinbox:local-core">
             {capture.stage === 'empty' ? (
               <>
                 <label htmlFor="lifeinbox-capture" className="sr-only">A messy thought</label>
@@ -91,7 +184,7 @@ export default function LifeInboxExperience({
             )}
             {capture.stage !== 'empty' ? <p className={styles.notation}>verified local row<br />{capture.localId}<br />network not required</p> : null}
             {capture.stage === 'organized' ? (
-              <div className={styles.orbit} aria-label="Illustrative organization membrane">
+              <div className={styles.orbit} aria-label="Illustrative organization membrane" data-layer="lifeinbox:outer-membrane">
                 <p className={styles.orbitLabel}>{capture.destination?.title}<br />{capture.destination?.schedule}<br />illustrative, outside the stored core</p>
               </div>
             ) : null}
@@ -133,7 +226,7 @@ export default function LifeInboxExperience({
                 <a href={projectHref} className={styles.secondaryAction}>Enter project world</a>
               </div>
             ) : (
-              <div className={styles.evidenceNotes}>
+            <div className={styles.evidenceNotes} data-layer="lifeinbox:evidence">
                 <p className={styles.intro}>Local SQLite proves the immediate save. Sync and enrichment are later boundaries, so the interface distinguishes what is stored now from what may happen next.</p>
                 <a href="https://github.com/mpere056/LifeInbox-Option-B">Source repository / local-first implementation</a>
                 <a href="https://lifeinbox.marknperera.ca/blog/local-first-capture-needs-trust">Field note / why capture needs trust</a>

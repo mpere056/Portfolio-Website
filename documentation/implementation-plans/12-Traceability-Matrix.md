@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -51,6 +51,7 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-29` | Studio waits for feedback | `09` | `STU-GATE-01` | No implementation beyond allowed preparation |
 | `V-30` | Anti-Resume backlog only | `10` | None | Recorded only, no detailed tasks |
 | `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `19`, `00`, `02` through `08` | `ART-01` through `ART-06`, `QA-02`, `PRJ-05` to `PRJ-07`, `ABT-02`, `AI-05` | `EV-ART-01-01` accepts the Impossible Observatory direction; packet selection, runtime foundation, representative remediation, route translations, coherence review, and renewed Mark acceptance remain |
+| `V-32` | Route-owned dynamic scenes built from independently responsive authored layers | `20`, `18`, `19`, `00`, `02`, `05`, `08` | `ART-07` through `ART-11` | Museum proof demonstrates causal independent layers, stable/calm/failure states, measured renderer behavior, and Mark acceptance before route-by-route expansion |
 
 ## Requirement To Capability Control
 
@@ -92,6 +93,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 4 Remaining flagships | functionality and art candidate live at `806841d`; creative `QA-02` reopened | Three distinct flagship experiences, lifecycle-driven historical depth, canonical routes, connected state, AI migration, keyframes, original matter, and supporting-route translations pass public verification; Mark creative acceptance remains |
 | Phase 5 About depth and supporting translation | `ART-05`, `ABT-01` to `ABT-04`, `AI-05` | About, AI, Home/reading/support states translate the shared world without copying the museum composition |
 | Whole-portfolio maturation | `ART-06`, `QA-03`, `QA-04` | Representative route classes pass coherence, calm/fallback, performance, and production review while mobile/music remain explicitly later |
+| Dynamic scene follow-on | `ART-07` through `ART-11`, `QA-03`, `QA-04` | Route-specific layer packs and causal scene behavior pass still, calm, failure, performance, Production, and Mark review without a universal composition engine |
 | Phase 5 About | `ABT-01` to `ABT-04` | Five events inspectable; memory prototype decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |
 | Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |

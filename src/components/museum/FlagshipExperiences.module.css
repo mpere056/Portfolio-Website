@@ -189,6 +189,139 @@
 }
 
 /* LifeInbox */
+.lifeInboxScene {
+  --lifeinbox-pointer-x: 50%;
+  --lifeinbox-pointer-y: 50%;
+  --lifeinbox-target-x: 50%;
+  --lifeinbox-target-y: 50%;
+  --lifeinbox-energy: 0.2;
+  --lifeinbox-ingress: 0.5;
+  --lifeinbox-settlement: 0;
+  --lifeinbox-membrane: 0.08;
+  --lifeinbox-explosion: 0;
+  --lifeinbox-evidence: 0;
+  --lifeinbox-return: 0;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at var(--lifeinbox-target-x) var(--lifeinbox-target-y), rgba(255, 183, 91, calc(.05 + var(--lifeinbox-settlement) * .11)), transparent 18rem),
+    radial-gradient(ellipse at 76% 48%, rgba(67, 218, 197, calc(.025 + var(--lifeinbox-membrane) * .07)), transparent 28rem),
+    linear-gradient(112deg, #080706, #0c0b09 48%, #06100f);
+}
+
+.lifeInboxArtworkEcho,
+.lifeInboxIngress,
+.lifeInboxMaterialField,
+.lifeInboxPaths {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lifeInboxArtworkEcho {
+  z-index: 1;
+  opacity: calc(var(--lifeinbox-membrane) * .32);
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(
+    ellipse 38% 54% at var(--lifeinbox-target-x) var(--lifeinbox-target-y),
+    transparent 18%,
+    black 38%,
+    transparent 76%
+  );
+  transform: translate3d(
+    calc((var(--lifeinbox-target-x) - 50%) * .04),
+    calc((var(--lifeinbox-target-y) - 50%) * .04),
+    0
+  ) scale(calc(1.01 + var(--lifeinbox-membrane) * .035));
+  transition: opacity 700ms ease, transform 900ms cubic-bezier(.2,.72,.2,1);
+}
+
+.lifeInboxArtworkEcho img {
+  object-fit: cover;
+  object-position: 67% center;
+  filter: saturate(1.18) contrast(1.12) brightness(.78) hue-rotate(-8deg);
+}
+
+.lifeInboxIngress {
+  z-index: 1;
+  opacity: var(--lifeinbox-ingress);
+  background:
+    radial-gradient(circle at var(--lifeinbox-pointer-x) var(--lifeinbox-pointer-y), rgba(255, 229, 186, .26), transparent 2.5rem),
+    conic-gradient(from 218deg at var(--lifeinbox-pointer-x) var(--lifeinbox-pointer-y), transparent, rgba(255, 178, 86, .13), rgba(93, 225, 207, .08), transparent 26%);
+  filter: blur(calc(6px + (1 - var(--lifeinbox-energy)) * 12px));
+  mask-image: linear-gradient(90deg, black, transparent 72%);
+  transition: opacity 650ms ease;
+}
+
+.lifeInboxMaterialField {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: calc(.46 + var(--lifeinbox-energy) * .44);
+  mix-blend-mode: screen;
+}
+
+.lifeInboxPaths {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  opacity: calc(.08 + var(--lifeinbox-explosion) * .72);
+  transition: opacity 600ms ease;
+}
+
+.lifeInboxBoundaryPath {
+  fill: none;
+  stroke: rgba(125, 222, 207, .23);
+  stroke-width: 1;
+  stroke-dasharray: 2 10;
+  vector-effect: non-scaling-stroke;
+  transition: d 900ms cubic-bezier(.2,.72,.2,1), stroke 280ms ease, stroke-width 280ms ease;
+}
+
+.lifeInboxBoundaryPath[data-active='true'] {
+  stroke: rgba(255, 207, 139, .82);
+  stroke-width: 1.8;
+  filter: drop-shadow(0 0 9px rgba(255, 182, 84, .42));
+}
+
+.lifeInboxReturnPath {
+  fill: none;
+  stroke: rgba(120, 241, 219, calc(var(--lifeinbox-return) * .92));
+  stroke-width: 1.5;
+  stroke-dasharray: 4 8;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 8px rgba(94, 239, 214, calc(var(--lifeinbox-return) * .5)));
+  transition: stroke 380ms ease;
+  animation: lifeInboxReturn 2.8s linear infinite;
+}
+
+.lifeInboxReturnNode {
+  fill: rgba(255, 218, 155, var(--lifeinbox-return));
+  filter: drop-shadow(0 0 10px rgba(255, 190, 96, var(--lifeinbox-return)));
+}
+
+.lifeInboxScene[data-capture-state='captured'] .experienceArtwork,
+.lifeInboxScene[data-capture-state='organized'] .experienceArtwork {
+  opacity: calc(.42 + var(--lifeinbox-settlement) * .12);
+}
+
+.lifeInboxScene[data-capture-state='captured'] .receiver::before,
+.lifeInboxScene[data-capture-state='organized'] .receiver::before {
+  border-color: rgba(255, 214, 159, calc(.18 + var(--lifeinbox-settlement) * .34));
+  box-shadow:
+    inset 0 0 5rem rgba(245, 189, 112, calc(.07 + var(--lifeinbox-settlement) * .08)),
+    0 0 6rem rgba(245, 189, 112, calc(.05 + var(--lifeinbox-settlement) * .13));
+}
+
+.lifeInboxScene[data-capture-state='organized'] .receiver::after {
+  border-color: rgba(101, 218, 206, calc(.18 + var(--lifeinbox-membrane) * .42));
+  box-shadow: 0 0 5rem rgba(68, 218, 196, calc(var(--lifeinbox-membrane) * .14));
+}
+
+.lifeInboxScene[data-depth-stage='understand'] .evidenceNotes {
+  background: linear-gradient(90deg, rgba(91, 221, 201, calc(var(--lifeinbox-evidence) * .055)), transparent);
+}
+
 .captureLayout {
   display: grid;
   grid-template-columns: minmax(15rem, 0.72fr) minmax(24rem, 1.28fr);
@@ -336,7 +469,7 @@
   border-radius: 46% 54% 43% 57% / 58% 44% 56% 42%;
   color: transparent;
   background: transparent;
-  transform: translate(-50%, -50%) rotate(var(--rotation));
+  transform: translate(-50%, -50%) rotate(var(--rotation)) scale(calc(.94 + var(--lifeinbox-explosion) * .06));
   cursor: pointer;
   transition: border-color 280ms ease, box-shadow 280ms ease, opacity 280ms ease;
 }
@@ -388,6 +521,102 @@
 .evidenceNotes a { color: color-mix(in srgb, var(--accent) 72%, white); font-size: 0.78rem; }
 
 /* Dreamlife */
+.dreamlifeScene {
+  --dreamlife-energy: .2;
+  --dreamlife-divergence: .6;
+  --dreamlife-refraction: .5;
+  --dreamlife-recombination: 0;
+  --dreamlife-evidence: 0;
+  --dreamlife-angle: 0deg;
+  --dreamlife-x: 50%;
+  --dreamlife-y: 50%;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at var(--dreamlife-x) var(--dreamlife-y), rgba(212, 240, 255, calc(.04 + var(--dreamlife-refraction) * .12)), transparent 15rem),
+    radial-gradient(ellipse at 68% 38%, rgba(172, 115, 255, calc(.08 + var(--dreamlife-divergence) * .14)), transparent 26rem),
+    radial-gradient(ellipse at 32% 65%, rgba(87, 218, 213, calc(.06 + var(--dreamlife-recombination) * .12)), transparent 24rem),
+    #070914;
+}
+
+.dreamlifeFragments,
+.dreamlifeLoopField {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dreamlifeFragment {
+  position: absolute;
+  inset: 0;
+  opacity: calc(.08 + var(--dreamlife-refraction) * .17);
+  mix-blend-mode: color-dodge;
+  transition: opacity 500ms ease, transform 900ms cubic-bezier(.2,.72,.2,1);
+}
+
+.dreamlifeFragment img {
+  object-fit: cover;
+  object-position: 64% center;
+  filter: saturate(1.08) contrast(1.05) brightness(.72);
+}
+
+.dreamlifeFragment[data-fragment='current'] {
+  mask-image: linear-gradient(124deg, black 2%, transparent 45%);
+  transform: translate3d(calc(var(--dreamlife-divergence) * -2.4%), calc(var(--dreamlife-divergence) * -.7%), 0) rotate(calc(var(--dreamlife-divergence) * -1.8deg));
+}
+
+.dreamlifeFragment[data-fragment='fallback'] {
+  mask-image: linear-gradient(238deg, black 3%, transparent 48%);
+  transform: translate3d(calc(var(--dreamlife-divergence) * 2.6%), calc(var(--dreamlife-divergence) * -.8%), 0) rotate(calc(var(--dreamlife-divergence) * 2deg));
+}
+
+.dreamlifeFragment[data-fragment='wild'] {
+  mask-image: linear-gradient(8deg, black 4%, transparent 52%);
+  transform: translate3d(calc(var(--dreamlife-divergence) * .8%), calc(var(--dreamlife-divergence) * 2.2%), 0) rotate(calc(var(--dreamlife-divergence) * 2.8deg));
+}
+
+.dreamlifeFragment[data-active='true'] {
+  opacity: calc(.18 + var(--dreamlife-refraction) * .3);
+  filter: drop-shadow(0 0 2.5rem rgba(184, 218, 255, .16));
+}
+
+.dreamlifeScene[data-depth-stage='enter'] .dreamlifeFragment,
+.dreamlifeScene[data-depth-stage='understand'] .dreamlifeFragment {
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  opacity: calc(.08 + var(--dreamlife-recombination) * .15);
+}
+
+.dreamlifeLoopField {
+  width: 100%;
+  height: 100%;
+  opacity: calc(.06 + var(--dreamlife-recombination) * .5);
+  transition: opacity 650ms ease;
+}
+
+.dreamlifeLoopField path {
+  fill: none;
+  stroke: rgba(163, 223, 241, .26);
+  stroke-width: 1;
+  stroke-dasharray: 3 12;
+  vector-effect: non-scaling-stroke;
+  transition: d 850ms cubic-bezier(.2,.72,.2,1), stroke 300ms ease;
+  animation: dreamlifeLoopTravel 5s linear infinite;
+}
+
+.dreamlifeLoopField path[data-active='true'] {
+  stroke: rgba(224, 202, 255, .72);
+  filter: drop-shadow(0 0 8px rgba(171, 122, 255, .4));
+}
+
+.dreamlifeLoopField circle {
+  fill: rgba(223, 242, 255, calc(.2 + var(--dreamlife-recombination) * .62));
+  filter: drop-shadow(0 0 12px rgba(161, 213, 255, .48));
+}
+
+.dreamlifeScene[data-depth-stage='understand'] .evidenceNotes {
+  background: linear-gradient(90deg, rgba(151, 213, 241, calc(var(--dreamlife-evidence) * .06)), transparent);
+}
+
 .futureField {
   display: grid;
   grid-template-columns: minmax(18rem, 0.72fr) minmax(26rem, 1.28fr);
@@ -407,12 +636,13 @@
   left: 50%;
   width: 9rem;
   aspect-ratio: 1;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(calc(45deg + var(--dreamlife-angle))) scale(calc(.92 + var(--dreamlife-refraction) * .12));
   border: 1px solid rgba(213, 242, 255, 0.45);
   border-radius: 42% 58% 47% 53%;
   background: linear-gradient(135deg, rgba(255,255,255,.5), rgba(92,160,255,.16) 44%, rgba(182,88,255,.2));
   box-shadow: inset 0 0 3rem rgba(255,255,255,.12), 0 0 6rem rgba(107,135,255,.2);
   backdrop-filter: blur(12px);
+  transition: transform 700ms cubic-bezier(.2,.72,.2,1), box-shadow 500ms ease;
 }
 
 .pathButton {
@@ -470,6 +700,51 @@
 .loopNode p { margin-top: 1rem; color: var(--muted); font-size: 0.82rem; line-height: 1.65; }
 
 /* Sudoku */
+.sudokuScene {
+  --sudoku-energy: .2;
+  --sudoku-visitor: .2;
+  --sudoku-computer: 0;
+  --sudoku-sync: 0;
+  --sudoku-boundary: 0;
+  --sudoku-evidence: 0;
+  --sudoku-row: 0;
+  --sudoku-column: 0;
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 142, 175, calc(var(--sudoku-visitor) * .04)), transparent 46%),
+    radial-gradient(circle at 68% 48%, rgba(87, 238, 215, calc(.05 + var(--sudoku-computer) * .09)), transparent 24rem),
+    #07100f;
+}
+
+.sudokuTraceField {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sudokuSyncPath {
+  fill: none;
+  stroke: rgba(103, 255, 223, calc(var(--sudoku-sync) * .78));
+  stroke-width: 1.4;
+  stroke-dasharray: 2 8;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 8px rgba(83, 255, 216, calc(var(--sudoku-sync) * .42)));
+  transition: d 500ms ease, stroke 300ms ease;
+  animation: sudokuSyncTravel 2.4s linear infinite;
+}
+
+.sudokuBoundaryPath {
+  fill: none;
+  stroke: rgba(210, 255, 246, calc(var(--sudoku-boundary) * .25));
+  stroke-width: 1;
+  stroke-dasharray: 1 13;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 500ms ease;
+}
+
 .sudokuLayout {
   display: grid;
   grid-template-columns: minmax(18rem, 0.7fr) minmax(24rem, 1fr);
@@ -477,9 +752,23 @@
   align-items: center;
 }
 
-.boardInstrument { position: relative; width: min(34rem, 100%); margin-inline: auto; }
+.boardInstrument { position: relative; z-index: 2; width: min(34rem, 100%); margin-inline: auto; }
 .boardInstrument::before { content: ''; position: absolute; inset: -1rem; border: 1px solid rgba(126, 241, 222, 0.15); transform: rotate(2deg); }
-.board { position: relative; display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid rgba(216,255,242,.65); background: rgba(216,255,242,.1); box-shadow: 0 0 5rem rgba(88,228,206,.12); }
+.board { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid rgba(216,255,242,.65); background: rgba(216,255,242,.1); box-shadow: 0 0 5rem rgba(88,228,206,calc(.08 + var(--sudoku-sync) * .1)); }
+
+.sudokuSelectionPlane {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--sudoku-row) * 11.111%);
+  left: calc(var(--sudoku-column) * 11.111%);
+  width: 11.111%;
+  aspect-ratio: 1;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, calc(.42 + var(--sudoku-energy) * .36));
+  background: radial-gradient(circle, rgba(255,255,255,.14), transparent 70%);
+  box-shadow: 0 0 1.4rem rgba(255,255,255,.12);
+  transition: top 240ms ease, left 240ms ease;
+}
 
 .cell {
   display: grid;
@@ -495,8 +784,8 @@
 .cell:nth-child(3n) { border-right-color: rgba(216,255,242,.48); }
 .cell:nth-child(n+19):nth-child(-n+27), .cell:nth-child(n+46):nth-child(-n+54) { border-bottom-color: rgba(216,255,242,.48); }
 .cell[data-given='true'] { color: rgba(255,255,255,.42); }
-.cell[data-owner='visitor'] { color: #ffb6c8; text-shadow: 0 0 1rem rgba(255,137,169,.6); }
-.cell[data-owner='computer'] { color: #8fffe7; text-shadow: 0 0 1rem rgba(86,255,218,.7); }
+.cell[data-owner='visitor'] { color: #ffb6c8; background: rgba(255, 120, 157, calc(.04 + var(--sudoku-visitor) * .12)); text-shadow: 0 0 1rem rgba(255,137,169,.6); }
+.cell[data-owner='computer'] { color: #8fffe7; background: rgba(77, 244, 210, calc(.04 + var(--sudoku-computer) * .12)); text-shadow: 0 0 1rem rgba(86,255,218,.7); }
 .cell[data-selected='true'] { outline: 1px solid white; outline-offset: -3px; background: rgba(255,255,255,.08); }
 
 .presenceLine { display: flex; justify-content: space-between; margin-top: 0.8rem; color: rgba(255,255,255,.42); font-size: 0.68rem; letter-spacing: .08em; }
@@ -513,6 +802,10 @@
 .traceRow strong { color: var(--accent); font-size: .78rem; }
 .traceRow span { color: var(--muted); font-size: .8rem; line-height: 1.6; }
 
+.sudokuScene[data-depth-stage='understand'] .architectureTrace {
+  background: linear-gradient(90deg, rgba(88, 228, 206, calc(var(--sudoku-evidence) * .05)), transparent);
+}
+
 @keyframes specimenSettle {
   from { opacity: 0; transform: scale(1.45) rotate(8deg); filter: blur(10px); }
 }
@@ -523,6 +816,18 @@
 
 @keyframes orbitOpen {
   from { opacity: 0; transform: scale(.65) rotate(-12deg); }
+}
+
+@keyframes lifeInboxReturn {
+  to { stroke-dashoffset: -48; }
+}
+
+@keyframes dreamlifeLoopTravel {
+  to { stroke-dashoffset: -60; }
+}
+
+@keyframes sudokuSyncTravel {
+  to { stroke-dashoffset: -40; }
 }
 
 @media (max-width: 850px) {
@@ -537,10 +842,43 @@
   .shells { transform: scale(.78); margin: -3rem; }
   .loopDiagram { grid-template-columns: 1fr; gap: 0; }
   .loopNode::after { display: none; }
+  .lifeInboxMaterialField { display: none; }
+  .lifeInboxPaths { opacity: calc(.06 + var(--lifeinbox-explosion) * .42); }
+  .dreamlifeFragments { opacity: .5; }
+  .sudokuTraceField { opacity: .52; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .specimen,
   .orbit,
-  .experienceArtwork img { animation: none; }
+  .experienceArtwork img,
+  .lifeInboxReturnPath,
+  .dreamlifeLoopField path,
+  .sudokuSyncPath { animation: none; }
+
+  .lifeInboxArtworkEcho { transform: none; }
+}
+
+.lifeInboxScene[data-reduced-motion='true'] .lifeInboxReturnPath,
+.lifeInboxScene[data-scene-settled='true'] .lifeInboxReturnPath,
+.lifeInboxScene[data-reduced-motion='true'] .experienceArtwork img,
+.lifeInboxScene[data-scene-settled='true'] .experienceArtwork img {
+  animation: none;
+}
+
+.lifeInboxScene[data-reduced-motion='true'] .lifeInboxArtworkEcho,
+.lifeInboxScene[data-scene-settled='true'] .lifeInboxArtworkEcho {
+  transform: none;
+}
+
+.dreamlifeScene[data-reduced-motion='true'] .dreamlifeLoopField path,
+.dreamlifeScene[data-scene-settled='true'] .dreamlifeLoopField path,
+.sudokuScene[data-reduced-motion='true'] .sudokuSyncPath,
+.sudokuScene[data-scene-settled='true'] .sudokuSyncPath {
+  animation: none;
+}
+
+.dreamlifeScene[data-reduced-motion='true'] .dreamlifeFragment,
+.dreamlifeScene[data-scene-settled='true'] .dreamlifeFragment {
+  transform: none;
 }

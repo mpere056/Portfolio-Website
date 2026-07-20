@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -283,6 +283,30 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 - Three flagship exhibits are complete.
 - Shared museum infrastructure does not erase their distinct product behavior.
 - Smaller projects have a coherent lighter presentation.
+
+### Phase 4E: Dynamic Scene Composition Follow-On
+
+The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
+
+Current checkpoint: `ART-07` through `ART-11` are implemented as local candidates. Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading each use an appropriate graph-, product-, context-, threshold-, event-, or scroll-driven scene with stable fallback. The typed coherence matrix and lifecycle corrections pass alongside 47 files/188 tests, content, type, lint, build, and bounded browser review. Production remains at `806841d`; sustained observation, deployment, and Mark acceptance remain separate from the locally complete Phase 4 implementation.
+
+Execution order:
+
+1. `ART-07` defines the bounded scene-driver/lifecycle contract and proves one Museum scene packet, layer pack, and causal interaction.
+2. `ART-08` integrates LifeInbox product state with route-specific material transformation.
+3. `ART-09` implements Dreamlife and Sudoku separately from their own packets, one active route at a time.
+4. `ART-10` translates the model to Home, About, AI, and reading without forcing Museum behavior onto supporting routes.
+5. `ART-11` matures renderer loading, calm/fallback behavior, temporal restraint, route distinction, and Production evidence.
+
+The rendering medium is selected inside each route packet. DOM, SVG, masks, Canvas, WebGL, shaders, and existing 3D are available tools, not portfolio-wide requirements. The detailed model and resumable route ledger live in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+
+Exit criteria:
+
+- Representative routes use independently addressable layers with named interaction or semantic causes.
+- Approved static compositions remain strong stable frames and fallbacks.
+- Shared code owns drivers and lifecycle only; route modules retain composition, material response, and choreography.
+- Standard, lower-stimulation, reduced-motion, renderer-failure, and hidden-tab paths pass route-specific QA.
+- Expansion beyond the Museum proof occurs only after its packet, runtime, performance, and Mark review establish a known-good pattern.
 
 ## Phase 5: About Depth
 

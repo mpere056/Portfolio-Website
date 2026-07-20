@@ -1,0 +1,297 @@
+# Dynamic Scene Composition And Layered Materials
+
+Last updated: 2026-07-19
+
+## Plan Metadata
+
+| Field | Value |
+| --- | --- |
+| Plan ID | `DYN` |
+| Status | Active follow-on to the implemented static material foundation |
+| Upstream | Art direction, aesthetic integration, experience foundation, route owners, reviewed graph and lifecycle state |
+| Downstream | Route scene packets, layered material production, runtime implementation, QA, and release evidence |
+| Primary output | Distinct route-owned environments whose materials respond meaningfully to visitors and semantic state |
+| Execution packages | `ART-07` through `ART-11` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-007` through `CAP-ART-012` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+
+## Purpose
+
+Move the Impossible Observatory from strong still compositions toward responsive environments without replacing authored composition with generic motion.
+
+The production WebP artwork remains valid as keyframe evidence, stable settled frames, loading posters, lower-capability fallbacks, and source material. The next limitation is that most route art currently moves as one flattened plane while meaningful interaction state lives elsewhere. Increasing parallax or adding particles around that plane would animate the frame more than the world.
+
+The target is a **dynamic scene model**:
+
+- Each route owns a composition, material vocabulary, dominant gesture, and causal response.
+- Static studies are decomposed or supplemented into authored layers with specific jobs.
+- DOM, SVG, masks, Canvas, WebGL, shaders, and existing 3D are selected per scene rather than imposed globally.
+- Shared runtime code supplies bounded inputs, lifecycle, stimulation, performance, and stable fallback behavior.
+- Motion reveals product truth, relationship, memory, or depth instead of decorating empty space.
+
+This plan intentionally does not prescribe the final implementation of every route. Each route receives a focused dynamic scene packet immediately before its implementation package begins.
+
+## Current Foundation And Named Gap
+
+What already works:
+
+- `ART-01` and `ART-03` through `ART-06` created original material studies, selected route compositions, optimized production assets, a typed registry, project-specific silhouettes, and related supporting-route dialects.
+- Depth, selection, graph relationships, discovery, tour, AI context, stimulation, reduced motion, and persistence already provide meaningful state.
+- Semantic HTML, calm behavior, direct routes, subdomain handoff, and stable screenshots already protect the core experience.
+
+What remains:
+
+- Most artwork is a single flattened WebP with autonomous scale or drift.
+- Existing environmental response is concentrated in an instrument rather than embodied by the route environment.
+- Route materials cannot yet refract, separate, accumulate, settle, reveal, or transform independently in response to meaningful state.
+- No canonical scene packet records layer inventory, drivers, renderer choice, choreography, budgets, and fallbacks together.
+
+The earlier material sequence is therefore an implemented **static material foundation**, not failed work. `ART-07` through `ART-11` are the dynamic composition follow-on.
+
+## Dynamic Scene Model
+
+A route scene is an authored composition with independently addressable layers and a bounded set of meaningful drivers.
+
+### Layer Classes
+
+| Layer class | Responsibility | Typical media | Motion rule |
+| --- | --- | --- | --- |
+| Stable matte | Establish silhouette, value structure, and guaranteed settled frame | Optimized raster, gradient, paper or field texture | Usually still; may receive subtle global light only |
+| Ambient field | Give the world atmosphere and temporal life | CSS fields, Canvas particles, shader noise, restrained video texture | Autonomous but low-amplitude, pausable, and stimulation-aware |
+| Responsive material | React to proximity, pointer velocity, focus, scroll, or selection | Transparent raster plates, SVG membranes, masks, displacement fields | Must have a named input and return-to-rest behavior |
+| Stateful material | Express depth, lifecycle, discovery, project state, or AI activity | DOM/SVG state diagrams, Canvas traces, shader uniforms | Changes only from validated semantic state |
+| Interactive instrument | Receive direct manipulation and reveal the project metaphor | Semantic DOM, SVG handles, Canvas or 3D object | Owns explicit affordance, keyboard path, and deterministic state |
+| Evidence trace | Turn behavior into explanation, source, or relationship | SVG paths, notation, text, graph adapter output | Appears only when evidence or a reviewed edge is relevant |
+| Utility layer | Navigation, tour, AI, stimulation, recovery | Semantic DOM | Remains legible, quiet, and outside decorative hit testing |
+
+Layers may move together for a meaningful scene transition, but independent addressability is the default. A single transform applied to the whole composition does not constitute a dynamic scene.
+
+### Causal Contract
+
+Every non-trivial response records:
+
+1. **Trigger:** the visitor or semantic event that caused it.
+2. **Affected layers:** the exact material or instrument regions that respond.
+3. **Meaning:** what the response communicates or makes inspectable.
+4. **Temporal shape:** anticipation, response, and settlement.
+5. **Calm behavior:** what remains under lower stimulation or reduced motion.
+6. **Stable frame:** the intentional state used for screenshots, restore, and fallback.
+
+If a response cannot name its cause and meaning, it is ambient decoration and must remain subordinate or be removed.
+
+## Authored Layer Material Packs
+
+Generate additional static assets as production ingredients, not finished pages. A route pack may contain:
+
+- A background matte with deliberate empty space for semantic content.
+- Transparent foreground, midground, and focal-object plates.
+- Alpha, luminance, reveal, occlusion, or clipping masks.
+- Displacement, normal, roughness, caustic, and refraction maps where a shader needs them.
+- Seamless texture fields for paper, nacre, lacquer, graphite, liquid, or interference.
+- SVG diagrams, contour lines, filaments, borders, notation, and mask geometry.
+- Particle sprites, dust, droplets, spectral grains, or small specimen fragments.
+- Close-detail plates that can be revealed at deeper stages.
+- A flattened approved still used as the visual checksum and fallback.
+
+Do not mechanically slice a finished image into arbitrary depth strips. Every layer needs a compositional or semantic role, clean edges at intended scale, and a known interaction driver or stable purpose.
+
+### Material Manifest
+
+Each authored asset records:
+
+| Field | Purpose |
+| --- | --- |
+| Route and scene scope | Prevent an asset from becoming an unexplained global decoration |
+| Layer class and material role | State whether it emits, transmits, conceals, records, refracts, or anchors |
+| Source and provenance | Preserve original study lineage and permitted use |
+| Dimensions, alpha, and color space | Avoid runtime surprises and halo artifacts |
+| Intended renderer and blend behavior | Connect production to the actual scene technique |
+| Intended driver | Name pointer, depth, state, relationship, AI, or ambient use |
+| Calm and fallback use | Define whether it freezes, simplifies, or disappears |
+| Performance tier | State resolution, compression, preload, and DPR constraints |
+
+Full-resolution working material belongs with design evidence; optimized derivatives belong in the production asset registry.
+
+## Driver And Input Model
+
+Shared scene inputs may expose:
+
+- Pointer position, velocity, proximity, and coarse input capability.
+- Hover, focus, press, drag, and bounded manipulation state.
+- Scroll progress and section visibility.
+- Current destination, selected object, depth stage, and transition reason.
+- Reviewed relationship selection and bounded semantic-light data.
+- Project lifecycle, evidence selection, and meaningful update state.
+- AI dormant/active state and validated destination-card intent.
+- Local discoveries, altered objects, and returning checkpoint state.
+- Stimulation, reduced motion, sound preference, viewport, visibility, and capability tier.
+
+Shared code normalizes these inputs and provides lifecycle-safe subscriptions. It does not decide which layer should move, what a movement means, or how a project looks. The owning route maps inputs through a local scene reducer or equally testable scene-state model.
+
+Do not persist raw pointer coordinates, camera matrices, WebGL objects, timelines, or frame-by-frame values. Persist semantic state and reconstruct a composed scene.
+
+## Rendering Decision Ladder
+
+Select the least complex medium that can faithfully produce the accepted scene behavior.
+
+| Medium | Prefer for | Avoid when |
+| --- | --- | --- |
+| DOM and CSS | Semantic controls, type, layout, compositing, transforms, simple depth and masks | Per-pixel simulation or thousands of moving elements |
+| SVG | Diagrams, paths, clipping, filters, topology, precise hit areas, evidence traces | Dense full-screen particles or expensive filter stacks |
+| CSS masks and blend modes | Reveals, cutouts, interference, light transmission, low-cost refraction approximations | Browser support or contrast becomes unreliable |
+| Canvas 2D | Particles, trails, fluid-like accumulation, painterly disturbance, many lightweight marks | Semantic controls or complex 3D occlusion |
+| WebGL and shaders | Fluid refraction, distortion, caustics, volumetric particles, feedback fields, GPU compositing | The same effect is credible with CSS/SVG or cannot degrade gracefully |
+| React Three Fiber | True spatial objects, cameras, depth, lighting, or existing 3D instruments | A flat composition is being made 3D only for novelty |
+
+Constraints:
+
+- A route should normally have at most one dominant continuous Canvas/WebGL surface.
+- Heavy renderers load behind route or visibility boundaries and pause when hidden.
+- Device-pixel ratio, particle count, simulation steps, and post-processing are capability-tiered.
+- Shader failure, context loss, disabled JavaScript, or asset failure leaves semantic content and an intentional static composition.
+- Do not create a universal `DynamicBackground`, generic shader carousel, or declarative scene JSON that makes routes interchangeable.
+
+## Route Ownership And Dynamic Scene Packets
+
+Each route or durable route class owns its scene composition. Shared runtime owns only normalized drivers, lifecycle, stimulation, stable-frame signaling, and capability/failure boundaries.
+
+Before route implementation, extend its existing art packet with a **dynamic scene packet**:
+
+| Packet section | Required content |
+| --- | --- |
+| Scene thesis | What should feel alive here and why |
+| Still checksum | The approved composition when all movement is paused |
+| Layer inventory | Named layers, media, depth order, material role, and ownership |
+| Driver matrix | Inputs, affected layers, meaning, and return-to-rest behavior |
+| Dominant gesture | The one manipulation or transition organizing the scene |
+| Choreography | Anticipation, response, settlement, and deep-state transformation |
+| Renderer decision | Why DOM, SVG, Canvas, WebGL, 3D, or a hybrid is necessary |
+| Semantic adapters | Reviewed graph, lifecycle, evidence, AI, discovery, or depth inputs |
+| Calm matrix | Standard, lower stimulation, reduced motion, sound-off, and hidden-tab behavior |
+| Failure composition | Poster, semantic DOM, renderer error, and context-loss behavior |
+| Performance envelope | Asset, hydration, DPR, frame, memory, and visibility budgets |
+| Test and capture matrix | Reducer fixtures, interactions, stable frames, and route-specific visual checks |
+| Resume state | Known-good artifact, named gaps, and one exact next action |
+
+The packet is specific enough to direct one route and deliberately too specific to become a global template.
+
+## Integration With Exploration, Graph, And AI
+
+- Move proven proximity, focus, drag, semantic-edge, and stimulation behavior from isolated instruments into owning environments where it improves meaning.
+- Use only reviewed graph relationships. A relationship may become a sight line, pressure, refraction, notation, or no visual treatment; never render every edge.
+- Let AI destination cards act as doors: the current scene may gather, open, refract, or reveal toward a validated destination before navigation.
+- Let depth stages change material rules, scale, occlusion, and evidence visibility rather than simply append sections.
+- Restore returning visitors to a stable semantic scene; previously altered objects may retain their meaningful state without replaying an intro.
+- Preserve hidden discoveries outside tour data. A dynamic effect is not a discovery until it reveals meaningful authored content.
+
+## Calm, Reduced Motion, And Failure
+
+The still composition is a first-class design state, not a degraded afterthought.
+
+- Reduced motion removes autonomous drift, continuous parallax, and simulated inertia while retaining immediate discrete state changes that communicate cause.
+- Lower stimulation decreases layer count, amplitude, frequency, refraction, particle density, and sound without hiding meaning.
+- Sound remains optional and never unlocks required visual or navigation state.
+- Hidden tabs and offscreen scenes pause continuous work and settle safely on return.
+- Semantic DOM remains above or parallel to decorative renderers and does not depend on canvas hit testing for core navigation.
+- Static posters use the same focal hierarchy, crop, and material identity as the dynamic scene.
+
+## Testing And Acceptance
+
+### Deterministic Logic
+
+- Scene reducer or state model maps each supported driver to bounded scene state.
+- Invalid destination, relationship, or persisted state fails to the stable frame.
+- Reduced-motion and lower-stimulation policies are deterministic.
+- Pause, resume, reset, and renderer-failure transitions do not lose semantic state.
+
+### Browser And Interaction
+
+- Pointer, trackpad, keyboard focus, drag where relevant, scroll, Back, refresh, and restore.
+- AI-card transition, selected relationship, depth change, and return checkpoint where relevant.
+- Hidden-tab pause/resume, resize, device-pixel-ratio cap, cold load, and renderer context loss.
+- No decorative layer intercepts core controls or creates an invisible focus trap.
+
+### Dynamic Creative Diagnostics
+
+- **Cause test:** a reviewer can name why important motion occurred.
+- **Layer independence test:** at least two meaningful layers can respond without moving the entire poster.
+- **Settlement test:** every interaction returns to an authored inspectable state.
+- **Still checksum test:** pausing all continuous motion leaves a strong composition.
+- **Depth transformation test:** deeper stages change material or perceptual rules.
+- **Semantic test:** stateful effects correspond to reviewed content, relationship, or visitor action.
+- **Restraint test:** removing one effect improves or harms a named purpose rather than merely changing spectacle.
+- **Route swap test:** moving the dynamic behavior to another route would break its metaphor.
+- **Failure test:** disabling Canvas/WebGL retains identity, meaning, and navigation.
+
+Automated screenshot stability and frame measurements cannot grant creative acceptance. Mark reviews representative standard and calm captures plus the actual interaction.
+
+## Performance Envelope
+
+Each packet sets route-specific budgets, but all scenes follow these defaults until measurement justifies an exception:
+
+- Load the stable matte and semantic content before continuous effects.
+- Lazy-load non-critical material plates and renderers near visibility.
+- Cap DPR and simulation density rather than relying on device maximums.
+- Stop animation loops when offscreen, hidden, reduced, or settled.
+- Avoid multiple independent requestAnimationFrame loops; one route scheduler coordinates continuous render work.
+- Prefer transform/opacity for DOM movement and measure SVG filters before broad use.
+- Record asset weight, first useful frame, main-thread cost, steady-state frame behavior, and memory/context-loss observations in QA evidence.
+
+## Partial-Work Tracking
+
+Each route has one Dynamic Scene Ledger row with these fields:
+
+| Field | Allowed values or content |
+| --- | --- |
+| Packet state | `planned`, `drafted`, `reviewed` |
+| Layer pack state | `missing`, `producing`, `material-ready`, `integrated` |
+| Runtime state | `not-started`, `driver-ready`, `integrating`, `runtime-ready` |
+| Drivers wired | Named drivers only, never a percentage |
+| Calm/fallback | Named implemented states and named gaps |
+| Verification | Tests, captures, Preview, Production, and Mark review separately |
+| Known-good point | Commit, artifact, route, or reproducible local state |
+| Next exact action | One observable implementation or review action |
+
+Do not label a route dynamic because its matte drifts, and do not label the route incomplete merely because later optional effects remain. Track the accepted packet contract and name every gap.
+
+## Delivery Sequence
+
+### `ART-07`: Scene Contracts And Museum Proof
+
+- Define the bounded driver/lifecycle contract and dynamic scene packet format.
+- Produce one Museum layer material pack from the selected composition.
+- Implement one representative Museum response that joins selection, proximity, reviewed relationships, and settlement.
+- Prove stable still, calm, semantic fallback, and performance behavior before extracting shared code.
+
+### `ART-08`: LifeInbox Dynamic Material Transformation
+
+- Author a LifeInbox-specific layer pack and scene packet around capture, local settlement, boundary crossing, and reminder return.
+- Integrate existing product interaction state with material transformation rather than placing effects beside it.
+- Preserve deterministic synthetic data, evidence, direct routes, and calm behavior.
+
+### `ART-09`: Remaining Flagship Dynamic Compositions
+
+- Develop Dreamlife and Sudoku one at a time from route-specific packets.
+- Give Dreamlife refractive divergence/recombination and Sudoku precise shared-presence traces without copying Museum or LifeInbox behavior.
+- Reuse only driver and lifecycle contracts proven genuinely shared.
+
+### `ART-10`: Supporting-Route Dynamic Compositions
+
+- Translate the model separately for Home, About, AI, and reading surfaces.
+- Keep reading mostly still; use dynamics for threshold, inspected event, contextual door, or meaningful disturbance rather than ambient spectacle.
+- Preserve mobile as an independently designed later experience.
+
+### `ART-11`: Dynamic Scene Maturation
+
+- Review route distinction, repeated effects, temporal fatigue, renderer loading, context loss, calm states, and cross-route transitions.
+- Consolidate only proven shared infrastructure and remove ornamental effects that lack causal value.
+- Capture the representative dynamic route matrix and collect Production and Mark acceptance.
+
+## Completion Criteria
+
+- Major route classes use route-owned layered scenes rather than one moving raster plane.
+- At least one meaningful route response is driven by visitor action and one by reviewed semantic state.
+- Every dynamic route has a reviewed packet, material manifest, stable frame, calm policy, failure composition, and restart-ready ledger state.
+- Shared runtime normalizes drivers and lifecycle without owning project composition.
+- DOM, SVG, Canvas, WebGL, shaders, and 3D are selected by demonstrated need and degrade safely.
+- Continuous effects pause correctly and remain inside measured performance envelopes.
+- Mark accepts the representative dynamic interactions as an authored extension of the Impossible Observatory.

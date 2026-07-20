@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import { useExplorationWorld } from '@/components/experience/ExplorationWorldProvider';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
+import { createStimulationProfile } from '@/lib/experience/environment';
+import { getDreamlifeLoopPath, getDreamlifeSceneFrame } from '@/lib/museum/dreamlifeScene';
 import type { DepthStage } from '@/lib/portfolioContracts';
 import styles from './FlagshipExperiences.module.css';
 
@@ -30,7 +32,32 @@ export default function DreamlifeExperience({
 }) {
   const [path, setPath] = useState<(typeof PATHS)[number]['id']>('wild');
   const [reaction, setReaction] = useState('pull');
-  const { store } = useExplorationWorld();
+  const [visible, setVisible] = useState(true);
+  const experienceRef = useRef<HTMLElement>(null);
+  const { store, state: world } = useExplorationWorld();
+
+  const stimulation = createStimulationProfile(world.stimulation.normalizedValue, {
+    reducedMotionRequested: world.stimulation.reducedMotionRequested,
+    soundEnabled: world.stimulation.soundEnabled,
+  });
+  const scene = getDreamlifeSceneFrame({
+    path,
+    reaction: reaction as 'resist' | 'curious' | 'pull',
+    stage,
+    stimulation: stimulation.normalizedValue,
+    reducedMotion: world.stimulation.reducedMotionRequested,
+    visible,
+  });
+  const sceneStyle = {
+    '--dreamlife-energy': scene.energy,
+    '--dreamlife-divergence': scene.divergence,
+    '--dreamlife-refraction': scene.refraction,
+    '--dreamlife-recombination': scene.recombination,
+    '--dreamlife-evidence': scene.evidenceStrength,
+    '--dreamlife-angle': `${scene.selectedAngle}deg`,
+    '--dreamlife-x': `${scene.selectedX * 100}%`,
+    '--dreamlife-y': `${scene.selectedY * 100}%`,
+  } as CSSProperties;
 
   useEffect(() => {
     store.getState().applyDepthTransition('project:dreamlife', {
@@ -40,13 +67,42 @@ export default function DreamlifeExperience({
     });
   }, [stage, store]);
 
+  useEffect(() => {
+    const element = experienceRef.current;
+    if (!element || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(entries => setVisible(entries[0]?.isIntersecting ?? false), { rootMargin: '160px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   const selected = PATHS.find(item => item.id === path) ?? PATHS[2];
 
   return (
-    <section aria-label="Dreamlife depth experience" className={`${styles.experience} ${styles.dreamlife}`}>
-      <div className={styles.experienceArtwork} aria-hidden="true">
+    <section
+      ref={experienceRef}
+      aria-label="Dreamlife depth experience"
+      className={`${styles.experience} ${styles.dreamlife} ${styles.dreamlifeScene}`}
+      data-path={path}
+      data-reaction={reaction}
+      data-depth-stage={stage}
+      data-scene-settled={scene.settled}
+      data-reduced-motion={world.stimulation.reducedMotionRequested}
+      style={sceneStyle}
+    >
+      <div className={styles.experienceArtwork} aria-hidden="true" data-layer="dreamlife:matte">
         <Image src={ART_DIRECTION_ASSETS.dreamlife.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
       </div>
+      <div className={styles.dreamlifeFragments} aria-hidden="true">
+        {(['current', 'fallback', 'wild'] as const).map(fragment => (
+          <div key={fragment} className={styles.dreamlifeFragment} data-fragment={fragment} data-active={path === fragment} data-layer={`dreamlife:${fragment}`}>
+            <Image src={ART_DIRECTION_ASSETS.dreamlife.src} alt="" fill sizes="(max-width: 900px) 100vw, 1200px" />
+          </div>
+        ))}
+      </div>
+      <svg className={styles.dreamlifeLoopField} viewBox="0 0 1020 600" aria-hidden="true" data-layer="dreamlife:loop">
+        {[0, 1, 2].map(index => <path key={index} d={getDreamlifeLoopPath(index, scene.recombination)} data-active={index === PATHS.findIndex(item => item.id === path)} />)}
+        <circle cx="510" cy="300" r="8" />
+      </svg>
       <div className={styles.rail}>
         <div className={styles.depthMarks} aria-label="Exhibit depth">
           {(['handle', 'enter', 'understand'] as const).map(item => <span key={item} data-active={stage === item}>{item}</span>)}
@@ -65,7 +121,7 @@ export default function DreamlifeExperience({
             </div>
             <div className={styles.actions}><button type="button" className={styles.primaryAction} onClick={() => onStageChange('enter')}>Prototype this signal</button></div>
           </div>
-          <div className={styles.prism} aria-label="Dreamlife future prism">
+          <div className={styles.prism} aria-label="Dreamlife future prism" data-layer="dreamlife:reaction">
             <div className={styles.prismCore} aria-hidden="true" />
             {PATHS.map(item => (
               <button key={item.id} type="button" className={styles.pathButton} data-active={path === item.id} onClick={() => setPath(item.id)}>
@@ -97,7 +153,7 @@ export default function DreamlifeExperience({
           <div className={styles.loopDiagram}>
             {LOOP.map(item => <div key={item.label} className={styles.loopNode}><strong>{item.label}</strong><p>{item.detail}</p></div>)}
           </div>
-          <div className={styles.evidenceNotes}>
+          <div className={styles.evidenceNotes} data-layer="dreamlife:evidence">
             <p className={styles.intro}>The prototype combined parallel future stories, daily reflection, highlighted signal, and conversational edits. Its product clarity was strong enough to lead to a six-figure build offer.</p>
             <a href="https://github.com/dreamlife-app/dreamlife-mobile">Source repository / mobile product implementation</a>
             <a href="https://dreamlife.marknperera.ca/blog/building-a-life-design-loop">Build note / the life-design loop</a>

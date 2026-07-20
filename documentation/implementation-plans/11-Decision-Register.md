@@ -1,6 +1,6 @@
 # Decision Register
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -45,6 +45,7 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-19 | Extend the accepted static material system into route-owned layered dynamic scenes | Confirmed from Mark's dynamic-aesthetic feedback | Existing WebP compositions remain valid keyframes, posters, stable frames, and fallbacks. New route packets may combine authored raster layers, SVG, masks, DOM, Canvas, WebGL, shaders, particles, refraction, and existing 3D according to demonstrated need. Shared code owns bounded drivers/lifecycle, not one universal scene or background. `ART-07` proves the Museum model before route-by-route expansion | [Dynamic Scene Composition](20-Dynamic-Scene-Composition-And-Layered-Materials.md) |
 | 2026-07-18 | Select the Impossible Observatory of Living Instruments as the portfolio art direction and reopen the first-slice creative gate without discarding valid functional evidence | Confirmed | The Observatory defines space and abstract phenomena; instruments provide precision and causality; human artifacts provide warmth. `ART-01` selects packets, `ART-02` builds only proven runtime roles, and `ART-03` remediates the first slice before later route/project translations; `QA-02` retains all valid non-aesthetic evidence | [Selection Decision](2026-07-18-Impossible-Observatory-Selection-Decision.md) |
 | 2026-07-18 | Reopen visual production and require all-nine-reference route coverage before another broad styling pass | Confirmed from Mark's Production review | The selected direction remains; the deployed candidate failed creative coverage. Six original material studies, a labeled `R1`-`R9` contact sheet, real selected/rejected keyframes, and complete packets now precede `ART-03` and `ART-04` replacement implementation. Functional Phase 4 evidence remains valid | [Visual Reference Coverage](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md) |
 | 2026-07-18 | Promote the accepted exploration shell, museum, global AI, and LifeInbox depth together with independent rollback flags | Approved for execution | The visitor-facing site will stop serving the dormant legacy presentation; unimplemented project/prototype flags remain off | [Phase 3 Production Promotion Decision](2026-07-18-Phase-3-Production-Promotion-Decision.md) |

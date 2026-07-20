@@ -2,9 +2,11 @@
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Component, type CSSProperties, type ErrorInfo, type ReactNode } from 'react';
 import { usePortfolioAI } from './PortfolioAIProvider';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
+import { getAISceneFrame } from '@/lib/artDirection/aiScene';
+import supportingStyles from '@/components/SupportingScenes.module.css';
 
 const GlobalAIConversation = dynamic(() => import('./GlobalAIConversation'), {
   ssr: false,
@@ -53,6 +55,11 @@ function QuietMark({ activity }: { activity: string }) {
 
 export default function GlobalAIPresence() {
   const ai = usePortfolioAI();
+  const sceneFrame = getAISceneFrame({
+    open: ai.shell.open,
+    activity: ai.presentation.activity,
+    contextAvailable: ai.shell.contextAvailable,
+  });
   if (!ai.enabled || ai.context.route === '/chat') return null;
   if (!ai.shell.open && ai.context.route === '/') return null;
 
@@ -79,11 +86,25 @@ export default function GlobalAIPresence() {
   return (
     <aside
       aria-label="Portfolio AI archive"
+      data-ai-activity={ai.presentation.activity}
+      data-ai-context={ai.shell.contextAvailable ? 'available' : 'quiet'}
+      data-ai-layers="quiet-mark archive-vellum context-aperture response-signal conversation-surface"
+      style={{
+        '--ai-aperture': sceneFrame.aperture,
+        '--ai-signal': sceneFrame.signal,
+        '--ai-context': sceneFrame.context,
+      } as CSSProperties}
       className="fixed inset-y-3 right-3 z-[70] isolate flex w-[min(460px,calc(100vw-24px))] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#080a0f]/95 text-white shadow-[0_30px_120px_rgba(0,0,0,0.72)] backdrop-blur-2xl sm:inset-y-4 sm:right-4"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[45%] opacity-20 mix-blend-screen [mask-image:linear-gradient(to_bottom,black,transparent)]">
+      <div aria-hidden="true" className={supportingStyles.aiMaterial}>
         <Image src={ART_DIRECTION_ASSETS.about.src} alt="" fill sizes="460px" className="object-cover object-[55%_45%] saturate-75 contrast-125 brightness-75" />
       </div>
+      <div aria-hidden="true" className={supportingStyles.aiAperture} />
+      <svg aria-hidden="true" className={supportingStyles.aiSignal} viewBox="0 0 220 220" fill="none">
+        <circle cx="110" cy="110" r="72" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 11" />
+        <circle cx="110" cy="110" r="48" stroke="currentColor" strokeWidth="0.55" />
+        <path d="M18 146C61 92 78 155 111 110C145 64 165 127 202 70" stroke="currentColor" strokeWidth="0.9" />
+      </svg>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_65%_12%,rgba(136,209,255,.09),transparent_38%),linear-gradient(to_bottom,rgba(8,10,15,.35),rgba(8,10,15,.96)_38%)]" />
       <header className="relative z-10 flex items-center gap-3 border-b border-white/8 px-4 py-3">
         <QuietMark activity={ai.presentation.activity} />

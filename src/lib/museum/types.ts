@@ -6,6 +6,7 @@ import type {
   DiscoveryId,
   ExperienceId,
   NodeId,
+  RelationshipId,
 } from '../portfolioContracts';
 import type { ReviewedProjectState } from '../content/projectStates';
 
@@ -75,6 +76,15 @@ export interface ExhibitEntryResolution {
 
 export type MuseumExhibitStatus = 'registered' | 'fallback';
 
+export interface MuseumSemanticConnection {
+  relationshipId: RelationshipId;
+  nodeId: NodeId;
+  title: string;
+  explanation: string;
+  href: string;
+  strength: 'primary' | 'secondary';
+}
+
 export interface MuseumExhibitView {
   projectId: ProjectNodeId;
   slug: string;
@@ -91,6 +101,7 @@ export interface MuseumExhibitView {
   experienceId?: ExperienceId;
   evidenceNodeIds: readonly NodeId[];
   relatedNodeIds: readonly NodeId[];
+  semanticConnections: readonly MuseumSemanticConnection[];
   projectState?: ReviewedProjectState;
   status: MuseumExhibitStatus;
   fallbackReason?: string;

@@ -1,6 +1,6 @@
 # Projects Museum And Case Studies Plan
 
-Last updated: 2026-07-17
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -381,6 +381,9 @@ For each flagship:
 - Produce static poster frames for loading and lower stimulation.
 - Produce Signal, Approach, and one deepest-state keyframe before production styling for each flagship.
 - Preserve at least one rejected composition and the written reason it failed the art-direction diagnostics.
+- Extend accepted keyframes into route-specific layer material packs: stable matte, transparent depth/focal plates, masks or maps, vector traces, optional particle sprites, and one flattened checksum/fallback.
+- Record every layer's role, provenance, intended renderer, driver, calm behavior, and performance tier before runtime integration.
+- Do not mechanically cut a flattened image into parallax strips; independently addressable materials need compositional or semantic jobs.
 
 ## Aesthetic Acceptance
 
@@ -395,6 +398,11 @@ Package ownership is explicit:
 - `ART-03` implements Museum/LifeInbox remediation and renews `QA-02` creative acceptance.
 - `ART-04` supplies Dreamlife, Sudoku Together, and archive packets.
 - `PRJ-05` through `PRJ-07` own product behavior and production implementation from those packets.
+- `ART-07` proves the dynamic-scene contract and first Museum layered response.
+- `ART-08` through `ART-10` add route-owned dynamic compositions without reopening accepted product behavior or copying the Museum renderer.
+- `ART-11` owns cross-route dynamic maturity, performance, fallback, and creative acceptance.
+
+Each dynamic route receives the packet extension defined in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`: still checksum, layer inventory, driver matrix, dominant gesture, choreography, renderer decision, semantic adapters, calm/failure matrices, budget, tests, and resume state. Exact implementations are planned one route at a time.
 
 Before implementation expands, review each flagship against:
 
@@ -418,6 +426,8 @@ Creative acceptance requires Mark's review. Passing interaction and route tests 
 - Case-study layer dependencies.
 - Manifest stage claims cannot exceed implemented exhibit stages.
 - Candidate reducers are deterministic and reset to exact fixtures.
+- Route scene reducers map bounded drivers to deterministic material state.
+- Reduced-motion, visibility, context-loss, and renderer-failure policies settle to known states.
 
 ### Integration
 
@@ -440,6 +450,8 @@ Creative acceptance requires Mark's review. Passing interaction and route tests 
 - Lower stimulation.
 - Model or asset failure.
 - Long text and narrow viewport stress tests.
+- Independently addressable layer response rather than whole-poster drift.
+- Pointer/focus, project selection, one reviewed relationship, settlement, hidden-tab pause, and stable-frame capture for the Museum proof.
 
 ## Risks
 

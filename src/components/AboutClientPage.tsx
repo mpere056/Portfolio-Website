@@ -5,11 +5,14 @@ import { TimelineEntry as TimelineEntryType } from '@/lib/timeline';
 import TimelineEntry from '@/components/TimelineEntry';
 import { Canvas } from '@react-three/fiber';
 import Image from 'next/image';
-import { Suspense, useMemo, useRef, useEffect } from 'react';
+import { Suspense, useMemo, useRef, useEffect, useState, type CSSProperties } from 'react';
 import Background from '@/components/Background';
 import TimelineIndicator from './TimelineIndicator';
 import SmoothSnapScroll from './SmoothSnapScroll';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
+import { useTimelineStore } from '@/lib/store';
+import { getAboutSceneFrame } from '@/lib/artDirection/aboutScene';
+import supportingStyles from './SupportingScenes.module.css';
 
 interface AboutClientPageProps {
   entries: TimelineEntryType[];
@@ -26,9 +29,14 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const isAnimating = useRef(false);
+  const animationFrameRef = useRef<number | null>(null);
   const downSfxRef = useRef<HTMLAudioElement | null>(null);
   const upSfxRef = useRef<HTMLAudioElement | null>(null);
   const durationMs = 1500;
+  const [pageVisible, setPageVisible] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const activeSection = useTimelineStore((state) => state.activeSection);
+  const sceneFrame = getAboutSceneFrame(activeSection, entries.length, reducedMotion);
 
   useEffect(() => {
     // Initialize audio effects once on mount
@@ -48,6 +56,23 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
         upSfxRef.current = el;
       } catch {}
     }
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotion = () => setReducedMotion(media.matches);
+    const updateVisibility = () => setPageVisible(document.visibilityState !== 'hidden');
+    updateMotion();
+    updateVisibility();
+    media.addEventListener('change', updateMotion);
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => {
+      media.removeEventListener('change', updateMotion);
+      document.removeEventListener('visibilitychange', updateVisibility);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   function playSfx(direction: number) {
@@ -73,6 +98,11 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
     }
     const startTop = root.scrollTop;
     const delta = targetTop - startTop;
+    if (reducedMotion) {
+      root.scrollTop = targetTop;
+      isAnimating.current = false;
+      return;
+    }
     const startTime = performance.now();
     const prevSnap = (root as HTMLElement).style.scrollSnapType;
     (root as HTMLElement).style.scrollSnapType = 'none';
@@ -88,14 +118,15 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
       }
       curRoot.scrollTop = startTop + delta * eased;
       if (t < 1) {
-        requestAnimationFrame(step);
+        animationFrameRef.current = requestAnimationFrame(step);
       } else {
         (curRoot as HTMLElement).style.scrollSnapType = prevSnap;
         isAnimating.current = false;
+        animationFrameRef.current = null;
       }
     }
 
-    requestAnimationFrame(step);
+    animationFrameRef.current = requestAnimationFrame(step);
   };
 
   const handleYearClick = (index: number) => {
@@ -112,19 +143,36 @@ export default function AboutClientPage({ entries }: AboutClientPageProps) {
   };
 
   return (
-    <div className="h-screen w-screen relative overflow-hidden bg-[#05070a]">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-[min(70vw,1000px)] opacity-25 mix-blend-screen [mask-image:linear-gradient(90deg,transparent,black_30%,black_75%,transparent)]">
+    <div
+      className="h-screen w-screen relative overflow-hidden bg-[#05070a]"
+      data-about-moment={entries[activeSection]?.id ?? activeSection}
+      data-about-layers="archive-matte illuminated-manuscript chronology-prism memory-orbits timeline-content"
+      style={{
+        '--about-progress': sceneFrame.progress,
+        '--about-refraction': sceneFrame.refraction,
+        '--about-orbit': sceneFrame.orbit,
+      } as CSSProperties}
+    >
+      <div aria-hidden="true" className={supportingStyles.aboutMaterial}>
         <Image
           src={ART_DIRECTION_ASSETS.about.src}
           alt=""
           fill
           sizes="(max-width: 768px) 100vw, 70vw"
-          className="object-cover object-center saturate-75 contrast-125 brightness-75"
         />
       </div>
+      <div aria-hidden="true" className={supportingStyles.aboutPrism}>
+        <Image src={ART_DIRECTION_ASSETS.about.src} alt="" fill sizes="70vw" />
+      </div>
+      <svg aria-hidden="true" className={supportingStyles.aboutOrbits} viewBox="0 0 900 760" fill="none">
+        <ellipse cx="520" cy="360" rx="310" ry="116" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 13" />
+        <ellipse cx="520" cy="360" rx="224" ry="256" stroke="currentColor" strokeWidth="0.6" />
+        <path d="M90 542C247 372 324 522 520 360C684 224 738 331 868 156" stroke="currentColor" strokeWidth="0.8" />
+        <circle cx={210 + sceneFrame.progress * 610} cy={476 - sceneFrame.progress * 262} r="5" fill="currentColor" />
+      </svg>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(5,7,10,.9),transparent_42%,rgba(5,7,10,.4))]" />
       <Suspense fallback={null}>
-        <Canvas>
+        <Canvas frameloop={pageVisible && !reducedMotion ? 'always' : 'demand'}>
           <Background colors={colors} textures={textures} opacities={opacities} />
         </Canvas>
       </Suspense>

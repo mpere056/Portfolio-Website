@@ -8,6 +8,7 @@ import type {
   MuseumExhibitDefinition,
   MuseumExhibitLoadResult,
   MuseumExhibitView,
+  MuseumSemanticConnection,
 } from './types';
 
 function projectHref(project: Project, definition?: MuseumExhibitDefinition) {
@@ -28,11 +29,12 @@ export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
   const registry = createExhibitRegistry(projects);
   const issues: ExhibitRegistryIssue[] = [...registry.issues];
   let publicProjectIds = new Set<string>();
+  let graphQueries: Awaited<ReturnType<typeof loadKnowledgeGraphQueries>> | undefined;
 
   try {
-    const queries = await loadKnowledgeGraphQueries();
+    graphQueries = await loadKnowledgeGraphQueries();
     publicProjectIds = new Set(projects
-      .filter(project => Boolean(queries.getPublicSourceDescriptor(project.nodeId)))
+      .filter(project => Boolean(graphQueries?.getPublicSourceDescriptor(project.nodeId)))
       .map(project => project.nodeId));
   } catch {
     // The museum remains navigable with authored project copy if graph loading fails.
@@ -52,6 +54,16 @@ export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
     }
     const valid = Boolean(definition) && projectIssues.length === 0;
     const entry = definition ? resolveExhibitEntry(registry, project.nodeId) : undefined;
+    const semanticConnections: MuseumSemanticConnection[] = (graphQueries
+      ?.getRelatedContent(project.nodeId, { limit: 3 }) ?? [])
+      .map((connection, index) => ({
+        relationshipId: connection.relationshipId,
+        nodeId: connection.nodeId,
+        title: connection.title,
+        explanation: connection.explanation,
+        href: connection.destination.href,
+        strength: index === 0 ? 'primary' : 'secondary',
+      }));
 
     return {
       projectId: project.nodeId,
@@ -69,6 +81,7 @@ export async function loadMuseumExhibits(): Promise<MuseumExhibitLoadResult> {
       ...(definition?.experienceId ? { experienceId: definition.experienceId } : {}),
       evidenceNodeIds: definition?.evidenceNodeIds ?? [],
       relatedNodeIds: definition?.relatedNodeIds ?? [],
+      semanticConnections,
       ...(projectStates.get(project.nodeId) ? { projectState: projectStates.get(project.nodeId) } : {}),
       status: valid ? 'registered' : 'fallback',
       ...(!valid ? { fallbackReason: 'This exhibit is using its resilient content view.' } : {}),

@@ -1,6 +1,6 @@
 # System Architecture And Interface Contracts
 
-Last updated: 2026-07-17
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -166,6 +166,10 @@ It must not consume:
 - One universal visual configuration that erases project-specific composition.
 
 Shared aesthetic code owns semantic roles such as emitter, lens, trace, membrane, paper record, calm profile, utility hierarchy, and stable-frame behavior. Owning feature modules retain focal artifact, silhouette, composition, dominant manipulation, and deep-state transformation.
+
+The implemented raster compositions remain valid stable mattes, keyframe checksums, loading posters, and fallbacks. Dynamic scenes add independently addressable authored layers above or alongside those mattes. Shared code may normalize pointer/focus, depth, selection, relationship, AI, discovery, stimulation, visibility, and capability inputs, but the owning route maps them to material response through local testable scene state.
+
+Continuous rendering is route-scoped and lifecycle-aware. A route normally owns at most one dominant Canvas/WebGL scheduler, pauses it when hidden or settled, and leaves semantic DOM available if the renderer or an asset fails. No raw renderer object, pointer coordinate stream, camera matrix, or frame value enters durable experience persistence.
 
 ## Canonical Identifier Contract
 
@@ -463,6 +467,33 @@ interface SurfaceVisualDialect {
 
 This is an architectural seam, not a requirement to create a global config immediately. Add code only when two accepted scenes prove a shared consumer. Composition, exact color, geometry, copy, and asset paths stay in the owning surface.
 
+## Dynamic Scene Boundary
+
+The dynamic-scene contract is deliberately smaller than a scene engine:
+
+```ts
+interface SceneDriverSnapshot {
+  destinationId: DestinationId;
+  depth: DepthStage;
+  selectedPartId?: string;
+  selectedRelationshipId?: RelationshipId;
+  stimulation: number;
+  reducedMotion: boolean;
+  visibility: 'visible' | 'hidden';
+  input: 'pointer' | 'keyboard' | 'coarse' | 'unknown';
+}
+
+interface SceneLifecycle {
+  requestStableFrame(reason: 'capture' | 'restore' | 'reduced-motion' | 'fallback'): void;
+  pause(reason: 'offscreen' | 'hidden' | 'settled'): void;
+  resume(): void;
+}
+```
+
+The exact implementation may change after `ART-07`; these fields document ownership and persistence boundaries. Route modules own layer manifests, scene reducers, renderer selection, shader uniforms, local choreography, and dominant gestures. Shared infrastructure may own normalized inputs, visibility, stimulation, capability tiering, context-loss recovery, and stable-frame signaling only after the Museum proof demonstrates a reusable need.
+
+Static material manifests may describe asset role, provenance, dimensions, alpha, renderer intent, driver, calm behavior, and budget. They must not contain factual project claims or become a universal layout configuration. The full production and tracking model lives in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+
 ## Cross-System Events
 
 | Event | Producer | Consumers | Required payload |
@@ -491,6 +522,7 @@ Implementation note: `WI-ARC-04-01` implements this vocabulary as plain discrimi
 | Living project state | Content schema, graph IDs | Current truth, content versions |
 | Semantic lighting | Graph query, destinations | Relationship signals |
 | Aesthetic integration | Authored truth, experience meaning, selected art packets, stimulation | Composed runtime scenes, material roles, utility hierarchy, calm/fallback intent |
+| Dynamic scene composition | Accepted art packets, route meaning, reviewed semantic inputs, authored layer packs | Route-owned responsive materials, stable frames, and safe renderer fallbacks |
 | Skill prototype | Graph evidence, discovery events | Capability view |
 | Quality and rollout | All contracts | Validation, flags, release evidence |
 

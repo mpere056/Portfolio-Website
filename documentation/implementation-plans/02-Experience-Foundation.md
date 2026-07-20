@@ -1,6 +1,6 @@
 # Experience Foundation Plan
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -147,6 +147,10 @@ It should not dictate project-specific visuals.
 The depth controller supplies semantic state; it does not select a color, layout, camera move, or component template. Accepted art packets map each supported stage to a perceptual transformation through the owning scene.
 
 Shared experience code may expose depth and transition reason, discovery, selected relationship, current destination, stimulation, reduced-motion state, a stable settled-frame signal, and utility roles for tour, AI, navigation, and recovery. It must not expose a universal `DepthCard`, one transition animation for every stage, or a global palette switch for projects. `ART-02` may add semantic visual roles only after the selected Museum and LifeInbox packets prove a shared need.
+
+`ART-07` may add a bounded scene-driver adapter after the Museum proof. It can normalize pointer/focus capability, route visibility, selection, depth, reviewed relationships, stimulation, and stable-frame requests. It cannot decide layer inventory, renderer, shader, camera, material response, or choreography. Those remain route-owned under `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+
+Environmental response should migrate from an isolated instrument into the owning route only when the response makes a project, relationship, discovery, or depth transition clearer. Do not persist continuous visual values; save semantic state and reconstruct an intentional settled composition.
 
 ## First Note
 

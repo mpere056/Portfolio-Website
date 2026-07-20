@@ -1,6 +1,6 @@
 # Aesthetic System Integration And Delivery Plan
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -19,6 +19,8 @@ Last updated: 2026-07-18
 Make the Impossible Observatory of Living Instruments part of how the portfolio is designed and built, rather than a visual theme applied after feature implementation.
 
 This plan owns the connections between aesthetic intent and the other implementation plans. `18-Art-Direction-And-Aesthetic-Quality.md` owns taste, visual principles, and creative review. Feature plans still own their behavior. This plan defines what each system must provide to art direction, what art direction returns, when that handoff occurs, and how incomplete work remains restartable.
+
+`20-Dynamic-Scene-Composition-And-Layered-Materials.md` is the active follow-on for turning accepted still compositions into responsive route environments. It does not replace this integration plan: `19` owns cross-plan handoffs and coverage; `20` owns layer materials, drivers, renderer decisions, route scene packets, causal motion, and dynamic QA.
 
 ## Core Integration Decision
 
@@ -45,7 +47,7 @@ Shared code should encode behavior, roles, constraints, and quality. It must not
 
 No major visual surface may skip from layer 2 to layer 4. Aesthetic work is incomplete when its art packet exists but its runtime, calm path, fallback, or creative evidence does not.
 
-Material studies and static keyframes are mandatory layer-3 evidence. A styled runtime scene cannot retroactively serve as the keyframe that was supposed to direct it. The required reference families, page assignments, asset media, scene stack, and visual-production rounds are defined in [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md).
+Material studies and static keyframes are mandatory layer-3 evidence. A styled runtime scene cannot retroactively serve as the keyframe that was supposed to direct it. The required reference families, page assignments, asset media, scene stack, and visual-production rounds are defined in [Visual Reference Coverage And Route Art Direction](2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md). For dynamic work, the selected keyframe becomes the still checksum, loading poster, and fallback while route-owned layer packs and scene logic extend it.
 
 ## Aesthetic Art Packet Contract
 
@@ -68,6 +70,8 @@ Required fields:
 | Fallback composition | The semantic HTML/CSS form when rich rendering or assets fail |
 | Performance envelope | Heavy assets, lazy boundary, poster needs, and capability-tier behavior |
 | Rejection triggers | Surface-specific ways the implementation could collapse into a generic template |
+
+Before `ART-07` through `ART-10` implementation, append the dynamic packet sections from Plan `20`: still checksum, named layer inventory, driver matrix, choreography, renderer decision, semantic adapters, calm/failure matrices, performance envelope, test/capture matrix, and exact resume state. These additions are route-specific and must not become a universal scene configuration.
 
 The packet must use real content and stable destination IDs. Placeholder copy, invented activity, and unreviewed facts cannot receive creative acceptance.
 
@@ -218,6 +222,38 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 - Record remaining mobile and musical work as later rather than silently claiming coverage.
 - Exit with whole-portfolio creative acceptance and production evidence.
 
+### `ART-07`: Dynamic Scene Contracts And Museum Proof
+
+- Preserve the selected Museum keyframe as its still checksum and fallback.
+- Produce only the authored raster/vector/mask/map/sprite layers needed for one representative causal scene.
+- Map selection, proximity/focus, and one reviewed relationship through route-owned scene state.
+- Select DOM, SVG, masks, Canvas, WebGL, shaders, 3D, or a hybrid from demonstrated need.
+- Exit with independent layer response, settlement, calm/failure, performance, and Mark review evidence before extracting shared infrastructure.
+
+### `ART-08`: LifeInbox Dynamic Material Transformation
+
+- Extend LifeInbox from a vessel poster into a route-owned capture, settlement, boundary-crossing, evidence, and reminder-return composition.
+- Bind visual material changes to existing deterministic product state rather than running effects beside the demo.
+- Preserve static/fallback identity, synthetic data, direct routes, and all accepted functional evidence.
+
+### `ART-09`: Remaining Flagship Dynamic Compositions
+
+- Create Dreamlife and Sudoku dynamic packets and layer packs separately.
+- Use refractive divergence/recombination for Dreamlife only if its packet proves it; use precise shared-presence traces for Sudoku only if its packet proves them.
+- Share normalized drivers and lifecycle, not silhouettes, shaders, choreography, or manipulation language.
+
+### `ART-10`: Supporting-Route Dynamic Compositions
+
+- Reason through Home, About, AI, and reading as separate compositions.
+- Favor threshold awakening, inspected chronology, contextual AI doors, and meaningful update disturbances over permanent spectacle.
+- Keep reading surfaces mostly still and preserve mobile as an independent later design.
+
+### `ART-11`: Dynamic Scene Coherence And Production Maturation
+
+- Review repeated effects, temporal fatigue, cross-route transitions, asset loading, renderer lifecycle, context loss, capability tiers, calm behavior, and fallbacks.
+- Remove dynamics whose cause or meaning cannot be explained.
+- Exit with a representative Production route matrix and Mark acceptance.
+
 ## Sequencing Rules
 
 1. Complete the reopened `ART-01` material studies, keyframes, and packets before new production styling.
@@ -227,6 +263,10 @@ The same aesthetic laws should be recognizable across this matrix, but no two ro
 5. Pair each `ART-04` packet with its owning `PRJ-*` package; keep one code package active at a time.
 6. Begin `ART-05` with the next active route phase rather than restyling every support surface at once.
 7. Run `ART-06` only after representative route classes are implemented.
+8. Begin `ART-07` from the stable `ART-06` release; do not relabel the still foundation as failed.
+9. Do not start `ART-08` until the Museum packet and runtime prove a bounded shared driver/lifecycle seam.
+10. Implement `ART-09` routes one at a time, then translate supporting routes in `ART-10`.
+11. Run `ART-11` only after each representative route class has its own known-good dynamic checkpoint.
 
 ## Tracking Partial Aesthetic Work
 
@@ -242,6 +282,10 @@ Each capability and work item must state which of these checkpoints exist:
 - Stable creative captures and diagnostics.
 - Mark review.
 - Preview and production rollout.
+- Dynamic packet and still checksum.
+- Layer material manifest and production derivatives.
+- Named drivers wired to named layers.
+- Renderer, hidden-tab, context-loss, and capability-tier behavior.
 
 Do not collapse them into a percentage or the word `polish`. The next exact action should name one observable artifact, such as “render the artifact-led Museum Signal alternative” or “capture the reduced-motion LifeInbox Understand frame,” rather than “continue styling.”
 
@@ -254,3 +298,5 @@ Do not collapse them into a percentage or the word `polish`. The next exact acti
 - Shared primitives encode proven semantic roles without imposing a universal composition.
 - Functional evidence remains valid when only creative work is reopened.
 - Whole-portfolio review proves one world with meaningful variation, not one visual template repeated across routes.
+- Dynamic routes preserve the accepted still composition while adding independently responsive, causally meaningful materials.
+- Rich renderer failure leaves an intentional semantic scene rather than a blank or broken experience.

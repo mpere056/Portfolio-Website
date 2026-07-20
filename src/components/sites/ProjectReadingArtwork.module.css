@@ -10,22 +10,57 @@
   mix-blend-mode: screen;
 }
 
-.artwork img {
+.material {
   object-fit: cover;
   object-position: 65% center;
   filter: saturate(.72) contrast(1.18) brightness(.54);
+  transform: translateY(calc(var(--reading-progress) * -2.5%)) scale(1.035);
 }
 
-.artwork span {
+.fragment {
+  position: absolute;
+  inset: -4%;
+  opacity: calc(var(--reading-disturbance) * .46);
+  mix-blend-mode: color-dodge;
+  transform: translate3d(calc(var(--reading-disturbance) * 2.4%), calc(var(--reading-progress) * -3%), 0) scale(1.06);
+  mask-image: repeating-linear-gradient(106deg, transparent 0 11%, black 11.4% 12.1%, transparent 12.6% 20%);
+}
+
+.fragment img {
+  object-fit: cover;
+  object-position: 65% center;
+  filter: saturate(1.2) contrast(1.32) brightness(.74) hue-rotate(15deg);
+}
+
+.trace {
+  position: absolute;
+  inset: 7% -2% 0;
+  width: 104%;
+  height: 90%;
+  color: rgba(203,231,255,.42);
+  opacity: var(--reading-trace);
+  transform: translateY(calc(var(--reading-progress) * -4%));
+  filter: drop-shadow(0 0 10px rgba(96,175,222,.14));
+}
+
+.veil {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 66% 35%, transparent, rgba(3,6,8,.2) 45%, rgba(3,6,8,.94)), linear-gradient(to bottom, rgba(3,6,8,.1), rgba(3,6,8,.82));
 }
 
 .artwork[data-site='dreamlife'] { opacity: .58; }
-.artwork[data-site='dreamlife'] img { filter: saturate(.86) contrast(1.1) brightness(.62); }
+.artwork[data-site='dreamlife'] .material { filter: saturate(.86) contrast(1.1) brightness(.62); }
 .artwork[data-site='sudokutogether'] { opacity: .4; }
-.artwork[data-site='sudokutogether'] img { object-position: 72% center; }
+.artwork[data-site='sudokutogether'] .material,
+.artwork[data-site='sudokutogether'] .fragment img { object-position: 72% center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .material,
+  .fragment,
+  .trace { transform: none; }
+  .fragment { opacity: 0; }
+}
 
 @media (max-width: 700px) {
   .artwork { height: 38rem; opacity: .3; }

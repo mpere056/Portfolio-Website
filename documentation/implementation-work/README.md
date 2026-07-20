@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-18
+Last reconciled: 2026-07-19
 
 ## Purpose
 
@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 1 through Phase 4 functionality and the complete reference-rich replacement sequence are live on verified Production at `806841d`: selected/reassigned Museum keyframes, typed production art registry, phenomenon-led Museum, project-specific flagship materials, Home/About/AI translations, subdomain worlds, and calmer reading surfaces. All aesthetic packages now wait only on Mark's creative review; implementation and deployment are not being mislabeled as acceptance.
+Phase 1 through Phase 4 functionality and the static material sequence remain live at `806841d`. `WI-ART-07-01` through `WI-ART-11-01` implement the complete representative dynamic scene sequence locally with route-owned materials, executable lifecycle policy, and stable fallbacks. The 188-test aggregate, content, type, lint, build, and bounded browser gates pass; deployment, sustained performance observation, and Mark acceptance remain.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-06-01` | in-review | `ART-06` | `806841d` passes build, browser review, and public route-marker verification | Collect Mark's cross-route creative review | 2026-07-18 |
-| Next | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox replacement is live on Production | Collect Mark's Museum/LifeInbox creative review | 2026-07-18 |
-| Later | `WI-ART-04-01` | in-review | `ART-04` | Project/archive material dialects live at `806841d` | Revise only named route/material mismatches from review | 2026-07-18 |
+| Now | `WI-ART-11-01` | in-review | `ART-11` | Eight route classes pass the typed coherence matrix and aggregate local gate | Review the complete local matrix, then promote and verify the exact commit | 2026-07-19 |
+| Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading have distinct causal scene behavior | Review supporting-route restraint and distinction | 2026-07-19 |
+| Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement is live on Production | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 
 ## Active And Unfinished Items
 
@@ -27,6 +27,11 @@ Phase 1 through Phase 4 functionality and the complete reference-rich replacemen
 | `WI-ART-04-01` | Deepen project and historical art dialects | in-review | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-18 |
 | `WI-ART-05-01` | Translate the Observatory across supporting routes | in-review | high | `ART-05` | `CAP-ART-006` | `active/WI-ART-05-01.md` | 2026-07-18 |
 | `WI-ART-06-01` | Mature and verify the whole-portfolio art system | in-review | high | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | `active/WI-ART-06-01.md` | 2026-07-18 |
+| `WI-ART-07-01` | Prove the dynamic Museum scene model | in-review | high | `ART-07` | `CAP-ART-007`, `CAP-ART-008`, `CAP-ART-009`, `CAP-ART-012` | `active/WI-ART-07-01.md` | 2026-07-19 |
+| `WI-ART-08-01` | Transform LifeInbox through product state | in-review | high | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | `active/WI-ART-08-01.md` | 2026-07-19 |
+| `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | in-review | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-19 |
+| `WI-ART-10-01` | Compose supporting routes dynamically | in-review | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-19 |
+| `WI-ART-11-01` | Mature the dynamic scene system | in-review | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-19 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

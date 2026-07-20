@@ -1,7 +1,7 @@
 "use client";
 
 import * as THREE from 'three'
-import { memo, useRef, useMemo, useEffect } from 'react'
+import { memo, useRef, useMemo, useEffect, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
 import { Html, OrbitControls, Instances, Instance, useGLTF, Stars, useTexture } from '@react-three/drei'
@@ -15,33 +15,66 @@ import { FirstNoteExperience } from './experience/FirstNoteExperience';
 import type { FirstNotePresentation } from '@/lib/experience/firstNote';
 import { usePortfolioAI } from './ai/PortfolioAIProvider';
 import { ART_DIRECTION_ASSETS } from '@/lib/artDirection';
+import { getHomeSceneFrame } from '@/lib/artDirection/homeScene';
+import supportingStyles from './SupportingScenes.module.css';
 
 extend({ RoundedBoxGeometry })
 
 export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnabled?: boolean }) {
   const portfolioAI = usePortfolioAI();
+  const [pageVisible, setPageVisible] = useState(true);
+
+  useEffect(() => {
+    const updateVisibility = () => setPageVisible(document.visibilityState !== 'hidden');
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
+
   return (
     <FirstNoteExperience enabled={firstNoteEnabled}>
       {({ state, presentation, wake, reset }) => (
         <div
           className="relative h-screen w-screen overflow-hidden bg-[#07070d]"
-          style={{ backgroundColor: '#07070d' }}
+          data-home-threshold={presentation.illumination}
+          data-home-layers="threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument"
+          style={{
+            backgroundColor: '#07070d',
+            '--home-threshold': getHomeSceneFrame(state.phase, state.reducedMotionRequested).threshold,
+            '--home-fragment': getHomeSceneFrame(state.phase, state.reducedMotionRequested).fragment,
+            '--home-notation': getHomeSceneFrame(state.phase, state.reducedMotionRequested).notation,
+          } as CSSProperties}
         >
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[1] opacity-30 mix-blend-screen [mask-image:radial-gradient(ellipse_at_center,black_12%,rgba(0,0,0,.8)_48%,transparent_82%)]">
+          <div aria-hidden="true" className={supportingStyles.homeMaterial}>
             <Image
               src={ART_DIRECTION_ASSETS.home.src}
               alt=""
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center saturate-75 contrast-125 brightness-75 motion-safe:animate-[homePresence_14s_ease-in-out_infinite_alternate]"
+              className="motion-safe:animate-[homePresence_14s_ease-in-out_infinite_alternate]"
             />
           </div>
+          <div aria-hidden="true" className={supportingStyles.homeFragment}>
+            <Image src={ART_DIRECTION_ASSETS.home.src} alt="" fill priority sizes="100vw" />
+          </div>
+          <svg aria-hidden="true" className={supportingStyles.homeNotation} viewBox="0 0 1200 700" fill="none">
+            <ellipse cx="604" cy="372" rx="318" ry="124" stroke="currentColor" strokeWidth="1" strokeDasharray="2 16" />
+            <ellipse cx="604" cy="372" rx="420" ry="188" stroke="currentColor" strokeWidth="0.7" strokeDasharray="1 22" />
+            <path d="M176 412C330 302 447 522 602 372C764 214 855 478 1034 306" stroke="currentColor" strokeWidth="0.9" />
+            <path d="M246 494C408 422 453 256 603 372C753 486 842 318 976 250" stroke="currentColor" strokeWidth="0.55" strokeDasharray="8 11" />
+          </svg>
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_56%,transparent_0,rgba(7,7,13,.12)_30%,rgba(7,7,13,.88)_86%)]" />
-          <Canvas shadows gl={{ antialias: false }} camera={{ position: [-15, 10, 20], fov: 25 }} style={{ height: '100vh', width: '100vw', zIndex: 0 }}>
+          <Canvas
+            shadows
+            frameloop={pageVisible && !state.reducedMotionRequested ? 'always' : 'demand'}
+            gl={{ antialias: false }}
+            camera={{ position: [-15, 10, 20], fov: 25 }}
+            style={{ height: '100vh', width: '100vw', zIndex: 0 }}
+          >
             <ResponsiveCamera />
             <color attach="background" args={['#07070d']} />
-            <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={0.5} />
+            <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={state.reducedMotionRequested ? 0 : 0.5} />
             <AwakeningLights presentation={presentation} reducedMotion={state.reducedMotionRequested} />
             <HeroScaleGroup>
               <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
@@ -58,7 +91,7 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
               </group>
             </HeroScaleGroup>
             <HeroPostProcessing />
-            <OrbitControls autoRotate autoRotateSpeed={0.7} />
+            <OrbitControls autoRotate={!state.reducedMotionRequested} autoRotateSpeed={0.7} />
             <CursorLight />
             {presentation.navigationVisible && (
               <>

@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 1 through Phase 4 functionality is live, including all three flagship depth experiences, nine lifecycle records, the connected state graph, canonical project routes, project worlds, and site-wide AI migration. Mark rejected the first deployed creative candidate. The complete material-study and keyframe-first replacement across `ART-01` and `ART-03` through `ART-06` is live and publicly verified at `806841d`; renewed creative `QA-02` now waits on Mark acceptance.
+Current checkpoint: Phase 1 through Phase 4 functionality and the complete static material foundation are live at `806841d`. `ART-07` through `ART-11` now provide locally verified dynamic scenes and an executable coherence policy across Museum, LifeInbox, Dreamlife, Sudoku, Home, About, AI, and reading. Route-owned CSS/SVG/Canvas/WebGL/DOM materials, real semantic or visitor state, explicit lifecycle restraint, calm behavior, and stable fallbacks pass 47 files/188 tests, content, type, lint, build, and bounded browser review. Phase 4 implementation is locally complete; Production, sustained observation, and Mark acceptance remain.
 
 ## Document Authority
 
@@ -72,6 +72,10 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `17-Work-Items-And-Resume-Protocol.md` | Workflow states, milestones, WIP, updates, and restart-ready handoffs | Active continuation control |
 | `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
 | `19-Aesthetic-System-Integration-And-Delivery.md` | Cross-plan aesthetic contracts, route coverage, package sequencing, and partial-work handoffs | Active aesthetic integration control |
+| `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | Layered material packs, route-owned scene logic, renderer decisions, causal motion, performance, and resumable delivery | Active dynamic-scene control |
+| `2026-07-19-Museum-Dynamic-Scene-Packet.md` | Executable Museum layer inventory, driver matrix, renderer decision, choreography, calm/failure matrix, and route ledger | Implemented candidate packet |
+| `2026-07-19-LifeInbox-Dynamic-Scene-Packet.md` | Executable LifeInbox state/material inventory, renderer decision, calm/failure matrix, acceptance gates, and resume ledger | Implemented candidate packet |
+| `2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md` | Distinct Dreamlife refraction/recombination and Sudoku presence/version packets, truth correction, and resume ledger | Implemented candidate packet |
 | `2026-07-18-Aesthetic-Direction-Review.md` | Three coherent aesthetic directions and recommended synthesis for Mark's review | Active review |
 | `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
 | `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
@@ -95,6 +99,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | How do we prevent generic aesthetics? | `18-Art-Direction-And-Aesthetic-Quality.md` | `19-Aesthetic-System-Integration-And-Delivery.md` and the owning experience plan |
 | Where should each supplied visual reference be visible? | `2026-07-18-Visual-Reference-Coverage-And-Route-Art-Direction.md` | `18`, `19`, and the owning route plan |
 | How does art direction connect to architecture and delivery? | `19-Aesthetic-System-Integration-And-Delivery.md` | `00`, `13`, and the owning feature plan |
+| How do static compositions become meaningful dynamic scenes? | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | `18`, `19`, `00`, and the owning route plan |
 | Which parts of a large feature are actually done? | `15-Capability-Coverage-Ledger.md` | `14-Implementation-Tracking-Model.md` |
 | What is in progress, partial, blocked, or next? | `16-Progress-Dashboard.md` | `13-Execution-Work-Packages.md` |
 | Where exactly did unfinished work stop? | `../implementation-work/README.md` | Its linked work-item resume packet |
@@ -108,7 +113,7 @@ The documents form six connected layers:
 
 1. **Vision and decisions:** Comprehensive Website Vision and `11-Decision-Register.md`.
 2. **Architecture and workstreams:** `00` plus plans `02` through `10`.
-3. **Aesthetic integration:** `18` defines the creative standard and `19` connects it to every route, system, and delivery gate.
+3. **Aesthetic integration:** `18` defines the creative standard, `19` connects it to every route and delivery gate, and `20` owns layered dynamic-scene composition.
 4. **Sequencing and traceability:** `01` and `12`.
 5. **Execution:** `13`, implementation branches, tests, and previews.
 6. **Continuation and proof:** `14` through `17`, `documentation/implementation-work/`, and `documentation/implementation-evidence/`.
@@ -147,6 +152,8 @@ Large features must not be represented by one optimistic status.
 
 - Do not build multiple flagship experiences simultaneously.
 - Do not begin production styling for a major surface before its art-direction thesis and representative keyframes are reviewed.
+- Treat approved static compositions as scene checksums, posters, and fallbacks; dynamic implementation must use independently addressable layers with named causes rather than whole-poster drift.
+- Choose DOM, SVG, masks, Canvas, WebGL, shaders, or 3D per route from the smallest credible rendering need; do not build one universal dynamic-background engine.
 - Prefer one complete depth journey over many partially interactive objects.
 - Keep authored MDX as the factual source; generated content may assist but must not silently replace authored facts.
 - Build the relationship graph before relying on semantic lighting or graph-driven AI navigation.

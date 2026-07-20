@@ -12,6 +12,11 @@ describe('museum exhibit server boundary', () => {
     expect(result.exhibits).toHaveLength(9);
     expect(result.exhibits.every(exhibit => exhibit.status === 'registered')).toBe(true);
     expect(JSON.parse(JSON.stringify(result.exhibits))).toHaveLength(9);
+    for (const slug of ['dreamlife', 'lifeinbox', 'discord-sudoku-activity']) {
+      const exhibit = result.exhibits.find(item => item.slug === slug);
+      expect(exhibit?.semanticConnections.length).toBeGreaterThan(0);
+      expect(exhibit?.semanticConnections.every(connection => connection.relationshipId.startsWith('relationship:'))).toBe(true);
+    }
   });
 
   it('renders useful copy and stable anchors without an experience module', async () => {

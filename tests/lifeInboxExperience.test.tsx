@@ -21,6 +21,11 @@ describe('LifeInbox flagship depth experience', () => {
     expect(html).toContain('Trust begins before intelligence');
     expect(html).toContain('Settle locally');
     expect(html).toContain('Nothing here sends personal information anywhere');
+    expect(html).toContain('data-capture-state="empty"');
+    expect(html).toContain('data-layer="lifeinbox:matte"');
+    expect(html).toContain('data-layer="lifeinbox:ingress"');
+    expect(html).toContain('data-layer="lifeinbox:material"');
+    expect(html).toContain('data-layer="lifeinbox:local-core"');
     expect(html).not.toContain('Source repository');
   });
 
@@ -34,5 +39,9 @@ describe('LifeInbox flagship depth experience', () => {
     expect(understand).toContain('LifeInbox-Option-B');
     expect(understand).toContain('local-first-capture-needs-trust');
     expect(understand).toContain('Continue through the LifeInbox instrument');
+    expect(understand).toContain('data-depth-stage="understand"');
+    expect(understand).toContain('data-layer="lifeinbox:boundaries"');
+    expect(understand).toContain('data-layer="lifeinbox:return"');
+    expect(understand).toContain('data-layer="lifeinbox:evidence"');
   });
 });

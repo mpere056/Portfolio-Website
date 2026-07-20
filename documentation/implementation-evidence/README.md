@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Purpose
 
@@ -65,6 +65,11 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-04-02` | `ART-04` | candidate | `ART-04.md` |
 | `EV-ART-05-01` | `ART-05` | candidate | `ART-05.md` |
 | `EV-ART-06-01` | `ART-06` | candidate | `ART-06.md` |
+| `EV-ART-07-01` | `ART-07` | candidate | `ART-07.md` |
+| `EV-ART-08-01` | `ART-08` | candidate | `ART-08.md` |
+| `EV-ART-09-01` | `ART-09` | candidate | `ART-09.md` |
+| `EV-ART-10-01` | `ART-10` | candidate | `ART-10.md` |
+| `EV-ART-11-01` | `ART-11` | candidate | `ART-11.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -198,6 +203,11 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-04-02` | `ART-04` | `CAP-ART-005` | browser-flow | candidate | nacre Dreamlife, diagram-organism Sudoku, and historical landmarks integrated | 2026-07-18 | `ART-04.md` |
 | `EV-ART-05-01` | `ART-05` | `CAP-ART-006` | integration-test | candidate | Home, About, AI, subdomains, and reading surfaces translated | 2026-07-18 | `ART-05.md` |
 | `EV-ART-06-01` | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | integration-test | candidate | typed asset registry, optimized derivatives, reduced motion, local matrix, and build | 2026-07-18 | `ART-06.md` |
+| `EV-ART-07-01` | `ART-07` | `CAP-ART-007`, `CAP-ART-008`, `CAP-ART-009`, `CAP-ART-012` | browser-flow | candidate | local dynamic Museum, 171 tests, content/type/lint/build, calm fallback, graph evidence, and no-console browser review | 2026-07-19 | `ART-07.md` |
+| `EV-ART-08-01` | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | browser-flow | candidate | local state-driven LifeInbox, 175 tests, content/type/lint/build, calm fallback, and complete synthetic browser flow | 2026-07-19 | `ART-08.md` |
+| `EV-ART-09-01` | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | browser-flow | candidate | distinct Dreamlife/Sudoku scenes, truthful ownership reducer, 180 tests, build, and bounded browser flows | 2026-07-19 | `ART-09.md` |
+| `EV-ART-10-01` | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | browser-flow | candidate | distinct Home/About/AI/reading scenes, 184 tests, build, and bounded browser flows | 2026-07-19 | `ART-10.md` |
+| `EV-ART-11-01` | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | integration-test | candidate | typed eight-route policy, lifecycle corrections, 188 tests, build, and bounded route swaps | 2026-07-19 | `ART-11.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

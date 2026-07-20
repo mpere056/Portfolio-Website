@@ -1,6 +1,6 @@
 # Art Direction And Aesthetic Quality Plan
 
-Last updated: 2026-07-18
+Last updated: 2026-07-19
 
 ## Plan Metadata
 
@@ -11,8 +11,8 @@ Last updated: 2026-07-18
 | Upstream | Comprehensive vision, accepted depth grammar, Mark's aesthetic feedback, live Phase 3 audit |
 | Downstream | [Aesthetic integration](19-Aesthetic-System-Integration-And-Delivery.md), museum remediation, Dreamlife, Sudoku Together, About depth, AI cards, stimulation, quality gates |
 | Primary outputs | Art-direction charter, selected visual world, project dialects, keyframes, rejection tests, creative evidence |
-| Execution packages | `ART-01` through `ART-06` in [Work Packages](13-Execution-Work-Packages.md) |
-| Capability tracking | `CAP-ART-001` through `CAP-ART-006` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
+| Execution packages | `ART-01` through `ART-11` in [Work Packages](13-Execution-Work-Packages.md) |
+| Capability tracking | `CAP-ART-001` through `CAP-ART-012` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Why This Plan Exists
 
@@ -219,6 +219,19 @@ Every motion review records:
 
 Do not use the same easing, fade distance, and duration everywhere. Shared motion grammar should feel related, not cloned.
 
+### Dynamic Material Direction
+
+The approved static keyframe remains the composition checksum, but it is not the final ceiling. Dynamic route work should separate the scene into authored material layers that can transmit, refract, conceal, record, accumulate, settle, or reveal independently.
+
+- Generate transparent plates, masks, displacement/normal maps, vector traces, particle sprites, and close-detail matter only when they serve the route composition.
+- Use DOM and SVG for semantic, typographic, diagrammatic, and precisely interactive material.
+- Use Canvas for dense traces, particles, accumulation, or painterly disturbance.
+- Use WebGL, shaders, or 3D for effects such as fluid refraction, distortion, caustics, volumetric matter, feedback, or genuine spatial objects when simpler media cannot carry the idea.
+- Keep one still hierarchy that survives when every continuous effect is paused or unavailable.
+- Do not repeat one shader, particle field, or parallax grammar as the identity of every route.
+
+The full scene model, packet extension, renderer ladder, and tracking rules live in `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+
 ## Art-Direction Workflow
 
 No major visual surface moves directly from wireframe logic to production styling. A browser implementation is not a substitute for a visual keyframe.
@@ -255,6 +268,10 @@ The `Q` dimension cannot be accepted from a statement such as “looks good” o
 | Calm state | Is sound-off and lower stimulation still fully composed? |
 | Deep state | Does increasing depth change the experience rather than append more panels? |
 | Restraint | What was intentionally removed, and did composition become stronger? |
+| Dynamic causality | Can the reviewer name why important movement happened and what it revealed? |
+| Layer behavior | Do meaningful materials respond independently rather than moving as one poster? |
+| Settlement | Does interaction reach an authored inspectable state instead of remaining in constant motion? |
+| Failure | Does the scene retain identity and meaning without Canvas, WebGL, shaders, or optional layers? |
 
 Evidence includes the selected keyframes, at least one rejected alternative, stable browser captures, a short rationale, and Mark's acceptance for taste-sensitive milestones.
 
@@ -270,6 +287,11 @@ These are manual, repeatable prompts rather than numeric scores:
 - **Stillness test:** pausing motion leaves a strong composition.
 - **Deepening test:** Handle, Enter, and Understand produce perceptual as well as informational depth.
 - **Furniture test:** utility controls form one hierarchy and do not look like unrelated floating widgets.
+- **Cause test:** important motion has a named visitor or semantic trigger and a legible result.
+- **Layer independence test:** at least two meaningful scene layers can respond without transforming the whole flattened composition.
+- **Settlement test:** interaction resolves into a strong state that can be inspected, captured, restored, and calmly revisited.
+- **Renderer-off test:** disabling the richest renderer preserves silhouette, hierarchy, meaning, and navigation.
+- **Temporal swap test:** applying one route's dynamic behavior to another breaks the metaphor rather than looking equally plausible.
 
 ## Delivery Sequence
 
@@ -279,6 +301,11 @@ These are manual, repeatable prompts rather than numeric scores:
 4. `ART-04`: establish Dreamlife, Sudoku, and archive dialect packets before `PRJ-05` through `PRJ-07` styling.
 5. `ART-05`: translate the system to Home, About, AI, blogs, and support states as their owning phases begin.
 6. `ART-06`: review whole-portfolio coherence and production maturity after representative route classes exist.
+7. `ART-07`: extend the accepted Museum composition into the first layered dynamic scene and prove the bounded driver/lifecycle contract.
+8. `ART-08`: integrate LifeInbox behavior with its own dynamic material transformation.
+9. `ART-09`: develop Dreamlife and Sudoku dynamic compositions separately, one route at a time.
+10. `ART-10`: reason through Home, About, AI, and reading dynamics independently rather than inheriting Museum behavior.
+11. `ART-11`: review temporal restraint, renderer loading, calm/failure states, route distinction, and whole-portfolio dynamic maturity.
 
 Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.
 
