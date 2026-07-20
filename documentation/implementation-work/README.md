@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4 visual acceptance is reopened. Production `9c3a743` remains the functional rollback point, but Mark's screenshots rejected the scrolling Museum lobby and imperceptible direct-surface project dynamics. `WI-ART-11-01` now owns a local one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together scene remediation; aggregate, deployment, public re-verification, and Mark acceptance remain.
+Phase 4's replacement visual candidate is live at `fce50af`. Mark's screenshots rejected the prior scrolling Museum lobby and imperceptible direct-surface project dynamics; the replacement now passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix. Sustained observation and Mark acceptance remain.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-progress | `ART-11` | Local one-viewport Museum and three direct project-world scenes pass focused browser checks | Run aggregate gate, deploy, and repeat public visual acceptance matrix | 2026-07-20 |
+| Now | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes aggregate and public visual interaction gates | Collect Mark visual acceptance and longer performance observation | 2026-07-20 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading have distinct causal scene behavior | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement is live on Production | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 
@@ -31,7 +31,7 @@ Phase 4 visual acceptance is reopened. Production `9c3a743` remains the function
 | `WI-ART-08-01` | Transform LifeInbox through product state | in-review | high | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | `active/WI-ART-08-01.md` | 2026-07-19 |
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | in-review | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-19 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | in-review | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-19 |
-| `WI-ART-11-01` | Mature the dynamic scene system | in-progress | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
+| `WI-ART-11-01` | Mature the dynamic scene system | in-review | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | in-review |
 | Priority | high |
 | Package | `ART-11` |
 | Capabilities | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` |
@@ -16,13 +16,13 @@
 
 ## Current Truth
 
-Production `9c3a743` remains the functional rollback point, but Mark's desktop screenshots failed Phase 4 visual acceptance: the Museum required scrolling to see its complete field and the flagship subdomain dynamics were not visibly present. A local remediation candidate now composes the Museum as one desktop viewport, keeps all nine signals collision-free, contains increasing depth without horizontal overflow, and gives Dreamlife, LifeInbox, and Sudoku Together distinct pointer-driven scene layers.
+Commit `fce50af` is live in Production. Mark's desktop screenshots correctly failed the prior Phase 4 visual acceptance; the replacement now composes the Museum as one desktop viewport, keeps all nine signals collision-free, contains increasing depth without horizontal overflow, and gives Dreamlife, LifeInbox, and Sudoku Together distinct pointer-driven scene layers. Public geometry and interaction checks pass at 1912x948.
 
 ## Resume Packet
 
 - Last artifact: [Phase 4 Visual Acceptance Remediation](../../implementation-plans/2026-07-20-Phase-4-Visual-Acceptance-Remediation.md).
-- Known-good point: content, TypeScript, zero-error lint, 48 files/193 tests, 35-page build, and a 1912x948 browser check with zero Museum document scroll, nine visible signals, zero hit-region collisions, a contained depth chamber, and pointer-variable changes on all three project worlds.
-- Next exact action: commit/deploy the exact candidate, repeat the public geometry and interaction matrix, then request Mark's visual review.
+- Known-good point: Production `fce50af`; content, TypeScript, zero-error lint, 48 files/193 tests, 35-page build, and a public 1912x948 browser check with zero Museum document scroll, nine visible signals, zero hit-region collisions, a contained depth chamber, and pointer-variable changes on all three project worlds.
+- Next exact action: collect Mark's visual acceptance and perform longer normal-use performance observation.
 - Preserve: route-owned composition, one dominant scheduler per dynamic field, semantic fallbacks, quiet reading, and truthful product state.
 
 ## Acceptance
@@ -38,5 +38,5 @@ Production `9c3a743` remains the functional rollback point, but Mark's desktop s
 - [x] Project depth is contained with no horizontal scrollbar.
 - [x] Dreamlife, LifeInbox, and Sudoku Together have perceptible route-owned scene drivers on their direct landing surfaces.
 - [x] Aggregate tests, content, TypeScript, lint, and production build pass.
-- [ ] Exact-candidate Production deployment and public re-verification pass.
+- [x] Exact-candidate Production deployment and public re-verification pass.
 - [ ] Sustained performance observation and Mark creative review pass.

@@ -288,7 +288,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` remain functionally implemented at production rollback `9c3a743`, but Phase 4 visual acceptance reopened on 2026-07-20. The corrective local candidate makes the Project Museum a one-viewport field and places distinct, perceptible dynamic scenes on the Dreamlife, LifeInbox, and Sudoku Together direct surfaces. Focused geometry, interaction, scene, and route checks pass; aggregate verification, exact deployment, public re-verification, sustained observation, and Mark creative acceptance remain. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md`.
+Current checkpoint: `ART-07` through `ART-11` are implemented in replacement Production candidate `fce50af`. Phase 4 visual acceptance reopened on 2026-07-20 after the prior Museum required scrolling and direct project dynamics were imperceptible. The replacement makes the Museum a one-viewport field and places distinct, perceptible dynamic scenes on Dreamlife, LifeInbox, and Sudoku Together; aggregate and public geometry/interaction checks pass. Sustained observation and Mark creative acceptance remain. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md`.
 
 Execution order:
 

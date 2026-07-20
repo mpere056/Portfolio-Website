@@ -46,7 +46,7 @@ Mark's 2026-07-20 production screenshots showed that `/projects` required vertic
 
 ## EV-ART-11-04: Perceptible Dynamics Remediation Candidate
 
-Status: local candidate.
+Status: production candidate.
 
 The remediation candidate composes the desktop Museum in one viewport, redistributes all nine project signals, strengthens pointer-driven energy and proximity, and opens project depth in a contained overlay with vertical-only overflow. The three flagship project worlds now use route-owned client scenes with independently movable raster, mask, SVG, particle, grid, refraction, and focus layers.
 
@@ -58,4 +58,4 @@ Local browser evidence at 1912x948:
 - project depth keeps the outer document fixed and presents no horizontal scrollbar;
 - Dreamlife, LifeInbox, and Sudoku Together expose distinct scene IDs and each changes its frame variables after pointer movement.
 
-Verification: content validation passes at 58 nodes and 28 relationships; TypeScript passes; lint reports zero errors; all 48 test files and 193 tests pass; and the 35-page production build passes. Exact deployment, public re-verification, sustained observation, and Mark acceptance remain.
+Verification: content validation passes at 58 nodes and 28 relationships; TypeScript passes; lint reports zero errors; all 48 test files and 193 tests pass; and the 35-page production build passes. Commit `fce50af` is pushed and live. Public `/projects` at 1912x948 has equal document/client height (`948`), nine visible signals, zero hit-region collisions, and a responsive Dreamlife aperture. All three public subdomains expose distinct scene IDs and change frame variables after pointer movement. Sustained observation and Mark acceptance remain.

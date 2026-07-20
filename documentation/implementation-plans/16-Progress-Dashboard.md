@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-20
-Implementation commit baseline and latest verified Production: `9c3a743`
+Implementation commit baseline and latest verified Production: `fce50af`
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline and latest verified Production: `9c3a743`
 
 ## Current Program State
 
-**Phase 4 visual acceptance is reopened. Production `9c3a743` remains the functional rollback point, while a local one-viewport Museum and direct-surface Dreamlife, LifeInbox, and Sudoku Together scene remediation is in progress.**
+**The replacement Phase 4 visual candidate is live at `fce50af`; the one-viewport Museum and direct-surface Dreamlife, LifeInbox, and Sudoku Together public checks pass. Mark acceptance remains in review.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. The local corrective candidate keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Focused scene and route tests plus a 1912x948 browser geometry/interaction matrix pass; aggregate, deployment, public re-verification, sustained observation, and Mark acceptance remain.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. Production `fce50af` keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Content, TypeScript, zero-error lint, 48 files/193 tests, the 35-page build, and the public 1912x948 geometry/interaction matrix pass; sustained observation and Mark acceptance remain.
 
 This distinction prevents two errors:
 
@@ -116,7 +116,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-11-01` | in-progress | `ART-11` | Local Museum geometry and three direct project-world scenes pass focused verification | Run aggregate gate, deploy, and repeat the public visual matrix | 2026-07-20 |
+| Now | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes the aggregate and public visual interaction matrix | Collect Mark acceptance and longer performance observation | 2026-07-20 |
 | Next | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Review supporting-route restraint and distinction | 2026-07-19 |
 | Later | `WI-ART-03-01` | in-review | `ART-03` | Museum/LifeInbox static replacement remains live | Revise only named static/material mismatches not superseded by `ART-07`/`08` | 2026-07-19 |
 

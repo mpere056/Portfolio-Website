@@ -3,7 +3,7 @@
 Date: 2026-07-20
 Package: `ART-11`
 Work item: `WI-ART-11-01`
-Status: local candidate; Production verification and Mark acceptance remain
+Status: Production candidate at `fce50af`; Mark acceptance and sustained observation remain
 
 ## Why Acceptance Reopened
 
@@ -47,4 +47,4 @@ The first Phase 4 production promotion proved routes, fallbacks, lifecycle polic
 
 ## Resume Point
 
-The local candidate passes content validation, TypeScript, zero-error lint, all 48 test files/193 tests, the 35-page production build, and desktop browser geometry/interaction checks. Next: commit and deploy the exact candidate, repeat the public matrix, then request Mark's visual acceptance. Do not mark Phase 4 creatively complete from deployment health alone.
+Production `fce50af` passes content validation, TypeScript, zero-error lint, all 48 test files/193 tests, the 35-page build, and the public desktop geometry/interaction matrix. The Museum remains one viewport with nine visible, collision-free signals; each public flagship world changes its own scene state after pointer movement. Next: collect Mark's visual acceptance and longer normal-use performance observation. Do not mark Phase 4 creatively complete from deployment health alone.
