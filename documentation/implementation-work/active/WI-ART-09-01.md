@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | paused |
 | Priority | high |
 | Package | `ART-09` |
 | Capabilities | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` |
@@ -12,9 +12,11 @@
 | Outcome | `O-03`, `O-04` |
 | Owner | Mark and Codex |
 | Branch/worktree | `main` |
-| Last update | 2026-07-19 |
+| Last update | 2026-07-20 |
 
 ## Current Truth
+
+Tracking note: the Dreamlife and Sudoku interaction baselines remain live and valid. Their separate review is superseded by their sequential `ART-13` ambient slices; resume only if those slices uncover a product-state, route-distinction, or interaction regression.
 
 Dreamlife and Sudoku are implemented as distinct dynamic compositions live at `9c3a743`. Dreamlife uses seven CSS/SVG nacre and loop layers driven by future, reaction, and depth. Sudoku uses seven DOM/CSS/SVG layers driven by selected cell, truthful ownership, synthetic presence, sync, and architecture depth. Forty-five files/180 tests, content, type, lint, build, and public domain verification pass.
 
@@ -22,7 +24,7 @@ Dreamlife and Sudoku are implemented as distinct dynamic compositions live at `9
 
 - Last artifact: [Dreamlife And Sudoku Dynamic Scene Packet](../../implementation-plans/2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md).
 - Known-good point: local working tree on 2026-07-19; `EV-ART-09-01` records the exact proof and browser limitation.
-- Next exact action: review both public flagship routes and record named creative or performance feedback.
+- Next exact action: none while paused; restart only from a named Dreamlife or Sudoku regression discovered during `ART-13`.
 - Preserve: Dreamlife path/reaction/loop truth, Sudoku synthetic-participant labeling and architecture, direct routes, evidence, and still fallbacks.
 
 ## Acceptance

@@ -14,24 +14,24 @@ Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient contract and corrected execution sequence are documented | Create the Museum source-region atlas and motion coverage ledger | 2026-07-20 |
-| Next | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes aggregate and public visual interaction gates | Preserve the known-good interaction baseline while ambient acceptance moves to `ART-12` | 2026-07-20 |
-| Later | `WI-ART-10-01` | in-review | `ART-10` | Supporting routes have distinct causal scene behavior | Revisit their ambient material systems in `ART-14` | 2026-07-20 |
+| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient contract, `A-H` sequence, and known-good `fce50af` baseline are documented | Complete `ART-12A` baseline reconciliation before region mapping or asset work | 2026-07-20 |
+| Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
+| Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
 ## Active And Unfinished Items
 
 | Work item | Title | State | Priority | Package | Capabilities | File | Last update |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `WI-ART-01-02` | Produce reference-rich material studies and keyframes | in-review | high | `ART-01` | `CAP-ART-002`, `CAP-QA-002` | `active/WI-ART-01-02.md` | 2026-07-18 |
-| `WI-ART-03-01` | Replace the Museum and LifeInbox creative candidate | in-review | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-18 |
-| `WI-ART-04-01` | Deepen project and historical art dialects | in-review | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-18 |
-| `WI-ART-05-01` | Translate the Observatory across supporting routes | in-review | high | `ART-05` | `CAP-ART-006` | `active/WI-ART-05-01.md` | 2026-07-18 |
-| `WI-ART-06-01` | Mature and verify the whole-portfolio art system | in-review | high | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | `active/WI-ART-06-01.md` | 2026-07-18 |
-| `WI-ART-07-01` | Prove the dynamic Museum scene model | in-review | high | `ART-07` | `CAP-ART-007`, `CAP-ART-008`, `CAP-ART-009`, `CAP-ART-012` | `active/WI-ART-07-01.md` | 2026-07-19 |
-| `WI-ART-08-01` | Transform LifeInbox through product state | in-review | high | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | `active/WI-ART-08-01.md` | 2026-07-19 |
-| `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | in-review | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-19 |
-| `WI-ART-10-01` | Compose supporting routes dynamically | in-review | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-19 |
-| `WI-ART-11-01` | Mature the dynamic scene system | in-review | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
+| `WI-ART-01-02` | Produce reference-rich material studies and keyframes | paused | high | `ART-01` | `CAP-ART-002`, `CAP-QA-002` | `active/WI-ART-01-02.md` | 2026-07-20 |
+| `WI-ART-03-01` | Replace the Museum and LifeInbox creative candidate | paused | high | `ART-03` | `CAP-ART-004`, `CAP-QA-002` | `active/WI-ART-03-01.md` | 2026-07-20 |
+| `WI-ART-04-01` | Deepen project and historical art dialects | paused | high | `ART-04` | `CAP-ART-005` | `active/WI-ART-04-01.md` | 2026-07-20 |
+| `WI-ART-05-01` | Translate the Observatory across supporting routes | paused | high | `ART-05` | `CAP-ART-006` | `active/WI-ART-05-01.md` | 2026-07-20 |
+| `WI-ART-06-01` | Mature and verify the whole-portfolio art system | paused | high | `ART-06` | `CAP-ART-006`, `CAP-QA-002` | `active/WI-ART-06-01.md` | 2026-07-20 |
+| `WI-ART-07-01` | Prove the dynamic Museum scene model | paused | high | `ART-07` | `CAP-ART-007`, `CAP-ART-008`, `CAP-ART-009`, `CAP-ART-012` | `active/WI-ART-07-01.md` | 2026-07-20 |
+| `WI-ART-08-01` | Transform LifeInbox through product state | paused | high | `ART-08` | `CAP-ART-008`, `CAP-ART-010`, `CAP-ART-012` | `active/WI-ART-08-01.md` | 2026-07-20 |
+| `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | paused | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-20 |
+| `WI-ART-10-01` | Compose supporting routes dynamically | paused | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-20 |
+| `WI-ART-11-01` | Mature the dynamic scene system | paused | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
 | `WI-ART-12-01` | Prove pervasive ambient life in the Museum | ready | high | `ART-12` | `CAP-ART-013`, `CAP-ART-014` | `active/WI-ART-12-01.md` | 2026-07-20 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.

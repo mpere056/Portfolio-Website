@@ -230,6 +230,8 @@ Do not use the same easing, fade distance, and duration everywhere. Shared motio
 The approved static keyframe remains the composition checksum, but it is not the final ceiling. Dynamic route work should separate the scene into authored material layers that can transmit, refract, conceal, record, accumulate, settle, or reveal independently.
 
 - Generate transparent plates, masks, displacement/normal maps, vector traces, particle sprites, and close-detail matter only when they serve the route composition.
+- Before production generation, approve the active route's source-region atlas, motion coverage ledger, and asset brief. The brief chooses preserve, extract, manual, procedural, or generated production and records palette, camera, lighting, alpha, scale, blend, maps, budget, fallback, and owner.
+- Review generated plates independently over diagnostic backgrounds and in the intended stack before compositor selection. Do not use shaders or post-processing to conceal weak alpha, baked lighting, perspective, or seam quality.
 - Use DOM and SVG for semantic, typographic, diagrammatic, and precisely interactive material.
 - Use Canvas for dense traces, particles, accumulation, or painterly disturbance.
 - Use WebGL, shaders, or 3D for effects such as fluid refraction, distortion, caustics, volumetric matter, feedback, or genuine spatial objects when simpler media cannot carry the idea.
@@ -320,6 +322,10 @@ These are manual, repeatable prompts rather than numeric scores:
 9. `ART-09`: develop Dreamlife and Sudoku dynamic compositions separately, one route at a time.
 10. `ART-10`: reason through Home, About, AI, and reading dynamics independently rather than inheriting Museum behavior.
 11. `ART-11`: review temporal restraint, renderer loading, calm/failure states, route distinction, and whole-portfolio dynamic maturity.
+12. `ART-12`: run baseline, Museum mapping, asset briefing, representative production, asset approval, compositor selection, integration, and release in that order. Production transparent assets begin only after mapping and briefing.
+13. `ART-13`: repeat the route-local pipeline for LifeInbox, then Dreamlife, then Sudoku. Do not produce the next route's assets before the current route reaches a known-good gate.
+14. Complete `ABT-01`, then `ART-14`: repeat the pipeline for Home, About, AI, and reading without copying flagship materials or stimulation density.
+15. Run `QA-04`, then `ART-15`: close motion coverage, capability, fatigue, performance, and Production/Mark acceptance across the desktop route matrix.
 
 Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.
 
@@ -334,3 +340,4 @@ Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02
 - Accepted art packets connect each major keyframe to real content, behavior, semantic inputs, calm/fallback states, and a performance envelope.
 - Utility controls, typography, material, motion, and darkness follow explicit hierarchies.
 - No flagship is promoted with placeholder or generic-template creative status.
+- Every dominant region in standard stimulation has accepted direct or indirect temporal participation; transparent production assets were generated only after route-local mapping/briefing and approved before compositor selection.

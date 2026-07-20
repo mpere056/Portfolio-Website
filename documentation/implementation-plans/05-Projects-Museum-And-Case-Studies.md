@@ -406,7 +406,7 @@ Package ownership is explicit:
 - `ART-08` through `ART-10` add route-owned dynamic compositions without reopening accepted product behavior or copying the Museum renderer.
 - `ART-11` owns cross-route dynamic maturity, performance, fallback, and creative acceptance.
 - `ART-12` corrects the matte-first model by defining the ambient participation contract, decomposed-asset pipeline, coordinated scene clock, and Museum proof.
-- `ART-13` builds Dreamlife, LifeInbox, and Sudoku ambient worlds sequentially from route-specific material packs.
+- `ART-13` builds LifeInbox, Dreamlife, and Sudoku ambient worlds sequentially from route-specific material packs and repeats the route-local map/brief/produce/approve/compositor/integrate/accept gate.
 - `ART-14` gives Home, About, AI, and reading their own restrained ambient systems without copying flagship density.
 - `ART-15` closes dead zones, temporal synchronization, material credibility, performance, and production acceptance across the portfolio.
 

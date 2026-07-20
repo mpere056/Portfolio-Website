@@ -70,6 +70,20 @@ Static source artwork remains valuable, but it becomes an anchor and fallback ra
 
 Do not mechanically cut the background into rectangular parallax strips. A layer exists because it has a material, depth, occlusion, or semantic responsibility.
 
+### Production Asset Generation Gate
+
+Transparent-background generation is neither the first design step nor a bulk pre-production activity. It begins only when all of the following are true for the active route or representative crop:
+
+- the source-region atlas accounts for the composition and identifies fused or missing matter;
+- the motion coverage ledger names the material behavior and depth/occlusion responsibility of the requested asset;
+- an asset brief records preserve/extract/manual/procedural/generate choice, palette, camera, perspective, lighting, alpha edge, scale range, blend intent, required maps, performance budget, and fallback;
+- the accepted still checksum establishes the target composition;
+- the asset has an intended owner and integration hypothesis, without prematurely committing to a renderer.
+
+Generate only the smallest representative batch needed to evaluate the material stack. Do not generate complete packs for Dreamlife, LifeInbox, Sudoku, Home, About, AI, or reading during the Museum proof. Later routes repeat the same gate from their own packets after the preceding route reaches its known-good checkpoint.
+
+Generation is followed by alpha cleanup and contact-sheet review before compositor selection. An asset rejected in isolation or in stack does not enter the registry, renderer spike, or runtime. Compositor implementation must not become a way to conceal weak plate edges, baked shadows, mismatched lighting, perspective errors, or missing occlusion logic.
+
 ## Coordinated Scene Clock
 
 Each active route owns one temporal coordinator. It supplies deterministic phase channels to CSS variables, SVG attributes, Canvas state, and shader uniforms without forcing those renderers to share a composition.
@@ -195,21 +209,61 @@ Record first useful frame, asset transfer, decoded texture memory, steady-state 
 
 ### `ART-12`: Ambient Contract, Asset Decomposition, And Museum Proof
 
+#### `ART-12A`: Preserve The Baseline
+
 - Reconcile the existing dynamic packet with pervasive temporal participation.
-- Build the motion coverage ledger and source-region atlas for the Museum.
-- Produce and review transparent plates, masks, depth/flow/displacement maps, vectors, and sprites.
-- Implement one coordinated Museum compositor with no dominant dead zone.
+- Record the `fce50af` geometry, interactions, semantics, fallback, and performance behavior that must not regress.
+
+#### `ART-12B`: Map The World
+
+- Build and review the Museum source-region atlas, motion coverage ledger, depth bands, occlusion relationships, and material-specific temporal responsibilities.
+- Name every dominant dead zone rather than hiding it in a route-level status.
+
+#### `ART-12C`: Brief The Assets
+
+- Decide per region whether to preserve, extract, manually author, procedurally render, or generate.
+- Record palette, camera, lighting, alpha, scale, blend, maps, budget, fallback, and intended stack position before production.
+
+#### `ART-12D`: Produce A Representative Material Stack
+
+- Generate or extract transparent foreground, midground, and atmospheric plates only for one representative Museum ecology crop.
+- Perform alpha cleanup and author only the masks, depth/flow/displacement/emission/occlusion maps, vectors, and sprites required by the approved behaviors.
+
+#### `ART-12E`: Approve The Assets
+
+- Review every asset independently over black, white, and route backgrounds and together in the intended stack.
+- Record accepted and rejected variants with reasons; only accepted production derivatives enter the registry.
+
+#### `ART-12F`: Select The Compositor
+
+- Spike the smallest credible renderer arrangement using the approved stack.
+- Compare CSS/SVG, Canvas, and WebGL needs against deformation, depth, occlusion, particles, memory, failure, and one-scheduler constraints before recording the route decision.
+
+#### `ART-12G`: Integrate The Museum
+
+- Implement one coordinated Museum clock with independent material bands and no dominant dead zone.
+- Modulate ongoing ambient behavior through existing pointer, focus, project, graph, depth, and stimulation state.
 - Preserve one-screen navigation, depth containment, semantic graph behavior, calm state, and fallback.
+
+#### `ART-12H`: Accept And Release
+
+- Pass idle-life, dead-zone, material, temporal-independence, foreground/background, interaction-continuity, freeze, fatigue, performance, capability, aggregate, and Production gates.
+- Collect Mark's review before beginning production assets for the first flagship.
 
 ### `ART-13`: Flagship Ambient Worlds
 
-- Author and implement Dreamlife, LifeInbox, and Sudoku separately.
-- Complete one route and its creative/performance gate before beginning the next.
+- Author and implement LifeInbox, Dreamlife, and Sudoku separately, in that order.
+- LifeInbox goes first because its mature product-state reducer and existing material transformation provide the safest proof that the Museum pipeline transfers to a canonical subdomain.
+- Dreamlife follows to expand the proven system into liquid refraction and translucent recombination.
+- Sudoku follows to prove that the approach also supports precise geometric and diagram-organism behavior without copying fluid motion.
+- Repeat `Map -> Brief -> Produce -> Approve -> Select compositor -> Integrate -> Accept` for each route.
+- Complete one route and its creative/performance gate before generating production assets for the next.
 - Share the scene clock and lifecycle only where the Museum proof demonstrates a real common need.
 
 ### `ART-14`: Supporting Ambient Worlds
 
-- Apply route-specific ambient systems to Home, About, AI, and reading.
+- Apply route-specific ambient systems to Home, About, AI, and reading, in that order; `ABT-01` reviewed consequence content is the gate before About production integration.
+- Repeat the route-local mapping and asset gate. Do not reuse leftover flagship plates merely because they already exist.
 - Keep semantics and reading spatially stable while their environments remain temporally alive.
 - Treat mobile composition and musical identity as their existing later decisions.
 
@@ -221,4 +275,4 @@ Record first useful frame, asset transfer, decoded texture memory, steady-state 
 
 ## Resume Point
 
-Production `fce50af` remains the functional and current visual baseline. The next exact action is not renderer coding: create the Museum motion coverage ledger and semantic source-region atlas, then produce a reviewed transparent/mask/map contact sheet for one representative ecology crop. Only after that artifact is accepted should the compositor be selected and implemented.
+Production `fce50af` remains the functional and current visual baseline. The next exact action is not renderer coding or asset generation: complete `ART-12A` baseline reconciliation and `ART-12B` Museum motion/source mapping. Then write `ART-12C` asset briefs. Transparent production assets begin only at `ART-12D`; the contact sheet must pass `ART-12E` before compositor selection at `ART-12F`.

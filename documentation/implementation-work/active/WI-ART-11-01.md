@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | paused |
 | Priority | high |
 | Package | `ART-11` |
 | Capabilities | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` |
@@ -16,13 +16,15 @@
 
 ## Current Truth
 
+Tracking note: this item is paused as the known-good interaction, geometry, lifecycle, and rollback baseline. Its remaining standalone creative acceptance is superseded by `ART-12` through `ART-15`; resume only if the ambient sequence exposes a regression in the shared dynamic policy.
+
 Commit `fce50af` is live in Production. Mark's desktop screenshots correctly failed the prior Phase 4 geometry and perceptibility acceptance; the replacement now composes the Museum as one desktop viewport, keeps all nine signals collision-free, contains increasing depth without horizontal overflow, and gives Dreamlife, LifeInbox, and Sudoku Together distinct pointer-driven scene layers. Public geometry and interaction checks pass at 1912x948. Mark's subsequent no-input observation supersedes the remaining creative acceptance claim: dominant raster regions are still too static. That correction belongs to `ART-12` through `ART-15`, while this item preserves the known-good interaction evidence.
 
 ## Resume Packet
 
 - Last artifact: [Phase 4 Visual Acceptance Remediation](../../implementation-plans/2026-07-20-Phase-4-Visual-Acceptance-Remediation.md).
 - Known-good point: Production `fce50af`; content, TypeScript, zero-error lint, 48 files/193 tests, 35-page build, and a public 1912x948 browser check with zero Museum document scroll, nine visible signals, zero hit-region collisions, a contained depth chamber, and pointer-variable changes on all three project worlds.
-- Next exact action: preserve `fce50af` as the interaction and rollback baseline while `WI-ART-12-01` begins the Museum ambient proof.
+- Next exact action: none while paused; preserve `fce50af` and restart only from a named policy regression discovered by `ART-12` through `ART-15`.
 - Preserve: route-owned composition, one dominant scheduler per dynamic field, semantic fallbacks, quiet reading, and truthful product state.
 
 ## Acceptance

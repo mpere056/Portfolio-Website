@@ -1,6 +1,6 @@
 # Implementation Tracking Model
 
-Last updated: 2026-07-17
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -40,6 +40,22 @@ The capability is the stable product-level unit. The work item is the day-to-day
 | What changed direction? | `11-Decision-Register.md` |
 
 Do not maintain the same status independently in several documents. The capability ledger owns capability state. The work-item file owns active implementation and resume state. The dashboard points to current work. Work packages own dependency and exit state.
+
+For layered ambient routes, the work-item resume packet also owns the current production-pipeline stage. Use the ordered states below; do not collapse them into “assets in progress” or a percentage.
+
+| Pipeline state | Meaning | Required continuation record |
+| --- | --- | --- |
+| `baseline` | Existing route behavior and rollback point are being reconciled | Known-good commit, captures, tests, and protected behavior |
+| `mapping` | Dominant regions, depth, occlusion, and temporal responsibilities are being authored | Region atlas, motion coverage ledger, and named dead zones |
+| `briefing` | Each ingredient receives a preserve/extract/manual/procedural/generate decision | Asset brief, owner, intended stack, maps, budget, and fallback |
+| `producing` | The smallest approved route-local plate/map/vector/sprite batch is being created | Asset provenance, variants, alpha cleanup, and no later-route production |
+| `asset-review` | Ingredients are reviewed independently and in stack | Accepted/rejected contact sheet with reasons |
+| `renderer-proof` | Approved assets test the smallest credible compositor | Renderer comparison, one-scheduler plan, capability/failure decision |
+| `integrating` | Ambient and existing semantic/interaction systems are joined | Named drivers, tests, diagnostics, and current regressions |
+| `release-review` | The complete route checkpoint is measured and reviewed | Local, Preview/Production, performance, rollback, and Mark evidence |
+| `accepted` | The route gate passed | Durable evidence and authorization for the next route to begin production assets |
+
+Production transparent assets may begin only in `producing`, after `mapping` and `briefing`. Later-route assets must not be produced speculatively while another route owns the active ambient work item.
 
 ## Seven Coverage Dimensions
 

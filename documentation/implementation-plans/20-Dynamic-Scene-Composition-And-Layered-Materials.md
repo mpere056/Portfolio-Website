@@ -263,6 +263,7 @@ Each route has one Dynamic Scene Ledger row with these fields:
 | Field | Allowed values or content |
 | --- | --- |
 | Packet state | `planned`, `drafted`, `reviewed` |
+| Production pipeline | `baseline`, `mapping`, `briefing`, `producing`, `asset-review`, `renderer-proof`, `integrating`, `release-review`, `accepted` |
 | Layer pack state | `missing`, `producing`, `material-ready`, `integrated` |
 | Source-region atlas | Named structural, organic, atmospheric, flow, mechanical, illumination, and occlusion regions plus unmapped gaps |
 | Asset contact sheet | Reviewed transparent plates, clean fills, masks/maps, vectors/sprites, provenance, and rejected assets |
@@ -275,7 +276,7 @@ Each route has one Dynamic Scene Ledger row with these fields:
 | Known-good point | Commit, artifact, route, or reproducible local state |
 | Next exact action | One observable implementation or review action |
 
-Do not label a route dynamic because its matte drifts, and do not label the route incomplete merely because later optional effects remain. Track the accepted packet contract and name every gap.
+Do not label a route dynamic because its matte drifts, and do not label the route incomplete merely because later optional effects remain. Track the accepted packet contract and name every gap. `producing` may begin only after `mapping` and `briefing`; `renderer-proof` may begin only after `asset-review`; no later route enters `producing` while the current route has not reached its known-good gate.
 
 ## Delivery Sequence
 
@@ -313,13 +314,15 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 ### `ART-12`: Ambient Contract, Asset Decomposition, And Museum Proof
 
 - Add the motion coverage ledger, temporal score, and source-region atlas.
-- Produce transparent plates, semantic masks, depth/flow/displacement maps, vectors, sprites, and one reviewed contact sheet before compositor implementation.
+- Reconcile the baseline and approve region mapping plus asset briefs before producing transparent plates, semantic masks, depth/flow/displacement maps, vectors, or sprites.
+- Review the representative contact sheet independently and in stack before compositor selection or implementation.
 - Replace the Museum's static-matte reading with material-specific coral, gas, stream, mechanism, illumination, and occlusion behavior under one route scheduler.
 - Preserve the one-screen lobby, project access, graph meaning, depth containment, calm state, and fallback.
 
 ### `ART-13`: Flagship Ambient Worlds
 
-- Implement Dreamlife, LifeInbox, and Sudoku one at a time from route-specific decomposition packs.
+- Implement LifeInbox, Dreamlife, and Sudoku one at a time from route-specific decomposition packs.
+- Repeat mapping, briefing, route-local asset production, asset approval, compositor selection, integration, and acceptance; do not produce the next route's assets before the current route reaches its gate.
 - Give every dominant region a named ambient channel before adding deeper interaction choreography.
 - Reuse lifecycle and temporal normalization only where `ART-12` proves a genuinely shared need.
 

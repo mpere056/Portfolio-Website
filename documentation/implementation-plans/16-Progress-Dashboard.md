@@ -107,10 +107,14 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | ready | `fce50af` preserves the one-screen functional baseline and Mark has accepted the pervasive ambient direction | Source atlas, reviewed material contact sheet, motion ledger, scene clock, no-input diagnostics, and Mark review pass |
-| 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12` Museum ambient proof accepted | Dreamlife, LifeInbox, and Sudoku pass sequential route-specific idle-life and interaction gates |
-| 53 | `ART-14` | Supporting ambient worlds | pending | `ART-12`, `ART-13`, and relevant supporting-route content ready | Home, About, AI, and reading pass restrained ambient and route-distinction gates |
-| 54 | `ART-15` | Pervasive motion maturation | pending | `ART-12` through `ART-14`, `QA-04` | No unexplained dominant dead zones; performance, capability, Production, and Mark review pass |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | ready | `fce50af` preserves the one-screen functional baseline and Mark has accepted the pervasive ambient direction | `A-H` gates pass in order; production assets begin only at `12D`, after mapping/briefing, and compositor selection waits on `12E` approval |
+| 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
+| 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
+| 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
+| 55 | `QA-04` | Stimulation and capability QA | pending | Representative `ART-12` through `ART-14` checkpoints exist | Sound-off, reduced-motion, capability-tier, target-device, and fully animated frame behavior pass |
+| 56 | `ART-15` | Pervasive motion maturation | pending | `ART-12` through `ART-14` and `QA-04` pass | No unexplained dominant dead zones; performance, capability, Production, and Mark review pass |
+| 57 | `ABT-02` through `ABT-04` | About depth continuation | pending | `ABT-01`, ambient supporting-route baseline, and Phase 5 gate | Event inspection, one memory-room decision, and meaningful About discoveries pass |
+| 58 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Living operations | pending | Phase 5 continuation is stable | Versioned state, editorial precedence, and returning-visitor disturbances pass |
 
 The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
 
@@ -120,9 +124,9 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient requirement, production sequence, and known-good `fce50af` baseline are documented | Create the Museum source-region atlas and motion coverage ledger | 2026-07-20 |
-| Next | `WI-ART-11-01` | in-review | `ART-11` | Production `fce50af` passes the aggregate and public visual interaction matrix | Preserve evidence while `ART-12` supersedes its ambient creative acceptance boundary | 2026-07-20 |
-| Later | `WI-ART-10-01` | in-review | `ART-10` | Home, About, AI, and reading pass causal state and calm checks | Revisit during `ART-14` from route-specific ambient briefs | 2026-07-20 |
+| Now | `WI-ART-12-01` | ready | `ART-12` | Ambient requirement, `A-H` sequence, and known-good `fce50af` baseline are documented | Complete `ART-12A` baseline reconciliation before mapping or production assets | 2026-07-20 |
+| Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
+| Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -130,20 +134,16 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-07-01` | Does the layered Museum feel causally alive, artistically coherent, and calm enough without obscuring project access? | Mark | Local `/projects`, `EV-ART-07-01`, packet and scene ledger | 2026-07-19 | Review pointer proximity, LifeInbox selection, Approach transition, and reduced stimulation |
-| `WI-ART-08-01` | Does LifeInbox communicate capture, trust boundaries, and useful return through material behavior without becoming an effects demo? | Mark | Local `/projects/lifeinbox?stage=handle`, `EV-ART-08-01`, packet and resume ledger | 2026-07-19 | Review diffuse input, settlement, membrane, exploded boundaries, reminder return, and evidence depth |
-| `WI-ART-09-01` | Do Dreamlife and Sudoku feel causally alive and unmistakably different from the Museum, LifeInbox, and each other? | Mark | Local flagship routes, `EV-ART-09-01`, combined packet | 2026-07-19 | Review future/reaction/loop and selection/presence/version/architecture states |
-| `WI-ART-10-01` | Do Home, About, AI, and reading feel alive for different reasons while keeping supporting tasks clear and quiet? | Mark | Local supporting routes, `EV-ART-10-01`, supporting packet | 2026-07-19 | Review threshold, inspected event, contextual archive, and passive reading behavior |
-| `WI-ART-11-01` | Does the complete scene family remain coherent without repeating one effect language or wasting motion? | Mark | Local route matrix, `EV-ART-11-01`, maturation audit | 2026-07-19 | Review all eight classes, then deploy and observe the exact candidate |
-| `WI-ART-01-02` through `WI-ART-06-01` | Does the integrated route system now meet the approved artistic standard without becoming decorative or templated? | Mark | Museum keyframes, material studies, local captures, Production `806841d` | 2026-07-18 | Review by route/material mismatch |
+| None | No standalone review is currently requested; review occurs at the next named `ART-12` gate | - | - | - | Complete `ART-12A/B/C` before requesting asset review |
 
 ## Blocked Or Paused
 
-No work item is currently blocked or paused.
+No work item is blocked. Earlier aesthetic work items are intentionally paused because their implemented foundations are preserved while final route-level creative acceptance moves into `ART-12` through `ART-15`.
 
 | Work item | State | Reason | Restart condition | Last known-good point | Last update |
 | --- | --- | --- | --- | --- | --- |
-| None | - | - | - | - | - |
+| `WI-ART-01-02`, `WI-ART-03-01` through `WI-ART-06-01` | paused | Static keyframes, packets, and production foundations remain valid; standalone review is superseded | Resume only from a named packet, silhouette, or coherence mismatch found by an active ambient route | Production `fce50af` plus retained packet/evidence records | 2026-07-20 |
+| `WI-ART-07-01` through `WI-ART-11-01` | paused | Interactive dynamic foundations remain valid; ambient completeness is separate work | Resume only from a named interaction, state, lifecycle, or renderer-policy regression found by `ART-12` through `ART-15` | Production `fce50af`; 48 files/193 tests and 35-page build | 2026-07-20 |
 
 ## Partial Implementation Watchlist
 
@@ -151,16 +151,10 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and in
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| `CAP-ART-002` | `WI-ART-01-02` | Six studies, all-reference coverage, three Museum keyframes, and selected/reassigned route decision are committed | Mark route-level acceptance | Full-resolution decision artifacts remain separate from optimized runtime assets | Review the deployed Museum and supporting assignments | `EV-ART-01-02` candidate evidence |
-| `CAP-ART-004` | `WI-ART-03-01` | Phenomenon-led Museum and LifeInbox vessel material pass local and public verification | Mark acceptance | Keep `dd11a4f` as rejected comparison and rollback baseline | Review live Museum and LifeInbox depth | `EV-ART-03-02` candidate evidence |
-| `CAP-ART-005` | `WI-ART-04-01` | Dreamlife nacre, Sudoku diagram organism, and historical landmarks are live | Mark acceptance | Functional worlds and direct routes remain intact | Review live flagship deep states | `EV-ART-04-02` candidate evidence |
-| `CAP-ART-006` | `WI-ART-05-01`, `WI-ART-06-01` | Home, About, AI, project worlds, reading, registry, optimization, reduced motion, and public matrix are live | Mark acceptance and later performance observation under normal use | Mobile-specific art and musical identity remain later | Review the live public matrix | `EV-ART-05-01`, `EV-ART-06-01` candidate evidence |
-| `CAP-ART-007` and `009`; `CAP-ART-008` Museum slice | `WI-ART-07-01` | Packet, seven named layers, bounded reducer, CSS/SVG/Canvas renderer decision, independently responsive materials, graph evidence, calm behavior, and stable fallback pass locally | Preview/Production verification, longer performance/context-loss observation, Mark acceptance, and later route packs | Keep Production `806841d` as the known-good still/fallback baseline until promotion | Review the local interaction, then commit/deploy and verify `/projects` | `EV-ART-07-01` candidate evidence |
-| `CAP-ART-010`; `CAP-ART-008/012` LifeInbox slice | `WI-ART-08-01` | Eight route-owned layers, deterministic state/depth model, Canvas material, CSS core/membrane, SVG boundary/return, evidence response, calm fallback, tests, build, and browser flow pass locally | Preview/Production, sustained performance/context-loss observation, Mark acceptance, and all later route packs | Keep Production `806841d` as rollback; preserve the product-truth and semantic fallback | Review/deploy the candidate, then author one bounded `ART-09` route packet | `EV-ART-08-01` candidate evidence |
-| `CAP-ART-011`; `CAP-ART-008/012` flagship slices | `WI-ART-09-01` | Distinct Dreamlife and Sudoku packets, state models, CSS/SVG layers, truthful ownership reducer, calm fallback, 180 tests, build, and bounded browser flows pass | Preview/Production, sustained performance, Mark acceptance, and supporting-route packs | Keep Production `806841d`; preserve each product language and still fallback | Review flagships together, then author bounded `ART-10` packets | `EV-ART-09-01` candidate evidence |
-| `CAP-ART-011`; `CAP-ART-008/012` supporting slices | `WI-ART-10-01` | Distinct Home, About, AI, and reading layers follow threshold, event, context/activity, and bounded scroll state; 184 tests/build/browser gates pass | Production and Mark acceptance | Keep Production `806841d`; reading remains loop-free and all fallback art remains semantic | Review the supporting routes as a family | `EV-ART-10-01` candidate evidence |
-| `CAP-ART-012`; dynamic matrix | `WI-ART-11-01` | Eight-route typed policy, unique layer signatures, one-scheduler limit, hidden/reduced/fallback rules, lifecycle fixes, 188 tests, build, and route swaps pass | Sustained performance/context-loss observation, Production, and Mark acceptance | Keep route renderers local; policy audits but never renders | Review, promote, then record the exact deployed commit | `EV-ART-11-01` candidate evidence |
-| `CAP-ART-013/014`; Museum ambient proof | `WI-ART-12-01` | One-viewport Museum, nine signals, contained depth, interaction drivers, semantic fallback, and Production `fce50af` are known-good | Region atlas, decomposed asset pack, coordinated scene clock, material-specific idle life, motion coverage, diagnostics, performance, and Mark review | Preserve `fce50af`; do not replace semantic controls or remove stable poster/reduced-motion paths | Create the Museum source-region atlas and motion coverage ledger before asset generation | No `V-33` evidence yet |
+| `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
+| `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
+| `CAP-ART-013/014` | `WI-ART-12-01` | Specification, sequence, and preservation baseline are accepted; implementation has not started | `12A` baseline, `12B` mapping, `12C` briefs, `12D/E` asset production/review, `12F` compositor, `12G/H` integration/release | Do not generate assets before `12D`; preserve Production `fce50af` | Complete `ART-12A`, then `12B`, then `12C` | No `V-33` implementation evidence yet |
+| `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -206,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 95 | Functional evidence, selected direction, and Phase 4 production rollout are valid; final creative acceptance remains open |
-| Candidate | 11 | Integrated static art inputs plus the corrective local dynamic route sequence await aggregate, deployment, and Mark review gates |
+| Candidate | 11 | Retained packet and interaction evidence supports the known-good foundation; no candidate is being treated as final `V-33` ambient acceptance |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 7 | Retained infrastructure and creative failures now include the explicit `ART-11` production visual-acceptance rejection |
 
@@ -216,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-20 | Reconciled the master ambient sequence and tracking state | Vision, roadmap, `ART-12` through `15`, `WI-ART-01-02` through `12-01`, dashboard | One actionable work item; generation begins only after mapping/briefing; old standalone reviews are paused with explicit restart conditions |
 | 2026-07-19 | Promoted the complete Phase 4 dynamic scene sequence | `ART-07` through `ART-11`, `CAP-ART-008/011/012`, `EV-ART-11-02` | Commit `9c3a743`, Vercel `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`, and six public surfaces pass; creative review remains |
 | 2026-07-19 | Completed the local dynamic scene maturation pass | `ART-11`, `CAP-ART-008/011/012`, `WI-ART-11-01`, `EV-ART-11-01` | Eight-route policy, Home/About lifecycle corrections, 188 tests, build, and bounded route review pass; rollout and acceptance remain |
 | 2026-07-19 | Implemented supporting-route dynamic compositions | `ART-10`, `CAP-ART-008/011/012`, `WI-ART-10-01`, `EV-ART-10-01` | Home threshold, About chronology, AI context/activity, and passive reading layers pass 184 tests, build, and browser checks |

@@ -10,6 +10,8 @@ The comprehensive vision remains the product and design source of truth. These d
 
 Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. It preserves the one-viewport Museum, distinct route-owned interaction, semantic fallbacks, and 48 files/193 tests plus the 35-page build. Mark's 2026-07-20 observation identified the next acceptance gap: dominant raster regions remain too static during normal idle. `ART-12` is ready to begin the pervasive ambient-world correction; `ART-13` through `ART-15` sequence flagship, supporting-route, and production maturation work without discarding the known-good functional baseline.
 
+Current delivery order: `ART-12A` baseline, `12B` mapping, `12C` asset briefs, `12D` representative transparent asset production, `12E` asset approval, `12F` compositor selection, `12G` Museum integration, and `12H` release. Then complete LifeInbox, Dreamlife, and Sudoku sequentially in `ART-13`; review `ABT-01`; complete Home, About, AI, and reading in `ART-14`; run `QA-04`; finish `ART-15`; then resume deeper About and living-operations work. [Program Roadmap](01-Program-Roadmap.md) is authoritative for ordering.
+
 ## Document Authority
 
 Use this precedence when documents differ:

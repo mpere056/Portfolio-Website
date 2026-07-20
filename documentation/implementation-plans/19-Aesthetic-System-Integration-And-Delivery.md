@@ -262,13 +262,15 @@ All durable visual route classes also receive `ART-12` through `ART-15` ambient 
 
 - Replace whole-poster motion assumptions with a region-level motion coverage ledger.
 - Audit and decompose the Museum into anchor, atmosphere, organic, mechanical, flow, illumination, foreground, and semantic layers.
-- Produce transparent assets, masks, vectors, sprites, and motion maps before selecting the final compositor.
+- Follow `ART-12A` through `ART-12H`: baseline, mapping, asset briefs, representative production, asset approval, compositor selection, integration, and release.
+- Produce transparent assets, masks, vectors, sprites, and motion maps only after the region map and asset briefs are reviewed, and before selecting the final compositor.
 - Exit when the one-screen Museum remains alive without pointer input and no dominant dead zone remains.
 
 ### `ART-13`: Flagship Ambient Worlds
 
-- Complete Dreamlife, LifeInbox, and Sudoku independently and sequentially.
+- Complete LifeInbox, Dreamlife, and Sudoku independently and sequentially.
 - Preserve each product's accepted interaction truth while adding material-specific idle life across every dominant region.
+- Do not generate production assets for the next flagship until the current route passes its known-good material, fallback, and performance checkpoint.
 - Exit each route separately through material, freeze, fatigue, performance, fallback, and Mark review gates.
 
 ### `ART-14`: Supporting Ambient Worlds
@@ -296,10 +298,12 @@ All durable visual route classes also receive `ART-12` through `ART-15` ambient 
 9. Do not start `ART-08` until the Museum packet and runtime prove a bounded shared driver/lifecycle seam.
 10. Implement `ART-09` routes one at a time, then translate supporting routes in `ART-10`.
 11. Run `ART-11` only after each representative route class has its own known-good dynamic checkpoint.
-12. Begin `ART-12` with the Museum source-region atlas and contact sheet, not renderer code.
-13. Do not start `ART-13` until Museum ambient behavior and one coordinated scheduler pass material, performance, calm, and fallback review.
-14. Complete one flagship ambient world before starting the next; begin `ART-14` only after all three have known-good checkpoints.
-15. Run `ART-15` only after every durable desktop route class has a named motion coverage ledger.
+12. Begin `ART-12` with baseline reconciliation, the Museum source-region atlas, and motion coverage ledger, not asset generation or renderer code.
+13. Write approved asset briefs before generating one representative transparent/mask/map stack; approve that contact sheet before compositor selection.
+14. Do not start `ART-13` until Museum ambient behavior and one coordinated scheduler pass material, performance, calm, and fallback review.
+15. Complete LifeInbox, then Dreamlife, then Sudoku; do not generate the next route's production assets before the current route has a known-good checkpoint.
+16. Complete or review `ABT-01` consequence content before About's `ART-14` integration; implement Home, About, AI, and reading separately.
+17. Run `QA-04` before final `ART-15` acceptance, and run `ART-15` only after every durable desktop route class has a named motion coverage ledger.
 
 ## Tracking Partial Aesthetic Work
 
@@ -320,7 +324,10 @@ Each capability and work item must state which of these checkpoints exist:
 - Named drivers wired to named layers.
 - Renderer, hidden-tab, context-loss, and capability-tier behavior.
 - Motion coverage ledger and source-region atlas.
+- Current route pipeline state: baseline, mapping, briefing, producing, asset-review, renderer-proof, integrating, release-review, or accepted.
+- Asset briefs with preserve/extract/manual/procedural/generate decision before production begins.
 - Transparent plate, mask, map, vector, and sprite contact sheet.
+- Accepted/rejected asset record before compositor selection.
 - Idle-life, dead-zone, material, temporal-independence, foreground/background, freeze, and fatigue review.
 
 Do not collapse them into a percentage or the word `polish`. The next exact action should name one observable artifact, such as “render the artifact-led Museum Signal alternative” or “capture the reduced-motion LifeInbox Understand frame,” rather than “continue styling.”

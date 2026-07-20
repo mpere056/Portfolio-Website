@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 ## Plan Metadata
 
@@ -38,6 +38,8 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice is accepted and live at `4d56565`, production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`. The museum, selected depth journey, global archive card, and all three flagship subdomains pass public verification; legacy Projects remains rollback code rather than the active presentation.
 
+Current Production checkpoint: `fce50af` preserves that functional foundation, the one-viewport Museum, and route-owned interactive scenes. Pervasive ambient-world implementation has not started; `ART-12` is the only ready primary package.
+
 ## Dependency Order
 
 The critical dependency chain is:
@@ -49,9 +51,12 @@ The critical dependency chain is:
 5. One complete flagship project exhibit.
 6. Reusable museum and exploded-case-study framework.
 7. Remaining flagship exhibits.
-8. About depth and memory prototype.
-9. Experimental skill evidence and ambient presence.
-10. Later mobile, musical, and shared-navigation work.
+8. Pervasive ambient Museum proof, followed by LifeInbox, Dreamlife, and Sudoku one at a time.
+9. Reviewed About consequence content, then supporting-route ambient worlds.
+10. Cross-route ambient quality and Production maturation.
+11. About inspection and memory prototype.
+12. Living operations and bounded experiments.
+13. Later mobile, musical, ambient-presence, and shared-navigation work.
 
 Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status. Production styling for a major surface depends on an accepted aesthetic art packet; shared visual infrastructure depends on representative packets rather than preceding them as a generic design system.
 
@@ -67,6 +72,10 @@ The approved information architecture is technically multi-route and experientia
 | Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Foundation flow, First Note, tour, global shell, and graph queries/retrieval after their direct dependencies pass |
 | First flagship | `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` after completed `PRJ-01` | Asset preparation and card-contract tests may proceed only at package boundaries; do not start a second flagship interaction |
 | Expansion | `PRJ-05` to `PRJ-08`, `LPS-02`, `LPS-03`, then `ABT-01` to `ABT-04` | Remaining flagships and About can overlap only after the first slice and shared museum behavior are accepted |
+| Ambient Museum proof | `ART-12` stages A through H | Content review may proceed, but no later-route production asset generation or second compositor implementation begins |
+| Ambient flagships | `ART-13`: LifeInbox, then Dreamlife, then Sudoku | `ABT-01` consequence review may proceed during later flagship work because it changes content rather than a second scene runtime |
+| Ambient supporting routes | `ABT-01`, then `ART-14`: Home, About, AI, reading | `QA-04` capability checks may run against each accepted route checkpoint |
+| Ambient maturation | `QA-04`, then `ART-15` | No new route composition begins; this pass removes dead zones, repetition, fatigue, and performance regressions |
 
 Unsafe parallel work:
 
@@ -87,11 +96,35 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 | Phase 2 | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` |
 | Phase 3 | completed `PRJ-01`; then `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` |
 | Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` |
-| Phase 5 | `ABT-01` to `ABT-04` |
+| Phase 4E ambient correction | `ART-12`; then `ART-13`; prepare `ABT-01`; then `ART-14`, `QA-04`, `ART-15` |
+| Phase 5 | `ABT-02` to `ABT-04`; `ABT-01` is prepared before About's `ART-14` ambient integration |
 | Phase 6 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` |
 | Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
 
 `QA-06` runs across phases after `BAS-05`; it reconciles capability status, evidence, and dashboard summaries rather than forming a standalone release phase.
+
+## Current Master Execution Order
+
+This is the authoritative near-term order. Detailed route plans may add steps inside a package but may not reorder these gates without updating this roadmap, the decision register, packages, dashboard, and active work item together.
+
+| Order | Package or gate | Required result before continuing |
+| ---: | --- | --- |
+| 1 | `ART-12A` Baseline reconciliation | Record `fce50af` geometry, interactions, fallback, performance observations, and the exact behavior that must not regress |
+| 2 | `ART-12B` Museum region and motion mapping | Approve the source-region atlas, motion coverage ledger, depth/occlusion relationships, material behaviors, and named dead zones |
+| 3 | `ART-12C` Asset briefs | Decide per region whether to preserve, extract, manually author, procedurally render, or generate; record palette, perspective, lighting, alpha, scale, map, budget, and fallback requirements |
+| 4 | `ART-12D` Representative asset production | Generate or extract transparent assets only for one representative Museum ecology crop; perform alpha cleanup and create only justified masks/maps/vectors/sprites |
+| 5 | `ART-12E` Asset approval | Review assets independently over diagnostic backgrounds and in the intended stack; reject halos, baked lighting, false perspective, repetition, and unusable motion seams |
+| 6 | `ART-12F` Compositor proof and decision | Test the smallest credible CSS/SVG/Canvas/WebGL arrangement against approved assets; record the renderer decision before broad integration |
+| 7 | `ART-12G` Museum integration | Implement one coordinated scene clock, material-specific ambient bands, and modulation by existing interaction/semantic state without breaking the one-viewport Museum |
+| 8 | `ART-12H` Museum gate | Pass idle-life, dead-zone, material, temporal, foreground/background, calm, failure, performance, aggregate, Production, and Mark review |
+| 9 | `ART-13` flagship sequence | Repeat the route-local mapping-to-release pipeline for LifeInbox, then Dreamlife, then Sudoku; one route must reach a known-good checkpoint before the next produces assets |
+| 10 | `ABT-01` consequence-content gate | Review the About relationships needed to keep its ambient and later inspection behavior semantically truthful; this content work may begin during late `ART-13` |
+| 11 | `ART-14` supporting sequence | Implement Home, About, AI, and reading separately; generate assets only after each route's region map and brief are reviewed |
+| 12 | `QA-04` capability gate | Reconcile stimulation, reduced motion, renderer capability tiers, frame behavior, and target-device evidence across accepted route checkpoints |
+| 13 | `ART-15` ambient maturation | Close unexplained dead zones and cross-route repetition, then collect exact Production and Mark acceptance evidence |
+| 14 | Phase 5 continuation | Resume `ABT-02` through `ABT-04`, followed by Phase 6 living operations and approved prototypes |
+
+Production transparent-background assets are therefore generated at `ART-12D`, and later only inside the equivalent active-route step in `ART-13` or `ART-14`. Concept keyframes may be produced earlier for composition review, but they are not production layer packs and do not authorize renderer integration.
 
 ## Phase 0: Planning And Technical Baseline
 
@@ -298,7 +331,7 @@ Execution order:
 4. `ART-10` translates the model to Home, About, AI, and reading without forcing Museum behavior onto supporting routes.
 5. `ART-11` matures renderer loading, calm/fallback behavior, temporal restraint, route distinction, and Production evidence.
 6. `ART-12` defines the ambient participation contract, maps every Museum source region, produces reviewed decomposed material assets, and proves pervasive idle life in the one-viewport Museum.
-7. `ART-13` implements Dreamlife, LifeInbox, and Sudoku Together sequentially from distinct transparent plates, masks/maps, temporal bands, and material behaviors.
+7. `ART-13` implements LifeInbox, Dreamlife, and Sudoku Together sequentially from distinct transparent plates, masks/maps, temporal bands, and material behaviors.
 8. `ART-14` gives Home, About, AI, and reading restrained route-specific ambient systems.
 9. `ART-15` closes cross-route dead zones, synchronized loops, implausible material motion, fatigue, capability, and Production gaps.
 
@@ -316,6 +349,8 @@ Exit criteria:
 - Static posters remain loading, capture, reduced-motion, and failure assets rather than the perceived standard scene.
 
 ## Phase 5: About Depth
+
+`ABT-01` reviewed consequence content is prepared before About's `ART-14` ambient integration. Phase 5 begins from that accepted content and resumes the behavioral sequence with `ABT-02`.
 
 ### Goals
 

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | paused |
 | Priority | high |
 | Package | `ART-06` |
 | Capabilities | `CAP-ART-006`, `CAP-QA-002` |
@@ -12,16 +12,18 @@
 | Outcome | `O-01`, `O-03`, `O-04` |
 | Owner | Mark and Codex |
 | Branch/worktree | `main` |
-| Last update | 2026-07-18 |
+| Last update | 2026-07-20 |
 
 ## Current Truth
+
+Tracking note: the coherence and production checks remain evidence for the current baseline. Final creative review is superseded by `ART-15`; resume only if the ambient maturation matrix identifies a regression in the earlier art system.
 
 One typed art registry now owns production assets and nine Museum coordinates. Full-resolution decision artifacts remain in documentation while optimized WebP derivatives are served in production. Major routes have independent compositions, reduced-motion disables autonomous art drift, and browser review confirms Museum, Home, About, all project worlds, and reading locally. Automated asset, mapping, interaction, lint, type, and production-build gates pass. Commit `806841d` is live, and the main Museum plus all three project domains return `200` with their new art markers.
 
 ## Resume Packet
 
 - Last completed artifact: public Production route-marker verification for `806841d`.
-- Next exact action: collect Mark's final creative review.
+- Next exact action: none while paused; restart only from a named coherence regression discovered during `ART-15`.
 - Named later boundary: mobile-specific art direction and the closely co-authored musical identity remain separate work.
 - If performance regresses: preserve semantic content and reduce art resolution/priority before removing project identity.
 

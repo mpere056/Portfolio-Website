@@ -1,6 +1,6 @@
 # Comprehensive Website Vision
 
-Last revised: 2026-07-16
+Last revised: 2026-07-20
 
 Status: Primary source of truth for future creative direction.
 
@@ -104,6 +104,23 @@ The site should not depend on the familiar premium-portfolio formula of dark gra
 Each major scene needs a focal artifact or phenomenon, deliberate hierarchy, material logic, and one memorable gesture. Projects share the five-stage depth grammar while retaining distinct silhouettes and behaviors. A visitor should be able to feel the difference between LifeInbox, Dreamlife, and Sudoku Together before reading their names.
 
 The active implementation and review standard is [Art Direction And Aesthetic Quality](implementation-plans/18-Art-Direction-And-Aesthetic-Quality.md).
+
+### The World Is Temporally Alive
+
+The Impossible Observatory should not read as a collection of static paintings with animated labels or particles placed above them. At standard stimulation, every dominant visual region should participate in time through material-appropriate behavior.
+
+- Organic matter can bend, breathe, settle, or sway from credible roots.
+- Gas, fog, cloud, and liquid can advect, gather, disperse, and refract.
+- Streams and notation can flow directionally rather than oscillating in place.
+- Mechanisms can rotate, align, and pause around believable pivots and ratios.
+- Architecture, text, and other spatial anchors may remain fixed, but changing light, reflection, shadow, atmosphere, or occlusion must keep them situated in a living world.
+- Foreground and background matter should create temporal depth on both sides of focal objects.
+
+Ambient motion exists before interaction. Pointer, focus, depth, knowledge relationships, project state, AI state, and discovery should redirect or amplify the existing world rather than launching disconnected hover effects.
+
+Static compositions remain important as keyframes, loading states, reduced-motion compositions, captures, and renderer-failure fallbacks. They are not the final standard-stimulation presentation. Production assets should be decomposed by route into independently useful material layers; transparent generated assets are created only after the active route has an approved region map and material brief.
+
+The active production sequence and acceptance standard is [Pervasive Ambient Worlds](implementation-plans/2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md).
 
 ## 3. The Universal Grammar Of Depth
 

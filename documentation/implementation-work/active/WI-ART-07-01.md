@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | paused |
 | Priority | high |
 | Package | `ART-07` |
 | Capabilities | `CAP-ART-007`, `CAP-ART-008`, `CAP-ART-009`, `CAP-ART-012` |
@@ -12,9 +12,11 @@
 | Outcome | `O-01`, `O-04` |
 | Owner | Mark and Codex |
 | Branch/worktree | `main` |
-| Last update | 2026-07-19 |
+| Last update | 2026-07-20 |
 
 ## Current Truth
+
+Tracking note: this interaction proof is live within Production `fce50af` and remains the causal-state/fallback baseline. Its standalone review and deployment instructions are superseded by `ART-12`; resume only if the ambient Museum work regresses or must revise this interaction contract.
 
 The Museum dynamic-scene candidate is implemented locally. The existing ecology remains the stable checksum while masked material plates, a deterministic Canvas field, proximity-aware signals, selection aperture, reviewed graph filaments/readouts, and project-specific Approach material respond independently. Reduced-motion and hidden states stop continuous work; Canvas or graph absence leaves the matte and semantic controls. Forty-three files/171 tests, content validation, TypeScript, lint without errors, the 35-page build, and local no-console browser review pass.
 
@@ -30,7 +32,7 @@ The Museum dynamic-scene candidate is implemented locally. The existing ecology 
 
 - Last completed artifact: [Museum Dynamic Scene Packet](../../implementation-plans/2026-07-19-Museum-Dynamic-Scene-Packet.md) records the implemented layers, drivers, renderer choice, calm/failure behavior, verification, and route ledger.
 - Known-good runtime: local working tree on 2026-07-19 passes 171 tests, content, type, lint, build, and in-app browser review; Production `806841d` remains the live rollback.
-- Next exact action: collect Mark's combined Museum/LifeInbox interaction review, then commit, deploy, and verify both candidate routes.
+- Next exact action: none while paused; preserve this proof and restart only if `ART-12` identifies an interaction-contract regression.
 - Preserve: current project coordinates, destination behavior, discovery/tour semantics, semantic fallback, selected route identity, and existing public rollback.
 - Expansion note: Mark explicitly requested continued Phase 4 implementation on 2026-07-19, clearing the sequencing hold for the bounded LifeInbox slice; later routes still require their own packets and cannot copy the Museum composition.
 - Do not assume: WebGL is required; select DOM, SVG, Canvas, WebGL, or a hybrid only after the scene behavior and layer needs are explicit.
