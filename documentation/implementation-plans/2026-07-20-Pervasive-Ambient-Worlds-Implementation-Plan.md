@@ -1,7 +1,7 @@
 # Pervasive Ambient Worlds Implementation Plan
 
 Date: 2026-07-20
-Status: approved planning direction; implementation not started
+Status: implementation in progress; `ART-12A/B` complete and `ART-12C` review-ready
 Requirements: `V-31`, `V-32`, `V-33`
 Packages: `ART-12` through `ART-15`
 Capabilities: `CAP-ART-013` through `CAP-ART-016`
@@ -208,6 +208,14 @@ Record first useful frame, asset transfer, decoded texture memory, steady-state 
 ## Execution Sequence
 
 ### `ART-12`: Ambient Contract, Asset Decomposition, And Museum Proof
+
+Execution artifacts:
+
+- `ART-12A`: [Museum Ambient Baseline](2026-07-20-Museum-Ambient-Baseline.md).
+- `ART-12B`: [Museum Region Atlas And Motion Ledger](2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
+- `ART-12C`: [Museum Ambient Asset Briefs](2026-07-20-Museum-Ambient-Asset-Briefs.md).
+
+The first two gates are complete. The brief set is authored and awaits Mark's creative review. `ART-12D` must not begin until that review accepts or revises the bounded representative batch.
 
 #### `ART-12A`: Preserve The Baseline
 

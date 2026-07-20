@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice is accepted and live at `4d56565`, production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`. The museum, selected depth journey, global archive card, and all three flagship subdomains pass public verification; legacy Projects remains rollback code rather than the active presentation.
 
-Current Production checkpoint: `fce50af` preserves that functional foundation, the one-viewport Museum, and route-owned interactive scenes. Pervasive ambient-world implementation has not started; `ART-12` is the only ready primary package.
+Current Production checkpoint: `fce50af` preserves that functional foundation, the one-viewport Museum, and route-owned interactive scenes. Pervasive ambient-world implementation is active under `ART-12`: baseline reconciliation and region/motion mapping are complete, and the representative asset briefs await creative review before production begins.
 
 ## Dependency Order
 
@@ -125,6 +125,8 @@ This is the authoritative near-term order. Detailed route plans may add steps in
 | 14 | Phase 5 continuation | Resume `ABT-02` through `ABT-04`, followed by Phase 6 living operations and approved prototypes |
 
 Production transparent-background assets are therefore generated at `ART-12D`, and later only inside the equivalent active-route step in `ART-13` or `ART-14`. Concept keyframes may be produced earlier for composition review, but they are not production layer packs and do not authorize renderer integration.
+
+Current gate position: orders 1 and 2 are complete; order 3 is review-ready. Mark's review of `2026-07-20-Museum-Ambient-Asset-Briefs.md` is the only next gate. Orders 4 through 8 remain not-started.
 
 ## Phase 0: Planning And Technical Baseline
 
@@ -321,7 +323,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` are implemented in Production `fce50af`. The candidate fixes the scrolling Museum and makes direct project interaction visible, but Mark's longer observation exposed a deeper gap: the dominant raster compositions remain temporally inert whenever the pointer is still. Interaction completeness is preserved; ambient-world acceptance is not. `ART-12` through `ART-15` now own that correction. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md` and `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`.
+Current checkpoint: `ART-07` through `ART-11` are implemented in Production `fce50af`. The candidate fixes the scrolling Museum and makes direct project interaction visible, but Mark's longer observation exposed a deeper gap: the dominant raster compositions remain temporally inert whenever the pointer is still. Interaction completeness is preserved; ambient-world acceptance is not. `ART-12A/B` now provide the measured baseline, complete source-region atlas, motion ledger, and proof-crop selection; `ART-12C` briefs await review before production. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md` and `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`.
 
 Execution order:
 

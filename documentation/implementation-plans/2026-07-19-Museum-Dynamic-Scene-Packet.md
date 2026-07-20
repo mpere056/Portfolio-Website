@@ -1,6 +1,6 @@
 # Museum Dynamic Scene Packet
 
-Last updated: 2026-07-19
+Last updated: 2026-07-20
 
 Status: implemented interaction baseline under `ART-07` and live in Production. Pervasive ambient acceptance is superseded by `ART-12` and [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md); this packet remains the causal-interaction and fallback source to preserve.
 
@@ -95,6 +95,6 @@ Shared output is limited to the pure frame/proximity/path logic and layer manife
 
 | Route | Packet | Layer pack | Runtime | Drivers wired | Calm/fallback | Verification | Known-good point | Next exact action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/projects` Museum | implemented candidate | integrated from stable WebP, CSS masks, SVG, Canvas, and DOM | runtime-ready locally | pointer, focus/hover, selection, graph relationship, stimulation, reduced motion, visibility | implemented; explicit Production context-loss observation remains | unit, integration, type, lint, build, and local browser pass | local `WI-ART-07-01` candidate on 2026-07-19 | Collect Mark review, then Preview/Production verification before activating `ART-08` |
+| `/projects` Museum | implemented interaction baseline; ambient work in-progress | Production `fce50af` stable WebP, CSS masks, SVG, Canvas, and DOM | live interaction runtime; ambient compositor not started | pointer, focus/hover, selection, graph relationship, stimulation, reduced motion, visibility | implemented interaction fallback; dominant matte remains ambient dead zone | 48 files/193 tests and 35-page build retained; live `1912 x 948` ART-12A geometry/console audit and focused 11-test gate pass | Production `fce50af`; `ART-12A/B` records complete | Review `ART-12C` asset briefs, then produce only the bounded west/lower ecology stack in `ART-12D` |
 
-No percentage is assigned. Production rollout and Mark acceptance remain named separate gaps.
+No percentage is assigned. Production rollout and Mark acceptance remain named separate gaps. The authoritative region and asset details now live in the dated `ART-12A`, `ART-12B`, and `ART-12C` execution artifacts.

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | ready |
+| State | in-progress |
 | Priority | high |
 | Package | `ART-12` |
 | Capabilities | `CAP-ART-013`, `CAP-ART-014` |
@@ -24,8 +24,9 @@ The accepted correction is decomposition-first. Structural anchors may remain sp
 
 - Planning source: [Pervasive Ambient Worlds Implementation Plan](../../implementation-plans/2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md).
 - Known-good point: Production `fce50af`; 48 files/193 tests, content, TypeScript, zero-error lint, 35-page build, and public 1912x948 Museum geometry/interaction checks passed.
-- Next exact action: complete `ART-12A` by recording the `fce50af` geometry, interaction, semantic, fallback, and performance baseline that the ambient work must preserve.
-- After that: complete `ART-12B` source-region/motion mapping and `ART-12C` asset briefs before generating, extracting, or integrating any production asset.
+- Completed records: [ART-12A baseline](../../implementation-plans/2026-07-20-Museum-Ambient-Baseline.md) and [ART-12B atlas/ledger](../../implementation-plans/2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
+- Next exact action: Mark reviews [ART-12C asset briefs](../../implementation-plans/2026-07-20-Museum-Ambient-Asset-Briefs.md), especially the representative crop and `AB-MUS-01` through `AB-MUS-11`.
+- After approval: begin `ART-12D` with only the west/lower ecology material stack, then perform alpha cleanup and prepare the `ART-12E` diagnostic contact sheet.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
 
@@ -33,9 +34,9 @@ The accepted correction is decomposition-first. Structural anchors may remain sp
 
 | Stage | State | Deliverable | Gate to continue |
 | --- | --- | --- | --- |
-| `ART-12A` Baseline | ready | Regression record for geometry, navigation, depth, interaction, semantics, calm/fallback, and measured runtime | Known-good behavior and capture method are explicit |
-| `ART-12B` Mapping | not-started | Museum source-region atlas, motion coverage ledger, depth/occlusion relationships, and named dead zones | Every dominant region has a proposed temporal responsibility |
-| `ART-12C` Briefs | not-started | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Palette, camera, lighting, alpha, scale, blend, maps, budget, fallback, and owner are reviewable |
+| `ART-12A` Baseline | complete | Regression record for geometry, navigation, depth, interaction, semantics, calm/fallback, and measured runtime | Passed: known-good behavior and capture method are explicit |
+| `ART-12B` Mapping | complete | Museum source-region atlas, motion coverage ledger, depth/occlusion relationships, and named dead zones | Passed: every dominant region has a proposed temporal responsibility |
+| `ART-12C` Briefs | in-review | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Awaiting Mark: palette, camera, lighting, alpha, scale, blend, maps, budget, fallback, and owner are reviewable |
 | `ART-12D` Production | not-started | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Alpha cleanup is complete; no unrelated or later-route assets are generated |
 | `ART-12E` Asset review | not-started | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Only accepted derivatives enter the registry |
 | `ART-12F` Compositor | not-started | CSS/SVG/Canvas/WebGL spike comparison and recorded route decision | Smallest credible one-scheduler arrangement is selected from real approved assets |
@@ -58,8 +59,8 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 
 ## Acceptance
 
-- [ ] Source-region atlas accounts for every dominant Museum region and names unmapped gaps.
-- [ ] Motion coverage ledger records direct or indirect participation, temporal band, stimulation behavior, fallback, and dead-zone status for every region.
+- [x] Source-region atlas accounts for every dominant Museum region and names unmapped gaps.
+- [x] Motion coverage ledger records direct or indirect participation, temporal band, stimulation behavior, fallback, and dead-zone status for every region.
 - [ ] Every production asset has a reviewed `ART-12C` brief before generation or extraction begins.
 - [ ] Asset contact sheet records provenance, scale, alpha/edge quality, renderer intent, budget, and rejected variants.
 - [ ] No production asset for a later route is generated during the Museum proof.
@@ -78,4 +79,7 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 
 - Mark clarified that every meaningful region should remain subtly alive, including coral sway, gaseous movement, stream flow, mechanism rotation, changing architectural light/fog, and foreground/background passage.
 - Planning now separates interaction completeness from ambient-world completeness.
-- `ART-12` is ready; implementation has not started.
+- `ART-12A` audited live Production at `1912 x 948`: one-viewport document geometry, nine signal rectangles, contained LifeInbox depth, one Canvas, no console warning/error, source dimensions/checksum, and the ten-second idle limitation are recorded.
+- `ART-12B` maps `MUS-R01` through `MUS-R16`, their depth/occlusion order, independent temporal bands, direct/indirect participation, and the bounded west/lower proof crop.
+- `ART-12C` defines `AB-MUS-01` through `AB-MUS-11`, shared art direction, alpha/diagnostic rules, budgets, and explicit no-bulk-generation boundaries.
+- The work item is in-progress. No production asset or renderer change has begun; Mark's brief review is the current gate.
