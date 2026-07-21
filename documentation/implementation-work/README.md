@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 9 removes rejected marker graphics and makes the actual shader ribbons change curvature, width, crossings, texture, and light on independent `2.4-7s` clocks. The rejected vertical ellipse remains absent while separated architecture, the rotating pearl instrument, tower-only windows, particles, horizontal haze, and Museum attention remain. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 10 keeps slender baseline strands while localized pressure volumes travel through and temporarily expand the shader ribbons on independent `2.4-7s` clocks. Rejected markers and the vertical ellipse remain absent while separated architecture, the rotating pearl instrument, tower-only windows, particles, horizontal haze, and Museum attention remain. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; marker-free east revision 9 is live at `cce1085` with materially deforming procedural ribbons | Mark reviews revision 9; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; pressure-flow east revision 10 is live at `1cec136` with slender baselines and traveling expansion volumes | Mark reviews revision 10; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
