@@ -1,5 +1,13 @@
 export const MUSEUM_OBSERVATORY_PROOF_ASPECT = 852 / 790;
 
+export const MUSEUM_OBSERVATORY_FLOW_TIMING = {
+  leadCrossingSeconds: 7.2,
+  coreCrossingSeconds: 5.8,
+  copperCrossingSeconds: 13.5,
+  ivoryCrossingSeconds: 17.5,
+  archCrossingSeconds: 21,
+} as const;
+
 export const MUSEUM_OBSERVATORY_PROOF_ASSETS = {
   field: '/images/art-direction/museum-observatory-proof/field.webp',
   observatory: '/images/art-direction/museum-observatory-proof/observatory.webp',
@@ -48,12 +56,12 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
     id: 'observatory:flows-rear',
     medium: 'procedural-shader',
-    temporalJob: 'weave code-generated copper, ivory, and high arch currents behind the instruments on independent clocks',
+    temporalJob: 'visibly traverse code-generated copper, ivory, and high arch currents behind the instruments on independent clocks',
   },
   {
     id: 'observatory:flows-front',
     medium: 'procedural-shader',
-    temporalJob: 'carry code-generated cyan and gold strands, laser packets, wisps, and a spectral signal across the foreground',
+    temporalJob: 'visibly traverse code-generated cyan and gold strands, laser packets, wisps, and a spectral signal across the foreground',
   },
   {
     id: 'observatory:atmosphere',

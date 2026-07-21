@@ -2,6 +2,7 @@ import { stat } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  MUSEUM_OBSERVATORY_FLOW_TIMING,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
   MUSEUM_OBSERVATORY_PROOF_LAYERS,
@@ -42,12 +43,26 @@ describe('Museum observatory compositor proof', () => {
     expect(flowLayers).toHaveLength(2);
     expect(flowLayers.every(layer => layer.medium === 'procedural-shader')).toBe(true);
     expect(flowLayers.every(layer => layer.temporalJob.includes('code-generated'))).toBe(true);
+    expect(flowLayers.every(layer => layer.temporalJob.includes('visibly traverse'))).toBe(true);
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:particles')?.medium)
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:orb')?.medium)
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:city')?.temporalJob)
       .toContain('excluding the foreground dome, podium, and steps');
+  });
+
+  it('keeps directional flow legible at human viewing speed without synchronizing every family', () => {
+    const timings = Object.values(MUSEUM_OBSERVATORY_FLOW_TIMING);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(8);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds).toBeLessThan(
+      MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds,
+    );
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(10);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds).toBeGreaterThan(
+      MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
+    );
+    expect(new Set(timings)).toHaveLength(timings.length);
   });
 
   it('ships a bounded particle-free runtime stack', async () => {
