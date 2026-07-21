@@ -161,6 +161,12 @@ const CITY_FRAGMENT = /* glsl */`
     return dim + warm + bright;
   }
 
+  float towerZone(vec2 uv, vec2 minimum, vec2 maximum) {
+    vec2 enter = smoothstep(minimum, minimum + vec2(0.018), uv);
+    vec2 leave = 1.0 - smoothstep(maximum - vec2(0.018), maximum, uv);
+    return enter.x * enter.y * leave.x * leave.y;
+  }
+
   void main() {
     vec2 anchor = vec2(0.73, 0.35);
     vec2 offset = vec2(0.095, -0.075);
@@ -186,8 +192,10 @@ const CITY_FRAGMENT = /* glsl */`
     float windowState = mix(windowLevel(previousWindow), windowLevel(nextWindow), windowTransition);
     float windowShapeX = 1.0 - smoothstep(0.17, 0.31, abs(windowLocal.x - 0.5));
     float windowShapeY = 1.0 - smoothstep(0.2, 0.39, abs(windowLocal.y - 0.5));
-    float windowBounds = smoothstep(0.28, 0.38, sourceUv.x)
-      * (1.0 - smoothstep(0.75, 0.88, sourceUv.y));
+    float westTowers = towerZone(sourceUv, vec2(0.515, 0.385), vec2(0.655, 0.635));
+    float centralTowers = towerZone(sourceUv, vec2(0.615, 0.37), vec2(0.845, 0.775));
+    float eastTowers = towerZone(sourceUv, vec2(0.79, 0.345), vec2(0.985, 0.66));
+    float windowBounds = max(westTowers, max(centralTowers, eastTowers));
     float windowSignal = windowShapeX * windowShapeY * windowState * windowBounds;
     float windowTint = hash21(windowCell + vec2(83.1, 9.4));
     float slowBloom = 0.5 + 0.5 * sin(uTime * 0.23 + sourceUv.x * 8.0);

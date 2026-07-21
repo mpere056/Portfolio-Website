@@ -44,7 +44,7 @@ describe('Museum observatory compositor proof', () => {
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:orb')?.medium)
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:city')?.temporalJob)
-      .toContain('independent slow stochastic clocks');
+      .toContain('excluding the foreground dome, podium, and steps');
   });
 
   it('ships a bounded particle-free runtime stack', async () => {

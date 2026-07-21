@@ -38,7 +38,7 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
     id: 'observatory:city',
     medium: 'sampled-shader',
-    temporalJob: 'ease individual windows between off, dim, and lit states on independent slow stochastic clocks',
+    temporalJob: 'ease selected skyscraper windows between off, dim, and lit states while excluding the foreground dome, podium, and steps',
   },
   {
     id: 'observatory:portal',
