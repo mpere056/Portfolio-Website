@@ -120,9 +120,8 @@ const OBSERVATORY_FRAGMENT = /* glsl */`
     float chroma = lensMask * (0.002 + uAttention * 0.005);
     vec4 base = texture2D(uTexture, sourceUv);
     base.a *= insideUv(sourceUv);
-    float rotatingLens = 1.0 - smoothstep(0.035, 0.092, length(sourceDelta));
-    vec4 turnedLens = texture2D(uTexture, rotateAround(sourceUv, sourceCenter, uTime * (0.075 + uAttention * 0.11)));
-    base = mix(base, turnedLens, rotatingLens * turnedLens.a * 0.7);
+    float orbCutout = 1.0 - smoothstep(0.052, 0.071, length(sourceDelta));
+    base.a *= 1.0 - orbCutout;
     vec4 lensSample = texture2D(uTexture, lensUv);
     vec3 refracted = vec3(
       texture2D(uTexture, lensUv + sourceDelta * chroma).r,
@@ -155,6 +154,13 @@ const CITY_FRAGMENT = /* glsl */`
   uniform float uAttention;
   ${NOISE_GLSL}
 
+  float windowLevel(float value) {
+    float dim = smoothstep(0.49, 0.55, value) * 0.24;
+    float warm = smoothstep(0.72, 0.79, value) * 0.32;
+    float bright = smoothstep(0.9, 0.96, value) * 0.44;
+    return dim + warm + bright;
+  }
+
   void main() {
     vec2 anchor = vec2(0.73, 0.35);
     vec2 offset = vec2(0.095, -0.075);
@@ -168,14 +174,30 @@ const CITY_FRAGMENT = /* glsl */`
     float climbA = pow(max(0.0, sin(sourceUv.y * 16.0 - uTime * 0.42)), 13.0) * towerBandA;
     float climbB = pow(max(0.0, sin(sourceUv.y * 21.0 - uTime * 0.27 + 2.4)), 16.0) * towerBandB;
     float climbC = pow(max(0.0, sin(sourceUv.y * 13.0 - uTime * 0.19 + 4.1)), 12.0) * towerBandC;
-    float windowSignal = pow(max(0.0, sin(sourceUv.x * 48.0 + sourceUv.y * 31.0 - uTime * 0.37)), 20.0);
+    vec2 windowGrid = sourceUv * vec2(78.0, 70.0);
+    vec2 windowCell = floor(windowGrid);
+    vec2 windowLocal = fract(windowGrid);
+    float windowSeed = hash21(windowCell + vec2(19.7, 41.3));
+    float windowClock = uTime * mix(0.066, 0.108, windowSeed) + windowSeed * 13.0;
+    float windowEpoch = floor(windowClock);
+    float windowTransition = smoothstep(0.12, 0.88, fract(windowClock));
+    float previousWindow = hash21(windowCell + vec2(windowEpoch * 7.13, windowEpoch * 2.91));
+    float nextWindow = hash21(windowCell + vec2((windowEpoch + 1.0) * 7.13, (windowEpoch + 1.0) * 2.91));
+    float windowState = mix(windowLevel(previousWindow), windowLevel(nextWindow), windowTransition);
+    float windowShapeX = 1.0 - smoothstep(0.17, 0.31, abs(windowLocal.x - 0.5));
+    float windowShapeY = 1.0 - smoothstep(0.2, 0.39, abs(windowLocal.y - 0.5));
+    float windowBounds = smoothstep(0.28, 0.38, sourceUv.x)
+      * (1.0 - smoothstep(0.75, 0.88, sourceUv.y));
+    float windowSignal = windowShapeX * windowShapeY * windowState * windowBounds;
+    float windowTint = hash21(windowCell + vec2(83.1, 9.4));
     float slowBloom = 0.5 + 0.5 * sin(uTime * 0.23 + sourceUv.x * 8.0);
     float localAttention = exp(-distance(vUv, uPointer) * 10.0) * uAttention;
     color.rgb *= 0.72;
     color.rgb += vec3(0.28, 0.88, 0.9) * climbA * architecture * (0.34 + uAttention * 0.2);
     color.rgb += vec3(0.98, 0.55, 0.48) * climbB * architecture * (0.31 + uAttention * 0.22);
     color.rgb += vec3(0.96, 0.73, 0.35) * climbC * architecture * 0.32;
-    color.rgb += mix(vec3(0.28, 0.86, 0.88), vec3(1.0, 0.62, 0.38), sourceUv.x) * windowSignal * architecture * 0.16;
+    vec3 windowColor = mix(vec3(0.31, 0.88, 0.89), vec3(1.0, 0.65, 0.4), smoothstep(0.28, 0.76, windowTint));
+    color.rgb += windowColor * windowSignal * architecture * (0.28 + uAttention * 0.13);
     color.rgb += mix(vec3(0.13, 0.55, 0.58), vec3(0.65, 0.28, 0.22), vUv.x) * slowBloom * architecture * 0.08;
     color.rgb += vec3(0.45, 0.92, 0.91) * localAttention * architecture * 0.34;
     gl_FragColor = vec4(color.rgb, architecture);
@@ -376,6 +398,59 @@ const PARTICLE_FRAGMENT = /* glsl */`
   }
 `;
 
+const ORB_VERTEX = /* glsl */`
+  varying vec3 vObjectPosition;
+  varying vec3 vViewNormal;
+  varying vec3 vViewDirection;
+
+  void main() {
+    vObjectPosition = position;
+    vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+    vViewNormal = normalize(normalMatrix * normal);
+    vViewDirection = normalize(-viewPosition.xyz);
+    gl_Position = projectionMatrix * viewPosition;
+  }
+`;
+
+const ORB_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec3 vObjectPosition;
+  varying vec3 vViewNormal;
+  varying vec3 vViewDirection;
+  uniform float uTime;
+  uniform float uAttention;
+  uniform vec2 uPointer;
+
+  void main() {
+    vec3 p = normalize(vObjectPosition);
+    vec3 normal = normalize(vViewNormal);
+    vec3 viewDirection = normalize(vViewDirection);
+    vec3 warmLight = normalize(vec3(-0.55, 0.72, 0.8));
+    vec3 coolLight = normalize(vec3(0.74, -0.34, 0.68));
+    float warm = max(0.0, dot(normal, warmLight));
+    float cool = max(0.0, dot(normal, coolLight));
+    float fresnel = pow(1.0 - max(0.0, dot(normal, viewDirection)), 2.35);
+
+    float faultA = abs(sin(p.x * 17.0 + p.y * 9.0 + sin(p.z * 11.0) * 2.4));
+    float faultB = abs(sin(p.y * 21.0 - p.z * 13.0 + sin(p.x * 8.0) * 2.1));
+    float faultC = abs(sin(p.z * 19.0 + p.x * 12.0 - sin(p.y * 10.0) * 1.8));
+    float fissure = 1.0 - smoothstep(0.025, 0.105, min(faultA, min(faultB, faultC)));
+    float mineral = 0.5 + 0.5 * sin(p.x * 5.2 - p.y * 3.7 + p.z * 6.1);
+    float tide = 0.5 + 0.5 * sin(uTime * 0.19 + p.y * 4.0);
+
+    vec3 pearl = mix(vec3(0.33, 0.38, 0.37), vec3(0.78, 0.73, 0.59), warm);
+    pearl = mix(pearl, vec3(0.31, 0.66, 0.68), cool * (0.22 + mineral * 0.2));
+    pearl += vec3(0.18, 0.38, 0.4) * fresnel * (0.46 + uAttention * 0.2);
+    pearl += vec3(0.78, 0.58, 0.3) * tide * warm * 0.08;
+    pearl = mix(pearl, vec3(0.055, 0.07, 0.07), fissure * 0.78);
+    pearl += vec3(0.72, 0.94, 0.92) * smoothstep(0.66, 0.98, cool) * (0.18 + uAttention * 0.2);
+    pearl += mix(vec3(0.16, 0.72, 0.75), vec3(0.96, 0.58, 0.29), uPointer.x)
+      * fresnel * uAttention * 0.12;
+
+    gl_FragColor = vec4(pearl, 1.0);
+  }
+`;
+
 type PointerTarget = { current: THREE.Vector2 };
 
 function configureTexture(texture: THREE.Texture) {
@@ -527,6 +602,52 @@ function SignalParticles({
   );
 }
 
+function ObservatoryOrb({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const pointerPresence = usePointerPresence(pointerActive);
+  const [uniforms] = useState(() => ({
+    uTime: { value: 0 },
+    uAttention: { value: 0 },
+    uPointer: { value: new THREE.Vector2(0.5, 0.5) },
+  }));
+
+  useFrame(({ clock }, delta) => {
+    if (!meshRef.current) return;
+    const attention = pointerPresence.update(pointerTarget.current, delta);
+    uniforms.uTime.value = clock.elapsedTime;
+    uniforms.uAttention.value = attention;
+    uniforms.uPointer.value.copy(pointerPresence.pointer.current);
+    meshRef.current.rotation.x += delta * (0.023 + attention * 0.047);
+    meshRef.current.rotation.y += delta * (0.039 + attention * 0.073);
+    meshRef.current.rotation.z += delta * (0.008 + attention * 0.016);
+  });
+
+  return (
+    <mesh
+      ref={meshRef}
+      position={[0.42, 0.12, 0.075]}
+      rotation={[0.18, -0.42, 0.08]}
+      renderOrder={7.5}
+    >
+      <icosahedronGeometry args={[0.112, 5]} />
+      <shaderMaterial
+        uniforms={uniforms}
+        vertexShader={ORB_VERTEX}
+        fragmentShader={ORB_FRAGMENT}
+        depthTest={false}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
 function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const textures = useTexture([
     MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
@@ -546,6 +667,7 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} />
       <SignalParticles count={300} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <SignalParticles count={180} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
     </>

@@ -27,6 +27,7 @@ describe('Museum observatory compositor proof', () => {
       'observatory:field',
       'observatory:lattice',
       'observatory:refraction',
+      'observatory:orb',
       'observatory:city',
       'observatory:portal',
       'observatory:currents',
@@ -40,6 +41,10 @@ describe('Museum observatory compositor proof', () => {
       .toBe('procedural-shader');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:particles')?.medium)
       .toBe('procedural-geometry');
+    expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:orb')?.medium)
+      .toBe('procedural-geometry');
+    expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:city')?.temporalJob)
+      .toContain('independent slow stochastic clocks');
   });
 
   it('ships a bounded particle-free runtime stack', async () => {

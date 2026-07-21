@@ -28,12 +28,17 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
     id: 'observatory:refraction',
     medium: 'sampled-shader',
-    temporalJob: 'migrate nacre light and refract the central lens without wobbling the building',
+    temporalJob: 'migrate nacre light through the fixed lattice without wobbling the building',
+  },
+  {
+    id: 'observatory:orb',
+    medium: 'procedural-geometry',
+    temporalJob: 'rotate a true three-dimensional pearl instrument continuously beneath its independent optical diagram',
   },
   {
     id: 'observatory:city',
     medium: 'sampled-shader',
-    temporalJob: 'send illumination through different crystal towers on independent delayed cycles',
+    temporalJob: 'ease individual windows between off, dim, and lit states on independent slow stochastic clocks',
   },
   {
     id: 'observatory:portal',
