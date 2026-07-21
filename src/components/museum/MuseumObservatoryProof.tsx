@@ -67,7 +67,7 @@ const NOISE_GLSL = /* glsl */`
   }
 `;
 
-const STRUCTURE_FRAGMENT = /* glsl */`
+const FIELD_FRAGMENT = /* glsl */`
   precision highp float;
   varying vec2 vUv;
   uniform sampler2D uTexture;
@@ -76,53 +76,124 @@ const STRUCTURE_FRAGMENT = /* glsl */`
   uniform float uAttention;
   ${NOISE_GLSL}
 
-  vec4 rotatedAssembly(vec4 base, vec2 center, float radius, float width, float angle) {
-    float mask = annulus(vUv, center, radius, width);
-    vec4 turned = texture2D(uTexture, rotateAround(vUv, center, angle));
-    return mix(base, turned, mask * 0.88);
+  void main() {
+    vec4 color = texture2D(uTexture, vUv);
+    float terrain = 1.0 - smoothstep(0.22, 0.68, vUv.y);
+    float drift = fbm(vUv * vec2(5.5, 8.0) + vec2(-uTime * 0.035, uTime * 0.012));
+    float cyanCaustic = pow(max(0.0, sin(vUv.x * 18.0 + drift * 7.0 - uTime * 0.24)), 15.0) * terrain;
+    float goldCaustic = pow(max(0.0, sin((vUv.x + vUv.y * 0.45) * 14.0 - drift * 5.0 + uTime * 0.13)), 18.0) * terrain;
+    float pointerLight = exp(-distance(vUv, uPointer) * 8.5) * uAttention * terrain;
+    color.rgb *= 0.78;
+    color.rgb += vec3(0.05, 0.46, 0.5) * cyanCaustic * 0.16;
+    color.rgb += vec3(0.72, 0.43, 0.12) * goldCaustic * 0.11;
+    color.rgb += mix(vec3(0.06, 0.52, 0.56), vec3(0.72, 0.45, 0.17), uPointer.x) * pointerLight * 0.19;
+    gl_FragColor = vec4(color.rgb, 1.0);
   }
+`;
+
+const OBSERVATORY_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec2 vUv;
+  uniform sampler2D uTexture;
+  uniform float uTime;
+  uniform vec2 uPointer;
+  uniform float uAttention;
+  ${NOISE_GLSL}
 
   void main() {
-    float field = fbm(vUv * 4.2 + vec2(uTime * 0.009, -uTime * 0.006));
-    vec2 stableUv = vUv + vec2(field - 0.5, 0.5 - field) * 0.0018;
-    vec4 color = texture2D(uTexture, stableUv);
-
-    float attendedSpeed = 1.0 + uAttention * 2.2;
-    color = rotatedAssembly(color, vec2(0.645, 0.485), 0.108, 0.046, uTime * 0.14 * attendedSpeed);
-    color = rotatedAssembly(color, vec2(0.775, 0.695), 0.072, 0.032, -uTime * 0.21 * attendedSpeed);
-    color = rotatedAssembly(color, vec2(0.885, 0.465), 0.087, 0.035, uTime * 0.095 * attendedSpeed);
-
-    vec2 lensCenter = vec2(0.645, 0.485);
-    vec2 lensVector = vUv - lensCenter;
-    float lensDistance = length(lensVector);
-    float lensMask = 1.0 - smoothstep(0.085, 0.155, lensDistance);
-    float lensNoise = fbm(vUv * 11.0 + vec2(uTime * 0.038, -uTime * 0.021));
-    vec2 lensUv = lensCenter + lensVector * (0.985 + (lensNoise - 0.5) * (0.035 + uAttention * 0.03));
-    float chroma = lensMask * (0.0025 + uAttention * 0.005);
+    vec2 center = vec2(0.66, 0.49);
+    vec2 delta = vUv - center;
+    float distanceFromLens = length(delta);
+    float lensMask = 1.0 - smoothstep(0.045, 0.105, distanceFromLens);
+    float lensNoise = fbm(vUv * 15.0 + vec2(uTime * 0.04, -uTime * 0.027));
+    vec2 lensUv = center + delta * (0.972 + (lensNoise - 0.5) * (0.055 + uAttention * 0.035));
+    float chroma = lensMask * (0.002 + uAttention * 0.005);
+    vec4 base = texture2D(uTexture, vUv);
+    vec4 lensSample = texture2D(uTexture, lensUv);
     vec3 refracted = vec3(
-      texture2D(uTexture, lensUv + lensVector * chroma).r,
-      texture2D(uTexture, lensUv).g,
-      texture2D(uTexture, lensUv - lensVector * chroma).b
+      texture2D(uTexture, lensUv + delta * chroma).r,
+      lensSample.g,
+      texture2D(uTexture, lensUv - delta * chroma).b
     );
-    color.rgb = mix(color.rgb, refracted, lensMask * 0.74);
+    base.rgb = mix(base.rgb, refracted, lensMask * lensSample.a * 0.8);
+    float sweepX = -0.15 + fract(uTime * 0.047) * 1.3;
+    float nacreSweep = exp(-abs(vUv.x - sweepX) * 19.0) * base.a;
+    float pearl = pow(max(0.0, sin((vUv.x * 0.7 + vUv.y) * 18.0 - uTime * 0.21)), 16.0) * base.a;
+    float localAttention = exp(-distance(vUv, uPointer) * 9.0) * uAttention * base.a;
+    float lensPulse = lensMask * (0.5 + 0.5 * sin(uTime * 0.53)) * base.a;
+    base.rgb *= 0.78;
+    base.rgb += mix(vec3(0.24, 0.82, 0.84), vec3(1.0, 0.72, 0.38), sweepX) * nacreSweep * 0.42;
+    base.rgb += vec3(0.92, 0.74, 0.56) * pearl * 0.12;
+    base.rgb += mix(vec3(0.18, 0.9, 0.92), vec3(1.0, 0.56, 0.28), uPointer.x) * localAttention * 0.48;
+    base.rgb += vec3(0.8, 0.98, 1.0) * lensPulse * (0.17 + uAttention * 0.24);
+    gl_FragColor = vec4(base.rgb, base.a);
+  }
+`;
 
-    float observatoryMask = 1.0 - smoothstep(0.17, 0.46, distance(vUv, vec2(0.72, 0.51)));
-    float sweepPosition = -0.12 + fract(uTime * 0.055) * 1.24;
-    float travelingLight = exp(-abs(vUv.x - sweepPosition) * 18.0) * observatoryMask;
-    float iris = pow(max(0.0, cos(atan(lensVector.y, lensVector.x) * 7.0 - uTime * 0.58)), 18.0)
-      * lensMask * smoothstep(0.025, 0.12, lensDistance);
-    float goldSweep = pow(max(0.0, sin((vUv.x * 0.74 + vUv.y) * 15.0 - uTime * 0.23 + field * 5.0)), 8.0);
-    float cyanSweep = pow(max(0.0, sin((vUv.x - vUv.y * 0.42) * 19.0 + uTime * 0.17)), 10.0);
-    float pointerDistance = distance(vUv, uPointer);
-    float pointerLight = exp(-pointerDistance * 8.0) * uAttention;
-    float lensPulse = exp(-lensDistance * 9.0) * (0.5 + 0.5 * sin(uTime * 0.37));
-    color.rgb += vec3(0.95, 0.67, 0.28) * goldSweep * 0.09;
-    color.rgb += vec3(0.08, 0.64, 0.72) * cyanSweep * 0.075;
-    color.rgb += mix(vec3(0.18, 0.78, 0.84), vec3(1.0, 0.72, 0.34), vUv.x) * pointerLight * 0.38;
-    color.rgb += vec3(0.55, 0.82, 0.86) * lensPulse * lensMask * 0.11;
-    color.rgb += mix(vec3(0.16, 0.75, 0.82), vec3(1.0, 0.72, 0.32), sweepPosition) * travelingLight * 0.32;
-    color.rgb += vec3(0.72, 0.94, 0.93) * iris * (0.16 + uAttention * 0.2);
-    gl_FragColor = color;
+const CITY_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec2 vUv;
+  uniform sampler2D uTexture;
+  uniform float uTime;
+  uniform vec2 uPointer;
+  uniform float uAttention;
+  ${NOISE_GLSL}
+
+  void main() {
+    vec4 color = texture2D(uTexture, vUv);
+    float architecture = color.a;
+    float towerBandA = exp(-abs(vUv.x - 0.62) * 25.0);
+    float towerBandB = exp(-abs(vUv.x - 0.78) * 31.0);
+    float towerBandC = exp(-abs(vUv.x - 0.91) * 38.0);
+    float climbA = pow(max(0.0, sin(vUv.y * 16.0 - uTime * 0.42)), 18.0) * towerBandA;
+    float climbB = pow(max(0.0, sin(vUv.y * 21.0 - uTime * 0.27 + 2.4)), 22.0) * towerBandB;
+    float climbC = pow(max(0.0, sin(vUv.y * 13.0 - uTime * 0.19 + 4.1)), 16.0) * towerBandC;
+    float slowBloom = 0.5 + 0.5 * sin(uTime * 0.23 + vUv.x * 8.0);
+    float localAttention = exp(-distance(vUv, uPointer) * 10.0) * uAttention;
+    color.rgb *= 0.75;
+    color.rgb += vec3(0.28, 0.88, 0.9) * climbA * architecture * (0.22 + uAttention * 0.2);
+    color.rgb += vec3(0.98, 0.55, 0.48) * climbB * architecture * (0.2 + uAttention * 0.22);
+    color.rgb += vec3(0.96, 0.73, 0.35) * climbC * architecture * 0.22;
+    color.rgb += mix(vec3(0.13, 0.55, 0.58), vec3(0.65, 0.28, 0.22), vUv.x) * slowBloom * architecture * 0.08;
+    color.rgb += vec3(0.45, 0.92, 0.91) * localAttention * architecture * 0.34;
+    gl_FragColor = vec4(color.rgb, architecture);
+  }
+`;
+
+const PORTAL_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec2 vUv;
+  uniform sampler2D uTexture;
+  uniform float uTime;
+  uniform vec2 uPointer;
+  uniform float uAttention;
+  ${NOISE_GLSL}
+
+  void main() {
+    vec2 center = vec2(0.235, 0.41);
+    vec2 delta = vUv - center;
+    float d = length(delta);
+    float glass = 1.0 - smoothstep(0.105, 0.175, d);
+    float noise = fbm(vUv * 13.0 + vec2(uTime * 0.055, -uTime * 0.034));
+    vec2 refractedUv = center + delta * (0.95 + (noise - 0.5) * (0.07 + uAttention * 0.04));
+    vec4 body = texture2D(uTexture, vUv);
+    vec4 lens = texture2D(uTexture, refractedUv);
+    float chroma = glass * (0.003 + uAttention * 0.006);
+    vec3 refracted = vec3(
+      texture2D(uTexture, refractedUv + delta * chroma).r,
+      lens.g,
+      texture2D(uTexture, refractedUv - delta * chroma).b
+    );
+    body.rgb = mix(body.rgb, refracted, glass * lens.a * 0.86);
+    float scan = exp(-abs(vUv.y - (0.22 + fract(uTime * 0.075) * 0.39)) * 65.0) * glass;
+    float aperture = pow(max(0.0, cos(atan(delta.y, delta.x) * 9.0 - uTime * (0.4 + uAttention * 0.72))), 22.0)
+      * glass * smoothstep(0.035, 0.14, d);
+    float localAttention = exp(-distance(vUv, uPointer) * 10.0) * uAttention * body.a;
+    body.rgb *= 0.77;
+    body.rgb += vec3(0.36, 0.91, 0.92) * scan * body.a * 0.42;
+    body.rgb += vec3(0.98, 0.72, 0.35) * aperture * body.a * (0.22 + uAttention * 0.32);
+    body.rgb += mix(vec3(0.2, 0.84, 0.88), vec3(1.0, 0.55, 0.3), uPointer.y) * localAttention * 0.42;
+    gl_FragColor = vec4(body.rgb, body.a);
   }
 `;
 
@@ -311,45 +382,74 @@ function FullPlane({
   );
 }
 
-function SignalParticles() {
+function SignalParticles({
+  count,
+  color,
+  size,
+  speed,
+  phase,
+  order,
+  pointerActive,
+  pointerTarget,
+}: {
+  count: number;
+  color: string;
+  size: number;
+  speed: number;
+  phase: number;
+  order: number;
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
   const pointsRef = useRef<THREE.Points>(null);
   const geometryRef = useRef<THREE.BufferGeometry>(null);
+  const materialRef = useRef<THREE.PointsMaterial>(null);
+  const attention = useRef(0);
   const [positions] = useState(() => {
-    const values = new Float32Array(84 * 3);
-    for (let index = 0; index < 84; index += 1) {
-      const seed = index * 12.9898;
+    const values = new Float32Array(count * 3);
+    for (let index = 0; index < count; index += 1) {
+      const seed = (index + phase * 101) * 12.9898;
       values[index * 3] = (Math.sin(seed) * 0.5 + 0.5) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2 - MUSEUM_OBSERVATORY_PROOF_ASPECT;
-      values[index * 3 + 1] = Math.sin(seed * 1.71 + 2.3);
-      values[index * 3 + 2] = 0.22 + (index % 7) * 0.008;
+      values[index * 3 + 1] = Math.sin(seed * 1.71 + phase) * 0.94;
+      values[index * 3 + 2] = order * 0.01 + (index % 7) * 0.001;
     }
     return values;
   });
   useFrame(({ clock }, delta) => {
     if (!pointsRef.current || !geometryRef.current) return;
+    attention.current = THREE.MathUtils.damp(attention.current, pointerActive ? 1 : 0, pointerActive ? 4.8 : 1.1, delta);
     for (let index = 0; index < positions.length / 3; index += 1) {
       const offset = index * 3;
-      const speed = 0.018 + (index % 7) * 0.0045;
-      positions[offset] += delta * speed;
+      const particleSpeed = speed * (0.72 + (index % 7) * 0.09) * (1 + attention.current * 1.25);
+      positions[offset] += delta * particleSpeed;
       if (positions[offset] > MUSEUM_OBSERVATORY_PROOF_ASPECT + 0.08) {
         positions[offset] = -MUSEUM_OBSERVATORY_PROOF_ASPECT - 0.08;
       }
-      positions[offset + 1] += Math.sin(clock.elapsedTime * (0.22 + (index % 5) * 0.035) + index) * delta * 0.0014;
+      const normalizedX = (positions[offset] + MUSEUM_OBSERVATORY_PROOF_ASPECT) / (MUSEUM_OBSERVATORY_PROOF_ASPECT * 2);
+      const pointerDistance = Math.hypot(normalizedX - pointerTarget.current.x, (positions[offset + 1] * 0.5 + 0.5) - pointerTarget.current.y);
+      const localWake = Math.exp(-pointerDistance * 8) * attention.current;
+      positions[offset + 1] += Math.sin(clock.elapsedTime * (0.18 + phase * 0.07 + (index % 5) * 0.031) + index) * delta * (0.001 + localWake * 0.006);
     }
     const attribute = geometryRef.current.getAttribute('position') as THREE.BufferAttribute;
     attribute.needsUpdate = true;
-    pointsRef.current.rotation.z = Math.sin(clock.elapsedTime * 0.047) * 0.018;
+    pointsRef.current.rotation.z = Math.sin(clock.elapsedTime * (0.027 + phase * 0.013)) * (0.008 + phase * 0.004);
+    if (materialRef.current) {
+      materialRef.current.opacity = 0.36 + phase * 0.12 + attention.current * 0.24;
+      materialRef.current.size = size * (1 + attention.current * 0.28);
+    }
   });
   return (
-    <points ref={pointsRef} renderOrder={5}>
+    <points ref={pointsRef} renderOrder={order}>
       <bufferGeometry ref={geometryRef}>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        color="#b9edef"
-        size={0.013}
+        ref={materialRef}
+        color={color}
+        size={size}
         sizeAttenuation
         transparent
-        opacity={0.68}
+        opacity={0.5}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
@@ -358,15 +458,26 @@ function SignalParticles() {
 }
 
 function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
-  const texture = useTexture(MUSEUM_OBSERVATORY_PROOF_ASSETS.crop);
-  useEffect(() => configureTexture(texture), [texture]);
+  const textures = useTexture([
+    MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
+    MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory,
+    MUSEUM_OBSERVATORY_PROOF_ASSETS.city,
+    MUSEUM_OBSERVATORY_PROOF_ASSETS.portal,
+  ]);
+  useEffect(() => textures.forEach(configureTexture), [textures]);
+  const [field, observatory, city, portal] = textures;
   return (
     <>
-      <FullPlane fragmentShader={STRUCTURE_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={texture} />
+      <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
       <FullPlane fragmentShader={ATMOSPHERE_FRAGMENT} order={1} pointerActive={false} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <FullPlane fragmentShader={CURRENT_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <SignalParticles />
+      <SignalParticles count={58} color="#678e8e" size={0.009} speed={0.012} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} />
+      <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} />
+      <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} />
+      <SignalParticles count={76} color="#8ddbdd" size={0.012} speed={0.021} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
+      <SignalParticles count={44} color="#f0bd70" size={0.016} speed={0.032} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
     </>
   );
 }
@@ -474,7 +585,7 @@ function StaticFallback() {
   return (
     <Image
       className={styles.fallback}
-      src={MUSEUM_OBSERVATORY_PROOF_ASSETS.crop}
+      src={MUSEUM_OBSERVATORY_PROOF_ASSETS.fallback}
       alt=""
       fill
       priority
@@ -578,12 +689,12 @@ export default function MuseumObservatoryProof() {
           <span
             className={museumStyles.ecologyMembrane}
             data-layer="museum:membrane"
-            style={{ backgroundImage: `url(${MUSEUM_OBSERVATORY_PROOF_ASSETS.crop})` }}
+            style={{ backgroundImage: `url(${MUSEUM_OBSERVATORY_PROOF_ASSETS.fallback})` }}
           />
           <span
             className={museumStyles.ecologyAperture}
             data-layer="museum:aperture"
-            style={{ backgroundImage: `url(${MUSEUM_OBSERVATORY_PROOF_ASSETS.crop})` }}
+            style={{ backgroundImage: `url(${MUSEUM_OBSERVATORY_PROOF_ASSETS.fallback})` }}
           />
           <span className={museumStyles.materialMesh} data-layer="museum:membrane" />
           <MuseumParticleField
@@ -608,4 +719,9 @@ export default function MuseumObservatoryProof() {
   );
 }
 
-useTexture.preload(MUSEUM_OBSERVATORY_PROOF_ASSETS.crop);
+useTexture.preload([
+  MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
+  MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory,
+  MUSEUM_OBSERVATORY_PROOF_ASSETS.city,
+  MUSEUM_OBSERVATORY_PROOF_ASSETS.portal,
+]);

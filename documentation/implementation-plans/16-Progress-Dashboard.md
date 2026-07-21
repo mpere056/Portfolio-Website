@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; revision 4 directly reuses the production Museum distortion/lighting pipeline | Deploy revision 4 for Mark review; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 3 replaces baked particles/crop with a decomposed shader stack | Deploy east revision 3 for Mark review; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does east-observatory revision 2 now feel visibly alive at idle while preserving architectural weight? | Mark | `/projects/observatory-proof`; `4.2s` local comparison changes `13.6%` of stage channels visibly | 2026-07-21 | Review the deployed revision before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does decomposed east-observatory revision 3 feel like one living world while its field, lattice, city, portal, particles, and attention remain independently timed? | Mark | `/projects/observatory-proof`; particle-free plates and local idle/attention browser checks pass | 2026-07-21 | Review the deployed revision before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -153,7 +153,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and in
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
-| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; isolated `12F` hybrid proof has one clock, procedural current/effects, accepted plates, fallback, and focused checks | Mark `12F` review and `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proof off the main Museum until accepted | Review `/projects/ambient-proof`, then integrate the accepted arrangement | Representative runtime evidence exists; no full `V-33` evidence yet |
+| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west proof accepted; east proof has decomposed particle-free plates, procedural current/atmosphere/particles, independent structural lighting, fallback, and focused checks | Mark `12F` east-proof review and `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Review `/projects/observatory-proof`, then integrate both accepted grammars | Representative runtime evidence exists; no full `V-33` evidence yet |
 | `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.

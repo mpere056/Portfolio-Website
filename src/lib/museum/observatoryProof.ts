@@ -1,7 +1,11 @@
 export const MUSEUM_OBSERVATORY_PROOF_ASPECT = 852 / 790;
 
 export const MUSEUM_OBSERVATORY_PROOF_ASSETS = {
-  crop: '/images/art-direction/museum-observatory-proof.webp',
+  field: '/images/art-direction/museum-observatory-proof/field.webp',
+  observatory: '/images/art-direction/museum-observatory-proof/observatory.webp',
+  city: '/images/art-direction/museum-observatory-proof/city.webp',
+  portal: '/images/art-direction/museum-observatory-proof/portal.webp',
+  fallback: '/images/art-direction/museum-observatory-proof/fallback.webp',
 } as const;
 
 export type ObservatoryProofMedium =
@@ -12,14 +16,29 @@ export type ObservatoryProofMedium =
 
 export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
-    id: 'observatory:structure',
+    id: 'observatory:field',
     medium: 'sampled-shader',
-    temporalJob: 'preserve the architectural silhouette while rotating three isolated optical assemblies',
+    temporalJob: 'hold the particle-free terrain while procedural caustics and two haze depths cross it',
+  },
+  {
+    id: 'observatory:lattice',
+    medium: 'sampled-shader',
+    temporalJob: 'preserve the architectural silhouette while nacre light migrates through its isolated optical assembly',
   },
   {
     id: 'observatory:refraction',
     medium: 'sampled-shader',
     temporalJob: 'migrate nacre light and refract the central lens without wobbling the building',
+  },
+  {
+    id: 'observatory:city',
+    medium: 'sampled-shader',
+    temporalJob: 'send illumination through different crystal towers on independent delayed cycles',
+  },
+  {
+    id: 'observatory:portal',
+    medium: 'sampled-shader',
+    temporalJob: 'keep the device body fixed while its aperture refracts, scans, and emits wavefronts',
   },
   {
     id: 'observatory:currents',
@@ -39,7 +58,7 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
     id: 'observatory:particles',
     medium: 'procedural-geometry',
-    temporalJob: 'move sparse near and far signal matter on a clock independent from the optics',
+    temporalJob: 'replace every baked particle with near, middle, and far signal matter on independent clocks',
   },
   {
     id: 'observatory:attention',
@@ -49,11 +68,10 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
   {
     id: 'observatory:fallback',
     medium: 'stable-fallback',
-    temporalJob: 'preserve the approved crop for reduced motion and renderer failure',
+    temporalJob: 'preserve a particle-free, low-emission checksum for reduced motion and renderer failure',
   },
 ] as const satisfies readonly {
   id: string;
   medium: ObservatoryProofMedium;
   temporalJob: string;
 }[];
-
