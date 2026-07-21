@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, revision 2 established accepted quiet idle life, and revision 3 locally adds root grounding, reliable stage attention, object-local acceleration, and restored aperture/distortion effects. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, revision 2 established accepted quiet idle life, and revision 4 locally preserves grounding/local acceleration while directly reusing the production Museum hover-effects stack. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; revision 3 preserves quiet idle life and adds grounded, legible attended response | Deploy revision 3 for Mark review; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; revision 4 directly reuses the production Museum distortion/lighting pipeline | Deploy revision 4 for Mark review; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 

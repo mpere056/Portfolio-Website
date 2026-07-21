@@ -215,7 +215,7 @@ Execution artifacts:
 - `ART-12B`: [Museum Region Atlas And Motion Ledger](2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
 - `ART-12C`: [Museum Ambient Asset Briefs](2026-07-20-Museum-Ambient-Asset-Briefs.md).
 
-The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested a shader/procedural emphasis with the directional current generated in code. Revision 2 established credible quiet idle life after revision 1 failed. Revision 3 preserves that idle behavior while adding organic root grounding, a reliable shared attention coordinate, distinct local acceleration, and restored Museum aperture/distortion effects; it still awaits approval before `ART-12G` touches the Museum.
+The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested a shader/procedural emphasis with the directional current generated in code. Revision 2 established credible quiet idle life. Revision 3 improved grounding and attended intensity but still approximated the accepted `/projects` effects. Revision 4 preserves the independent proof motion and directly reuses the production Museum scene frame, membrane, aperture, mesh, veil, halo, and particles; it still awaits approval before `ART-12G` touches the Museum.
 
 #### `ART-12A`: Preserve The Baseline
 
@@ -283,4 +283,4 @@ The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the boun
 
 ## Resume Point
 
-Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is deployment and Mark review of `/projects/ambient-proof` revision 3, comparing quiet idle with coral, organism, rings, empty-field aperture, and current attention. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.
+Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is deployment and direct visual comparison of `/projects/ambient-proof` revision 4 with the `/projects` hover distortion and lighting. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.

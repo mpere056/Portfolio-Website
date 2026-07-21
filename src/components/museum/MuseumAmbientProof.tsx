@@ -5,7 +5,7 @@ import { useTexture } from '@react-three/drei';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as THREE from 'three';
-import { Component, Suspense, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import { Component, Suspense, useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 import {
   MUSEUM_AMBIENT_PROOF_ASPECT,
   MUSEUM_AMBIENT_PROOF_ASSETS,
@@ -15,6 +15,9 @@ import {
   type AmbientProofResponseProfile,
   type ProofPlateLayout,
 } from '@/lib/museum/ambientProof';
+import { getMuseumSceneFrame, type MuseumScenePoint } from '@/lib/museum/scene';
+import MuseumParticleField from './MuseumParticleField';
+import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumAmbientProof.module.css';
 
 const PLANE_VERTEX = /* glsl */`
@@ -682,18 +685,39 @@ export default function MuseumAmbientProof() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
+  const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
 
   const updatePointerTarget = (event: ReactPointerEvent<HTMLDivElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
     const [x, y] = toProofAttentionPoint(event.clientX, event.clientY, bounds);
     pointerTarget.current.set(x, y);
+    setScenePointer({ x, y: 1 - y });
     event.currentTarget.dataset.attentionX = x.toFixed(3);
     event.currentTarget.dataset.attentionY = y.toFixed(3);
-    event.currentTarget.style.setProperty('--attention-x', `${(x * 100).toFixed(2)}%`);
-    event.currentTarget.style.setProperty('--attention-y', `${((1 - y) * 100).toFixed(2)}%`);
     if (!pointerActive) setPointerActive(true);
   };
+
+  const sceneFrame = getMuseumSceneFrame({
+    pointer: scenePointer,
+    apertureTarget: pointerActive ? scenePointer : undefined,
+    stimulation: 1,
+    reducedMotion,
+    visible,
+  });
+  const sceneStyle = {
+    '--scene-x': `${sceneFrame.pointer.x * 100}%`,
+    '--scene-y': `${sceneFrame.pointer.y * 100}%`,
+    '--aperture-x': `${sceneFrame.aperture.x * 100}%`,
+    '--aperture-y': `${sceneFrame.aperture.y * 100}%`,
+    '--scene-energy': sceneFrame.energy,
+    '--scene-drift-x': `${sceneFrame.drift.x}px`,
+    '--scene-drift-y': `${sceneFrame.drift.y}px`,
+    '--mesh-drift-x': `${sceneFrame.drift.x * -0.35}px`,
+    '--mesh-drift-y': `${sceneFrame.drift.y * -0.35}px`,
+    '--aperture-strength': sceneFrame.apertureStrength,
+    '--filament-strength': sceneFrame.filamentStrength,
+  } as CSSProperties;
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -713,9 +737,14 @@ export default function MuseumAmbientProof() {
     <main className={styles.proof} data-reduced-motion={reducedMotion} data-attention-active={pointerActive}>
       <div
         className={styles.stage}
+        style={sceneStyle}
+        data-scene-settled={sceneFrame.settled}
         onPointerEnter={updatePointerTarget}
         onPointerMove={updatePointerTarget}
-        onPointerLeave={() => setPointerActive(false)}
+        onPointerLeave={() => {
+          setPointerActive(false);
+          setScenePointer({ x: 0.5, y: 0.5 });
+        }}
       >
         <StaticFallback />
         <ProofBoundary fallback={null}>
@@ -741,6 +770,27 @@ export default function MuseumAmbientProof() {
             </Canvas>
           ) : null}
         </ProofBoundary>
+        <div className={styles.museumEffects} aria-hidden="true">
+          <span className={styles.sceneHalo} />
+          <span
+            className={museumStyles.ecologyMembrane}
+            data-layer="museum:membrane"
+            style={{ backgroundImage: `url(${MUSEUM_AMBIENT_PROOF_ASSETS.fallback})` }}
+          />
+          <span
+            className={museumStyles.ecologyAperture}
+            data-layer="museum:aperture"
+            style={{ backgroundImage: `url(${MUSEUM_AMBIENT_PROOF_ASSETS.fallback})` }}
+          />
+          <span className={museumStyles.materialMesh} data-layer="museum:membrane" />
+          <MuseumParticleField
+            target={sceneFrame.aperture}
+            energy={sceneFrame.energy}
+            count={sceneFrame.particleCount}
+            reducedMotion={reducedMotion || !visible}
+          />
+          <span className={museumStyles.ecologyVeil} />
+        </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>
       <header className={styles.caption}>

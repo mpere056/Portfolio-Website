@@ -42,6 +42,21 @@ describe('Museum dynamic scene model', () => {
     expect(frame.settled).toBe(false);
   });
 
+  it('reuses the complete Museum response frame for a free pointer aperture', () => {
+    const frame = getMuseumSceneFrame({
+      pointer: { x: 0.72, y: 0.3 },
+      apertureTarget: { x: 0.72, y: 0.3 },
+      stimulation: 1,
+      reducedMotion: false,
+    });
+
+    expect(frame.aperture).toEqual({ x: 0.72, y: 0.3 });
+    expect(frame.energy).toBe(1);
+    expect(frame.apertureStrength).toBe(1);
+    expect(frame.filamentStrength).toBeCloseTo(0.96);
+    expect(frame.particleCount).toBe(84);
+  });
+
   it('settles continuous layers for reduced motion and hidden scenes', () => {
     const reduced = getMuseumSceneFrame({
       pointer: { x: 0.95, y: 0.95 },

@@ -44,6 +44,7 @@ export function normalizeMuseumScenePoint(point: MuseumScenePoint): MuseumSceneP
 
 export function getMuseumSceneFrame({
   pointer,
+  apertureTarget,
   activeSlug,
   selectedSlug,
   stimulation,
@@ -51,6 +52,7 @@ export function getMuseumSceneFrame({
   visible = true,
 }: {
   pointer: MuseumScenePoint;
+  apertureTarget?: MuseumScenePoint;
   activeSlug?: string;
   selectedSlug?: string;
   stimulation: number;
@@ -58,12 +60,16 @@ export function getMuseumSceneFrame({
   visible?: boolean;
 }): MuseumSceneFrame {
   const normalizedPointer = normalizeMuseumScenePoint(pointer);
+  const normalizedApertureTarget = apertureTarget
+    ? normalizeMuseumScenePoint(apertureTarget)
+    : undefined;
   const activePosition = activeSlug
     ? getMuseumSignalPosition(activeSlug, 0)
     : undefined;
-  const aperture = activePosition
+  const aperture = normalizedApertureTarget ?? (activePosition
     ? { x: activePosition.x / 100, y: activePosition.y / 100 }
-    : normalizedPointer;
+    : normalizedPointer);
+  const attentionActive = Boolean(normalizedApertureTarget || activeSlug);
   const requestedEnergy = clamp(stimulation);
   const energy = reducedMotion || !visible ? 0 : 0.38 + requestedEnergy * 0.62;
 
@@ -75,8 +81,8 @@ export function getMuseumSceneFrame({
       x: (normalizedPointer.x - 0.5) * 48 * energy,
       y: (normalizedPointer.y - 0.5) * 34 * energy,
     },
-    apertureStrength: activeSlug ? 0.52 + energy * 0.48 : 0.08,
-    filamentStrength: activeSlug ? 0.46 + energy * 0.5 : 0.14,
+    apertureStrength: attentionActive ? 0.52 + energy * 0.48 : 0.08,
+    filamentStrength: attentionActive ? 0.46 + energy * 0.5 : 0.14,
     particleCount: reducedMotion || !visible ? 0 : Math.round(26 + energy * 58),
     settled: reducedMotion || !visible,
   };
