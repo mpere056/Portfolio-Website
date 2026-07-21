@@ -1,0 +1,121 @@
+{
+  "proof": "museum-west-lower-ecology",
+  "stage": "ART-12D",
+  "sourceCrop": {
+    "left": 0,
+    "top": 367,
+    "width": 719,
+    "height": 574,
+    "runtimeUse": "reference-only"
+  },
+  "creativeDecisions": {
+    "world": "1A-layered",
+    "firstProof": "2A-west-lower-ecology",
+    "motion": "3A-quiet-pervasive"
+  },
+  "generatedBy": "scripts/build-museum-ambient-proof.mjs",
+  "outputs": [
+    {
+      "name": "coral-groups-trimmed.png",
+      "width": 1102,
+      "height": 1081,
+      "alpha": true
+    },
+    {
+      "name": "organism-body-alpha.png",
+      "width": 607,
+      "height": 1194,
+      "alpha": true
+    },
+    {
+      "name": "organism-rings-alpha.png",
+      "width": 149,
+      "height": 315,
+      "alpha": true
+    },
+    {
+      "name": "directional-current-trimmed.png",
+      "width": 1553,
+      "height": 825,
+      "alpha": true
+    },
+    {
+      "name": "vapor-background-alpha.png",
+      "width": 758,
+      "height": 557,
+      "alpha": true
+    },
+    {
+      "name": "vapor-vertical-alpha.png",
+      "width": 392,
+      "height": 598,
+      "alpha": true
+    },
+    {
+      "name": "vapor-basin-alpha.png",
+      "width": 1045,
+      "height": 393,
+      "alpha": true
+    },
+    {
+      "name": "occluder-spores-alpha.png",
+      "width": 1088,
+      "height": 443,
+      "alpha": true
+    },
+    {
+      "name": "occluder-shadow-a-alpha.png",
+      "width": 428,
+      "height": 185,
+      "alpha": true
+    },
+    {
+      "name": "occluder-shadow-b-alpha.png",
+      "width": 460,
+      "height": 159,
+      "alpha": true
+    },
+    {
+      "name": "map-coral-deformation-rgb.png",
+      "width": 1402,
+      "height": 1122,
+      "alpha": true
+    },
+    {
+      "name": "map-current-flow-rgba.png",
+      "width": 1637,
+      "height": 960,
+      "alpha": true
+    },
+    {
+      "name": "map-scene-depth.png",
+      "width": 1402,
+      "height": 1122,
+      "alpha": true
+    },
+    {
+      "name": "map-illumination-caustic.png",
+      "width": 1402,
+      "height": 1122,
+      "alpha": true
+    },
+    {
+      "name": "proof-composite-still.png",
+      "width": 1402,
+      "height": 1122,
+      "alpha": true
+    },
+    {
+      "name": "contact-sheet.png",
+      "width": 1620,
+      "height": 1170,
+      "alpha": true
+    },
+    {
+      "name": "alpha-edge-diagnostics.png",
+      "width": 1080,
+      "height": 1500,
+      "alpha": true
+    }
+  ]
+}

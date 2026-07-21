@@ -1,7 +1,7 @@
 # Pervasive Ambient Worlds Implementation Plan
 
 Date: 2026-07-20
-Status: implementation in progress; `ART-12A/B` complete and `ART-12C` review-ready
+Status: implementation in progress; `ART-12A-D` complete and `ART-12E` in-review
 Requirements: `V-31`, `V-32`, `V-33`
 Packages: `ART-12` through `ART-15`
 Capabilities: `CAP-ART-013` through `CAP-ART-016`
@@ -215,7 +215,7 @@ Execution artifacts:
 - `ART-12B`: [Museum Region Atlas And Motion Ledger](2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
 - `ART-12C`: [Museum Ambient Asset Briefs](2026-07-20-Museum-Ambient-Asset-Briefs.md).
 
-The first two gates are complete. The brief set is authored and awaits Mark's creative review. `ART-12D` must not begin until that review accepts or revises the bounded representative batch.
+The first four gates are complete. Mark approved the direction as `1A, 2A, 3A`; the bounded lower-left stack now contains real separated materials, control maps, alpha diagnostics, deterministic assembly, and a manifest. `ART-12E` reviews those actual assets before any compositor is selected.
 
 #### `ART-12A`: Preserve The Baseline
 
@@ -283,4 +283,4 @@ The first two gates are complete. The brief set is authored and awaits Mark's cr
 
 ## Resume Point
 
-Production `fce50af` remains the functional and current visual baseline. The next exact action is not renderer coding or asset generation: complete `ART-12A` baseline reconciliation and `ART-12B` Museum motion/source mapping. Then write `ART-12C` asset briefs. Transparent production assets begin only at `ART-12D`; the contact sheet must pass `ART-12E` before compositor selection at `ART-12F`.
+Production `fce50af` remains the functional and public visual baseline. `ART-12A-D` are complete without changing it. The next exact action is Mark's two-image `ART-12E` review of the lower-left material stack. Approval authorizes `ART-12F` to compare the smallest credible animated compositor arrangements; it does not authorize broad Museum integration until that decision is recorded.

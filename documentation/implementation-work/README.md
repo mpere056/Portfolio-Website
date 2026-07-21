@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix, but Mark's longer observation showed that the dominant artwork remains too static during normal idle. `WI-ART-12-01` is in progress: the baseline and source/motion mapping are complete, while the representative asset briefs await review before production.
+Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix, but Mark's longer observation showed that the dominant artwork remains too static during normal idle. `WI-ART-12-01` is in progress: Mark accepted the layered direction as `1A, 2A, 3A`; the bounded lower-left material stack and diagnostics are complete and await a short asset review before compositor selection.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | `ART-12A/B` complete; technical briefs and a two-minute creative review are ready | Mark answers the three short creative decisions; after acceptance, begin only the `ART-12D` representative stack | 2026-07-20 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-D` complete; real transparent plates, maps, diagnostics, manifest, and intended-stack checksum exist | Mark inspects `contact-sheet.png` and `proof-composite-still.png`, then answers `A` approve or `B` revise | 2026-07-20 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
@@ -32,7 +32,7 @@ Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | paused | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-20 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | paused | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-20 |
 | `WI-ART-11-01` | Mature the dynamic scene system | paused | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
-| `WI-ART-12-01` | Prove pervasive ambient life in the Museum | in-progress | high | `ART-12` | `CAP-ART-013`, `CAP-ART-014` | `active/WI-ART-12-01.md` | 2026-07-20 |
+| `WI-ART-12-01` | Prove pervasive ambient life in the Museum | in-review | high | `ART-12` | `CAP-ART-013`, `CAP-ART-014` | `active/WI-ART-12-01.md` | 2026-07-20 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

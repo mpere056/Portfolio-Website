@@ -2,7 +2,8 @@
 
 Date: 2026-07-20
 Reading time: about two minutes
-Purpose: the only `ART-12C` document Mark needs to review
+Status: accepted as `1A, 2A, 3A` on 2026-07-20
+Purpose: retained decision record for the completed `ART-12C` gate
 
 ## The Proposed Result
 

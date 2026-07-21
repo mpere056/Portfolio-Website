@@ -498,7 +498,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-011` | Distinct flagship and supporting-route dynamic compositions | `ART-09`, `ART-10` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-18`, `V-32` | `O-01`, `O-02`, `O-04`, `O-05` | 8 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-09-01`, `EV-ART-10-01`) |
 | `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-11-03`, `EV-ART-11-04`) |
 | `CAP-ART-013` | Ambient participation contract, motion coverage ledger, and coordinated scene clock | `ART-12` | `V-22`, `V-31`, `V-32`, `V-33` | `O-01`, `O-04` | 3 | `S: accepted; C: implemented; A: working; I: not-started; T: not-started; Q: not-started; R: not-started` | in-progress |
-| `CAP-ART-014` | Decomposed material production pipeline and Museum ambient proof | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: working; A: working; I: not-started; T: not-started; Q: not-started; R: not-started` | in-progress |
+| `CAP-ART-014` | Decomposed material production pipeline and Museum ambient proof | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: not-started; T: working; Q: in-review; R: not-started` | in-review |
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
@@ -619,11 +619,11 @@ Until a capability receives its own detail record, these defaults apply:
 - Owner: Codex with Mark creative review
 - Lifecycle: `CAP-ART-013/014` in-progress; `CAP-ART-015/016` planned
 - Health: on-track
-- Confidence: high in the corrected production model and Museum mapping; production/runtime evidence does not yet exist
-- Dimension states: `CAP-ART-013 C` implemented; `CAP-ART-013 A` and `CAP-ART-014 C/A` working; implementation, test, quality, and release dimensions remain not-started
+- Confidence: high in the corrected production model, Museum mapping, and representative material pipeline; runtime evidence does not yet exist
+- Dimension states: `CAP-ART-013 C` implemented; `CAP-ART-013 A` working; `CAP-ART-014 C/A` implemented, `T` working, and `Q` in-review; runtime integration and release remain not-started
 - Packages: `ART-12` through `ART-15`
-- Works now: Production `fce50af` supplies one-viewport geometry, route-owned interactive drivers, semantic fallbacks, and known-good functional behavior to preserve. `ART-12A` records its measured regression checksum; `ART-12B` accounts for all dominant Museum regions, depth/occlusion relationships, temporal bands, and dead zones; `ART-12C` defines eleven bounded proof-crop asset briefs.
-- Named gaps: Mark brief review, transparent plates, clean background fills, alpha/depth/flow/deformation/emission/occlusion maps, contact-sheet acceptance, compositor decision, material-specific idle runtime, coordinated scene clock integration, no-input captures, dead-zone closure, and Production acceptance.
+- Works now: Production `fce50af` supplies one-viewport geometry, route-owned interactive drivers, semantic fallbacks, and known-good functional behavior to preserve. `ART-12A/B` record and map it; Mark accepted `ART-12C`; `ART-12D` produced the bounded transparent plate, clean-field, map, diagnostic, deterministic-build, and manifest proof package.
+- Named gaps: Mark's `ART-12E` asset acceptance, compositor decision, optimized runtime derivatives, material-specific idle runtime, coordinated scene clock integration, no-input captures, dead-zone closure, and Production acceptance.
 - Safe exposure: retain `fce50af` as the public and rollback baseline until a Museum ambient candidate passes aggregate checks; stable posters remain available for reduced motion and renderer failure.
 - Evidence: none accepted for `V-33`; existing `EV-ART-11-03/04` document the interaction candidate and the newly superseded creative acceptance boundary.
 - Work item: `WI-ART-12-01` is in-progress.
