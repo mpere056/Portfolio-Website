@@ -179,9 +179,9 @@
   animation: observatoryCurrentTravel 8.5s linear infinite;
 }
 
-.observatoryCurrentCyan { stroke-width: 2.6; opacity: .66; }
-.observatoryCurrentGold { stroke-width: 2.1; opacity: .55; animation-duration: 12.2s !important; animation-direction: reverse !important; }
-.observatoryCurrentFine { stroke-width: 1.2; opacity: .38; animation-duration: 15.8s !important; }
+.observatoryCurrentCyan { stroke-width: 2.1; opacity: .46; }
+.observatoryCurrentGold { stroke-width: 1.7; opacity: .36; animation-duration: 12.2s !important; animation-direction: reverse !important; }
+.observatoryCurrentFine { stroke-width: 1; opacity: .24; animation-duration: 15.8s !important; }
 
 .observatoryPacketCyan,
 .observatoryPacketGold,
@@ -199,30 +199,30 @@
 }
 
 .observatoryRingA {
-  transform-origin: 550px 407px;
+  transform-origin: 592px 348px;
   animation: observatoryOpticalSpin 21s linear infinite;
 }
 
 .observatoryRingB {
-  transform-origin: 660px 241px;
+  transform-origin: 670px 220px;
   animation: observatoryOpticalSpin 13.5s linear infinite reverse;
 }
 
 .observatoryRingC {
-  transform-origin: 754px 423px;
+  transform-origin: 744px 363px;
   animation: observatoryOpticalSpin 34s linear infinite;
 }
 
 .observatoryLensGlow {
   stroke: none !important;
   animation: observatoryLensBreathe 5.8s ease-in-out infinite alternate;
-  transform-origin: 550px 407px;
+  transform-origin: 592px 348px;
 }
 
 .observatoryWavefront {
   stroke: rgba(132, 236, 238, .52) !important;
   stroke-dasharray: none !important;
-  transform-origin: 550px 407px;
+  transform-origin: 592px 348px;
   animation: observatoryWavefront 6.6s ease-out infinite;
 }
 

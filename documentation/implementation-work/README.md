@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and decomposed east-observatory revision 3 now replaces the static-particle crop with independently shaded field, lattice, city, and portal plates plus code-generated atmosphere, flow, particles, and attention. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 4 now tests separated structural territories, 700 code-generated idle particles, stronger material clocks, reduced current density, and the preserved Museum hover pipeline. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; east observatory revision 3 is live at `bc3c071` with aggregate, build, motion, attention, and public browser gates passing | Mark reviews revision 3; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; less-crowded east observatory revision 4 passes focused code and local idle/attention browser gates | Deploy revision 4 for Mark review; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 

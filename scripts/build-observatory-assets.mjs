@@ -16,7 +16,12 @@ const derivatives = [
   { source: path.join(masters, 'observatory-alpha.png'), target: 'observatory.webp', alpha: true },
   { source: path.join(masters, 'city-alpha.png'), target: 'city.webp', alpha: true },
   { source: path.join(masters, 'portal-alpha.png'), target: 'portal.webp', alpha: true },
-  { source: path.join(sources, 'composite-reference-source.png'), target: 'fallback.webp', alpha: false },
+];
+
+const layerLayout = [
+  { file: 'portal.webp', scale: 0.72, anchor: { x: 0.235, y: 0.41 }, offset: { x: -0.06, y: -0.08 } },
+  { file: 'observatory.webp', scale: 0.79, anchor: { x: 0.66, y: 0.49 }, offset: { x: 0.035, y: 0.07 } },
+  { file: 'city.webp', scale: 0.74, anchor: { x: 0.73, y: 0.35 }, offset: { x: 0.095, y: -0.075 } },
 ];
 
 await mkdir(runtime, { recursive: true });
@@ -29,12 +34,26 @@ for (const derivative of derivatives) {
     .toFile(path.join(runtime, derivative.target));
 }
 
-const transparentLayers = await Promise.all(
-  ['observatory.webp', 'portal.webp', 'city.webp'].map(file => sharp(path.join(runtime, file)).png().toBuffer()),
-);
+const transparentLayers = await Promise.all(layerLayout.map(async layer => {
+  const layerWidth = Math.round(width * layer.scale);
+  const layerHeight = Math.round(height * layer.scale);
+  return {
+    input: await sharp(path.join(runtime, layer.file))
+      .resize(layerWidth, layerHeight, { fit: 'fill' })
+      .png()
+      .toBuffer(),
+    left: Math.round((1 - layer.scale) * layer.anchor.x * width + layer.offset.x * width),
+    top: Math.round((1 - layer.scale) * (1 - layer.anchor.y) * height - layer.offset.y * height),
+  };
+}));
 
 await sharp(path.join(runtime, 'field.webp'))
-  .composite(transparentLayers.map(input => ({ input })))
+  .composite(transparentLayers)
+  .webp({ quality: 88, effort: 6 })
+  .toFile(path.join(runtime, 'fallback.webp'));
+
+await sharp(path.join(runtime, 'field.webp'))
+  .composite(transparentLayers)
   .png()
   .toFile(path.join(diagnostics, 'stacked.png'));
 
@@ -52,8 +71,8 @@ const checker = Buffer.from(`
 `);
 
 await sharp(checker)
-  .composite(transparentLayers.map(input => ({ input })))
+  .composite(transparentLayers)
   .png()
   .toFile(path.join(diagnostics, 'alpha-checker.png'));
 
-console.log(`Built ${derivatives.length} Observatory derivatives and 2 diagnostics.`);
+console.log(`Built ${derivatives.length + 1} Observatory derivatives and 2 diagnostics.`);
