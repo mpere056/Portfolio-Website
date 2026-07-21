@@ -8,6 +8,17 @@ export const MUSEUM_OBSERVATORY_FLOW_TIMING = {
   archCrossingSeconds: 7,
 } as const;
 
+export const MUSEUM_OBSERVATORY_FLOW_CONTROLS = {
+  flowSpeed: 1.55,
+  flowStrength: 0.9,
+  fogIntensity: 0.46,
+  fogScale: 5.2,
+  fogFallSpeed: 0.42,
+  wispDensity: 0.82,
+  wispSpeed: 0.72,
+  wispIntensity: 1.65,
+} as const;
+
 export const MUSEUM_OBSERVATORY_PROOF_ASSETS = {
   field: '/images/art-direction/museum-observatory-proof/field.webp',
   observatory: '/images/art-direction/museum-observatory-proof/observatory.webp',

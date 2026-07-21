@@ -2,6 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  MUSEUM_OBSERVATORY_FLOW_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_TIMING,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
@@ -63,6 +64,11 @@ describe('Museum observatory compositor proof', () => {
       MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
     );
     expect(new Set(timings)).toHaveLength(timings.length);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed).toBeGreaterThan(1);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength).toBeGreaterThanOrEqual(0.8);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed).toBeGreaterThan(0.5);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity).toBeGreaterThan(1);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity).toBeGreaterThan(0);
   });
 
   it('expresses flow inside shader material instead of overlaying marker heads', async () => {
@@ -77,6 +83,9 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float leadBolus = liquidBolus(');
     expect(source).toContain('float copperBolus = liquidBolus(');
     expect(source).toContain('float ivoryBolus = liquidBolus(');
+    expect(source).toContain('float laserFlowModulation(');
+    expect(source).toContain('float movingWisp(');
+    expect(source).toContain('float advectedFlowFog(');
     expect(source).not.toContain('<animateMotion');
     expect(source).not.toContain('observatoryFlowTracer');
   });
