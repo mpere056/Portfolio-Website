@@ -275,7 +275,7 @@ const ATMOSPHERE_FRAGMENT = /* glsl */`
   }
 `;
 
-const CURRENT_FRAGMENT = /* glsl */`
+const FLOW_BACK_FRAGMENT = /* glsl */`
   precision highp float;
   varying vec2 vUv;
   uniform float uTime;
@@ -283,42 +283,133 @@ const CURRENT_FRAGMENT = /* glsl */`
   uniform float uAttention;
   ${NOISE_GLSL}
 
-  float strand(vec2 p, float offset, float phase, float speed) {
-    float localWake = exp(-pow((p.x - uPointer.x) * 5.0, 2.0)) * uAttention;
-    float y = 0.78 - p.x * 0.34 + offset
-      + sin(p.x * 10.0 + phase - uTime * speed) * (0.024 + localWake * 0.03)
-      + sin(p.x * 23.0 - phase + uTime * speed * 0.61) * 0.009;
-    float width = 0.0024 + localWake * 0.0015;
-    return smoothstep(width * 3.4, width, abs(p.y - y));
+  float flowLine(float y, float center, float width) {
+    float glow = width / (abs(y - center) + width);
+    return glow * glow;
   }
 
   void main() {
-    float lines = 0.0;
+    float edgeFade = smoothstep(0.01, 0.13, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
+    float attention = exp(-distance(vUv, uPointer) * 7.5) * uAttention;
     vec3 color = vec3(0.0);
-    float bodyY = 0.78 - vUv.x * 0.34;
-    float bodyDistance = abs(vUv.y - bodyY);
-    float bodyNoise = fbm(vec2(vUv.x * 5.5 - uTime * 0.24, vUv.y * 12.0 + uTime * 0.035));
-    float fluidBody = exp(-bodyDistance * 24.0) * smoothstep(0.2, 0.82, bodyNoise);
-    for (int i = 0; i < 6; i++) {
+    float alpha = 0.0;
+
+    float copperBodyY = 0.895 - vUv.x * 0.115;
+    float copperNoise = fbm(vec2(vUv.x * 7.0 - uTime * 0.075, vUv.y * 18.0 + uTime * 0.021));
+    float copperAurora = exp(-abs(vUv.y - copperBodyY) * 31.0)
+      * smoothstep(0.34, 0.84, copperNoise) * edgeFade;
+    color += mix(vec3(0.38, 0.13, 0.09), vec3(0.86, 0.46, 0.27), copperNoise) * copperAurora * 0.24;
+    alpha += copperAurora * 0.11;
+
+    for (int i = 0; i < 9; i++) {
       float fi = float(i);
-      float line = strand(vUv, (fi - 2.5) * 0.018, fi * 0.77, 0.24 + fi * 0.011 + uAttention * 0.18);
-      float packet = pow(max(0.0, sin((vUv.x * 15.0 - uTime * (0.92 + fi * 0.03 + uAttention * 0.55) + fi) * 3.14159)), 12.0);
-      vec3 tint = mix(vec3(0.16, 0.78, 0.86), vec3(0.94, 0.63, 0.29), smoothstep(2.5, 5.0, fi));
-      color += tint * line * (0.3 + packet * (0.92 + uAttention * 0.85));
-      lines += line;
+      float phase = fi * 0.83;
+      float weave = sin(vUv.x * (17.0 + fi * 0.21) - uTime * (0.17 + fi * 0.006) + phase) * (0.017 + attention * 0.008)
+        + sin(vUv.x * 35.0 + uTime * 0.09 - phase * 1.7) * 0.004;
+      float center = copperBodyY + weave + (fi - 4.0) * 0.0043;
+      float line = flowLine(vUv.y, center, 0.00105 + attention * 0.00062);
+      float packet = pow(0.5 + 0.5 * sin(vUv.x * 30.0 - uTime * (0.58 + fi * 0.013) + phase), 12.0);
+      vec3 tint = mix(vec3(0.72, 0.31, 0.21), vec3(0.78, 0.68, 0.49), smoothstep(3.0, 8.0, fi));
+      color += tint * line * (0.26 + packet * 0.72 + attention * 0.28) * edgeFade;
+      alpha += line * (0.13 + packet * 0.24) * edgeFade;
     }
-    float packetX = -0.08 + fract(uTime * (0.11 + uAttention * 0.055)) * 1.16;
-    vec2 packetCenter = vec2(packetX, 0.78 - packetX * 0.34);
-    float packetWake = exp(-pow(distance(vUv, packetCenter) * 34.0, 2.0));
-    float wakeRing = exp(-pow((distance(vUv, packetCenter) - 0.045) * 80.0, 2.0));
-    float fade = smoothstep(0.02, 0.16, vUv.x) * (1.0 - smoothstep(0.93, 1.0, vUv.x));
-    float vapor = fbm(vec2(vUv.x * 6.0 - uTime * 0.12, vUv.y * 17.0));
-    color += mix(vec3(0.02, 0.32, 0.38), vec3(0.35, 0.17, 0.04), bodyNoise) * fluidBody * 0.24;
-    color += vec3(0.52, 0.96, 1.0) * packetWake * 1.45;
-    color += vec3(0.98, 0.72, 0.34) * wakeRing * 0.72;
-    color += vec3(0.06, 0.25, 0.28) * vapor * lines * 0.22;
-    float alpha = lines * fade * (0.4 + uAttention * 0.34) + fluidBody * 0.08 + packetWake * 0.72 + wakeRing * 0.34;
-    gl_FragColor = vec4(color, clamp(alpha, 0.0, 0.96));
+
+    float ivoryBodyY = 0.615 - vUv.x * 0.305;
+    float ivoryNoise = fbm(vec2(vUv.x * 5.2 + uTime * 0.052, vUv.y * 14.0 - uTime * 0.018));
+    float ivoryAurora = exp(-abs(vUv.y - ivoryBodyY) * 25.0)
+      * smoothstep(0.37, 0.82, ivoryNoise) * edgeFade;
+    color += mix(vec3(0.18, 0.38, 0.42), vec3(0.57, 0.59, 0.54), ivoryNoise) * ivoryAurora * 0.27;
+    alpha += ivoryAurora * 0.12;
+
+    for (int i = 0; i < 11; i++) {
+      float fi = float(i);
+      float phase = fi * 0.61;
+      float braid = sin(vUv.x * (13.0 + fi * 0.17) + uTime * (0.11 + fi * 0.004) + phase) * (0.034 + attention * 0.012)
+        + sin(vUv.x * 27.0 - uTime * 0.07 - phase) * 0.007;
+      float center = ivoryBodyY + braid + (fi - 5.0) * 0.0048;
+      float line = flowLine(vUv.y, center, 0.00092 + attention * 0.00048);
+      float packet = pow(0.5 + 0.5 * sin(vUv.x * 25.0 - uTime * (0.34 + fi * 0.009) + phase), 15.0);
+      vec3 tint = mix(vec3(0.28, 0.63, 0.68), vec3(0.78, 0.74, 0.62), smoothstep(2.0, 10.0, fi));
+      color += tint * line * (0.24 + packet * 0.58 + attention * 0.22) * edgeFade;
+      alpha += line * (0.13 + packet * 0.21) * edgeFade;
+    }
+
+    float archBase = 0.965 - vUv.x * 0.14;
+    for (int i = 0; i < 4; i++) {
+      float fi = float(i);
+      float arch = archBase + sin(vUv.x * (8.0 + fi) - uTime * (0.055 + fi * 0.008) + fi * 1.3) * (0.018 + fi * 0.004);
+      float line = flowLine(vUv.y, arch, 0.00065);
+      color += mix(vec3(0.26, 0.48, 0.5), vec3(0.56, 0.43, 0.3), fi / 3.0) * line * 0.22 * edgeFade;
+      alpha += line * 0.075 * edgeFade;
+    }
+
+    float luminance = max(color.r, max(color.g, color.b));
+    gl_FragColor = vec4(color * 1.22, clamp(max(alpha * 2.2, luminance * 0.64), 0.0, 0.82));
+  }
+`;
+
+const FLOW_FRONT_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec2 vUv;
+  uniform float uTime;
+  uniform vec2 uPointer;
+  uniform float uAttention;
+  ${NOISE_GLSL}
+
+  float flowLine(float y, float center, float width) {
+    float glow = width / (abs(y - center) + width);
+    return glow * glow;
+  }
+
+  void main() {
+    float edgeFade = smoothstep(0.015, 0.12, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
+    float attention = exp(-distance(vUv, uPointer) * 7.8) * uAttention;
+    float bodyY = 0.81 - vUv.x * 0.355;
+    float bodyNoise = fbm(vec2(vUv.x * 6.0 - uTime * 0.115, vUv.y * 17.0 + uTime * 0.025));
+    float aurora = exp(-abs(vUv.y - bodyY) * 26.0) * smoothstep(0.28, 0.82, bodyNoise) * edgeFade;
+    vec3 color = mix(vec3(0.015, 0.22, 0.26), vec3(0.33, 0.2, 0.055), smoothstep(0.56, 0.8, bodyNoise)) * aurora * 0.42;
+    float alpha = aurora * 0.14;
+
+    for (int i = 0; i < 10; i++) {
+      float fi = float(i);
+      float phase = fi * 0.76;
+      float localWave = sin(vUv.x * (10.0 + fi * 0.13) - uTime * (0.2 + fi * 0.005 + attention * 0.11) + phase) * (0.022 + attention * 0.022)
+        + sin(vUv.x * 23.0 + uTime * 0.12 - phase * 1.4) * 0.006;
+      float center = bodyY + localWave + (fi - 4.5) * 0.0115;
+      float line = flowLine(vUv.y, center, 0.00165 + attention * 0.001);
+      float packet = pow(0.5 + 0.5 * sin(vUv.x * 34.0 - uTime * (0.92 + fi * 0.021 + attention * 0.62) + phase), 16.0);
+      float goldMix = smoothstep(5.7, 8.7, fi);
+      vec3 tint = mix(vec3(0.12, 0.82, 0.88), vec3(0.95, 0.65, 0.29), goldMix);
+      color += tint * line * (0.48 + packet * (1.18 + attention * 0.72)) * edgeFade;
+      alpha += line * (0.22 + packet * 0.42 + attention * 0.12) * edgeFade;
+    }
+
+    float coreWave = sin(vUv.x * 11.0 - uTime * (0.27 + attention * 0.18)) * (0.013 + attention * 0.012);
+    float coreY = bodyY + coreWave;
+    float core = flowLine(vUv.y, coreY, 0.00235 + attention * 0.001);
+    float corePacket = pow(0.5 + 0.5 * sin(vUv.x * 19.0 - uTime * (1.15 + attention * 0.7)), 20.0);
+    color += mix(vec3(0.34, 0.98, 1.0), vec3(1.0, 0.78, 0.4), smoothstep(0.52, 0.88, vUv.x))
+      * core * (0.55 + corePacket * 1.72) * edgeFade;
+    alpha += core * (0.28 + corePacket * 0.58) * edgeFade;
+
+    float wispLane = abs((vUv.y - bodyY) / 0.12);
+    float wispCell = fract(vUv.x * 25.0 - uTime * (0.48 + attention * 0.3) + floor(wispLane * 7.0) * 0.37);
+    float wispSegment = smoothstep(0.02, 0.12, wispCell) * (1.0 - smoothstep(0.34, 0.58, wispCell));
+    float wisp = exp(-wispLane * 3.8) * wispSegment * smoothstep(0.18, 0.78, bodyNoise) * edgeFade;
+    color += mix(vec3(0.23, 0.79, 0.84), vec3(0.86, 0.62, 0.32), step(0.52, bodyNoise)) * wisp * (0.17 + attention * 0.19);
+    alpha += wisp * 0.1;
+
+    float spectrumY = 0.61 + sin(vUv.x * 7.0 - uTime * 0.08) * 0.007;
+    float spectrumLine = flowLine(vUv.y, spectrumY, 0.0008);
+    float spikeCell = pow(0.5 + 0.5 * sin(vUv.x * 175.0 - uTime * 0.21), 18.0);
+    float spikeHeight = (0.005 + spikeCell * 0.045) * (0.55 + 0.45 * sin(vUv.x * 23.0 + uTime * 0.13));
+    float spike = (1.0 - smoothstep(spikeHeight, spikeHeight + 0.006, abs(vUv.y - spectrumY)))
+      * pow(0.5 + 0.5 * sin(vUv.x * 340.0), 26.0) * edgeFade;
+    color += vec3(0.9, 0.69, 0.36) * (spectrumLine * 0.48 + spike * 0.62) * (0.7 + attention * 0.35);
+    alpha += spectrumLine * 0.16 + spike * 0.22;
+
+    float luminance = max(color.r, max(color.g, color.b));
+    gl_FragColor = vec4(color * 1.18, clamp(max(alpha * 1.8, luminance * 0.58), 0.0, 0.96));
   }
 `;
 
@@ -669,12 +760,13 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
     <>
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
       <FullPlane fragmentShader={ATMOSPHERE_FRAGMENT} order={1} pointerActive={false} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <FullPlane fragmentShader={CURRENT_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <SignalParticles count={220} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} />
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} />
       <SignalParticles count={300} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <SignalParticles count={180} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
@@ -683,9 +775,6 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
 }
 
 function ObservatoryKineticOverlay() {
-  const mainCurrent = 'M -45 184 C 152 154 286 244 448 303 C 612 364 718 430 902 463';
-  const upperCurrent = 'M -40 126 C 164 121 292 204 446 274 C 620 352 732 376 900 414';
-  const lowerCurrent = 'M -35 248 C 130 218 268 296 438 352 C 602 406 728 472 906 493';
   return (
     <svg
       className={styles.observatoryKinetics}
@@ -694,17 +783,6 @@ function ObservatoryKineticOverlay() {
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="observatory-cyan" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#62edf1" stopOpacity="0" />
-          <stop offset="0.32" stopColor="#78f7f4" stopOpacity="0.75" />
-          <stop offset="0.72" stopColor="#9ffbff" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#64dbe3" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="observatory-gold" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#eab863" stopOpacity="0" />
-          <stop offset="0.46" stopColor="#ffe1a0" stopOpacity="0.78" />
-          <stop offset="1" stopColor="#c88735" stopOpacity="0" />
-        </linearGradient>
         <radialGradient id="observatory-lens">
           <stop offset="0" stopColor="#fff8d8" stopOpacity="0.92" />
           <stop offset="0.22" stopColor="#efd38d" stopOpacity="0.42" />
@@ -714,30 +792,11 @@ function ObservatoryKineticOverlay() {
         <filter id="observatory-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="7" />
         </filter>
-        <filter id="observatory-line-glow" x="-30%" y="-80%" width="160%" height="260%">
-          <feGaussianBlur stdDeviation="2.4" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
       </defs>
 
       <g className={styles.observatoryFogBack} filter="url(#observatory-soft-glow)">
         <ellipse cx="260" cy="488" rx="250" ry="54" fill="#2fabb1" opacity="0.12" />
         <ellipse cx="664" cy="184" rx="218" ry="48" fill="#c99b57" opacity="0.1" />
-      </g>
-
-      <g className={styles.observatoryCurrents} filter="url(#observatory-line-glow)">
-        <path className={styles.observatoryCurrentCyan} d={mainCurrent} stroke="url(#observatory-cyan)" />
-        <path className={styles.observatoryCurrentGold} d={upperCurrent} stroke="url(#observatory-gold)" />
-        <path className={styles.observatoryCurrentFine} d={lowerCurrent} stroke="#73e5e7" />
-        <circle className={styles.observatoryPacketCyan} r="5.5" fill="#c6ffff">
-          <animateMotion dur="7.8s" repeatCount="indefinite" path={mainCurrent} />
-        </circle>
-        <circle className={styles.observatoryPacketGold} r="4.5" fill="#ffe3a0">
-          <animateMotion dur="10.6s" begin="-4.1s" repeatCount="indefinite" path={upperCurrent} />
-        </circle>
-        <circle className={styles.observatoryPacketFine} r="3.2" fill="#8ffaff">
-          <animateMotion dur="12.9s" begin="-7.3s" repeatCount="indefinite" path={lowerCurrent} />
-        </circle>
       </g>
 
       <g className={styles.observatoryOptics}>

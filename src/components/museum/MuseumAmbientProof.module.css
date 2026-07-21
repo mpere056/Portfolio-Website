@@ -172,23 +172,6 @@
   mix-blend-mode: screen;
 }
 
-.observatoryCurrents path {
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 18 36 5 44;
-  animation: observatoryCurrentTravel 8.5s linear infinite;
-}
-
-.observatoryCurrentCyan { stroke-width: 2.1; opacity: .46; }
-.observatoryCurrentGold { stroke-width: 1.7; opacity: .36; animation-duration: 12.2s !important; animation-direction: reverse !important; }
-.observatoryCurrentFine { stroke-width: 1; opacity: .24; animation-duration: 15.8s !important; }
-
-.observatoryPacketCyan,
-.observatoryPacketGold,
-.observatoryPacketFine {
-  filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 18px currentColor);
-}
-
 .observatoryOptics g,
 .observatoryOptics > circle {
   fill: none;
@@ -235,16 +218,8 @@
 .observatoryFogBack { animation: observatoryFogBack 23s ease-in-out infinite alternate; }
 .observatoryFogFront { animation: observatoryFogFront 15s ease-in-out infinite alternate; }
 
-.proof[data-attention-active='true'] .observatoryCurrents {
-  filter: brightness(1.35) saturate(1.2);
-}
-
 .proof[data-attention-active='true'] .observatoryOptics {
   filter: brightness(1.4) drop-shadow(0 0 12px rgba(162, 235, 235, .36));
-}
-
-@keyframes observatoryCurrentTravel {
-  to { stroke-dashoffset: -212; }
 }
 
 @keyframes observatoryOpticalSpin {

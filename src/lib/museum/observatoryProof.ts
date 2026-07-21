@@ -46,9 +46,14 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
     temporalJob: 'keep the device body fixed while its aperture refracts, scans, and emits wavefronts',
   },
   {
-    id: 'observatory:currents',
+    id: 'observatory:flows-rear',
     medium: 'procedural-shader',
-    temporalJob: 'carry unequal cyan and gold packets through the lattice instead of oscillating a raster ribbon',
+    temporalJob: 'weave code-generated copper, ivory, and high arch currents behind the instruments on independent clocks',
+  },
+  {
+    id: 'observatory:flows-front',
+    medium: 'procedural-shader',
+    temporalJob: 'carry code-generated cyan and gold strands, laser packets, wisps, and a spectral signal across the foreground',
   },
   {
     id: 'observatory:atmosphere',

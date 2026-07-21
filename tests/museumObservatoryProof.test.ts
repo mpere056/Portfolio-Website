@@ -30,15 +30,18 @@ describe('Museum observatory compositor proof', () => {
       'observatory:orb',
       'observatory:city',
       'observatory:portal',
-      'observatory:currents',
+      'observatory:flows-rear',
+      'observatory:flows-front',
       'observatory:atmosphere',
       'observatory:diagram',
       'observatory:particles',
       'observatory:attention',
       'observatory:fallback',
     ]));
-    expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:currents')?.medium)
-      .toBe('procedural-shader');
+    const flowLayers = MUSEUM_OBSERVATORY_PROOF_LAYERS.filter(layer => layer.id.startsWith('observatory:flows-'));
+    expect(flowLayers).toHaveLength(2);
+    expect(flowLayers.every(layer => layer.medium === 'procedural-shader')).toBe(true);
+    expect(flowLayers.every(layer => layer.temporalJob.includes('code-generated'))).toBe(true);
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:particles')?.medium)
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:orb')?.medium)
