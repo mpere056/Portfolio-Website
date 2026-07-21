@@ -17,7 +17,7 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. Mark's next observation correctly exposed a deeper issue: the dominant raster art still reads as static while smaller layers move. `ART-12A-E` now preserve/map the baseline and produce an accepted lower-left material stack. Mark then requested more shaders and code-generated effects; the isolated `/projects/ambient-proof` route answers with one WebGL clock, weighted deformation, refraction, procedural current, atmospheric advection, caustics, particles, and depth traversal. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. Mark's next observation correctly exposed a deeper issue: the dominant raster art still reads as static while smaller layers move. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. `ART-12F` revision 1 was rejected because its focal coral remained poster-like, pointer responses synchronized, and the existing Museum's lighting quality was lost. Revision 2 restores anchored focal motion, material-bound amber/cyan light, and asynchronous local attention. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; isolated `12F` hybrid WebGL proof passes local code, browser, reduced-motion, and transfer gates | Mark observes `/projects/ambient-proof`; acceptance completes compositor selection and permits bounded `12G` integration |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; `12F` revision 1 rejected and revision 2 passes its local focal-life and one-viewport gates | Deploy revision 2 for Mark review; acceptance completes compositor selection and permits bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; isolated `12F` proof passes locally and public `fce50af` remains unchanged | Mark observes `/projects/ambient-proof`; after acceptance complete `12F` and begin `12G` | 2026-07-20 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; `12F` revision 1 rejected and revision 2 passes its local focal-life gate | Deploy revision 2 for Mark review; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 

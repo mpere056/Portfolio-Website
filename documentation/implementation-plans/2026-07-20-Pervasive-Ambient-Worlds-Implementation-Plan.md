@@ -215,7 +215,7 @@ Execution artifacts:
 - `ART-12B`: [Museum Region Atlas And Motion Ledger](2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
 - `ART-12C`: [Museum Ambient Asset Briefs](2026-07-20-Museum-Ambient-Asset-Briefs.md).
 
-The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested a shader/procedural emphasis with the directional current generated in code. The isolated `ART-12F` proof selects one hybrid WebGL clock and awaits review before `ART-12G` touches the Museum.
+The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested a shader/procedural emphasis with the directional current generated in code. Mark rejected `ART-12F` revision 1 because its focal material still read as static, pointer responses synchronized, and the prior Museum's lighting language was lost. Revision 2 uses anchored focal motion, material-bound illumination, and distinct local response profiles; it still awaits approval before `ART-12G` touches the Museum.
 
 #### `ART-12A`: Preserve The Baseline
 
@@ -283,4 +283,4 @@ The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the boun
 
 ## Resume Point
 
-Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is Mark's observation of the isolated `/projects/ambient-proof` hybrid compositor. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.
+Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is deployment and Mark review of `/projects/ambient-proof` revision 2, first at idle and then near each local system. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.

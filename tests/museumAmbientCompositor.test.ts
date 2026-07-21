@@ -5,6 +5,7 @@ import {
   MUSEUM_AMBIENT_PROOF_ASPECT,
   MUSEUM_AMBIENT_PROOF_ASSETS,
   MUSEUM_AMBIENT_PROOF_LAYERS,
+  MUSEUM_AMBIENT_PROOF_RESPONSES,
   toProofScenePlacement,
 } from '@/lib/museum/ambientProof';
 
@@ -15,6 +16,14 @@ describe('Museum ambient compositor proof', () => {
     expect(MUSEUM_AMBIENT_PROOF_LAYERS.find(layer => layer.id === 'proof:particles')?.medium).toBe('procedural-geometry');
     expect(MUSEUM_AMBIENT_PROOF_LAYERS.find(layer => layer.id === 'proof:fallback')?.medium).toBe('stable-fallback');
     expect(Object.keys(MUSEUM_AMBIENT_PROOF_ASSETS)).not.toContain('directionalCurrent');
+  });
+
+  it('keeps pointer responses local and temporally independent', () => {
+    const profiles = Object.values(MUSEUM_AMBIENT_PROOF_RESPONSES);
+    expect(Math.max(...profiles.map(profile => profile.radius))).toBeLessThanOrEqual(0.2);
+    expect(new Set(profiles.map(profile => profile.pointerLag)).size).toBe(profiles.length);
+    expect(new Set(profiles.map(profile => profile.attack)).size).toBe(profiles.length);
+    expect(profiles.every(profile => profile.release < profile.attack)).toBe(true);
   });
 
   it('maps authored pixel layouts into one stable orthographic scene', () => {

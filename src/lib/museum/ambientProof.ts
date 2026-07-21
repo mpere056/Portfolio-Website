@@ -17,15 +17,34 @@ export const MUSEUM_AMBIENT_PROOF_ASSETS = {
 
 export type AmbientProofMedium = 'plate-shader' | 'procedural-shader' | 'procedural-geometry' | 'stable-fallback';
 
+export interface AmbientProofResponseProfile {
+  target: readonly [number, number];
+  radius: number;
+  pointerLag: number;
+  attack: number;
+  release: number;
+}
+
+// Pointer response is deliberately local and asynchronous. Idle motion is owned by
+// each shader; these profiles only let a visitor redirect one nearby system.
+export const MUSEUM_AMBIENT_PROOF_RESPONSES = {
+  field: { target: [0.5, 0.5], radius: 0.13, pointerLag: 2.4, attack: 2.2, release: 0.7 },
+  coral: { target: [0.24, 0.38], radius: 0.2, pointerLag: 1.1, attack: 1.5, release: 0.48 },
+  organism: { target: [0.42, 0.53], radius: 0.14, pointerLag: 3.8, attack: 3.1, release: 0.82 },
+  rings: { target: [0.56, 0.53], radius: 0.1, pointerLag: 6.5, attack: 5.4, release: 1.2 },
+  current: { target: [0.73, 0.5], radius: 0.17, pointerLag: 8.2, attack: 6.8, release: 1.7 },
+} as const satisfies Record<string, AmbientProofResponseProfile>;
+
 export const MUSEUM_AMBIENT_PROOF_LAYERS = [
   { id: 'proof:field', medium: 'plate-shader', temporalJob: 'moving illumination, fog, and ground caustics over a spatially stable anchor' },
   { id: 'proof:atmosphere', medium: 'procedural-shader', temporalJob: 'advecting density and depth-separated vapor, assisted by authored alpha volumes' },
-  { id: 'proof:coral', medium: 'plate-shader', temporalJob: 'root-preserving weighted deformation with independently phased tips' },
+  { id: 'proof:coral', medium: 'plate-shader', temporalJob: 'idle root-preserving deformation, local tip phases, and traveling bioluminescence' },
   { id: 'proof:organism', medium: 'plate-shader', temporalJob: 'internal refraction, membrane settling, and migrating emission' },
   { id: 'proof:rings', medium: 'plate-shader', temporalJob: 'opposed receiver rotation around isolated pivots' },
   { id: 'proof:current', medium: 'procedural-shader', temporalJob: 'directional filament flow, traveling packets, and expanding receiver rings' },
   { id: 'proof:particles', medium: 'procedural-geometry', temporalJob: 'sparse depth traversal with independent drift and light response' },
-  { id: 'proof:occlusion', medium: 'plate-shader', temporalJob: 'rare foreground passages and moving translucent shadows' },
+  { id: 'proof:illumination', medium: 'procedural-shader', temporalJob: 'independent amber and cyan light passages bound to material regions' },
+  { id: 'proof:occlusion', medium: 'plate-shader', temporalJob: 'rare foreground passages and moving translucent shadows independent of pointer input' },
   { id: 'proof:fallback', medium: 'stable-fallback', temporalJob: 'reduced-motion, WebGL failure, and capture checksum only' },
 ] as const satisfies readonly { id: string; medium: AmbientProofMedium; temporalJob: string }[];
 
