@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; corrected east revision 5 is live at `804d530` with rotating geometry, tower-only stochastic windows, and preserved hover | Mark reviews east revision 5; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 6 is live at `85a2d2a` with rotating geometry, tower-only stochastic windows, and front/rear procedural signal flows | Mark reviews east revision 6; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does east-observatory revision 5 make the central instrument and city feel independently alive while preserving the approved spacing and hover effects? | Mark | `/projects/observatory-proof`; `804d530`; public tower-only window mask, rotating-orb life, and attention captures pass | 2026-07-21 | Review revision 5 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Do east-observatory revision 6's lead and secondary flows read as continuously alive, visually integrated material at idle and intensify locally near attention? | Mark | `/projects/observatory-proof`; `85a2d2a`; public idle/attention frames, one-screen geometry, two canvases, and clean console pass | 2026-07-21 | Review revision 6 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -153,7 +153,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and in
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
-| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west proof accepted; east proof has decomposed particle-free plates, procedural current/atmosphere/particles, rotating 3D geometry, stochastic window light, fallback, and focused checks | Mark `12F` east-proof review and `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Review `/projects/observatory-proof`, then integrate both accepted grammars | Representative runtime evidence exists; no full `V-33` evidence yet |
+| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west proof accepted; east proof has decomposed ribbon-free plates, front/rear procedural flows, atmosphere/particles, rotating 3D geometry, stochastic tower light, fallback, and focused checks | Mark `12F` east-proof review and `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Review `/projects/observatory-proof`, then integrate both accepted grammars | Representative runtime evidence exists; no full `V-33` evidence yet |
 | `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-21 | Rebuilt the east-observatory signal field as layered procedural flow | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `85a2d2a` and deployment `dpl_9wM1fHTzt7iq4rBDxE5gKnPaTQZp` restore cyan-gold, copper, ivory, arch, and spectral families with independent idle clocks and local attention |
 | 2026-07-20 | Implemented the isolated hybrid Museum compositor proof | `ART-12E/F`, `CAP-ART-014`, `WI-ART-12-01` | Material family accepted; raster current rejected for runtime; procedural current plus shader deformation/refraction/atmosphere/caustics and procedural particles pass local gates |
 | 2026-07-20 | Produced the first bounded decomposed Museum material proof | `ART-12C-E`, `CAP-ART-014`, `WI-ART-12-01` | Mark approved `1A, 2A, 3A`; transparent plates, maps, diagnostics, manifest, and deterministic build pass local review; compositor remains gated |
 | 2026-07-20 | Reconciled the master ambient sequence and tracking state | Vision, roadmap, `ART-12` through `15`, `WI-ART-01-02` through `12-01`, dashboard | One actionable work item; generation begins only after mapping/briefing; old standalone reviews are paused with explicit restart conditions |
