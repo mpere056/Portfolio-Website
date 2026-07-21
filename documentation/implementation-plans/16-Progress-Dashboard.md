@@ -15,9 +15,9 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 ## Current Program State
 
-**The Phase 4 interaction candidate is live at `fce50af`; its geometry and interaction checks pass, and `ART-12` is now at the real-asset review gate.**
+**The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, but Mark's screenshots showed that `/projects` required scrolling and the direct project surfaces did not make their dynamics perceptible. Production `fce50af` fixed that first problem: it keeps the nine-project Museum lobby inside one desktop viewport, contains increasing depth, strengthens graph-aware response, and introduces distinct route-owned scenes on all three flagship subdomains. Mark's next observation correctly exposed a deeper issue: the dominant raster art still reads as static while smaller interaction layers move. `ART-12A-D` now preserve and map the baseline, record Mark's `1A, 2A, 3A` direction, and produce the first separated lower-left material stack. The runtime compositor and `V-33` ambient acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. Mark's next observation correctly exposed a deeper issue: the dominant raster art still reads as static while smaller layers move. `ART-12A-E` now preserve/map the baseline and produce an accepted lower-left material stack. Mark then requested more shaders and code-generated effects; the isolated `/projects/ambient-proof` route answers with one WebGL clock, weighted deformation, refraction, procedural current, atmospheric advection, caustics, particles, and depth traversal. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -43,7 +43,7 @@ This distinction prevents two errors:
 | `ready` | 0 | No package is waiting to start; the only primary package is already active |
 | `in-progress` | 0 | The active package is paused at a bounded human review gate rather than incomplete internal work |
 | `implemented` | 10 | `ART-01`, `ART-03` through `ART-06`, and `ART-07` through `ART-11` are coded and public; their interaction evidence remains valid while ambient creative acceptance moves to `ART-12` through `ART-15` |
-| `in-review` | 1 | `ART-12E` asks Mark to inspect two real proof images before compositor selection |
+| `in-review` | 1 | `ART-12F` asks Mark to observe the real animated compositor before Museum integration |
 | `pending` | 11 | Phase 5+ and ambient route-expansion packages wait on their intended sequence or feedback gates |
 | `reopened` | 1 | Renewed creative `QA-02` retains valid public/functional evidence and waits on the evolving creative acceptance path |
 | `decision-gated` | 0 | Phase 4 lifecycle classification is recorded with correction paths |
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-D` complete; separated lower-left plates, maps, diagnostics, deterministic assembly, and manifest exist | Mark accepts or revises the two-image `12E` asset proof; compositor selection remains gated until acceptance |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; isolated `12F` hybrid WebGL proof passes local code, browser, reduced-motion, and transfer gates | Mark observes `/projects/ambient-proof`; acceptance completes compositor selection and permits bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-D` complete; public `fce50af` remains unchanged | Mark inspects `contact-sheet.png` and `proof-composite-still.png`, then answers `A` approve or `B` revise | 2026-07-20 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; isolated `12F` proof passes locally and public `fce50af` remains unchanged | Mark observes `/projects/ambient-proof`; after acceptance complete `12F` and begin `12G` | 2026-07-20 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Are the real lower-left material ingredients coherent enough to animate? | Mark | `contact-sheet.png` and `proof-composite-still.png`; all technical records are optional | 2026-07-20 | Answer `A` approve or `B` revise before `ART-12F` compositor work |
+| `WI-ART-12-01` | Does the hybrid ecology feel continuously alive and materially coherent at idle and near attention? | Mark | `/projects/ambient-proof`; technical records are optional | 2026-07-20 | Review the route before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -153,7 +153,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and in
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
-| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-D` pass: baseline, mapping, accepted briefs, and a tested representative material package exist | `12E` acceptance, `12F` compositor, and `12G/H` integration/release | Preserve Production `fce50af`; do not integrate unapproved plates | Review the two proof images, then select a compositor only after approval | Asset-pipeline evidence exists; no `V-33` runtime evidence yet |
+| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; isolated `12F` hybrid proof has one clock, procedural current/effects, accepted plates, fallback, and focused checks | Mark `12F` review and `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proof off the main Museum until accepted | Review `/projects/ambient-proof`, then integrate the accepted arrangement | Representative runtime evidence exists; no full `V-33` evidence yet |
 | `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-20 | Implemented the isolated hybrid Museum compositor proof | `ART-12E/F`, `CAP-ART-014`, `WI-ART-12-01` | Material family accepted; raster current rejected for runtime; procedural current plus shader deformation/refraction/atmosphere/caustics and procedural particles pass local gates |
 | 2026-07-20 | Produced the first bounded decomposed Museum material proof | `ART-12C-E`, `CAP-ART-014`, `WI-ART-12-01` | Mark approved `1A, 2A, 3A`; transparent plates, maps, diagnostics, manifest, and deterministic build pass local review; compositor remains gated |
 | 2026-07-20 | Reconciled the master ambient sequence and tracking state | Vision, roadmap, `ART-12` through `15`, `WI-ART-01-02` through `12-01`, dashboard | One actionable work item; generation begins only after mapping/briefing; old standalone reviews are paused with explicit restart conditions |
 | 2026-07-19 | Promoted the complete Phase 4 dynamic scene sequence | `ART-07` through `ART-11`, `CAP-ART-008/011/012`, `EV-ART-11-02` | Commit `9c3a743`, Vercel `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`, and six public surfaces pass; creative review remains |

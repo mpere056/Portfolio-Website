@@ -1,10 +1,11 @@
-import { writeFile } from 'node:fs/promises';
+import { mkdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const proofDir = path.join(root, 'documentation', 'art-direction', '2026-07-20-museum-ambient-proof');
+const runtimeDir = path.join(root, 'public', 'images', 'art-direction', 'museum-ambient-proof');
 
 const file = name => path.join(proofDir, name);
 
@@ -81,7 +82,7 @@ async function buildPanel({ title, subtitle, input, width = 540, height = 390 })
 }
 
 async function buildCoralWeights() {
-  const input = await sharp(file('coral-groups-alpha.png')).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const input = await sharp(file('coral-groups-trimmed.png')).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const output = Buffer.alloc(input.data.length);
   for (let y = 0; y < input.info.height; y += 1) {
     const vertical = 1 - y / Math.max(1, input.info.height - 1);
@@ -98,6 +99,49 @@ async function buildCoralWeights() {
     }
   }
   await sharp(output, { raw: input.info }).png().toFile(file('map-coral-deformation-rgb.png'));
+}
+
+async function buildRuntimeDerivatives() {
+  await mkdir(runtimeDir, { recursive: true });
+  const colorAssets = [
+    ['working-clean-field-source.png', 'clean-field.webp', false],
+    ['coral-groups-trimmed.png', 'coral-groups.webp', true],
+    ['organism-body-alpha.png', 'organism-body.webp', true],
+    ['organism-rings-alpha.png', 'organism-rings.webp', true],
+    ['vapor-background-alpha.png', 'vapor-background.webp', true],
+    ['vapor-vertical-alpha.png', 'vapor-vertical.webp', true],
+    ['vapor-basin-alpha.png', 'vapor-basin.webp', true],
+    ['occluder-spores-alpha.png', 'occluder-spores.webp', true],
+    ['occluder-shadow-a-alpha.png', 'occluder-shadow-a.webp', true],
+    ['occluder-shadow-b-alpha.png', 'occluder-shadow-b.webp', true],
+    ['proof-composite-still.png', 'fallback.webp', false],
+  ];
+
+  for (const [input, output, alpha] of colorAssets) {
+    await sharp(file(input))
+      .webp({ quality: alpha ? 88 : 84, alphaQuality: 96, effort: 6 })
+      .toFile(path.join(runtimeDir, output));
+  }
+
+  await sharp(file('map-coral-deformation-rgb.png'))
+    .webp({ lossless: true, effort: 6 })
+    .toFile(path.join(runtimeDir, 'coral-deformation.webp'));
+
+  const names = [...colorAssets.map(([, output]) => output), 'coral-deformation.webp'];
+  const runtimeAssets = [];
+  for (const name of names) {
+    const outputPath = path.join(runtimeDir, name);
+    const [metadata, fileState] = await Promise.all([sharp(outputPath).metadata(), stat(outputPath)]);
+    runtimeAssets.push({ name, width: metadata.width, height: metadata.height, bytes: fileState.size, alpha: metadata.hasAlpha });
+  }
+  await writeFile(file('runtime-manifest.json'), `${JSON.stringify({
+    stage: 'ART-12F',
+    route: '/projects/ambient-proof',
+    compositor: 'single-clock-hybrid-webgl',
+    directionalCurrent: 'procedural-shader-only',
+    excludedRuntimeReferences: ['directional-current-alpha.png', 'directional-current-trimmed.png', 'map-current-flow-rgba.png'],
+    assets: runtimeAssets,
+  }, null, 2)}\n`, 'utf8');
 }
 
 async function buildFlowMap() {
@@ -255,6 +299,7 @@ await buildProofComposite();
 await buildMapsContact();
 await buildContactSheet();
 await buildAlphaDiagnostics();
+await buildRuntimeDerivatives();
 
 const outputs = [
   'coral-groups-trimmed.png',

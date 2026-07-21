@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. It preserves the one-viewport Museum, distinct route-owned interaction, semantic fallbacks, and 48 files/193 tests plus the 35-page build. `ART-12A-D` are complete: Mark approved `1A, 2A, 3A`, and the bounded west/lower ecology proof now has separate transparent materials, control maps, diagnostics, deterministic assembly, and a manifest. `ART-12E` is in-review; no production renderer or live route changed.
+Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. `ART-12A-E` are complete: Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested procedural current and broader code-generated effects. `ART-12F` is in-review as an isolated one-clock hybrid WebGL proof at `/projects/ambient-proof`; the public Museum renderer remains unchanged.
 
-Current delivery order: Mark reviews only the `ART-12E` contact sheet and intended-stack checksum, then `12F` compositor selection, `12G` Museum integration, and `12H` release. Then complete LifeInbox, Dreamlife, and Sudoku sequentially in `ART-13`; review `ABT-01`; complete Home, About, AI, and reading in `ART-14`; run `QA-04`; finish `ART-15`; then resume deeper About and living-operations work. [Program Roadmap](01-Program-Roadmap.md) is authoritative for ordering.
+Current delivery order: Mark reviews the animated `ART-12F` route, then `12G` Museum integration and `12H` release. Then complete LifeInbox, Dreamlife, and Sudoku sequentially in `ART-13`; review `ABT-01`; complete Home, About, AI, and reading in `ART-14`; run `QA-04`; finish `ART-15`; then resume deeper About and living-operations work. [Program Roadmap](01-Program-Roadmap.md) is authoritative for ordering.
 
 ## Document Authority
 
@@ -80,7 +80,8 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md` | Source-normalized region atlas, depth/occlusion order, temporal bands, dead zones, and bounded proof crop | `ART-12B` complete execution artifact |
 | `2026-07-20-Museum-Ambient-Asset-Briefs.md` | Preserve/extract/manual/generate choices, palette, camera, alpha, maps, budgets, diagnostics, and eleven representative briefs | `ART-12C` review-ready execution artifact |
 | `2026-07-20-Museum-Dynamic-Creative-Review.md` | Two-minute plain-language summary of the dynamic result, first proof, motion character, exclusions, and three Mark decisions | Accepted `ART-12C` decision record: `1A, 2A, 3A` |
-| `../art-direction/2026-07-20-museum-ambient-proof/REVIEW.md` | Two-image, one-decision review for the real lower-left material stack | Active `ART-12E` approval surface |
+| `../art-direction/2026-07-20-museum-ambient-proof/REVIEW.md` | Two-image, one-decision review for the real lower-left material stack | Completed `ART-12E` approval surface |
+| `../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md` | Hybrid renderer decision, procedural-current rejection, runtime systems, and local gate | Active `ART-12F` technical record; Mark reviews the route itself |
 | `2026-07-19-Museum-Dynamic-Scene-Packet.md` | Executable Museum layer inventory, driver matrix, renderer decision, choreography, calm/failure matrix, and route ledger | Implemented candidate packet |
 | `2026-07-19-LifeInbox-Dynamic-Scene-Packet.md` | Executable LifeInbox state/material inventory, renderer decision, calm/failure matrix, acceptance gates, and resume ledger | Implemented candidate packet |
 | `2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md` | Distinct Dreamlife refraction/recombination and Sudoku presence/version packets, truth correction, and resume ledger | Implemented candidate packet |

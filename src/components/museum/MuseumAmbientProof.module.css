@@ -1,0 +1,111 @@
+.proof {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  color: #f1eee7;
+  background:
+    radial-gradient(circle at 24% 72%, rgba(18, 102, 108, 0.12), transparent 34rem),
+    radial-gradient(circle at 78% 30%, rgba(151, 72, 42, 0.09), transparent 30rem),
+    #020506;
+}
+
+.stage {
+  position: relative;
+  width: min(100vw, calc(100svh * 1.24955));
+  aspect-ratio: 1402 / 1122;
+  overflow: hidden;
+  box-shadow: 0 0 8rem rgba(5, 33, 38, 0.42);
+}
+
+.stage canvas,
+.fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.stage canvas { position: relative; z-index: 1; }
+.fallback { object-fit: cover; }
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+}
+
+.caption {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  width: min(100vw, calc(100svh * 1.24955));
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 3rem);
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.caption a {
+  pointer-events: auto;
+  color: rgba(206, 237, 237, 0.58);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.caption > div {
+  max-width: 28rem;
+  text-align: right;
+}
+
+.caption p,
+.legend {
+  margin: 0;
+  color: rgba(198, 229, 230, 0.43);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.caption h1 {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.legend {
+  position: fixed;
+  z-index: 4;
+  left: 50%;
+  bottom: clamp(1rem, 2.6vw, 2.4rem);
+  width: min(100vw, calc(100svh * 1.24955));
+  padding-inline: clamp(1rem, 3vw, 3rem);
+  box-sizing: border-box;
+  line-height: 1.7;
+  text-align: right;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.proof[data-reduced-motion='true'] .legend::before { content: 'stable checksum / '; }
+
+@media (max-width: 700px) {
+  .caption { top: auto; bottom: 3.2rem; align-items: flex-end; }
+  .caption > div { max-width: 17rem; }
+  .caption h1 { font-size: 1rem; }
+  .legend { display: none; }
+}

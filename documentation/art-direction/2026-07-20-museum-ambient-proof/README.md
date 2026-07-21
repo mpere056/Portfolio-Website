@@ -1,8 +1,8 @@
 # Museum Ambient Material Proof
 
 Date: 2026-07-20
-Stage: `ART-12E`
-Status: asset review in progress
+Stage: `ART-12F`
+Status: animated compositor proof in review
 Creative approval: `1A, 2A, 3A` from Mark on 2026-07-20
 
 ## Scope
@@ -29,22 +29,23 @@ Approved direction:
 | Asset | State | Notes |
 | --- | --- | --- |
 | Source crop | complete | Diagnostic reference only; manifest forbids runtime use |
-| Clean field/basin | review-ready | Repaired fixed anchor behind moving matter |
-| Receiver/rings | review-ready | Ring set isolated from the organism body for pivoted motion |
-| Rooted coral groups | review-ready | Transparent root/body/tip geometry plus deformation weights |
-| Cyan organism-instrument | review-ready | Transparent body and independently addressable rings |
-| Lower current | review-ready | Transparent directional flow plus RGBA flow map |
-| Vapor volumes | review-ready | Separate far, vertical, and basin depth bands |
-| Near occluders | review-ready | Separate sparse sprites and two foreground shadow forms |
-| Control maps | review-ready | Deformation, depth, flow/emission, and illumination inputs |
-| Contact sheet | review-ready | Assets pass black, white, checkerboard, and intended-stack self-review |
+| Clean field/basin | accepted for proof | Stable geometry receives procedural light, fog, and caustics |
+| Receiver/rings | accepted for proof | Ring texture is rotated around two code-owned pivots |
+| Rooted coral groups | accepted for proof | Shader uses root/body/tip deformation weights |
+| Cyan organism-instrument | accepted for proof | Shader owns refraction, emission, and membrane settling |
+| Lower current | reference-only | Mark rejected the static plate as the runtime solution; the compositor generates flow in code |
+| Vapor volumes | accepted for proof | Alpha volumes seed separate shader advection bands |
+| Near occluders | accepted for proof | Sparse plates traverse code-owned foreground paths |
+| Control maps | accepted selectively | Coral weights are used; obsolete raster-current maps remain archival only |
+| Contact sheet | accepted with current revision | Mark approved the material family and requested a procedural current |
 
 ## Review Result So Far
 
-- `ART-12D` is complete for the bounded proof crop. It does not claim that the Museum runtime is dynamic yet.
+- `ART-12D/E` are complete for the bounded proof crop. They do not claim that the full Museum runtime is dynamic yet.
 - Fine coral filaments, vapor edges, current detail, and occluder silhouettes remain legible on black, white, and checkerboard backgrounds.
 - The intended-stack still proves that the pieces can reconstruct a coherent scene. It is a checksum, not a runtime background.
-- No compositor has been selected and no live route file has changed. Mark's short [review surface](REVIEW.md) gates `ART-12F`.
+- A one-clock hybrid WebGL compositor is selected for the proof and implemented at `/projects/ambient-proof`; `/projects` remains unchanged. See [compositor record](COMPOSITOR.md).
+- Mark's next review is the animated route itself, not another technical document.
 
 ## Reproduction And Provenance
 

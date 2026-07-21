@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport Museum and distinct Dreamlife, LifeInbox, and Sudoku Together public interaction matrix, but Mark's longer observation showed that the dominant artwork remains too static during normal idle. `WI-ART-12-01` is in progress: Mark accepted the layered direction as `1A, 2A, 3A`; the bounded lower-left material stack and diagnostics are complete and await a short asset review before compositor selection.
+Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport Museum and flagship interaction matrix, but the dominant artwork remains too static during normal idle. `WI-ART-12-01` is in review: `ART-12A-E` are complete, and the isolated `ART-12F` hybrid WebGL proof uses accepted plates plus shader/procedural deformation, refraction, flow, atmosphere, lighting, particles, and occlusion. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-D` complete; real transparent plates, maps, diagnostics, manifest, and intended-stack checksum exist | Mark inspects `contact-sheet.png` and `proof-composite-still.png`, then answers `A` approve or `B` revise | 2026-07-20 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; `12F` compositor passes local code, browser, fallback, and transfer checks | Mark observes `/projects/ambient-proof`; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-20 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 

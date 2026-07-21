@@ -1,0 +1,97 @@
+{
+  "stage": "ART-12F",
+  "route": "/projects/ambient-proof",
+  "compositor": "single-clock-hybrid-webgl",
+  "directionalCurrent": "procedural-shader-only",
+  "excludedRuntimeReferences": [
+    "directional-current-alpha.png",
+    "directional-current-trimmed.png",
+    "map-current-flow-rgba.png"
+  ],
+  "assets": [
+    {
+      "name": "clean-field.webp",
+      "width": 1402,
+      "height": 1122,
+      "bytes": 194124,
+      "alpha": false
+    },
+    {
+      "name": "coral-groups.webp",
+      "width": 1102,
+      "height": 1081,
+      "bytes": 461814,
+      "alpha": true
+    },
+    {
+      "name": "organism-body.webp",
+      "width": 607,
+      "height": 1194,
+      "bytes": 224414,
+      "alpha": true
+    },
+    {
+      "name": "organism-rings.webp",
+      "width": 149,
+      "height": 315,
+      "bytes": 20738,
+      "alpha": true
+    },
+    {
+      "name": "vapor-background.webp",
+      "width": 758,
+      "height": 557,
+      "bytes": 131726,
+      "alpha": true
+    },
+    {
+      "name": "vapor-vertical.webp",
+      "width": 392,
+      "height": 598,
+      "bytes": 76720,
+      "alpha": true
+    },
+    {
+      "name": "vapor-basin.webp",
+      "width": 1045,
+      "height": 393,
+      "bytes": 82490,
+      "alpha": true
+    },
+    {
+      "name": "occluder-spores.webp",
+      "width": 1088,
+      "height": 443,
+      "bytes": 66184,
+      "alpha": true
+    },
+    {
+      "name": "occluder-shadow-a.webp",
+      "width": 428,
+      "height": 185,
+      "bytes": 26792,
+      "alpha": true
+    },
+    {
+      "name": "occluder-shadow-b.webp",
+      "width": 460,
+      "height": 159,
+      "bytes": 39456,
+      "alpha": true
+    },
+    {
+      "name": "fallback.webp",
+      "width": 1402,
+      "height": 1122,
+      "bytes": 403426,
+      "alpha": false
+    },
+    {
+      "name": "coral-deformation.webp",
+      "width": 1102,
+      "height": 1081,
+      "bytes": 182206,
+      "alpha": false
+    }
+  ]
+}

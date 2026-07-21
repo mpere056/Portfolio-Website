@@ -1,7 +1,7 @@
 # Pervasive Ambient Worlds Implementation Plan
 
 Date: 2026-07-20
-Status: implementation in progress; `ART-12A-D` complete and `ART-12E` in-review
+Status: implementation in progress; `ART-12A-E` complete and isolated `ART-12F` in-review
 Requirements: `V-31`, `V-32`, `V-33`
 Packages: `ART-12` through `ART-15`
 Capabilities: `CAP-ART-013` through `CAP-ART-016`
@@ -215,7 +215,7 @@ Execution artifacts:
 - `ART-12B`: [Museum Region Atlas And Motion Ledger](2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
 - `ART-12C`: [Museum Ambient Asset Briefs](2026-07-20-Museum-Ambient-Asset-Briefs.md).
 
-The first four gates are complete. Mark approved the direction as `1A, 2A, 3A`; the bounded lower-left stack now contains real separated materials, control maps, alpha diagnostics, deterministic assembly, and a manifest. `ART-12E` reviews those actual assets before any compositor is selected.
+The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the bounded material family for testing, and requested a shader/procedural emphasis with the directional current generated in code. The isolated `ART-12F` proof selects one hybrid WebGL clock and awaits review before `ART-12G` touches the Museum.
 
 #### `ART-12A`: Preserve The Baseline
 
@@ -283,4 +283,4 @@ The first four gates are complete. Mark approved the direction as `1A, 2A, 3A`; 
 
 ## Resume Point
 
-Production `fce50af` remains the functional and public visual baseline. `ART-12A-D` are complete without changing it. The next exact action is Mark's two-image `ART-12E` review of the lower-left material stack. Approval authorizes `ART-12F` to compare the smallest credible animated compositor arrangements; it does not authorize broad Museum integration until that decision is recorded.
+Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is Mark's observation of the isolated `/projects/ambient-proof` hybrid compositor. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.
