@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 7 adds visibly traversing light fronts, a comet wake, and curve-bound carriers to the fully procedural flow families while preserving separated architecture, the rotating pearl instrument, tower-only windows, particles, and Museum attention. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 8 uses fast independent shader fronts plus explicit path tracers to make flow legible within one second. The rejected vertical ellipse is removed while separated architecture, the rotating pearl instrument, tower-only windows, particles, horizontal haze, and Museum attention remain. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; east revision 7 is live at `d2f1bf8` with tested crossing times, traveling bands, comet wake, and curve-bound carriers | Mark reviews revision 7; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; east revision 8 is live at `06e23c6` with unmistakable tracer-led flow and the rejected ellipse removed | Mark reviews revision 8; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
