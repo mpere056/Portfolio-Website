@@ -25,11 +25,15 @@ export default function MuseumParticleField({
   energy,
   count,
   reducedMotion,
+  maxDpr = 1.5,
+  maxFps = 60,
 }: {
   target: MuseumScenePoint;
   energy: number;
   count: number;
   reducedMotion: boolean;
+  maxDpr?: number;
+  maxFps?: number;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const runtime = useRef({ target, energy, count });
@@ -54,7 +58,7 @@ export default function MuseumParticleField({
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
       width = Math.max(1, bounds.width);
       height = Math.max(1, bounds.height);
       canvas.width = Math.round(width * dpr);
@@ -73,6 +77,8 @@ export default function MuseumParticleField({
         previous = now;
         return;
       }
+
+      if (now - previous < 1000 / maxFps) return;
 
       const elapsed = Math.min(40, now - previous) / 1000;
       previous = now;
@@ -120,7 +126,7 @@ export default function MuseumParticleField({
       observer.disconnect();
       context.clearRect(0, 0, width, height);
     };
-  }, [reducedMotion]);
+  }, [maxDpr, maxFps, reducedMotion]);
 
   return <canvas ref={canvasRef} className={styles.particleField} aria-hidden="true" data-layer="museum:particles" />;
 }

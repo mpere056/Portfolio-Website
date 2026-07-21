@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import {
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_TIMING,
+  MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
   MUSEUM_OBSERVATORY_PROOF_LAYERS,
@@ -64,11 +65,22 @@ describe('Museum observatory compositor proof', () => {
       MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
     );
     expect(new Set(timings)).toHaveLength(timings.length);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed).toBeGreaterThan(1);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength).toBeGreaterThanOrEqual(0.8);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed).toBeGreaterThan(0.5);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed).toBeGreaterThanOrEqual(2);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength).toBeGreaterThanOrEqual(1.2);
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed).toBeGreaterThan(1);
     expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity).toBeGreaterThan(1);
     expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity).toBeGreaterThan(0);
+  });
+
+  it('bounds continuous rendering work without freezing the ambient scene', () => {
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr).toBeLessThanOrEqual(1);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps).toBeLessThanOrEqual(30);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeLessThanOrEqual(45);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeGreaterThan(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.fogOctaves).toBeLessThanOrEqual(3);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.orbDetail).toBeLessThanOrEqual(3);
+    expect(Object.values(MUSEUM_OBSERVATORY_PERFORMANCE.particles).reduce((total, count) => total + count, 0))
+      .toBeLessThanOrEqual(420);
   });
 
   it('expresses flow inside shader material instead of overlaying marker heads', async () => {
@@ -86,6 +98,9 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float laserFlowModulation(');
     expect(source).toContain('float movingWisp(');
     expect(source).toContain('float advectedFlowFog(');
+    expect(source).toContain('float flowFbm(');
+    expect(source).toContain("frameloop={visible ? 'demand' : 'never'}");
+    expect(source).not.toContain('attribute.needsUpdate = true');
     expect(source).not.toContain('<animateMotion');
     expect(source).not.toContain('observatoryFlowTracer');
   });

@@ -9,14 +9,27 @@ export const MUSEUM_OBSERVATORY_FLOW_TIMING = {
 } as const;
 
 export const MUSEUM_OBSERVATORY_FLOW_CONTROLS = {
-  flowSpeed: 1.55,
-  flowStrength: 0.9,
-  fogIntensity: 0.46,
+  flowSpeed: 2.15,
+  flowStrength: 1.24,
+  fogIntensity: 0.54,
   fogScale: 5.2,
-  fogFallSpeed: 0.42,
-  wispDensity: 0.82,
-  wispSpeed: 0.72,
-  wispIntensity: 1.65,
+  fogFallSpeed: 0.66,
+  wispDensity: 0.76,
+  wispSpeed: 1.08,
+  wispIntensity: 1.92,
+} as const;
+
+export const MUSEUM_OBSERVATORY_PERFORMANCE = {
+  renderDpr: 1,
+  idleFps: 30,
+  attentionFps: 45,
+  fogOctaves: 3,
+  orbDetail: 3,
+  particles: {
+    far: 140,
+    middle: 180,
+    near: 100,
+  },
 } as const;
 
 export const MUSEUM_OBSERVATORY_PROOF_ASSETS = {

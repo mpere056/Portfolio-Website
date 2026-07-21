@@ -1,6 +1,6 @@
 'use client';
 
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,6 +18,7 @@ import {
 import {
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_TIMING,
+  MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
 } from '@/lib/museum/observatoryProof';
@@ -90,9 +91,9 @@ const LASER_FLOW_GLSL = /* glsl */`
   float laserFlowModulation(float x, float time, float rate, float phase) {
     float flow = pow(tri01((x - time * rate) / 0.31 + phase), 1.5);
     return mix(
-      ${String(1 - MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength)},
-      ${String(1 + MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength * 0.72)},
-      flow
+      0.12,
+      ${String(1 + MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength)},
+      smoothstep(0.08, 0.92, flow)
     );
   }
 
@@ -106,14 +107,26 @@ const LASER_FLOW_GLSL = /* glsl */`
     return segmentGate(local, length) * present;
   }
 
+  float flowFbm(vec2 p) {
+    float value = 0.0;
+    float amplitude = 0.56;
+    mat2 turn = mat2(1.58, 1.12, -1.12, 1.58);
+    for (int i = 0; i < ${MUSEUM_OBSERVATORY_PERFORMANCE.fogOctaves}; i++) {
+      value += amplitude * valueNoise(p);
+      p = turn * p;
+      amplitude *= 0.48;
+    }
+    return value;
+  }
+
   float advectedFlowFog(vec2 uv, float center, float time, float phase) {
     vec2 fogUv = vec2(
       (uv.x - time * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogFallSpeed)}) * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale)},
       (uv.y - center) * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale * 5.0)}.0
     );
-    float warpA = fbm(fogUv * 0.48 + vec2(phase * 3.7, time * 0.11));
-    float warpB = fbm(fogUv * 0.37 + vec2(-phase * 2.9, -time * 0.08));
-    float fog = fbm(fogUv + vec2(warpA, warpB) * 0.82 + phase * 5.0);
+    float warp = flowFbm(fogUv * 0.48 + vec2(phase * 3.7, time * 0.11));
+    float crossWarp = valueNoise(fogUv * 0.29 + vec2(-phase * 2.9, -time * 0.08));
+    float fog = flowFbm(fogUv + vec2(warp, crossWarp) * 0.82 + phase * 5.0);
     float beamMask = exp(-abs(uv.y - center) * 17.0);
     return smoothstep(0.34, 0.76, fog) * beamMask * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity)};
   }
@@ -629,13 +642,24 @@ const PARTICLE_VERTEX = /* glsl */`
   uniform float uTime;
   uniform float uAttention;
   uniform float uPointSize;
+  uniform float uSpeed;
+  uniform float uPhase;
+  uniform float uAspect;
+  uniform vec2 uPointer;
   varying float vParticleAlpha;
 
   void main() {
+    float particleSpeed = uSpeed * (0.72 + fract(aSeed * 7.0) * 0.54) * (1.0 + uAttention * 1.25);
+    float travel = mod(position.x + uAspect + uTime * particleSpeed, uAspect * 2.0) - uAspect;
+    float normalizedX = (travel + uAspect) / (uAspect * 2.0);
+    float pointerDistance = distance(vec2(normalizedX, position.y * 0.5 + 0.5), uPointer);
+    float localWake = exp(-pointerDistance * 8.0) * uAttention;
+    float drift = sin(uTime * (0.18 + uPhase * 0.07 + aSeed * 0.16) + aSeed * 31.0)
+      * (0.006 + localWake * 0.022);
     float twinkle = 0.58 + 0.42 * sin(uTime * (0.34 + aSeed * 0.7) + aSeed * 19.0);
     vParticleAlpha = (0.56 + twinkle * 0.7) * (1.0 + uAttention * 0.22);
     gl_PointSize = uPointSize * (0.62 + fract(aSeed * 13.73) * 0.8) * (1.0 + uAttention * 0.18);
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(travel, position.y + drift, position.z, 1.0);
   }
 `;
 
@@ -773,6 +797,33 @@ function FullPlane({
   );
 }
 
+function FrameScheduler({ enabled, attentionActive }: { enabled: boolean; attentionActive: boolean }) {
+  const invalidate = useThree(state => state.invalidate);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const fps = attentionActive
+      ? MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps
+      : MUSEUM_OBSERVATORY_PERFORMANCE.idleFps;
+    const interval = 1000 / fps;
+    let frame = 0;
+    let previous = 0;
+
+    const schedule = (now: number) => {
+      if (now - previous >= interval) {
+        previous = now;
+        invalidate();
+      }
+      frame = window.requestAnimationFrame(schedule);
+    };
+
+    frame = window.requestAnimationFrame(schedule);
+    return () => window.cancelAnimationFrame(frame);
+  }, [attentionActive, enabled, invalidate]);
+
+  return null;
+}
+
 function SignalParticles({
   count,
   color,
@@ -792,9 +843,7 @@ function SignalParticles({
   pointerActive: boolean;
   pointerTarget: PointerTarget;
 }) {
-  const pointsRef = useRef<THREE.Points>(null);
-  const geometryRef = useRef<THREE.BufferGeometry>(null);
-  const attention = useRef(0);
+  const pointerPresence = usePointerPresence(pointerActive);
   const [positions] = useState(() => {
     const values = new Float32Array(count * 3);
     for (let index = 0; index < count; index += 1) {
@@ -817,31 +866,20 @@ function SignalParticles({
     uAttention: { value: 0 },
     uPointSize: { value: size },
     uColor: { value: new THREE.Color(color) },
+    uSpeed: { value: speed },
+    uPhase: { value: phase },
+    uAspect: { value: MUSEUM_OBSERVATORY_PROOF_ASPECT },
+    uPointer: { value: new THREE.Vector2(0.5, 0.5) },
   }));
   useFrame(({ clock }, delta) => {
-    if (!pointsRef.current || !geometryRef.current) return;
-    attention.current = THREE.MathUtils.damp(attention.current, pointerActive ? 1 : 0, pointerActive ? 4.8 : 1.1, delta);
+    const attention = pointerPresence.update(pointerTarget.current, delta);
     uniforms.uTime.value = clock.elapsedTime;
-    uniforms.uAttention.value = attention.current;
-    for (let index = 0; index < positions.length / 3; index += 1) {
-      const offset = index * 3;
-      const particleSpeed = speed * (0.72 + (index % 7) * 0.09) * (1 + attention.current * 1.25);
-      positions[offset] += delta * particleSpeed;
-      if (positions[offset] > MUSEUM_OBSERVATORY_PROOF_ASPECT + 0.08) {
-        positions[offset] = -MUSEUM_OBSERVATORY_PROOF_ASPECT - 0.08;
-      }
-      const normalizedX = (positions[offset] + MUSEUM_OBSERVATORY_PROOF_ASPECT) / (MUSEUM_OBSERVATORY_PROOF_ASPECT * 2);
-      const pointerDistance = Math.hypot(normalizedX - pointerTarget.current.x, (positions[offset + 1] * 0.5 + 0.5) - pointerTarget.current.y);
-      const localWake = Math.exp(-pointerDistance * 8) * attention.current;
-      positions[offset + 1] += Math.sin(clock.elapsedTime * (0.18 + phase * 0.07 + (index % 5) * 0.031) + index) * delta * (0.001 + localWake * 0.006);
-    }
-    const attribute = geometryRef.current.getAttribute('position') as THREE.BufferAttribute;
-    attribute.needsUpdate = true;
-    pointsRef.current.rotation.z = Math.sin(clock.elapsedTime * (0.027 + phase * 0.013)) * (0.008 + phase * 0.004);
+    uniforms.uAttention.value = attention;
+    uniforms.uPointer.value.copy(pointerPresence.pointer.current);
   });
   return (
-    <points ref={pointsRef} renderOrder={order}>
-      <bufferGeometry ref={geometryRef}>
+    <points renderOrder={order}>
+      <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-aSeed" args={[seeds, 1]} />
       </bufferGeometry>
@@ -891,7 +929,7 @@ function ObservatoryOrb({
       rotation={[0.18, -0.42, 0.08]}
       renderOrder={7.5}
     >
-      <icosahedronGeometry args={[0.112, 5]} />
+      <icosahedronGeometry args={[0.112, MUSEUM_OBSERVATORY_PERFORMANCE.orbDetail]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={ORB_VERTEX}
@@ -918,15 +956,15 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
       <FullPlane fragmentShader={ATMOSPHERE_FRAGMENT} order={1} pointerActive={false} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <SignalParticles count={220} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.far} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} />
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} />
-      <SignalParticles count={300} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <SignalParticles count={180} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
     </>
   );
 }
@@ -1011,12 +1049,20 @@ export default function MuseumObservatoryProof() {
   const [pointerActive, setPointerActive] = useState(false);
   const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
+  const pointerStateFrame = useRef<number | null>(null);
+  const pendingScenePointer = useRef<MuseumScenePoint>({ x: 0.5, y: 0.5 });
 
   const updatePointerTarget = (event: ReactPointerEvent<HTMLDivElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
     const [x, y] = toProofAttentionPoint(event.clientX, event.clientY, bounds);
     pointerTarget.current.set(x, y);
-    setScenePointer({ x, y: 1 - y });
+    pendingScenePointer.current = { x, y: 1 - y };
+    if (pointerStateFrame.current === null) {
+      pointerStateFrame.current = window.requestAnimationFrame(() => {
+        setScenePointer(pendingScenePointer.current);
+        pointerStateFrame.current = null;
+      });
+    }
     if (!pointerActive) setPointerActive(true);
   };
 
@@ -1055,6 +1101,12 @@ export default function MuseumObservatoryProof() {
     };
   }, []);
 
+  useEffect(() => () => {
+    if (pointerStateFrame.current !== null) {
+      window.cancelAnimationFrame(pointerStateFrame.current);
+    }
+  }, []);
+
   return (
     <main className={`${styles.proof} ${styles.observatoryProof}`} data-reduced-motion={reducedMotion} data-attention-active={pointerActive}>
       <div
@@ -1064,6 +1116,11 @@ export default function MuseumObservatoryProof() {
         onPointerEnter={updatePointerTarget}
         onPointerMove={updatePointerTarget}
         onPointerLeave={() => {
+          if (pointerStateFrame.current !== null) {
+            window.cancelAnimationFrame(pointerStateFrame.current);
+            pointerStateFrame.current = null;
+          }
+          pendingScenePointer.current = { x: 0.5, y: 0.5 };
           setPointerActive(false);
           setScenePointer({ x: 0.5, y: 0.5 });
         }}
@@ -1073,8 +1130,8 @@ export default function MuseumObservatoryProof() {
           {!reducedMotion ? (
             <Canvas
               aria-label="Animated eastern Museum observatory compositor"
-              dpr={[1, 1.5]}
-              frameloop={visible ? 'always' : 'never'}
+              dpr={MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr}
+              frameloop={visible ? 'demand' : 'never'}
               orthographic
               camera={{
                 left: -MUSEUM_OBSERVATORY_PROOF_ASPECT,
@@ -1085,9 +1142,10 @@ export default function MuseumObservatoryProof() {
                 far: 10,
                 position: [0, 0, 5],
               }}
-              gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+              gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
               onCreated={({ gl }) => { gl.outputColorSpace = THREE.SRGBColorSpace; }}
             >
+              <FrameScheduler enabled={visible} attentionActive={pointerActive} />
               <Suspense fallback={null}>
                 <ObservatoryScene pointerActive={pointerActive} pointerTarget={pointerTarget} />
               </Suspense>
@@ -1113,6 +1171,8 @@ export default function MuseumObservatoryProof() {
             energy={sceneFrame.energy}
             count={sceneFrame.particleCount}
             reducedMotion={reducedMotion || !visible}
+            maxDpr={1}
+            maxFps={30}
           />
           <span className={museumStyles.ecologyVeil} />
         </div>
