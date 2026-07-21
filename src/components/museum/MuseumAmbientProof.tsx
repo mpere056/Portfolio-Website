@@ -5,11 +5,12 @@ import { useTexture } from '@react-three/drei';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as THREE from 'three';
-import { Component, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Component, Suspense, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 import {
   MUSEUM_AMBIENT_PROOF_ASPECT,
   MUSEUM_AMBIENT_PROOF_ASSETS,
   MUSEUM_AMBIENT_PROOF_RESPONSES,
+  toProofAttentionPoint,
   toProofScenePlacement,
   type AmbientProofResponseProfile,
   type ProofPlateLayout,
@@ -23,6 +24,8 @@ const PLANE_VERTEX = /* glsl */`
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
+
+type PointerTarget = { current: THREE.Vector2 };
 
 const NOISE_GLSL = /* glsl */`
   float hash21(vec2 p) {
@@ -60,8 +63,20 @@ const FIELD_FRAGMENT = /* glsl */`
   ${NOISE_GLSL}
   void main() {
     float slowField = fbm(vUv * 3.8 + vec2(uTime * 0.011, -uTime * 0.008));
-    vec2 refractUv = vUv + vec2(slowField - 0.5, 0.5 - slowField) * 0.0028;
-    vec3 base = texture2D(uTexture, refractUv).rgb;
+    vec2 pointerVector = vUv - uPointer;
+    float pointerDistance = length(pointerVector);
+    float pointerLens = exp(-pointerDistance * 8.2) * uAttention;
+    float pointerRipple = sin(pointerDistance * 92.0 - uTime * 2.35) * pointerLens;
+    vec2 pointerDirection = pointerVector / max(pointerDistance, 0.001);
+    vec2 refractUv = vUv
+      + vec2(slowField - 0.5, 0.5 - slowField) * 0.0028
+      + pointerDirection * pointerRipple * 0.012;
+    float chroma = pointerLens * 0.0065;
+    vec3 base = vec3(
+      texture2D(uTexture, refractUv + pointerDirection * chroma).r,
+      texture2D(uTexture, refractUv).g,
+      texture2D(uTexture, refractUv - pointerDirection * chroma).b
+    );
     float farFog = fbm(vUv * vec2(3.1, 2.2) + vec2(uTime * 0.014, -uTime * 0.009));
     farFog *= smoothstep(0.18, 0.82, 1.0 - vUv.y) * 0.22;
     float rockMask = smoothstep(0.28, 0.92, 1.0 - vUv.y);
@@ -72,13 +87,13 @@ const FIELD_FRAGMENT = /* glsl */`
     vec2 amberPosition = vec2(0.68 + cos(uTime * 0.047) * 0.13, 0.24 + sin(uTime * 0.061) * 0.09);
     float cyanPassage = exp(-distance(vUv, cyanPosition) * 7.4);
     float amberPassage = exp(-distance(vUv, amberPosition) * 8.8);
-    float pointerGlow = exp(-distance(vUv, uPointer) * 16.0) * uAttention;
+    float pointerGlow = exp(-distance(vUv, uPointer) * 13.0) * uAttention;
     vec3 cyan = vec3(0.15, 0.68, 0.73);
     vec3 amber = vec3(0.84, 0.43, 0.18);
     base += cyan * farFog;
     base += mix(cyan, amber, vUv.x) * caustic * 0.13;
     base += cyan * cyanPassage * 0.085 + amber * amberPassage * 0.07;
-    base += mix(cyan, vec3(0.72, 0.91, 0.92), pointerGlow) * pointerGlow * 0.16;
+    base += mix(cyan, vec3(0.72, 0.91, 0.92), pointerGlow) * pointerGlow * 0.42;
     gl_FragColor = vec4(base, 1.0);
   }
 `;
@@ -99,7 +114,7 @@ const CORAL_VERTEX = /* glsl */`
       + sin(uTime * 0.31 - branchPhase * 0.73) * 0.25
       + sin(uTime * 0.18 + uv.x * 29.0) * 0.13;
     float localWake = sin(uTime * 0.71 + uPhase + uv.y * 17.0) * uAttention;
-    transformed.x += (tide * 0.126 + localWake * 0.026) * freedom;
+    transformed.x += (tide * 0.126 + localWake * 0.066) * freedom;
     transformed.y += cos(uTime * 0.39 + branchPhase * 0.67) * weights.r * 0.041;
     transformed.x += (uv.x - 0.5) * sin(uTime * 0.27 + uPhase) * weights.g * 0.029;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
@@ -129,8 +144,8 @@ const CORAL_FRAGMENT = /* glsl */`
     vec2 poolCenter = vec2(0.38 + sin(uTime * 0.19 + uPhase) * 0.24, 0.58 + cos(uTime * 0.14) * 0.19);
     float lightPool = exp(-distance(vUv, poolCenter) * 7.0);
     float livingEdge = smoothstep(0.18, 0.82, texel.r - texel.b * 0.18 + detail * 0.24);
-    texel.rgb += vec3(1.0, 0.22, 0.035) * amberSweep * livingEdge * (0.32 + uAttention * 0.1);
-    texel.rgb += vec3(0.04, 0.72, 0.84) * cyanSweep * (0.14 + weights.g * 0.21);
+    texel.rgb += vec3(1.0, 0.22, 0.035) * amberSweep * livingEdge * (0.32 + uAttention * 0.38);
+    texel.rgb += vec3(0.04, 0.72, 0.84) * cyanSweep * (0.14 + weights.g * 0.21 + uAttention * 0.22);
     texel.rgb += mix(vec3(1.0, 0.38, 0.08), vec3(0.12, 0.88, 0.94), detail) * lightPool * texel.a * 0.34;
     gl_FragColor = texel;
   }
@@ -151,7 +166,8 @@ const ORGANISM_VERTEX = /* glsl */`
     transformed.x += segmented * sin(uTime * 0.23 + uPhase) * 0.028 * upperBody;
     transformed.y += sin(uTime * 0.29 + uv.x * 4.0 - uPhase) * 0.019 * freeBody;
     transformed.x += (uv.x - 0.5) * sin(uTime * 0.48 + uPhase) * 0.034 * upperBody;
-    transformed.x += sin(uTime * 0.47 + uv.y * 9.0) * uAttention * 0.009 * freeBody;
+    transformed.x += sin(uTime * 1.05 + uv.y * 9.0) * uAttention * 0.031 * freeBody;
+    transformed.y += cos(uTime * 0.83 + uv.x * 12.0) * uAttention * 0.014 * upperBody;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
   }
 `;
@@ -167,16 +183,21 @@ const ORGANISM_FRAGMENT = /* glsl */`
   void main() {
     vec4 anchor = texture2D(uTexture, vUv);
     float field = fbm(vUv * 8.0 + vec2(uTime * 0.041, -uTime * 0.027) + uPhase);
-    vec2 refractUv = vUv + vec2(field - 0.5, 0.5 - field) * (0.01 + uAttention * 0.004) * anchor.a;
+    vec2 refractUv = vUv + vec2(field - 0.5, 0.5 - field) * (0.01 + uAttention * 0.018) * anchor.a;
     vec4 refracted = texture2D(uTexture, refractUv);
     float membrane = smoothstep(0.23, 0.82, refracted.b - refracted.r * 0.2);
     float pulse = pow(0.5 + 0.5 * sin(uTime * 0.81 + vUv.y * 11.0 + field * 4.0 + uPhase), 3.0);
     float verticalLight = exp(-abs(vUv.y - (0.52 + sin(uTime * 0.27 + uPhase) * 0.3)) * 7.0);
     float lens = exp(-distance(vUv, vec2(0.48 + sin(uTime * 0.21) * 0.12, 0.62 + cos(uTime * 0.16) * 0.18)) * 10.0);
-    refracted.rgb += vec3(0.02, 0.56, 0.68) * membrane * pulse * (0.34 + uAttention * 0.12);
+    refracted.rgb += vec3(0.02, 0.56, 0.68) * membrane * pulse * (0.34 + uAttention * 0.42);
     refracted.rgb += vec3(0.92, 0.18, 0.025) * refracted.r * (0.1 + pulse * 0.12);
     refracted.rgb += mix(vec3(0.04, 0.76, 0.88), vec3(1.0, 0.34, 0.08), vUv.x) * (verticalLight * 0.26 + lens * 0.31) * anchor.a;
-    refracted.a = anchor.a;
+    float rootNoise = fbm(vec2(vUv.x * 7.0 - uTime * 0.028, vUv.y * 15.0 + uPhase));
+    float rootedFog = 1.0 - smoothstep(0.03, 0.29, vUv.y + (rootNoise - 0.5) * 0.08);
+    float rootDissolve = smoothstep(0.015, 0.28, vUv.y + (rootNoise - 0.5) * 0.12);
+    refracted.rgb = mix(refracted.rgb, refracted.rgb * vec3(0.22, 0.43, 0.47), rootedFog * 0.72);
+    refracted.rgb += vec3(0.035, 0.22, 0.24) * rootNoise * rootedFog * 0.16;
+    refracted.a = anchor.a * mix(0.18, 1.0, rootDissolve);
     gl_FragColor = refracted;
   }
 `;
@@ -186,6 +207,7 @@ const RINGS_FRAGMENT = /* glsl */`
   varying vec2 vUv;
   uniform sampler2D uTexture;
   uniform float uTime;
+  uniform float uRotation;
   uniform float uAttention;
   vec2 rotateAround(vec2 uv, vec2 center, float angle) {
     float s = sin(angle);
@@ -195,11 +217,11 @@ const RINGS_FRAGMENT = /* glsl */`
   void main() {
     vec2 center = vUv.y > 0.5 ? vec2(0.5, 0.76) : vec2(0.5, 0.25);
     float direction = vUv.y > 0.5 ? 1.0 : -0.72;
-    vec2 sampleUv = rotateAround(vUv, center, uTime * 0.105 * direction);
+    vec2 sampleUv = rotateAround(vUv, center, uRotation * direction);
     vec4 texel = texture2D(uTexture, sampleUv);
     float light = 0.82 + 0.18 * sin(uTime * 0.71 + vUv.y * 8.0);
-    texel.rgb *= light + uAttention * 0.14;
-    texel.rgb += mix(vec3(0.05, 0.7, 0.82), vec3(1.0, 0.31, 0.06), vUv.y) * texel.a * (0.05 + uAttention * 0.08);
+    texel.rgb *= light + uAttention * 0.34;
+    texel.rgb += mix(vec3(0.05, 0.7, 0.82), vec3(1.0, 0.31, 0.06), vUv.y) * texel.a * (0.05 + uAttention * 0.26);
     gl_FragColor = texel;
   }
 `;
@@ -236,12 +258,49 @@ const ILLUMINATION_FRAGMENT = /* glsl */`
     float amberRegion = exp(-distance(vUv, amberPosition) * 8.8) * smoothstep(0.66, 0.08, vUv.x);
     float cyanRegion = exp(-distance(vUv, cyanPosition) * 10.0) * smoothstep(0.78, 0.18, vUv.x);
     float ripple = pow(max(0.0, sin(distance(vUv, cyanPosition) * 92.0 - uTime * 0.82 + fbm(vUv * 7.0) * 4.0)), 10.0);
-    float pointerLens = exp(-distance(vUv, uPointer) * 18.0) * uAttention;
+    float pointerDistance = distance(vUv, uPointer);
+    float pointerLens = exp(-pointerDistance * 8.0) * uAttention;
+    float aperture = (1.0 - smoothstep(0.17, 0.23, pointerDistance))
+      * smoothstep(0.075, 0.125, pointerDistance) * uAttention;
+    float halo = exp(-pow((pointerDistance - 0.13) * 24.0, 2.0)) * uAttention;
+    float meshRing = pow(max(0.0, sin(pointerDistance * 128.0 - uTime * 1.35)), 14.0)
+      * exp(-pointerDistance * 7.0) * uAttention;
+    float diagonal = pow(max(0.0, sin((vUv.x + vUv.y) * 76.0 - uTime * 0.9)), 18.0)
+      * exp(-pointerDistance * 8.0) * uAttention;
     vec3 color = vec3(1.0, 0.24, 0.04) * amberRegion * 0.22;
     color += vec3(0.04, 0.68, 0.82) * cyanRegion * 0.25;
     color += vec3(0.15, 0.77, 0.9) * ripple * cyanRegion * 0.18;
-    color += mix(vec3(0.2, 0.83, 0.9), vec3(1.0, 0.46, 0.12), vUv.x) * pointerLens * 0.15;
-    float alpha = clamp(amberRegion * 0.32 + cyanRegion * 0.34 + ripple * 0.2 + pointerLens * 0.28, 0.0, 0.62);
+    vec3 attentionTint = mix(vec3(0.2, 0.83, 0.9), vec3(1.0, 0.46, 0.12), vUv.x);
+    float innerAperture = exp(-pointerDistance * 21.0) * uAttention;
+    color += attentionTint * (pointerLens * 0.4 + aperture * 0.92 + halo * 0.62 + meshRing * 0.58 + diagonal * 0.28);
+    color += vec3(0.68, 0.96, 1.0) * innerAperture * 0.32;
+    float alpha = clamp(
+      amberRegion * 0.32 + cyanRegion * 0.34 + ripple * 0.2
+      + pointerLens * 0.46 + aperture * 0.68 + halo * 0.52 + meshRing * 0.44 + innerAperture * 0.24,
+      0.0,
+      0.82
+    );
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+const GROUND_FRAGMENT = /* glsl */`
+  precision highp float;
+  varying vec2 vUv;
+  uniform float uTime;
+  ${NOISE_GLSL}
+  void main() {
+    float bottom = 1.0 - smoothstep(0.02, 0.38, vUv.y);
+    float contact = exp(-pow((vUv.x - 0.34) * 5.8, 2.0) - pow((vUv.y - 0.055) * 15.0, 2.0));
+    float drifting = fbm(vec2(vUv.x * 5.2 - uTime * 0.035, vUv.y * 13.0 + uTime * 0.018));
+    float filaments = pow(max(0.0, sin(vUv.x * 43.0 + drifting * 8.0 - uTime * 0.22)), 7.0);
+    float crossingFog = fbm(vec2(vUv.x * 3.8 + uTime * 0.022, vUv.y * 19.0 - uTime * 0.014));
+    float fog = bottom * smoothstep(0.28, 0.82, drifting);
+    vec3 color = vec3(0.005, 0.012, 0.014) * contact * 0.92;
+    color += vec3(0.025, 0.14, 0.16) * fog * 0.44;
+    color += vec3(0.08, 0.34, 0.36) * filaments * bottom * 0.11;
+    color += vec3(0.018, 0.1, 0.12) * crossingFog * bottom * 0.24;
+    float alpha = clamp(contact * 0.58 + fog * 0.34 + filaments * bottom * 0.1 + crossingFog * bottom * 0.12, 0.0, 0.66);
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -255,9 +314,10 @@ const CURRENT_FRAGMENT = /* glsl */`
   ${NOISE_GLSL}
   float filament(vec2 p, float offset, float phase) {
     float y = 0.48 + offset
-      + sin(p.x * 10.0 + phase + uTime * 0.18) * 0.045
-      + sin(p.x * 23.0 - phase * 1.7 - uTime * 0.11) * 0.014;
-    float width = 0.0018 + 0.0014 * (0.5 + 0.5 * sin(p.x * 12.0 - uTime * 0.9 + phase));
+      + sin(p.x * 10.0 + phase + uTime * (0.18 + uAttention * 0.2)) * (0.045 + uAttention * 0.022)
+      + sin(p.x * 23.0 - phase * 1.7 - uTime * (0.11 + uAttention * 0.13)) * (0.014 + uAttention * 0.009);
+    float width = (0.0018 + 0.0014 * (0.5 + 0.5 * sin(p.x * 12.0 - uTime * (0.9 + uAttention) + phase)))
+      * (1.0 + uAttention * 0.8);
     return smoothstep(width * 3.2, width, abs(p.y - y));
   }
   void main() {
@@ -271,9 +331,9 @@ const CURRENT_FRAGMENT = /* glsl */`
       float fi = float(i);
       float offset = (fi - 4.0) * 0.013;
       float line = filament(p, offset, fi * 0.91);
-      float packet = pow(max(0.0, sin((p.x * 24.0 - uTime * (1.1 + fi * 0.035) + fi) * 3.14159)), 12.0);
+      float packet = pow(max(0.0, sin((p.x * 24.0 - uTime * (1.1 + fi * 0.035 + uAttention * 0.8) + fi) * 3.14159)), 12.0);
       vec3 tint = mix(vec3(0.16, 0.86, 0.94), vec3(1.0, 0.53, 0.22), step(5.5, fi));
-      color += tint * line * (0.34 + packet * 1.02);
+      color += tint * line * (0.34 + packet * (1.02 + uAttention * 1.1) + uAttention * 0.32);
       lines += line;
     }
     for (int i = 0; i < 3; i++) {
@@ -288,7 +348,7 @@ const CURRENT_FRAGMENT = /* glsl */`
     float nearby = exp(-distance(p, uPointer) * 6.0);
     float mist = fbm(p * vec2(8.0, 16.0) - vec2(uTime * 0.16, 0.0));
     color += vec3(0.04, 0.25, 0.31) * mist * lines * 0.2;
-    float alpha = clamp((lines * (0.46 + uAttention * 0.24 + nearby * 0.16)) * pathMask, 0.0, 0.94);
+    float alpha = clamp((lines * (0.46 + uAttention * 0.58 + nearby * 0.2)) * pathMask, 0.0, 0.96);
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -306,10 +366,8 @@ function useLocalAttention(profile: AmbientProofResponseProfile, enabled = true)
   return {
     attention,
     update(pointer: THREE.Vector2, delta: number) {
-      const normalizedX = pointer.x * 0.5 + 0.5;
-      const normalizedY = pointer.y * 0.5 + 0.5;
-      laggedPointer.current.x = THREE.MathUtils.damp(laggedPointer.current.x, normalizedX, profile.pointerLag, delta);
-      laggedPointer.current.y = THREE.MathUtils.damp(laggedPointer.current.y, normalizedY, profile.pointerLag, delta);
+      laggedPointer.current.x = THREE.MathUtils.damp(laggedPointer.current.x, pointer.x, profile.pointerLag, delta);
+      laggedPointer.current.y = THREE.MathUtils.damp(laggedPointer.current.y, pointer.y, profile.pointerLag, delta);
       const distance = Math.hypot(
         laggedPointer.current.x - profile.target[0],
         laggedPointer.current.y - profile.target[1],
@@ -323,9 +381,23 @@ function useLocalAttention(profile: AmbientProofResponseProfile, enabled = true)
   };
 }
 
-function FieldLayer({ pointerActive }: { pointerActive: boolean }) {
+function usePointerPresence(enabled: boolean) {
+  const presence = useRef(0);
+  const laggedPointer = useRef(new THREE.Vector2(0.5, 0.5));
+  return {
+    pointer: laggedPointer,
+    update(pointer: THREE.Vector2, delta: number) {
+      laggedPointer.current.x = THREE.MathUtils.damp(laggedPointer.current.x, pointer.x, 7.5, delta);
+      laggedPointer.current.y = THREE.MathUtils.damp(laggedPointer.current.y, pointer.y, 7.5, delta);
+      presence.current = THREE.MathUtils.damp(presence.current, enabled ? 1 : 0, enabled ? 7.2 : 1.8, delta);
+      return presence.current;
+    },
+  };
+}
+
+function FieldLayer({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const texture = useTexture(MUSEUM_AMBIENT_PROOF_ASSETS.cleanField);
-  const local = useLocalAttention(MUSEUM_AMBIENT_PROOF_RESPONSES.field, pointerActive);
+  const pointerPresence = usePointerPresence(pointerActive);
   const [uniforms] = useState(() => ({
     uTexture: { value: texture },
     uTime: { value: 0 },
@@ -333,10 +405,10 @@ function FieldLayer({ pointerActive }: { pointerActive: boolean }) {
     uAttention: { value: 0 },
   }));
   useEffect(() => configureTexture(texture), [texture]);
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
-    uniforms.uAttention.value = local.update(pointer, delta);
-    uniforms.uPointer.value.copy(local.pointer.current);
+    uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
+    uniforms.uPointer.value.copy(pointerPresence.pointer.current);
   });
   return (
     <mesh position={[0, 0, 0]} renderOrder={0}>
@@ -346,7 +418,7 @@ function FieldLayer({ pointerActive }: { pointerActive: boolean }) {
   );
 }
 
-function CoralLayer({ pointerActive }: { pointerActive: boolean }) {
+function CoralLayer({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const [texture, weights] = useTexture([MUSEUM_AMBIENT_PROOF_ASSETS.coral, MUSEUM_AMBIENT_PROOF_ASSETS.coralDeformation]);
   const layout = toProofScenePlacement({ x: 0, y: 45, width: 820, height: 804, z: 0.45 });
   const rootRef = useRef<THREE.Group>(null);
@@ -362,10 +434,10 @@ function CoralLayer({ pointerActive }: { pointerActive: boolean }) {
     configureTexture(texture);
     configureTexture(weights, false);
   }, [texture, weights]);
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     const time = clock.elapsedTime;
     uniforms.uTime.value = time;
-    uniforms.uAttention.value = local.update(pointer, delta);
+    uniforms.uAttention.value = local.update(pointerTarget.current, delta);
     if (rootRef.current) {
       rootRef.current.rotation.z = Math.sin(time * 0.24 + 0.7) * 0.015 + Math.sin(time * 0.51) * 0.004;
       rootRef.current.position.y = layout.position[1] - layout.size[1] / 2 + Math.sin(time * 0.17 + 1.8) * 0.004;
@@ -381,17 +453,17 @@ function CoralLayer({ pointerActive }: { pointerActive: boolean }) {
   );
 }
 
-function OrganismLayer({ pointerActive }: { pointerActive: boolean }) {
+function OrganismLayer({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const texture = useTexture(MUSEUM_AMBIENT_PROOF_ASSETS.organism);
   const layout = toProofScenePlacement({ x: 245, y: 150, width: 458, height: 900, z: 0.62 });
   const rootRef = useRef<THREE.Group>(null);
   const local = useLocalAttention(MUSEUM_AMBIENT_PROOF_RESPONSES.organism, pointerActive);
   const [uniforms] = useState(() => ({ uTexture: { value: texture }, uTime: { value: 0 }, uPhase: { value: 2.31 }, uAttention: { value: 0 } }));
   useEffect(() => configureTexture(texture), [texture]);
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     const time = clock.elapsedTime;
     uniforms.uTime.value = time;
-    uniforms.uAttention.value = local.update(pointer, delta);
+    uniforms.uAttention.value = local.update(pointerTarget.current, delta);
     if (rootRef.current) {
       rootRef.current.rotation.z = Math.sin(time * 0.16 + 2.4) * 0.01 + Math.sin(time * 0.37 + 0.6) * 0.003;
       rootRef.current.position.x = layout.position[0] + Math.sin(time * 0.11 + 4.2) * 0.005;
@@ -407,15 +479,19 @@ function OrganismLayer({ pointerActive }: { pointerActive: boolean }) {
   );
 }
 
-function RingsLayer({ pointerActive }: { pointerActive: boolean }) {
+function RingsLayer({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const texture = useTexture(MUSEUM_AMBIENT_PROOF_ASSETS.rings);
   const layout = toProofScenePlacement({ x: 690, y: 345, width: 161, height: 340, z: 0.7 });
   const local = useLocalAttention(MUSEUM_AMBIENT_PROOF_RESPONSES.rings, pointerActive);
-  const [uniforms] = useState(() => ({ uTexture: { value: texture }, uTime: { value: 0 }, uAttention: { value: 0 } }));
+  const rotation = useRef(0);
+  const [uniforms] = useState(() => ({ uTexture: { value: texture }, uTime: { value: 0 }, uRotation: { value: 0 }, uAttention: { value: 0 } }));
   useEffect(() => configureTexture(texture), [texture]);
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
-    uniforms.uAttention.value = local.update(pointer, delta);
+    const attention = local.update(pointerTarget.current, delta);
+    rotation.current += delta * (0.105 + attention * 0.24);
+    uniforms.uRotation.value = rotation.current;
+    uniforms.uAttention.value = attention;
   });
   return (
     <mesh position={layout.position} renderOrder={7}>
@@ -445,16 +521,16 @@ function VaporLayer({ source, layout, phase, order }: { source: string; layout: 
   );
 }
 
-function ProceduralCurrent({ pointerActive }: { pointerActive: boolean }) {
+function ProceduralCurrent({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   const local = useLocalAttention(MUSEUM_AMBIENT_PROOF_RESPONSES.current, pointerActive);
   const [uniforms] = useState(() => ({
     uTime: { value: 0 },
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
   }));
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
-    uniforms.uAttention.value = local.update(pointer, delta);
+    uniforms.uAttention.value = local.update(pointerTarget.current, delta);
     uniforms.uPointer.value.copy(local.pointer.current);
   });
   return (
@@ -465,22 +541,35 @@ function ProceduralCurrent({ pointerActive }: { pointerActive: boolean }) {
   );
 }
 
-function IlluminationLayer({ pointerActive }: { pointerActive: boolean }) {
-  const local = useLocalAttention(MUSEUM_AMBIENT_PROOF_RESPONSES.field, pointerActive);
+function IlluminationLayer({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
+  const pointerPresence = usePointerPresence(pointerActive);
   const [uniforms] = useState(() => ({
     uTime: { value: 0 },
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
   }));
-  useFrame(({ clock, pointer }, delta) => {
+  useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
-    uniforms.uAttention.value = local.update(pointer, delta);
-    uniforms.uPointer.value.copy(local.pointer.current);
+    uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
+    uniforms.uPointer.value.copy(pointerPresence.pointer.current);
   });
   return (
     <mesh position={[0, 0, 0.76]} renderOrder={8}>
       <planeGeometry args={[MUSEUM_AMBIENT_PROOF_ASPECT * 2, 2]} />
       <shaderMaterial uniforms={uniforms} vertexShader={PLANE_VERTEX} fragmentShader={ILLUMINATION_FRAGMENT} transparent depthTest={false} depthWrite={false} blending={THREE.AdditiveBlending} />
+    </mesh>
+  );
+}
+
+function GroundingLayer() {
+  const [uniforms] = useState(() => ({ uTime: { value: 0 } }));
+  useFrame(({ clock }) => {
+    uniforms.uTime.value = clock.elapsedTime;
+  });
+  return (
+    <mesh position={[0, 0, 0.82]} renderOrder={9}>
+      <planeGeometry args={[MUSEUM_AMBIENT_PROOF_ASPECT * 2, 2]} />
+      <shaderMaterial uniforms={uniforms} vertexShader={PLANE_VERTEX} fragmentShader={GROUND_FRAGMENT} transparent depthTest={false} depthWrite={false} />
     </mesh>
   );
 }
@@ -516,7 +605,7 @@ function ParticleField() {
     attribute.needsUpdate = true;
   });
   return (
-    <points ref={pointsRef} renderOrder={9}>
+    <points ref={pointsRef} renderOrder={10}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[particles.positions, 3]} />
       </bufferGeometry>
@@ -545,22 +634,23 @@ function DriftingPlate({ source, layout, phase, order, opacity }: { source: stri
   );
 }
 
-function AmbientScene({ pointerActive }: { pointerActive: boolean }) {
+function AmbientScene({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
   return (
     <>
-      <FieldLayer pointerActive={pointerActive} />
+      <FieldLayer pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <VaporLayer source={MUSEUM_AMBIENT_PROOF_ASSETS.vaporBackground} layout={{ x: 30, y: 80, width: 690, height: 507, z: 0.18 }} phase={0.4} order={1} />
       <VaporLayer source={MUSEUM_AMBIENT_PROOF_ASSETS.vaporVertical} layout={{ x: 600, y: 5, width: 426, height: 650, z: 0.28 }} phase={2.1} order={2} />
       <VaporLayer source={MUSEUM_AMBIENT_PROOF_ASSETS.vaporBasin} layout={{ x: 250, y: 780, width: 838, height: 315, z: 0.35 }} phase={4.7} order={3} />
-      <ProceduralCurrent pointerActive={pointerActive} />
-      <CoralLayer pointerActive={pointerActive} />
-      <OrganismLayer pointerActive={pointerActive} />
-      <RingsLayer pointerActive={pointerActive} />
-      <IlluminationLayer pointerActive={pointerActive} />
+      <ProceduralCurrent pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <CoralLayer pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <OrganismLayer pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <RingsLayer pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <IlluminationLayer pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <GroundingLayer />
       <ParticleField />
-      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderSpores} layout={{ x: 1010, y: 90, width: 290, height: 118, z: 0.9 }} phase={1.3} order={10} opacity={0.72} />
-      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderShadowA} layout={{ x: -20, y: 835, width: 520, height: 225, z: 1.0 }} phase={3.5} order={11} opacity={0.28} />
-      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderShadowB} layout={{ x: 720, y: 850, width: 650, height: 225, z: 1.05 }} phase={5.2} order={12} opacity={0.38} />
+      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderSpores} layout={{ x: 1010, y: 90, width: 290, height: 118, z: 0.9 }} phase={1.3} order={11} opacity={0.72} />
+      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderShadowA} layout={{ x: -20, y: 835, width: 520, height: 225, z: 1.0 }} phase={3.5} order={12} opacity={0.28} />
+      <DriftingPlate source={MUSEUM_AMBIENT_PROOF_ASSETS.occluderShadowB} layout={{ x: 720, y: 850, width: 650, height: 225, z: 1.05 }} phase={5.2} order={13} opacity={0.38} />
     </>
   );
 }
@@ -592,6 +682,18 @@ export default function MuseumAmbientProof() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
+  const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
+
+  const updatePointerTarget = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const [x, y] = toProofAttentionPoint(event.clientX, event.clientY, bounds);
+    pointerTarget.current.set(x, y);
+    event.currentTarget.dataset.attentionX = x.toFixed(3);
+    event.currentTarget.dataset.attentionY = y.toFixed(3);
+    event.currentTarget.style.setProperty('--attention-x', `${(x * 100).toFixed(2)}%`);
+    event.currentTarget.style.setProperty('--attention-y', `${((1 - y) * 100).toFixed(2)}%`);
+    if (!pointerActive) setPointerActive(true);
+  };
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -608,8 +710,13 @@ export default function MuseumAmbientProof() {
   }, []);
 
   return (
-    <main className={styles.proof} data-reduced-motion={reducedMotion}>
-      <div className={styles.stage}>
+    <main className={styles.proof} data-reduced-motion={reducedMotion} data-attention-active={pointerActive}>
+      <div
+        className={styles.stage}
+        onPointerEnter={updatePointerTarget}
+        onPointerMove={updatePointerTarget}
+        onPointerLeave={() => setPointerActive(false)}
+      >
         <StaticFallback />
         <ProofBoundary fallback={null}>
           {!reducedMotion ? (
@@ -629,10 +736,8 @@ export default function MuseumAmbientProof() {
               }}
               gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
               onCreated={({ gl }) => { gl.outputColorSpace = THREE.SRGBColorSpace; }}
-              onPointerEnter={() => setPointerActive(true)}
-              onPointerLeave={() => setPointerActive(false)}
             >
-              <Suspense fallback={null}><AmbientScene pointerActive={pointerActive} /></Suspense>
+              <Suspense fallback={null}><AmbientScene pointerActive={pointerActive} pointerTarget={pointerTarget} /></Suspense>
             </Canvas>
           ) : null}
         </ProofBoundary>

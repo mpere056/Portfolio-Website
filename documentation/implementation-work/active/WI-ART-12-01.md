@@ -18,7 +18,7 @@
 
 Production `fce50af` is the known-good functional and interaction baseline. The Museum fits one desktop viewport, exposes nine collision-free project signals, contains increasing depth, responds to pointer and graph state, and preserves semantic and stable fallbacks. It does not yet satisfy pervasive ambient-world acceptance: the dominant raster composition remains temporally inert while smaller overlays move.
 
-The accepted correction is decomposition-first. Mark approved `1A, 2A, 3A`, accepted the produced material family for the proof, and requested more code-generated effects with the directional current generated procedurally. Mark rejected compositor revision 1 because the focal coral still read as static, clustered pointer responses moved together, and the established Museum lighting language was lost. Revision 2 now adds anchored focal silhouette motion, material-bound migrating light, and independently profiled local attention while preserving stable roots.
+The accepted correction is decomposition-first. Mark approved `1A, 2A, 3A`, accepted the produced material family for the proof, and requested more code-generated effects with the directional current generated procedurally. Revision 2 established accepted quiet idle life after revision 1 was rejected. Mark's next review found three remaining gaps: the organism root was not integrated, hover intensity was not legible, and the established Museum aperture/distortion effects were absent. Revision 3 addresses those gaps without discarding the accepted idle behavior.
 
 ## Resume Packet
 
@@ -27,7 +27,7 @@ The accepted correction is decomposition-first. Mark approved `1A, 2A, 3A`, acce
 - Completed records: [ART-12A baseline](../../implementation-plans/2026-07-20-Museum-Ambient-Baseline.md) and [ART-12B atlas/ledger](../../implementation-plans/2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
-- Next exact action: deploy revision 2 and let Mark first watch `/projects/ambient-proof` without moving the pointer, then approach coral, organism, rings, and current separately. Technical documents are optional.
+- Next exact action: deploy revision 3 and let Mark compare quiet idle with the attended coral, organism, rings, empty field, and current. Technical documents are optional.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating the lower-left proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -41,7 +41,7 @@ The accepted correction is decomposition-first. Mark approved `1A, 2A, 3A`, acce
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-review | Hybrid one-clock WebGL proof with plate shaders and procedural systems | Revision 1 rejected; revision 2 local visual gate passes and awaits deployed creative review |
+| `ART-12F` Compositor | in-review | Hybrid one-clock WebGL proof with plate shaders and procedural systems | Revision 3 preserves accepted idle life and adds grounding plus legible local attention; awaits deployed creative review |
 | `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
 | `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
 
@@ -97,3 +97,6 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - Mark rejected compositor revision 1: the dominant coral read as static, mouse movement made clustered systems answer together, and the prior Museum's lighting/distortion quality was absent.
 - Revision 2 removes pointer input from atmosphere, particles, and occluders; assigns distinct local lag/attack/release profiles to the remaining systems; adds root-pivoted coral and organism motion; and restores moving amber/cyan illumination across the material pixels.
 - A stable five-second desktop comparison records focal-region mean RGB change of about `12.9/255`, with change above five levels across about `54%` of that region. This is a local creative gate, not Mark acceptance.
+- Mark accepted that revision 2 felt more alive, then identified an ungrounded organism root, an imperceptible hover state, and missing Museum aperture/distortion effects.
+- Revision 3 adds noise-shaped root dissolve, moving contact fog/filaments, reliable stage-normalized pointer coordinates, separate local acceleration signatures, WebGL lens/refraction, and a code-generated radial aperture/diffraction membrane. The one-viewport and reduced-motion contracts remain unchanged.
+- Revision 3 passes `11/11` focused tests and the `200/200` aggregate suite, TypeScript, content validation, zero-error lint, and the production build. Browser checks at `1912 x 948` confirm no document overflow and a visible attention membrane that follows the normalized stage coordinate.

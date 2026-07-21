@@ -28,10 +28,9 @@ export interface AmbientProofResponseProfile {
 // Pointer response is deliberately local and asynchronous. Idle motion is owned by
 // each shader; these profiles only let a visitor redirect one nearby system.
 export const MUSEUM_AMBIENT_PROOF_RESPONSES = {
-  field: { target: [0.5, 0.5], radius: 0.13, pointerLag: 2.4, attack: 2.2, release: 0.7 },
-  coral: { target: [0.24, 0.38], radius: 0.2, pointerLag: 1.1, attack: 1.5, release: 0.48 },
-  organism: { target: [0.42, 0.53], radius: 0.14, pointerLag: 3.8, attack: 3.1, release: 0.82 },
-  rings: { target: [0.56, 0.53], radius: 0.1, pointerLag: 6.5, attack: 5.4, release: 1.2 },
+  coral: { target: [0.24, 0.62], radius: 0.22, pointerLag: 1.1, attack: 2.8, release: 0.62 },
+  organism: { target: [0.42, 0.47], radius: 0.17, pointerLag: 3.8, attack: 4.2, release: 0.95 },
+  rings: { target: [0.56, 0.47], radius: 0.12, pointerLag: 6.5, attack: 6.2, release: 1.3 },
   current: { target: [0.73, 0.5], radius: 0.17, pointerLag: 8.2, attack: 6.8, release: 1.7 },
 } as const satisfies Record<string, AmbientProofResponseProfile>;
 
@@ -44,6 +43,7 @@ export const MUSEUM_AMBIENT_PROOF_LAYERS = [
   { id: 'proof:current', medium: 'procedural-shader', temporalJob: 'directional filament flow, traveling packets, and expanding receiver rings' },
   { id: 'proof:particles', medium: 'procedural-geometry', temporalJob: 'sparse depth traversal with independent drift and light response' },
   { id: 'proof:illumination', medium: 'procedural-shader', temporalJob: 'independent amber and cyan light passages bound to material regions' },
+  { id: 'proof:grounding', medium: 'procedural-shader', temporalJob: 'moving contact shadow, fog, and filaments dissolve focal roots into the terrain' },
   { id: 'proof:occlusion', medium: 'plate-shader', temporalJob: 'rare foreground passages and moving translucent shadows independent of pointer input' },
   { id: 'proof:fallback', medium: 'stable-fallback', temporalJob: 'reduced-motion, WebGL failure, and capture checksum only' },
 ] as const satisfies readonly { id: string; medium: AmbientProofMedium; temporalJob: string }[];
@@ -54,6 +54,21 @@ export interface ProofPlateLayout {
   width: number;
   height: number;
   z: number;
+}
+
+export interface ProofViewportBounds {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+export function toProofAttentionPoint(clientX: number, clientY: number, bounds: ProofViewportBounds) {
+  const clamp = (value: number) => Math.min(1, Math.max(0, value));
+  return [
+    clamp((clientX - bounds.left) / bounds.width),
+    clamp(1 - (clientY - bounds.top) / bounds.height),
+  ] as const;
 }
 
 export function toProofScenePlacement(layout: ProofPlateLayout) {

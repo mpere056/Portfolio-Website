@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-20
+Last updated: 2026-07-21
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. `ART-12A-E` are complete. `ART-12F` compositor revision 1 was rejected because its focal coral read as static, pointer responses synchronized, and prior Museum lighting was lost. Revision 2 is locally implemented with anchored focal motion, material-bound illumination, and asynchronous local attention; the public Museum renderer remains unchanged.
+Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. `ART-12A-E` are complete. Revision 2 established the accepted quiet idle state; `ART-12F` revision 3 is locally implemented with grounded roots, reliable stage-normalized attention, distinct local acceleration, and restored aperture/distortion effects. The public Museum renderer remains unchanged.
 
 Current delivery order: Mark reviews the animated `ART-12F` route, then `12G` Museum integration and `12H` release. Then complete LifeInbox, Dreamlife, and Sudoku sequentially in `ART-13`; review `ABT-01`; complete Home, About, AI, and reading in `ART-14`; run `QA-04`; finish `ART-15`; then resume deeper About and living-operations work. [Program Roadmap](01-Program-Roadmap.md) is authoritative for ordering.
 
