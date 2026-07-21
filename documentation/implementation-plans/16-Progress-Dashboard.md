@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does the east observatory preserve architectural weight while its optics, current, light, haze, and attention remain independently alive? | Mark | `/projects/observatory-proof`; west ecology is accepted and technical records are optional | 2026-07-21 | Review the route before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does east-observatory revision 2 now feel visibly alive at idle while preserving architectural weight? | Mark | `/projects/observatory-proof`; `4.2s` local comparison changes `13.6%` of stage channels visibly | 2026-07-21 | Review the deployed revision before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 

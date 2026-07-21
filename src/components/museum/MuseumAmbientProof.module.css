@@ -161,6 +161,127 @@
   mix-blend-mode: screen;
 }
 
+.observatoryKinetics {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.observatoryCurrents path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 18 36 5 44;
+  animation: observatoryCurrentTravel 8.5s linear infinite;
+}
+
+.observatoryCurrentCyan { stroke-width: 2.6; opacity: .66; }
+.observatoryCurrentGold { stroke-width: 2.1; opacity: .55; animation-duration: 12.2s !important; animation-direction: reverse !important; }
+.observatoryCurrentFine { stroke-width: 1.2; opacity: .38; animation-duration: 15.8s !important; }
+
+.observatoryPacketCyan,
+.observatoryPacketGold,
+.observatoryPacketFine {
+  filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 18px currentColor);
+}
+
+.observatoryOptics g,
+.observatoryOptics > circle {
+  fill: none;
+  stroke: rgba(214, 241, 238, .42);
+  stroke-width: 1.2;
+  stroke-dasharray: 11 20 3 14;
+  transform-box: view-box;
+}
+
+.observatoryRingA {
+  transform-origin: 550px 407px;
+  animation: observatoryOpticalSpin 21s linear infinite;
+}
+
+.observatoryRingB {
+  transform-origin: 660px 241px;
+  animation: observatoryOpticalSpin 13.5s linear infinite reverse;
+}
+
+.observatoryRingC {
+  transform-origin: 754px 423px;
+  animation: observatoryOpticalSpin 34s linear infinite;
+}
+
+.observatoryLensGlow {
+  stroke: none !important;
+  animation: observatoryLensBreathe 5.8s ease-in-out infinite alternate;
+  transform-origin: 550px 407px;
+}
+
+.observatoryWavefront {
+  stroke: rgba(132, 236, 238, .52) !important;
+  stroke-dasharray: none !important;
+  transform-origin: 550px 407px;
+  animation: observatoryWavefront 6.6s ease-out infinite;
+}
+
+.observatoryWavefrontDelayed { animation-delay: -3.3s; }
+
+.observatoryLightSweep {
+  animation: observatoryLightMigration 17s ease-in-out infinite;
+}
+
+.observatoryFogBack { animation: observatoryFogBack 23s ease-in-out infinite alternate; }
+.observatoryFogFront { animation: observatoryFogFront 15s ease-in-out infinite alternate; }
+
+.proof[data-attention-active='true'] .observatoryCurrents {
+  filter: brightness(1.35) saturate(1.2);
+}
+
+.proof[data-attention-active='true'] .observatoryOptics {
+  filter: brightness(1.4) drop-shadow(0 0 12px rgba(162, 235, 235, .36));
+}
+
+@keyframes observatoryCurrentTravel {
+  to { stroke-dashoffset: -212; }
+}
+
+@keyframes observatoryOpticalSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes observatoryLensBreathe {
+  0% { opacity: .2; transform: scale(.82); }
+  48% { opacity: .48; transform: scale(1.07); }
+  100% { opacity: .28; transform: scale(.93); }
+}
+
+@keyframes observatoryWavefront {
+  0% { opacity: .62; transform: scale(.45); }
+  72%, 100% { opacity: 0; transform: scale(2.25); }
+}
+
+@keyframes observatoryLightMigration {
+  0% { opacity: .2; transform: translateX(-18%); }
+  45% { opacity: .82; }
+  100% { opacity: .24; transform: translateX(118%); }
+}
+
+@keyframes observatoryFogBack {
+  0% { opacity: .48; transform: translate3d(-5%, 1.5%, 0) scaleX(.94); }
+  100% { opacity: .86; transform: translate3d(7%, -2%, 0) scaleX(1.08); }
+}
+
+@keyframes observatoryFogFront {
+  0% { opacity: .34; transform: translate3d(9%, 1%, 0) scaleX(.88); }
+  100% { opacity: .76; transform: translate3d(-8%, -1.4%, 0) scaleX(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .observatoryKinetics { display: none; }
+}
+
 @media (max-width: 700px) {
   .caption { top: auto; bottom: 3.2rem; align-items: flex-end; }
   .caption > div { max-width: 17rem; }
