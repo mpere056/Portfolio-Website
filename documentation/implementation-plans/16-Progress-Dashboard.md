@@ -17,7 +17,7 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 directly reuses the production attention stack and is accepted. East revision 8 combines that stack with separated particle-free structures, 700 procedural particles, rotating geometry, stochastic tower windows, fast independent shader fronts, and explicit path tracers; the rejected vertical ellipse is removed. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 directly reuses the production attention stack and is accepted. East revision 9 combines that stack with separated particle-free structures, 700 procedural particles, rotating geometry, stochastic tower windows, and materially deforming procedural ribbons; rejected tracer markers and the vertical ellipse are absent. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; east revision 8 makes procedural flow visibly traverse and removes the rejected ellipse while preserving the production Museum hover-effects stack | Mark reviews revision 8; acceptance completes compositor selection and permits bounded `12G` integration |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; marker-free east revision 9 moves the ribbon material itself while preserving the production Museum hover-effects stack | Mark reviews revision 9; acceptance completes compositor selection and permits bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 8 is live at `06e23c6` with tracer-led flow and the rejected ellipse removed | Mark reviews east revision 8; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; marker-free east revision 9 is live at `cce1085` with materially deforming ribbons | Mark reviews east revision 9; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does revision 8's faster tracer-led flow read unmistakably at idle without becoming too hurried, and is the rejected ellipse fully gone? | Mark | `/projects/observatory-proof`; `06e23c6`; public `0.9s` displacement, one-screen geometry, and ellipse-removal checks pass | 2026-07-21 | Review revision 8 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Do revision 9's marker-free copper and cyan-gold ribbons visibly flow at idle and at full-page scale? | Mark | `/projects/observatory-proof`; `cce1085`; zero marker nodes, material clocks, one-screen geometry, tests and build pass | 2026-07-21 | Review revision 9 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-21 | Replaced rejected flow markers with materially moving ribbons | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `cce1085` and deployment `dpl_Ehm7eWET5nuUtrfSwk8YS4Dr1e2i` remove circles/rods and synchronize geometry, texture, thickness, crossings, and light |
 | 2026-07-21 | Made east-observatory flow unmistakable and removed the rejected ellipse | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `06e23c6` and deployment `dpl_5gQ1cdZQmcadNdQ9BrCwovzYD69Z` add independent fast tracers and heads; public frames `0.9s` apart show displacement |
 | 2026-07-21 | Made procedural observatory flow perceptually directional | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `d2f1bf8` and deployment `dpl_B5va9mV176oJBDcKf543DGAaLzSt` add tested crossing times, coherent fronts, comet wake, and curve-bound carriers |
 | 2026-07-21 | Rebuilt the east-observatory signal field as layered procedural flow | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `85a2d2a` and deployment `dpl_9wM1fHTzt7iq4rBDxE5gKnPaTQZp` restore cyan-gold, copper, ivory, arch, and spectral families with independent idle clocks and local attention |
