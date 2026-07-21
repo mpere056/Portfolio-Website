@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 11 uses LaserFlow-derived modulation, fast segmented wisps, and beam-masked fog advection with centralized speed/strength/fog/wisp controls. Pressure volumes and slender baselines remain; rejected markers and the vertical ellipse stay absent. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 12 combines stronger LaserFlow-derived transport with a fixed runtime budget (`1x` DPR, 30/45 FPS, GPU particle travel, three-octave fog, 420 points, detail-3 orb). Pressure volumes and slender baselines remain; rejected markers and the vertical ellipse stay absent. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; LaserFlow-derived east revision 11 is live at `69bd1c9` with explicit motion controls | Mark reviews revision 11; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; faster and performance-bounded east revision 12 is live at `555fbf6` | Mark reviews movement clarity and smoothness; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 

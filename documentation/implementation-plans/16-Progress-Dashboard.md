@@ -17,7 +17,7 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 11 combines separated structures, particles, rotating geometry, stochastic windows, pressure volumes, and LaserFlow-derived modulation/wisps/beam fog with centralized controls; rejected markers and the vertical ellipse are absent. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 12 combines separated structures, stochastic windows, pressure volumes, and stronger LaserFlow-derived modulation/wisps/beam fog with a fixed 30/45 FPS, `1x` DPR runtime budget; rejected markers and the vertical ellipse are absent. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; east revision 11 adds LaserFlow-style modulation, wisps, fog, and direct controls while preserving the Museum hover stack | Mark reviews revision 11; acceptance completes compositor selection and permits bounded `12G` integration |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; east revision 12 increases visible transport and bounds DPR, frame cadence, noise, geometry, particles, and pointer updates while preserving the Museum hover stack | Mark reviews clarity and smoothness; acceptance completes compositor selection and permits bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; LaserFlow-derived east revision 11 is live at `69bd1c9` | Mark reviews east revision 11; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; faster, performance-bounded east revision 12 is live at `555fbf6` | Mark reviews movement clarity and smoothness; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Do revision 11's LaserFlow-style segmented wisps and beam fog make directional motion immediately visible? | Mark | `/projects/observatory-proof`; `69bd1c9`; centralized controls, two canvases, zero markers, one-screen geometry, tests and build pass | 2026-07-21 | Review revision 11 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does revision 12 make directional movement immediately visible while running materially smoother on previously laggy computers? | Mark | `/projects/observatory-proof`; `555fbf6`; `2.15x` speed, `1.24` strength, `1x` DPR, 30/45 FPS, GPU particle travel, 207 tests and build pass | 2026-07-21 | Review revision 12 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-21 | Increased observatory flow clarity while bounding continuous rendering cost | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `555fbf6` and deployment `dpl_995V8Sg2GTXVAAXNz1FYzdK6uc2o` add `2.15x`/`1.24` flow tuning, demand rendering, `1x` DPR, GPU particles, lighter fog, lower geometry, and pointer coalescing |
 | 2026-07-21 | Adopted LaserFlow's visible motion mechanisms and controls | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `69bd1c9` and deployment `dpl_DpXjzHrHe8MNurdtPmCy5k67xSLB` add flow modulation, moving wisp cells, beam fog, and eight centralized controls |
 | 2026-07-21 | Added hose-like moving pressure volumes to slender observatory ribbons | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `1cec136` and deployment `dpl_6HEh1ETqoMB8Fdw12uybjDVzoqgM` localize centerline, spread, width, aurora, and wake expansion |
 | 2026-07-21 | Replaced rejected flow markers with materially moving ribbons | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `cce1085` and deployment `dpl_Ehm7eWET5nuUtrfSwk8YS4Dr1e2i` remove circles/rods and synchronize geometry, texture, thickness, crossings, and light |
