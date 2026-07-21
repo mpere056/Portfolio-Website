@@ -1,4 +1,4 @@
-import { stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
@@ -54,15 +54,27 @@ describe('Museum observatory compositor proof', () => {
 
   it('keeps directional flow legible at human viewing speed without synchronizing every family', () => {
     const timings = Object.values(MUSEUM_OBSERVATORY_FLOW_TIMING);
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(4);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(2.5);
     expect(MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds).toBeLessThan(
       MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds,
     );
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(5);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(4);
     expect(MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds).toBeGreaterThan(
       MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
     );
     expect(new Set(timings)).toHaveLength(timings.length);
+  });
+
+  it('expresses flow inside shader material instead of overlaying marker heads', async () => {
+    const source = await readFile(
+      path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumObservatoryProof.tsx'),
+      'utf8',
+    );
+    expect(source).toContain('float leadTravel =');
+    expect(source).toContain('float copperTravel =');
+    expect(source).toContain('float ivoryTravel =');
+    expect(source).not.toContain('<animateMotion');
+    expect(source).not.toContain('observatoryFlowTracer');
   });
 
   it('ships a bounded particle-free runtime stack', async () => {

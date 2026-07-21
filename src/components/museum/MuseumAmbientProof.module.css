@@ -172,43 +172,6 @@
   mix-blend-mode: screen;
 }
 
-.observatoryFlowTracer {
-  fill: none;
-  stroke-linecap: round;
-  stroke-dasharray: 120 850;
-  animation: observatoryFlowTrace 3.6s linear infinite;
-}
-
-.observatoryFlowTracerLead {
-  stroke: #6ffbff;
-  stroke-width: 5.5;
-}
-
-.observatoryFlowTracerCopper {
-  stroke: #f4a25f;
-  stroke-width: 3.6;
-  animation-duration: 6.5s;
-  animation-delay: -2.1s;
-}
-
-.observatoryFlowTracerIvory {
-  stroke: #b8efec;
-  stroke-width: 3;
-  animation-duration: 8.5s;
-  animation-delay: -4.4s;
-}
-
-.observatoryFlowHeadLead,
-.observatoryFlowHeadCopper,
-.observatoryFlowHeadIvory {
-  stroke: rgba(255, 255, 255, .85);
-  stroke-width: 1.4;
-}
-
-.observatoryFlowHeadLead { fill: #94ffff; }
-.observatoryFlowHeadCopper { fill: #ffc17f; }
-.observatoryFlowHeadIvory { fill: #d8ffff; }
-
 .observatoryOptics g,
 .observatoryOptics > circle {
   fill: none;
@@ -257,10 +220,6 @@
 
 @keyframes observatoryOpticalSpin {
   to { transform: rotate(360deg); }
-}
-
-@keyframes observatoryFlowTrace {
-  to { stroke-dashoffset: -970; }
 }
 
 @keyframes observatoryLensBreathe {
