@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 6 is live at `85a2d2a` with rotating geometry, tower-only stochastic windows, and front/rear procedural signal flows | Mark reviews east revision 6; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 7 is live at `d2f1bf8` with tested crossing times, traveling bands, comet wake, and curve-bound carriers | Mark reviews east revision 7; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Do east-observatory revision 6's lead and secondary flows read as continuously alive, visually integrated material at idle and intensify locally near attention? | Mark | `/projects/observatory-proof`; `85a2d2a`; public idle/attention frames, one-screen geometry, two canvases, and clean console pass | 2026-07-21 | Review revision 6 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Do revision 7's traveling fronts and carriers make flow direction unmistakable at idle without making the observatory feel hurried? | Mark | `/projects/observatory-proof`; `d2f1bf8`; public short-interval motion, one-screen geometry, two canvases, and clean console pass | 2026-07-21 | Review revision 7 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-21 | Made procedural observatory flow perceptually directional | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `d2f1bf8` and deployment `dpl_B5va9mV176oJBDcKf543DGAaLzSt` add tested crossing times, coherent fronts, comet wake, and curve-bound carriers |
 | 2026-07-21 | Rebuilt the east-observatory signal field as layered procedural flow | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `85a2d2a` and deployment `dpl_9wM1fHTzt7iq4rBDxE5gKnPaTQZp` restore cyan-gold, copper, ivory, arch, and spectral families with independent idle clocks and local attention |
 | 2026-07-20 | Implemented the isolated hybrid Museum compositor proof | `ART-12E/F`, `CAP-ART-014`, `WI-ART-12-01` | Material family accepted; raster current rejected for runtime; procedural current plus shader deformation/refraction/atmosphere/caustics and procedural particles pass local gates |
 | 2026-07-20 | Produced the first bounded decomposed Museum material proof | `ART-12C-E`, `CAP-ART-014`, `WI-ART-12-01` | Mark approved `1A, 2A, 3A`; transparent plates, maps, diagnostics, manifest, and deterministic build pass local review; compositor remains gated |
