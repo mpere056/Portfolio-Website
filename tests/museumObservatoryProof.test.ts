@@ -54,11 +54,11 @@ describe('Museum observatory compositor proof', () => {
 
   it('keeps directional flow legible at human viewing speed without synchronizing every family', () => {
     const timings = Object.values(MUSEUM_OBSERVATORY_FLOW_TIMING);
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(8);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(4);
     expect(MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds).toBeLessThan(
       MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds,
     );
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(10);
+    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(5);
     expect(MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds).toBeGreaterThan(
       MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
     );

@@ -1,11 +1,11 @@
 export const MUSEUM_OBSERVATORY_PROOF_ASPECT = 852 / 790;
 
 export const MUSEUM_OBSERVATORY_FLOW_TIMING = {
-  leadCrossingSeconds: 7.2,
-  coreCrossingSeconds: 5.8,
-  copperCrossingSeconds: 13.5,
-  ivoryCrossingSeconds: 17.5,
-  archCrossingSeconds: 21,
+  leadCrossingSeconds: 3.6,
+  coreCrossingSeconds: 2.8,
+  copperCrossingSeconds: 6.5,
+  ivoryCrossingSeconds: 8.5,
+  archCrossingSeconds: 11,
 } as const;
 
 export const MUSEUM_OBSERVATORY_PROOF_ASSETS = {

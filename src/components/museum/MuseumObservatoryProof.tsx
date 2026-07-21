@@ -307,22 +307,28 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     float copperAurora = exp(-abs(vUv.y - copperBodyY) * 31.0)
       * smoothstep(0.34, 0.84, copperNoise) * edgeFade;
     float copperFront = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds)}, 0.19);
+    float copperCorridor = exp(-abs(vUv.y - copperBodyY) * 42.0) * edgeFade;
     color += mix(vec3(0.38, 0.13, 0.09), vec3(0.86, 0.46, 0.27), copperNoise)
       * copperAurora * (0.16 + copperFront * 0.72);
+    color += vec3(0.92, 0.47, 0.24) * copperCorridor * copperFront * 0.72;
     alpha += copperAurora * (0.08 + copperFront * 0.22);
+    alpha += copperCorridor * copperFront * 0.2;
 
     for (int i = 0; i < 9; i++) {
       float fi = float(i);
       float phase = fi * 0.83;
-      float weave = sin(vUv.x * (17.0 + fi * 0.21) - uTime * (0.17 + fi * 0.006) + phase) * (0.017 + attention * 0.008)
-        + sin(vUv.x * 35.0 + uTime * 0.09 - phase * 1.7) * 0.004;
+      float weave = sin(vUv.x * (17.0 + fi * 0.21) - uTime * (0.88 + fi * 0.018) + phase) * (0.019 + attention * 0.009)
+        + sin(vUv.x * 35.0 + uTime * 0.42 - phase * 1.7) * 0.005;
       float center = copperBodyY + weave + (fi - 4.0) * 0.0043;
       float line = flowLine(vUv.y, center, 0.00105 + attention * 0.00062);
       float packet = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds)} + fi * 0.0021 + attention * 0.035, fi * 0.117);
-      float travelingShimmer = 0.5 + 0.5 * sin(vUv.x * 42.0 - uTime * (2.8 + fi * 0.04) + phase);
+      float travelingShimmer = pow(
+        0.5 + 0.5 * sin(vUv.x * 8.0 - uTime * (1.45 + fi * 0.04) + phase),
+        3.0
+      );
       vec3 tint = mix(vec3(0.72, 0.31, 0.21), vec3(0.78, 0.68, 0.49), smoothstep(3.0, 8.0, fi));
-      color += tint * line * (0.2 + travelingShimmer * 0.12 + packet * 1.16 + attention * 0.28) * edgeFade;
-      alpha += line * (0.11 + travelingShimmer * 0.05 + packet * 0.38) * edgeFade;
+      color += tint * line * (0.16 + travelingShimmer * 1.02 + packet * 1.42 + attention * 0.28) * edgeFade;
+      alpha += line * (0.09 + travelingShimmer * 0.36 + packet * 0.46) * edgeFade;
     }
 
     for (int i = 0; i < 3; i++) {
@@ -340,22 +346,28 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     float ivoryAurora = exp(-abs(vUv.y - ivoryBodyY) * 25.0)
       * smoothstep(0.37, 0.82, ivoryNoise) * edgeFade;
     float ivoryFront = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds)}, 0.57);
+    float ivoryCorridor = exp(-abs(vUv.y - ivoryBodyY) * 34.0) * edgeFade;
     color += mix(vec3(0.18, 0.38, 0.42), vec3(0.57, 0.59, 0.54), ivoryNoise)
       * ivoryAurora * (0.17 + ivoryFront * 0.64);
+    color += vec3(0.56, 0.86, 0.83) * ivoryCorridor * ivoryFront * 0.62;
     alpha += ivoryAurora * (0.08 + ivoryFront * 0.2);
+    alpha += ivoryCorridor * ivoryFront * 0.18;
 
     for (int i = 0; i < 11; i++) {
       float fi = float(i);
       float phase = fi * 0.61;
-      float braid = sin(vUv.x * (13.0 + fi * 0.17) + uTime * (0.11 + fi * 0.004) + phase) * (0.034 + attention * 0.012)
-        + sin(vUv.x * 27.0 - uTime * 0.07 - phase) * 0.007;
+      float braid = sin(vUv.x * (13.0 + fi * 0.17) + uTime * (0.62 + fi * 0.014) + phase) * (0.036 + attention * 0.013)
+        + sin(vUv.x * 27.0 - uTime * 0.35 - phase) * 0.008;
       float center = ivoryBodyY + braid + (fi - 5.0) * 0.0048;
       float line = flowLine(vUv.y, center, 0.00092 + attention * 0.00048);
       float packet = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds)} + fi * 0.0017 + attention * 0.028, fi * 0.083 + 0.31);
-      float travelingShimmer = 0.5 + 0.5 * sin(vUv.x * 36.0 - uTime * (2.05 + fi * 0.027) + phase);
+      float travelingShimmer = pow(
+        0.5 + 0.5 * sin(vUv.x * 7.0 - uTime * (1.0 + fi * 0.035) + phase),
+        3.0
+      );
       vec3 tint = mix(vec3(0.28, 0.63, 0.68), vec3(0.78, 0.74, 0.62), smoothstep(2.0, 10.0, fi));
-      color += tint * line * (0.18 + travelingShimmer * 0.11 + packet * 0.92 + attention * 0.22) * edgeFade;
-      alpha += line * (0.1 + travelingShimmer * 0.045 + packet * 0.31) * edgeFade;
+      color += tint * line * (0.14 + travelingShimmer * 0.86 + packet * 1.16 + attention * 0.22) * edgeFade;
+      alpha += line * (0.08 + travelingShimmer * 0.31 + packet * 0.38) * edgeFade;
     }
 
     for (int i = 0; i < 3; i++) {
@@ -371,11 +383,11 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     float archBase = 0.965 - vUv.x * 0.14;
     for (int i = 0; i < 4; i++) {
       float fi = float(i);
-      float arch = archBase + sin(vUv.x * (8.0 + fi) - uTime * (0.055 + fi * 0.008) + fi * 1.3) * (0.018 + fi * 0.004);
+      float arch = archBase + sin(vUv.x * (8.0 + fi) - uTime * (0.46 + fi * 0.025) + fi * 1.3) * (0.02 + fi * 0.0045);
       float line = flowLine(vUv.y, arch, 0.00065);
       float packet = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.archCrossingSeconds)} + fi * 0.004, fi * 0.19 + 0.12);
-      color += mix(vec3(0.26, 0.48, 0.5), vec3(0.56, 0.43, 0.3), fi / 3.0) * line * (0.14 + packet * 0.68) * edgeFade;
-      alpha += line * (0.05 + packet * 0.22) * edgeFade;
+      color += mix(vec3(0.26, 0.48, 0.5), vec3(0.56, 0.43, 0.3), fi / 3.0) * line * (0.11 + packet * 1.05) * edgeFade;
+      alpha += line * (0.065 + packet * 0.34) * edgeFade;
     }
 
     float luminance = max(color.r, max(color.g, color.b));
@@ -407,32 +419,41 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
     float edgeFade = smoothstep(0.015, 0.12, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
     float attention = exp(-distance(vUv, uPointer) * 7.8) * uAttention;
     float bodyY = 0.81 - vUv.x * 0.355;
-    float bodyNoise = fbm(vec2(vUv.x * 6.0 - uTime * 0.34, vUv.y * 17.0 + uTime * 0.055));
+    float bodyNoise = fbm(vec2(vUv.x * 6.0 - uTime * 0.82, vUv.y * 17.0 + uTime * 0.14));
     float aurora = exp(-abs(vUv.y - bodyY) * 26.0) * smoothstep(0.28, 0.82, bodyNoise) * edgeFade;
-    float bodySurge = directionalPulse(vUv.x, uTime, 0.105 + attention * 0.055, 0.18);
+    float bodySurge = directionalPulse(vUv.x, uTime, 0.255 + attention * 0.12, 0.18);
+    float sweepX = fract(uTime * (0.275 + attention * 0.11) + 0.08);
+    float sweepDistance = abs(vUv.x - sweepX);
+    sweepDistance = min(sweepDistance, 1.0 - sweepDistance);
+    float sweepProfile = exp(-pow(sweepDistance / 0.095, 2.0));
+    float sweepCorridor = exp(-abs(vUv.y - bodyY) * 21.0) * edgeFade;
+    vec3 sweepColor = mix(vec3(0.18, 0.94, 1.0), vec3(1.0, 0.7, 0.3), smoothstep(0.52, 0.88, sweepX));
     vec3 color = mix(vec3(0.015, 0.22, 0.26), vec3(0.33, 0.2, 0.055), smoothstep(0.56, 0.8, bodyNoise))
       * aurora * (0.22 + bodySurge * 1.24);
+    color += sweepColor * sweepCorridor * sweepProfile * 1.55;
     float alpha = aurora * (0.08 + bodySurge * 0.38);
+    alpha += sweepCorridor * sweepProfile * 0.48;
 
     for (int i = 0; i < 10; i++) {
       float fi = float(i);
       float phase = fi * 0.76;
-      float localWave = sin(vUv.x * (10.0 + fi * 0.13) - uTime * (0.66 + fi * 0.012 + attention * 0.22) + phase) * (0.022 + attention * 0.022)
-        + sin(vUv.x * 23.0 + uTime * 0.38 - phase * 1.4) * 0.006;
+      float localWave = sin(vUv.x * (10.0 + fi * 0.13) - uTime * (1.48 + fi * 0.028 + attention * 0.42) + phase) * (0.028 + attention * 0.024)
+        + sin(vUv.x * 23.0 + uTime * 0.86 - phase * 1.4) * 0.008;
       float center = bodyY + localWave + (fi - 4.5) * 0.0115;
       float line = flowLine(vUv.y, center, 0.00165 + attention * 0.001);
       float packet = directionalPulse(vUv.x, uTime, ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds)} + fi * 0.0022 + attention * 0.08, 0.15 + fi * 0.009);
       float travelingShimmer = pow(
-        0.5 + 0.5 * sin(vUv.x * 20.0 - uTime * (3.55 + fi * 0.055 + attention * 1.5) + phase),
-        4.0
+        0.5 + 0.5 * sin(vUv.x * 6.5 - uTime * (2.25 + fi * 0.065 + attention * 1.8) + phase),
+        3.0
       );
       float goldMix = smoothstep(5.7, 8.7, fi);
       vec3 tint = mix(vec3(0.12, 0.82, 0.88), vec3(0.95, 0.65, 0.29), goldMix);
-      color += tint * line * (0.22 + travelingShimmer * 0.58 + packet * (1.62 + attention * 0.82)) * edgeFade;
-      alpha += line * (0.11 + travelingShimmer * 0.21 + packet * 0.54 + attention * 0.12) * edgeFade;
+      float knotSuppression = 1.0 - exp(-pow((vUv.x - 0.55) * 18.0, 2.0)) * 0.72;
+      color += tint * line * (0.18 * knotSuppression + travelingShimmer * 1.45 + packet * (2.05 + attention * 0.95)) * edgeFade;
+      alpha += line * (0.11 * knotSuppression + travelingShimmer * 0.54 + packet * 0.7 + attention * 0.12) * edgeFade;
     }
 
-    float coreWave = sin(vUv.x * 11.0 - uTime * (0.82 + attention * 0.32)) * (0.013 + attention * 0.012);
+    float coreWave = sin(vUv.x * 11.0 - uTime * (1.72 + attention * 0.58)) * (0.019 + attention * 0.014);
     float coreY = bodyY + coreWave;
     float core = flowLine(vUv.y, coreY, 0.00235 + attention * 0.001);
     float coreSpeed = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds)} + attention * 0.095;
@@ -449,12 +470,12 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
     float beaconCore = exp(-pow(length(beaconDelta) * 92.0, 2.0)) * edgeFade;
     float beaconTailY = 0.81 - vUv.x * 0.355
       + sin(vUv.x * 11.0 - uTime * (0.82 + attention * 0.32)) * (0.013 + attention * 0.012);
-    float beaconTailWindow = smoothstep(beaconX - 0.18, beaconX - 0.045, vUv.x)
+    float beaconTailWindow = smoothstep(beaconX - 0.3, beaconX - 0.055, vUv.x)
       * (1.0 - smoothstep(beaconX - 0.045, beaconX, vUv.x));
     float beaconTail = exp(-pow((vUv.y - beaconTailY) * 92.0, 2.0)) * beaconTailWindow * edgeFade;
     vec3 beaconColor = mix(vec3(0.32, 0.98, 1.0), vec3(1.0, 0.72, 0.31), smoothstep(0.48, 0.86, beaconX));
-    color += beaconColor * (beaconTail * 0.72 + beaconHalo * 0.9 + beaconCore * 1.8);
-    alpha += beaconTail * 0.26 + beaconHalo * 0.34 + beaconCore * 0.58;
+    color += beaconColor * (beaconTail * 1.18 + beaconHalo * 1.25 + beaconCore * 2.25);
+    alpha += beaconTail * 0.42 + beaconHalo * 0.46 + beaconCore * 0.72;
 
     for (int i = 0; i < 5; i++) {
       float fi = float(i);
@@ -464,11 +485,11 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
         + sin(carrierX * (10.0 + fi * 0.14) - uTime * (0.7 + fi * 0.025) + fi * 1.1) * 0.022
         + (fi - 2.0) * 0.014;
       vec2 carrierDelta = (vUv - vec2(carrierX, carrierY)) * vec2(1.0, 1.42);
-      float carrierHalo = exp(-pow(length(carrierDelta) * 68.0, 2.0)) * edgeFade;
-      float carrierCore = exp(-pow(length(carrierDelta) * 145.0, 2.0)) * edgeFade;
+      float carrierHalo = exp(-pow(length(carrierDelta) * 46.0, 2.0)) * edgeFade;
+      float carrierCore = exp(-pow(length(carrierDelta) * 98.0, 2.0)) * edgeFade;
       vec3 carrierColor = mix(vec3(0.3, 0.98, 1.0), vec3(1.0, 0.7, 0.3), smoothstep(2.0, 4.0, fi));
-      color += carrierColor * (carrierHalo * 0.62 + carrierCore * 1.38);
-      alpha += carrierHalo * 0.24 + carrierCore * 0.48;
+      color += carrierColor * (carrierHalo * 0.9 + carrierCore * 1.72);
+      alpha += carrierHalo * 0.34 + carrierCore * 0.58;
     }
 
     float wispLane = abs((vUv.y - bodyY) / 0.12);
@@ -855,6 +876,9 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
 }
 
 function ObservatoryKineticOverlay() {
+  const leadPath = 'M -50 142 C 142 128 310 224 478 280 C 636 334 742 392 910 432';
+  const copperPath = 'M -40 74 C 168 70 306 112 470 108 C 636 104 748 126 900 154';
+  const ivoryPath = 'M -42 274 C 140 242 294 330 452 374 C 612 418 738 470 902 506';
   return (
     <svg
       className={styles.observatoryKinetics}
@@ -872,11 +896,30 @@ function ObservatoryKineticOverlay() {
         <filter id="observatory-soft-glow" x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="7" />
         </filter>
+        <filter id="observatory-tracer-glow" x="-40%" y="-100%" width="180%" height="300%">
+          <feGaussianBlur stdDeviation="3.4" result="tracerBlur" />
+          <feMerge><feMergeNode in="tracerBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
       </defs>
 
       <g className={styles.observatoryFogBack} filter="url(#observatory-soft-glow)">
         <ellipse cx="260" cy="488" rx="250" ry="54" fill="#2fabb1" opacity="0.12" />
         <ellipse cx="664" cy="184" rx="218" ry="48" fill="#c99b57" opacity="0.1" />
+      </g>
+
+      <g className={styles.observatoryFlowTracers} filter="url(#observatory-tracer-glow)">
+        <path className={`${styles.observatoryFlowTracer} ${styles.observatoryFlowTracerLead}`} d={leadPath} />
+        <path className={`${styles.observatoryFlowTracer} ${styles.observatoryFlowTracerCopper}`} d={copperPath} />
+        <path className={`${styles.observatoryFlowTracer} ${styles.observatoryFlowTracerIvory}`} d={ivoryPath} />
+        <circle className={styles.observatoryFlowHeadLead} r="8.5">
+          <animateMotion dur="3.6s" repeatCount="indefinite" path={leadPath} />
+        </circle>
+        <circle className={styles.observatoryFlowHeadCopper} r="6.5">
+          <animateMotion dur="6.5s" begin="-2.1s" repeatCount="indefinite" path={copperPath} />
+        </circle>
+        <circle className={styles.observatoryFlowHeadIvory} r="5.5">
+          <animateMotion dur="8.5s" begin="-4.4s" repeatCount="indefinite" path={ivoryPath} />
+        </circle>
       </g>
 
       <g className={styles.observatoryOptics}>
@@ -896,11 +939,6 @@ function ObservatoryKineticOverlay() {
         <circle className={styles.observatoryLensGlow} cx="592" cy="348" r="58" fill="url(#observatory-lens)" />
         <circle className={styles.observatoryWavefront} cx="592" cy="348" r="54" />
         <circle className={`${styles.observatoryWavefront} ${styles.observatoryWavefrontDelayed}`} cx="592" cy="348" r="54" />
-      </g>
-
-      <g className={styles.observatoryLightSweep} filter="url(#observatory-soft-glow)">
-        <ellipse cx="0" cy="390" rx="90" ry="310" fill="#ffe1a2" opacity="0.16" />
-        <ellipse cx="28" cy="390" rx="46" ry="280" fill="#91f3f2" opacity="0.12" />
       </g>
 
       <g className={styles.observatoryFogFront} filter="url(#observatory-soft-glow)">

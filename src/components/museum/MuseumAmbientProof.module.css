@@ -172,6 +172,43 @@
   mix-blend-mode: screen;
 }
 
+.observatoryFlowTracer {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 120 850;
+  animation: observatoryFlowTrace 3.6s linear infinite;
+}
+
+.observatoryFlowTracerLead {
+  stroke: #6ffbff;
+  stroke-width: 5.5;
+}
+
+.observatoryFlowTracerCopper {
+  stroke: #f4a25f;
+  stroke-width: 3.6;
+  animation-duration: 6.5s;
+  animation-delay: -2.1s;
+}
+
+.observatoryFlowTracerIvory {
+  stroke: #b8efec;
+  stroke-width: 3;
+  animation-duration: 8.5s;
+  animation-delay: -4.4s;
+}
+
+.observatoryFlowHeadLead,
+.observatoryFlowHeadCopper,
+.observatoryFlowHeadIvory {
+  stroke: rgba(255, 255, 255, .85);
+  stroke-width: 1.4;
+}
+
+.observatoryFlowHeadLead { fill: #94ffff; }
+.observatoryFlowHeadCopper { fill: #ffc17f; }
+.observatoryFlowHeadIvory { fill: #d8ffff; }
+
 .observatoryOptics g,
 .observatoryOptics > circle {
   fill: none;
@@ -211,10 +248,6 @@
 
 .observatoryWavefrontDelayed { animation-delay: -3.3s; }
 
-.observatoryLightSweep {
-  animation: observatoryLightMigration 17s ease-in-out infinite;
-}
-
 .observatoryFogBack { animation: observatoryFogBack 23s ease-in-out infinite alternate; }
 .observatoryFogFront { animation: observatoryFogFront 15s ease-in-out infinite alternate; }
 
@@ -226,6 +259,10 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes observatoryFlowTrace {
+  to { stroke-dashoffset: -970; }
+}
+
 @keyframes observatoryLensBreathe {
   0% { opacity: .2; transform: scale(.82); }
   48% { opacity: .48; transform: scale(1.07); }
@@ -235,12 +272,6 @@
 @keyframes observatoryWavefront {
   0% { opacity: .62; transform: scale(.45); }
   72%, 100% { opacity: 0; transform: scale(2.25); }
-}
-
-@keyframes observatoryLightMigration {
-  0% { opacity: .2; transform: translateX(-18%); }
-  45% { opacity: .82; }
-  100% { opacity: .24; transform: translateX(118%); }
 }
 
 @keyframes observatoryFogBack {
