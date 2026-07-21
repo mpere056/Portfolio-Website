@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does the hybrid ecology feel continuously alive and materially coherent at idle and near attention? | Mark | `/projects/ambient-proof`; technical records are optional | 2026-07-20 | Review the route before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does the east observatory preserve architectural weight while its optics, current, light, haze, and attention remain independently alive? | Mark | `/projects/observatory-proof`; west ecology is accepted and technical records are optional | 2026-07-21 | Review the route before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 

@@ -104,6 +104,12 @@ One future Museum clock supplies deterministic phase channels. These bands are i
 
 It deliberately excludes full-scene observatory decomposition, Dreamlife core production, and east-side architecture. Success authorizes a compositor decision, not bulk production.
 
+## Second Representative Proof
+
+After Mark accepted revision 4's west-ecology direction, `ART-12F` opened one deliberately different proof around `MUS-R08`, supported by adjacent `MUS-R05`, `MUS-R06`, `MUS-R09`, and `MUS-R14`. The route is `/projects/observatory-proof`. It tests fixed architecture with unequal optical pivots, local lens refraction, directional signal transport, changing diagram geometry, layered haze, sparse depth matter, migrating illumination, and the exact production Museum attention-effects stack.
+
+This is a compositor extension, not bulk east-side asset production. It uses one bounded crop as a spatial checksum and renderer fallback; all temporal behavior is sampled or procedurally generated in code. Full observatory plate extraction remains gated by creative review and `ART-12G` integration planning.
+
 ## `ART-12B` Exit
 
 All dominant Museum regions have stable IDs, source bounds, depth ownership, temporal responsibilities, calm behavior, and named implementation gaps. No unexplained dominant dead zone is hidden in a route-level status. The representative proof crop is bounded. Asset production remains gated by the `ART-12C` briefs.

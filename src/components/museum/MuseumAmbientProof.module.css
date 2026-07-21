@@ -133,6 +133,34 @@
 
 .proof[data-reduced-motion='true'] .legend::before { content: 'stable checksum / '; }
 
+.observatoryProof {
+  background:
+    radial-gradient(circle at 69% 48%, rgba(217, 188, 133, 0.13), transparent 34rem),
+    radial-gradient(circle at 22% 68%, rgba(48, 146, 159, 0.12), transparent 30rem),
+    #020506;
+}
+
+.observatoryProof .stage {
+  width: min(100vw, calc(100svh * 1.07848));
+  aspect-ratio: 852 / 790;
+  box-shadow: 0 0 9rem rgba(93, 78, 43, 0.18), 0 0 7rem rgba(5, 46, 51, 0.34);
+}
+
+.observatoryProof .caption,
+.observatoryProof .legend {
+  width: min(100vw, calc(100svh * 1.07848));
+}
+
+.observatoryProof .sceneHalo {
+  border-color: rgba(235, 221, 183, calc(.08 + var(--scene-energy) * .2));
+  background: radial-gradient(circle, rgba(225, 203, 157, calc(.08 + var(--scene-energy) * .2)), rgba(104, 219, 226, .035) 46%, transparent 68%);
+  box-shadow: 0 0 8rem rgba(220, 194, 137, calc(.06 + var(--scene-energy) * .17));
+}
+
+.observatoryProof .museumEffects {
+  mix-blend-mode: screen;
+}
+
 @media (max-width: 700px) {
   .caption { top: auto; bottom: 3.2rem; align-items: flex-end; }
   .caption > div { max-width: 17rem; }
