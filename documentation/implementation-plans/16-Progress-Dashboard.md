@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 5 is live at `835b8ac` with rotating geometry, stochastic windows, and preserved hover | Mark reviews east revision 5; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; corrected east revision 5 is live at `804d530` with rotating geometry, tower-only stochastic windows, and preserved hover | Mark reviews east revision 5; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does east-observatory revision 5 make the central instrument and city feel independently alive while preserving the approved spacing and hover effects? | Mark | `/projects/observatory-proof`; `835b8ac`; public quiet, rotating-orb/window-life, and attention captures pass | 2026-07-21 | Review revision 5 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does east-observatory revision 5 make the central instrument and city feel independently alive while preserving the approved spacing and hover effects? | Mark | `/projects/observatory-proof`; `804d530`; public tower-only window mask, rotating-orb life, and attention captures pass | 2026-07-21 | Review revision 5 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
