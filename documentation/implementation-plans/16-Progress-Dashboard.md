@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 4 separates crowded masses and strengthens no-input procedural life while preserving hover | Deploy east revision 4 for review; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; less-crowded east revision 4 is live at `235a8c8` with no-input procedural life and preserved hover | Mark reviews east revision 4; after acceptance complete `12F` and begin `12G` | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does east-observatory revision 4 now have enough negative space and visible no-input life while preserving the approved hover effects? | Mark | `/projects/observatory-proof`; local spacing, idle-particle/light, and attention captures pass | 2026-07-21 | Deploy and review revision 4 before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Does east-observatory revision 4 now have enough negative space and visible no-input life while preserving the approved hover effects? | Mark | `/projects/observatory-proof`; `235a8c8`; public spacing, idle-particle/light, and attention captures pass | 2026-07-21 | Review revision 4 before `ART-12G` changes the Museum |
 
 ## Blocked Or Paused
 
