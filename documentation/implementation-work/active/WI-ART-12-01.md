@@ -25,7 +25,7 @@ The accepted correction is decomposition-first. Structural anchors may remain sp
 - Planning source: [Pervasive Ambient Worlds Implementation Plan](../../implementation-plans/2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md).
 - Known-good point: Production `fce50af`; 48 files/193 tests, content, TypeScript, zero-error lint, 35-page build, and public 1912x948 Museum geometry/interaction checks passed.
 - Completed records: [ART-12A baseline](../../implementation-plans/2026-07-20-Museum-Ambient-Baseline.md) and [ART-12B atlas/ledger](../../implementation-plans/2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md).
-- Next exact action: Mark reviews [ART-12C asset briefs](../../implementation-plans/2026-07-20-Museum-Ambient-Asset-Briefs.md), especially the representative crop and `AB-MUS-01` through `AB-MUS-11`.
+- Next exact action: Mark reviews only the two-minute [Museum Dynamic Creative Review](../../implementation-plans/2026-07-20-Museum-Dynamic-Creative-Review.md) and answers its three decisions. The long asset brief remains an internal implementation reference.
 - After approval: begin `ART-12D` with only the west/lower ecology material stack, then perform alpha cleanup and prepare the `ART-12E` diagnostic contact sheet.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -82,4 +82,5 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - `ART-12A` audited live Production at `1912 x 948`: one-viewport document geometry, nine signal rectangles, contained LifeInbox depth, one Canvas, no console warning/error, source dimensions/checksum, and the ten-second idle limitation are recorded.
 - `ART-12B` maps `MUS-R01` through `MUS-R16`, their depth/occlusion order, independent temporal bands, direct/indirect participation, and the bounded west/lower proof crop.
 - `ART-12C` defines `AB-MUS-01` through `AB-MUS-11`, shared art direction, alpha/diagnostic rules, budgets, and explicit no-bulk-generation boundaries.
+- Mark clarified that the static checksum is not a creative-review target and that the technical documents are too long for review. A short three-decision creative approval surface now owns the gate; the static image is stated as fallback-only.
 - The work item is in-progress. No production asset or renderer change has begun; Mark's brief review is the current gate.

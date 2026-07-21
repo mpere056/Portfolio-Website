@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does the west/lower ecology crop and `AB-MUS-01` through `AB-MUS-11` express the right first material proof without broadening into a full-scene rebuild? | Mark | `2026-07-20-Museum-Ambient-Asset-Briefs.md` plus linked baseline/atlas | 2026-07-20 | Accept or revise briefs before any `ART-12D` production |
+| `WI-ART-12-01` | Approve the layered dynamic-world direction, first proof area, and motion intensity | Mark | Two-minute `2026-07-20-Museum-Dynamic-Creative-Review.md`; technical briefs are optional implementation detail | 2026-07-20 | Answer three decisions before any `ART-12D` production |
 
 ## Blocked Or Paused
 

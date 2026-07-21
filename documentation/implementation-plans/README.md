@@ -79,6 +79,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `2026-07-20-Museum-Ambient-Baseline.md` | Live `fce50af` geometry, source, interaction, semantic, fallback, idle, and runtime regression checksum | `ART-12A` complete execution artifact |
 | `2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md` | Source-normalized region atlas, depth/occlusion order, temporal bands, dead zones, and bounded proof crop | `ART-12B` complete execution artifact |
 | `2026-07-20-Museum-Ambient-Asset-Briefs.md` | Preserve/extract/manual/generate choices, palette, camera, alpha, maps, budgets, diagnostics, and eleven representative briefs | `ART-12C` review-ready execution artifact |
+| `2026-07-20-Museum-Dynamic-Creative-Review.md` | Two-minute plain-language summary of the dynamic result, first proof, motion character, exclusions, and three Mark decisions | Active `ART-12C` creative approval surface |
 | `2026-07-19-Museum-Dynamic-Scene-Packet.md` | Executable Museum layer inventory, driver matrix, renderer decision, choreography, calm/failure matrix, and route ledger | Implemented candidate packet |
 | `2026-07-19-LifeInbox-Dynamic-Scene-Packet.md` | Executable LifeInbox state/material inventory, renderer decision, calm/failure matrix, acceptance gates, and resume ledger | Implemented candidate packet |
 | `2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md` | Distinct Dreamlife refraction/recombination and Sudoku presence/version packets, truth correction, and resume ledger | Implemented candidate packet |

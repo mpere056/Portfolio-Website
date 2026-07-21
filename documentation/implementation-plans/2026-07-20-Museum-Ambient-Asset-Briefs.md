@@ -2,10 +2,12 @@
 
 Date: 2026-07-20
 Stage: `ART-12C`
-Status: authored and review-ready; no production asset generation authorized until creative review
+Status: technical production reference; creative approval is owned by the short Museum Dynamic Creative Review
 Representative crop: source `(0.000,0.390)-(0.430,1.000)`
 
 ## Production Intent
+
+Mark is not expected to review this full technical document. The concise approval surface is [Museum Dynamic Creative Review](2026-07-20-Museum-Dynamic-Creative-Review.md). This file exists so implementation can resume precisely after that creative decision.
 
 The first asset batch is a material-stack proof, not a replacement background. It must demonstrate that one ecology crop can become temporally credible while preserving the approved still checksum, project semantics, and one-viewport composition.
 
@@ -142,6 +144,6 @@ The sheet records provenance as `source extraction`, `manual`, `procedural`, or 
 
 ## Review Gate And Next Action
 
-`ART-12C` has produced a complete reviewable brief set. It is not creative acceptance by itself. Mark should review the representative crop and `AB-MUS-01` through `AB-MUS-11` before any image generation, extraction, or runtime integration begins.
+`ART-12C` has produced a complete technical brief set. It is not creative acceptance by itself. Mark reviews only the short [Museum Dynamic Creative Review](2026-07-20-Museum-Dynamic-Creative-Review.md); its three decisions accept or revise the direction represented by these implementation details.
 
 After that review, `ART-12D` produces only this batch, performs alpha cleanup, and prepares the diagnostic contact sheet. Compositor selection remains blocked until `ART-12E` accepts the real assets.

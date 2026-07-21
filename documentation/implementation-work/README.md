@@ -14,7 +14,7 @@ Phase 4's interaction candidate is live at `fce50af`. It passes the one-viewport
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | `ART-12A/B` complete; `ART-12C` defines the bounded crop and eleven review-ready briefs | Mark reviews the asset briefs; after acceptance, begin only the `ART-12D` representative stack | 2026-07-20 |
+| Now | `WI-ART-12-01` | in-progress | `ART-12` | `ART-12A/B` complete; technical briefs and a two-minute creative review are ready | Mark answers the three short creative decisions; after acceptance, begin only the `ART-12D` representative stack | 2026-07-20 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
