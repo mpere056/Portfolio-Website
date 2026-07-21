@@ -73,6 +73,10 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float leadTravel =');
     expect(source).toContain('float copperTravel =');
     expect(source).toContain('float ivoryTravel =');
+    expect(source).toContain('float liquidBolus(');
+    expect(source).toContain('float leadBolus = liquidBolus(');
+    expect(source).toContain('float copperBolus = liquidBolus(');
+    expect(source).toContain('float ivoryBolus = liquidBolus(');
     expect(source).not.toContain('<animateMotion');
     expect(source).not.toContain('observatoryFlowTracer');
   });
