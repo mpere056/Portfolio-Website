@@ -19,4 +19,5 @@ The structure itself does not wobble. Reduced motion removes WebGL and preserves
 - Revision 1 failed creative review because the dominant crop still read as static. A six-second stage comparison changed only about `0.3%` of color channels by more than four levels.
 - Revision 2 adds a separate SVG/DOM kinetic layer: three unequal optical rotations, animated current dashes, three traveling signal packets, repeated lens wavefronts, a cross-architecture light sweep, and independently translating near/far fog. WebGL continues to own sampled mechanism motion, refraction, fluid body light, and particles beneath it.
 - A `4.2s` revision-2 stage comparison changes about `13.6%` of color channels by more than four levels, with a mean channel change of about `2.26/255`. The two sampled frames retain the same fixed architectural silhouette.
+- Production commit `154d331` passes the same no-attention check at `1912 x 948`: a `4.2s` comparison changes about `16.6%` of stage channels by more than four levels, with no viewport overflow or console errors.
 - Creative review remains open; this route does not yet authorize full east-side integration.

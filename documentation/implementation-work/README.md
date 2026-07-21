@@ -14,7 +14,7 @@ Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in revie
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | `ART-12A-E` complete; west ecology accepted; east observatory revision 2 passes a measured visible-motion gate | Deploy observatory revision 2 for Mark review; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; east observatory revision 2 is live at `154d331` and passes a measured visible-motion gate | Mark reviews the live proof; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
