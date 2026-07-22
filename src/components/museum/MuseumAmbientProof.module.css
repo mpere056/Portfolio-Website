@@ -218,6 +218,138 @@
   filter: brightness(1.4) drop-shadow(0 0 12px rgba(162, 235, 235, .36));
 }
 
+.observatoryTuning {
+  position: fixed;
+  z-index: 10;
+  top: clamp(5.4rem, 10vh, 7rem);
+  right: clamp(.7rem, 2vw, 1.5rem);
+  width: min(19.5rem, calc(100vw - 1.4rem));
+  max-height: calc(100svh - 7rem);
+  overflow: hidden;
+  color: rgba(225, 240, 238, .78);
+  border: 1px solid rgba(148, 210, 210, .18);
+  border-radius: .8rem;
+  background:
+    linear-gradient(145deg, rgba(16, 29, 31, .9), rgba(5, 10, 12, .94)),
+    rgba(3, 8, 9, .94);
+  box-shadow: 0 1.25rem 4rem rgba(0, 0, 0, .44), inset 0 1px rgba(255, 255, 255, .035);
+  backdrop-filter: blur(18px) saturate(1.2);
+  font-family: var(--font-inter), sans-serif;
+}
+
+.observatoryTuning > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.55rem;
+  padding: 0 .85rem;
+  cursor: pointer;
+  color: rgba(208, 235, 233, .62);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .17em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.observatoryTuning > summary::-webkit-details-marker { display: none; }
+.observatoryTuning > summary span:last-child { color: rgba(120, 207, 210, .7); }
+
+.observatoryTuningBody {
+  display: grid;
+  gap: .68rem;
+  max-height: calc(100svh - 10.2rem);
+  padding: .25rem .85rem .9rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(115, 194, 197, .28) transparent;
+  scrollbar-width: thin;
+}
+
+.observatoryColorControl,
+.observatoryRangeControl {
+  display: grid;
+  gap: .32rem;
+  color: rgba(212, 228, 226, .61);
+  font-size: .66rem;
+  letter-spacing: .03em;
+}
+
+.observatoryColorControl,
+.observatoryRangeControl > span,
+.observatoryTuningFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.observatoryColorValue {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.observatoryColorControl output,
+.observatoryRangeControl output {
+  color: rgba(237, 246, 244, .86);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .62rem;
+  letter-spacing: 0;
+}
+
+.observatoryColorControl input {
+  width: 1.65rem;
+  height: 1.1rem;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(180, 226, 225, .28);
+  border-radius: .25rem;
+  background: transparent;
+}
+
+.observatoryColorControl input::-webkit-color-swatch-wrapper { padding: 0; }
+.observatoryColorControl input::-webkit-color-swatch { border: 0; }
+
+.observatoryRangeControl input {
+  width: 100%;
+  height: .75rem;
+  margin: 0;
+  cursor: ew-resize;
+  accent-color: #73cfd1;
+}
+
+.observatoryTuningFooter {
+  margin-top: .15rem;
+  padding-top: .72rem;
+  border-top: 1px solid rgba(153, 204, 204, .11);
+}
+
+.observatoryTuningFooter p {
+  margin: 0;
+  color: rgba(184, 209, 207, .42);
+  font-size: .56rem;
+  letter-spacing: .04em;
+}
+
+.observatoryTuningFooter button {
+  padding: .38rem .55rem;
+  cursor: pointer;
+  color: rgba(221, 238, 236, .72);
+  border: 1px solid rgba(145, 207, 207, .18);
+  border-radius: .35rem;
+  background: rgba(113, 190, 193, .06);
+  font: inherit;
+  font-size: .56rem;
+}
+
+.observatoryTuningFooter button:hover {
+  color: #eef9f7;
+  border-color: rgba(143, 222, 221, .38);
+  background: rgba(113, 190, 193, .12);
+}
+
 @keyframes observatoryOpticalSpin {
   to { transform: rotate(360deg); }
 }
@@ -252,4 +384,11 @@
   .caption > div { max-width: 17rem; }
   .caption h1 { font-size: 1rem; }
   .legend { display: none; }
+  .observatoryTuning {
+    top: auto;
+    right: .65rem;
+    bottom: .65rem;
+    max-height: min(25rem, calc(100svh - 1.3rem));
+  }
+  .observatoryTuningBody { max-height: min(21rem, calc(100svh - 4.5rem)); }
 }

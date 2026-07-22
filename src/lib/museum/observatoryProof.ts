@@ -8,16 +8,37 @@ export const MUSEUM_OBSERVATORY_FLOW_TIMING = {
   archCrossingSeconds: 7,
 } as const;
 
-export const MUSEUM_OBSERVATORY_FLOW_CONTROLS = {
+export interface MuseumObservatoryFlowTuning {
+  color: string;
+  horizontalSizing: number;
+  verticalSizing: number;
+  wispDensity: number;
+  wispSpeed: number;
+  wispIntensity: number;
+  flowSpeed: number;
+  flowStrength: number;
+  fogIntensity: number;
+  fogScale: number;
+  fogFallSpeed: number;
+  decay: number;
+  falloffStart: number;
+}
+
+export const MUSEUM_OBSERVATORY_FLOW_CONTROLS: MuseumObservatoryFlowTuning = {
+  color: '#ffffff',
+  horizontalSizing: 1,
+  verticalSizing: 1,
+  wispDensity: 0.76,
+  wispSpeed: 1.08,
+  wispIntensity: 1.92,
   flowSpeed: 2.15,
   flowStrength: 1.24,
   fogIntensity: 0.54,
   fogScale: 5.2,
   fogFallSpeed: 0.66,
-  wispDensity: 0.76,
-  wispSpeed: 1.08,
-  wispIntensity: 1.92,
-} as const;
+  decay: 2,
+  falloffStart: 1,
+};
 
 export const MUSEUM_OBSERVATORY_PERFORMANCE = {
   renderDpr: 0.9,

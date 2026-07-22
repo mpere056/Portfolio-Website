@@ -21,12 +21,60 @@ import {
   MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
+  type MuseumObservatoryFlowTuning,
 } from '@/lib/museum/observatoryProof';
 import { toProofAttentionPoint } from '@/lib/museum/ambientProof';
 import { getMuseumSceneFrame, type MuseumScenePoint } from '@/lib/museum/scene';
 import MuseumParticleField from './MuseumParticleField';
 import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumAmbientProof.module.css';
+
+const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-flow-tuning-v1';
+
+type NumericFlowTuningKey = Exclude<keyof MuseumObservatoryFlowTuning, 'color'>;
+
+const FLOW_TUNING_CONTROLS: ReadonlyArray<{
+  key: NumericFlowTuningKey;
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  precision: number;
+}> = [
+  { key: 'horizontalSizing', label: 'Horizontal sizing', min: 0.2, max: 2.5, step: 0.01, precision: 2 },
+  { key: 'verticalSizing', label: 'Vertical sizing', min: 0.4, max: 4, step: 0.05, precision: 2 },
+  { key: 'wispDensity', label: 'Wisp density', min: 0, max: 1, step: 0.01, precision: 2 },
+  { key: 'wispSpeed', label: 'Wisp speed', min: 0, max: 3, step: 0.01, precision: 2 },
+  { key: 'wispIntensity', label: 'Wisp intensity', min: 0, max: 6, step: 0.05, precision: 2 },
+  { key: 'flowSpeed', label: 'Flow speed', min: 0, max: 4, step: 0.01, precision: 2 },
+  { key: 'flowStrength', label: 'Flow strength', min: 0, max: 2.5, step: 0.01, precision: 2 },
+  { key: 'fogIntensity', label: 'Fog intensity', min: 0, max: 1.5, step: 0.01, precision: 2 },
+  { key: 'fogScale', label: 'Fog scale', min: 1, max: 12, step: 0.1, precision: 1 },
+  { key: 'fogFallSpeed', label: 'Fog fall speed', min: 0, max: 2, step: 0.01, precision: 2 },
+  { key: 'decay', label: 'Decay', min: 0.5, max: 4, step: 0.01, precision: 2 },
+  { key: 'falloffStart', label: 'Falloff start', min: 0.25, max: 3, step: 0.01, precision: 2 },
+];
+
+function readStoredFlowTuning(): MuseumObservatoryFlowTuning {
+  const defaults = { ...MUSEUM_OBSERVATORY_FLOW_CONTROLS };
+  try {
+    const stored = window.localStorage.getItem(OBSERVATORY_TUNING_STORAGE_KEY);
+    if (!stored) return defaults;
+    const parsed = JSON.parse(stored) as Partial<MuseumObservatoryFlowTuning>;
+    if (typeof parsed.color === 'string' && /^#[0-9a-f]{6}$/i.test(parsed.color)) {
+      defaults.color = parsed.color;
+    }
+    FLOW_TUNING_CONTROLS.forEach(({ key, min, max }) => {
+      const value = parsed[key];
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        defaults[key] = THREE.MathUtils.clamp(value, min, max);
+      }
+    });
+  } catch {
+    return defaults;
+  }
+  return defaults;
+}
 
 const PLANE_VERTEX = /* glsl */`
   varying vec2 vUv;
@@ -89,6 +137,20 @@ const NOISE_GLSL = /* glsl */`
 `;
 
 const LASER_FLOW_GLSL = /* glsl */`
+  uniform vec3 uFlowColor;
+  uniform float uHorizontalSizing;
+  uniform float uVerticalSizing;
+  uniform float uWispDensity;
+  uniform float uWispSpeed;
+  uniform float uWispIntensity;
+  uniform float uFlowSpeed;
+  uniform float uFlowStrength;
+  uniform float uFogIntensity;
+  uniform float uFogScale;
+  uniform float uFogFallSpeed;
+  uniform float uDecay;
+  uniform float uFalloffStart;
+
   float tri01(float value) {
     float phase = fract(value);
     return 1.0 - abs(phase * 2.0 - 1.0);
@@ -104,18 +166,18 @@ const LASER_FLOW_GLSL = /* glsl */`
     float flow = pow(tri01((x - time * rate) / 0.31 + phase), 1.5);
     return mix(
       0.12,
-      ${String(1 + MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength)},
+      1.0 + uFlowStrength,
       smoothstep(0.08, 0.92, flow)
     );
   }
 
   float movingWisp(float x, float time, float phase, float seed) {
-    float coordinate = (x - time * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed)} + phase) * 6.4;
+    float coordinate = (x - time * uWispSpeed + phase) * (6.4 / max(uHorizontalSizing, 0.1));
     float cell = floor(coordinate);
     float local = fract(coordinate);
     float cellSeed = hash21(vec2(cell + seed * 13.7, seed * 7.9));
     float length = mix(0.2, 0.68, cellSeed);
-    float present = step(cellSeed, ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispDensity)});
+    float present = step(cellSeed, uWispDensity);
     return segmentGate(local, length) * present;
   }
 
@@ -133,14 +195,14 @@ const LASER_FLOW_GLSL = /* glsl */`
 
   float advectedFlowFog(vec2 uv, float center, float time, float phase) {
     vec2 fogUv = vec2(
-      (uv.x - time * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogFallSpeed)}) * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale)},
-      (uv.y - center) * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale * 5.0)}.0
+      (uv.x - time * uFogFallSpeed) * uFogScale / max(uHorizontalSizing, 0.1),
+      (uv.y - center) * uFogScale * 5.0 / max(uVerticalSizing, 0.1)
     );
     float warp = flowFbm(fogUv * 0.48 + vec2(phase * 3.7, time * 0.11));
     float crossWarp = valueNoise(fogUv * 0.29 + vec2(-phase * 2.9, -time * 0.08));
     float fog = flowFbm(fogUv + vec2(warp, crossWarp) * 0.82 + phase * 5.0);
-    float beamMask = exp(-abs(uv.y - center) * 17.0);
-    return smoothstep(0.34, 0.76, fog) * beamMask * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity)};
+    float beamMask = exp(-abs(uv.y - center) * 17.0 * max(uFalloffStart, 0.05) / max(uVerticalSizing, 0.1));
+    return smoothstep(0.34, 0.76, fog) * beamMask * uFogIntensity;
   }
 `;
 
@@ -345,8 +407,9 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
   ${LASER_FLOW_GLSL}
 
   float flowLine(float y, float center, float width) {
-    float glow = width / (abs(y - center) + width);
-    return glow * glow;
+    float tunedWidth = width * max(uVerticalSizing, 0.1);
+    float glow = tunedWidth / (abs(y - center) * max(uFalloffStart, 0.05) + tunedWidth);
+    return pow(max(glow, 0.0), max(uDecay, 0.1));
   }
 
   float directionalPulse(float x, float time, float speed, float phase) {
@@ -357,6 +420,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
   }
 
   float liquidBolus(float x, float time, float speed, float phase, float width) {
+    width *= max(uHorizontalSizing, 0.1);
     float center = fract(time * speed + phase);
     float offset = fract(x - center + 0.5) - 0.5;
     float pressure = exp(-pow(offset / width, 2.0));
@@ -370,7 +434,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     vec3 color = vec3(0.0);
     float alpha = 0.0;
 
-    float copperRate = ${String((1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds) * MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed)};
+    float copperRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds)} * uFlowSpeed;
     float copperTravel = vUv.x - uTime * copperRate;
     float copperBolus = liquidBolus(vUv.x, uTime, copperRate, 0.18, 0.11);
     float copperBodyY = 0.895 - vUv.x * 0.115
@@ -406,12 +470,12 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       float wisp = movingWisp(vUv.x, uTime, fi * 0.071, fi + 3.0);
       vec3 tint = mix(vec3(0.72, 0.31, 0.21), vec3(0.78, 0.68, 0.49), smoothstep(3.0, 8.0, fi));
       float copperEnergy = (0.15 + copperBolus * 1.22 + materialWave * 0.22 + travelingShimmer * 0.72 + packet * 0.92)
-        * flowModulation + wisp * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity)};
+        * flowModulation + wisp * uWispIntensity;
       color += tint * line * (copperEnergy + attention * 0.28) * edgeFade;
       alpha += line * (0.07 + copperEnergy * 0.34) * edgeFade;
     }
 
-    float ivoryRate = ${String((1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds) * MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed)};
+    float ivoryRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds)} * uFlowSpeed;
     float ivoryTravel = vUv.x - uTime * ivoryRate;
     float ivoryBolus = liquidBolus(vUv.x, uTime, ivoryRate, 0.57, 0.1);
     float ivoryBodyY = 0.615 - vUv.x * 0.305
@@ -447,12 +511,12 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       float wisp = movingWisp(vUv.x, uTime, fi * 0.053 + 0.31, fi + 17.0);
       vec3 tint = mix(vec3(0.28, 0.63, 0.68), vec3(0.78, 0.74, 0.62), smoothstep(2.0, 10.0, fi));
       float ivoryEnergy = (0.13 + ivoryBolus * 0.94 + materialWave * 0.2 + travelingShimmer * 0.62 + packet * 0.78)
-        * flowModulation + wisp * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity * 0.82)};
+        * flowModulation + wisp * uWispIntensity * 0.82;
       color += tint * line * (ivoryEnergy + attention * 0.22) * edgeFade;
       alpha += line * (0.055 + ivoryEnergy * 0.32) * edgeFade;
     }
 
-    float archRate = ${String((1 / MUSEUM_OBSERVATORY_FLOW_TIMING.archCrossingSeconds) * MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed)};
+    float archRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.archCrossingSeconds)} * uFlowSpeed;
     float archTravel = vUv.x - uTime * archRate;
     float archBase = 0.965 - vUv.x * 0.14;
     for (int i = 0; i < 4; i++) {
@@ -467,6 +531,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       alpha += line * (0.055 + archEnergy * 0.31) * edgeFade;
     }
 
+    color *= mix(vec3(1.0), uFlowColor, 0.42);
     float luminance = max(color.r, max(color.g, color.b));
     gl_FragColor = vec4(color * 1.22, clamp(max(alpha * 2.2, luminance * 0.64), 0.0, 0.82));
   }
@@ -482,8 +547,9 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
   ${LASER_FLOW_GLSL}
 
   float flowLine(float y, float center, float width) {
-    float glow = width / (abs(y - center) + width);
-    return glow * glow;
+    float tunedWidth = width * max(uVerticalSizing, 0.1);
+    float glow = tunedWidth / (abs(y - center) * max(uFalloffStart, 0.05) + tunedWidth);
+    return pow(max(glow, 0.0), max(uDecay, 0.1));
   }
 
   float directionalPulse(float x, float time, float speed, float phase) {
@@ -494,6 +560,7 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
   }
 
   float liquidBolus(float x, float time, float speed, float phase, float width) {
+    width *= max(uHorizontalSizing, 0.1);
     float center = fract(time * speed + phase);
     float offset = fract(x - center + 0.5) - 0.5;
     float pressure = exp(-pow(offset / width, 2.0));
@@ -504,7 +571,7 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
   void main() {
     float edgeFade = smoothstep(0.015, 0.12, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
     float attention = exp(-distance(vUv, uPointer) * 7.8) * uAttention;
-    float leadRate = ${String((1 / MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds) * MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed)};
+    float leadRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds)} * uFlowSpeed;
     float leadTravel = vUv.x - uTime * leadRate;
     float leadBolus = liquidBolus(vUv.x, uTime, leadRate, 0.08, 0.14);
     float bodyY = 0.81 - vUv.x * 0.355
@@ -545,12 +612,12 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
       float knotSuppression = 1.0 - exp(-pow((vUv.x - 0.55) * 18.0, 2.0)) * 0.72;
       float leadEnergy = (0.16 * knotSuppression + leadBolus * 1.42 + materialWave * 0.24
         + travelingShimmer * 0.82 + packet * (1.15 + attention * 0.82)) * flowModulation
-        + wisp * ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity)};
+        + wisp * uWispIntensity;
       color += tint * line * (leadEnergy + attention * 0.18) * edgeFade;
       alpha += line * (0.07 + leadEnergy * 0.38 + attention * 0.08) * edgeFade;
     }
 
-    float coreSpeed = ${String((1 / MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds) * MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed)} + attention * 0.095;
+    float coreSpeed = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds)} * uFlowSpeed + attention * 0.095;
     float coreTravel = vUv.x - uTime * coreSpeed;
     float coreWave = sin(coreTravel * 11.0) * (0.022 + attention * 0.014);
     float coreY = bodyY + coreWave;
@@ -579,6 +646,7 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
     color += vec3(0.9, 0.69, 0.36) * (spectrumLine * (0.3 + spectrumPacket * 0.82) + spike * 0.62) * (0.7 + attention * 0.35);
     alpha += spectrumLine * (0.1 + spectrumPacket * 0.28) + spike * 0.22;
 
+    color *= mix(vec3(1.0), uFlowColor, 0.42);
     float luminance = max(color.r, max(color.g, color.b));
     gl_FragColor = vec4(color * 1.18, clamp(max(alpha * 1.8, luminance * 0.58), 0.0, 0.96));
   }
@@ -766,6 +834,7 @@ function FullPlane({
   texture,
   bounds = FULL_PLANE_BOUNDS,
   blending = THREE.NormalBlending,
+  flowTuning,
 }: {
   fragmentShader: string;
   order: number;
@@ -774,6 +843,7 @@ function FullPlane({
   texture?: THREE.Texture;
   bounds?: PlaneBounds;
   blending?: THREE.Blending;
+  flowTuning?: MuseumObservatoryFlowTuning;
 }) {
   const pointerPresence = usePointerPresence(pointerActive);
   const [minimumX, minimumY, maximumX, maximumY] = bounds;
@@ -787,7 +857,36 @@ function FullPlane({
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
     uUvBounds: { value: new THREE.Vector4(minimumX, minimumY, maximumX, maximumY) },
+    uFlowColor: { value: new THREE.Color(MUSEUM_OBSERVATORY_FLOW_CONTROLS.color) },
+    uHorizontalSizing: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.horizontalSizing },
+    uVerticalSizing: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.verticalSizing },
+    uWispDensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispDensity },
+    uWispSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed },
+    uWispIntensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity },
+    uFlowSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed },
+    uFlowStrength: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength },
+    uFogIntensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity },
+    uFogScale: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale },
+    uFogFallSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogFallSpeed },
+    uDecay: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.decay },
+    uFalloffStart: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.falloffStart },
   }));
+  useEffect(() => {
+    if (!flowTuning) return;
+    uniforms.uFlowColor.value.set(flowTuning.color);
+    uniforms.uHorizontalSizing.value = flowTuning.horizontalSizing;
+    uniforms.uVerticalSizing.value = flowTuning.verticalSizing;
+    uniforms.uWispDensity.value = flowTuning.wispDensity;
+    uniforms.uWispSpeed.value = flowTuning.wispSpeed;
+    uniforms.uWispIntensity.value = flowTuning.wispIntensity;
+    uniforms.uFlowSpeed.value = flowTuning.flowSpeed;
+    uniforms.uFlowStrength.value = flowTuning.flowStrength;
+    uniforms.uFogIntensity.value = flowTuning.fogIntensity;
+    uniforms.uFogScale.value = flowTuning.fogScale;
+    uniforms.uFogFallSpeed.value = flowTuning.fogFallSpeed;
+    uniforms.uDecay.value = flowTuning.decay;
+    uniforms.uFalloffStart.value = flowTuning.falloffStart;
+  }, [flowTuning, uniforms]);
   useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
@@ -954,7 +1053,15 @@ function ObservatoryOrb({
   );
 }
 
-function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boolean; pointerTarget: PointerTarget }) {
+function ObservatoryScene({
+  pointerActive,
+  pointerTarget,
+  flowTuning,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+  flowTuning: MuseumObservatoryFlowTuning;
+}) {
   const textures = useTexture([
     MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
     MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory,
@@ -966,13 +1073,13 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
   return (
     <>
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
-      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.far} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.portal} />
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
@@ -1054,11 +1161,85 @@ function StaticFallback() {
   );
 }
 
+function ObservatoryTuningPanel({
+  tuning,
+  onChange,
+  onReset,
+}: {
+  tuning: MuseumObservatoryFlowTuning;
+  onChange: (next: MuseumObservatoryFlowTuning) => void;
+  onReset: () => void;
+}) {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <details
+      className={styles.observatoryTuning}
+      data-testid="observatory-flow-tuning"
+      open={open}
+      onToggle={event => setOpen(event.currentTarget.open)}
+    >
+      <summary>
+        <span>Flow controls</span>
+        <span>{open ? 'Close' : 'Tune'}</span>
+      </summary>
+      <div className={styles.observatoryTuningBody}>
+        <label className={styles.observatoryColorControl} htmlFor="observatory-flow-color">
+          <span>Color</span>
+          <span className={styles.observatoryColorValue}>
+            <input
+              id="observatory-flow-color"
+              aria-label="Flow color"
+              type="color"
+              value={tuning.color}
+              onChange={event => onChange({ ...tuning, color: event.target.value })}
+            />
+            <output>{tuning.color}</output>
+          </span>
+        </label>
+        {FLOW_TUNING_CONTROLS.map(control => (
+          <label
+            className={styles.observatoryRangeControl}
+            htmlFor={`observatory-${control.key}`}
+            key={control.key}
+          >
+            <span>
+              {control.label}
+              <output>{tuning[control.key].toFixed(control.precision)}</output>
+            </span>
+            <input
+              id={`observatory-${control.key}`}
+              aria-label={control.label}
+              type="range"
+              min={control.min}
+              max={control.max}
+              step={control.step}
+              value={tuning[control.key]}
+              onChange={event => onChange({
+                ...tuning,
+                [control.key]: Number(event.target.value),
+              })}
+            />
+          </label>
+        ))}
+        <div className={styles.observatoryTuningFooter}>
+          <p>Values save in this browser.</p>
+          <button type="button" onClick={onReset}>Reset defaults</button>
+        </div>
+      </div>
+    </details>
+  );
+}
+
 export default function MuseumObservatoryProof() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
   const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
+  const [flowTuning, setFlowTuning] = useState<MuseumObservatoryFlowTuning>({
+    ...MUSEUM_OBSERVATORY_FLOW_CONTROLS,
+  });
+  const [tuningReady, setTuningReady] = useState(false);
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
   const pointerStateFrame = useRef<number | null>(null);
   const pendingScenePointer = useRef<MuseumScenePoint>({ x: 0.5, y: 0.5 });
@@ -1112,6 +1293,23 @@ export default function MuseumObservatoryProof() {
     };
   }, []);
 
+  useEffect(() => {
+    setFlowTuning(readStoredFlowTuning());
+    setTuningReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!tuningReady) return;
+    const save = window.setTimeout(() => {
+      try {
+        window.localStorage.setItem(OBSERVATORY_TUNING_STORAGE_KEY, JSON.stringify(flowTuning));
+      } catch {
+        // Private browsing policies can disable storage; live tuning should still work.
+      }
+    }, 180);
+    return () => window.clearTimeout(save);
+  }, [flowTuning, tuningReady]);
+
   useEffect(() => () => {
     if (pointerStateFrame.current !== null) {
       window.cancelAnimationFrame(pointerStateFrame.current);
@@ -1158,7 +1356,11 @@ export default function MuseumObservatoryProof() {
             >
               <FrameScheduler enabled={visible} attentionActive={pointerActive} />
               <Suspense fallback={null}>
-                <ObservatoryScene pointerActive={pointerActive} pointerTarget={pointerTarget} />
+                <ObservatoryScene
+                  pointerActive={pointerActive}
+                  pointerTarget={pointerTarget}
+                  flowTuning={flowTuning}
+                />
               </Suspense>
             </Canvas>
           ) : null}
@@ -1189,6 +1391,18 @@ export default function MuseumObservatoryProof() {
         </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>
+      <ObservatoryTuningPanel
+        tuning={flowTuning}
+        onChange={setFlowTuning}
+        onReset={() => {
+          try {
+            window.localStorage.removeItem(OBSERVATORY_TUNING_STORAGE_KEY);
+          } catch {
+            // Keep reset functional even when browser storage is unavailable.
+          }
+          setFlowTuning({ ...MUSEUM_OBSERVATORY_FLOW_CONTROLS });
+        }}
+      />
       <header className={styles.caption}>
         <Link href="/projects">Return to the Museum</Link>
         <div>

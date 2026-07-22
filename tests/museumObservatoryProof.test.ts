@@ -70,6 +70,21 @@ describe('Museum observatory compositor proof', () => {
     expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed).toBeGreaterThan(1);
     expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity).toBeGreaterThan(1);
     expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity).toBeGreaterThan(0);
+    expect(Object.keys(MUSEUM_OBSERVATORY_FLOW_CONTROLS)).toEqual([
+      'color',
+      'horizontalSizing',
+      'verticalSizing',
+      'wispDensity',
+      'wispSpeed',
+      'wispIntensity',
+      'flowSpeed',
+      'flowStrength',
+      'fogIntensity',
+      'fogScale',
+      'fogFallSpeed',
+      'decay',
+      'falloffStart',
+    ]);
   });
 
   it('bounds continuous rendering work without freezing the ambient scene', () => {
@@ -105,6 +120,15 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float advectedFlowFog(');
     expect(source).toContain('float flowFbm(');
     expect(source).toContain('uniform vec4 uUvBounds;');
+    expect(source).toContain('uniform float uHorizontalSizing;');
+    expect(source).toContain('uniform float uVerticalSizing;');
+    expect(source).toContain('uniform float uWispDensity;');
+    expect(source).toContain('uniform float uFlowSpeed;');
+    expect(source).toContain('uniform float uDecay;');
+    expect(source).toContain('uniform float uFalloffStart;');
+    expect(source).toContain('museum-observatory-flow-tuning-v1');
+    expect(source).toContain('data-testid="observatory-flow-tuning"');
+    expect(source).toContain('Values save in this browser.');
     expect(source).toContain("frameloop={visible ? 'demand' : 'never'}");
     expect(source).not.toContain('attribute.needsUpdate = true');
     expect(source).not.toContain('const ATMOSPHERE_FRAGMENT');
