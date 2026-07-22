@@ -119,6 +119,9 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float movingWisp(');
     expect(source).toContain('float advectedFlowFog(');
     expect(source).toContain('float flowFbm(');
+    expect(source).toContain('float flowProfile(');
+    expect(source).toContain('float flowClock = uTime * uFlowSpeed;');
+    expect(source).toContain('float strengthGain = uFlowStrength /');
     expect(source).toContain('uniform vec4 uUvBounds;');
     expect(source).toContain('uniform float uHorizontalSizing;');
     expect(source).toContain('uniform float uVerticalSizing;');
@@ -128,6 +131,9 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('uniform float uFalloffStart;');
     expect(source).toContain('museum-observatory-flow-tuning-v1');
     expect(source).toContain('data-testid="observatory-flow-tuning"');
+    expect(source).toContain('materialRef.current.uniformsNeedUpdate = true;');
+    expect(source).toContain("buildFlowTuningPreset('min')");
+    expect(source).toContain("buildFlowTuningPreset('max')");
     expect(source).toContain('Values save in this browser.');
     expect(source).toContain("frameloop={visible ? 'demand' : 'never'}");
     expect(source).not.toContain('attribute.needsUpdate = true');

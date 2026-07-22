@@ -321,9 +321,18 @@
 }
 
 .observatoryTuningFooter {
+  align-items: flex-start;
+  flex-direction: column;
   margin-top: .15rem;
   padding-top: .72rem;
   border-top: 1px solid rgba(153, 204, 204, .11);
+}
+
+.observatoryTuningActions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .35rem;
+  width: 100%;
 }
 
 .observatoryTuningFooter p {
@@ -334,6 +343,7 @@
 }
 
 .observatoryTuningFooter button {
+  min-width: 0;
   padding: .38rem .55rem;
   cursor: pointer;
   color: rgba(221, 238, 236, .72);

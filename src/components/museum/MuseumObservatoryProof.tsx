@@ -76,6 +76,14 @@ function readStoredFlowTuning(): MuseumObservatoryFlowTuning {
   return defaults;
 }
 
+function buildFlowTuningPreset(edge: 'min' | 'max'): MuseumObservatoryFlowTuning {
+  const preset = { ...MUSEUM_OBSERVATORY_FLOW_CONTROLS };
+  FLOW_TUNING_CONTROLS.forEach(control => {
+    preset[control.key] = control[edge];
+  });
+  return preset;
+}
+
 const PLANE_VERTEX = /* glsl */`
   varying vec2 vUv;
   uniform vec4 uUvBounds;
@@ -163,7 +171,7 @@ const LASER_FLOW_GLSL = /* glsl */`
   }
 
   float laserFlowModulation(float x, float time, float rate, float phase) {
-    float flow = pow(tri01((x - time * rate) / 0.31 + phase), 1.5);
+    float flow = pow(tri01((x - time * rate) / (0.31 * max(uHorizontalSizing, 0.1)) + phase), 1.5);
     return mix(
       0.12,
       1.0 + uFlowStrength,
@@ -203,6 +211,13 @@ const LASER_FLOW_GLSL = /* glsl */`
     float fog = flowFbm(fogUv + vec2(warp, crossWarp) * 0.82 + phase * 5.0);
     float beamMask = exp(-abs(uv.y - center) * 17.0 * max(uFalloffStart, 0.05) / max(uVerticalSizing, 0.1));
     return smoothstep(0.34, 0.76, fog) * beamMask * uFogIntensity;
+  }
+
+  float flowProfile(float y, float center, float density) {
+    float distanceFromFlow = abs(y - center)
+      * max(uFalloffStart, 0.05)
+      / max(uVerticalSizing, 0.1);
+    return pow(exp(-distanceFromFlow * density), max(uDecay * 0.5, 0.1));
   }
 `;
 
@@ -431,23 +446,24 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
   void main() {
     float edgeFade = smoothstep(0.01, 0.13, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
     float attention = exp(-distance(vUv, uPointer) * 7.5) * uAttention;
+    float flowClock = uTime * uFlowSpeed;
     vec3 color = vec3(0.0);
     float alpha = 0.0;
 
-    float copperRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds)} * uFlowSpeed;
-    float copperTravel = vUv.x - uTime * copperRate;
-    float copperBolus = liquidBolus(vUv.x, uTime, copperRate, 0.18, 0.11);
+    float copperRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds)};
+    float copperTravel = vUv.x - flowClock * copperRate;
+    float copperBolus = liquidBolus(vUv.x, flowClock, copperRate, 0.18, 0.11);
     float copperBodyY = 0.895 - vUv.x * 0.115
       + sin(copperTravel * 6.28318) * (0.008 + copperBolus * 0.022);
-    float copperNoise = flowFbm(vec2(copperTravel * 7.0, vUv.y * 18.0 + uTime * 0.08));
-    float copperAurora = exp(-abs(vUv.y - copperBodyY) * 31.0)
+    float copperNoise = flowFbm(vec2(copperTravel * 7.0, vUv.y * 18.0 + flowClock * 0.08));
+    float copperAurora = flowProfile(vUv.y, copperBodyY, 31.0)
       * smoothstep(0.34, 0.84, copperNoise) * edgeFade;
-    float copperFront = directionalPulse(vUv.x, uTime, copperRate, 0.19);
-    float copperCorridor = exp(-abs(vUv.y - copperBodyY) * 42.0) * edgeFade;
+    float copperFront = directionalPulse(vUv.x, flowClock, copperRate, 0.19);
+    float copperCorridor = flowProfile(vUv.y, copperBodyY, 42.0) * edgeFade;
     color += mix(vec3(0.38, 0.13, 0.09), vec3(0.86, 0.46, 0.27), copperNoise)
       * copperAurora * (0.16 + copperFront * 0.72);
     color += vec3(0.92, 0.47, 0.24) * copperCorridor * copperFront * 0.72;
-    float copperPressure = exp(-abs(vUv.y - copperBodyY) * 23.0) * copperBolus * edgeFade;
+    float copperPressure = flowProfile(vUv.y, copperBodyY, 23.0) * copperBolus * edgeFade;
     float copperFog = advectedFlowFog(vUv, copperBodyY, uTime, 0.17) * edgeFade;
     color += mix(vec3(0.74, 0.24, 0.15), vec3(1.0, 0.68, 0.36), copperNoise) * copperPressure * 0.46;
     color += vec3(0.72, 0.28, 0.16) * copperFog * 0.58;
@@ -460,13 +476,13 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       float fi = float(i);
       float phase = fi * 0.83;
       float weave = sin(copperTravel * (14.0 + fi * 0.18) + phase) * (0.018 + copperBolus * 0.021 + attention * 0.01)
-        + sin((vUv.x + uTime * 0.065) * 35.0 - phase * 1.7) * 0.006;
+        + sin((vUv.x + flowClock * 0.065) * 35.0 - phase * 1.7) * 0.006;
       float center = copperBodyY + weave + (fi - 4.0) * 0.0039 * (1.0 + copperBolus * 0.72);
       float materialWave = pow(0.5 + 0.5 * sin(copperTravel * 18.8496 + phase * 0.72), 2.0);
       float line = flowLine(vUv.y, center, (0.00082 + materialWave * 0.00044 + copperBolus * 0.00125) + attention * 0.00058);
-      float packet = directionalPulse(vUv.x, uTime, copperRate + fi * 0.003 + attention * 0.035, fi * 0.117);
+      float packet = directionalPulse(vUv.x, flowClock, copperRate + fi * 0.003 + attention * 0.035, fi * 0.117);
       float travelingShimmer = pow(0.5 + 0.5 * sin(copperTravel * 18.8496 + phase), 3.0);
-      float flowModulation = laserFlowModulation(vUv.x, uTime, copperRate, fi * 0.09);
+      float flowModulation = laserFlowModulation(vUv.x, flowClock, copperRate, fi * 0.09);
       float wisp = movingWisp(vUv.x, uTime, fi * 0.071, fi + 3.0);
       vec3 tint = mix(vec3(0.72, 0.31, 0.21), vec3(0.78, 0.68, 0.49), smoothstep(3.0, 8.0, fi));
       float copperEnergy = (0.15 + copperBolus * 1.22 + materialWave * 0.22 + travelingShimmer * 0.72 + packet * 0.92)
@@ -475,20 +491,25 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       alpha += line * (0.07 + copperEnergy * 0.34) * edgeFade;
     }
 
-    float ivoryRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds)} * uFlowSpeed;
-    float ivoryTravel = vUv.x - uTime * ivoryRate;
-    float ivoryBolus = liquidBolus(vUv.x, uTime, ivoryRate, 0.57, 0.1);
+    float copperWisp = flowProfile(vUv.y, copperBodyY, 14.0)
+      * movingWisp(vUv.x, uTime, 0.19, 71.0) * uWispIntensity * edgeFade;
+    color += vec3(0.88, 0.38, 0.2) * copperWisp * 0.2;
+    alpha += copperWisp * 0.09;
+
+    float ivoryRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds)};
+    float ivoryTravel = vUv.x - flowClock * ivoryRate;
+    float ivoryBolus = liquidBolus(vUv.x, flowClock, ivoryRate, 0.57, 0.1);
     float ivoryBodyY = 0.615 - vUv.x * 0.305
       + sin(ivoryTravel * 6.28318 + 0.8) * (0.01 + ivoryBolus * 0.025);
-    float ivoryNoise = flowFbm(vec2(ivoryTravel * 5.2, vUv.y * 14.0 - uTime * 0.055));
-    float ivoryAurora = exp(-abs(vUv.y - ivoryBodyY) * 25.0)
+    float ivoryNoise = flowFbm(vec2(ivoryTravel * 5.2, vUv.y * 14.0 - flowClock * 0.055));
+    float ivoryAurora = flowProfile(vUv.y, ivoryBodyY, 25.0)
       * smoothstep(0.37, 0.82, ivoryNoise) * edgeFade;
-    float ivoryFront = directionalPulse(vUv.x, uTime, ivoryRate, 0.57);
-    float ivoryCorridor = exp(-abs(vUv.y - ivoryBodyY) * 34.0) * edgeFade;
+    float ivoryFront = directionalPulse(vUv.x, flowClock, ivoryRate, 0.57);
+    float ivoryCorridor = flowProfile(vUv.y, ivoryBodyY, 34.0) * edgeFade;
     color += mix(vec3(0.18, 0.38, 0.42), vec3(0.57, 0.59, 0.54), ivoryNoise)
       * ivoryAurora * (0.17 + ivoryFront * 0.64);
     color += vec3(0.56, 0.86, 0.83) * ivoryCorridor * ivoryFront * 0.62;
-    float ivoryPressure = exp(-abs(vUv.y - ivoryBodyY) * 21.0) * ivoryBolus * edgeFade;
+    float ivoryPressure = flowProfile(vUv.y, ivoryBodyY, 21.0) * ivoryBolus * edgeFade;
     float ivoryFog = advectedFlowFog(vUv, ivoryBodyY, uTime, 0.61) * edgeFade;
     color += mix(vec3(0.22, 0.55, 0.61), vec3(0.9, 0.78, 0.55), ivoryNoise) * ivoryPressure * 0.38;
     color += vec3(0.3, 0.62, 0.66) * ivoryFog * 0.46;
@@ -501,13 +522,13 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       float fi = float(i);
       float phase = fi * 0.61;
       float braid = sin(ivoryTravel * (11.0 + fi * 0.15) + phase) * (0.031 + ivoryBolus * 0.026 + attention * 0.013)
-        + sin((vUv.x + uTime * 0.045) * 27.0 - phase) * 0.009;
+        + sin((vUv.x + flowClock * 0.045) * 27.0 - phase) * 0.009;
       float center = ivoryBodyY + braid + (fi - 5.0) * 0.0042 * (1.0 + ivoryBolus * 0.68);
       float materialWave = pow(0.5 + 0.5 * sin(ivoryTravel * 15.708 + phase * 0.78), 2.0);
       float line = flowLine(vUv.y, center, (0.00072 + materialWave * 0.0004 + ivoryBolus * 0.001) + attention * 0.00046);
-      float packet = directionalPulse(vUv.x, uTime, ivoryRate + fi * 0.0025 + attention * 0.028, fi * 0.083 + 0.31);
+      float packet = directionalPulse(vUv.x, flowClock, ivoryRate + fi * 0.0025 + attention * 0.028, fi * 0.083 + 0.31);
       float travelingShimmer = pow(0.5 + 0.5 * sin(ivoryTravel * 15.708 + phase), 3.0);
-      float flowModulation = laserFlowModulation(vUv.x, uTime, ivoryRate, fi * 0.067 + 0.24);
+      float flowModulation = laserFlowModulation(vUv.x, flowClock, ivoryRate, fi * 0.067 + 0.24);
       float wisp = movingWisp(vUv.x, uTime, fi * 0.053 + 0.31, fi + 17.0);
       vec3 tint = mix(vec3(0.28, 0.63, 0.68), vec3(0.78, 0.74, 0.62), smoothstep(2.0, 10.0, fi));
       float ivoryEnergy = (0.13 + ivoryBolus * 0.94 + materialWave * 0.2 + travelingShimmer * 0.62 + packet * 0.78)
@@ -516,22 +537,29 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
       alpha += line * (0.055 + ivoryEnergy * 0.32) * edgeFade;
     }
 
-    float archRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.archCrossingSeconds)} * uFlowSpeed;
-    float archTravel = vUv.x - uTime * archRate;
+    float ivoryWisp = flowProfile(vUv.y, ivoryBodyY, 12.0)
+      * movingWisp(vUv.x, uTime, 0.53, 83.0) * uWispIntensity * edgeFade;
+    color += vec3(0.36, 0.78, 0.8) * ivoryWisp * 0.17;
+    alpha += ivoryWisp * 0.08;
+
+    float archRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.archCrossingSeconds)};
+    float archTravel = vUv.x - flowClock * archRate;
     float archBase = 0.965 - vUv.x * 0.14;
     for (int i = 0; i < 4; i++) {
       float fi = float(i);
       float arch = archBase + sin(archTravel * (8.0 + fi) + fi * 1.3) * (0.022 + fi * 0.005);
       float line = flowLine(vUv.y, arch, 0.00065);
-      float packet = directionalPulse(vUv.x, uTime, archRate + fi * 0.004, fi * 0.19 + 0.12);
-      float flowModulation = laserFlowModulation(vUv.x, uTime, archRate, fi * 0.17);
+      float packet = directionalPulse(vUv.x, flowClock, archRate + fi * 0.004, fi * 0.19 + 0.12);
+      float flowModulation = laserFlowModulation(vUv.x, flowClock, archRate, fi * 0.17);
       float wisp = movingWisp(vUv.x, uTime, fi * 0.11, fi + 29.0);
       float archEnergy = (0.11 + packet * 0.78) * flowModulation + wisp * 0.72;
       color += mix(vec3(0.26, 0.48, 0.5), vec3(0.56, 0.43, 0.3), fi / 3.0) * line * archEnergy * edgeFade;
       alpha += line * (0.055 + archEnergy * 0.31) * edgeFade;
     }
 
-    color *= mix(vec3(1.0), uFlowColor, 0.42);
+    float strengthGain = uFlowStrength / ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength)};
+    color *= strengthGain * mix(vec3(1.0), uFlowColor, 0.82);
+    alpha *= strengthGain;
     float luminance = max(color.r, max(color.g, color.b));
     gl_FragColor = vec4(color * 1.22, clamp(max(alpha * 2.2, luminance * 0.64), 0.0, 0.82));
   }
@@ -571,17 +599,18 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
   void main() {
     float edgeFade = smoothstep(0.015, 0.12, vUv.x) * (1.0 - smoothstep(0.92, 1.0, vUv.x));
     float attention = exp(-distance(vUv, uPointer) * 7.8) * uAttention;
-    float leadRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds)} * uFlowSpeed;
-    float leadTravel = vUv.x - uTime * leadRate;
-    float leadBolus = liquidBolus(vUv.x, uTime, leadRate, 0.08, 0.14);
+    float flowClock = uTime * uFlowSpeed;
+    float leadRate = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds)};
+    float leadTravel = vUv.x - flowClock * leadRate;
+    float leadBolus = liquidBolus(vUv.x, flowClock, leadRate, 0.08, 0.14);
     float bodyY = 0.81 - vUv.x * 0.355
       + sin(leadTravel * 6.28318) * (0.011 + leadBolus * 0.034);
-    float bodyNoise = flowFbm(vec2(leadTravel * 6.0, vUv.y * 17.0 + uTime * 0.18));
-    float aurora = exp(-abs(vUv.y - bodyY) * 26.0) * smoothstep(0.28, 0.82, bodyNoise) * edgeFade;
-    float bodySurge = directionalPulse(vUv.x, uTime, leadRate + attention * 0.12, 0.18);
-    float sweepX = fract(uTime * (leadRate + attention * 0.11) + 0.08);
+    float bodyNoise = flowFbm(vec2(leadTravel * 6.0, vUv.y * 17.0 + flowClock * 0.18));
+    float aurora = flowProfile(vUv.y, bodyY, 26.0) * smoothstep(0.28, 0.82, bodyNoise) * edgeFade;
+    float bodySurge = directionalPulse(vUv.x, flowClock, leadRate + attention * 0.12, 0.18);
+    float sweepX = fract(flowClock * (leadRate + attention * 0.11) + 0.08);
     float sweepProfile = leadBolus;
-    float sweepCorridor = exp(-abs(vUv.y - bodyY) * 21.0) * edgeFade;
+    float sweepCorridor = flowProfile(vUv.y, bodyY, 21.0) * edgeFade;
     vec3 sweepColor = mix(vec3(0.18, 0.94, 1.0), vec3(1.0, 0.7, 0.3), smoothstep(0.52, 0.88, sweepX));
     vec3 color = mix(vec3(0.015, 0.22, 0.26), vec3(0.33, 0.2, 0.055), smoothstep(0.56, 0.8, bodyNoise))
       * aurora * (0.22 + bodySurge * 1.24);
@@ -597,15 +626,15 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
       float fi = float(i);
       float phase = fi * 0.76;
       float localRate = leadRate + fi * 0.0028 + attention * 0.065;
-      float localTravel = vUv.x - uTime * localRate;
+      float localTravel = vUv.x - flowClock * localRate;
       float localWave = sin(localTravel * (9.3 + fi * 0.12) + phase) * (0.026 + leadBolus * 0.036 + attention * 0.024)
-        + sin((vUv.x + uTime * 0.09) * 23.0 - phase * 1.4) * 0.009;
+        + sin((vUv.x + flowClock * 0.09) * 23.0 - phase * 1.4) * 0.009;
       float center = bodyY + localWave + (fi - 4.5) * 0.0084 * (1.0 + leadBolus * 0.76);
       float materialWave = pow(0.5 + 0.5 * sin(localTravel * 18.8496 + phase * 0.74), 2.0);
       float line = flowLine(vUv.y, center, (0.00118 + materialWave * 0.00058 + leadBolus * 0.00265) + attention * 0.00092);
-      float packet = directionalPulse(vUv.x, uTime, localRate + attention * 0.08, 0.15 + fi * 0.009);
+      float packet = directionalPulse(vUv.x, flowClock, localRate + attention * 0.08, 0.15 + fi * 0.009);
       float travelingShimmer = pow(0.5 + 0.5 * sin(localTravel * 18.8496 + phase), 3.0);
-      float flowModulation = laserFlowModulation(vUv.x, uTime, localRate, fi * 0.077);
+      float flowModulation = laserFlowModulation(vUv.x, flowClock, localRate, fi * 0.077);
       float wisp = movingWisp(vUv.x, uTime, fi * 0.061, fi + 41.0);
       float goldMix = smoothstep(5.7, 8.7, fi);
       vec3 tint = mix(vec3(0.12, 0.82, 0.88), vec3(0.95, 0.65, 0.29), goldMix);
@@ -617,36 +646,42 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
       alpha += line * (0.07 + leadEnergy * 0.38 + attention * 0.08) * edgeFade;
     }
 
-    float coreSpeed = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds)} * uFlowSpeed + attention * 0.095;
-    float coreTravel = vUv.x - uTime * coreSpeed;
+    float coreSpeed = ${String(1 / MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds)} + attention * 0.095;
+    float coreTravel = vUv.x - flowClock * coreSpeed;
     float coreWave = sin(coreTravel * 11.0) * (0.022 + attention * 0.014);
     float coreY = bodyY + coreWave;
     float core = flowLine(vUv.y, coreY, 0.00235 + attention * 0.001);
-    float corePacket = directionalPulse(vUv.x, uTime, coreSpeed, 0.18);
-    float coreFlow = laserFlowModulation(vUv.x, uTime, coreSpeed, 0.18);
+    float corePacket = directionalPulse(vUv.x, flowClock, coreSpeed, 0.18);
+    float coreFlow = laserFlowModulation(vUv.x, flowClock, coreSpeed, 0.18);
     float coreWisp = movingWisp(vUv.x, uTime, 0.23, 59.0);
     color += mix(vec3(0.34, 0.98, 1.0), vec3(1.0, 0.78, 0.4), smoothstep(0.52, 0.88, vUv.x))
       * core * ((0.34 + corePacket * 1.35) * coreFlow + coreWisp * 1.5) * edgeFade;
     alpha += core * (0.18 + corePacket * 0.45 + coreWisp * 0.52) * edgeFade;
 
-    float wispLane = abs((vUv.y - bodyY) / 0.12);
-    float wispCell = fract(vUv.x * 4.0 - uTime * (0.58 + attention * 0.32) + floor(wispLane * 7.0) * 0.37);
+    float wispLane = abs((vUv.y - bodyY) / (0.12 * max(uVerticalSizing, 0.1)));
+    float wispCell = fract(vUv.x * 4.0 / max(uHorizontalSizing, 0.1)
+      - uTime * (uWispSpeed + attention * 0.32) + floor(wispLane * 7.0) * 0.37);
     float wispSegment = smoothstep(0.02, 0.12, wispCell) * (1.0 - smoothstep(0.34, 0.58, wispCell));
-    float wisp = exp(-wispLane * 3.8) * wispSegment * smoothstep(0.18, 0.78, bodyNoise) * edgeFade;
-    color += mix(vec3(0.23, 0.79, 0.84), vec3(0.86, 0.62, 0.32), step(0.52, bodyNoise)) * wisp * (0.17 + attention * 0.19);
-    alpha += wisp * 0.1;
+    float wispPresence = smoothstep(1.0 - uWispDensity, 1.0, valueNoise(vec2(floor(vUv.x * 9.0), 19.0)));
+    float wisp = exp(-wispLane * 3.8 * max(uFalloffStart, 0.05)) * wispSegment
+      * wispPresence * smoothstep(0.18, 0.78, bodyNoise) * edgeFade * uWispIntensity;
+    color += mix(vec3(0.23, 0.79, 0.84), vec3(0.86, 0.62, 0.32), step(0.52, bodyNoise))
+      * wisp * (0.28 + attention * 0.25);
+    alpha += wisp * 0.18;
 
-    float spectrumY = 0.61 + sin(vUv.x * 7.0 - uTime * 0.72) * 0.007;
+    float spectrumY = 0.61 + sin(vUv.x * 7.0 - flowClock * 0.72) * 0.007;
     float spectrumLine = flowLine(vUv.y, spectrumY, 0.0008);
-    float spikeCell = pow(0.5 + 0.5 * sin(vUv.x * 175.0 - uTime * 14.0), 18.0);
-    float spikeHeight = (0.005 + spikeCell * 0.045) * (0.55 + 0.45 * sin(vUv.x * 23.0 + uTime * 0.13));
+    float spikeCell = pow(0.5 + 0.5 * sin(vUv.x * 175.0 - flowClock * 14.0), 18.0);
+    float spikeHeight = (0.005 + spikeCell * 0.045) * (0.55 + 0.45 * sin(vUv.x * 23.0 + flowClock * 0.13));
     float spike = (1.0 - smoothstep(spikeHeight, spikeHeight + 0.006, abs(vUv.y - spectrumY)))
-      * pow(0.5 + 0.5 * sin(vUv.x * 340.0 - uTime * 18.0), 26.0) * edgeFade;
-    float spectrumPacket = directionalPulse(vUv.x, uTime, 0.092 + attention * 0.04, 0.64);
+      * pow(0.5 + 0.5 * sin(vUv.x * 340.0 - flowClock * 18.0), 26.0) * edgeFade;
+    float spectrumPacket = directionalPulse(vUv.x, flowClock, 0.092 + attention * 0.04, 0.64);
     color += vec3(0.9, 0.69, 0.36) * (spectrumLine * (0.3 + spectrumPacket * 0.82) + spike * 0.62) * (0.7 + attention * 0.35);
     alpha += spectrumLine * (0.1 + spectrumPacket * 0.28) + spike * 0.22;
 
-    color *= mix(vec3(1.0), uFlowColor, 0.42);
+    float strengthGain = uFlowStrength / ${String(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength)};
+    color *= strengthGain * mix(vec3(1.0), uFlowColor, 0.82);
+    alpha *= strengthGain;
     float luminance = max(color.r, max(color.g, color.b));
     gl_FragColor = vec4(color * 1.18, clamp(max(alpha * 1.8, luminance * 0.58), 0.0, 0.96));
   }
@@ -846,6 +881,8 @@ function FullPlane({
   flowTuning?: MuseumObservatoryFlowTuning;
 }) {
   const pointerPresence = usePointerPresence(pointerActive);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const invalidate = useThree(state => state.invalidate);
   const [minimumX, minimumY, maximumX, maximumY] = bounds;
   const width = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
   const height = (maximumY - minimumY) * 2;
@@ -886,7 +923,11 @@ function FullPlane({
     uniforms.uFogFallSpeed.value = flowTuning.fogFallSpeed;
     uniforms.uDecay.value = flowTuning.decay;
     uniforms.uFalloffStart.value = flowTuning.falloffStart;
-  }, [flowTuning, uniforms]);
+    if (materialRef.current) {
+      materialRef.current.uniformsNeedUpdate = true;
+    }
+    invalidate();
+  }, [flowTuning, invalidate, uniforms]);
   useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
@@ -896,6 +937,7 @@ function FullPlane({
     <mesh position={[positionX, positionY, order * 0.01]} renderOrder={order}>
       <planeGeometry args={[width, height]} />
       <shaderMaterial
+        ref={materialRef}
         uniforms={uniforms}
         vertexShader={PLANE_VERTEX}
         fragmentShader={fragmentShader}
@@ -1224,7 +1266,11 @@ function ObservatoryTuningPanel({
         ))}
         <div className={styles.observatoryTuningFooter}>
           <p>Values save in this browser.</p>
-          <button type="button" onClick={onReset}>Reset defaults</button>
+          <div className={styles.observatoryTuningActions}>
+            <button type="button" onClick={() => onChange(buildFlowTuningPreset('min'))}>All minimum</button>
+            <button type="button" onClick={() => onChange(buildFlowTuningPreset('max'))}>All maximum</button>
+            <button type="button" onClick={onReset}>Reset defaults</button>
+          </div>
         </div>
       </div>
     </details>
