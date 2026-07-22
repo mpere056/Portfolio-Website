@@ -134,6 +134,9 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('const flowTuningRef = useRef(flowTuning);');
     expect(source).toContain('const currentFlowTuning = flowTuningRef.current;');
     expect(source).toContain('uniforms.uFlowStrength.value = currentFlowTuning.flowStrength;');
+    expect(source).toContain('const flowsEnabled = flowTuning.flowStrength > 0;');
+    expect(source).toContain('key={`rear:${flowRevision}`}');
+    expect(source).toContain('key={`front:${flowRevision}`}');
     expect(source).toContain("buildFlowTuningPreset('min')");
     expect(source).toContain("buildFlowTuningPreset('max')");
     expect(source).toContain('Values save in this browser.');

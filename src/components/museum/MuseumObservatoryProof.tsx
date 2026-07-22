@@ -883,6 +883,7 @@ function FullPlane({
   const pointerPresence = usePointerPresence(pointerActive);
   const flowTuningRef = useRef(flowTuning);
   flowTuningRef.current = flowTuning;
+  const initialFlowTuning = flowTuning ?? MUSEUM_OBSERVATORY_FLOW_CONTROLS;
   const [minimumX, minimumY, maximumX, maximumY] = bounds;
   const width = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
   const height = (maximumY - minimumY) * 2;
@@ -894,19 +895,19 @@ function FullPlane({
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
     uUvBounds: { value: new THREE.Vector4(minimumX, minimumY, maximumX, maximumY) },
-    uFlowColor: { value: new THREE.Color(MUSEUM_OBSERVATORY_FLOW_CONTROLS.color) },
-    uHorizontalSizing: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.horizontalSizing },
-    uVerticalSizing: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.verticalSizing },
-    uWispDensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispDensity },
-    uWispSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed },
-    uWispIntensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity },
-    uFlowSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed },
-    uFlowStrength: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength },
-    uFogIntensity: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity },
-    uFogScale: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogScale },
-    uFogFallSpeed: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogFallSpeed },
-    uDecay: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.decay },
-    uFalloffStart: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.falloffStart },
+    uFlowColor: { value: new THREE.Color(initialFlowTuning.color) },
+    uHorizontalSizing: { value: initialFlowTuning.horizontalSizing },
+    uVerticalSizing: { value: initialFlowTuning.verticalSizing },
+    uWispDensity: { value: initialFlowTuning.wispDensity },
+    uWispSpeed: { value: initialFlowTuning.wispSpeed },
+    uWispIntensity: { value: initialFlowTuning.wispIntensity },
+    uFlowSpeed: { value: initialFlowTuning.flowSpeed },
+    uFlowStrength: { value: initialFlowTuning.flowStrength },
+    uFogIntensity: { value: initialFlowTuning.fogIntensity },
+    uFogScale: { value: initialFlowTuning.fogScale },
+    uFogFallSpeed: { value: initialFlowTuning.fogFallSpeed },
+    uDecay: { value: initialFlowTuning.decay },
+    uFalloffStart: { value: initialFlowTuning.falloffStart },
   }));
   useFrame(({ clock }, delta) => {
     const currentFlowTuning = flowTuningRef.current;
@@ -1107,16 +1108,18 @@ function ObservatoryScene({
   ]);
   useEffect(() => textures.forEach(configureTexture), [textures]);
   const [field, observatory, city, portal] = textures;
+  const flowRevision = Object.values(flowTuning).join(':');
+  const flowsEnabled = flowTuning.flowStrength > 0;
   return (
     <>
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
-      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} />
+      {flowsEnabled ? <FullPlane key={`rear:${flowRevision}`} fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} /> : null}
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.far} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.portal} />
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} />
+      {flowsEnabled ? <FullPlane key={`front:${flowRevision}`} fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} /> : null}
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
