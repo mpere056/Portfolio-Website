@@ -30,8 +30,9 @@ import styles from './MuseumAmbientProof.module.css';
 
 const PLANE_VERTEX = /* glsl */`
   varying vec2 vUv;
+  uniform vec4 uUvBounds;
   void main() {
-    vUv = uv;
+    vUv = mix(uUvBounds.xy, uUvBounds.zw, uv);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
@@ -57,6 +58,17 @@ const NOISE_GLSL = /* glsl */`
       value += amplitude * valueNoise(p);
       p = turn * p;
       amplitude *= 0.5;
+    }
+    return value;
+  }
+  float fbm3(vec2 p) {
+    float value = 0.0;
+    float amplitude = 0.55;
+    mat2 turn = mat2(1.6, 1.2, -1.2, 1.6);
+    for (int i = 0; i < 3; i++) {
+      value += amplitude * valueNoise(p);
+      p = turn * p;
+      amplitude *= 0.48;
     }
     return value;
   }
@@ -144,7 +156,7 @@ const FIELD_FRAGMENT = /* glsl */`
   void main() {
     vec4 color = texture2D(uTexture, vUv);
     float terrain = 1.0 - smoothstep(0.22, 0.68, vUv.y);
-    float drift = fbm(vUv * vec2(5.5, 8.0) + vec2(-uTime * 0.035, uTime * 0.012));
+    float drift = fbm3(vUv * vec2(5.5, 8.0) + vec2(-uTime * 0.035, uTime * 0.012));
     float cyanCaustic = pow(max(0.0, sin(vUv.x * 18.0 + drift * 7.0 - uTime * 0.24)), 15.0) * terrain;
     float goldCaustic = pow(max(0.0, sin((vUv.x + vUv.y * 0.45) * 14.0 - drift * 5.0 + uTime * 0.13)), 18.0) * terrain;
     float pointerLight = exp(-distance(vUv, uPointer) * 8.5) * uAttention * terrain;
@@ -152,6 +164,13 @@ const FIELD_FRAGMENT = /* glsl */`
     color.rgb += vec3(0.05, 0.46, 0.5) * cyanCaustic * 0.16;
     color.rgb += vec3(0.72, 0.43, 0.12) * goldCaustic * 0.11;
     color.rgb += mix(vec3(0.06, 0.52, 0.56), vec3(0.72, 0.45, 0.17), uPointer.x) * pointerLight * 0.19;
+    float nearHaze = valueNoise(vUv * vec2(7.5, 3.7) + vec2(-uTime * 0.061, uTime * 0.014));
+    float depthWindow = smoothstep(0.05, 0.55, vUv.y) * (1.0 - smoothstep(0.88, 1.0, vUv.y));
+    float lowPassage = exp(-pow((vUv.y - (0.27 + sin(uTime * 0.09) * 0.08)) * 6.0, 2.0));
+    float hazeDensity = (smoothstep(0.43, 0.77, drift) * 0.25
+      + smoothstep(0.57, 0.84, nearHaze) * 0.13
+      + lowPassage * (0.025 + drift * 0.05)) * depthWindow;
+    color.rgb += mix(vec3(0.04, 0.23, 0.27), vec3(0.26, 0.17, 0.08), drift) * hazeDensity;
     gl_FragColor = vec4(color.rgb, 1.0);
   }
 `;
@@ -174,7 +193,7 @@ const OBSERVATORY_FRAGMENT = /* glsl */`
     vec2 sourceDelta = sourceUv - sourceCenter;
     float distanceFromLens = length(delta);
     float lensMask = 1.0 - smoothstep(0.036, 0.083, distanceFromLens);
-    float lensNoise = fbm(sourceUv * 15.0 + vec2(uTime * 0.04, -uTime * 0.027));
+    float lensNoise = fbm3(sourceUv * 15.0 + vec2(uTime * 0.04, -uTime * 0.027));
     vec2 lensUv = sourceCenter + sourceDelta * (0.972 + (lensNoise - 0.5) * (0.055 + uAttention * 0.035));
     float chroma = lensMask * (0.002 + uAttention * 0.005);
     vec4 base = texture2D(uTexture, sourceUv);
@@ -289,7 +308,7 @@ const PORTAL_FRAGMENT = /* glsl */`
     vec2 sourceDelta = sourceUv - sourceCenter;
     float d = length(delta);
     float glass = 1.0 - smoothstep(0.076, 0.126, d);
-    float noise = fbm(sourceUv * 13.0 + vec2(uTime * 0.055, -uTime * 0.034));
+    float noise = fbm3(sourceUv * 13.0 + vec2(uTime * 0.055, -uTime * 0.034));
     vec2 refractedUv = sourceCenter + sourceDelta * (0.95 + (noise - 0.5) * (0.07 + uAttention * 0.04));
     vec4 body = texture2D(uTexture, sourceUv);
     body.a *= insideUv(sourceUv);
@@ -316,26 +335,8 @@ const PORTAL_FRAGMENT = /* glsl */`
   }
 `;
 
-const ATMOSPHERE_FRAGMENT = /* glsl */`
-  precision highp float;
-  varying vec2 vUv;
-  uniform float uTime;
-  ${NOISE_GLSL}
-  void main() {
-    float farHaze = fbm(vUv * vec2(3.2, 4.8) + vec2(uTime * 0.035, -uTime * 0.019));
-    float nearHaze = fbm(vUv * vec2(7.5, 3.7) + vec2(-uTime * 0.061, uTime * 0.014));
-    float depthWindow = smoothstep(0.05, 0.55, vUv.y) * (1.0 - smoothstep(0.88, 1.0, vUv.y));
-    float lowPassage = exp(-pow((vUv.y - (0.27 + sin(uTime * 0.09) * 0.08)) * 6.0, 2.0));
-    float density = smoothstep(0.43, 0.77, farHaze) * 0.34
-      + smoothstep(0.57, 0.84, nearHaze) * 0.2
-      + lowPassage * (0.035 + farHaze * 0.07);
-    vec3 color = mix(vec3(0.04, 0.23, 0.27), vec3(0.26, 0.17, 0.08), farHaze);
-    gl_FragColor = vec4(color, density * depthWindow);
-  }
-`;
-
 const FLOW_BACK_FRAGMENT = /* glsl */`
-  precision highp float;
+  precision mediump float;
   varying vec2 vUv;
   uniform float uTime;
   uniform vec2 uPointer;
@@ -374,7 +375,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     float copperBolus = liquidBolus(vUv.x, uTime, copperRate, 0.18, 0.11);
     float copperBodyY = 0.895 - vUv.x * 0.115
       + sin(copperTravel * 6.28318) * (0.008 + copperBolus * 0.022);
-    float copperNoise = fbm(vec2(copperTravel * 7.0, vUv.y * 18.0 + uTime * 0.08));
+    float copperNoise = flowFbm(vec2(copperTravel * 7.0, vUv.y * 18.0 + uTime * 0.08));
     float copperAurora = exp(-abs(vUv.y - copperBodyY) * 31.0)
       * smoothstep(0.34, 0.84, copperNoise) * edgeFade;
     float copperFront = directionalPulse(vUv.x, uTime, copperRate, 0.19);
@@ -415,7 +416,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
     float ivoryBolus = liquidBolus(vUv.x, uTime, ivoryRate, 0.57, 0.1);
     float ivoryBodyY = 0.615 - vUv.x * 0.305
       + sin(ivoryTravel * 6.28318 + 0.8) * (0.01 + ivoryBolus * 0.025);
-    float ivoryNoise = fbm(vec2(ivoryTravel * 5.2, vUv.y * 14.0 - uTime * 0.055));
+    float ivoryNoise = flowFbm(vec2(ivoryTravel * 5.2, vUv.y * 14.0 - uTime * 0.055));
     float ivoryAurora = exp(-abs(vUv.y - ivoryBodyY) * 25.0)
       * smoothstep(0.37, 0.82, ivoryNoise) * edgeFade;
     float ivoryFront = directionalPulse(vUv.x, uTime, ivoryRate, 0.57);
@@ -472,7 +473,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
 `;
 
 const FLOW_FRONT_FRAGMENT = /* glsl */`
-  precision highp float;
+  precision mediump float;
   varying vec2 vUv;
   uniform float uTime;
   uniform vec2 uPointer;
@@ -508,7 +509,7 @@ const FLOW_FRONT_FRAGMENT = /* glsl */`
     float leadBolus = liquidBolus(vUv.x, uTime, leadRate, 0.08, 0.14);
     float bodyY = 0.81 - vUv.x * 0.355
       + sin(leadTravel * 6.28318) * (0.011 + leadBolus * 0.034);
-    float bodyNoise = fbm(vec2(leadTravel * 6.0, vUv.y * 17.0 + uTime * 0.18));
+    float bodyNoise = flowFbm(vec2(leadTravel * 6.0, vUv.y * 17.0 + uTime * 0.18));
     float aurora = exp(-abs(vUv.y - bodyY) * 26.0) * smoothstep(0.28, 0.82, bodyNoise) * edgeFade;
     float bodySurge = directionalPulse(vUv.x, uTime, leadRate + attention * 0.12, 0.18);
     float sweepX = fract(uTime * (leadRate + attention * 0.11) + 0.08);
@@ -732,6 +733,9 @@ const ORB_FRAGMENT = /* glsl */`
 `;
 
 type PointerTarget = { current: THREE.Vector2 };
+type PlaneBounds = readonly [number, number, number, number];
+
+const FULL_PLANE_BOUNDS = [0, 0, 1, 1] as const satisfies PlaneBounds;
 
 function configureTexture(texture: THREE.Texture) {
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -760,6 +764,7 @@ function FullPlane({
   pointerActive,
   pointerTarget,
   texture,
+  bounds = FULL_PLANE_BOUNDS,
   blending = THREE.NormalBlending,
 }: {
   fragmentShader: string;
@@ -767,14 +772,21 @@ function FullPlane({
   pointerActive: boolean;
   pointerTarget: PointerTarget;
   texture?: THREE.Texture;
+  bounds?: PlaneBounds;
   blending?: THREE.Blending;
 }) {
   const pointerPresence = usePointerPresence(pointerActive);
+  const [minimumX, minimumY, maximumX, maximumY] = bounds;
+  const width = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
+  const height = (maximumY - minimumY) * 2;
+  const positionX = (minimumX + maximumX - 1) * MUSEUM_OBSERVATORY_PROOF_ASPECT;
+  const positionY = minimumY + maximumY - 1;
   const [uniforms] = useState(() => ({
     uTexture: { value: texture ?? null },
     uTime: { value: 0 },
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
+    uUvBounds: { value: new THREE.Vector4(minimumX, minimumY, maximumX, maximumY) },
   }));
   useFrame(({ clock }, delta) => {
     uniforms.uTime.value = clock.elapsedTime;
@@ -782,8 +794,8 @@ function FullPlane({
     uniforms.uPointer.value.copy(pointerPresence.pointer.current);
   });
   return (
-    <mesh position={[0, 0, order * 0.01]} renderOrder={order}>
-      <planeGeometry args={[MUSEUM_OBSERVATORY_PROOF_ASPECT * 2, 2]} />
+    <mesh position={[positionX, positionY, order * 0.01]} renderOrder={order}>
+      <planeGeometry args={[width, height]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={PLANE_VERTEX}
@@ -954,16 +966,15 @@ function ObservatoryScene({ pointerActive, pointerTarget }: { pointerActive: boo
   return (
     <>
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
-      <FullPlane fragmentShader={ATMOSPHERE_FRAGMENT} order={1} pointerActive={false} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
-      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.far} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} />
-      <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} />
-      <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} />
+      <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.portal} />
+      <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
+      <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} blending={THREE.AdditiveBlending} />
+      <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
     </>
   );
@@ -1142,7 +1153,7 @@ export default function MuseumObservatoryProof() {
                 far: 10,
                 position: [0, 0, 5],
               }}
-              gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}
+              gl={{ alpha: true, antialias: false, depth: false, stencil: false, powerPreference: 'high-performance' }}
               onCreated={({ gl }) => { gl.outputColorSpace = THREE.SRGBColorSpace; }}
             >
               <FrameScheduler enabled={visible} attentionActive={pointerActive} />
@@ -1171,8 +1182,8 @@ export default function MuseumObservatoryProof() {
             energy={sceneFrame.energy}
             count={sceneFrame.particleCount}
             reducedMotion={reducedMotion || !visible}
-            maxDpr={1}
-            maxFps={30}
+            maxDpr={0.8}
+            maxFps={24}
           />
           <span className={museumStyles.ecologyVeil} />
         </div>

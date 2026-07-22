@@ -73,14 +73,19 @@ describe('Museum observatory compositor proof', () => {
   });
 
   it('bounds continuous rendering work without freezing the ambient scene', () => {
-    expect(MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr).toBeLessThanOrEqual(1);
-    expect(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps).toBeLessThanOrEqual(30);
-    expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeLessThanOrEqual(45);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr).toBeLessThanOrEqual(0.9);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps).toBeLessThanOrEqual(24);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeLessThanOrEqual(36);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeGreaterThan(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.fogOctaves).toBeLessThanOrEqual(3);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.orbDetail).toBeLessThanOrEqual(3);
     expect(Object.values(MUSEUM_OBSERVATORY_PERFORMANCE.particles).reduce((total, count) => total + count, 0))
-      .toBeLessThanOrEqual(420);
+      .toBe(700);
+    const croppedArea = Object.values(MUSEUM_OBSERVATORY_PERFORMANCE.bounds)
+      .reduce((total, [minimumX, minimumY, maximumX, maximumY]) => (
+        total + (maximumX - minimumX) * (maximumY - minimumY)
+      ), 0);
+    expect(croppedArea).toBeLessThan(3.5);
   });
 
   it('expresses flow inside shader material instead of overlaying marker heads', async () => {
@@ -99,8 +104,10 @@ describe('Museum observatory compositor proof', () => {
     expect(source).toContain('float movingWisp(');
     expect(source).toContain('float advectedFlowFog(');
     expect(source).toContain('float flowFbm(');
+    expect(source).toContain('uniform vec4 uUvBounds;');
     expect(source).toContain("frameloop={visible ? 'demand' : 'never'}");
     expect(source).not.toContain('attribute.needsUpdate = true');
+    expect(source).not.toContain('const ATMOSPHERE_FRAGMENT');
     expect(source).not.toContain('<animateMotion');
     expect(source).not.toContain('observatoryFlowTracer');
   });

@@ -20,15 +20,23 @@ export const MUSEUM_OBSERVATORY_FLOW_CONTROLS = {
 } as const;
 
 export const MUSEUM_OBSERVATORY_PERFORMANCE = {
-  renderDpr: 1,
-  idleFps: 30,
-  attentionFps: 45,
+  renderDpr: 0.9,
+  idleFps: 24,
+  attentionFps: 36,
   fogOctaves: 3,
   orbDetail: 3,
   particles: {
-    far: 140,
-    middle: 180,
-    near: 100,
+    far: 220,
+    middle: 300,
+    near: 180,
+  },
+  bounds: {
+    rearFlow: [0, 0.2, 1, 1],
+    portal: [0.02, 0.03, 0.51, 0.52],
+    observatory: [0.38, 0.22, 1, 1],
+    city: [0.49, 0.03, 1, 0.58],
+    frontFlow: [0, 0.27, 1, 1],
+    diagram: [0.42, 0.27, 1, 0.93],
   },
 } as const;
 
