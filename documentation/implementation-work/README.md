@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 13 restores all 700 particles while replacing empty full-stage work with merged/cropped passes, `0.9x` 24/36 FPS WebGL, `0.8x` 24 FPS overlay rendering, and lighter flow noise. Pressure volumes and slender baselines remain; rejected markers and the vertical ellipse stay absent. Production `/projects` remains unchanged.
+Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 14 retains revision 13's 700-particle cropped runtime while adding a browser-persistent live console for color and 12 LaserFlow parameters. Pressure volumes and slender baselines remain; rejected markers and the vertical ellipse stay absent. Production `/projects` remains unchanged.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; cropped-pass east revision 13 with restored particles is live at `07890ff` | Mark reviews smoothness on affected computers and restored particle density; after acceptance, complete `12F` and begin bounded `12G` integration | 2026-07-21 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; live-tunable east revision 14 is deployed at `9035bc9` | Mark chooses and records flow values, reviews affected-computer smoothness, then completes `12F` before bounded `12G` integration | 2026-07-22 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
 
