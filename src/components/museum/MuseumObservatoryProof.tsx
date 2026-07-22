@@ -881,8 +881,8 @@ function FullPlane({
   flowTuning?: MuseumObservatoryFlowTuning;
 }) {
   const pointerPresence = usePointerPresence(pointerActive);
-  const materialRef = useRef<THREE.ShaderMaterial>(null);
-  const invalidate = useThree(state => state.invalidate);
+  const flowTuningRef = useRef(flowTuning);
+  flowTuningRef.current = flowTuning;
   const [minimumX, minimumY, maximumX, maximumY] = bounds;
   const width = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
   const height = (maximumY - minimumY) * 2;
@@ -908,27 +908,23 @@ function FullPlane({
     uDecay: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.decay },
     uFalloffStart: { value: MUSEUM_OBSERVATORY_FLOW_CONTROLS.falloffStart },
   }));
-  useEffect(() => {
-    if (!flowTuning) return;
-    uniforms.uFlowColor.value.set(flowTuning.color);
-    uniforms.uHorizontalSizing.value = flowTuning.horizontalSizing;
-    uniforms.uVerticalSizing.value = flowTuning.verticalSizing;
-    uniforms.uWispDensity.value = flowTuning.wispDensity;
-    uniforms.uWispSpeed.value = flowTuning.wispSpeed;
-    uniforms.uWispIntensity.value = flowTuning.wispIntensity;
-    uniforms.uFlowSpeed.value = flowTuning.flowSpeed;
-    uniforms.uFlowStrength.value = flowTuning.flowStrength;
-    uniforms.uFogIntensity.value = flowTuning.fogIntensity;
-    uniforms.uFogScale.value = flowTuning.fogScale;
-    uniforms.uFogFallSpeed.value = flowTuning.fogFallSpeed;
-    uniforms.uDecay.value = flowTuning.decay;
-    uniforms.uFalloffStart.value = flowTuning.falloffStart;
-    if (materialRef.current) {
-      materialRef.current.uniformsNeedUpdate = true;
-    }
-    invalidate();
-  }, [flowTuning, invalidate, uniforms]);
   useFrame(({ clock }, delta) => {
+    const currentFlowTuning = flowTuningRef.current;
+    if (currentFlowTuning) {
+      uniforms.uFlowColor.value.set(currentFlowTuning.color);
+      uniforms.uHorizontalSizing.value = currentFlowTuning.horizontalSizing;
+      uniforms.uVerticalSizing.value = currentFlowTuning.verticalSizing;
+      uniforms.uWispDensity.value = currentFlowTuning.wispDensity;
+      uniforms.uWispSpeed.value = currentFlowTuning.wispSpeed;
+      uniforms.uWispIntensity.value = currentFlowTuning.wispIntensity;
+      uniforms.uFlowSpeed.value = currentFlowTuning.flowSpeed;
+      uniforms.uFlowStrength.value = currentFlowTuning.flowStrength;
+      uniforms.uFogIntensity.value = currentFlowTuning.fogIntensity;
+      uniforms.uFogScale.value = currentFlowTuning.fogScale;
+      uniforms.uFogFallSpeed.value = currentFlowTuning.fogFallSpeed;
+      uniforms.uDecay.value = currentFlowTuning.decay;
+      uniforms.uFalloffStart.value = currentFlowTuning.falloffStart;
+    }
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
     uniforms.uPointer.value.copy(pointerPresence.pointer.current);
@@ -937,7 +933,6 @@ function FullPlane({
     <mesh position={[positionX, positionY, order * 0.01]} renderOrder={order}>
       <planeGeometry args={[width, height]} />
       <shaderMaterial
-        ref={materialRef}
         uniforms={uniforms}
         vertexShader={PLANE_VERTEX}
         fragmentShader={fragmentShader}
