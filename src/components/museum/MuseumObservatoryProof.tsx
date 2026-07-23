@@ -13,6 +13,7 @@ import {
   useState,
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
+  type MutableRefObject,
   type ReactNode,
 } from 'react';
 import {
@@ -1063,11 +1064,11 @@ function ObservatoryOrb({
 function ObservatoryScene({
   pointerActive,
   pointerTarget,
-  flowTuning,
+  flowTuningRef,
 }: {
   pointerActive: boolean;
   pointerTarget: PointerTarget;
-  flowTuning: MuseumObservatoryFlowTuning;
+  flowTuningRef: MutableRefObject<MuseumObservatoryFlowTuning>;
 }) {
   const textures = useTexture([
     MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
@@ -1085,7 +1086,7 @@ function ObservatoryScene({
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <MuseumLaserFlowPlane tuning={flowTuning} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <MuseumLaserFlowPlane tuningRef={flowTuningRef} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
@@ -1249,6 +1250,9 @@ export default function MuseumObservatoryProof() {
   const [flowTuning, setFlowTuning] = useState<MuseumObservatoryFlowTuning>({
     ...MUSEUM_OBSERVATORY_FLOW_CONTROLS,
   });
+  const flowTuningRef = useRef<MuseumObservatoryFlowTuning>({
+    ...MUSEUM_OBSERVATORY_FLOW_CONTROLS,
+  });
   const [tuningReady, setTuningReady] = useState(false);
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
   const pointerStateFrame = useRef<number | null>(null);
@@ -1304,9 +1308,16 @@ export default function MuseumObservatoryProof() {
   }, []);
 
   useEffect(() => {
-    setFlowTuning(readStoredFlowTuning());
+    const storedTuning = readStoredFlowTuning();
+    flowTuningRef.current = storedTuning;
+    setFlowTuning(storedTuning);
     setTuningReady(true);
   }, []);
+
+  const updateFlowTuning = (next: MuseumObservatoryFlowTuning) => {
+    flowTuningRef.current = next;
+    setFlowTuning(next);
+  };
 
   useEffect(() => {
     if (!tuningReady) return;
@@ -1369,7 +1380,7 @@ export default function MuseumObservatoryProof() {
                 <ObservatoryScene
                   pointerActive={pointerActive}
                   pointerTarget={pointerTarget}
-                  flowTuning={flowTuning}
+                  flowTuningRef={flowTuningRef}
                 />
               </Suspense>
             </Canvas>
@@ -1403,14 +1414,14 @@ export default function MuseumObservatoryProof() {
       </div>
       <ObservatoryTuningPanel
         tuning={flowTuning}
-        onChange={setFlowTuning}
+        onChange={updateFlowTuning}
         onReset={() => {
           try {
             window.localStorage.removeItem(OBSERVATORY_TUNING_STORAGE_KEY);
           } catch {
             // Keep reset functional even when browser storage is unavailable.
           }
-          setFlowTuning({ ...MUSEUM_OBSERVATORY_FLOW_CONTROLS });
+          updateFlowTuning({ ...MUSEUM_OBSERVATORY_FLOW_CONTROLS });
         }}
       />
       <header className={styles.caption}>

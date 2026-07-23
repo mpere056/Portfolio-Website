@@ -108,7 +108,7 @@ describe('Museum observatory compositor proof', () => {
       readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumObservatoryProof.tsx'), 'utf8'),
       readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumLaserFlowPlane.tsx'), 'utf8'),
     ]);
-    expect(proofSource).toContain('<MuseumLaserFlowPlane tuning={flowTuning}');
+    expect(proofSource).toContain('<MuseumLaserFlowPlane tuningRef={flowTuningRef}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_BACK_FRAGMENT}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_FRONT_FRAGMENT}');
     expect(proofSource).toContain('museum-observatory-laser-flow-tuning-v2');
@@ -124,8 +124,14 @@ describe('Museum observatory compositor proof', () => {
     expect(laserSource).toContain('R_H * uHLenFactor');
     expect(laserSource).toContain('R_V * uVLenFactor');
     expect(laserSource).toContain('#define FOG_OCTAVES 5');
-    expect(laserSource).toContain('uniforms.uFlowTime.value += clampedDelta;');
-    expect(laserSource).toContain('uniforms.uFogTime.value += clampedDelta;');
+    expect(laserSource).toContain('liveUniforms.uFlowTime.value += clampedDelta;');
+    expect(laserSource).toContain('liveUniforms.uFogTime.value += clampedDelta;');
+    expect(proofSource).toContain('flowTuningRef.current = next;');
+    expect(laserSource).toContain('const current = tuningRef.current;');
+    expect(laserSource).toContain('const liveUniforms = material.uniforms;');
+    expect(laserSource).toContain('liveUniforms.uHLenFactor.value = current.horizontalSizing;');
+    expect(laserSource).toContain('liveUniforms.uFlowStrength.value = current.flowStrength;');
+    expect(laserSource).toContain('ref={materialRef}');
     expect(proofSource).toContain("buildFlowTuningPreset('min')");
     expect(proofSource).toContain("buildFlowTuningPreset('max')");
     expect(proofSource).toContain('Values save in this browser.');

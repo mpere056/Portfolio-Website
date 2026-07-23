@@ -2,7 +2,7 @@
 
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useRef, useState } from 'react';
+import { useRef, useState, type MutableRefObject } from 'react';
 import {
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   type MuseumObservatoryFlowTuning,
@@ -341,77 +341,81 @@ function parseHexColor(hex: string, target: THREE.Vector3) {
 }
 
 export default function MuseumLaserFlowPlane({
-  tuning,
+  tuningRef,
   pointerActive,
   pointerTarget,
 }: {
-  tuning: MuseumObservatoryFlowTuning;
+  tuningRef: MutableRefObject<MuseumObservatoryFlowTuning>;
   pointerActive: boolean;
   pointerTarget: PointerTarget;
 }) {
-  const tuningRef = useRef(tuning);
-  tuningRef.current = tuning;
   const { gl, size } = useThree();
+  const initialTuning = tuningRef.current;
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
   const [uniforms] = useState(() => ({
     iTime: { value: 0 },
     iResolution: { value: new THREE.Vector3(1, 1, 1) },
     iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
-    uWispDensity: { value: tuning.wispDensity },
+    uWispDensity: { value: initialTuning.wispDensity },
     uTiltScale: { value: 0.01 },
     uFlowTime: { value: 0 },
     uFogTime: { value: 0 },
     uBeamXFrac: { value: 0.1 },
     uBeamYFrac: { value: 0 },
-    uFlowSpeed: { value: tuning.flowSpeed },
-    uVLenFactor: { value: tuning.verticalSizing },
-    uHLenFactor: { value: tuning.horizontalSizing },
-    uFogIntensity: { value: tuning.fogIntensity },
-    uFogScale: { value: tuning.fogScale },
-    uWSpeed: { value: tuning.wispSpeed },
-    uWIntensity: { value: tuning.wispIntensity },
-    uFlowStrength: { value: tuning.flowStrength },
-    uDecay: { value: tuning.decay },
-    uFalloffStart: { value: tuning.falloffStart },
-    uFogFallSpeed: { value: tuning.fogFallSpeed },
+    uFlowSpeed: { value: initialTuning.flowSpeed },
+    uVLenFactor: { value: initialTuning.verticalSizing },
+    uHLenFactor: { value: initialTuning.horizontalSizing },
+    uFogIntensity: { value: initialTuning.fogIntensity },
+    uFogScale: { value: initialTuning.fogScale },
+    uWSpeed: { value: initialTuning.wispSpeed },
+    uWIntensity: { value: initialTuning.wispIntensity },
+    uFlowStrength: { value: initialTuning.flowStrength },
+    uDecay: { value: initialTuning.decay },
+    uFalloffStart: { value: initialTuning.falloffStart },
+    uFogFallSpeed: { value: initialTuning.fogFallSpeed },
     uColor: { value: new THREE.Vector3(1, 1, 1) },
     uFade: { value: 1 },
   }));
 
   useFrame(({ clock }, delta) => {
+    const material = materialRef.current;
+    if (!material) return;
+    const liveUniforms = material.uniforms;
     const current = tuningRef.current;
     const dpr = gl.getPixelRatio();
     const width = size.width * dpr;
     const height = size.height * dpr;
     const clampedDelta = Math.min(0.033, Math.max(0.001, delta));
 
-    uniforms.iTime.value = clock.elapsedTime;
-    uniforms.iResolution.value.set(width, height, dpr);
-    uniforms.uFlowTime.value += clampedDelta;
-    uniforms.uFogTime.value += clampedDelta;
+    liveUniforms.iTime.value = clock.elapsedTime;
+    liveUniforms.iResolution.value.set(width, height, dpr);
+    liveUniforms.uFlowTime.value += clampedDelta;
+    liveUniforms.uFogTime.value += clampedDelta;
     if (pointerActive) {
-      uniforms.iMouse.value.set(pointerTarget.current.x * width, pointerTarget.current.y * height, 0, 0);
+      liveUniforms.iMouse.value.set(pointerTarget.current.x * width, pointerTarget.current.y * height, 0, 0);
     } else {
-      uniforms.iMouse.value.set(0, 0, 0, 0);
+      liveUniforms.iMouse.value.set(0, 0, 0, 0);
     }
-    uniforms.uWispDensity.value = current.wispDensity;
-    uniforms.uFlowSpeed.value = current.flowSpeed;
-    uniforms.uVLenFactor.value = current.verticalSizing;
-    uniforms.uHLenFactor.value = current.horizontalSizing;
-    uniforms.uFogIntensity.value = current.fogIntensity;
-    uniforms.uFogScale.value = current.fogScale;
-    uniforms.uWSpeed.value = current.wispSpeed;
-    uniforms.uWIntensity.value = current.wispIntensity;
-    uniforms.uFlowStrength.value = current.flowStrength;
-    uniforms.uDecay.value = current.decay;
-    uniforms.uFalloffStart.value = current.falloffStart;
-    uniforms.uFogFallSpeed.value = current.fogFallSpeed;
-    parseHexColor(current.color, uniforms.uColor.value);
+    liveUniforms.uWispDensity.value = current.wispDensity;
+    liveUniforms.uFlowSpeed.value = current.flowSpeed;
+    liveUniforms.uVLenFactor.value = current.verticalSizing;
+    liveUniforms.uHLenFactor.value = current.horizontalSizing;
+    liveUniforms.uFogIntensity.value = current.fogIntensity;
+    liveUniforms.uFogScale.value = current.fogScale;
+    liveUniforms.uWSpeed.value = current.wispSpeed;
+    liveUniforms.uWIntensity.value = current.wispIntensity;
+    liveUniforms.uFlowStrength.value = current.flowStrength;
+    liveUniforms.uDecay.value = current.decay;
+    liveUniforms.uFalloffStart.value = current.falloffStart;
+    liveUniforms.uFogFallSpeed.value = current.fogFallSpeed;
+    parseHexColor(current.color, liveUniforms.uColor.value);
   });
 
   return (
     <mesh position={[0, 0, 0.0735]} renderOrder={7.35}>
       <planeGeometry args={[MUSEUM_OBSERVATORY_PROOF_ASPECT * 2, 2]} />
       <shaderMaterial
+        ref={materialRef}
         uniforms={uniforms}
         vertexShader={LASER_FLOW_VERTEX}
         fragmentShader={LASER_FLOW_FRAGMENT}

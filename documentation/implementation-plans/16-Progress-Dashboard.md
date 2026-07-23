@@ -17,7 +17,7 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 16 retains the decomposed 700-particle runtime but narrows flow work to one source-faithful LaserFlow calibration plane after revision 15's custom parameter semantics were rejected. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 17 retains the decomposed 700-particle runtime and repairs the live-uniform ownership of revision 16's source-faithful LaserFlow calibration plane. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -211,6 +211,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
 | 2026-07-22 | Replaced custom observatory flow semantics with native LaserFlow calibration | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | One mounted calibration plane now follows the supplied beam, wisp, flow, fog, decay, falloff, and sizing equations with native defaults/ranges; Mark's semantic review remains open before scene composition |
+| 2026-07-22 | Repaired LaserFlow's live control-to-GPU bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Shared DOM/Canvas tuning state and direct mounted-material uniform writes make minimum and maximum renders visibly and unmistakably different; release and Mark review remain open |
 | 2026-07-22 | Made observatory tuning authoritative and visually verified | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `84c0911` and `ac6d742`, deployment `65NppAbnbhYueUejFNwQnXAs38GA`, and public minimum/maximum captures prove zero-strength removal and extreme maximum response; final creative values remain open |
 | 2026-07-22 | Added a temporary live observatory tuning console | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `9035bc9` and deployment `dpl_H11jwpq2VW4QhQ6dE39DKsYwYqe4` exposed color plus 12 parameters, but later public comparison found its material-update ownership incomplete |
 | 2026-07-21 | Restored observatory particles and replaced empty full-stage shading with measured crop territories | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `07890ff` and deployment `dpl_By1TcvFWoTYMnRQ7Ave2SjpC6j39` restore 700 particles while merging atmosphere, halving shader coverage, reducing effect buffers/cadence, and removing unused depth/stencil work |
