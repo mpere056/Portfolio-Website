@@ -18,10 +18,14 @@ import {
 } from 'react';
 import {
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
+  MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS,
+  MUSEUM_OBSERVATORY_FLOW_FAMILIES,
   MUSEUM_OBSERVATORY_FLOW_TIMING,
   MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
+  type MuseumObservatoryFlowComposition,
+  type MuseumObservatoryFlowFamilyId,
   type MuseumObservatoryFlowTuning,
 } from '@/lib/museum/observatoryProof';
 import { toProofAttentionPoint } from '@/lib/museum/ambientProof';
@@ -31,7 +35,7 @@ import MuseumLaserFlowPlane from './MuseumLaserFlowPlane';
 import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumAmbientProof.module.css';
 
-const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-laser-flow-tuning-v2';
+const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-laser-flow-composition-v3';
 
 type NumericFlowTuningKey = Exclude<keyof MuseumObservatoryFlowTuning, 'color'>;
 
@@ -57,20 +61,34 @@ const FLOW_TUNING_CONTROLS: ReadonlyArray<{
   { key: 'falloffStart', label: 'Falloff start', min: 0.2, max: 3, step: 0.01, precision: 2 },
 ];
 
-function readStoredFlowTuning(): MuseumObservatoryFlowTuning {
-  const defaults = { ...MUSEUM_OBSERVATORY_FLOW_CONTROLS };
+function cloneFlowComposition(
+  source: MuseumObservatoryFlowComposition = MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS,
+): MuseumObservatoryFlowComposition {
+  return Object.fromEntries(
+    MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => [family.id, { ...source[family.id] }]),
+  ) as MuseumObservatoryFlowComposition;
+}
+
+function readStoredFlowComposition(): MuseumObservatoryFlowComposition {
+  const defaults = cloneFlowComposition();
   try {
     const stored = window.localStorage.getItem(OBSERVATORY_TUNING_STORAGE_KEY);
     if (!stored) return defaults;
-    const parsed = JSON.parse(stored) as Partial<MuseumObservatoryFlowTuning>;
-    if (typeof parsed.color === 'string' && /^#[0-9a-f]{6}$/i.test(parsed.color)) {
-      defaults.color = parsed.color;
-    }
-    FLOW_TUNING_CONTROLS.forEach(({ key, min, max }) => {
-      const value = parsed[key];
-      if (typeof value === 'number' && Number.isFinite(value)) {
-        defaults[key] = THREE.MathUtils.clamp(value, min, max);
+    const parsed = JSON.parse(stored) as Partial<
+      Record<MuseumObservatoryFlowFamilyId, Partial<MuseumObservatoryFlowTuning>>
+    >;
+    MUSEUM_OBSERVATORY_FLOW_FAMILIES.forEach(family => {
+      const storedFamily = parsed[family.id];
+      if (!storedFamily) return;
+      if (typeof storedFamily.color === 'string' && /^#[0-9a-f]{6}$/i.test(storedFamily.color)) {
+        defaults[family.id].color = storedFamily.color;
       }
+      FLOW_TUNING_CONTROLS.forEach(({ key, min, max }) => {
+        const value = storedFamily[key];
+        if (typeof value === 'number' && Number.isFinite(value)) {
+          defaults[family.id][key] = THREE.MathUtils.clamp(value, min, max);
+        }
+      });
     });
   } catch {
     return defaults;
@@ -78,8 +96,11 @@ function readStoredFlowTuning(): MuseumObservatoryFlowTuning {
   return defaults;
 }
 
-function buildFlowTuningPreset(edge: 'min' | 'max'): MuseumObservatoryFlowTuning {
-  const preset = { ...MUSEUM_OBSERVATORY_FLOW_CONTROLS };
+function buildFlowTuningPreset(
+  edge: 'min' | 'max',
+  current: MuseumObservatoryFlowTuning,
+): MuseumObservatoryFlowTuning {
+  const preset = { ...current };
   FLOW_TUNING_CONTROLS.forEach(control => {
     preset[control.key] = control[edge];
   });
@@ -1064,11 +1085,11 @@ function ObservatoryOrb({
 function ObservatoryScene({
   pointerActive,
   pointerTarget,
-  flowTuningRef,
+  flowCompositionRef,
 }: {
   pointerActive: boolean;
   pointerTarget: PointerTarget;
-  flowTuningRef: MutableRefObject<MuseumObservatoryFlowTuning>;
+  flowCompositionRef: MutableRefObject<MuseumObservatoryFlowComposition>;
 }) {
   const textures = useTexture([
     MUSEUM_OBSERVATORY_PROOF_ASSETS.field,
@@ -1086,7 +1107,15 @@ function ObservatoryScene({
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <MuseumLaserFlowPlane tuningRef={flowTuningRef} pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      {MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => (
+        <MuseumLaserFlowPlane
+          family={family}
+          key={family.id}
+          tuningRef={flowCompositionRef}
+          pointerActive={pointerActive}
+          pointerTarget={pointerTarget}
+        />
+      ))}
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
@@ -1169,11 +1198,15 @@ function StaticFallback() {
 }
 
 function ObservatoryTuningPanel({
+  selectedFamilyId,
   tuning,
+  onSelectFamily,
   onChange,
   onReset,
 }: {
+  selectedFamilyId: MuseumObservatoryFlowFamilyId;
   tuning: MuseumObservatoryFlowTuning;
+  onSelectFamily: (familyId: MuseumObservatoryFlowFamilyId) => void;
   onChange: (next: MuseumObservatoryFlowTuning) => void;
   onReset: () => void;
 }) {
@@ -1187,10 +1220,22 @@ function ObservatoryTuningPanel({
       onToggle={event => setOpen(event.currentTarget.open)}
     >
       <summary>
-        <span>Native LaserFlow controls</span>
+        <span>Observatory current controls</span>
         <span>{open ? 'Close' : 'Tune'}</span>
       </summary>
       <div className={styles.observatoryTuningBody}>
+        <label className={styles.observatoryFamilyControl} htmlFor="observatory-flow-family">
+          <span>Current family</span>
+          <select
+            id="observatory-flow-family"
+            value={selectedFamilyId}
+            onChange={event => onSelectFamily(event.target.value as MuseumObservatoryFlowFamilyId)}
+          >
+            {MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => (
+              <option key={family.id} value={family.id}>{family.label}</option>
+            ))}
+          </select>
+        </label>
         <label className={styles.observatoryColorControl} htmlFor="observatory-flow-color">
           <span>Color</span>
           <span className={styles.observatoryColorValue}>
@@ -1232,9 +1277,9 @@ function ObservatoryTuningPanel({
         <div className={styles.observatoryTuningFooter}>
           <p>Values save in this browser.</p>
           <div className={styles.observatoryTuningActions}>
-            <button type="button" onClick={() => onChange(buildFlowTuningPreset('min'))}>All minimum</button>
-            <button type="button" onClick={() => onChange(buildFlowTuningPreset('max'))}>All maximum</button>
-            <button type="button" onClick={onReset}>Reset defaults</button>
+            <button type="button" onClick={() => onChange(buildFlowTuningPreset('min', tuning))}>Family minimum</button>
+            <button type="button" onClick={() => onChange(buildFlowTuningPreset('max', tuning))}>Family maximum</button>
+            <button type="button" onClick={onReset}>Reset family</button>
           </div>
         </div>
       </div>
@@ -1247,12 +1292,12 @@ export default function MuseumObservatoryProof() {
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
   const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
-  const [flowTuning, setFlowTuning] = useState<MuseumObservatoryFlowTuning>({
-    ...MUSEUM_OBSERVATORY_FLOW_CONTROLS,
-  });
-  const flowTuningRef = useRef<MuseumObservatoryFlowTuning>({
-    ...MUSEUM_OBSERVATORY_FLOW_CONTROLS,
-  });
+  const [selectedFlowFamilyId, setSelectedFlowFamilyId] =
+    useState<MuseumObservatoryFlowFamilyId>('cyan-lead');
+  const [flowComposition, setFlowComposition] = useState<MuseumObservatoryFlowComposition>(
+    cloneFlowComposition,
+  );
+  const flowCompositionRef = useRef<MuseumObservatoryFlowComposition>(cloneFlowComposition());
   const [tuningReady, setTuningReady] = useState(false);
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
   const pointerStateFrame = useRef<number | null>(null);
@@ -1308,28 +1353,32 @@ export default function MuseumObservatoryProof() {
   }, []);
 
   useEffect(() => {
-    const storedTuning = readStoredFlowTuning();
-    flowTuningRef.current = storedTuning;
-    setFlowTuning(storedTuning);
+    const storedComposition = readStoredFlowComposition();
+    flowCompositionRef.current = storedComposition;
+    setFlowComposition(storedComposition);
     setTuningReady(true);
   }, []);
 
   const updateFlowTuning = (next: MuseumObservatoryFlowTuning) => {
-    flowTuningRef.current = next;
-    setFlowTuning(next);
+    const nextComposition = {
+      ...flowCompositionRef.current,
+      [selectedFlowFamilyId]: next,
+    };
+    flowCompositionRef.current = nextComposition;
+    setFlowComposition(nextComposition);
   };
 
   useEffect(() => {
     if (!tuningReady) return;
     const save = window.setTimeout(() => {
       try {
-        window.localStorage.setItem(OBSERVATORY_TUNING_STORAGE_KEY, JSON.stringify(flowTuning));
+        window.localStorage.setItem(OBSERVATORY_TUNING_STORAGE_KEY, JSON.stringify(flowComposition));
       } catch {
         // Private browsing policies can disable storage; live tuning should still work.
       }
     }, 180);
     return () => window.clearTimeout(save);
-  }, [flowTuning, tuningReady]);
+  }, [flowComposition, tuningReady]);
 
   useEffect(() => () => {
     if (pointerStateFrame.current !== null) {
@@ -1380,7 +1429,7 @@ export default function MuseumObservatoryProof() {
                 <ObservatoryScene
                   pointerActive={pointerActive}
                   pointerTarget={pointerTarget}
-                  flowTuningRef={flowTuningRef}
+                  flowCompositionRef={flowCompositionRef}
                 />
               </Suspense>
             </Canvas>
@@ -1413,15 +1462,14 @@ export default function MuseumObservatoryProof() {
         <div className={styles.grain} aria-hidden="true" />
       </div>
       <ObservatoryTuningPanel
-        tuning={flowTuning}
+        selectedFamilyId={selectedFlowFamilyId}
+        tuning={flowComposition[selectedFlowFamilyId]}
+        onSelectFamily={setSelectedFlowFamilyId}
         onChange={updateFlowTuning}
         onReset={() => {
-          try {
-            window.localStorage.removeItem(OBSERVATORY_TUNING_STORAGE_KEY);
-          } catch {
-            // Keep reset functional even when browser storage is unavailable.
-          }
-          updateFlowTuning({ ...MUSEUM_OBSERVATORY_FLOW_CONTROLS });
+          updateFlowTuning({
+            ...MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS[selectedFlowFamilyId],
+          });
         }}
       />
       <header className={styles.caption}>

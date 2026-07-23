@@ -5,12 +5,15 @@ import * as THREE from 'three';
 import { useRef, useState, type MutableRefObject } from 'react';
 import {
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
-  type MuseumObservatoryFlowTuning,
+  type MuseumObservatoryFlowComposition,
+  type MuseumObservatoryFlowFamily,
 } from '@/lib/museum/observatoryProof';
 
 const LASER_FLOW_VERTEX = /* glsl */`
   precision highp float;
+  varying vec2 vUv;
   void main() {
+    vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `;
@@ -21,6 +24,7 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
   precision highp float;
   precision mediump int;
 
+  varying vec2 vUv;
   uniform float iTime;
   uniform vec3 iResolution;
   uniform vec4 iMouse;
@@ -41,6 +45,9 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
   uniform float uDecay;
   uniform float uFalloffStart;
   uniform float uFogFallSpeed;
+  uniform float uRotation;
+  uniform float uHorizontalContribution;
+  uniform float uVerticalContribution;
   uniform vec3 uColor;
   uniform float uFade;
 
@@ -224,6 +231,9 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
       uBeamYFrac * iResolution.y * coordinateScale.y
     );
     vec2 beamUv = uv - beamOffset;
+    float rotationCos = cos(uRotation);
+    float rotationSin = sin(uRotation);
+    beamUv = mat2(rotationCos, -rotationSin, rotationSin, rotationCos) * beamUv;
 
     float horizontalBeam = 0.0;
     float verticalBeam = 0.0;
@@ -274,8 +284,9 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
 
     float normalizedY = clamp(yPixels / R_V, 0.0, 1.0);
     float topFade = pow(1.0 - smoothstep(TOP_FADE_START, 1.0, normalizedY), TOP_FADE_EXP);
-    float beamLight = horizontalBeam + verticalBeam * topFade;
-    float wisps = verticalWisps(vec2(beamUv.x, yPixels), topFade);
+    float beamLight = horizontalBeam * uHorizontalContribution
+      + verticalBeam * topFade * uVerticalContribution;
+    float wisps = verticalWisps(vec2(beamUv.x, yPixels), topFade) * uVerticalContribution;
 
     vec2 fogUv = beamUv * uFogScale;
     float mouseActive = step(1.0, length(iMouse.xy));
@@ -322,8 +333,12 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
     float sceneLight = lightAndFog + max(0.0, wisps) * 0.5;
     float highlight = smoothstep(EDGE_LUMA_T0, EDGE_LUMA_T1, sceneLight);
     float edgeMask = mix(horizontalFade, 1.0, highlight);
-    color *= edgeMask * uFade;
-    alpha *= edgeMask * uFade;
+    float cropMask = smoothstep(0.0, 0.045, vUv.x)
+      * smoothstep(0.0, 0.045, vUv.y)
+      * smoothstep(0.0, 0.045, 1.0 - vUv.x)
+      * smoothstep(0.0, 0.045, 1.0 - vUv.y);
+    color *= edgeMask * cropMask;
+    alpha *= edgeMask * cropMask * uFade;
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -341,16 +356,18 @@ function parseHexColor(hex: string, target: THREE.Vector3) {
 }
 
 export default function MuseumLaserFlowPlane({
+  family,
   tuningRef,
   pointerActive,
   pointerTarget,
 }: {
-  tuningRef: MutableRefObject<MuseumObservatoryFlowTuning>;
+  family: MuseumObservatoryFlowFamily;
+  tuningRef: MutableRefObject<MuseumObservatoryFlowComposition>;
   pointerActive: boolean;
   pointerTarget: PointerTarget;
 }) {
   const { gl, size } = useThree();
-  const initialTuning = tuningRef.current;
+  const initialTuning = tuningRef.current[family.id];
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const [uniforms] = useState(() => ({
     iTime: { value: 0 },
@@ -358,10 +375,10 @@ export default function MuseumLaserFlowPlane({
     iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
     uWispDensity: { value: initialTuning.wispDensity },
     uTiltScale: { value: 0.01 },
-    uFlowTime: { value: 0 },
-    uFogTime: { value: 0 },
-    uBeamXFrac: { value: 0.1 },
-    uBeamYFrac: { value: 0 },
+    uFlowTime: { value: family.timeOffset },
+    uFogTime: { value: family.timeOffset },
+    uBeamXFrac: { value: family.origin[0] - 0.5 },
+    uBeamYFrac: { value: 0.5 - family.origin[1] },
     uFlowSpeed: { value: initialTuning.flowSpeed },
     uVLenFactor: { value: initialTuning.verticalSizing },
     uHLenFactor: { value: initialTuning.horizontalSizing },
@@ -373,19 +390,26 @@ export default function MuseumLaserFlowPlane({
     uDecay: { value: initialTuning.decay },
     uFalloffStart: { value: initialTuning.falloffStart },
     uFogFallSpeed: { value: initialTuning.fogFallSpeed },
+    uRotation: { value: family.rotation },
+    uHorizontalContribution: { value: family.horizontalContribution },
+    uVerticalContribution: { value: family.verticalContribution },
     uColor: { value: new THREE.Vector3(1, 1, 1) },
-    uFade: { value: 1 },
+    uFade: { value: family.opacity },
   }));
 
   useFrame(({ clock }, delta) => {
     const material = materialRef.current;
     if (!material) return;
     const liveUniforms = material.uniforms;
-    const current = tuningRef.current;
+    const current = tuningRef.current[family.id];
     const dpr = gl.getPixelRatio();
     const width = size.width * dpr;
     const height = size.height * dpr;
     const clampedDelta = Math.min(0.033, Math.max(0.001, delta));
+    const pointerX = pointerTarget.current.x;
+    const pointerY = 1 - pointerTarget.current.y;
+    const distance = Math.hypot(pointerX - family.origin[0], pointerY - family.origin[1]);
+    const attention = pointerActive ? Math.exp(-distance * 5.5) : 0;
 
     liveUniforms.iTime.value = clock.elapsedTime;
     liveUniforms.iResolution.value.set(width, height, dpr);
@@ -397,23 +421,34 @@ export default function MuseumLaserFlowPlane({
       liveUniforms.iMouse.value.set(0, 0, 0, 0);
     }
     liveUniforms.uWispDensity.value = current.wispDensity;
-    liveUniforms.uFlowSpeed.value = current.flowSpeed;
+    liveUniforms.uFlowSpeed.value = current.flowSpeed * (1 + attention * 0.55);
     liveUniforms.uVLenFactor.value = current.verticalSizing;
     liveUniforms.uHLenFactor.value = current.horizontalSizing;
-    liveUniforms.uFogIntensity.value = current.fogIntensity;
+    liveUniforms.uFogIntensity.value = current.fogIntensity * (1 + attention * 0.25);
     liveUniforms.uFogScale.value = current.fogScale;
-    liveUniforms.uWSpeed.value = current.wispSpeed;
-    liveUniforms.uWIntensity.value = current.wispIntensity;
-    liveUniforms.uFlowStrength.value = current.flowStrength;
+    liveUniforms.uWSpeed.value = current.wispSpeed * (1 + attention * 0.5);
+    liveUniforms.uWIntensity.value = current.wispIntensity * (1 + attention * 0.35);
+    liveUniforms.uFlowStrength.value = THREE.MathUtils.clamp(
+      current.flowStrength + attention * 0.12,
+      0,
+      1,
+    );
     liveUniforms.uDecay.value = current.decay;
     liveUniforms.uFalloffStart.value = current.falloffStart;
     liveUniforms.uFogFallSpeed.value = current.fogFallSpeed;
+    liveUniforms.uFade.value = family.opacity * (1 + attention * 0.18);
     parseHexColor(current.color, liveUniforms.uColor.value);
   });
 
+  const [minimumX, minimumY, maximumX, maximumY] = family.crop;
+  const cropWidth = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
+  const cropHeight = (maximumY - minimumY) * 2;
+  const cropX = ((minimumX + maximumX) * 0.5 - 0.5) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
+  const cropY = (0.5 - (minimumY + maximumY) * 0.5) * 2;
+
   return (
-    <mesh position={[0, 0, 0.0735]} renderOrder={7.35}>
-      <planeGeometry args={[MUSEUM_OBSERVATORY_PROOF_ASPECT * 2, 2]} />
+    <mesh position={[cropX, cropY, family.order * 0.01]} renderOrder={family.order}>
+      <planeGeometry args={[cropWidth, cropHeight]} />
       <shaderMaterial
         ref={materialRef}
         uniforms={uniforms}
@@ -421,6 +456,7 @@ export default function MuseumLaserFlowPlane({
         fragmentShader={LASER_FLOW_FRAGMENT}
         transparent
         premultipliedAlpha={false}
+        blending={THREE.AdditiveBlending}
         depthTest={false}
         depthWrite={false}
         toneMapped={false}

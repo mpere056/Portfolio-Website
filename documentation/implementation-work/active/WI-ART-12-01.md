@@ -12,13 +12,13 @@
 | Outcome | `O-01`, `O-04` |
 | Owner | Mark and Codex |
 | Branch/worktree | `main` |
-| Last update | 2026-07-22 |
+| Last update | 2026-07-23 |
 
 ## Current Truth
 
 Production `fce50af` is the known-good functional and interaction baseline. The Museum fits one desktop viewport, exposes nine collision-free project signals, contains increasing depth, responds to pointer and graph state, and preserves semantic and stable fallbacks. It does not yet satisfy pervasive ambient-world acceptance: the dominant raster composition remains temporally inert while smaller overlays move.
 
-The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 13 restored all 700 GPU particles while reducing fragment cost through merged/cropped passes, lower effect buffers/cadence, lighter flow noise, and disabled depth/stencil. Revision 15 proved state ownership but failed semantic review because its custom ribbons reinterpreted the supplied LaserFlow controls. Revision 16 mounted one source-faithful calibration plane but left numeric UI state disconnected from the compiled material. Revision 17 crosses the DOM/Canvas root boundary with a shared live reference and writes every current value directly into the mounted `ShaderMaterial.uniforms` table each frame. The older front/rear shaders are dormant. Browser-local persistence, separated territories, stochastic tower windows, and the approved local attention pipeline remain.
+The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 17 proved source-faithful LaserFlow semantics and repaired the live DOM-to-GPU control bridge; Mark accepted that behavior. Revision 18 now composes six cropped native LaserFlow families with separate presets, phase offsets, origins, rotations, opacity, and local attention response. The older front/rear shaders remain dormant. Browser-local per-family tuning, 700 particles, separated structural territories, stochastic tower windows, the 3D orb, one-screen framing, and the approved Museum attention pipeline remain.
 
 ## Resume Packet
 
@@ -28,7 +28,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: release revision 17, then Mark checks `/projects/observatory-proof` and confirms that each slider now behaves like the supplied LaserFlow reference. Only after semantic acceptance does Codex reshape, orient, and layer the effect into observatory-specific cyan, gold, copper, ivory, and spectral currents, then profile the composed result on affected computers. Do not record final creative values from this intentionally simple calibration plane.
+- Next exact action: release revision 18, then Mark reviews the composed currents at `/projects/observatory-proof` and checks the route on the previously affected computers. Adjust only named family presets through the selector; do not alter native control meanings. If visual and performance review pass, accept east-observatory `ART-12F` and begin `ART-12G` Museum integration.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating either bounded proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -42,7 +42,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-review | Hybrid one-clock WebGL proofs with plate shaders and procedural systems | West ecology revision 4 is accepted; east revision 16 must pass native LaserFlow control-semantics review before scene-specific composition resumes |
+| `ART-12F` Compositor | in-review | Hybrid one-clock WebGL proofs with plate shaders and procedural systems | West ecology revision 4 is accepted; east revision 18 awaits composed-scene and affected-computer review |
 | `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
 | `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
 

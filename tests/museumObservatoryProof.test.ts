@@ -2,7 +2,9 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
+  MUSEUM_OBSERVATORY_FLOW_FAMILIES,
   MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
@@ -32,7 +34,7 @@ describe('Museum observatory compositor proof', () => {
       'observatory:orb',
       'observatory:city',
       'observatory:portal',
-      'observatory:laser-flow-calibration',
+      'observatory:laser-flow-composition',
       'observatory:atmosphere',
       'observatory:diagram',
       'observatory:particles',
@@ -40,10 +42,11 @@ describe('Museum observatory compositor proof', () => {
       'observatory:fallback',
     ]));
     const laserFlowLayer = MUSEUM_OBSERVATORY_PROOF_LAYERS.find(
-      layer => layer.id === 'observatory:laser-flow-calibration',
+      layer => layer.id === 'observatory:laser-flow-composition',
     );
     expect(laserFlowLayer?.medium).toBe('procedural-shader');
     expect(laserFlowLayer?.temporalJob).toContain('native LaserFlow');
+    expect(laserFlowLayer?.temporalJob).toContain('six cropped');
     expect(laserFlowLayer?.temporalJob).toContain('segmented wisps');
     expect(laserFlowLayer?.temporalJob).toContain('five-octave fog');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:particles')?.medium)
@@ -52,6 +55,29 @@ describe('Museum observatory compositor proof', () => {
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:city')?.temporalJob)
       .toContain('excluding the foreground dome, podium, and steps');
+  });
+
+  it('composes six independently phased and spatially bounded native currents', () => {
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => family.id)).toEqual([
+      'copper-canopy',
+      'nacre-arch',
+      'ivory-undertow',
+      'cyan-lead',
+      'gold-companion',
+      'spectral-thread',
+    ]);
+    expect(Object.keys(MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS).sort()).toEqual(
+      MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => family.id).sort(),
+    );
+    expect(new Set(MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => family.timeOffset))).toHaveLength(6);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.verticalContribution === 1)).toBe(true);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.horizontalContribution <= 0.04)).toBe(true);
+    const croppedArea = MUSEUM_OBSERVATORY_FLOW_FAMILIES.reduce(
+      (total, family) => total
+        + (family.crop[2] - family.crop[0]) * (family.crop[3] - family.crop[1]),
+      0,
+    );
+    expect(croppedArea).toBeLessThan(1.9);
   });
 
   it('starts from the native LaserFlow parameter defaults', () => {
@@ -108,11 +134,12 @@ describe('Museum observatory compositor proof', () => {
       readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumObservatoryProof.tsx'), 'utf8'),
       readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumLaserFlowPlane.tsx'), 'utf8'),
     ]);
-    expect(proofSource).toContain('<MuseumLaserFlowPlane tuningRef={flowTuningRef}');
+    expect(proofSource).toContain('MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family =>');
+    expect(proofSource).toContain('tuningRef={flowCompositionRef}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_BACK_FRAGMENT}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_FRONT_FRAGMENT}');
-    expect(proofSource).toContain('museum-observatory-laser-flow-tuning-v2');
-    expect(proofSource).toContain('Native LaserFlow controls');
+    expect(proofSource).toContain('museum-observatory-laser-flow-composition-v3');
+    expect(proofSource).toContain('Observatory current controls');
     expect(laserSource).toContain('float flowPhase = normalizedY / max(FLOW_PERIOD, EPS) + uFlowTime * uFlowSpeed;');
     expect(laserSource).toContain('envelope *= mix(1.0 - uFlowStrength, 1.0, flow);');
     expect(laserSource).toContain('float flowCell = (y + uFlowTime * uWSpeed) / W_CELL;');
@@ -126,14 +153,20 @@ describe('Museum observatory compositor proof', () => {
     expect(laserSource).toContain('#define FOG_OCTAVES 5');
     expect(laserSource).toContain('liveUniforms.uFlowTime.value += clampedDelta;');
     expect(laserSource).toContain('liveUniforms.uFogTime.value += clampedDelta;');
-    expect(proofSource).toContain('flowTuningRef.current = next;');
-    expect(laserSource).toContain('const current = tuningRef.current;');
+    expect(proofSource).toContain('flowCompositionRef.current = nextComposition;');
+    expect(laserSource).toContain('const current = tuningRef.current[family.id];');
     expect(laserSource).toContain('const liveUniforms = material.uniforms;');
+    expect(laserSource).toContain('beamUv = mat2(rotationCos, -rotationSin, rotationSin, rotationCos) * beamUv;');
+    expect(laserSource).toContain('horizontalBeam * uHorizontalContribution');
+    expect(laserSource).toContain('const [minimumX, minimumY, maximumX, maximumY] = family.crop;');
+    expect(laserSource).toContain('float cropMask = smoothstep(0.0, 0.045, vUv.x)');
+    expect(laserSource).toContain('const attention = pointerActive ? Math.exp(-distance * 5.5) : 0;');
     expect(laserSource).toContain('liveUniforms.uHLenFactor.value = current.horizontalSizing;');
-    expect(laserSource).toContain('liveUniforms.uFlowStrength.value = current.flowStrength;');
+    expect(laserSource).toContain('current.flowStrength + attention * 0.12');
     expect(laserSource).toContain('ref={materialRef}');
-    expect(proofSource).toContain("buildFlowTuningPreset('min')");
-    expect(proofSource).toContain("buildFlowTuningPreset('max')");
+    expect(proofSource).toContain("buildFlowTuningPreset('min', tuning)");
+    expect(proofSource).toContain("buildFlowTuningPreset('max', tuning)");
+    expect(proofSource).toContain('Current family');
     expect(proofSource).toContain('Values save in this browser.');
     expect(proofSource).toContain("frameloop={visible ? 'demand' : 'never'}");
     expect(proofSource).not.toContain('<animateMotion');

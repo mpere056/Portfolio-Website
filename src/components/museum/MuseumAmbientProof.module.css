@@ -266,6 +266,7 @@
   scrollbar-width: thin;
 }
 
+.observatoryFamilyControl,
 .observatoryColorControl,
 .observatoryRangeControl {
   display: grid;
@@ -273,6 +274,22 @@
   color: rgba(212, 228, 226, .61);
   font-size: .66rem;
   letter-spacing: .03em;
+}
+
+.observatoryFamilyControl select {
+  width: 100%;
+  padding: .5rem .58rem;
+  color: rgba(237, 246, 244, .9);
+  border: 1px solid rgba(145, 207, 207, .18);
+  border-radius: .38rem;
+  outline: none;
+  background: rgba(113, 190, 193, .07);
+  font: inherit;
+}
+
+.observatoryFamilyControl select:focus-visible {
+  border-color: rgba(143, 222, 221, .46);
+  box-shadow: 0 0 0 2px rgba(86, 190, 194, .12);
 }
 
 .observatoryColorControl,
