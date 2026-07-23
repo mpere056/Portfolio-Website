@@ -3,7 +3,6 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
-  MUSEUM_OBSERVATORY_FLOW_TIMING,
   MUSEUM_OBSERVATORY_PERFORMANCE,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   MUSEUM_OBSERVATORY_PROOF_ASSETS,
@@ -33,19 +32,20 @@ describe('Museum observatory compositor proof', () => {
       'observatory:orb',
       'observatory:city',
       'observatory:portal',
-      'observatory:flows-rear',
-      'observatory:flows-front',
+      'observatory:laser-flow-calibration',
       'observatory:atmosphere',
       'observatory:diagram',
       'observatory:particles',
       'observatory:attention',
       'observatory:fallback',
     ]));
-    const flowLayers = MUSEUM_OBSERVATORY_PROOF_LAYERS.filter(layer => layer.id.startsWith('observatory:flows-'));
-    expect(flowLayers).toHaveLength(2);
-    expect(flowLayers.every(layer => layer.medium === 'procedural-shader')).toBe(true);
-    expect(flowLayers.every(layer => layer.temporalJob.includes('code-generated'))).toBe(true);
-    expect(flowLayers.every(layer => layer.temporalJob.includes('visibly traverse'))).toBe(true);
+    const laserFlowLayer = MUSEUM_OBSERVATORY_PROOF_LAYERS.find(
+      layer => layer.id === 'observatory:laser-flow-calibration',
+    );
+    expect(laserFlowLayer?.medium).toBe('procedural-shader');
+    expect(laserFlowLayer?.temporalJob).toContain('native LaserFlow');
+    expect(laserFlowLayer?.temporalJob).toContain('segmented wisps');
+    expect(laserFlowLayer?.temporalJob).toContain('five-octave fog');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:particles')?.medium)
       .toBe('procedural-geometry');
     expect(MUSEUM_OBSERVATORY_PROOF_LAYERS.find(layer => layer.id === 'observatory:orb')?.medium)
@@ -54,22 +54,22 @@ describe('Museum observatory compositor proof', () => {
       .toContain('excluding the foreground dome, podium, and steps');
   });
 
-  it('keeps directional flow legible at human viewing speed without synchronizing every family', () => {
-    const timings = Object.values(MUSEUM_OBSERVATORY_FLOW_TIMING);
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds).toBeLessThanOrEqual(2.5);
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.coreCrossingSeconds).toBeLessThan(
-      MUSEUM_OBSERVATORY_FLOW_TIMING.leadCrossingSeconds,
-    );
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds).toBeGreaterThan(4);
-    expect(MUSEUM_OBSERVATORY_FLOW_TIMING.ivoryCrossingSeconds).toBeGreaterThan(
-      MUSEUM_OBSERVATORY_FLOW_TIMING.copperCrossingSeconds,
-    );
-    expect(new Set(timings)).toHaveLength(timings.length);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowSpeed).toBeGreaterThanOrEqual(2);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.flowStrength).toBeGreaterThanOrEqual(1.2);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispSpeed).toBeGreaterThan(1);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.wispIntensity).toBeGreaterThan(1);
-    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS.fogIntensity).toBeGreaterThan(0);
+  it('starts from the native LaserFlow parameter defaults', () => {
+    expect(MUSEUM_OBSERVATORY_FLOW_CONTROLS).toEqual({
+      color: '#ff79c6',
+      horizontalSizing: 0.5,
+      verticalSizing: 2,
+      wispDensity: 1,
+      wispSpeed: 15,
+      wispIntensity: 5,
+      flowSpeed: 0.35,
+      flowStrength: 0.25,
+      fogIntensity: 0.45,
+      fogScale: 0.3,
+      fogFallSpeed: 0.6,
+      decay: 1.1,
+      falloffStart: 1.2,
+    });
     expect(Object.keys(MUSEUM_OBSERVATORY_FLOW_CONTROLS)).toEqual([
       'color',
       'horizontalSizing',
@@ -92,7 +92,7 @@ describe('Museum observatory compositor proof', () => {
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps).toBeLessThanOrEqual(24);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeLessThanOrEqual(36);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.attentionFps).toBeGreaterThan(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps);
-    expect(MUSEUM_OBSERVATORY_PERFORMANCE.fogOctaves).toBeLessThanOrEqual(3);
+    expect(MUSEUM_OBSERVATORY_PERFORMANCE.fogOctaves).toBe(5);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.orbDetail).toBeLessThanOrEqual(3);
     expect(Object.values(MUSEUM_OBSERVATORY_PERFORMANCE.particles).reduce((total, count) => total + count, 0))
       .toBe(700);
@@ -103,48 +103,35 @@ describe('Museum observatory compositor proof', () => {
     expect(croppedArea).toBeLessThan(3.5);
   });
 
-  it('expresses flow inside shader material instead of overlaying marker heads', async () => {
-    const source = await readFile(
-      path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumObservatoryProof.tsx'),
-      'utf8',
-    );
-    expect(source).toContain('float leadTravel =');
-    expect(source).toContain('float copperTravel =');
-    expect(source).toContain('float ivoryTravel =');
-    expect(source).toContain('float liquidBolus(');
-    expect(source).toContain('float leadBolus = liquidBolus(');
-    expect(source).toContain('float copperBolus = liquidBolus(');
-    expect(source).toContain('float ivoryBolus = liquidBolus(');
-    expect(source).toContain('float laserFlowModulation(');
-    expect(source).toContain('float movingWisp(');
-    expect(source).toContain('float advectedFlowFog(');
-    expect(source).toContain('float flowFbm(');
-    expect(source).toContain('float flowProfile(');
-    expect(source).toContain('float flowClock = uTime * uFlowSpeed;');
-    expect(source).toContain('float strengthGain = uFlowStrength /');
-    expect(source).toContain('uniform vec4 uUvBounds;');
-    expect(source).toContain('uniform float uHorizontalSizing;');
-    expect(source).toContain('uniform float uVerticalSizing;');
-    expect(source).toContain('uniform float uWispDensity;');
-    expect(source).toContain('uniform float uFlowSpeed;');
-    expect(source).toContain('uniform float uDecay;');
-    expect(source).toContain('uniform float uFalloffStart;');
-    expect(source).toContain('museum-observatory-flow-tuning-v1');
-    expect(source).toContain('data-testid="observatory-flow-tuning"');
-    expect(source).toContain('const flowTuningRef = useRef(flowTuning);');
-    expect(source).toContain('const currentFlowTuning = flowTuningRef.current;');
-    expect(source).toContain('uniforms.uFlowStrength.value = currentFlowTuning.flowStrength;');
-    expect(source).toContain('const flowsEnabled = flowTuning.flowStrength > 0;');
-    expect(source).toContain('key={`rear:${flowRevision}`}');
-    expect(source).toContain('key={`front:${flowRevision}`}');
-    expect(source).toContain("buildFlowTuningPreset('min')");
-    expect(source).toContain("buildFlowTuningPreset('max')");
-    expect(source).toContain('Values save in this browser.');
-    expect(source).toContain("frameloop={visible ? 'demand' : 'never'}");
-    expect(source).not.toContain('attribute.needsUpdate = true');
-    expect(source).not.toContain('const ATMOSPHERE_FRAGMENT');
-    expect(source).not.toContain('<animateMotion');
-    expect(source).not.toContain('observatoryFlowTracer');
+  it('maps controls to the native LaserFlow equations instead of custom ribbon meanings', async () => {
+    const [proofSource, laserSource] = await Promise.all([
+      readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumObservatoryProof.tsx'), 'utf8'),
+      readFile(path.join(process.cwd(), 'src', 'components', 'museum', 'MuseumLaserFlowPlane.tsx'), 'utf8'),
+    ]);
+    expect(proofSource).toContain('<MuseumLaserFlowPlane tuning={flowTuning}');
+    expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_BACK_FRAGMENT}');
+    expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_FRONT_FRAGMENT}');
+    expect(proofSource).toContain('museum-observatory-laser-flow-tuning-v2');
+    expect(proofSource).toContain('Native LaserFlow controls');
+    expect(laserSource).toContain('float flowPhase = normalizedY / max(FLOW_PERIOD, EPS) + uFlowTime * uFlowSpeed;');
+    expect(laserSource).toContain('envelope *= mix(1.0 - uFlowStrength, 1.0, flow);');
+    expect(laserSource).toContain('float flowCell = (y + uFlowTime * uWSpeed) / W_CELL;');
+    expect(laserSource).toContain('return uWIntensity * sum * topFade * bottomGain * span;');
+    expect(laserSource).toContain('vec2 fogUv = beamUv * uFogScale;');
+    expect(laserSource).toContain('fogUv += uFogTime * uFogFallSpeed * fogDirection;');
+    expect(laserSource).toContain('float basePhase = 1.5 * PI + uDecay * 0.5;');
+    expect(laserSource).toContain('float falloff = power * uFalloffStart;');
+    expect(laserSource).toContain('R_H * uHLenFactor');
+    expect(laserSource).toContain('R_V * uVLenFactor');
+    expect(laserSource).toContain('#define FOG_OCTAVES 5');
+    expect(laserSource).toContain('uniforms.uFlowTime.value += clampedDelta;');
+    expect(laserSource).toContain('uniforms.uFogTime.value += clampedDelta;');
+    expect(proofSource).toContain("buildFlowTuningPreset('min')");
+    expect(proofSource).toContain("buildFlowTuningPreset('max')");
+    expect(proofSource).toContain('Values save in this browser.');
+    expect(proofSource).toContain("frameloop={visible ? 'demand' : 'never'}");
+    expect(proofSource).not.toContain('<animateMotion');
+    expect(proofSource).not.toContain('observatoryFlowTracer');
   });
 
   it('ships a bounded particle-free runtime stack', async () => {

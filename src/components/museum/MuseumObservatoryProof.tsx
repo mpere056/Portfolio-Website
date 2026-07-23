@@ -26,10 +26,11 @@ import {
 import { toProofAttentionPoint } from '@/lib/museum/ambientProof';
 import { getMuseumSceneFrame, type MuseumScenePoint } from '@/lib/museum/scene';
 import MuseumParticleField from './MuseumParticleField';
+import MuseumLaserFlowPlane from './MuseumLaserFlowPlane';
 import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumAmbientProof.module.css';
 
-const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-flow-tuning-v1';
+const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-laser-flow-tuning-v2';
 
 type NumericFlowTuningKey = Exclude<keyof MuseumObservatoryFlowTuning, 'color'>;
 
@@ -41,18 +42,18 @@ const FLOW_TUNING_CONTROLS: ReadonlyArray<{
   step: number;
   precision: number;
 }> = [
-  { key: 'horizontalSizing', label: 'Horizontal sizing', min: 0.2, max: 2.5, step: 0.01, precision: 2 },
-  { key: 'verticalSizing', label: 'Vertical sizing', min: 0.4, max: 4, step: 0.05, precision: 2 },
-  { key: 'wispDensity', label: 'Wisp density', min: 0, max: 1, step: 0.01, precision: 2 },
-  { key: 'wispSpeed', label: 'Wisp speed', min: 0, max: 3, step: 0.01, precision: 2 },
-  { key: 'wispIntensity', label: 'Wisp intensity', min: 0, max: 6, step: 0.05, precision: 2 },
-  { key: 'flowSpeed', label: 'Flow speed', min: 0, max: 4, step: 0.01, precision: 2 },
-  { key: 'flowStrength', label: 'Flow strength', min: 0, max: 2.5, step: 0.01, precision: 2 },
-  { key: 'fogIntensity', label: 'Fog intensity', min: 0, max: 1.5, step: 0.01, precision: 2 },
-  { key: 'fogScale', label: 'Fog scale', min: 1, max: 12, step: 0.1, precision: 1 },
+  { key: 'horizontalSizing', label: 'Horizontal sizing', min: 0.1, max: 1.5, step: 0.01, precision: 2 },
+  { key: 'verticalSizing', label: 'Vertical sizing', min: 0.2, max: 5, step: 0.05, precision: 2 },
+  { key: 'wispDensity', label: 'Wisp density', min: 0, max: 2, step: 0.01, precision: 2 },
+  { key: 'wispSpeed', label: 'Wisp speed', min: 0, max: 30, step: 0.1, precision: 1 },
+  { key: 'wispIntensity', label: 'Wisp intensity', min: 0, max: 10, step: 0.05, precision: 2 },
+  { key: 'flowSpeed', label: 'Flow speed', min: 0, max: 2, step: 0.01, precision: 2 },
+  { key: 'flowStrength', label: 'Flow strength', min: 0, max: 1, step: 0.01, precision: 2 },
+  { key: 'fogIntensity', label: 'Fog intensity', min: 0, max: 1, step: 0.01, precision: 2 },
+  { key: 'fogScale', label: 'Fog scale', min: 0.05, max: 1, step: 0.01, precision: 2 },
   { key: 'fogFallSpeed', label: 'Fog fall speed', min: 0, max: 2, step: 0.01, precision: 2 },
-  { key: 'decay', label: 'Decay', min: 0.5, max: 4, step: 0.01, precision: 2 },
-  { key: 'falloffStart', label: 'Falloff start', min: 0.25, max: 3, step: 0.01, precision: 2 },
+  { key: 'decay', label: 'Decay', min: 0.2, max: 3, step: 0.01, precision: 2 },
+  { key: 'falloffStart', label: 'Falloff start', min: 0.2, max: 3, step: 0.01, precision: 2 },
 ];
 
 function readStoredFlowTuning(): MuseumObservatoryFlowTuning {
@@ -412,7 +413,9 @@ const PORTAL_FRAGMENT = /* glsl */`
   }
 `;
 
-const FLOW_BACK_FRAGMENT = /* glsl */`
+// Retained temporarily as a dormant visual reference while the native
+// LaserFlow calibration is reviewed. It is not mounted by the proof route.
+export const LEGACY_FLOW_BACK_FRAGMENT = /* glsl */`
   precision mediump float;
   varying vec2 vUv;
   uniform float uTime;
@@ -565,7 +568,7 @@ const FLOW_BACK_FRAGMENT = /* glsl */`
   }
 `;
 
-const FLOW_FRONT_FRAGMENT = /* glsl */`
+export const LEGACY_FLOW_FRONT_FRAGMENT = /* glsl */`
   precision mediump float;
   varying vec2 vUv;
   uniform float uTime;
@@ -869,7 +872,6 @@ function FullPlane({
   texture,
   bounds = FULL_PLANE_BOUNDS,
   blending = THREE.NormalBlending,
-  flowTuning,
 }: {
   fragmentShader: string;
   order: number;
@@ -878,12 +880,8 @@ function FullPlane({
   texture?: THREE.Texture;
   bounds?: PlaneBounds;
   blending?: THREE.Blending;
-  flowTuning?: MuseumObservatoryFlowTuning;
 }) {
   const pointerPresence = usePointerPresence(pointerActive);
-  const flowTuningRef = useRef(flowTuning);
-  flowTuningRef.current = flowTuning;
-  const initialFlowTuning = flowTuning ?? MUSEUM_OBSERVATORY_FLOW_CONTROLS;
   const [minimumX, minimumY, maximumX, maximumY] = bounds;
   const width = (maximumX - minimumX) * MUSEUM_OBSERVATORY_PROOF_ASPECT * 2;
   const height = (maximumY - minimumY) * 2;
@@ -895,37 +893,8 @@ function FullPlane({
     uPointer: { value: new THREE.Vector2(0.5, 0.5) },
     uAttention: { value: 0 },
     uUvBounds: { value: new THREE.Vector4(minimumX, minimumY, maximumX, maximumY) },
-    uFlowColor: { value: new THREE.Color(initialFlowTuning.color) },
-    uHorizontalSizing: { value: initialFlowTuning.horizontalSizing },
-    uVerticalSizing: { value: initialFlowTuning.verticalSizing },
-    uWispDensity: { value: initialFlowTuning.wispDensity },
-    uWispSpeed: { value: initialFlowTuning.wispSpeed },
-    uWispIntensity: { value: initialFlowTuning.wispIntensity },
-    uFlowSpeed: { value: initialFlowTuning.flowSpeed },
-    uFlowStrength: { value: initialFlowTuning.flowStrength },
-    uFogIntensity: { value: initialFlowTuning.fogIntensity },
-    uFogScale: { value: initialFlowTuning.fogScale },
-    uFogFallSpeed: { value: initialFlowTuning.fogFallSpeed },
-    uDecay: { value: initialFlowTuning.decay },
-    uFalloffStart: { value: initialFlowTuning.falloffStart },
   }));
   useFrame(({ clock }, delta) => {
-    const currentFlowTuning = flowTuningRef.current;
-    if (currentFlowTuning) {
-      uniforms.uFlowColor.value.set(currentFlowTuning.color);
-      uniforms.uHorizontalSizing.value = currentFlowTuning.horizontalSizing;
-      uniforms.uVerticalSizing.value = currentFlowTuning.verticalSizing;
-      uniforms.uWispDensity.value = currentFlowTuning.wispDensity;
-      uniforms.uWispSpeed.value = currentFlowTuning.wispSpeed;
-      uniforms.uWispIntensity.value = currentFlowTuning.wispIntensity;
-      uniforms.uFlowSpeed.value = currentFlowTuning.flowSpeed;
-      uniforms.uFlowStrength.value = currentFlowTuning.flowStrength;
-      uniforms.uFogIntensity.value = currentFlowTuning.fogIntensity;
-      uniforms.uFogScale.value = currentFlowTuning.fogScale;
-      uniforms.uFogFallSpeed.value = currentFlowTuning.fogFallSpeed;
-      uniforms.uDecay.value = currentFlowTuning.decay;
-      uniforms.uFalloffStart.value = currentFlowTuning.falloffStart;
-    }
     uniforms.uTime.value = clock.elapsedTime;
     uniforms.uAttention.value = pointerPresence.update(pointerTarget.current, delta);
     uniforms.uPointer.value.copy(pointerPresence.pointer.current);
@@ -1108,18 +1077,15 @@ function ObservatoryScene({
   ]);
   useEffect(() => textures.forEach(configureTexture), [textures]);
   const [field, observatory, city, portal] = textures;
-  const flowRevision = Object.values(flowTuning).join(':');
-  const flowsEnabled = flowTuning.flowStrength > 0;
   return (
     <>
       <FullPlane fragmentShader={FIELD_FRAGMENT} order={0} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={field} />
-      {flowsEnabled ? <FullPlane key={`rear:${flowRevision}`} fragmentShader={FLOW_BACK_FRAGMENT} order={2} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.rearFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} /> : null}
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.far} color="#668b8c" size={1.65} speed={0.008} phase={0.4} order={3} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={PORTAL_FRAGMENT} order={4} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={portal} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.portal} />
       <FullPlane fragmentShader={OBSERVATORY_FRAGMENT} order={5} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={observatory} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.observatory} />
       <FullPlane fragmentShader={CITY_FRAGMENT} order={6} pointerActive={pointerActive} pointerTarget={pointerTarget} texture={city} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.city} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.middle} color="#87d7d8" size={1.95} speed={0.014} phase={1.2} order={7} pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      {flowsEnabled ? <FullPlane key={`front:${flowRevision}`} fragmentShader={FLOW_FRONT_FRAGMENT} order={7.35} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.frontFlow} blending={THREE.AdditiveBlending} flowTuning={flowTuning} /> : null}
+      <MuseumLaserFlowPlane tuning={flowTuning} pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <ObservatoryOrb pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <FullPlane fragmentShader={DIAGRAM_FRAGMENT} order={8} pointerActive={pointerActive} pointerTarget={pointerTarget} bounds={MUSEUM_OBSERVATORY_PERFORMANCE.bounds.diagram} blending={THREE.AdditiveBlending} />
       <SignalParticles count={MUSEUM_OBSERVATORY_PERFORMANCE.particles.near} color="#efbd72" size={2.35} speed={0.022} phase={2.1} order={9} pointerActive={pointerActive} pointerTarget={pointerTarget} />
@@ -1220,7 +1186,7 @@ function ObservatoryTuningPanel({
       onToggle={event => setOpen(event.currentTarget.open)}
     >
       <summary>
-        <span>Flow controls</span>
+        <span>Native LaserFlow controls</span>
         <span>{open ? 'Close' : 'Tune'}</span>
       </summary>
       <div className={styles.observatoryTuningBody}>

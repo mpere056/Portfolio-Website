@@ -25,26 +25,26 @@ export interface MuseumObservatoryFlowTuning {
 }
 
 export const MUSEUM_OBSERVATORY_FLOW_CONTROLS: MuseumObservatoryFlowTuning = {
-  color: '#ffffff',
-  horizontalSizing: 1,
-  verticalSizing: 1,
-  wispDensity: 0.76,
-  wispSpeed: 1.08,
-  wispIntensity: 1.92,
-  flowSpeed: 2.15,
-  flowStrength: 1.24,
-  fogIntensity: 0.54,
-  fogScale: 5.2,
-  fogFallSpeed: 0.66,
-  decay: 2,
-  falloffStart: 1,
+  color: '#ff79c6',
+  horizontalSizing: 0.5,
+  verticalSizing: 2,
+  wispDensity: 1,
+  wispSpeed: 15,
+  wispIntensity: 5,
+  flowSpeed: 0.35,
+  flowStrength: 0.25,
+  fogIntensity: 0.45,
+  fogScale: 0.3,
+  fogFallSpeed: 0.6,
+  decay: 1.1,
+  falloffStart: 1.2,
 };
 
 export const MUSEUM_OBSERVATORY_PERFORMANCE = {
   renderDpr: 0.9,
   idleFps: 24,
   attentionFps: 36,
-  fogOctaves: 3,
+  fogOctaves: 5,
   orbDetail: 3,
   particles: {
     far: 220,
@@ -107,14 +107,9 @@ export const MUSEUM_OBSERVATORY_PROOF_LAYERS = [
     temporalJob: 'keep the device body fixed while its aperture refracts, scans, and emits wavefronts',
   },
   {
-    id: 'observatory:flows-rear',
+    id: 'observatory:laser-flow-calibration',
     medium: 'procedural-shader',
-    temporalJob: 'visibly traverse code-generated copper, ivory, and high arch currents behind the instruments on independent clocks',
-  },
-  {
-    id: 'observatory:flows-front',
-    medium: 'procedural-shader',
-    temporalJob: 'visibly traverse code-generated cyan and gold strands, laser packets, wisps, and a spectral signal across the foreground',
+    temporalJob: 'reproduce the native LaserFlow beam, modulation, segmented wisps, and five-octave fog before observatory-specific composition resumes',
   },
   {
     id: 'observatory:atmosphere',
