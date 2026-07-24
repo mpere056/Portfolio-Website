@@ -1,0 +1,225 @@
+.proof {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  color: #f5efe5;
+  background:
+    radial-gradient(circle at 64% 24%, rgba(78, 187, 187, 0.12), transparent 30rem),
+    radial-gradient(circle at 40% 66%, rgba(195, 117, 42, 0.13), transparent 34rem),
+    #010405;
+}
+
+.stage {
+  position: relative;
+  width: min(100vw, calc(100svh * 1.77778));
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 0 10rem rgba(6, 57, 59, 0.32),
+    0 0 8rem rgba(119, 71, 25, 0.13);
+}
+
+.stage canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fallback {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 61% 29%, rgba(104, 210, 207, 0.13), transparent 22%),
+    radial-gradient(ellipse at 42% 68%, rgba(214, 137, 54, 0.15), transparent 33%),
+    linear-gradient(160deg, #02090b, #010304 62%, #071014);
+}
+
+.fallbackOrb {
+  position: absolute;
+  width: 13rem;
+  aspect-ratio: 1;
+  left: 57%;
+  top: 14%;
+  border: 1px solid rgba(207, 236, 221, 0.26);
+  border-radius: 44% 56% 52% 48%;
+  box-shadow:
+    inset 0 0 4rem rgba(86, 213, 211, 0.17),
+    0 0 5rem rgba(89, 205, 202, 0.12);
+}
+
+.fallbackOrb::before,
+.fallbackOrb::after {
+  position: absolute;
+  content: '';
+  inset: -18%;
+  border: 1px solid rgba(226, 180, 99, 0.22);
+  border-radius: 50%;
+  transform: rotate(37deg) scaleY(0.42);
+}
+
+.fallbackOrb::after {
+  border-color: rgba(110, 220, 219, 0.18);
+  transform: rotate(-28deg) scaleY(0.58);
+}
+
+.fallbackBook {
+  position: absolute;
+  width: 34rem;
+  height: 13rem;
+  left: 25%;
+  bottom: 15%;
+  border: 1px solid rgba(224, 179, 95, 0.18);
+  border-radius: 48% 48% 12% 12%;
+  background:
+    repeating-linear-gradient(178deg, rgba(223, 170, 77, 0.08) 0 1px, transparent 1px 13px),
+    radial-gradient(ellipse at 50% 12%, rgba(228, 161, 60, 0.22), transparent 60%);
+  clip-path: polygon(0 12%, 49% 0, 51% 0, 100% 12%, 91% 100%, 51% 88%, 49% 88%, 9% 100%);
+}
+
+.fallbackDoor {
+  position: absolute;
+  width: 2.4rem;
+  height: 4rem;
+  left: 48%;
+  bottom: 27%;
+  border: 1px solid rgba(244, 196, 104, 0.48);
+  border-radius: 2rem 2rem 0 0;
+  background: radial-gradient(circle at 50% 45%, rgba(95, 219, 218, 0.45), transparent 70%);
+  box-shadow: 0 0 2.4rem rgba(224, 155, 50, 0.28);
+}
+
+.museumEffects {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  isolation: isolate;
+  mix-blend-mode: screen;
+  transition: opacity 420ms ease;
+}
+
+.proof[data-attention-active='true'] .museumEffects {
+  opacity: 1;
+}
+
+.sceneHalo {
+  position: absolute;
+  z-index: 4;
+  width: clamp(14rem, 25vw, 27rem);
+  aspect-ratio: 1;
+  left: var(--scene-x);
+  top: var(--scene-y);
+  border: 1px solid rgba(223, 208, 158, calc(0.08 + var(--scene-energy) * 0.18));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(99, 219, 219, calc(0.06 + var(--scene-energy) * 0.16)), transparent 58%),
+    conic-gradient(from 45deg, transparent, rgba(230, 177, 85, 0.08), transparent 35%);
+  box-shadow: 0 0 7rem rgba(92, 213, 213, calc(0.05 + var(--scene-energy) * 0.12));
+  transform: translate(-50%, -50%) scale(calc(0.74 + var(--scene-energy) * 0.3));
+}
+
+.grain {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+
+.caption {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  width: min(100vw, calc(100svh * 1.77778));
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 3rem);
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.caption a {
+  pointer-events: auto;
+  color: rgba(205, 236, 234, 0.58);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.caption > div {
+  max-width: 31rem;
+  text-align: right;
+}
+
+.caption p,
+.legend {
+  margin: 0;
+  color: rgba(202, 231, 226, 0.43);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.caption h1 {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.legend {
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  bottom: clamp(1rem, 2.6vw, 2.4rem);
+  width: min(100vw, calc(100svh * 1.77778));
+  padding-inline: clamp(1rem, 3vw, 3rem);
+  box-sizing: border-box;
+  line-height: 1.7;
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.proof[data-reduced-motion='true'] .fallback {
+  filter: saturate(0.72) brightness(0.78);
+}
+
+@media (max-aspect-ratio: 1 / 1) {
+  .stage {
+    width: 100vw;
+    aspect-ratio: 3 / 4;
+  }
+
+  .caption,
+  .legend {
+    width: 100vw;
+  }
+
+  .caption > div {
+    max-width: 18rem;
+  }
+
+  .legend {
+    text-align: left;
+  }
+}

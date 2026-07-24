@@ -1,0 +1,861 @@
+'use client';
+
+import { Canvas, useFrame } from '@react-three/fiber';
+import Link from 'next/link';
+import {
+  Component,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type PointerEvent as ReactPointerEvent,
+} from 'react';
+import * as THREE from 'three';
+import {
+  getArchiveLocalAttention,
+  MUSEUM_ARCHIVE_PROOF_PERFORMANCE,
+} from '@/lib/museum/archiveProof';
+import { toProofAttentionPoint } from '@/lib/museum/ambientProof';
+import {
+  getMuseumSceneFrame,
+  type MuseumScenePoint,
+} from '@/lib/museum/scene';
+import MuseumParticleField from './MuseumParticleField';
+import museumStyles from './MuseumShell.module.css';
+import styles from './MuseumArchiveCoreProof.module.css';
+
+type PointerTarget = { current: THREE.Vector2 };
+
+const BACKGROUND_VERTEX = `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;
+
+const BACKGROUND_FRAGMENT = `
+precision highp float;
+varying vec2 vUv;
+uniform float uTime;
+
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0)), f.x),
+    f.y
+  );
+}
+
+void main() {
+  vec2 uv = vUv;
+  float t = uTime * 0.018;
+  float farMist = noise(vec2(uv.x * 2.3 + t, uv.y * 3.1 - t * 0.7));
+  float nearMist = noise(vec2(uv.x * 5.0 - t * 1.7, uv.y * 4.0 + t));
+  float basin = smoothstep(0.78, 0.16, abs(uv.y - 0.42 - (farMist - 0.5) * 0.12));
+  float stars = step(0.993, hash(floor(uv * vec2(240.0, 130.0)) + floor(uTime * 0.05)));
+  vec3 deep = vec3(0.004, 0.012, 0.016);
+  vec3 cyan = vec3(0.025, 0.23, 0.25) * basin * (0.14 + nearMist * 0.22);
+  vec3 amber = vec3(0.29, 0.16, 0.045) * smoothstep(0.7, 0.1, distance(uv, vec2(0.46, 0.45))) * 0.17;
+  vec3 color = deep + cyan + amber + vec3(0.38, 0.54, 0.53) * stars * 0.32;
+  gl_FragColor = vec4(color, 1.0);
+}
+`;
+
+const PAGE_VERTEX = `
+varying vec2 vUv;
+uniform float uTime;
+uniform float uSide;
+uniform float uLayer;
+uniform float uAttention;
+
+void main() {
+  vUv = uv;
+  vec3 p = position;
+  float fromSpine = uSide > 0.0 ? uv.x : 1.0 - uv.x;
+  float edgeWeight = smoothstep(0.08, 1.0, fromSpine);
+  float slowBreath = sin(uTime * (0.32 + uLayer * 0.013) + uLayer * 1.7);
+  float traveling = sin(uv.y * 7.0 - uTime * (0.55 + uLayer * 0.02) + uLayer);
+  p.z += pow(fromSpine, 1.65) * (0.13 + uLayer * 0.003);
+  p.z += edgeWeight * (slowBreath * 0.018 + traveling * 0.006);
+  p.z += edgeWeight * uAttention * sin(uv.y * 10.0 - uTime * 2.2) * 0.025;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+}
+`;
+
+const PAGE_FRAGMENT = `
+precision highp float;
+varying vec2 vUv;
+uniform float uTime;
+uniform float uLayer;
+uniform float uAttention;
+
+void main() {
+  float edge = smoothstep(0.0, 0.035, vUv.x) * smoothstep(0.0, 0.035, 1.0 - vUv.x)
+    * smoothstep(0.0, 0.035, vUv.y) * smoothstep(0.0, 0.035, 1.0 - vUv.y);
+  float rules = smoothstep(0.47, 0.5, abs(fract(vUv.y * 21.0 + uLayer * 0.13) - 0.5));
+  float script = smoothstep(0.84, 0.98, sin(vUv.x * 33.0 + sin(vUv.y * 19.0) * 3.0));
+  float passage = 0.5 + 0.5 * sin(vUv.x * 8.0 - uTime * 0.55 + uLayer);
+  vec3 paper = mix(vec3(0.14, 0.105, 0.055), vec3(0.68, 0.48, 0.21), vUv.y * 0.38);
+  vec3 ink = vec3(0.045, 0.06, 0.055);
+  vec3 color = mix(paper, ink, rules * script * 0.62);
+  color += vec3(0.95, 0.61, 0.2) * pow(passage, 8.0) * (0.04 + uAttention * 0.08);
+  gl_FragColor = vec4(color, edge * (0.78 - uLayer * 0.017));
+}
+`;
+
+const CURRENT_VERTEX = `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;
+
+const CURRENT_FRAGMENT = `
+precision highp float;
+varying vec2 vUv;
+uniform float uTime;
+uniform vec3 uColor;
+uniform float uPhase;
+uniform float uAttention;
+
+void main() {
+  float lane = abs(vUv.y - 0.5) * 2.0;
+  float body = pow(max(0.0, 1.0 - lane), 2.4);
+  float flow = fract(vUv.x * 2.6 - uTime * 0.24 - uPhase);
+  float pressure = exp(-pow((flow - 0.5) / 0.13, 2.0));
+  float wake = exp(-pow((flow - 0.28) / 0.23, 2.0)) * 0.45;
+  float shimmer = 0.68 + 0.32 * sin(vUv.x * 95.0 - uTime * 3.2 + uPhase * 20.0);
+  vec3 color = uColor * body * (0.34 + pressure * 1.9 + wake + shimmer * 0.28);
+  float alpha = body * (0.22 + pressure * 0.72 + wake * 0.2) * (1.0 + uAttention * 0.24);
+  gl_FragColor = vec4(color * (1.0 + uAttention * 0.32), alpha);
+}
+`;
+
+const PARTICLE_VERTEX = `
+attribute float aPhase;
+uniform float uTime;
+uniform float uAttention;
+varying float vLight;
+
+void main() {
+  vec3 p = position;
+  p.x += sin(uTime * 0.17 + aPhase * 11.0 + position.y) * 0.12;
+  p.y += sin(uTime * 0.23 + aPhase * 7.0 + position.x) * 0.08;
+  p.z += cos(uTime * 0.13 + aPhase * 13.0) * 0.09;
+  vec4 mv = modelViewMatrix * vec4(p, 1.0);
+  gl_Position = projectionMatrix * mv;
+  gl_PointSize = (1.35 + 1.5 * sin(aPhase * 29.0 + uTime * 0.7) + uAttention) * (6.0 / max(1.0, -mv.z));
+  vLight = 0.45 + 0.55 * sin(aPhase * 17.0 + uTime * 0.46);
+}
+`;
+
+const PARTICLE_FRAGMENT = `
+precision highp float;
+varying float vLight;
+uniform vec3 uColor;
+
+void main() {
+  float d = length(gl_PointCoord - 0.5);
+  float alpha = smoothstep(0.5, 0.08, d) * (0.2 + vLight * 0.48);
+  gl_FragColor = vec4(uColor * (0.52 + vLight), alpha);
+}
+`;
+
+function attentionAt(
+  pointerTarget: PointerTarget,
+  target: readonly [number, number],
+  radius: number,
+  active: boolean,
+) {
+  return getArchiveLocalAttention(
+    [pointerTarget.current.x, pointerTarget.current.y],
+    target,
+    radius,
+    active,
+  );
+}
+
+function ArchiveField() {
+  const material = useRef<THREE.ShaderMaterial>(null);
+  useFrame(({ clock }) => {
+    if (material.current) material.current.uniforms.uTime.value = clock.elapsedTime;
+  });
+  return (
+    <mesh position={[0, 0, -4]} scale={[15, 8.5, 1]}>
+      <planeGeometry args={[1, 1]} />
+      <shaderMaterial
+        ref={material}
+        vertexShader={BACKGROUND_VERTEX}
+        fragmentShader={BACKGROUND_FRAGMENT}
+        uniforms={{ uTime: { value: 0 } }}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
+function OrbitalCore({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const group = useRef<THREE.Group>(null);
+  const shellA = useRef<THREE.Mesh>(null);
+  const shellB = useRef<THREE.Mesh>(null);
+  const satelliteA = useRef<THREE.Group>(null);
+  const satelliteB = useRef<THREE.Group>(null);
+  const coreLight = useRef<THREE.PointLight>(null);
+
+  useFrame(({ clock }, delta) => {
+    if (!group.current || !shellA.current || !shellB.current) return;
+    const attention = attentionAt(pointerTarget, [0.62, 0.73], 0.23, pointerActive);
+    group.current.rotation.y += delta * (0.08 + attention * 0.12);
+    shellA.current.rotation.x += delta * (0.13 + attention * 0.2);
+    shellA.current.rotation.z -= delta * 0.08;
+    shellB.current.rotation.y -= delta * (0.1 + attention * 0.16);
+    shellB.current.rotation.z += delta * 0.055;
+    if (satelliteA.current) satelliteA.current.rotation.z = clock.elapsedTime * (0.11 + attention * 0.08);
+    if (satelliteB.current) satelliteB.current.rotation.x = clock.elapsedTime * -0.075;
+    if (coreLight.current) {
+      coreLight.current.intensity = 5.2 + Math.sin(clock.elapsedTime * 0.62) * 1.1 + attention * 3.5;
+    }
+  });
+
+  return (
+    <group ref={group} position={[1.4, 1.45, -0.45]} scale={0.92}>
+      <pointLight ref={coreLight} color="#8ce7e8" intensity={5.2} distance={5} />
+      <mesh>
+        <icosahedronGeometry args={[0.62, 4]} />
+        <meshPhysicalMaterial
+          color="#8fc9c3"
+          emissive="#1b7778"
+          emissiveIntensity={1.4}
+          transmission={0.55}
+          thickness={0.7}
+          roughness={0.18}
+          metalness={0.12}
+          transparent
+          opacity={0.82}
+        />
+      </mesh>
+      <mesh ref={shellA}>
+        <icosahedronGeometry args={[0.87, 2]} />
+        <meshBasicMaterial color="#e7cf91" wireframe transparent opacity={0.35} />
+      </mesh>
+      <mesh ref={shellB} rotation={[0.4, 0.2, 0.7]}>
+        <icosahedronGeometry args={[1.06, 1]} />
+        <meshBasicMaterial color="#83dfe0" wireframe transparent opacity={0.16} />
+      </mesh>
+      <mesh rotation={[1.2, 0.3, 0.2]}>
+        <torusGeometry args={[0.91, 0.014, 5, 128]} />
+        <meshBasicMaterial color="#e8ba62" transparent opacity={0.72} />
+      </mesh>
+      <mesh rotation={[0.2, 1.05, 0.55]}>
+        <torusGeometry args={[1.13, 0.009, 5, 128]} />
+        <meshBasicMaterial color="#79dfe3" transparent opacity={0.46} />
+      </mesh>
+      <group ref={satelliteA}>
+        <mesh position={[1.17, 0.05, 0]}>
+          <sphereGeometry args={[0.12, 20, 16]} />
+          <meshStandardMaterial color="#edc67a" emissive="#a4621e" emissiveIntensity={1.8} />
+        </mesh>
+        <mesh position={[-0.88, 0.42, 0.32]}>
+          <sphereGeometry args={[0.08, 16, 12]} />
+          <meshStandardMaterial color="#7ad7d9" emissive="#1a7476" emissiveIntensity={1.6} />
+        </mesh>
+      </group>
+      <group ref={satelliteB} rotation={[0.5, 0.2, 0.9]}>
+        <mesh position={[0, 1.22, 0]}>
+          <sphereGeometry args={[0.07, 16, 12]} />
+          <meshBasicMaterial color="#f4e4b2" />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
+function PageLeaf({
+  side,
+  layer,
+  pointerActive,
+  pointerTarget,
+}: {
+  side: -1 | 1;
+  layer: number;
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const material = useRef<THREE.ShaderMaterial>(null);
+  useFrame(({ clock }) => {
+    if (!material.current) return;
+    material.current.uniforms.uTime.value = clock.elapsedTime;
+    material.current.uniforms.uAttention.value = attentionAt(
+      pointerTarget,
+      [0.43, 0.31],
+      0.22,
+      pointerActive,
+    );
+  });
+  return (
+    <mesh
+      position={[side * 1.12, layer * 0.018, 0]}
+      rotation={[-1.04, side * -0.055, side * -0.035]}
+    >
+      <planeGeometry
+        args={[
+          2.22,
+          1.62,
+          MUSEUM_ARCHIVE_PROOF_PERFORMANCE.pageSegments,
+          10,
+        ]}
+      />
+      <shaderMaterial
+        ref={material}
+        vertexShader={PAGE_VERTEX}
+        fragmentShader={PAGE_FRAGMENT}
+        uniforms={{
+          uTime: { value: 0 },
+          uSide: { value: side },
+          uLayer: { value: layer },
+          uAttention: { value: 0 },
+        }}
+        side={THREE.DoubleSide}
+        transparent
+        depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
+function Tower({
+  position,
+  height,
+  width,
+  phase,
+}: {
+  position: readonly [number, number, number];
+  height: number;
+  width: number;
+  phase: number;
+}) {
+  const material = useRef<THREE.MeshStandardMaterial>(null);
+  const crown = useRef<THREE.MeshStandardMaterial>(null);
+  useFrame(({ clock }) => {
+    const slowState = 0.5 + 0.5 * Math.sin(clock.elapsedTime * (0.16 + phase * 0.015) + phase * 5.7);
+    const windowState = THREE.MathUtils.smoothstep(slowState, 0.38, 0.82);
+    if (material.current) material.current.emissiveIntensity = 0.16 + windowState * 1.35;
+    if (crown.current) crown.current.emissiveIntensity = 0.4 + windowState * 2.1;
+  });
+  return (
+    <group position={position}>
+      <mesh position={[0, height / 2, 0]}>
+        <boxGeometry args={[width, height, width]} />
+        <meshStandardMaterial
+          ref={material}
+          color={phase % 0.3 > 0.15 ? '#604021' : '#24484a'}
+          emissive={phase % 0.3 > 0.15 ? '#d38a32' : '#3ab9b9'}
+          roughness={0.44}
+          metalness={0.5}
+        />
+      </mesh>
+      <mesh position={[0, height + width * 0.45, 0]} rotation={[0, phase * 2, 0]}>
+        <coneGeometry args={[width * 0.68, width * 0.9, 5]} />
+        <meshStandardMaterial
+          ref={crown}
+          color="#bd9851"
+          emissive="#d89432"
+          emissiveIntensity={0.7}
+          roughness={0.35}
+          metalness={0.68}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function Doorway({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const portal = useRef<THREE.Mesh>(null);
+  const light = useRef<THREE.PointLight>(null);
+  useFrame(({ clock }) => {
+    const attention = attentionAt(pointerTarget, [0.47, 0.37], 0.14, pointerActive);
+    if (portal.current) {
+      const breath = 1 + Math.sin(clock.elapsedTime * 0.71) * 0.04 + attention * 0.09;
+      portal.current.scale.set(breath, breath, 1);
+    }
+    if (light.current) light.current.intensity = 3 + Math.sin(clock.elapsedTime * 0.54) + attention * 4;
+  });
+  return (
+    <group position={[0.05, 0.35, -0.18]}>
+      <pointLight ref={light} color="#e7a947" intensity={3} distance={3.6} />
+      <mesh ref={portal}>
+        <ringGeometry args={[0.18, 0.25, 48]} />
+        <meshBasicMaterial color="#e8bd68" transparent opacity={0.82} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh position={[0, 0, -0.015]}>
+        <circleGeometry args={[0.18, 48]} />
+        <meshBasicMaterial color="#58d3d6" transparent opacity={0.36} blending={THREE.AdditiveBlending} />
+      </mesh>
+      <mesh position={[0, -0.28, 0.12]} rotation={[Math.PI / 2, 0, 0]}>
+        <coneGeometry args={[0.42, 1.1, 32, 1, true]} />
+        <meshBasicMaterial
+          color="#dca957"
+          transparent
+          opacity={0.07}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function LivingBook({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const book = useRef<THREE.Group>(null);
+  const towers = useMemo(() => {
+    let seed = 31;
+    const random = () => {
+      seed = (seed * 16807) % 2147483647;
+      return (seed - 1) / 2147483646;
+    };
+    return Array.from({ length: MUSEUM_ARCHIVE_PROOF_PERFORMANCE.towerCount }, (_, index) => {
+      const side = index % 2 === 0 ? -1 : 1;
+      return {
+        position: [
+          side * (0.18 + random() * 1.45),
+          0.03,
+          -0.42 + random() * 0.84,
+        ] as const,
+        height: 0.24 + random() * 0.72,
+        width: 0.075 + random() * 0.08,
+        phase: random(),
+      };
+    });
+  }, []);
+
+  useFrame(({ clock }) => {
+    if (!book.current) return;
+    const attention = attentionAt(pointerTarget, [0.43, 0.31], 0.24, pointerActive);
+    book.current.rotation.y = -0.08 + Math.sin(clock.elapsedTime * 0.12) * 0.018 + attention * 0.025;
+    book.current.position.y = -1.18 + Math.sin(clock.elapsedTime * 0.28) * 0.018;
+  });
+
+  return (
+    <group ref={book} position={[-0.6, -1.18, 0.15]} rotation={[0, -0.08, 0]}>
+      <mesh position={[0, -0.13, 0]} rotation={[-1.04, 0, 0]}>
+        <boxGeometry args={[4.72, 1.86, 0.12]} />
+        <meshStandardMaterial color="#2a130f" roughness={0.6} metalness={0.2} />
+      </mesh>
+      {Array.from({ length: 7 }, (_, layer) => (
+        <PageLeaf
+          key={`left-${layer}`}
+          side={-1}
+          layer={layer}
+          pointerActive={pointerActive}
+          pointerTarget={pointerTarget}
+        />
+      ))}
+      {Array.from({ length: 7 }, (_, layer) => (
+        <PageLeaf
+          key={`right-${layer}`}
+          side={1}
+          layer={layer}
+          pointerActive={pointerActive}
+          pointerTarget={pointerTarget}
+        />
+      ))}
+      <mesh position={[0, 0.1, 0.02]}>
+        <boxGeometry args={[0.08, 0.22, 1.55]} />
+        <meshStandardMaterial color="#d7a94e" emissive="#9d5f1d" emissiveIntensity={1.4} />
+      </mesh>
+      {towers.map((tower, index) => (
+        <Tower key={index} {...tower} />
+      ))}
+      <Doorway pointerActive={pointerActive} pointerTarget={pointerTarget} />
+    </group>
+  );
+}
+
+function ArchiveCurrent({
+  points,
+  color,
+  phase,
+  radius,
+  pointerActive,
+  pointerTarget,
+}: {
+  points: readonly THREE.Vector3[];
+  color: string;
+  phase: number;
+  radius: number;
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const material = useRef<THREE.ShaderMaterial>(null);
+  const curve = useMemo(() => new THREE.CatmullRomCurve3([...points]), [points]);
+  const parsedColor = useMemo(() => new THREE.Color(color), [color]);
+  useFrame(({ clock }) => {
+    if (!material.current) return;
+    material.current.uniforms.uTime.value = clock.elapsedTime;
+    material.current.uniforms.uAttention.value = getArchiveLocalAttention(
+      [pointerTarget.current.x, pointerTarget.current.y],
+      [0.53, 0.5],
+      0.26,
+      pointerActive,
+    );
+  });
+  return (
+    <mesh>
+      <tubeGeometry
+        args={[
+          curve,
+          MUSEUM_ARCHIVE_PROOF_PERFORMANCE.currentSegments,
+          radius,
+          7,
+          false,
+        ]}
+      />
+      <shaderMaterial
+        ref={material}
+        vertexShader={CURRENT_VERTEX}
+        fragmentShader={CURRENT_FRAGMENT}
+        uniforms={{
+          uTime: { value: 0 },
+          uColor: { value: parsedColor },
+          uPhase: { value: phase },
+          uAttention: { value: 0 },
+        }}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </mesh>
+  );
+}
+
+function ArchiveParticles({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const material = useRef<THREE.ShaderMaterial>(null);
+  const { positions, phases } = useMemo(() => {
+    let seed = 73;
+    const random = () => {
+      seed = (seed * 48271) % 2147483647;
+      return (seed - 1) / 2147483646;
+    };
+    const count = MUSEUM_ARCHIVE_PROOF_PERFORMANCE.particleCount;
+    const nextPositions = new Float32Array(count * 3);
+    const nextPhases = new Float32Array(count);
+    for (let index = 0; index < count; index += 1) {
+      nextPositions[index * 3] = (random() - 0.5) * 10;
+      nextPositions[index * 3 + 1] = (random() - 0.5) * 5.5;
+      nextPositions[index * 3 + 2] = -2.4 + random() * 4.5;
+      nextPhases[index] = random();
+    }
+    return { positions: nextPositions, phases: nextPhases };
+  }, []);
+  const color = useMemo(() => new THREE.Color('#9de5df'), []);
+
+  useFrame(({ clock }) => {
+    if (!material.current) return;
+    material.current.uniforms.uTime.value = clock.elapsedTime;
+    material.current.uniforms.uAttention.value = getArchiveLocalAttention(
+      [pointerTarget.current.x, pointerTarget.current.y],
+      [0.53, 0.5],
+      0.42,
+      pointerActive,
+    );
+  });
+
+  return (
+    <points>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-aPhase" args={[phases, 1]} />
+      </bufferGeometry>
+      <shaderMaterial
+        ref={material}
+        vertexShader={PARTICLE_VERTEX}
+        fragmentShader={PARTICLE_FRAGMENT}
+        uniforms={{
+          uTime: { value: 0 },
+          uAttention: { value: 0 },
+          uColor: { value: color },
+        }}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
+  );
+}
+
+const CURRENT_PATHS = [
+  {
+    color: '#70e8e5',
+    phase: 0.08,
+    radius: 0.018,
+    points: [
+      new THREE.Vector3(1.1, 1.45, -0.7),
+      new THREE.Vector3(0.65, 0.95, -0.35),
+      new THREE.Vector3(0.1, 0.55, -0.05),
+      new THREE.Vector3(-0.25, 0.2, 0.35),
+    ],
+  },
+  {
+    color: '#efbd66',
+    phase: 0.42,
+    radius: 0.013,
+    points: [
+      new THREE.Vector3(1.7, 1.1, -1.05),
+      new THREE.Vector3(1.0, 0.58, -0.72),
+      new THREE.Vector3(0.25, 0.28, -0.42),
+      new THREE.Vector3(-0.05, 0.1, 0.2),
+    ],
+  },
+  {
+    color: '#dcebd9',
+    phase: 0.71,
+    radius: 0.009,
+    points: [
+      new THREE.Vector3(1.35, 2.0, -1.25),
+      new THREE.Vector3(0.45, 1.45, -1.05),
+      new THREE.Vector3(-0.65, 0.75, -0.55),
+      new THREE.Vector3(-1.3, 0.18, 0.05),
+    ],
+  },
+] as const;
+
+function ArchiveScene({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  return (
+    <>
+      <ArchiveField />
+      <ambientLight intensity={0.28} />
+      <directionalLight position={[-3, 5, 6]} color="#f2cf8a" intensity={1.4} />
+      <directionalLight position={[4, 1, 3]} color="#78dadd" intensity={1.15} />
+      <ArchiveParticles pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      {CURRENT_PATHS.map((current, index) => (
+        <ArchiveCurrent
+          key={index}
+          {...current}
+          pointerActive={pointerActive}
+          pointerTarget={pointerTarget}
+        />
+      ))}
+      <OrbitalCore pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <LivingBook pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <fog attach="fog" args={['#020708', 6.5, 13]} />
+    </>
+  );
+}
+
+class ProofBoundary extends Component<
+  { children: ReactNode; fallback: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
+
+function StaticFallback() {
+  return (
+    <div className={styles.fallback} aria-hidden="true">
+      <span className={styles.fallbackOrb} />
+      <span className={styles.fallbackBook} />
+      <span className={styles.fallbackDoor} />
+    </div>
+  );
+}
+
+export default function MuseumArchiveCoreProof() {
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [pointerActive, setPointerActive] = useState(false);
+  const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
+  const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
+  const pointerFrame = useRef<number | null>(null);
+  const pendingScenePointer = useRef<MuseumScenePoint>({ x: 0.5, y: 0.5 });
+
+  const updatePointerTarget = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const [x, y] = toProofAttentionPoint(event.clientX, event.clientY, bounds);
+    pointerTarget.current.set(x, y);
+    pendingScenePointer.current = { x, y: 1 - y };
+    if (pointerFrame.current === null) {
+      pointerFrame.current = window.requestAnimationFrame(() => {
+        setScenePointer(pendingScenePointer.current);
+        pointerFrame.current = null;
+      });
+    }
+    if (!pointerActive) setPointerActive(true);
+  };
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotion = () => setReducedMotion(media.matches);
+    const updateVisibility = () => setVisible(document.visibilityState !== 'hidden');
+    updateMotion();
+    updateVisibility();
+    media.addEventListener('change', updateMotion);
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => {
+      media.removeEventListener('change', updateMotion);
+      document.removeEventListener('visibilitychange', updateVisibility);
+    };
+  }, []);
+
+  useEffect(() => () => {
+    if (pointerFrame.current !== null) window.cancelAnimationFrame(pointerFrame.current);
+  }, []);
+
+  const sceneFrame = getMuseumSceneFrame({
+    pointer: scenePointer,
+    apertureTarget: pointerActive ? scenePointer : undefined,
+    stimulation: 1,
+    reducedMotion,
+    visible,
+  });
+  const sceneStyle = {
+    '--scene-x': `${sceneFrame.pointer.x * 100}%`,
+    '--scene-y': `${sceneFrame.pointer.y * 100}%`,
+    '--aperture-x': `${sceneFrame.aperture.x * 100}%`,
+    '--aperture-y': `${sceneFrame.aperture.y * 100}%`,
+    '--scene-energy': sceneFrame.energy,
+    '--scene-drift-x': `${sceneFrame.drift.x}px`,
+    '--scene-drift-y': `${sceneFrame.drift.y}px`,
+    '--mesh-drift-x': `${sceneFrame.drift.x * -0.35}px`,
+    '--mesh-drift-y': `${sceneFrame.drift.y * -0.35}px`,
+    '--aperture-strength': sceneFrame.apertureStrength,
+    '--filament-strength': sceneFrame.filamentStrength,
+  } as CSSProperties;
+
+  return (
+    <main
+      className={styles.proof}
+      data-reduced-motion={reducedMotion}
+      data-attention-active={pointerActive}
+    >
+      <div
+        className={styles.stage}
+        style={sceneStyle}
+        data-scene-settled={sceneFrame.settled}
+        onPointerEnter={updatePointerTarget}
+        onPointerMove={updatePointerTarget}
+        onPointerLeave={() => {
+          if (pointerFrame.current !== null) {
+            window.cancelAnimationFrame(pointerFrame.current);
+            pointerFrame.current = null;
+          }
+          setPointerActive(false);
+          setScenePointer({ x: 0.5, y: 0.5 });
+        }}
+      >
+        <StaticFallback />
+        <ProofBoundary fallback={null}>
+          {reducedMotion ? null : (
+            <Canvas
+              aria-label="Animated central Museum archive compositor"
+              dpr={MUSEUM_ARCHIVE_PROOF_PERFORMANCE.dpr}
+              frameloop={visible ? 'always' : 'never'}
+              camera={{ position: [0, 1.15, 7.7], fov: 43, near: 0.1, far: 30 }}
+              gl={{
+                alpha: true,
+                antialias: true,
+                depth: true,
+                stencil: false,
+                powerPreference: 'high-performance',
+              }}
+              onCreated={({ camera, gl }) => {
+                camera.lookAt(0, 0, 0);
+                gl.outputColorSpace = THREE.SRGBColorSpace;
+                gl.toneMapping = THREE.ACESFilmicToneMapping;
+                gl.toneMappingExposure = 1.12;
+              }}
+            >
+              <Suspense fallback={null}>
+                <ArchiveScene pointerActive={pointerActive} pointerTarget={pointerTarget} />
+              </Suspense>
+            </Canvas>
+          )}
+        </ProofBoundary>
+        <div className={styles.museumEffects} aria-hidden="true">
+          <span className={styles.sceneHalo} />
+          <span
+            className={museumStyles.ecologyMembrane}
+            data-layer="museum:membrane"
+            style={{ backgroundImage: 'url(/images/art-direction/museum-signal-ecology.webp)' }}
+          />
+          <span
+            className={museumStyles.ecologyAperture}
+            data-layer="museum:aperture"
+            style={{ backgroundImage: 'url(/images/art-direction/museum-signal-ecology.webp)' }}
+          />
+          <span className={museumStyles.materialMesh} data-layer="museum:membrane" />
+          <MuseumParticleField
+            target={sceneFrame.aperture}
+            energy={sceneFrame.energy}
+            count={sceneFrame.particleCount}
+            reducedMotion={reducedMotion || !visible}
+            maxDpr={0.75}
+            maxFps={22}
+          />
+          <span className={museumStyles.ecologyVeil} />
+        </div>
+        <div className={styles.grain} aria-hidden="true" />
+      </div>
+      <header className={styles.caption}>
+        <Link href="/projects">Return to the Museum</Link>
+        <div>
+          <p>Material proof 03 / archive core</p>
+          <h1>Memory is not stored here. It keeps becoming.</h1>
+        </div>
+      </header>
+      <p className={styles.legend}>
+        deforming leaves / stochastic city light / orbital refraction / crossing currents / threshold mist
+      </p>
+    </main>
+  );
+}
