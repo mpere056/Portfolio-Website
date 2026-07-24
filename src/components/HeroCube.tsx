@@ -88,6 +88,7 @@ export default function HeroCube({
             <AwakeningLights presentation={presentation} reducedMotion={state.reducedMotionRequested} />
             <HeroScaleGroup>
               {musicProof && !state.reducedMotionRequested ? <PianoResonanceField /> : null}
+              {musicProof ? <PianoGhost /> : null}
               <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
               <group>
                 <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
@@ -202,6 +203,49 @@ interface ParticlesProps {
   displacement?: number;
   visibility?: number;
   intensity?: number;
+}
+
+function PianoGhost() {
+  const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
+
+  const geometry = useMemo(() => {
+    let pianoGeometry: THREE.BufferGeometry | null = null;
+    scene.traverse((child) => {
+      if (!pianoGeometry && child instanceof THREE.Mesh) {
+        pianoGeometry = child.geometry;
+      }
+    });
+    return pianoGeometry;
+  }, [scene]);
+
+  if (!geometry) return null;
+
+  return (
+    <group position={[0, -1, 0]} scale={2}>
+      <mesh geometry={geometry} renderOrder={-1}>
+        <meshStandardMaterial
+          color="#11121c"
+          emissive="#090b18"
+          emissiveIntensity={0.34}
+          metalness={0.58}
+          roughness={0.38}
+          transparent
+          opacity={0.17}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      <mesh geometry={geometry} renderOrder={0}>
+        <meshBasicMaterial
+          color="#9ea8d4"
+          transparent
+          opacity={0.018}
+          wireframe
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
 }
 
 function Particles({ count, displacement = 3, visibility = 6, intensity = 1 }: ParticlesProps) {

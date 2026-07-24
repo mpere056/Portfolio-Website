@@ -12,7 +12,7 @@
 | Outcome | `O-01`, `O-04` |
 | Owner | Mark and Codex |
 | Branch/worktree | `main` |
-| Last update | 2026-07-23 |
+| Last update | 2026-07-24 |
 
 ## Current Truth
 
@@ -28,7 +28,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: Mark verifies that public `/projects/music-proof` now preserves Home's identity and judges whether its faint resonance is a real improvement.
+- Next exact action: release and visually verify music revision 3, which adds an aligned translucent piano body beneath the accepted particle treatment to improve legibility without changing Home.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating any one bounded proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -157,3 +157,4 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - The only revision-2 addition is a restrained `PianoResonanceField` behind the instrument: three low-opacity blue-violet rings and three independently breathing lights. It is omitted under reduced motion and can be removed without changing Home.
 - Revision 2 passes all 218 tests, content validation, TypeScript, zero-error lint, and the 39-page production build.
 - Commit `20a047a` is live in Vercel Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga`. Public inspection confirms the shared Home layer contract, one Canvas, exact `1280 x 720` geometry, and distinct `home`/`music-proof` variant markers.
+- Mark finds revision 2 directionally acceptable but notes that the particle-only instrument can be difficult to identify as a piano. Revision 3 adds the same piano mesh beneath the particles at their exact scale and offset, with a dark `0.17`-opacity surface and extremely faint wireframe. This proof-only body supplies silhouette continuity while particles, cursor lighting, painted material, and motion remain primary.

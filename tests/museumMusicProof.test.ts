@@ -20,6 +20,9 @@ describe('Museum music chamber proof', () => {
     expect(source).toContain("export type HeroCubeVariant = 'home' | 'music-proof'");
     expect(source).toContain('data-home-variant={variant}');
     expect(source).toContain('function PianoResonanceField');
+    expect(source).toContain('function PianoGhost');
+    expect(source).toContain('musicProof ? <PianoGhost /> : null');
+    expect(source).toContain('opacity={0.17}');
     expect(source).toContain('<Particles count={10000}');
   });
 

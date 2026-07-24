@@ -22,11 +22,14 @@ Revision 2 removes the separate chamber entirely. The proof now renders `HeroCub
 
 The only proof-specific addition is `PianoResonanceField`: three extremely faint platform-scale rings and three low-intensity, independently breathing lights. They remain behind the existing piano and use the homepage's blue-violet neutral palette. Reduced motion omits this optional addition and leaves the normal homepage scene unchanged.
 
+Revision 3 adds a second proof-only element beneath the particles: `PianoGhost`, a dark translucent rendering of the same grand-piano geometry. It uses the particle sampler's exact scale and vertical offset, so the solid and particulate forms stay registered while the shared camera rotates. Its low-opacity physical surface and nearly imperceptible wireframe clarify the piano silhouette without becoming a brighter focal object than the particles.
+
 ## Boundaries
 
 - `/` continues to use `HeroCube` with its default `home` variant.
 - `/projects/music-proof` uses the same renderer with the `music-proof` variant.
 - The proof introduces no alternate background, camera, piano model, particle language, navigation model, or color system.
+- The translucent body uses the existing piano asset and is rendered only in the proof variant; the homepage remains unchanged.
 - Home and Projects are not merged by this revision.
 - If the added resonance is not an improvement, it can be removed without touching the shared homepage composition.
 
@@ -34,4 +37,4 @@ The only proof-specific addition is `PianoResonanceField`: three extremely faint
 
 Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 is implemented in commit `20a047a` and live in Vercel Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga`.
 
-Public inspection confirms the corrected route exposes the exact same `threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument` layer contract as Home, renders one Canvas in an exact `1280 x 720` document, and reports the `music-proof` variant. The normal homepage continues to report the `home` variant. Creative review remains open.
+Public inspection of revision 2 confirms the corrected route exposes the exact same `threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument` layer contract as Home, renders one Canvas in an exact `1280 x 720` document, and reports the `music-proof` variant. The normal homepage continues to report the `home` variant. Revision 3's aligned translucent body awaits release and visual verification.
