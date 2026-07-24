@@ -2,7 +2,10 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  ARCHIVE_PAGE_TURN_TIMING,
   getArchiveLocalAttention,
+  getArchivePageTurnSchedule,
+  getArchivePageWorldIndex,
   MUSEUM_ARCHIVE_PROOF_PERFORMANCE,
   MUSEUM_ARCHIVE_PROOF_SYSTEMS,
 } from '../src/lib/museum/archiveProof';
@@ -30,7 +33,17 @@ describe('Museum archive core proof', () => {
     expect(getArchiveLocalAttention([0.42, 0.32], [0.42, 0.32], 0.2, false)).toBe(0);
   });
 
-  it('mounts a code-first scene with calm and Museum attention paths', async () => {
+  it('accelerates an infinite three-world page cycle under local attention', () => {
+    const idle = getArchivePageTurnSchedule(0);
+    const hovered = getArchivePageTurnSchedule(1);
+    expect(hovered.delay).toBeLessThan(idle.delay);
+    expect(hovered.duration).toBeLessThan(idle.duration);
+    expect(ARCHIVE_PAGE_TURN_TIMING.worldCount).toBe(3);
+    expect(Array.from({ length: 7 }, (_, index) => getArchivePageWorldIndex(index)))
+      .toEqual([0, 1, 2, 0, 1, 2, 0]);
+  });
+
+  it('mounts a code-first scene with proof-local attention paths', async () => {
     const source = await readFile(
       path.join(root, 'src/components/museum/MuseumArchiveCoreProof.tsx'),
       'utf8',
@@ -38,10 +51,14 @@ describe('Museum archive core proof', () => {
     expect(source).toContain('Animated central Museum archive compositor');
     expect(source).toContain('function OrbitalCore');
     expect(source).toContain('function LivingBook');
+    expect(source).toContain('function TurningPage');
+    expect(source).toContain('function PageWorlds');
+    expect(source).toContain('function ArchiveAttentionLens');
     expect(source).toContain('function ArchiveCurrent');
     expect(source).toContain('function ArchiveParticles');
     expect(source).toContain('getMuseumSceneFrame');
-    expect(source).toContain('MuseumParticleField');
+    expect(source).not.toContain('museum-signal-ecology.webp');
+    expect(source).not.toContain('MuseumParticleField');
     expect(source).toContain("frameloop={visible ? 'always' : 'never'}");
     expect(source).toContain('reducedMotion ? null');
   });

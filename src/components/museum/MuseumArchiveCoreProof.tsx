@@ -16,6 +16,8 @@ import {
 } from 'react';
 import * as THREE from 'three';
 import {
+  getArchivePageTurnSchedule,
+  getArchivePageWorldIndex,
   getArchiveLocalAttention,
   MUSEUM_ARCHIVE_PROOF_PERFORMANCE,
 } from '@/lib/museum/archiveProof';
@@ -24,11 +26,16 @@ import {
   getMuseumSceneFrame,
   type MuseumScenePoint,
 } from '@/lib/museum/scene';
-import MuseumParticleField from './MuseumParticleField';
-import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumArchiveCoreProof.module.css';
 
 type PointerTarget = { current: THREE.Vector2 };
+type ScalarTarget = { current: number };
+type TowerSpec = {
+  position: readonly [number, number, number];
+  height: number;
+  width: number;
+  phase: number;
+};
 
 const BACKGROUND_VERTEX = `
 varying vec2 vUv;
@@ -114,6 +121,44 @@ void main() {
   color += vec3(0.23, 0.72, 0.72) * cartography * 0.12;
   color += vec3(1.0, 0.67, 0.24) * pow(passage, 8.0) * (0.09 + uAttention * 0.12);
   gl_FragColor = vec4(color, edge * (0.78 - uLayer * 0.017));
+}
+`;
+
+const TURNING_PAGE_VERTEX = `
+varying vec2 vUv;
+uniform float uTime;
+uniform float uTurn;
+
+void main() {
+  vUv = uv;
+  vec3 p = position;
+  float turnArc = sin(uTurn * 3.14159265);
+  float freeEdge = smoothstep(0.0, 1.0, uv.x);
+  p.z += sin(uv.x * 3.14159265) * turnArc * 0.34;
+  p.z += sin(uv.y * 8.0 - uTime * 1.4) * freeEdge * turnArc * 0.025;
+  p.y += sin(uv.x * 3.14159265) * turnArc * 0.06;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+}
+`;
+
+const TURNING_PAGE_FRAGMENT = `
+precision highp float;
+varying vec2 vUv;
+uniform float uTime;
+uniform float uTurn;
+
+void main() {
+  float edge = smoothstep(0.0, 0.025, vUv.x) * smoothstep(0.0, 0.025, 1.0 - vUv.x)
+    * smoothstep(0.0, 0.025, vUv.y) * smoothstep(0.0, 0.025, 1.0 - vUv.y);
+  float rules = smoothstep(0.47, 0.5, abs(fract(vUv.y * 24.0) - 0.5));
+  float glyphs = smoothstep(0.88, 0.99, sin(vUv.x * 39.0 + sin(vUv.y * 17.0) * 4.0));
+  float movingInk = pow(0.5 + 0.5 * sin(vUv.x * 11.0 - uTime * 0.75), 9.0);
+  float rim = pow(sin(uTurn * 3.14159265), 2.0);
+  vec3 paper = mix(vec3(0.18, 0.12, 0.055), vec3(0.83, 0.65, 0.34), vUv.y * 0.58);
+  vec3 color = mix(paper, vec3(0.045, 0.065, 0.06), rules * glyphs * 0.68);
+  color += vec3(0.16, 0.69, 0.7) * movingInk * 0.16;
+  color += vec3(1.0, 0.62, 0.2) * rim * 0.22;
+  gl_FragColor = vec4(color, edge * 0.96);
 }
 `;
 
@@ -403,6 +448,93 @@ function PageLeaf({
   );
 }
 
+function TurningPage({
+  pointerActive,
+  pointerTarget,
+  turnProgress,
+  onTurnAdvance,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+  turnProgress: ScalarTarget;
+  onTurnAdvance: () => void;
+}) {
+  const pivot = useRef<THREE.Group>(null);
+  const material = useRef<THREE.ShaderMaterial>(null);
+  const waiting = useRef(0);
+  const progress = useRef(0);
+  const turning = useRef(false);
+  const advanced = useRef(false);
+
+  useFrame(({ clock }, delta) => {
+    if (!pivot.current || !material.current) return;
+    const attention = attentionAt(pointerTarget, [0.43, 0.31], 0.25, pointerActive);
+    const schedule = getArchivePageTurnSchedule(attention);
+    material.current.uniforms.uTime.value = clock.elapsedTime;
+
+    if (!turning.current) {
+      waiting.current += delta;
+      turnProgress.current = 0;
+      pivot.current.rotation.y = 0;
+      material.current.uniforms.uTurn.value = 0;
+      if (waiting.current >= schedule.delay) {
+        waiting.current = 0;
+        progress.current = 0;
+        advanced.current = false;
+        turning.current = true;
+      }
+      return;
+    }
+
+    progress.current = Math.min(1, progress.current + delta / schedule.duration);
+    const eased = THREE.MathUtils.smootherstep(progress.current, 0, 1);
+    turnProgress.current = eased;
+    pivot.current.rotation.y = -Math.PI * eased;
+    material.current.uniforms.uTurn.value = eased;
+
+    if (!advanced.current && eased >= 0.5) {
+      advanced.current = true;
+      onTurnAdvance();
+    }
+    if (progress.current >= 1) {
+      turning.current = false;
+      progress.current = 0;
+      turnProgress.current = 0;
+      pivot.current.rotation.y = 0;
+      material.current.uniforms.uTurn.value = 0;
+    }
+  });
+
+  return (
+    <group position={[0, 0.155, 0.03]} rotation={[-1.04, 0, 0]}>
+      <group ref={pivot}>
+        <mesh position={[1.11, 0, 0]} renderOrder={4}>
+          <planeGeometry
+            args={[
+              2.22,
+              1.62,
+              MUSEUM_ARCHIVE_PROOF_PERFORMANCE.pageSegments,
+              12,
+            ]}
+          />
+          <shaderMaterial
+            ref={material}
+            vertexShader={TURNING_PAGE_VERTEX}
+            fragmentShader={TURNING_PAGE_FRAGMENT}
+            uniforms={{
+              uTime: { value: 0 },
+              uTurn: { value: 0 },
+            }}
+            side={THREE.DoubleSide}
+            transparent
+            depthWrite={false}
+          />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
 function Tower({
   position,
   height,
@@ -505,6 +637,186 @@ function Doorway({
   );
 }
 
+function CrystalGarden({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const garden = useRef<THREE.Group>(null);
+  const halo = useRef<THREE.Mesh>(null);
+  const crystals = useMemo(
+    () => [
+      [-0.82, 0.18, -0.2, 0.48, '#6edbd8'],
+      [-0.48, 0.12, 0.18, 0.72, '#e8b766'],
+      [-0.12, 0.08, -0.14, 0.42, '#91e7dc'],
+      [0.24, 0.14, 0.16, 0.82, '#d88c52'],
+      [0.62, 0.1, -0.1, 0.58, '#7fdfe0'],
+      [0.92, 0.17, 0.21, 0.38, '#efca78'],
+    ] as const,
+    [],
+  );
+  useFrame(({ clock }, delta) => {
+    if (!garden.current) return;
+    const attention = attentionAt(pointerTarget, [0.43, 0.31], 0.25, pointerActive);
+    garden.current.rotation.y += delta * (0.08 + attention * 0.18);
+    garden.current.position.y = 0.06 + Math.sin(clock.elapsedTime * 0.43) * 0.025;
+    if (halo.current) {
+      halo.current.rotation.z -= delta * (0.12 + attention * 0.2);
+      const breath = 1 + Math.sin(clock.elapsedTime * 0.61) * 0.05;
+      halo.current.scale.setScalar(breath);
+    }
+  });
+  return (
+    <group ref={garden}>
+      <pointLight position={[0, 0.8, 0.1]} color="#6de3df" intensity={3.4} distance={3.4} />
+      {crystals.map(([x, y, z, height, color], index) => (
+        <mesh key={index} position={[x, y + height / 2, z]} rotation={[0, index * 0.72, 0]}>
+          <coneGeometry args={[0.12 + index % 2 * 0.035, height, 5]} />
+          <meshPhysicalMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={0.58}
+            transmission={0.38}
+            thickness={0.52}
+            roughness={0.14}
+            metalness={0.12}
+            transparent
+            opacity={0.84}
+          />
+        </mesh>
+      ))}
+      <mesh ref={halo} position={[0.05, 0.48, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusKnotGeometry args={[0.58, 0.018, 112, 7, 2, 5]} />
+        <meshBasicMaterial color="#e9c779" transparent opacity={0.56} />
+      </mesh>
+      <mesh position={[0.05, 0.08, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[1.24, 64]} />
+        <meshBasicMaterial
+          color="#3dd2d2"
+          transparent
+          opacity={0.075}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function MemoryInstrument({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const instrument = useRef<THREE.Group>(null);
+  const inner = useRef<THREE.Mesh>(null);
+  const outer = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }, delta) => {
+    if (!instrument.current) return;
+    const attention = attentionAt(pointerTarget, [0.43, 0.31], 0.25, pointerActive);
+    instrument.current.position.y = 0.03 + Math.sin(clock.elapsedTime * 0.37) * 0.03;
+    instrument.current.rotation.y += delta * (0.05 + attention * 0.12);
+    if (inner.current) {
+      inner.current.rotation.x += delta * (0.16 + attention * 0.22);
+      inner.current.rotation.z -= delta * 0.11;
+    }
+    if (outer.current) {
+      outer.current.rotation.y -= delta * (0.1 + attention * 0.16);
+      outer.current.rotation.z += delta * 0.07;
+    }
+  });
+  return (
+    <group ref={instrument}>
+      <pointLight position={[0, 0.9, 0.1]} color="#edb766" intensity={3.8} distance={3.8} />
+      <mesh position={[0, 0.58, 0]}>
+        <octahedronGeometry args={[0.34, 2]} />
+        <meshPhysicalMaterial
+          color="#d7be8a"
+          emissive="#aa662c"
+          emissiveIntensity={1.2}
+          transmission={0.5}
+          thickness={0.62}
+          roughness={0.16}
+          transparent
+          opacity={0.88}
+        />
+      </mesh>
+      <mesh ref={inner} position={[0, 0.58, 0]}>
+        <torusGeometry args={[0.62, 0.018, 6, 96]} />
+        <meshBasicMaterial color="#69d9d8" transparent opacity={0.7} />
+      </mesh>
+      <mesh ref={outer} position={[0, 0.58, 0]} rotation={[0.75, 0.25, 0.4]}>
+        <torusKnotGeometry args={[0.7, 0.012, 128, 7, 3, 4]} />
+        <meshBasicMaterial color="#e5bd71" transparent opacity={0.54} />
+      </mesh>
+      {[-0.9, -0.55, 0.55, 0.9].map((x, index) => (
+        <mesh key={x} position={[x, 0.22 + index % 2 * 0.08, 0.04]}>
+          <cylinderGeometry args={[0.065, 0.1, 0.44 + index % 2 * 0.18, 6]} />
+          <meshStandardMaterial
+            color={index < 2 ? '#264a48' : '#553322'}
+            emissive={index < 2 ? '#3dc9c8' : '#d17832'}
+            emissiveIntensity={1.1}
+            roughness={0.32}
+            metalness={0.58}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function PageWorlds({
+  worldIndex,
+  turnProgress,
+  towers,
+  pointerActive,
+  pointerTarget,
+}: {
+  worldIndex: number;
+  turnProgress: ScalarTarget;
+  towers: readonly TowerSpec[];
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const city = useRef<THREE.Group>(null);
+  const garden = useRef<THREE.Group>(null);
+  const instrument = useRef<THREE.Group>(null);
+
+  useFrame((_, delta) => {
+    const groups = [city.current, garden.current, instrument.current];
+    const pagePresence = 1 - Math.sin(turnProgress.current * Math.PI);
+    groups.forEach((group, index) => {
+      if (!group) return;
+      const target = index === worldIndex ? pagePresence : 0;
+      const next = THREE.MathUtils.damp(group.scale.x, target, 7.5, delta);
+      group.scale.setScalar(Math.max(0.001, next));
+      group.position.y = THREE.MathUtils.damp(group.position.y, target * 0.02 - 0.08, 6, delta);
+      group.visible = next > 0.008;
+    });
+  });
+
+  return (
+    <>
+      <group ref={city}>
+        {towers.map((tower, index) => (
+          <Tower key={index} {...tower} />
+        ))}
+        <Doorway pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      </group>
+      <group ref={garden} scale={0.001} visible={false}>
+        <CrystalGarden pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      </group>
+      <group ref={instrument} scale={0.001} visible={false}>
+        <MemoryInstrument pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      </group>
+    </>
+  );
+}
+
 function LivingBook({
   pointerActive,
   pointerTarget,
@@ -513,6 +825,9 @@ function LivingBook({
   pointerTarget: PointerTarget;
 }) {
   const book = useRef<THREE.Group>(null);
+  const turnProgress = useRef(0);
+  const turnCount = useRef(0);
+  const [worldIndex, setWorldIndex] = useState(0);
   const towers = useMemo(() => {
     let seed = 31;
     const random = () => {
@@ -533,6 +848,10 @@ function LivingBook({
       };
     });
   }, []);
+  const advancePageWorld = () => {
+    turnCount.current += 1;
+    setWorldIndex(getArchivePageWorldIndex(turnCount.current));
+  };
 
   useFrame(({ clock }) => {
     if (!book.current) return;
@@ -577,10 +896,19 @@ function LivingBook({
         <torusGeometry args={[1.28, 0.008, 5, 128]} />
         <meshBasicMaterial color="#63d4d4" transparent opacity={0.22} />
       </mesh>
-      {towers.map((tower, index) => (
-        <Tower key={index} {...tower} />
-      ))}
-      <Doorway pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <PageWorlds
+        worldIndex={worldIndex}
+        turnProgress={turnProgress}
+        towers={towers}
+        pointerActive={pointerActive}
+        pointerTarget={pointerTarget}
+      />
+      <TurningPage
+        pointerActive={pointerActive}
+        pointerTarget={pointerTarget}
+        turnProgress={turnProgress}
+        onTurnAdvance={advancePageWorld}
+      />
     </group>
   );
 }
@@ -703,6 +1031,86 @@ function ArchiveParticles({
   );
 }
 
+function ArchiveAttentionLens({
+  pointerActive,
+  pointerTarget,
+}: {
+  pointerActive: boolean;
+  pointerTarget: PointerTarget;
+}) {
+  const lens = useRef<THREE.Group>(null);
+  const membrane = useRef<THREE.Mesh>(null);
+  const light = useRef<THREE.PointLight>(null);
+  useFrame(({ clock }, delta) => {
+    if (!lens.current) return;
+    const targetScale = pointerActive ? 1 : 0;
+    const scale = THREE.MathUtils.damp(lens.current.scale.x, targetScale, 7.5, delta);
+    lens.current.scale.setScalar(Math.max(0.001, scale));
+    lens.current.visible = scale > 0.008;
+    lens.current.position.x = THREE.MathUtils.damp(
+      lens.current.position.x,
+      (pointerTarget.current.x - 0.5) * 9.1,
+      8,
+      delta,
+    );
+    lens.current.position.y = THREE.MathUtils.damp(
+      lens.current.position.y,
+      (pointerTarget.current.y - 0.5) * 5.15 + 0.15,
+      8,
+      delta,
+    );
+    if (membrane.current) {
+      membrane.current.rotation.z = clock.elapsedTime * 0.14;
+      membrane.current.rotation.x = Math.sin(clock.elapsedTime * 0.31) * 0.12;
+    }
+    if (light.current) {
+      light.current.intensity = 0.65 + Math.sin(clock.elapsedTime * 1.3) * 0.18;
+    }
+  });
+
+  return (
+    <group ref={lens} position={[0, 0, 2.5]} scale={0.001} visible={false}>
+      <pointLight ref={light} color="#7ce2df" intensity={0.65} distance={2.3} />
+      <mesh scale={[1.25, 1, 0.22]}>
+        <sphereGeometry args={[0.48, 32, 24]} />
+        <meshPhysicalMaterial
+          color="#9ae2d8"
+          transmission={0.94}
+          thickness={1.35}
+          ior={1.42}
+          roughness={0.04}
+          metalness={0}
+          attenuationColor="#68d8d4"
+          attenuationDistance={1.7}
+          transparent
+          opacity={0.22}
+          depthWrite={false}
+        />
+      </mesh>
+      <mesh ref={membrane} scale={[1.38, 1.08, 1]}>
+        <torusKnotGeometry args={[0.38, 0.006, 96, 5, 2, 5]} />
+        <meshBasicMaterial
+          color="#e8c57a"
+          transparent
+          opacity={0.28}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+      <mesh scale={[1.48, 1.18, 1]}>
+        <ringGeometry args={[0.42, 0.425, 80]} />
+        <meshBasicMaterial
+          color="#73dddc"
+          transparent
+          opacity={0.34}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
+}
+
 const CURRENT_PATHS = [
   {
     color: '#70e8e5',
@@ -785,6 +1193,7 @@ function ArchiveScene({
       ))}
       <OrbitalCore pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <LivingBook pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <ArchiveAttentionLens pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <fog attach="fog" args={['#020708', 6.5, 13]} />
       <EffectComposer multisampling={0} enableNormalPass={false}>
         <Bloom
@@ -938,26 +1347,9 @@ export default function MuseumArchiveCoreProof() {
         </ProofBoundary>
         <div className={styles.museumEffects} aria-hidden="true">
           <span className={styles.sceneHalo} />
-          <span
-            className={museumStyles.ecologyMembrane}
-            data-layer="museum:membrane"
-            style={{ backgroundImage: 'url(/images/art-direction/museum-signal-ecology.webp)' }}
-          />
-          <span
-            className={museumStyles.ecologyAperture}
-            data-layer="museum:aperture"
-            style={{ backgroundImage: 'url(/images/art-direction/museum-signal-ecology.webp)' }}
-          />
-          <span className={museumStyles.materialMesh} data-layer="museum:membrane" />
-          <MuseumParticleField
-            target={sceneFrame.aperture}
-            energy={sceneFrame.energy}
-            count={sceneFrame.particleCount}
-            reducedMotion={reducedMotion || !visible}
-            maxDpr={0.75}
-            maxFps={22}
-          />
-          <span className={museumStyles.ecologyVeil} />
+          <span className={styles.proofAperture} />
+          <span className={styles.proofMesh} />
+          <span className={styles.proofVeil} />
         </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>

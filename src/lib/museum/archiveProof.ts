@@ -51,6 +51,36 @@ export const MUSEUM_ARCHIVE_PROOF_PERFORMANCE = {
   towerCount: 18,
 } as const;
 
+export const ARCHIVE_PAGE_TURN_TIMING = {
+  hoverDelay: 2.4,
+  idleDelay: 13.5,
+  hoverDuration: 1.45,
+  idleDuration: 2.15,
+  worldCount: 3,
+} as const;
+
+function clampUnit(value: number) {
+  return Math.min(1, Math.max(0, Number.isFinite(value) ? value : 0));
+}
+
+export function getArchivePageTurnSchedule(attention: number) {
+  const amount = clampUnit(attention);
+  const eased = amount * amount * (3 - 2 * amount);
+  const lerp = (start: number, end: number) => start + (end - start) * eased;
+  return {
+    delay: lerp(ARCHIVE_PAGE_TURN_TIMING.idleDelay, ARCHIVE_PAGE_TURN_TIMING.hoverDelay),
+    duration: lerp(
+      ARCHIVE_PAGE_TURN_TIMING.idleDuration,
+      ARCHIVE_PAGE_TURN_TIMING.hoverDuration,
+    ),
+  };
+}
+
+export function getArchivePageWorldIndex(turnCount: number) {
+  const normalized = Math.max(0, Math.floor(Number.isFinite(turnCount) ? turnCount : 0));
+  return normalized % ARCHIVE_PAGE_TURN_TIMING.worldCount;
+}
+
 export function getArchiveLocalAttention(
   pointer: readonly [number, number],
   target: readonly [number, number],

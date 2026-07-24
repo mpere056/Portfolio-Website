@@ -127,6 +127,72 @@
   transform: translate(-50%, -50%) scale(calc(0.74 + var(--scene-energy) * 0.3));
 }
 
+.proofAperture,
+.proofMesh,
+.proofVeil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.proofAperture {
+  z-index: 2;
+  background:
+    radial-gradient(
+      ellipse 9rem 7rem at var(--aperture-x) var(--aperture-y),
+      rgba(108, 225, 220, calc(0.05 + var(--aperture-strength) * 0.13)),
+      rgba(221, 179, 102, calc(0.03 + var(--aperture-strength) * 0.09)) 38%,
+      transparent 74%
+    );
+  backdrop-filter: blur(calc(0.4px + var(--aperture-strength) * 1.5px)) saturate(1.35) contrast(1.08);
+  mask-image: radial-gradient(
+    ellipse 10rem 8rem at var(--aperture-x) var(--aperture-y),
+    #000 0 18%,
+    rgba(0, 0, 0, 0.88) 48%,
+    transparent 82%
+  );
+  opacity: var(--aperture-strength);
+  transform: translate3d(var(--mesh-drift-x), var(--mesh-drift-y), 0);
+}
+
+.proofMesh {
+  z-index: 3;
+  background:
+    repeating-radial-gradient(
+      ellipse at var(--aperture-x) var(--aperture-y),
+      transparent 0 2.3rem,
+      rgba(126, 224, 221, 0.13) 2.35rem 2.41rem,
+      transparent 2.46rem 3.8rem
+    ),
+    conic-gradient(
+      from 18deg at var(--aperture-x) var(--aperture-y),
+      transparent,
+      rgba(234, 189, 105, 0.09),
+      transparent 18% 52%,
+      rgba(93, 211, 211, 0.08),
+      transparent 73%
+    );
+  mask-image: radial-gradient(
+    ellipse 16rem 13rem at var(--aperture-x) var(--aperture-y),
+    #000,
+    transparent 76%
+  );
+  opacity: calc(0.18 + var(--scene-energy) * 0.32);
+  transform: translate3d(var(--scene-drift-x), var(--scene-drift-y), 0);
+}
+
+.proofVeil {
+  z-index: 4;
+  background:
+    radial-gradient(
+      circle 1.2rem at var(--aperture-x) var(--aperture-y),
+      rgba(245, 218, 159, 0.15),
+      transparent
+    ),
+    linear-gradient(112deg, transparent 38%, rgba(102, 218, 215, 0.045), transparent 62%);
+  mix-blend-mode: plus-lighter;
+}
+
 .grain {
   position: absolute;
   z-index: 4;
