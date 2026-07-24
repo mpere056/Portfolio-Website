@@ -24,6 +24,8 @@ The only proof-specific addition is `PianoResonanceField`: three extremely faint
 
 Revision 3 adds a second proof-only element beneath the particles: `PianoGhost`, a dark translucent rendering of the same grand-piano geometry. It uses the particle sampler's exact scale and vertical offset, so the solid and particulate forms stay registered while the shared camera rotates. Its low-opacity physical surface and nearly imperceptible wireframe clarify the piano silhouette without becoming a brighter focal object than the particles.
 
+Revision 4 responds to creative review that the body obscured too much of the particle instrument. It reduces the physical surface from `0.17` to `0.075` opacity and its bloom-sensitive wireframe from `0.018` to `0.006`, keeping the silhouette as a quiet guide while restoring particles as the dominant material.
+
 ## Boundaries
 
 - `/` continues to use `HeroCube` with its default `home` variant.

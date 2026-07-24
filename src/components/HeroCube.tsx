@@ -230,7 +230,7 @@ function PianoGhost() {
           metalness={0.58}
           roughness={0.38}
           transparent
-          opacity={0.17}
+          opacity={0.075}
           depthWrite={false}
           side={THREE.DoubleSide}
         />
@@ -239,7 +239,7 @@ function PianoGhost() {
         <meshBasicMaterial
           color="#9ea8d4"
           transparent
-          opacity={0.018}
+          opacity={0.006}
           wireframe
           depthWrite={false}
         />
