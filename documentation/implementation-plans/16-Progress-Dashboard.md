@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-23
-Implementation commit baseline: `fce50af`; latest bounded proof Production: `0175f58`
+Implementation commit baseline: `fce50af`; latest bounded proof Production: `7bf0d5c`
 
 ## Plan Metadata
 
@@ -17,7 +17,7 @@ Implementation commit baseline: `fce50af`; latest bounded proof Production: `017
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and three bounded Museum material districts now have public animated proofs.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 and east revision 20 are visually accepted. Archive-core revision 2 is public at `0175f58` with a code-generated book, miniature city, orbital instrument, doorway, currents, atmosphere, particles, and local attention. Its creative review is open; full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 and east revision 20 are visually accepted. Archive-core revision 3 is public at `7bf0d5c` with proof-local refraction, a continuously turning book, three cyclic pop-up worlds, miniature city, orbital instrument, currents, atmosphere, particles, and local attention. Its creative review is open; full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; west revision 4 and east revision 20 visually accepted; archive-core revision 2 is public at `0175f58` | Mark reviews the central code-first proof before bounded `12G` integration |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; west revision 4 and east revision 20 visually accepted; archive-core revision 3 is public at `7bf0d5c` | Mark reviews the central code-first proof before bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-23 | Isolated archive hover effects and added an infinite authored page cycle | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `67c96a3` and `7bf0d5c`, live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`, remove every legacy Museum-artwork hover reference, add proof-local refraction, curl pages around the spine, and cycle city, crystal-garden, and memory-instrument worlds on `2.4s` attended and `13.5s` idle delays; 216 tests, content, TypeScript, zero-error lint, build, one-screen geometry, and public `0 -> 1 -> 2` timing checks pass |
 | 2026-07-23 | Released and materially corrected the central authored-memory proof | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d386ef` and `0175f58`, live in Production deployment `dpl_GxZZuTaWwAYfwwv1vrVyBG8S1xL2`, replace the first clean block study with curved illuminated leaves, procedural cyan/amber tower windows, nested orbital geometry, five depth-crossing currents, bloom, vignette, atmosphere, and particles; public `1280 x 720` inspection confirms two canvases, exact one-screen geometry, local attention, and no renderer fallback |
 | 2026-07-23 | Applied Mark-selected observatory presets and localized hover | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `9e85711` and deployment `dpl_ERWWTafLyB9CbBveLFH4oSFbin8x` make the six selected profiles authoritative under `v5`, constrain attention to each visible route segment, reduce unrelated global hover energy, and pass aggregate/build/public checks |
 | 2026-07-23 | Restored the east observatory's earlier woven-current language without reverting native LaserFlow | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d1327f` and `ce8fdcf`, live in deployment `dpl_9MqMJa3TA1J9N4ajPSPmQcnyZHfD`, shape six native families into bounded 3-10-lane filament bundles with traveling pressure, sharper color separation, longer route coverage, versioned presets, and passing aggregate/public checks |
