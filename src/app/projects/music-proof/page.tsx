@@ -1,12 +1,16 @@
 import type { Metadata } from 'next';
-import MuseumMusicProof from '@/components/museum/MuseumMusicProof';
+import HeroCube from '@/components/HeroCube';
 
 export const metadata: Metadata = {
-  title: 'Museum Music Chamber Proof | Mark Perera',
-  description: 'A bounded procedural piano and resonance study for the living Project Museum.',
+  title: 'Home Music Proof | Mark Perera',
+  description: 'A restrained extension of the existing homepage piano scene.',
   robots: { index: false, follow: false },
 };
 
 export default function MuseumMusicProofPage() {
-  return <MuseumMusicProof />;
+  return (
+    <main>
+      <HeroCube variant="music-proof" />
+    </main>
+  );
 }

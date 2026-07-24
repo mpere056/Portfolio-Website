@@ -15,9 +15,9 @@ Implementation commit baseline: `fce50af`; latest bounded proof Production: `4fc
 
 ## Current Program State
 
-**The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, three bounded Museum districts are accepted, and a fourth Home/Museum bridge proof is implemented locally.**
+**The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, three bounded Museum districts are accepted, and the rejected music bridge is being corrected to reuse the homepage renderer.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4, east revision 20, and archive-core revision 4 are visually accepted. Archive interaction now uses a `1.5s` attended delay and `1.05s` attended turn while preserving its slow autonomous rhythm. A code-first resonance chamber at `/projects/music-proof` now extends the proof sequence toward a possible Home/Projects composition without changing either canonical route. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4, east revision 20, and archive-core revision 4 are visually accepted. Archive interaction now uses a `1.5s` attended delay and `1.05s` attended turn while preserving its slow autonomous rhythm. Music revision 1 is rejected for replacing too much of Home's established identity. Revision 2 reuses the exact `HeroCube` renderer and limits its addition to faint platform resonance rings and independently breathing light. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | West revision 4, east revision 20, and archive revision 4 accepted; music chamber is public at `4fc6cca` | Review `/projects/music-proof` before deciding how the Home instrument joins `ART-12G` | 2026-07-24 |
+| Now | `WI-ART-12-01` | in-progress | `ART-12` | Three districts accepted; music revision 1 rejected and revision 2 reuses the exact Home renderer | Release and review corrected `/projects/music-proof` before any Home/Projects integration decision | 2026-07-24 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does the resonance chamber preserve the homepage piano's identity while adding visibly independent musical life? | Mark | `/projects/music-proof`; real piano geometry, three living registers, five traveling currents, local resonators, notation matter, calm path | 2026-07-24 | Review the released one-screen proof before choosing a Home/Projects integration shape |
+| `WI-ART-12-01` | Does music revision 2 feel like the existing homepage with only a restrained improvement? | Mark | `/projects/music-proof`; shared `HeroCube`, identical piano particles/platform/background/camera/navigation, optional faint resonance | 2026-07-24 | Review the corrected one-screen proof before choosing a Home/Projects integration shape |
 
 ## Blocked Or Paused
 
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-24 | Rejected the separate music chamber and restored the homepage identity | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Revision 2 deletes the alternate music compositor and renders the same `HeroCube` used by `/`; only three faint platform rings and three low-intensity breathing lights differ, while the existing 10,000-point piano, painted threshold, portrait platform, camera, lighting, navigation, and motion remain shared; 218 tests, content, TypeScript, zero-error lint, and the 39-page build pass |
 | 2026-07-24 | Accepted the archive interaction and released a Home/Museum music bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `4fc6cca` and Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb` shorten archive hover delay/turn to `1.5s`/`1.05s` and release `/projects/music-proof` with three independently breathing piano registers, five traveling currents, local resonators, and 220 motes; 221 tests, content, TypeScript, zero-error lint, 39-page build, exact one-screen public geometry, and zero public console errors pass |
 | 2026-07-23 | Isolated archive hover effects and added an infinite authored page cycle | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `67c96a3` and `7bf0d5c`, live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`, remove every legacy Museum-artwork hover reference, add proof-local refraction, curl pages around the spine, and cycle city, crystal-garden, and memory-instrument worlds on `2.4s` attended and `13.5s` idle delays; 216 tests, content, TypeScript, zero-error lint, build, one-screen geometry, and public `0 -> 1 -> 2` timing checks pass |
 | 2026-07-23 | Released and materially corrected the central authored-memory proof | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d386ef` and `0175f58`, live in Production deployment `dpl_GxZZuTaWwAYfwwv1vrVyBG8S1xL2`, replace the first clean block study with curved illuminated leaves, procedural cyan/amber tower windows, nested orbital geometry, five depth-crossing currents, bloom, vignette, atmosphere, and particles; public `1280 x 720` inspection confirms two canvases, exact one-screen geometry, local attention, and no renderer fallback |

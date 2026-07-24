@@ -28,7 +28,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: Mark reviews `/projects/music-proof` for piano identity, current visibility, idle life, and local register attention before any Home/Projects composition decision.
+- Next exact action: release music revision 2; Mark verifies that `/projects/music-proof` now preserves Home's identity and judges whether its faint resonance is a real improvement.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating any one bounded proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -42,7 +42,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4, east revision 20, and archive revision 4 are accepted; music chamber revision 1 awaits public review |
+| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4, east revision 20, and archive revision 4 are accepted; music revision 1 is rejected and shared-Home revision 2 awaits release |
 | `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
 | `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
 
@@ -152,3 +152,7 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - Five code-generated tube currents carry offset pressure textures at different speeds and depths. Three local resonators and `220` buffer-driven notation motes keep moving without input; pointer attention affects only the nearby register/current family.
 - The new proof does not merge `/` and `/projects`. It is a bounded decision surface for that later integration.
 - Commit `4fc6cca` is live in Vercel Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb`. All 221 tests, content validation, TypeScript, zero-error lint, and the 39-page production build pass. Public inspection confirms exact one-screen geometry, one Canvas, no renderer-boundary error, and no console warnings. The in-app browser does not initialize the site's WebGL canvases, including the existing homepage Canvas, so Mark's normal-browser creative review remains required.
+- Mark rejects music revision 1 because its cyan/amber chamber, physical piano body, currents, resonators, and notation matter changed the homepage aesthetic too much.
+- Revision 2 deletes the separate compositor and reuses `HeroCube` directly. The proof and Home now share the same 10,000-point piano, portrait platform, painted material, camera, stars, bloom, cursor light, rotation, and navigation.
+- The only revision-2 addition is a restrained `PianoResonanceField` behind the instrument: three low-opacity blue-violet rings and three independently breathing lights. It is omitted under reduced motion and can be removed without changing Home.
+- Revision 2 passes all 218 tests, content validation, TypeScript, zero-error lint, and the 39-page production build.

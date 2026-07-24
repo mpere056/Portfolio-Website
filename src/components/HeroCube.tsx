@@ -20,9 +20,18 @@ import supportingStyles from './SupportingScenes.module.css';
 
 extend({ RoundedBoxGeometry })
 
-export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnabled?: boolean }) {
+export type HeroCubeVariant = 'home' | 'music-proof';
+
+export default function HeroCube({
+  firstNoteEnabled = false,
+  variant = 'home',
+}: {
+  firstNoteEnabled?: boolean;
+  variant?: HeroCubeVariant;
+}) {
   const portfolioAI = usePortfolioAI();
   const [pageVisible, setPageVisible] = useState(true);
+  const musicProof = variant === 'music-proof';
 
   useEffect(() => {
     const updateVisibility = () => setPageVisible(document.visibilityState !== 'hidden');
@@ -37,6 +46,7 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
         <div
           className="relative h-screen w-screen overflow-hidden bg-[#07070d]"
           data-home-threshold={presentation.illumination}
+          data-home-variant={variant}
           data-home-layers="threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument"
           style={{
             backgroundColor: '#07070d',
@@ -77,6 +87,7 @@ export default function HeroCube({ firstNoteEnabled = false }: { firstNoteEnable
             <Stars radius={120} depth={50} count={200} factor={5} saturation={0} fade speed={state.reducedMotionRequested ? 0 : 0.5} />
             <AwakeningLights presentation={presentation} reducedMotion={state.reducedMotionRequested} />
             <HeroScaleGroup>
+              {musicProof && !state.reducedMotionRequested ? <PianoResonanceField /> : null}
               <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
               <group>
                 <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
@@ -291,6 +302,50 @@ function CursorLight() {
 
   // Point light behaves like a soft spotlight; distance+decay makes farther regions darker
   return <pointLight ref={lightRef} intensity={8} distance={3.8} decay={2.6} color={'#cfd6ff'} />
+}
+
+function PianoResonanceField() {
+  const low = useRef<THREE.Mesh>(null);
+  const middle = useRef<THREE.Mesh>(null);
+  const high = useRef<THREE.Mesh>(null);
+  const lowLight = useRef<THREE.PointLight>(null);
+  const middleLight = useRef<THREE.PointLight>(null);
+  const highLight = useRef<THREE.PointLight>(null);
+
+  useFrame(({ clock }) => {
+    const time = clock.elapsedTime;
+    const rings = [low.current, middle.current, high.current];
+    rings.forEach((ring, index) => {
+      if (!ring) return;
+      ring.rotation.z = time * (index === 1 ? -0.035 : 0.024 + index * 0.012);
+      const breath = 1 + Math.sin(time * (0.24 + index * 0.07) + index * 2.1) * 0.012;
+      ring.scale.set(breath, breath * (0.78 + index * 0.05), 1);
+    });
+
+    if (lowLight.current) lowLight.current.intensity = 0.34 + Math.sin(time * 0.43) * 0.12;
+    if (middleLight.current) middleLight.current.intensity = 0.38 + Math.sin(time * 0.37 + 2.1) * 0.14;
+    if (highLight.current) highLight.current.intensity = 0.32 + Math.sin(time * 0.51 + 4.2) * 0.11;
+  });
+
+  return (
+    <group position={[0, -2.27, -0.5]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh ref={low}>
+        <torusGeometry args={[2.72, 0.008, 6, 128]} />
+        <meshBasicMaterial color="#7779a8" transparent opacity={0.055} depthWrite={false} />
+      </mesh>
+      <mesh ref={middle} rotation={[0, 0, 0.7]}>
+        <torusGeometry args={[3.08, 0.006, 6, 144]} />
+        <meshBasicMaterial color="#9ca7d2" transparent opacity={0.04} depthWrite={false} />
+      </mesh>
+      <mesh ref={high} rotation={[0, 0, 1.3]}>
+        <torusGeometry args={[3.42, 0.005, 6, 160]} />
+        <meshBasicMaterial color="#c4c8dc" transparent opacity={0.025} depthWrite={false} />
+      </mesh>
+      <pointLight ref={lowLight} position={[-1.35, 0.2, 0.8]} color="#8e9ee8" distance={2.1} decay={2.4} />
+      <pointLight ref={middleLight} position={[0, -0.1, 0.9]} color="#d8d8f2" distance={2} decay={2.5} />
+      <pointLight ref={highLight} position={[1.3, 0.15, 0.8]} color="#9ebce8" distance={2.1} decay={2.4} />
+    </group>
+  );
 }
 
 interface PlatformImageProps { src: string }

@@ -1,39 +1,35 @@
-# Museum Music Chamber Proof
+# Museum Music Proof
 
 ## Review Surface
 
 - Route: `/projects/music-proof`
 - Role: bounded bridge study between the Home threshold and the Project Museum
-- Source object: the existing grand-piano GLTF used by the homepage
-- Question: can the homepage instrument become a materially alive Museum district without replacing its recognizable identity?
+- Source scene: the existing homepage renderer
+- Question: can the homepage instrument gain a small amount of musical life without changing its established aesthetic?
 
-## Runtime Composition
+## Accepted Correction
 
-The grand piano remains the stable focal form. Its real mesh is retained as a quiet, dark physical body, while `6,400` sampled surface points rebuild the instrument as three independently breathing register fields. Bass, middle, and treble have separate colors, clocks, pressure, and local pointer response.
+Revision 1 was too far from the homepage. Although it retained the piano GLTF, it replaced the familiar dark particle instrument, circular portrait platform, painted threshold material, camera, lighting, navigation, and motion grammar with a separate cyan/amber chamber. Mark rejected that change in visual identity.
 
-Five code-generated tube currents cross the chamber at different depths. A generated alpha texture carries multiple luminous pressure packets along each current; runtime texture offsets provide unambiguous direction without fragment-noise cost. Three orbiting resonators respond only to their nearby register. `220` notation motes drift independently through the room. No static image is used by the animated composition.
+Revision 2 removes the separate chamber entirely. The proof now renders `HeroCube`, the same component used by `/`, with the same:
 
-## Interaction Contract
+- `10,000` piano-surface particle instances;
+- particle displacement and cursor response;
+- dark violet circular platform and portrait texture;
+- painted threshold material and notation layers;
+- camera, stars, bloom, ambient light, cursor light, and auto-rotation;
+- About, Projects, and site-wide AI pointers.
 
-- Idle motion exists in every register, current, resonator, and mote field.
-- Pointer attention is horizontal and local: bass, middle, and treble do not intensify together.
-- The piano remains the visual anchor; currents describe sound leaving it rather than becoming a background poster.
-- The route is exactly one viewport and does not scroll.
-- Hidden tabs stop the frame loop.
-- Reduced motion and renderer failure retain a stable, code-authored piano checksum.
+The only proof-specific addition is `PianoResonanceField`: three extremely faint platform-scale rings and three low-intensity, independently breathing lights. They remain behind the existing piano and use the homepage's blue-violet neutral palette. Reduced motion omits this optional addition and leaves the normal homepage scene unchanged.
 
-## Performance Contract
+## Boundaries
 
-- Canvas DPR is capped at `0.9`.
-- Piano matter uses `6,400` point sprites rather than the homepage's `10,000` instanced spheres.
-- Atmosphere is capped at `220` points and updated in one buffer.
-- Five currents use `72`-segment tubes and small generated textures.
-- Bloom uses zero multisampling; transparent effect materials do not write depth.
+- `/` continues to use `HeroCube` with its default `home` variant.
+- `/projects/music-proof` uses the same renderer with the `music-proof` variant.
+- The proof introduces no alternate background, camera, piano model, particle language, navigation model, or color system.
+- Home and Projects are not merged by this revision.
+- If the added resonance is not an improvement, it can be removed without touching the shared homepage composition.
 
-## Acceptance State
+## Verification State
 
-Archive-core revision 4 is accepted as the current authored-memory proof after its attended delay changed from `2.4s` to `1.5s` and attended turn duration changed from `1.45s` to `1.05s`. The slower `13.5s` autonomous rhythm is unchanged.
-
-The music chamber is implemented in commit `4fc6cca` and live in Vercel Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb`. Public inspection confirms the canonical title, one Canvas, exact `1280 x 720` viewport/document geometry, no renderer-boundary error, and no console warnings or errors. The in-app review browser does not initialize the site's WebGL canvases, including the existing homepage Canvas, so Mark's normal-browser creative review remains the visual acceptance source.
-
-This is a review proof only: it does not yet merge `/` and `/projects`, replace the homepage, or authorize `ART-12G` whole-Museum integration.
+Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 requires normal-browser creative review after release because the in-app review browser does not initialize the site's WebGL canvases, including the existing homepage Canvas.
