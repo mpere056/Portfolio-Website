@@ -35,6 +35,6 @@ Revision 3 adds a second proof-only element beneath the particles: `PianoGhost`,
 
 ## Verification State
 
-Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 is implemented in commit `20a047a` and live in Vercel Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga`.
+Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 is implemented in commit `20a047a`. Revision 3 is implemented in commit `b1378d9` and live in Vercel Production deployment `dpl_Chf6KkWzZkptJvhWB3DZmuaJsnmQ`.
 
-Public inspection of revision 2 confirms the corrected route exposes the exact same `threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument` layer contract as Home, renders one Canvas in an exact `1280 x 720` document, and reports the `music-proof` variant. The normal homepage continues to report the `home` variant. Revision 3's aligned translucent body awaits release and visual verification.
+Public inspection of revision 3 confirms the corrected route exposes the exact same `threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument` layer contract as Home, renders one Canvas in an exact `1280 x 720` document, and reports the `music-proof` variant. The translucent body is registered to the particle piano and makes its lid, keyboard, rim, legs, and pedals legible without replacing the particle response. The normal homepage continues to report the `home` variant. No console warnings or errors were reported; creative review remains open.
