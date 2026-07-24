@@ -54,6 +54,7 @@ describe('Museum archive core proof', () => {
     expect(source).toContain('function TurningPage');
     expect(source).toContain('function PageWorlds');
     expect(source).toContain('function ArchiveAttentionLens');
+    expect(source).toContain('data-book-world={bookWorld}');
     expect(source).toContain('function ArchiveCurrent');
     expect(source).toContain('function ArchiveParticles');
     expect(source).toContain('getMuseumSceneFrame');

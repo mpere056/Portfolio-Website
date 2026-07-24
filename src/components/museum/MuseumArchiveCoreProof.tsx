@@ -465,12 +465,16 @@ function TurningPage({
   const progress = useRef(0);
   const turning = useRef(false);
   const advanced = useRef(false);
+  const wasAttended = useRef(false);
 
   useFrame(({ clock }, delta) => {
     if (!pivot.current || !material.current) return;
     const attention = attentionAt(pointerTarget, [0.43, 0.31], 0.25, pointerActive);
     const schedule = getArchivePageTurnSchedule(attention);
     material.current.uniforms.uTime.value = clock.elapsedTime;
+    const attended = attention > 0.35;
+    if (attended && !wasAttended.current && !turning.current) waiting.current = 0;
+    wasAttended.current = attended;
 
     if (!turning.current) {
       waiting.current += delta;
@@ -820,9 +824,11 @@ function PageWorlds({
 function LivingBook({
   pointerActive,
   pointerTarget,
+  onWorldChange,
 }: {
   pointerActive: boolean;
   pointerTarget: PointerTarget;
+  onWorldChange: (worldIndex: number) => void;
 }) {
   const book = useRef<THREE.Group>(null);
   const turnProgress = useRef(0);
@@ -850,7 +856,9 @@ function LivingBook({
   }, []);
   const advancePageWorld = () => {
     turnCount.current += 1;
-    setWorldIndex(getArchivePageWorldIndex(turnCount.current));
+    const nextWorld = getArchivePageWorldIndex(turnCount.current);
+    setWorldIndex(nextWorld);
+    onWorldChange(nextWorld);
   };
 
   useFrame(({ clock }) => {
@@ -1039,7 +1047,6 @@ function ArchiveAttentionLens({
   pointerTarget: PointerTarget;
 }) {
   const lens = useRef<THREE.Group>(null);
-  const membrane = useRef<THREE.Mesh>(null);
   const light = useRef<THREE.PointLight>(null);
   useFrame(({ clock }, delta) => {
     if (!lens.current) return;
@@ -1059,10 +1066,6 @@ function ArchiveAttentionLens({
       8,
       delta,
     );
-    if (membrane.current) {
-      membrane.current.rotation.z = clock.elapsedTime * 0.14;
-      membrane.current.rotation.x = Math.sin(clock.elapsedTime * 0.31) * 0.12;
-    }
     if (light.current) {
       light.current.intensity = 0.65 + Math.sin(clock.elapsedTime * 1.3) * 0.18;
     }
@@ -1087,22 +1090,12 @@ function ArchiveAttentionLens({
           depthWrite={false}
         />
       </mesh>
-      <mesh ref={membrane} scale={[1.38, 1.08, 1]}>
-        <torusKnotGeometry args={[0.38, 0.006, 96, 5, 2, 5]} />
-        <meshBasicMaterial
-          color="#e8c57a"
-          transparent
-          opacity={0.28}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </mesh>
       <mesh scale={[1.48, 1.18, 1]}>
         <ringGeometry args={[0.42, 0.425, 80]} />
         <meshBasicMaterial
           color="#73dddc"
           transparent
-          opacity={0.34}
+          opacity={0.18}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
@@ -1172,9 +1165,11 @@ const CURRENT_PATHS = [
 function ArchiveScene({
   pointerActive,
   pointerTarget,
+  onBookWorldChange,
 }: {
   pointerActive: boolean;
   pointerTarget: PointerTarget;
+  onBookWorldChange: (worldIndex: number) => void;
 }) {
   return (
     <>
@@ -1192,7 +1187,11 @@ function ArchiveScene({
         />
       ))}
       <OrbitalCore pointerActive={pointerActive} pointerTarget={pointerTarget} />
-      <LivingBook pointerActive={pointerActive} pointerTarget={pointerTarget} />
+      <LivingBook
+        pointerActive={pointerActive}
+        pointerTarget={pointerTarget}
+        onWorldChange={onBookWorldChange}
+      />
       <ArchiveAttentionLens pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <fog attach="fog" args={['#020708', 6.5, 13]} />
       <EffectComposer multisampling={0} enableNormalPass={false}>
@@ -1238,6 +1237,7 @@ export default function MuseumArchiveCoreProof() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
+  const [bookWorld, setBookWorld] = useState(0);
   const [scenePointer, setScenePointer] = useState<MuseumScenePoint>({ x: 0.5, y: 0.5 });
   const pointerTarget = useRef(new THREE.Vector2(0.5, 0.5));
   const pointerFrame = useRef<number | null>(null);
@@ -1301,6 +1301,7 @@ export default function MuseumArchiveCoreProof() {
       className={styles.proof}
       data-reduced-motion={reducedMotion}
       data-attention-active={pointerActive}
+      data-book-world={bookWorld}
     >
       <div
         className={styles.stage}
@@ -1340,7 +1341,11 @@ export default function MuseumArchiveCoreProof() {
               }}
             >
               <Suspense fallback={null}>
-                <ArchiveScene pointerActive={pointerActive} pointerTarget={pointerTarget} />
+                <ArchiveScene
+                  pointerActive={pointerActive}
+                  pointerTarget={pointerTarget}
+                  onBookWorldChange={setBookWorld}
+                />
               </Suspense>
             </Canvas>
           )}
