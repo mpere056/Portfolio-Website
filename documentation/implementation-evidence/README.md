@@ -47,6 +47,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | --- | --- | --- | --- |
 | `EV-KG-07-01` | `KG-07` | accepted | `KG-07.md` |
 | `EV-EXP-08-01` | `EXP-08` | accepted contract | `EXP-08.md` |
+| `EV-ART-16-01` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -80,6 +81,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-11-02` | `ART-11` | accepted | `ART-11.md` |
 | `EV-ART-11-03` | `ART-11` | failed | `ART-11.md` |
 | `EV-ART-11-04` | `ART-11` | candidate | `ART-11.md` |
+| `EV-ART-16-01` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -223,6 +225,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-11-02` | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | production | accepted | `9c3a743`, Vercel `dpl_3yZjFfqRdZQe5S1PnrHXSCRVq8yv`, six public surfaces | 2026-07-19 | `ART-11.md` |
 | `EV-ART-11-03` | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | creative-review | failed | production Museum scrolling and imperceptible direct-surface project dynamics reject creative acceptance while retaining functional rollout evidence | 2026-07-20 | `ART-11.md` |
 | `EV-ART-11-04` | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | browser-flow | candidate | one-viewport Museum, contained depth, distinct direct project scenes, focused tests, and desktop geometry/interaction matrix | 2026-07-20 | `ART-11.md` |
+| `EV-ART-16-01` | `ART-16` | `CAP-ART-017`, `CAP-EXP-015` | browser-flow | candidate | private five-anchor neutral shell, shared Home piano, deterministic selection/return, 232 tests, 40-page build, and local one-screen review | 2026-07-24 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

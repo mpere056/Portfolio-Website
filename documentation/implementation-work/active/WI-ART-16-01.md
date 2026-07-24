@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-progress |
+| State | in-review |
 | Priority | high |
 | Package | `ART-16` |
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
@@ -23,17 +23,20 @@ The public site still has separate `/` and `/projects` primary worlds. Four boun
 - AI & Possible Futures uses the accepted east-observatory scene and selected flow tuning.
 - Life Systems & Tools uses the accepted archive-core book, orbital, and page-cycle proof.
 
-These proofs are not a composed Home and must not be mounted together wholesale. The non-visual foundation now exists: four controlled practices, nine required project classifications, bounded practice queries, and a pure attention contract cover locality, hysteresis, precedence, selection, restore, calm, reduced motion, and Back. No About portal proof, neutral five-anchor composition, React/history adoption, or route migration exists yet.
+These proofs are not mounted together wholesale. The non-visual foundation now exists: four controlled practices, nine required project classifications, bounded practice queries, and a pure attention contract cover locality, hysteresis, precedence, selection, restore, calm, reduced motion, and Back.
+
+Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It reuses the actual Home piano renderer, adds five fixed semantic anchors, supports neutral/selected/return behavior, fits one desktop viewport, and mounts no full coral, observatory, or archive proof runtime. Canonical `/` and `/projects` remain unchanged. The candidate is locally verified but awaits Mark's visual acceptance; atmospheric melding, About production treatment, React/history adoption, and route migration do not exist yet.
 
 ## Resume Packet
 
-- Known-good commit: `2608c6b` on `main`.
+- Known-good implementation commit: `557c7fb` on `main`.
 - Public routes remain unchanged; no migration is partially deployed.
 - Approved map: About top, Music center, Play left, AI right, Life Systems bottom.
 - Approved behavior: fixed anchors; one dominant attention target; continuous inertial weights; broad atmospheric melding; inactive territories remain quiet and visible.
 - Performance boundary: lightweight persistent anchors, one dominant expensive dialect, one coordinated clock.
-- Verification: 55 test files / 229 tests, TypeScript, 62-node content validation, and the 39-page production build pass.
-- Next exact action: implement checkpoint `D`, a lightweight neutral five-anchor shell that preserves the current piano identity. Use placeholders or bounded anchor representations for the other territories; do not mount four proof runtimes or redirect `/projects`.
+- Verification: 56 test files / 232 tests, TypeScript, focused lint, 62-node content validation, the 40-page production build, and a `1440 x 900` no-console-error browser flow pass.
+- Review route: `/home-world-proof`.
+- Next exact action: deploy and review checkpoint `D`. Revise only named neutral-composition issues; after Mark accepts it, begin checkpoint `E` with neutral-to-Music and neutral-to-Play melding.
 
 ## Ordered Checkpoints
 
@@ -42,7 +45,7 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 | `A` Planning reconciliation | accepted | Canonical decision, execution plan, package, tracking, and supersession are linked |
 | `B` Practice taxonomy | accepted | Every current project has one validated primary practice; bounded forward/reverse queries pass |
 | `C` Attention contract | accepted | Neutral, locality, dominance, hysteresis, focus/selection precedence, restore, Back, calm, and reduced-motion tests pass |
-| `D` Neutral shell | ready | Five semantic lightweight anchors fit one desktop viewport without replacing Home identity |
+| `D` Neutral shell | in-review | Private five-anchor candidate fits one desktop viewport, preserves canonical routes, and passes local interaction/build gates; Mark visual acceptance remains |
 | `E` Music/Play transition proof | not-started | Two atmospheric melding transitions pass fixed-anchor and locality review |
 | `F1` AI territory | not-started | Observatory dialect integrates within the shared budget |
 | `F2` Life Systems territory | not-started | Archive dialect integrates within the shared budget |
@@ -60,7 +63,7 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 - [x] Expensive proof scenes will not all mount at once.
 - [x] Practice taxonomy is implemented and reviewed.
 - [x] Pure attention behavior is implemented and tested.
-- [ ] Neutral shell is implemented without public route migration.
+- [x] Neutral shell is implemented without public route migration.
 - [ ] Two transition proofs are accepted before remaining territory integration.
 - [ ] All four practices reveal correct project sets.
 - [ ] About portal is accepted.
@@ -70,7 +73,7 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 ## Restart Procedure
 
 1. Read this file and the linked decision/plan.
-2. Verify `main` still contains `2608c6b` or record the newer known-good commit.
+2. Verify `main` still contains `557c7fb` or record the newer known-good commit.
 3. Inspect repository status and preserve unrelated user changes.
 4. Open the current checkpoint only; do not start a later visual territory.
 5. Run focused tests, TypeScript, lint, content validation, then the aggregate suite/build when the checkpoint changes visitor behavior.
@@ -88,3 +91,6 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 - Checkpoint `B` added four controlled practice nodes, required one primary practice for all nine projects, and added bounded project-to-practice queries.
 - Checkpoint `C` added the pure attention reducer with deterministic neutral, locality, hysteresis, precedence, selection, restore, Back, calm, settlement, and reduced-motion coverage.
 - The complete 55-file / 229-test suite, TypeScript, content validation, and production build pass; public route output remains unchanged.
+- Checkpoint `D` added `/home-world-proof`, five fixed semantic anchors, the shared `HeroCube` piano identity, local selection/return behavior, and a proof-local optical matte without changing canonical routes.
+- The complete 56-file / 232-test suite, TypeScript, focused lint, 62-node content validation, 40-page build, and local `1440 x 900` browser flow pass at `557c7fb`.
+- Stage `D` is in review. Stage `E` waits on Mark's neutral-shell acceptance.

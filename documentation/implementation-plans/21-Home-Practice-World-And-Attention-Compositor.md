@@ -7,7 +7,7 @@ Last updated: 2026-07-24
 | Field | Value |
 | --- | --- |
 | Plan ID | `HOME-WORLD` |
-| Status | Active; taxonomy and attention contract accepted, neutral shell ready |
+| Status | Active; taxonomy and attention contract accepted, neutral shell candidate in review |
 | Upstream | [Homepage decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md), [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Dynamic scenes](20-Dynamic-Scene-Composition-And-Layered-Materials.md) |
 | Downstream | Home, About entry, project navigation, tour, AI cards, returning state, destination migration |
 | Primary packages | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
@@ -178,7 +178,7 @@ Rollback must restore the current `/projects` route without changing stable proj
 | `A` Reconcile | `ART-16` | Canonical decision, plan, work item, and superseded Museum steps recorded | Planning integrity and Mark direction agree |
 | `B` Taxonomy | `KG-07` | Practice nodes, project classification, graph queries, validators | Accepted: every project has one validated primary practice |
 | `C` Contracts | `ARC-06`, `EXP-08` | Territory IDs, pure attention reducer, hysteresis, route/restore policy | Accepted foundation: deterministic tests cover neutral, locality, focus, selection, calm, restore, Back, and reduced motion; browser adoption remains Stage `H` |
-| `D` Neutral shell | `ART-16` | All five lightweight anchors in one viewport using placeholders where necessary | Strong neutral hierarchy; existing Home identity remains recognizable |
+| `D` Neutral shell | `ART-16` | Implemented private candidate: five lightweight anchors, shared Home piano, semantic selection/return, no route migration | In review: local one-screen, interaction, regression, and build gates pass; Mark visual acceptance remains |
 | `E` Transition proof | `ART-16` | Neutral-to-Music and neutral-to-Play melding | Fixed anchors, broad atmosphere, no panel resizing, no global simultaneous reaction |
 | `F` Territory integration | `ART-16` | AI, Life Systems, then About dialects integrated one at a time | Each territory passes idle, local-attention, calm, and budget checks before the next |
 | `G` Project reveal | `PRJ-09` | Selected-practice project instruments and individual project handoff | All current projects reachable without a card-grid fallback becoming primary |
@@ -232,9 +232,11 @@ Territory integration has one row per territory. A territory cannot be called co
 
 ## Current Resume Point
 
-- Known-good implementation: `2608c6b` on `main`; current public Home and project routes remain unchanged.
+- Known-good implementation: `557c7fb` on `main`; current public Home and project routes remain unchanged.
 - Accepted proof inputs: coral west ecology revision 4, east observatory selected tuning, archive-core page cycle, and shared-home music proof with the piano silhouette at `40%`.
 - Architecture decision: approved five-territory Home with About above, Music center, Play left, AI right, and Life Systems below.
 - Accepted non-visual foundation: four practices, nine project classifications, bounded graph queries, and a pure five-territory attention reducer pass the aggregate suite and production build.
-- Current gap: no neutral five-anchor shell, React/history adoption, atmospheric melding, or route migration exists yet.
-- Next exact action: implement Stage `D` as an additive lightweight neutral Home shell using the existing piano identity and bounded anchor representations. Keep route output reversible and do not mount all proof runtimes.
+- Stage `D` candidate: `/home-world-proof` fits five fixed semantic anchors in one desktop viewport, reuses the actual `HeroCube`, selects and returns deterministically, mounts no complete proof runtime, and leaves canonical routes unchanged.
+- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, and local `1440 x 900` browser review with no console errors.
+- Current gap: Mark has not accepted the neutral composition. React/history adoption, atmospheric melding, project reveal, and route migration remain absent.
+- Next exact action: deploy and review Stage `D`; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.

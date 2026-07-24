@@ -10,12 +10,12 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`2608c6b` is the known-good implementation and the public route structure is unchanged. `WI-ART-16-01` is in progress: practice taxonomy and the pure attention contract are accepted, while the first visual integration has not begun. The accepted coral, observatory, archive, and music proofs remain bounded inputs; they are not mounted together and no `/projects` redirect has begun.
+`557c7fb` is the known-good implementation and the public route structure is unchanged. `WI-ART-16-01` is in progress: practice taxonomy and the pure attention contract are accepted, and the additive neutral shell is locally verified at `/home-world-proof`. The accepted coral, observatory, archive, and music proofs remain bounded inputs; they are not mounted together and no `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-progress | `ART-16` | Checkpoints `A-C` accepted; Stage `D` is ready and the full test/build gate passes | Build the lightweight neutral five-anchor shell without route migration | 2026-07-24 |
-| Next | `WI-ART-16-01` | ready checkpoint | `ART-16E` | Waits on neutral-shell acceptance | Prove neutral-to-Music and neutral-to-Play atmospheric melding | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoints `A-C` accepted; private Stage `D` candidate passes local visual, interaction, test, and build gates | Deploy and collect Mark's neutral-shell review | 2026-07-24 |
+| Next | `WI-ART-16-01` | ready after review | `ART-16E` | Waits on neutral-shell acceptance | Prove neutral-to-Music and neutral-to-Play atmospheric melding | 2026-07-24 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16E-I` | Each stage waits on the preceding accepted gate | Music/Play proof, remaining territories, project reveal, migration, release | 2026-07-24 |
 
 ## Active And Unfinished Items
@@ -32,7 +32,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | paused | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-20 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | paused | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-20 |
 | `WI-ART-11-01` | Mature the dynamic scene system | paused | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
-| `WI-ART-16-01` | Build the attention-weighted Home practice world | in-progress | high | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-EXP-015`, `CAP-KG-008`, `CAP-PRJ-009` | `active/WI-ART-16-01.md` | 2026-07-24 |
+| `WI-ART-16-01` | Build the attention-weighted Home practice world | in-review | high | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-EXP-015`, `CAP-KG-008`, `CAP-PRJ-009` | `active/WI-ART-16-01.md` | 2026-07-24 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

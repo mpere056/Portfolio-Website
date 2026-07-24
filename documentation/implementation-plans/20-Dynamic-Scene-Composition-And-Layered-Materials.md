@@ -299,7 +299,8 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 
 - Reconcile plans and retain accepted proof outputs.
 - Practice taxonomy and pure attention contracts accepted on 2026-07-24.
-- Build the neutral five-anchor shell.
+- Neutral five-anchor shell implemented as a private Stage `D` review candidate at `557c7fb`; canonical routes remain unchanged.
+- Accept or revise the neutral composition before beginning atmospheric transition work.
 - Prove neutral-to-Music and neutral-to-Play melding.
 - Integrate AI, Life Systems, and About sequentially.
 - Add project reveal and route migration only after visual/runtime gates.
