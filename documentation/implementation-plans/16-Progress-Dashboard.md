@@ -17,7 +17,7 @@ Implementation commit baseline and latest verified Production: `fce50af`
 
 **The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, and the isolated hybrid compositor is now at the animated-review gate.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 17 retains the decomposed 700-particle runtime and repairs the live-uniform ownership of revision 16's source-faithful LaserFlow calibration plane. Full-Museum integration and `V-33` acceptance are still not claimed.
+The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4 is accepted. East revision 20 retains the decomposed 700-particle runtime, source-faithful LaserFlow controls, Mark-selected six-family defaults, braided route geometry, and route-local hover attention. Full-Museum integration and `V-33` acceptance are still not claimed.
 
 This distinction prevents two errors:
 
@@ -107,7 +107,7 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; east revision 16 maps 13 live values to the supplied LaserFlow equations in a single calibration plane | Mark verifies native control semantics; route-specific composition and performance review then complete compositor selection and permit bounded `12G` integration |
+| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; east revision 20 preserves native LaserFlow semantics, Mark-selected defaults, braided routes, and local hover attention | Mark verifies selected defaults, route-local hover, and affected-computer performance before bounded `12G` integration |
 | 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
 | 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
 | 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; source-faithful east revision 16 calibration is ready for release | Mark verifies native control semantics; Codex then composes and profiles the observatory currents before `12F` acceptance and `12G` | 2026-07-22 |
+| Now | `WI-ART-12-01` | in-review | `ART-12` | West revision 4 accepted; east revision 20 records Mark-selected presets and route-local hover | Mark verifies defaults, localized attention, and performance before `12F` acceptance and `12G` | 2026-07-23 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -134,7 +134,7 @@ Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Pro
 
 | Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
 | --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Which revision-15 flow values best balance clearly visible movement, tasteful scale, and smooth performance on affected computers? | Mark | `/projects/observatory-proof`; `ac6d742`; minimum/maximum visual proof, 13 authoritative controls, 700 particles, cropped shader coverage, 207 tests, and build pass | 2026-07-22 | Record the displayed values before `ART-12G` changes the Museum |
+| `WI-ART-12-01` | Do revision 20's selected defaults and localized hover feel right while remaining smooth on affected computers? | Mark | `/projects/observatory-proof`; `9e85711`; six selected presets, route-segment attention, 700 particles, cropped shader coverage, 210 tests, and build pass | 2026-07-23 | Review fresh-load defaults, hover each route independently, and check an affected computer before `ART-12G` |
 
 ## Blocked Or Paused
 
@@ -153,7 +153,7 @@ No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and in
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
-| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west proof accepted; east proof has six braided native LaserFlow families, decomposed ribbon-free plates, atmosphere/particles, rotating 3D geometry, stochastic tower light, fallback, and focused checks | Mark's braided-composition and affected-computer review, then `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Review live revision 19 on both smooth and previously laggy computers | Commits `8d1327f` and `ce8fdcf`, deployment `dpl_9MqMJa3TA1J9N4ajPSPmQcnyZHfD`, aggregate verification, and public geometry/idle checks exist; no full `V-33` evidence yet |
+| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west proof accepted; east proof has six braided native LaserFlow families, Mark-selected defaults, route-local attention, decomposed ribbon-free plates, atmosphere/particles, rotating 3D geometry, stochastic tower light, fallback, and focused checks | Mark's selected-preset, localized-hover, and affected-computer review, then `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Review live revision 20 on both smooth and previously laggy computers | Commit `9e85711`, deployment `dpl_ERWWTafLyB9CbBveLFH4oSFbin8x`, 210 tests, content validation, TypeScript, zero-error lint, production build, and public one-screen/preset checks pass; no full `V-33` evidence yet |
 | `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
@@ -210,6 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-23 | Applied Mark-selected observatory presets and localized hover | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `9e85711` and deployment `dpl_ERWWTafLyB9CbBveLFH4oSFbin8x` make the six selected profiles authoritative under `v5`, constrain attention to each visible route segment, reduce unrelated global hover energy, and pass aggregate/build/public checks |
 | 2026-07-23 | Restored the east observatory's earlier woven-current language without reverting native LaserFlow | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d1327f` and `ce8fdcf`, live in deployment `dpl_9MqMJa3TA1J9N4ajPSPmQcnyZHfD`, shape six native families into bounded 3-10-lane filament bundles with traveling pressure, sharper color separation, longer route coverage, versioned presets, and passing aggregate/public checks |
 | 2026-07-23 | Composed the accepted native LaserFlow behavior into the east observatory | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `5042262` and deployment `dpl_9faYbb5e4y1p1cnL5zLnhy61CB6L` ship six cropped, independently phased current families with native equations, per-family persistence, local attention, feathered edges, and passing public idle/attended checks |
 | 2026-07-22 | Replaced custom observatory flow semantics with native LaserFlow calibration | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | One mounted calibration plane now follows the supplied beam, wisp, flow, fog, decay, falloff, and sizing equations with native defaults/ranges; Mark's semantic review remains open before scene composition |
