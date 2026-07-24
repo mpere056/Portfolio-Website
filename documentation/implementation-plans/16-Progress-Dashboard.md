@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-24
-Implementation commit baseline: `fce50af`; latest bounded proof Production: `4fc6cca`
+Implementation commit baseline: `fce50af`; latest bounded proof Production: `20a047a`
 
 ## Plan Metadata
 
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | Three districts accepted; music revision 1 rejected and revision 2 reuses the exact Home renderer | Release and review corrected `/projects/music-proof` before any Home/Projects integration decision | 2026-07-24 |
+| Now | `WI-ART-12-01` | in-progress | `ART-12` | Three districts accepted; corrected music revision 2 is public at `20a047a` | Review corrected `/projects/music-proof` before any Home/Projects integration decision | 2026-07-24 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -210,7 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-24 | Rejected the separate music chamber and restored the homepage identity | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Revision 2 deletes the alternate music compositor and renders the same `HeroCube` used by `/`; only three faint platform rings and three low-intensity breathing lights differ, while the existing 10,000-point piano, painted threshold, portrait platform, camera, lighting, navigation, and motion remain shared; 218 tests, content, TypeScript, zero-error lint, and the 39-page build pass |
+| 2026-07-24 | Rejected the separate music chamber and restored the homepage identity | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `20a047a` and Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga` delete the alternate compositor and render the same `HeroCube` used by `/`; only three faint platform rings and three low-intensity breathing lights differ, while the existing 10,000-point piano, painted threshold, portrait platform, camera, lighting, navigation, and motion remain shared; 218 tests, content, TypeScript, zero-error lint, 39-page build, shared public layer contract, and exact one-screen geometry pass |
 | 2026-07-24 | Accepted the archive interaction and released a Home/Museum music bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `4fc6cca` and Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb` shorten archive hover delay/turn to `1.5s`/`1.05s` and release `/projects/music-proof` with three independently breathing piano registers, five traveling currents, local resonators, and 220 motes; 221 tests, content, TypeScript, zero-error lint, 39-page build, exact one-screen public geometry, and zero public console errors pass |
 | 2026-07-23 | Isolated archive hover effects and added an infinite authored page cycle | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `67c96a3` and `7bf0d5c`, live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`, remove every legacy Museum-artwork hover reference, add proof-local refraction, curl pages around the spine, and cycle city, crystal-garden, and memory-instrument worlds on `2.4s` attended and `13.5s` idle delays; 216 tests, content, TypeScript, zero-error lint, build, one-screen geometry, and public `0 -> 1 -> 2` timing checks pass |
 | 2026-07-23 | Released and materially corrected the central authored-memory proof | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d386ef` and `0175f58`, live in Production deployment `dpl_GxZZuTaWwAYfwwv1vrVyBG8S1xL2`, replace the first clean block study with curved illuminated leaves, procedural cyan/amber tower windows, nested orbital geometry, five depth-crossing currents, bloom, vignette, atmosphere, and particles; public `1280 x 720` inspection confirms two canvases, exact one-screen geometry, local attention, and no renderer fallback |

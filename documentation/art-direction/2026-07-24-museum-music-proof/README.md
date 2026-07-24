@@ -32,4 +32,6 @@ The only proof-specific addition is `PianoResonanceField`: three extremely faint
 
 ## Verification State
 
-Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 requires normal-browser creative review after release because the in-app review browser does not initialize the site's WebGL canvases, including the existing homepage Canvas.
+Revision 1 is retained in Git history at commit `4fc6cca` and is visually rejected. Revision 2 is implemented in commit `20a047a` and live in Vercel Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga`.
+
+Public inspection confirms the corrected route exposes the exact same `threshold-matte painted-presence awakened-fragment notation-orbit three-dimensional-instrument` layer contract as Home, renders one Canvas in an exact `1280 x 720` document, and reports the `music-proof` variant. The normal homepage continues to report the `home` variant. Creative review remains open.
