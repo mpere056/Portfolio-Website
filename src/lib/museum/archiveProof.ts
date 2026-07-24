@@ -52,9 +52,9 @@ export const MUSEUM_ARCHIVE_PROOF_PERFORMANCE = {
 } as const;
 
 export const ARCHIVE_PAGE_TURN_TIMING = {
-  hoverDelay: 2.4,
+  hoverDelay: 1.5,
   idleDelay: 13.5,
-  hoverDuration: 1.45,
+  hoverDuration: 1.05,
   idleDuration: 2.15,
   worldCount: 3,
 } as const;

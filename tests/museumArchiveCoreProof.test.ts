@@ -38,6 +38,8 @@ describe('Museum archive core proof', () => {
     const hovered = getArchivePageTurnSchedule(1);
     expect(hovered.delay).toBeLessThan(idle.delay);
     expect(hovered.duration).toBeLessThan(idle.duration);
+    expect(hovered.delay).toBeLessThanOrEqual(1.5);
+    expect(hovered.duration).toBeLessThanOrEqual(1.05);
     expect(ARCHIVE_PAGE_TURN_TIMING.worldCount).toBe(3);
     expect(Array.from({ length: 7 }, (_, index) => getArchivePageWorldIndex(index)))
       .toEqual([0, 1, 2, 0, 1, 2, 0]);

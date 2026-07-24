@@ -18,7 +18,7 @@
 
 Production `fce50af` is the known-good functional and interaction baseline. The Museum fits one desktop viewport, exposes nine collision-free project signals, contains increasing depth, responds to pointer and graph state, and preserves semantic and stable fallbacks. It does not yet satisfy pervasive ambient-world acceptance: the dominant raster composition remains temporally inert while smaller overlays move.
 
-The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 20 records Mark's selected values for all six families and replaces endpoint-wide hover with narrow route-segment attention plus a local shader field; Mark accepts its current visual state for now. Archive-core revision 3 targets `MUS-R07` with `MUS-R04-06`: a code-generated deforming book, three cyclic pop-up worlds, stochastic miniature city, multi-axis orbital core, doorway, depth-split currents, atmosphere, particles, postprocessing, and proof-local refraction. No static raster is the visible focal scene or hover response.
+The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 20 records Mark's selected values for all six families and replaces endpoint-wide hover with narrow route-segment attention plus a local shader field; Mark accepts its current visual state for now. Archive-core revision 4 is accepted with its code-generated deforming book, three cyclic pop-up worlds, stochastic miniature city, multi-axis orbital core, doorway, depth-split currents, atmosphere, particles, and proof-local response. A fourth bounded resonance-chamber proof now tests how the existing Home piano could enter the Museum without changing either canonical route. No static raster is the visible focal scene or hover response.
 
 ## Resume Packet
 
@@ -28,7 +28,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: Mark reviews archive-core revision 3 at `/projects/archive-core-proof`; Codex records the accepted or rejected page-turn, pop-up-world, and proof-local distortion decisions before any bounded `ART-12G` integration.
+- Next exact action: release `/projects/music-proof`; Mark reviews its piano identity, current visibility, idle life, and local register attention before any Home/Projects composition decision.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating any one bounded proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -42,7 +42,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4 and east revision 20 are visually accepted; archive-core revision 3 is public for review |
+| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4, east revision 20, and archive revision 4 are accepted; music chamber revision 1 awaits public review |
 | `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
 | `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
 
@@ -143,3 +143,12 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - Revision 3 removes the raster-backed Museum membrane, aperture, and particle overlay from this proof. Hover now uses only a transmissive scene lens and code-generated aperture geometry over the archive composition itself.
 - The book gains a shader-curled spine turn and cycles the illuminated city, a translucent crystal garden, and a rotating memory instrument. Sustained local hover uses a `2.4s` delay and `1.45s` turn; attention away from the book uses a `13.5s` delay and `2.15s` turn.
 - Commits `67c96a3` and `7bf0d5c` are live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`. All 216 tests, content validation, TypeScript, zero-error lint, and the 38-page build pass. Public checks confirm exact one-screen geometry, no legacy artwork reference, attended `0 -> 1 -> 2` cycling, and one autonomous idle advance.
+
+### 2026-07-24
+
+- Mark accepts the archive page turning, cyclic worlds, and sphere/orbit interaction. Revision 4 shortens only the attended rhythm from a `2.4s` delay and `1.45s` turn to `1.5s` and `1.05s`; the `13.5s` idle delay and `2.15s` idle turn remain slow.
+- Mark raises a possible future Home/Projects composition and asks for a music proof centered on the existing homepage piano.
+- `/projects/music-proof` preserves the real grand-piano GLTF as a subdued physical anchor and samples it into `6,400` point sprites partitioned into independently breathing bass, middle, and treble registers.
+- Five code-generated tube currents carry offset pressure textures at different speeds and depths. Three local resonators and `220` buffer-driven notation motes keep moving without input; pointer attention affects only the nearby register/current family.
+- The new proof does not merge `/` and `/projects`. It is a bounded decision surface for that later integration.
+- All 221 tests, content validation, TypeScript, zero-error lint, and the 39-page production build pass. The in-app browser confirms one-screen fallback geometry and no console warnings, but does not initialize the site's WebGL canvases, including the existing homepage Canvas; public WebGL acceptance therefore remains required after deployment.
