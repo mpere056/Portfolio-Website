@@ -166,3 +166,4 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - Mark requests a stronger comparison point. Revision 6 sets the wireframe-free piano body to `0.20` opacity without changing its geometry, particles, lighting, or interaction.
 - Commit `2481f4d` is live in Vercel Production deployment `dpl_9kevxBYkPKC9gteUQwdTzfpL7wzq`. Public inspection confirms the requested twenty-percent body, visible particle layer, exact `1280 x 720` geometry, and zero console warnings or errors.
 - Mark requests a stronger comparison point. Revision 7 sets the wireframe-free piano body to `0.40` opacity without changing geometry, particles, lighting, or interaction.
+- Commit `79d3fda` is live in Vercel Production deployment `dpl_FwYzTUzpWs4GtBucuPXWXQcpJEWh`. Public inspection confirms the requested forty-percent body, exact `1280 x 720` geometry, one Canvas, and zero console warnings or errors.
