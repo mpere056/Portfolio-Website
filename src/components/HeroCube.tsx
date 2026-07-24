@@ -230,7 +230,7 @@ function PianoGhost() {
           metalness={0.58}
           roughness={0.38}
           transparent
-          opacity={0.2}
+          opacity={0.4}
           depthWrite={false}
           side={THREE.DoubleSide}
         />

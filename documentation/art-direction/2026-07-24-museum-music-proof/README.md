@@ -30,6 +30,8 @@ Revision 5 retains the clean wireframe-free treatment and raises only the physic
 
 Revision 6 tests Mark's requested `0.20` opacity while retaining the wireframe-free treatment.
 
+Revision 7 tests Mark's requested `0.40` opacity while retaining the wireframe-free treatment.
+
 ## Boundaries
 
 - `/` continues to use `HeroCube` with its default `home` variant.
