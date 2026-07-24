@@ -1,0 +1,264 @@
+.world {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #07070d;
+  color: #eeeae1;
+  isolation: isolate;
+}
+
+.world::before,
+.world::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.world::before {
+  z-index: 7;
+  background:
+    radial-gradient(
+      ellipse at 50% 56%,
+      rgb(5 8 16 / 58%) 0 16%,
+      rgb(4 7 14 / 72%) 46%,
+      rgb(2 4 9 / 86%) 90%
+    );
+}
+
+.world::after {
+  z-index: 8;
+  background:
+    radial-gradient(ellipse at 50% 57%, transparent 0 34%, rgb(3 5 10 / 12%) 60%, rgb(2 4 8 / 48%) 100%),
+    linear-gradient(180deg, rgb(3 5 9 / 8%), transparent 24% 72%, rgb(3 5 9 / 30%));
+}
+
+.anchorLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  isolation: isolate;
+}
+
+.anchor {
+  --territory-accent: #fff;
+  --territory-weight: 0.2;
+  pointer-events: auto;
+  position: absolute;
+  left: var(--anchor-x);
+  top: var(--anchor-y);
+  width: clamp(8.5rem, 12vw, 12.5rem);
+  min-height: 7.5rem;
+  padding: 0;
+  border: 0;
+  color: color-mix(in srgb, var(--territory-accent) 78%, #ece8df);
+  background: transparent;
+  opacity: calc(0.48 + var(--territory-weight) * 1.7);
+  transform: translate(-50%, -50%) scale(calc(0.88 + var(--territory-weight) * 0.58));
+  transform-origin: center;
+  cursor: pointer;
+  transition:
+    opacity 700ms ease,
+    transform 850ms cubic-bezier(.2, .72, .18, 1),
+    filter 700ms ease;
+  filter: saturate(calc(0.7 + var(--territory-weight) * 1.5));
+}
+
+.anchor:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--territory-accent) 65%, transparent);
+  outline-offset: 0.65rem;
+  border-radius: 50%;
+}
+
+.instrument {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: clamp(3.7rem, 5.4vw, 5.8rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+
+.outerOrbit,
+.innerOrbit,
+.core,
+.trace {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.outerOrbit {
+  border: 1px solid color-mix(in srgb, var(--territory-accent) 36%, transparent);
+  box-shadow:
+    0 0 1.8rem color-mix(in srgb, var(--territory-accent) 10%, transparent),
+    inset 0 0 1.2rem color-mix(in srgb, var(--territory-accent) 8%, transparent);
+  animation: territoryOrbit 17s linear infinite;
+}
+
+.innerOrbit {
+  inset: 14%;
+  border: 1px dotted color-mix(in srgb, var(--territory-accent) 52%, transparent);
+  transform: rotate(33deg) scaleY(0.56);
+  animation: territoryOrbitReverse 11s linear infinite;
+}
+
+.core {
+  inset: 35%;
+  background:
+    radial-gradient(circle at 38% 34%, #fff 0 4%, transparent 11%),
+    radial-gradient(circle, color-mix(in srgb, var(--territory-accent) 72%, transparent), transparent 68%);
+  box-shadow: 0 0 1.3rem color-mix(in srgb, var(--territory-accent) 42%, transparent);
+  animation: territoryBreath 5.8s ease-in-out infinite alternate;
+}
+
+.trace {
+  inset: 46% -18%;
+  border-top: 1px solid color-mix(in srgb, var(--territory-accent) 52%, transparent);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+  opacity: 0.6;
+}
+
+.copy {
+  position: absolute;
+  left: 50%;
+  top: 76%;
+  display: grid;
+  width: max-content;
+  max-width: 13rem;
+  transform: translateX(-50%);
+  text-align: center;
+  text-shadow: 0 2px 18px #000, 0 0 12px #000;
+}
+
+.signal {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.48rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  opacity: 0.44;
+}
+
+.label {
+  margin-top: 0.18rem;
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(0.9rem, 1.3vw, 1.18rem);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  line-height: 1;
+}
+
+.about .instrument {
+  transform: translate(-50%, -50%) scaleY(0.68);
+}
+
+.about .core {
+  inset: 28% 38%;
+  border-radius: 46%;
+}
+
+.music {
+  top: 59%;
+}
+
+.music .instrument {
+  opacity: 0.36;
+  transform: translate(-50%, -50%) scaleX(1.75) scaleY(0.56);
+}
+
+.play .outerOrbit {
+  border-style: dashed;
+  transform: scaleX(0.74) rotate(-22deg);
+}
+
+.play .trace {
+  inset: 43% -35%;
+  border-top-style: dotted;
+  transform: rotate(23deg);
+}
+
+.ai-futures .outerOrbit {
+  border-radius: 40% 60% 46% 54%;
+  transform: rotate(18deg);
+}
+
+.ai-futures .innerOrbit {
+  border-style: solid;
+  transform: rotate(-28deg) scaleY(0.42);
+}
+
+.life-systems .outerOrbit {
+  border-radius: 46% 54% 12% 12%;
+  transform: scaleX(1.16) scaleY(0.7);
+}
+
+.life-systems .innerOrbit {
+  border-radius: 0;
+  border-width: 1px 0 0;
+  transform: translateY(22%) rotate(8deg) skewX(-18deg);
+}
+
+.status {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 14;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(231 235 235 / 34%);
+}
+
+.returnControl {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 15;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  background: rgb(4 7 9 / 62%);
+  color: rgb(255 255 255 / 58%);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+@keyframes territoryOrbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes territoryOrbitReverse {
+  to { transform: rotate(-327deg) scaleY(0.56); }
+}
+
+@keyframes territoryBreath {
+  from { opacity: 0.42; transform: scale(0.86); }
+  to { opacity: 0.82; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchor,
+  .outerOrbit,
+  .innerOrbit,
+  .core {
+    animation: none;
+    transition-duration: 120ms;
+  }
+}
+
+@media (max-width: 760px) {
+  .play { --anchor-x: 16% !important; }
+  .ai-futures { --anchor-x: 84% !important; }
+  .anchor { width: 7rem; }
+  .signal { display: none; }
+}

@@ -17,11 +17,11 @@ describe('Museum music chamber proof', () => {
     expect(page).toContain("import HeroCube from '@/components/HeroCube'");
     expect(page).toContain('<HeroCube variant="music-proof" />');
     expect(source).toContain("useGLTF('/models/grand_piano/grand_piano_(GLB).gltf')");
-    expect(source).toContain("export type HeroCubeVariant = 'home' | 'music-proof'");
+    expect(source).toContain("export type HeroCubeVariant = 'home' | 'music-proof' | 'practice-neutral'");
     expect(source).toContain('data-home-variant={variant}');
     expect(source).toContain('function PianoResonanceField');
     expect(source).toContain('function PianoGhost');
-    expect(source).toContain('musicProof ? <PianoGhost /> : null');
+    expect(source).toContain('musicProof || practiceNeutral ? <PianoGhost /> : null');
     expect(source).toContain('opacity={0.4}');
     expect(source).not.toContain('color="#9ea8d4"');
     expect(source).toContain('<Particles count={10000}');

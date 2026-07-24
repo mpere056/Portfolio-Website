@@ -20,7 +20,7 @@ import supportingStyles from './SupportingScenes.module.css';
 
 extend({ RoundedBoxGeometry })
 
-export type HeroCubeVariant = 'home' | 'music-proof';
+export type HeroCubeVariant = 'home' | 'music-proof' | 'practice-neutral';
 
 export default function HeroCube({
   firstNoteEnabled = false,
@@ -32,6 +32,7 @@ export default function HeroCube({
   const portfolioAI = usePortfolioAI();
   const [pageVisible, setPageVisible] = useState(true);
   const musicProof = variant === 'music-proof';
+  const practiceNeutral = variant === 'practice-neutral';
 
   useEffect(() => {
     const updateVisibility = () => setPageVisible(document.visibilityState !== 'hidden');
@@ -88,7 +89,7 @@ export default function HeroCube({
             <AwakeningLights presentation={presentation} reducedMotion={state.reducedMotionRequested} />
             <HeroScaleGroup>
               {musicProof && !state.reducedMotionRequested ? <PianoResonanceField /> : null}
-              {musicProof ? <PianoGhost /> : null}
+              {musicProof || practiceNeutral ? <PianoGhost /> : null}
               <Particles count={10000} displacement={1} visibility={4.5} intensity={2} />
               <group>
                 <mesh position={[0, -2.42, -0.5]} receiveShadow castShadow>
@@ -105,7 +106,7 @@ export default function HeroCube({
             <HeroPostProcessing />
             <OrbitControls autoRotate={!state.reducedMotionRequested} autoRotateSpeed={0.7} />
             <CursorLight />
-            {presentation.navigationVisible && (
+            {presentation.navigationVisible && !practiceNeutral && (
               <>
                 <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />
                 <NavPointer text="Projects" path="/projects" position={[2, -1.5, 2]} />
