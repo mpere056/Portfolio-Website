@@ -26,6 +26,8 @@ Revision 3 adds a second proof-only element beneath the particles: `PianoGhost`,
 
 Revision 4 responds to creative review that the body obscured too much of the particle instrument. Live inspection showed that even an extremely faint dense wireframe accumulated into a bright line cage under bloom. The final revision removes that wireframe and reduces the physical surface from `0.17` to `0.05` opacity, leaving only a softly lit volume beneath the particles.
 
+Revision 5 retains the clean wireframe-free treatment and raises only the physical surface from `0.05` to `0.07` opacity after Mark found the corrected silhouette slightly too faint.
+
 ## Boundaries
 
 - `/` continues to use `HeroCube` with its default `home` variant.

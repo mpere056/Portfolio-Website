@@ -22,7 +22,7 @@ describe('Museum music chamber proof', () => {
     expect(source).toContain('function PianoResonanceField');
     expect(source).toContain('function PianoGhost');
     expect(source).toContain('musicProof ? <PianoGhost /> : null');
-    expect(source).toContain('opacity={0.05}');
+    expect(source).toContain('opacity={0.07}');
     expect(source).not.toContain('color="#9ea8d4"');
     expect(source).toContain('<Particles count={10000}');
   });
