@@ -1,6 +1,7 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import Link from 'next/link';
 import {
   Component,
@@ -86,9 +87,9 @@ void main() {
   float edgeWeight = smoothstep(0.08, 1.0, fromSpine);
   float slowBreath = sin(uTime * (0.32 + uLayer * 0.013) + uLayer * 1.7);
   float traveling = sin(uv.y * 7.0 - uTime * (0.55 + uLayer * 0.02) + uLayer);
-  p.z += pow(fromSpine, 1.65) * (0.13 + uLayer * 0.003);
-  p.z += edgeWeight * (slowBreath * 0.018 + traveling * 0.006);
-  p.z += edgeWeight * uAttention * sin(uv.y * 10.0 - uTime * 2.2) * 0.025;
+  p.z += pow(fromSpine, 1.55) * (0.39 + uLayer * 0.006);
+  p.z += edgeWeight * (slowBreath * 0.032 + traveling * 0.012);
+  p.z += edgeWeight * uAttention * sin(uv.y * 10.0 - uTime * 2.2) * 0.045;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
 }
 `;
@@ -106,10 +107,12 @@ void main() {
   float rules = smoothstep(0.47, 0.5, abs(fract(vUv.y * 21.0 + uLayer * 0.13) - 0.5));
   float script = smoothstep(0.84, 0.98, sin(vUv.x * 33.0 + sin(vUv.y * 19.0) * 3.0));
   float passage = 0.5 + 0.5 * sin(vUv.x * 8.0 - uTime * 0.55 + uLayer);
-  vec3 paper = mix(vec3(0.14, 0.105, 0.055), vec3(0.68, 0.48, 0.21), vUv.y * 0.38);
+  float cartography = smoothstep(0.91, 0.99, sin((vUv.x + vUv.y) * 42.0 + sin(vUv.y * 11.0)));
+  vec3 paper = mix(vec3(0.13, 0.095, 0.045), vec3(0.76, 0.55, 0.25), vUv.y * 0.42);
   vec3 ink = vec3(0.045, 0.06, 0.055);
   vec3 color = mix(paper, ink, rules * script * 0.62);
-  color += vec3(0.95, 0.61, 0.2) * pow(passage, 8.0) * (0.04 + uAttention * 0.08);
+  color += vec3(0.23, 0.72, 0.72) * cartography * 0.12;
+  color += vec3(1.0, 0.67, 0.24) * pow(passage, 8.0) * (0.09 + uAttention * 0.12);
   gl_FragColor = vec4(color, edge * (0.78 - uLayer * 0.017));
 }
 `;
@@ -137,8 +140,8 @@ void main() {
   float pressure = exp(-pow((flow - 0.5) / 0.13, 2.0));
   float wake = exp(-pow((flow - 0.28) / 0.23, 2.0)) * 0.45;
   float shimmer = 0.68 + 0.32 * sin(vUv.x * 95.0 - uTime * 3.2 + uPhase * 20.0);
-  vec3 color = uColor * body * (0.34 + pressure * 1.9 + wake + shimmer * 0.28);
-  float alpha = body * (0.22 + pressure * 0.72 + wake * 0.2) * (1.0 + uAttention * 0.24);
+  vec3 color = uColor * body * (0.52 + pressure * 2.6 + wake * 1.2 + shimmer * 0.4);
+  float alpha = body * (0.36 + pressure * 0.82 + wake * 0.3) * (1.0 + uAttention * 0.24);
   gl_FragColor = vec4(color * (1.0 + uAttention * 0.32), alpha);
 }
 `;
@@ -156,7 +159,7 @@ void main() {
   p.z += cos(uTime * 0.13 + aPhase * 13.0) * 0.09;
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   gl_Position = projectionMatrix * mv;
-  gl_PointSize = (1.35 + 1.5 * sin(aPhase * 29.0 + uTime * 0.7) + uAttention) * (6.0 / max(1.0, -mv.z));
+  gl_PointSize = (2.1 + 1.2 * sin(aPhase * 29.0 + uTime * 0.7) + uAttention) * (7.0 / max(1.0, -mv.z));
   vLight = 0.45 + 0.55 * sin(aPhase * 17.0 + uTime * 0.46);
 }
 `;
@@ -170,6 +173,47 @@ void main() {
   float d = length(gl_PointCoord - 0.5);
   float alpha = smoothstep(0.5, 0.08, d) * (0.2 + vLight * 0.48);
   gl_FragColor = vec4(uColor * (0.52 + vLight), alpha);
+}
+`;
+
+const TOWER_VERTEX = `
+varying vec2 vUv;
+varying vec3 vNormal;
+
+void main() {
+  vUv = uv;
+  vNormal = normalize(normalMatrix * normal);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;
+
+const TOWER_FRAGMENT = `
+precision highp float;
+varying vec2 vUv;
+varying vec3 vNormal;
+uniform float uTime;
+uniform float uPhase;
+uniform vec3 uBase;
+uniform vec3 uEmission;
+
+float hash(float value) {
+  return fract(sin(value * 91.173) * 43758.5453);
+}
+
+void main() {
+  vec2 cells = vec2(vUv.x * 6.0, vUv.y * 18.0);
+  vec2 cell = floor(cells);
+  vec2 local = fract(cells);
+  float inset = smoothstep(0.14, 0.22, local.x) * smoothstep(0.14, 0.22, local.y)
+    * smoothstep(0.14, 0.22, 1.0 - local.x) * smoothstep(0.14, 0.22, 1.0 - local.y);
+  float identity = hash(cell.x + cell.y * 17.0 + uPhase * 101.0);
+  float rhythm = 0.5 + 0.5 * sin(uTime * (0.11 + identity * 0.1) + identity * 19.0);
+  float windowLight = inset * smoothstep(0.48 + identity * 0.24, 0.8, rhythm);
+  float edge = pow(1.0 - abs(dot(normalize(vNormal), vec3(0.0, 0.0, 1.0))), 2.0);
+  float vertical = 0.7 + vUv.y * 0.45;
+  vec3 color = uBase * vertical + uEmission * windowLight * (1.8 + identity * 1.7);
+  color += mix(vec3(0.08, 0.36, 0.38), vec3(0.55, 0.27, 0.08), uPhase) * edge * 0.34;
+  gl_FragColor = vec4(color, 0.94);
 }
 `;
 
@@ -259,6 +303,24 @@ function OrbitalCore({
       <mesh ref={shellB} rotation={[0.4, 0.2, 0.7]}>
         <icosahedronGeometry args={[1.06, 1]} />
         <meshBasicMaterial color="#83dfe0" wireframe transparent opacity={0.16} />
+      </mesh>
+      <mesh rotation={[0.3, 0.75, 0.15]}>
+        <torusKnotGeometry args={[0.91, 0.012, 160, 8, 2, 3]} />
+        <meshBasicMaterial color="#f1d79b" transparent opacity={0.42} />
+      </mesh>
+      <mesh rotation={[-0.2, 0.25, 1.1]} scale={1.08}>
+        <torusKnotGeometry args={[0.84, 0.009, 144, 7, 3, 4]} />
+        <meshBasicMaterial color="#73dfe0" transparent opacity={0.3} />
+      </mesh>
+      <mesh>
+        <sphereGeometry args={[0.28, 32, 24]} />
+        <meshStandardMaterial
+          color="#d9c5a6"
+          emissive="#8f5532"
+          emissiveIntensity={2.1}
+          roughness={0.18}
+          metalness={0.62}
+        />
       </mesh>
       <mesh rotation={[1.2, 0.3, 0.2]}>
         <torusGeometry args={[0.91, 0.014, 5, 128]} />
@@ -352,24 +414,37 @@ function Tower({
   width: number;
   phase: number;
 }) {
-  const material = useRef<THREE.MeshStandardMaterial>(null);
+  const material = useRef<THREE.ShaderMaterial>(null);
   const crown = useRef<THREE.MeshStandardMaterial>(null);
+  const baseColor = useMemo(
+    () => new THREE.Color(phase > 0.5 ? '#1d3432' : '#38231b'),
+    [phase],
+  );
+  const emissionColor = useMemo(
+    () => new THREE.Color(phase > 0.5 ? '#43d7d4' : '#e08a37'),
+    [phase],
+  );
   useFrame(({ clock }) => {
     const slowState = 0.5 + 0.5 * Math.sin(clock.elapsedTime * (0.16 + phase * 0.015) + phase * 5.7);
     const windowState = THREE.MathUtils.smoothstep(slowState, 0.38, 0.82);
-    if (material.current) material.current.emissiveIntensity = 0.16 + windowState * 1.35;
+    if (material.current) material.current.uniforms.uTime.value = clock.elapsedTime;
     if (crown.current) crown.current.emissiveIntensity = 0.4 + windowState * 2.1;
   });
   return (
     <group position={position}>
       <mesh position={[0, height / 2, 0]}>
         <boxGeometry args={[width, height, width]} />
-        <meshStandardMaterial
+        <shaderMaterial
           ref={material}
-          color={phase % 0.3 > 0.15 ? '#604021' : '#24484a'}
-          emissive={phase % 0.3 > 0.15 ? '#d38a32' : '#3ab9b9'}
-          roughness={0.44}
-          metalness={0.5}
+          vertexShader={TOWER_VERTEX}
+          fragmentShader={TOWER_FRAGMENT}
+          uniforms={{
+            uTime: { value: 0 },
+            uPhase: { value: phase },
+            uBase: { value: baseColor },
+            uEmission: { value: emissionColor },
+          }}
+          transparent
         />
       </mesh>
       <mesh position={[0, height + width * 0.45, 0]} rotation={[0, phase * 2, 0]}>
@@ -493,6 +568,14 @@ function LivingBook({
       <mesh position={[0, 0.1, 0.02]}>
         <boxGeometry args={[0.08, 0.22, 1.55]} />
         <meshStandardMaterial color="#d7a94e" emissive="#9d5f1d" emissiveIntensity={1.4} />
+      </mesh>
+      <mesh position={[0.05, 0.28, -0.08]} rotation={[Math.PI / 2, 0.12, 0]}>
+        <torusGeometry args={[0.92, 0.012, 5, 112]} />
+        <meshBasicMaterial color="#e6bc69" transparent opacity={0.38} />
+      </mesh>
+      <mesh position={[-0.08, 0.38, 0.02]} rotation={[Math.PI / 2, -0.24, 0]}>
+        <torusGeometry args={[1.28, 0.008, 5, 128]} />
+        <meshBasicMaterial color="#63d4d4" transparent opacity={0.22} />
       </mesh>
       {towers.map((tower, index) => (
         <Tower key={index} {...tower} />
@@ -624,34 +707,56 @@ const CURRENT_PATHS = [
   {
     color: '#70e8e5',
     phase: 0.08,
-    radius: 0.018,
+    radius: 0.03,
     points: [
-      new THREE.Vector3(1.1, 1.45, -0.7),
-      new THREE.Vector3(0.65, 0.95, -0.35),
-      new THREE.Vector3(0.1, 0.55, -0.05),
-      new THREE.Vector3(-0.25, 0.2, 0.35),
+      new THREE.Vector3(2.8, 1.7, -0.25),
+      new THREE.Vector3(1.25, 1.25, -0.05),
+      new THREE.Vector3(0.35, 0.62, 0.2),
+      new THREE.Vector3(-0.45, 0.22, 0.55),
     ],
   },
   {
     color: '#efbd66',
     phase: 0.42,
-    radius: 0.013,
+    radius: 0.022,
     points: [
-      new THREE.Vector3(1.7, 1.1, -1.05),
-      new THREE.Vector3(1.0, 0.58, -0.72),
-      new THREE.Vector3(0.25, 0.28, -0.42),
-      new THREE.Vector3(-0.05, 0.1, 0.2),
+      new THREE.Vector3(3.1, 0.95, -0.55),
+      new THREE.Vector3(1.65, 0.76, -0.2),
+      new THREE.Vector3(0.5, 0.38, 0.1),
+      new THREE.Vector3(-0.1, 0.12, 0.45),
     ],
   },
   {
     color: '#dcebd9',
     phase: 0.71,
-    radius: 0.009,
+    radius: 0.016,
     points: [
-      new THREE.Vector3(1.35, 2.0, -1.25),
-      new THREE.Vector3(0.45, 1.45, -1.05),
-      new THREE.Vector3(-0.65, 0.75, -0.55),
-      new THREE.Vector3(-1.3, 0.18, 0.05),
+      new THREE.Vector3(2.7, 2.35, -0.75),
+      new THREE.Vector3(0.95, 1.7, -0.45),
+      new THREE.Vector3(-0.35, 0.82, 0.02),
+      new THREE.Vector3(-1.55, 0.18, 0.4),
+    ],
+  },
+  {
+    color: '#d87764',
+    phase: 0.26,
+    radius: 0.012,
+    points: [
+      new THREE.Vector3(-4.2, 0.2, -0.2),
+      new THREE.Vector3(-2.8, 0.72, -0.05),
+      new THREE.Vector3(-1.7, 0.55, 0.2),
+      new THREE.Vector3(-0.65, 0.18, 0.52),
+    ],
+  },
+  {
+    color: '#55bbc2',
+    phase: 0.88,
+    radius: 0.015,
+    points: [
+      new THREE.Vector3(-4.4, -0.45, -0.55),
+      new THREE.Vector3(-2.9, -0.05, -0.2),
+      new THREE.Vector3(-1.6, 0.12, 0.15),
+      new THREE.Vector3(-0.35, 0.2, 0.48),
     ],
   },
 ] as const;
@@ -681,6 +786,16 @@ function ArchiveScene({
       <OrbitalCore pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <LivingBook pointerActive={pointerActive} pointerTarget={pointerTarget} />
       <fog attach="fog" args={['#020708', 6.5, 13]} />
+      <EffectComposer multisampling={0} enableNormalPass={false}>
+        <Bloom
+          mipmapBlur
+          intensity={1.35}
+          luminanceThreshold={0.22}
+          luminanceSmoothing={0.62}
+          levels={5}
+        />
+        <Vignette eskil={false} offset={0.18} darkness={0.72} />
+      </EffectComposer>
     </>
   );
 }
