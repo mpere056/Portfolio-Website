@@ -18,7 +18,7 @@
 
 Production `fce50af` is the known-good functional and interaction baseline. The Museum fits one desktop viewport, exposes nine collision-free project signals, contains increasing depth, responds to pointer and graph state, and preserves semantic and stable fallbacks. It does not yet satisfy pervasive ambient-world acceptance: the dominant raster composition remains temporally inert while smaller overlays move.
 
-The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 20 records Mark's selected values for all six families and replaces endpoint-wide hover with narrow route-segment attention plus a local shader field; Mark accepts its current visual state for now. The next bounded gap is the central authored-memory district. Archive-core revision 1 targets `MUS-R07` with `MUS-R04-06`: a code-generated deforming book, stochastic miniature city, multi-axis orbital core, doorway, depth-split currents, atmosphere, and particles. No static raster is the visible focal scene.
+The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 20 records Mark's selected values for all six families and replaces endpoint-wide hover with narrow route-segment attention plus a local shader field; Mark accepts its current visual state for now. Archive-core revision 2 now targets `MUS-R07` with `MUS-R04-06`: a code-generated deforming book, stochastic miniature city, multi-axis orbital core, doorway, depth-split currents, atmosphere, particles, postprocessing, and local attention. No static raster is the visible focal scene.
 
 ## Resume Packet
 
@@ -28,7 +28,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: Codex releases and visually validates archive-core revision 1 at `/projects/archive-core-proof`; Mark reviews whether the code-generated book, city, orbital core, and currents establish the central district's intended material language.
+- Next exact action: Mark reviews archive-core revision 2 at `/projects/archive-core-proof`; Codex records the accepted or rejected material decisions before any bounded `ART-12G` integration.
 - After approval: complete `ART-12F`, then begin `ART-12G` integration without treating any one bounded proof as whole-Museum acceptance.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
@@ -42,7 +42,7 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-progress | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4 and east revision 20 are visually accepted; central archive-core revision 1 is being released for review |
+| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4 and east revision 20 are visually accepted; archive-core revision 2 is public for review |
 | `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
 | `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
 
@@ -136,3 +136,6 @@ Production transparent-background assets are generated only during `ART-12D`. Co
 - Commit `9e85711` is live in Production deployment `dpl_ERWWTafLyB9CbBveLFH4oSFbin8x` and passes all 210 tests, content validation, TypeScript, zero-error lint, and the 37-page production build. Public `1280 x 720` verification confirms the exact six presets, two optimized canvases, one-screen geometry, no renderer fallback, and the retained Museum attention layer.
 - Mark accepts the observatory's current visual state for now and asks to proceed to the next Museum section.
 - A third bounded proof now targets the central authored-memory district before whole-Museum integration. `/projects/archive-core-proof` uses only code-generated focal systems in revision 1: fourteen deforming page leaves, eighteen asynchronously lit towers, a multi-axis orbital core, traveling currents, a breathing doorway, atmosphere, and 460 particles.
+- Revision 1 shipped in `8d386ef`, but public inspection found its page and city geometry too clean and low-poly for the intended authored-memory material language.
+- Revision 2 in `0175f58` deepens the page curvature and cartography, replaces flat tower boxes with moving cyan/amber procedural window fields, adds nested emissive and torus-knot orbital structure, expands the scene to five depth-crossing currents, and introduces restrained bloom and vignette.
+- Production deployment `dpl_GxZZuTaWwAYfwwv1vrVyBG8S1xL2` is Ready on all portfolio aliases. Public `1280 x 720` verification confirms exact viewport/document geometry, two active canvases, local pointer attention, and no renderer fallback. Creative review remains open.
