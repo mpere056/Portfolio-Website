@@ -72,6 +72,9 @@ describe('Museum observatory compositor proof', () => {
     expect(new Set(MUSEUM_OBSERVATORY_FLOW_FAMILIES.map(family => family.timeOffset))).toHaveLength(6);
     expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.verticalContribution === 1)).toBe(true);
     expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.horizontalContribution <= 0.04)).toBe(true);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentCount >= 3)).toBe(true);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentCount <= 10)).toBe(true);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentWidth <= 0.18)).toBe(true);
     const croppedArea = MUSEUM_OBSERVATORY_FLOW_FAMILIES.reduce(
       (total, family) => total
         + (family.crop[2] - family.crop[0]) * (family.crop[3] - family.crop[1]),
@@ -138,7 +141,7 @@ describe('Museum observatory compositor proof', () => {
     expect(proofSource).toContain('tuningRef={flowCompositionRef}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_BACK_FRAGMENT}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_FRONT_FRAGMENT}');
-    expect(proofSource).toContain('museum-observatory-laser-flow-composition-v3');
+    expect(proofSource).toContain('museum-observatory-laser-flow-composition-v4');
     expect(proofSource).toContain('Observatory current controls');
     expect(laserSource).toContain('float flowPhase = normalizedY / max(FLOW_PERIOD, EPS) + uFlowTime * uFlowSpeed;');
     expect(laserSource).toContain('envelope *= mix(1.0 - uFlowStrength, 1.0, flow);');
@@ -163,6 +166,9 @@ describe('Museum observatory compositor proof', () => {
     expect(laserSource).toContain('const attention = pointerActive ? Math.exp(-distance * 5.5) : 0;');
     expect(laserSource).toContain('liveUniforms.uHLenFactor.value = current.horizontalSizing;');
     expect(laserSource).toContain('current.flowStrength + attention * 0.12');
+    expect(laserSource).toContain('float filaments = filamentBundle(beamUv, beamLight + wisps * 0.12);');
+    expect(laserSource).toContain('float pressure = exp(-pow(pressureDistance / 0.105, 2.0));');
+    expect(laserSource).toContain('uFilamentCount');
     expect(laserSource).toContain('ref={materialRef}');
     expect(proofSource).toContain("buildFlowTuningPreset('min', tuning)");
     expect(proofSource).toContain("buildFlowTuningPreset('max', tuning)");

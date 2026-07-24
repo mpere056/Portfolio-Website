@@ -48,6 +48,10 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
   uniform float uRotation;
   uniform float uHorizontalContribution;
   uniform float uVerticalContribution;
+  uniform float uFilamentCount;
+  uniform float uFilamentSpread;
+  uniform float uFilamentWidth;
+  uniform float uFilamentWave;
   uniform vec3 uColor;
   uniform float uFade;
 
@@ -221,6 +225,53 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
     return uWIntensity * sum * topFade * bottomGain * span;
   }
 
+  float wrappedDistance(float value, float center) {
+    return abs(fract(value - center + 0.5) - 0.5);
+  }
+
+  float filamentBundle(vec2 localUv, float nativeEnergy) {
+    float pathDistance = abs(localUv.y);
+    float reach = R_V * (0.9 + min(uVLenFactor, 5.0) * 0.13);
+    float along = pathDistance / max(reach, EPS);
+    float longitudinalMask = smoothstep(0.015, 0.075, along)
+      * (1.0 - smoothstep(0.82, 1.08, along));
+    float nativeMask = smoothstep(0.002, 0.095, nativeEnergy);
+    float fan = mix(0.2, 1.0, smoothstep(0.02, 0.72, along));
+    float flowClock = uFlowTime * max(uFlowSpeed, 0.01);
+    float pressureDistance = wrappedDistance(along, fract(flowClock * 0.16));
+    float pressure = exp(-pow(pressureDistance / 0.105, 2.0));
+    float wakeDistance = wrappedDistance(along, fract(flowClock * 0.16 - 0.13));
+    float wake = exp(-pow(wakeDistance / 0.19, 2.0)) * 0.28;
+    float pressureBody = clamp(pressure + wake, 0.0, 1.0);
+    float bundle = 0.0;
+
+    for (int lane = 0; lane < 11; lane++) {
+      float laneIndex = float(lane);
+      if (laneIndex >= uFilamentCount) break;
+      float centeredLane = laneIndex - (uFilamentCount - 1.0) * 0.5;
+      float phase = laneIndex * 0.73 + uFlowTime * (0.055 + laneIndex * 0.0015);
+      float wave = sin(along * (10.0 + laneIndex * 0.13) + phase) * uFilamentWave;
+      wave += sin(along * 23.0 - phase * 1.37) * uFilamentWave * 0.22;
+      float laneCenter = centeredLane * uFilamentSpread * fan + wave * fan;
+      float lanePulseDistance = wrappedDistance(
+        along,
+        fract(flowClock * (0.13 + laneIndex * 0.0018) + laneIndex * 0.087)
+      );
+      float lanePulse = exp(-pow(lanePulseDistance / 0.055, 2.0));
+      float shimmer = pow(
+        0.5 + 0.5 * sin(along * 46.0 - flowClock * 6.2 + laneIndex * 1.7),
+        5.0
+      );
+      float width = uFilamentWidth
+        * (1.0 + pressureBody * (0.62 + uFlowStrength * 0.62) + lanePulse * 0.28);
+      float line = exp(-pow((localUv.x - laneCenter) / max(width, EPS), 2.0));
+      float energy = 0.34 + pressureBody * 0.88 + lanePulse * 0.72 + shimmer * 0.28;
+      bundle += line * energy;
+    }
+
+    return bundle * longitudinalMask * mix(0.38, 1.0, nativeMask);
+  }
+
   void main() {
     vec2 center = iResolution.xy * 0.5;
     float inverseHalfWidth = 1.0 / max(center.x, 1.0);
@@ -322,15 +373,21 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
     float fog = fogNoise * (uFogIntensity * 1.8) * bottomBias * beamMask * horizontalWeight * radialFade;
 
     float lightAndFog = beamLight + fog;
+    float filaments = filamentBundle(beamUv, beamLight + wisps * 0.12);
     float dither = (hash21(gl_FragCoord.xy) - 0.5) * (DITHER_STRENGTH / 255.0);
-    float tone = gammaEncode(lightAndFog + wisps);
-    vec3 color = tone * uColor + dither;
-    float alpha = clamp(gammaEncode(beamLight + wisps * 0.6) + dither * 0.6, 0.0, 1.0);
+    float filamentTone = gammaEncode(filaments + wisps * 0.08);
+    float atmosphereTone = gammaEncode(fog + beamLight * 0.018);
+    vec3 color = (filamentTone * 1.42 + atmosphereTone * 0.12) * uColor + dither;
+    float alpha = clamp(
+      filamentTone * 0.94 + gammaEncode(fog) * 0.075 + beamLight * 0.012 + dither * 0.4,
+      0.0,
+      1.0
+    );
     float horizontalFade = pow(
       clamp(1.0 - smoothstep(EDGE_X0, EDGE_X1, edgeDistance), 0.0, 1.0),
       EDGE_X_GAMMA
     );
-    float sceneLight = lightAndFog + max(0.0, wisps) * 0.5;
+    float sceneLight = filaments + fog * 0.25 + max(0.0, wisps) * 0.08;
     float highlight = smoothstep(EDGE_LUMA_T0, EDGE_LUMA_T1, sceneLight);
     float edgeMask = mix(horizontalFade, 1.0, highlight);
     float cropMask = smoothstep(0.0, 0.045, vUv.x)
@@ -393,6 +450,10 @@ export default function MuseumLaserFlowPlane({
     uRotation: { value: family.rotation },
     uHorizontalContribution: { value: family.horizontalContribution },
     uVerticalContribution: { value: family.verticalContribution },
+    uFilamentCount: { value: family.filamentCount },
+    uFilamentSpread: { value: family.filamentSpread },
+    uFilamentWidth: { value: family.filamentWidth },
+    uFilamentWave: { value: family.filamentWave },
     uColor: { value: new THREE.Vector3(1, 1, 1) },
     uFade: { value: family.opacity },
   }));
