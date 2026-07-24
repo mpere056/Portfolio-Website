@@ -1,4 +1,4 @@
-# Projects Museum And Case Studies Plan
+# Practice Territories, Project Depth, And Case Studies Plan
 
 Last updated: 2026-07-19
 
@@ -7,16 +7,16 @@ Last updated: 2026-07-19
 | Field | Value |
 | --- | --- |
 | Plan ID | `PRJ` |
-| Status | Active; `PRJ-01` complete, `PRJ-02` ready |
+| Status | Active foundation; `PRJ-01` through `PRJ-08` complete, `PRJ-09` pending Home-world integration |
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Graph](03-Knowledge-Graph-And-Content.md), [AI](04-Global-AI-And-Talking-Archive.md), [Living State](07-Living-Project-State.md) |
 | Downstream | Main projects route, project subdomains, guided tour, skill evidence |
-| Primary outputs | Museum registry, first vertical slice, three flagship experiences, smaller-project tiers |
+| Primary outputs | Project registry, practice-territory reveal, flagship experiences, direct project depth, smaller-project tiers |
 | Execution packages | `PRJ-01` through `PRJ-08` in [Work Packages](13-Execution-Work-Packages.md) |
 | Capability tracking | `CAP-PRJ-*`, `CAP-LIB-*`, `CAP-SDK-*`, and `CAP-DRM-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 
-Transform the existing project page and project subdomains into an inspectable museum of systems with increasing depth, focused product demonstrations, and project-specific exploded case studies.
+Present projects as inspectable systems with increasing depth, focused product demonstrations, and project-specific exploded case studies. The project framework remains valid, but its primary spatial overview moves from a separate Museum lobby into four Home practice territories under the [2026-07-24 decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md).
 
 Art-direction correction: the 2026-07-18 live audit found that the accepted functional shell is too dependent on a uniform rounded-card grid and that the first LifeInbox depth layer reads like a conventional dark application panel. These are working implementation foundations, not the final aesthetic target. All Phase 4 visual work follows `18-Art-Direction-And-Aesthetic-Quality.md`.
 
@@ -102,19 +102,20 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 
 `supportedStages` is present-tense capability, not aspiration. Current exhibits and manifests advertise only Signal and Approach. A selected flagship may add Handle, Enter, or Understand only in the package that implements and tests that stage.
 
-## Museum Entry And Navigation
+## Practice Entry And Navigation
 
 ### Overview
 
 - Preserve a fast project overview for direct visitors.
-- Treat `/projects` as the museum lobby rather than the canonical full home of each flagship.
+- Treat `/` and `/work/[practice]` as the canonical practice overview rather than the full home of each flagship.
+- Keep `/projects` intact as compatibility and rollback until `PRJ-09` and `QA-07` pass.
 - Replace generic card-only browsing with exhibits that signal depth.
 - Give each project or coherent historical cluster a distinct silhouette and material/behavior signal; accent color and title are insufficient identity.
 - Let project relationships affect composition, sight lines, or neighboring signals rather than adding equal decorative glow to every card.
 - Consolidate tour, AI, sound, and navigation furniture into a clear utility hierarchy that does not compete with exhibits.
 - Keep stable anchors and direct links for every project.
 - Allow AI cards and the guided tour to open a project at a safe requested stage.
-- Add `/projects/[slug]` as the planned stable direct-entry family; flagship entries transition or redirect to canonical project subdomains, while smaller projects may render in the museum shell.
+- Keep `/projects/[slug]` as the stable direct-entry family; flagship entries transition or redirect to canonical project subdomains, while smaller projects may render in the shared project-depth shell.
 
 ### Depth Behavior
 
@@ -142,7 +143,18 @@ Shared orchestration handles depth, persistence, tour hints, AI context, loading
 
 - Exploded architecture, evidence, relationships, and living or final state.
 
-## Legacy-To-Museum Migration
+## Museum-To-Home Migration
+
+The original legacy-to-Museum migration is complete and remains valid evidence. The new migration is additive:
+
+1. Add primary practices to project content and graph queries.
+2. Render project signals inside a selected Home practice without removing `/projects`.
+3. Preserve the existing exhibit registry, depth adapters, lazy manifests, fallback shells, and project IDs.
+4. Migrate tour, AI, direct returns, and safe-state restoration to practice destinations.
+5. Promote Home only after project parity and rollback evidence pass.
+6. Redirect `/projects` last.
+
+### Historical Legacy Migration
 
 `PRJ-03` is an adapter migration, not a rewrite of every project surface.
 
@@ -353,14 +365,27 @@ The visual implementation can differ per project. Shared code manages ordering, 
 
 ## Direct Routes And Subdomains
 
-- Maintain direct project anchors on `/projects`.
-- Preserve current anchors as compatibility inputs while canonical destinations move toward `/projects/[slug]`.
+- Preserve direct project anchors on `/projects` as compatibility inputs during the Home migration.
+- Keep canonical destinations at `/projects/[slug]` or project subdomains.
+- Add one primary practice return destination for every project.
 - Preserve project subdomains as canonical flagship project worlds and deep product destinations.
-- Museum Signal and Approach remain on `/projects`; lightweight Handle may begin there; substantial Enter and Understand normally transition to the project subdomain.
+- Signal and Approach move into the selected Home practice; lightweight Handle may begin there; substantial Enter and Understand normally transition to the project route or subdomain.
 - Allow in-place flagship Enter only when a bounded prototype proves the cross-subdomain transition materially harms the experience.
 - Start each subdomain with one coherent project shell. Add `/experience/[id]` or a case-study route only when the state deserves independent loading, sharing, history, or search value.
 - Keep `/blog` and `/blog/[slug]` canonical on each project subdomain.
-- Ensure every subdomain can return to its exact museum exhibit and preserve a validated return destination.
+- Ensure every subdomain can return to its exact project and primary practice while preserving a validated return destination.
+
+## `PRJ-09` Practice Project Reveal
+
+`PRJ-09` adapts the completed project framework to the Home world:
+
+- Query projects by validated primary practice.
+- Render native practice instruments rather than a generic card grid.
+- Preserve stable exhibit and project IDs.
+- Support the same depth grammar and lifecycle truth.
+- Keep reviewed cross-practice relationships secondary and explainable.
+- Preserve direct project routes, flagship subdomains, fallback shells, and evidence.
+- Verify every current project remains reachable before `/projects` changes status.
 - Use canonical metadata to avoid duplicate search indexing if the same content appears in multiple routes.
 - AI destinations must support both main-domain and subdomain contexts.
 

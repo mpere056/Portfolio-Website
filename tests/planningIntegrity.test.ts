@@ -53,26 +53,16 @@ describe('implementation planning integrity', () => {
     }
   });
 
-  it('matches dashboard package counts to canonical package rows', () => {
+  it('keeps the dashboard focused on the canonical active package chain', () => {
     const dashboard = read('documentation/implementation-plans/16-Progress-Dashboard.md');
     const snapshot = section(dashboard, 'Package Snapshot');
-    const dashboardCounts = new Map(
-      tableRows(snapshot)
-        .map(cells)
-        .filter(row => /^\d+$/.test(row[1]))
-        .map(row => [row[0], Number(row[1])]),
-    );
-    const actualCounts = new Map<string, number>();
-    for (const status of packages.values()) {
-      actualCounts.set(status, (actualCounts.get(status) ?? 0) + 1);
+
+    for (const packageId of ['ART-12', 'KG-07', 'ARC-06', 'EXP-08', 'ART-16', 'PRJ-09', 'QA-07']) {
+      expect(packages.has(packageId), `dashboard references unknown package ${packageId}`).toBe(true);
+      expect(snapshot, `dashboard omits active-chain package ${packageId}`).toContain(`\`${packageId}\``);
     }
 
-    for (const [status, count] of actualCounts) {
-      expect(dashboardCounts.get(status), `dashboard is missing package state ${status}`).toBe(count);
-    }
-    for (const [status, count] of dashboardCounts) {
-      expect(count, `dashboard count for ${status} does not match package rows`).toBe(actualCounts.get(status) ?? 0);
-    }
+    expect(snapshot).toContain('Aggregate counts are intentionally omitted');
   });
 
   it('keeps active work files and the work registry one-to-one', () => {
@@ -137,7 +127,7 @@ describe('implementation planning integrity', () => {
     for (const planId of ['`00`', '`02`', '`03`', '`04`', '`05`', '`06`', '`07`', '`08`', '`09`', '`10`']) {
       expect(integration, `aesthetic integration omits plan ${planId}`).toContain(`| ${planId} `);
     }
-    for (const surface of ['`/` Home atrium', '`/projects` museum', 'LifeInbox museum depth', 'Dreamlife subdomain', 'Sudoku Together subdomain', '`/about`', 'Global AI', 'Blogs and reading pages']) {
+    for (const surface of ['`/` Home practice world', '`/work/[practice]`', '`/projects` compatibility', 'LifeInbox museum depth', 'Dreamlife subdomain', 'Sudoku Together subdomain', '`/about`', 'Global AI', 'Blogs and reading pages']) {
       expect(integration, `aesthetic integration omits surface ${surface}`).toContain(`| ${surface} `);
     }
   });

@@ -49,7 +49,22 @@ What remains after the `fce50af` Production candidate:
 - The current scheduler contract does not expose reviewed independent temporal channels for organic, mechanical, atmospheric, flow, illumination, and occlusion behavior.
 - Transparent foreground/midground plates and route-specific displacement, flow, depth, emission, and occlusion maps remain to be produced.
 
-The earlier material sequence remains a valid keyframe and functional foundation. `ART-07` through `ART-11` prove interaction response and route distinction; `ART-12` through `ART-15` correct the remaining idle-poster problem.
+The earlier material sequence remains a valid keyframe and functional foundation. `ART-07` through `ART-11` prove interaction response and route distinction; `ART-12` proves four bounded material dialects; `ART-16` now owns their attention-weighted Home integration. `ART-13` through `ART-15` are resequenced after that gate.
+
+## Attention-Weighted Multi-Territory Composition
+
+The Home world is one route-owned composition containing five persistent anchors. It is not five route scenes running side by side.
+
+- Lightweight anchors remain present in neutral and inactive states.
+- A pure semantic reducer chooses one stable dominant territory using continuous weights and hysteresis.
+- The anchor scales only within a bounded range; broad atmosphere carries most of the perceived expansion.
+- Territory fields overlap through irregular masks, depth, light, fog, refraction, particles, shadow, and occlusion.
+- Local pointer attention modulates only nearby material or intentionally connected systems.
+- Only the current dominant territory may mount its full expensive runtime.
+- Transition handoff may briefly overlap outgoing and incoming fields, but it remains within one documented renderer and performance budget.
+- Selected practice and route state are semantic; interpolated weights and shader time are reconstructed.
+
+This is a shared compositor because the territories occupy one authored Home field. It is not a universal site-wide background or a reason to erase territory-specific material behavior.
 
 ## Dynamic Scene Model
 
@@ -279,6 +294,18 @@ Each route has one Dynamic Scene Ledger row with these fields:
 Do not label a route dynamic because its matte drifts, and do not label the route incomplete merely because later optional effects remain. Track the accepted packet contract and name every gap. `producing` may begin only after `mapping` and `briefing`; `renderer-proof` may begin only after `asset-review`; no later route enters `producing` while the current route has not reached its known-good gate.
 
 ## Delivery Sequence
+
+### `ART-16`: Home Practice World Integration
+
+- Reconcile plans and retain accepted proof outputs.
+- Implement practice taxonomy and pure attention contracts.
+- Build the neutral five-anchor shell.
+- Prove neutral-to-Music and neutral-to-Play melding.
+- Integrate AI, Life Systems, and About sequentially.
+- Add project reveal and route migration only after visual/runtime gates.
+- Run renderer-lifecycle, calm/failure, navigation, Production, and Mark review.
+
+The detailed stage ledger is [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md).
 
 ### `ART-07`: Scene Contracts And Museum Proof
 

@@ -1,9 +1,11 @@
 # Pervasive Ambient Worlds Implementation Plan
 
 Date: 2026-07-20
-Status: implementation in progress; `ART-12A-E` complete and isolated `ART-12F` in-review
+Status: retained proof foundation; `ART-12A-F` accepted as bounded inputs, Museum-only `12G/H` superseded by `ART-16`
 Requirements: `V-31`, `V-32`, `V-33`
-Packages: `ART-12` through `ART-15`
+Packages: historical `ART-12` through `ART-15`; active integration continues in `ART-16`
+
+> **2026-07-24 amendment:** Mark approved consolidating project discovery into the five-territory Home. The pervasive-participation, decomposition, material, clock, and diagnostics contracts remain authoritative. Whole-`/projects` integration is no longer the next step. Coral, observatory, archive, and music proof outputs feed [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md).
 Capabilities: `CAP-ART-013` through `CAP-ART-016`
 
 ## Planning Correction
@@ -283,4 +285,4 @@ The first five gates are complete. Mark approved `1A, 2A, 3A`, accepted the boun
 
 ## Resume Point
 
-Production `fce50af` remains the functional and public visual baseline. `ART-12A-E` are complete without changing it. The next exact action is deployment and direct visual comparison of `/projects/ambient-proof` revision 4 with the `/projects` hover distortion and lighting. Acceptance completes `ART-12F` and authorizes bounded `ART-12G` integration; it does not declare the full Museum ambient-complete.
+This plan is no longer the active resume surface. Its accepted proof results are preserved through `68e0897`; `ART-12G/H` are superseded. Resume at [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md): implement practice taxonomy and the pure attention contract without changing public routing.

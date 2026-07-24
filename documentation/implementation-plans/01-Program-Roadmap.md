@@ -36,9 +36,9 @@ The repository already provides:
 
 The program should extend these foundations rather than replace the entire application at once.
 
-Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice is accepted and live at `4d56565`, production `dpl_61cYUeR8aYVkx6gYYjEbT74adrZc`. The museum, selected depth journey, global archive card, and all three flagship subdomains pass public verification; legacy Projects remains rollback code rather than the active presentation.
+Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current Production checkpoint: `fce50af` preserves that functional foundation, the one-viewport Museum, and route-owned interactive scenes. Pervasive ambient-world implementation is active under `ART-12`: `ART-12A-E` are complete, and the isolated hybrid WebGL compositor is at `ART-12F` review before any main-Museum integration.
+Current implementation checkpoint: `68e0897` preserves the production foundation and four bounded visual dialects. Mark approved a new primary architecture on 2026-07-24: `/` will become a five-territory Home and work index, while `/projects` remains unchanged until the additive migration passes. `ART-16` is now the active integration package.
 
 ## Dependency Order
 
@@ -60,7 +60,7 @@ The critical dependency chain is:
 
 Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status. Production styling for a major surface depends on an accepted aesthetic art packet; shared visual infrastructure depends on representative packets rather than preceding them as a generic design system.
 
-The approved information architecture is technically multi-route and experientially one world. `/` is the atrium, `/about` remains one chronology, `/projects` is the museum lobby, and flagship Enter/Understand states normally live on canonical project subdomains. Depth does not automatically create pages.
+The approved information architecture is technically multi-route and experientially one world. `/` is the five-territory Home and canonical work index, `/about` remains one chronology, `/work/[practice]` is the planned durable selected-practice family, and flagship Enter/Understand states normally live on canonical project subdomains. `/projects` becomes a compatibility route only after migration. Depth does not automatically create pages.
 
 ## Critical Path And Safe Parallelism
 
@@ -96,14 +96,33 @@ Detailed package definitions and statuses live in `13-Execution-Work-Packages.md
 | Phase 2 | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` |
 | Phase 3 | completed `PRJ-01`; then `PRJ-02`, `PRJ-03`, `LPS-06`, `AI-04`, `PRJ-04`, `QA-02` |
 | Phase 4 | `PRJ-05` to `PRJ-08`, `AI-05`, `LPS-02`, `LPS-03` |
-| Phase 4E ambient correction | `ART-12`; then `ART-13`; prepare `ABT-01`; then `ART-14`, `QA-04`, `ART-15` |
-| Phase 5 | `ABT-02` to `ABT-04`; `ABT-01` is prepared before About's `ART-14` ambient integration |
+| Phase 4F Home practice world | accepted `ART-12` proof inputs; `KG-07`, `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
+| Later route ambient continuation | `ART-13` through `ART-15`, `QA-04`; resequenced after `ART-16` |
+| Phase 5 | `ABT-01` to `ABT-04`; the top Home portal does not replace deeper About chronology work |
 | Phase 6 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` |
 | Experimental | `PXP-01`, `PXP-03`; `PXP-02` remains later |
 
 `QA-06` runs across phases after `BAS-05`; it reconciles capability status, evidence, and dashboard summaries rather than forming a standalone release phase.
 
 ## Current Master Execution Order
+
+The earlier `ART-12G/H` whole-`/projects` integration sequence is superseded by the approved Home-world architecture. Its accepted proof work is retained as source material for `ART-16`; it is not discarded or falsely marked as a completed Museum rollout.
+
+| Order | Current package | Gate |
+| ---: | --- | --- |
+| 1 | `ART-16A` planning reconciliation | Canonical decision, plan, package, capabilities, and work item agree |
+| 2 | `KG-07` practice taxonomy | Every current project has one validated primary practice |
+| 3 | `ARC-06` / `EXP-08` attention and route contracts | Pure tests pass without changing public route output |
+| 4 | `ART-16D` neutral five-anchor shell | One viewport, recognizable Home identity, semantic input paths |
+| 5 | `ART-16E` Music and Play transition proof | Fixed anchors, atmospheric melding, local attention, performance gate |
+| 6 | `ART-16F` AI, Life Systems, and About integration | One territory accepted before the next begins |
+| 7 | `PRJ-09` practice project reveal | Correct projects, depth, and subdomain handoff |
+| 8 | `ARC-06` / `EXP-08` navigation migration | Tour, AI, restore, Back, metadata, and aliases pass |
+| 9 | `QA-07` release | Preview, rollback, capability, performance, Production, and Mark acceptance |
+
+The detailed order and checkpoint fields live in [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md).
+
+### Superseded Museum-Only Sequence
 
 This is the authoritative near-term order. Detailed route plans may add steps inside a package but may not reorder these gates without updating this roadmap, the decision register, packages, dashboard, and active work item together.
 
@@ -126,7 +145,7 @@ This is the authoritative near-term order. Detailed route plans may add steps in
 
 Production transparent-background assets are therefore generated at `ART-12D`, and later only inside the equivalent active-route step in `ART-13` or `ART-14`. Concept keyframes may be produced earlier for composition review, but they are not production layer packs and do not authorize renderer integration.
 
-Current gate position: orders 1 and 2 are complete; order 3 is review-ready. Mark's review of `2026-07-20-Museum-Ambient-Asset-Briefs.md` is the only next gate. Orders 4 through 8 remain not-started.
+Historical outcome: `ART-12A-E` completed, and bounded coral, observatory, archive, and music proof work produced accepted inputs. The Museum-only `12G/H` integration and release gates are superseded by `ART-16`; they are not the current next action.
 
 ## Phase 0: Planning And Technical Baseline
 
@@ -266,7 +285,7 @@ Both spikes must use synthetic local state, deterministic reducers, the same evi
 
 Exit status: accepted on 2026-07-18 through `EV-AI-04-01`/`02`, `EV-PRJ-04-01` through `03`, and `EV-QA-02-01` through `03`. Generalized routing and the remaining flagships correctly move to Phase 4 rather than expanding this slice.
 
-## Phase 4: Museum Framework And Remaining Flagships
+## Phase 4: Project Framework, Visual Proofs, And Home-World Integration
 
 Implementation checkpoint, 2026-07-18: all Phase 4 functional code/content and the complete keyframe-first replacement across `ART-01` and `ART-03` through `ART-06` are live and publicly verified at `806841d`. Mark rejected the first creative candidate; the replacement preserves behavior, content, routes, lifecycle, and deployment foundations. The creative dimension of `QA-02` now waits only on Mark acceptance.
 
@@ -323,7 +342,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` are implemented in Production `fce50af`. The candidate fixes the scrolling Museum and makes direct project interaction visible, but dominant raster regions remain inert at idle. `ART-12A-E` now provide the baseline, atlas/ledger, accepted briefs, and tested materials. The isolated `ART-12F` proof selects a hybrid one-clock WebGL arrangement with a procedural current and awaits animated review before `ART-12G`. See `2026-07-20-Phase-4-Visual-Acceptance-Remediation.md` and `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md`.
+Current checkpoint: `ART-07` through `ART-11` retain valid interaction and lifecycle foundations. `ART-12` produced accepted coral, observatory, archive, and shared-home music proof dialects. Mark's 2026-07-24 architecture decision supersedes whole-Museum integration: `ART-16` now composes those lessons into the five-territory Home before any `/projects` redirect.
 
 Execution order:
 

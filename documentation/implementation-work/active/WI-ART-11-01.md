@@ -41,4 +41,4 @@ Commit `fce50af` is live in Production. Mark's desktop screenshots correctly fai
 - [x] Dreamlife, LifeInbox, and Sudoku Together have perceptible route-owned scene drivers on their direct landing surfaces.
 - [x] Aggregate tests, content, TypeScript, lint, and production build pass.
 - [x] Exact-candidate Production deployment and public re-verification pass.
-- [ ] Sustained performance observation remains useful; pervasive ambient creative acceptance is explicitly superseded by `WI-ART-12-01` rather than claimed here.
+- [ ] Sustained performance observation remains useful; integrated creative acceptance now belongs to `WI-ART-16-01` after the accepted `WI-ART-12-01` proof work was superseded.

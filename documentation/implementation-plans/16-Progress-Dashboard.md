@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-24
-Implementation commit baseline: `fce50af`; latest bounded proof Production: `20a047a`
+Implementation commit baseline: `68e0897`; public route structure unchanged
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `fce50af`; latest bounded proof Production: `20a
 
 ## Current Program State
 
-**The Phase 4 interaction candidate is live at `fce50af`; `ART-12A-E` pass, three bounded Museum districts are accepted, and the rejected music bridge is being corrected to reuse the homepage renderer.**
+**Four bounded visual dialects are accepted, and the approved next architecture is one five-territory attention-weighted Home world. `ART-16A` planning reconciliation is complete; implementation has not started.**
 
-The original rollout proved route health, fallbacks, lifecycle policy, and renderer safety, while Production `fce50af` fixed the scrolling Museum and direct interaction. `ART-12A-E` preserve/map the baseline and produce an accepted lower-left material stack. West revision 4, east revision 20, and archive-core revision 4 are visually accepted. Archive interaction now uses a `1.5s` attended delay and `1.05s` attended turn while preserving its slow autonomous rhythm. Music revision 1 is rejected for replacing too much of Home's established identity. Revision 2 reuses the exact `HeroCube` renderer and limits its addition to faint platform resonance rings and independently breathing light. Full-Museum integration and `V-33` acceptance are still not claimed.
+Coral west ecology, east observatory, archive-core, and shared-home music proofs retain tested/deployed checkpoints and Mark review. The music proof now uses the actual `HeroCube` and a `40%` translucent physical piano. Mark approved About at the top, Music center, Play left, AI right, and Life Systems below. One territory becomes dominant on a continuous attention spectrum while its atmosphere melds across the viewport; anchors remain fixed and inactive territories recede without disappearing. Public `/` and `/projects` remain unchanged until additive taxonomy, attention, visual, project, navigation, and rollback gates pass.
 
 This distinction prevents two errors:
 
@@ -29,29 +29,26 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | Phase 2 live | on-track | Complete shell and independent rollback flags pass public Production | Preserve stability through Phase 4 deployment | Review returning-visitor behavior after normal use |
+| `O-01` Persistent exploratory world | Home-world integration ready | on-track | Existing exploration shell and shared Home music identity are known-good | Pure attention contract and neutral shell | Implement `KG-07` plus `EXP-08` without public route changes |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
-| `O-03` First flagship proof | ambient extension pending | watch | Direct-surface product interaction is live and known-good | Route-specific decomposed material packs and idle-life review | Complete the Museum ambient proof before beginning flagships sequentially |
-| `O-04` Portfolio museum | ambient planning in-progress | watch | Live regression baseline and complete source-region/motion ledger preserve the one-viewport nine-signal Museum | Reviewed representative assets, then pervasive no-input material life without regression | Review `AB-MUS-01` through `AB-MUS-11`; after acceptance, produce the west/lower ecology stack |
+| `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
+| `O-04` Home work world | architecture approved | on-track | Four accepted dialect proofs and fixed five-territory map | Taxonomy, attention reducer, neutral shell, then two-transition proof | Begin `WI-ART-16-01` checkpoint `B/C` |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
 ## Package Snapshot
 
-| Package state | Count | Meaning now |
-| --- | ---: | --- |
-| `ready` | 0 | No package is waiting to start; the only primary package is already active |
-| `in-progress` | 0 | The active proof remains represented by the single `ART-12F` in-review package rather than double-counted |
-| `implemented` | 10 | `ART-01`, `ART-03` through `ART-06`, and `ART-07` through `ART-11` are coded and public; their interaction evidence remains valid while ambient creative acceptance moves to `ART-12` through `ART-15` |
-| `in-review` | 1 | `ART-12F` has three accepted districts and one public music-bridge proof awaiting creative review |
-| `pending` | 11 | Phase 5+ and ambient route-expansion packages wait on their intended sequence or feedback gates |
-| `reopened` | 1 | Renewed creative `QA-02` retains valid public/functional evidence and waits on the evolving creative acceptance path |
-| `decision-gated` | 0 | Phase 4 lifecycle classification is recorded with correction paths |
-| `prototype` | 3 | Bounded experiments, not committed product scope |
-| `later` | 1 | Ambient presence is intentionally outside near-term delivery |
-| `complete` | 46 | Functional packages remain accepted; only invalidated aesthetic dimensions were reopened |
+| Package group | State | Current truth |
+| --- | --- | --- |
+| `ART-12` | implemented; integration superseded | Accepted proof inputs retained; no whole-`/projects` integration remains |
+| `KG-07` | ready | Four practice nodes and primary project classification are the first implementation checkpoint |
+| `ARC-06` / `EXP-08` | pending behind taxonomy | Practice destinations and pure attention behavior are additive foundations |
+| `ART-16` | ready; Stage `A` accepted | Neutral shell and melding implementation have not started |
+| `PRJ-09` | pending | Waits on taxonomy and accepted territory composition |
+| `QA-07` | pending | Owns integrated creative/runtime/migration/production acceptance |
+| `ART-13` through `ART-15` | planned, resequenced | Resume only after `ART-16` reveals valid shared seams |
 
-Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feedback and collaboration markers are reported under Gates And Decisions rather than mixed into package totals. Counts organize workflow states only and do not measure feature completion.
+Named package states, gaps, known-good points, and next actions are authoritative. Aggregate counts are intentionally omitted because they do not help resume partially implemented features.
 
 ## Current Execution Queue
 
@@ -107,14 +104,17 @@ Counts include only the 73 package rows in `13-Execution-Work-Packages.md`; feed
 | 48 | `ART-09` | Remaining flagship dynamic compositions | implemented | Distinct Dreamlife/Sudoku scenes, truthful board reducer, tests/build, and both public domains pass | Sustained performance observation and Mark review |
 | 49 | `ART-10` | Supporting-route dynamic compositions | implemented | Home, About, AI, and reading use distinct causal layers; tests/build and public supporting routes pass | Mark review |
 | 50 | `ART-11` | Dynamic scene maturation | implemented | Typed eight-route matrix, lifecycle corrections, 188 tests, build, and bounded route review pass | Sustained performance/context-loss observation, Production, and Mark review |
-| 51 | `ART-12` | Ambient contract, decomposition, and Museum proof | in-review | `ART-12A-E` complete; west revision 4 and east revision 20 visually accepted; archive-core revision 3 is public at `7bf0d5c` | Mark reviews the central code-first proof before bounded `12G` integration |
-| 52 | `ART-13` | Flagship ambient worlds | pending | `ART-12H` Museum gate accepted | LifeInbox, then Dreamlife, then Sudoku pass route-local mapping, asset, compositor, idle-life, interaction, Production, and Mark gates |
-| 53 | `ABT-01` | Reviewed About consequences | pending | May prepare as content-only work during late `ART-13`; must finish before About `ART-14` integration | Five events and bounded reviewed consequences are ready for semantic ambient/inspection use |
-| 54 | `ART-14` | Supporting ambient worlds | pending | `ART-13` accepted and `ABT-01` ready for About | Home, About, AI, and reading pass separate mapping-to-release pipelines and route-distinction gates |
-| 55 | `QA-04` | Stimulation and capability QA | pending | Representative `ART-12` through `ART-14` checkpoints exist | Sound-off, reduced-motion, capability-tier, target-device, and fully animated frame behavior pass |
-| 56 | `ART-15` | Pervasive motion maturation | pending | `ART-12` through `ART-14` and `QA-04` pass | No unexplained dominant dead zones; performance, capability, Production, and Mark review pass |
-| 57 | `ABT-02` through `ABT-04` | About depth continuation | pending | `ABT-01`, ambient supporting-route baseline, and Phase 5 gate | Event inspection, one memory-room decision, and meaningful About discoveries pass |
-| 58 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Living operations | pending | Phase 5 continuation is stable | Versioned state, editorial precedence, and returning-visitor disturbances pass |
+| 51 | `ART-12` | Ambient contract, decomposition, and bounded dialect proofs | implemented; integration superseded | Coral, observatory, archive, and shared-home music proofs accepted through `68e0897` | Feed proof behavior into `ART-16`; do not integrate whole `/projects` |
+| 52 | `ART-16A` | Home-world planning reconciliation | accepted | Decision, Plan `21`, packages, capabilities, and work item align | Begin `KG-07` and `EXP-08` foundations |
+| 53 | `KG-07` | Practice taxonomy | ready | Four controlled practice IDs and initial classification approved | Implement content fields, graph nodes, queries, and validation |
+| 54 | `ARC-06`, `EXP-08` | Attention, destination, and history contracts | pending | Waits on stable practice IDs | Implement pure reducer and dormant destinations without route output changes |
+| 55 | `ART-16D/E` | Neutral shell and two-transition proof | pending | Taxonomy and contracts pass | Accept five anchors, then Music and Play melding |
+| 56 | `ART-16F` | AI, Life Systems, and About territories | pending | Music/Play proof accepted | Integrate one territory at a time |
+| 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
+| 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
+| 59 | `ART-13` through `ART-15` | Route ambient continuation | resequenced | `ART-16` establishes valid shared runtime seams | Resume route-specific work without blocking Home |
+| 60 | `ABT-01` through `ABT-04` | About chronology depth | pending | Top portal may precede deeper content; full depth still waits on reviewed consequences | Event inspection, one memory-room decision, and discoveries pass |
+| 61 | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Living operations | pending | Home architecture is stable | Versioned state, editorial precedence, and disturbances pass |
 
 The complete exploration shell and first LifeInbox slice are live in Production under the executed 2026-07-18 promotion decision, with independent shell, museum, and selected-experience rollback controls.
 
@@ -124,37 +124,36 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | Three districts accepted; corrected music revision 2 is public at `20a047a` | Review corrected `/projects/music-proof` before any Home/Projects integration decision | 2026-07-24 |
-| Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
-| Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
+| Now | `WI-ART-16-01` | ready | `ART-16` with `KG-07`/`EXP-08` | Architecture reconciled at `68e0897`; public routes unchanged | Implement practice taxonomy and pure attention state without visual route migration | 2026-07-24 |
+| Next | same work item | not-started checkpoint | `ART-16D` | Waits on taxonomy and attention tests | Build the neutral five-anchor shell using lightweight representations | 2026-07-24 |
+| Later | same work item | not-started checkpoint | `ART-16E/F`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Prove Music/Play, then integrate remaining territories, project reveal, and migration | 2026-07-24 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
 ## Awaiting Review
 
-| Work item | Review question | Reviewer | Evidence/preview | Waiting since | Next action |
-| --- | --- | --- | --- | --- | --- |
-| `WI-ART-12-01` | Does music revision 2 feel like the existing homepage with only a restrained improvement? | Mark | `/projects/music-proof`; shared `HeroCube`, identical piano particles/platform/background/camera/navigation, optional faint resonance | 2026-07-24 | Review the corrected one-screen proof before choosing a Home/Projects integration shape |
+No creative review is currently blocking implementation. The next Mark gate occurs after the neutral shell and Music/Play transition proof are deployed.
 
 ## Blocked Or Paused
 
-No work item is blocked. Earlier aesthetic work items are intentionally paused because their implemented foundations are preserved while final route-level creative acceptance moves into `ART-12` through `ART-15`.
+No work item is blocked. Earlier aesthetic work items are intentionally paused because their implemented foundations are preserved while integrated creative acceptance moves into `ART-16`.
 
 | Work item | State | Reason | Restart condition | Last known-good point | Last update |
 | --- | --- | --- | --- | --- | --- |
 | `WI-ART-01-02`, `WI-ART-03-01` through `WI-ART-06-01` | paused | Static keyframes, packets, and production foundations remain valid; standalone review is superseded | Resume only from a named packet, silhouette, or coherence mismatch found by an active ambient route | Production `fce50af` plus retained packet/evidence records | 2026-07-20 |
-| `WI-ART-07-01` through `WI-ART-11-01` | paused | Interactive dynamic foundations remain valid; ambient completeness is separate work | Resume only from a named interaction, state, lifecycle, or renderer-policy regression found by `ART-12` through `ART-15` | Production `fce50af`; 48 files/193 tests and 35-page build | 2026-07-20 |
+| `WI-ART-07-01` through `WI-ART-11-01` | paused | Interactive dynamic foundations remain valid; integrated Home work is separate | Resume only from a named interaction, state, lifecycle, or renderer-policy regression found by `ART-16` | Production `fce50af`; retained tests/build evidence | 2026-07-24 |
 
 ## Partial Implementation Watchlist
 
-No Phase 2 or Phase 3 functional package is partial. Phase 4's functional and interaction work remains live. Ambient-world completeness is explicitly new work rather than hidden inside earlier candidate evidence.
+No Phase 2 or Phase 3 functional package is partial. The Home-world architecture is tracked as explicit new work rather than being hidden inside earlier Museum or proof evidence.
 
 | Capability | Work item | What works | Named gaps | Safe exposure | Next exact action | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
-| `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, one-viewport geometry, tests/build, and Production `fce50af` exist | Dominant regions remain too static during normal idle; final ambient review is not satisfied | Preserve all interaction/state behavior and use `fce50af` as rollback | Feed these contracts into `ART-12A/B`; reopen only a named regression | `EV-ART-11-02` accepted rollout plus retained candidate/failed review evidence |
-| `CAP-ART-013/014` | `WI-ART-12-01` | `12A-E` pass; west revision 4 and east revision 20 visually accepted; archive-core revision 1 adds code-first central book, city, orbital, doorway, current, atmosphere, and particle systems | Central proof release/review, then `12G/H` full-Museum integration/release | Preserve Production `fce50af`; keep proofs off the main Museum until accepted | Release and review `/projects/archive-core-proof` | Observatory commit/deployment and public checks remain valid; central focused tests, TypeScript, and lint pass locally; no full `V-33` evidence yet |
-| `CAP-ART-015/016` | no work items yet | Scope and dependency order are documented | All route-local implementation, capability QA, and final maturation remain | No speculative asset production | Create each work item only when its preceding route/package gate passes | No implementation evidence yet |
+| `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, and one-viewport geometry exist | No standalone action; Home integration may reveal a named reusable-seam regression | Preserve behavior and current rollback routes | Reopen only a named regression from `ART-16` | Retained candidate and rollout evidence |
+| `CAP-ART-013/014` | superseded `WI-ART-12-01` | Decomposition pipeline plus coral, observatory, archive, and music proof dialects are accepted | No whole-Museum integration remains | Preserve proof routes and records through `68e0897` | Supply bounded inputs to `ART-16` | Tests, deployments, and Mark reviews retained |
+| `CAP-KG-008`, `CAP-EXP-015`, `CAP-ART-017` | `WI-ART-16-01` | Scope, IDs, positions, attention principles, stages, and migration guardrails are approved | Taxonomy, reducer, and neutral shell do not exist | Public routes unchanged | Implement taxonomy and pure attention tests | Planning reconciliation only |
+| `CAP-ART-018/019`, `CAP-PRJ-009` | `WI-ART-16-01` later checkpoints | Accepted proof dialects and project framework exist | Melding, territory lifecycle, About portal, project reveal, and migration remain | Do not mount all proof renderers or redirect `/projects` | Wait on neutral shell and two-transition gate | No integrated evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -164,7 +163,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | --- | --- | --- | --- |
 | Runtime and framework compatibility | Baseline and future deployments | resolved | No action; `BAS-06` and `BAS-07` are accepted |
 | Firestore service-account data access | `BAS-08`, `ARC-01` | resolved | `Cloud Datastore User` verified; index and canonical corpus ready |
-| Information architecture and routing | `ARC-02`, `ARC-03`, `EXP-*`, `AI-*`, `PRJ-*` | resolved | Multi-route/one-world model, route classes, subdomain roles, depth/history, and state ownership approved |
+| Information architecture and routing | `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09` | resolved direction; implementation pending | Five-territory Home, separate About, practice routes, fixed anchors, melding, and additive `/projects` migration approved |
 | Shared graph/discovery vocabulary | `ARC-02`, `ARC-03` | resolved | Accepted graph identities, discovery vocabulary, destination registry, and resolver are available to `ARC-04` |
 | Typed cross-system actions | `ARC-04`, `ARC-05` | resolved | Seven ID-first action semantics and exhaustive handling are accepted |
 | Runtime trust and state compatibility | `ARC-05`, `EXP-01` | resolved | Structured action validation and current/v0/corrupt/unknown state behavior are accepted for store adoption |
@@ -210,6 +209,8 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-24 | Approved and reconciled the five-territory Home architecture | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`, `V-34` through `V-36` | Home becomes the target work index; About remains separate; fixed anchors and attention-weighted atmospheric melding are sequenced in Plan `21`; `/projects` remains unchanged until migration passes |
+| 2026-07-24 | Finalized the shared-home music proof input | `ART-12`, `CAP-ART-014`, superseded `WI-ART-12-01` | Commits `79d3fda` and `68e0897` retain the actual Home renderer and set the translucent physical piano to `40%`; proof becomes the Music territory input |
 | 2026-07-24 | Rejected the separate music chamber and restored the homepage identity | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `20a047a` and Production deployment `dpl_E9ZRonBn2X9tUYgL5rijQdztsSga` delete the alternate compositor and render the same `HeroCube` used by `/`; only three faint platform rings and three low-intensity breathing lights differ, while the existing 10,000-point piano, painted threshold, portrait platform, camera, lighting, navigation, and motion remain shared; 218 tests, content, TypeScript, zero-error lint, 39-page build, shared public layer contract, and exact one-screen geometry pass |
 | 2026-07-24 | Accepted the archive interaction and released a Home/Museum music bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `4fc6cca` and Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb` shorten archive hover delay/turn to `1.5s`/`1.05s` and release `/projects/music-proof` with three independently breathing piano registers, five traveling currents, local resonators, and 220 motes; 221 tests, content, TypeScript, zero-error lint, 39-page build, exact one-screen public geometry, and zero public console errors pass |
 | 2026-07-23 | Isolated archive hover effects and added an infinite authored page cycle | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `67c96a3` and `7bf0d5c`, live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`, remove every legacy Museum-artwork hover reference, add proof-local refraction, curl pages around the spine, and cycle city, crystal-garden, and memory-instrument worlds on `2.4s` attended and `13.5s` idle delays; 216 tests, content, TypeScript, zero-error lint, build, one-screen geometry, and public `0 -> 1 -> 2` timing checks pass |
@@ -256,7 +257,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | 2026-07-16 | Completed graph-aware retrieval metadata | `KG-06`, `CAP-KG-007`, `O-02`, `WI-AI-02-01` | 93 tests/build and 42-document Firestore backfill/readback pass; quiet global shell is ready |
 | 2026-07-16 | Completed bounded graph queries and render adapters | `KG-05`, `CAP-KG-005`, `CAP-KG-006`, `O-01`, `WI-KG-06-01` | 88 tests and build accept visibility, limits, cycles, destinations, AI neighborhoods, and semantic edges; retrieval metadata is ready |
 
-Retain only the most recent ten meaningful entries here. Durable history belongs in Git and package evidence files.
+Read the newest entries first. Older rows are retained as compact chronology; package evidence and Git remain authoritative for detail.
 
 ## Reconciliation Checklist
 
@@ -266,7 +267,7 @@ Run this checklist at least at package start, merge, preview, production promoti
 - Every `working` state has named gaps and a work item.
 - Every `accepted` state has evidence.
 - Package status agrees with owned capability states and exit evidence.
-- Dashboard package counts match the work-package registry.
+- Dashboard named package states match the work-package registry.
 - Outcome stages name their last checkpoint and next proof point.
 - New scope has been added before attaching work or claiming completion.
 - Blockers name an owner and restart condition.
@@ -277,4 +278,4 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 ## Next Dashboard Update
 
-The next update occurs after the Museum keyframe has a named layer inventory and first driver matrix, or if a production regression changes the known-good baseline.
+The next update occurs when `KG-07` and `EXP-08` move from ready/pending to an implemented known-good checkpoint, or if a production regression changes the baseline.

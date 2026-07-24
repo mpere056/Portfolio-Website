@@ -56,6 +56,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ARC-03` | Destination registry | `ARC-02` | Validated registry for routes, areas, subdomains, safe state | Unit tests including unknown destination | complete |
 | `ARC-04` | Cross-system actions | `ARC-02`, `ARC-03` | Typed actions for depth, context, destination, stimulation, errors | Integration fixture without global browser events | complete |
 | `ARC-05` | Contract validation and migrations | `ARC-02`, `ARC-03`, `ARC-04` | Runtime validators, persisted-state migrations, compatibility rules | Old-version and invalid-payload tests | complete |
+| `ARC-06` | Home practice destinations and history migration | `ARC-03`, `ARC-05`, `KG-07` | Practice destination IDs, `/work/[practice]`, selected-state history, compatibility aliases, project return context, staged `/projects` migration | Resolver, Back/refresh, direct-entry, alias, metadata, rollback, and production route tests | pending |
 
 ## Knowledge And Content Packages
 
@@ -67,6 +68,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
 | `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | complete |
 | `KG-06` | Graph-aware RAG metadata | `KG-04`, `KG-05` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | complete |
+| `KG-07` | Practice taxonomy and project ownership | `KG-05`, `PRJ-08` | Four stable practice nodes, one primary practice per project, bounded practice queries, reviewed secondary links | Content validation and project-to-practice fixtures | ready |
 
 ## Experience Foundation Packages
 
@@ -79,6 +81,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `EXP-05` | Environmental response system | `EXP-02`, `KG-05` | Proximity/handle prototypes, semantic-light adapter, stimulation consumers | Three-rule prototype and review decision | complete |
 | `EXP-06` | Meaningful discovery registry | `EXP-01`, `KG-04` | Easter-egg schema, three initial discoveries, no completion UI | Tour exclusion and discovery tests | complete |
 | `EXP-07` | New-content disturbances | `EXP-01`, `LPS-04` | Version comparison, disturbance selector, seen behavior | Return-visitor integration test | pending |
+| `EXP-08` | Home attention and selected-practice behavior | `EXP-01`, `EXP-05`, `ARC-06` | Pure territory-attention reducer, hysteresis, input precedence, selected-state restore, tour/AI migration | Neutral, locality, focus, selection, calm, restore, and Back tests | pending |
 
 ## Global AI Packages
 
@@ -116,12 +119,13 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ART-09` | Remaining flagship dynamic compositions | `ART-07`, `ART-08`, `PRJ-05`, `PRJ-06` | Separate Dreamlife refraction and Sudoku shared-presence scene packets, materials, and runtimes | Causal, distinction, calm, test, build, and Production gates pass; ambient route acceptance moves to `ART-13` | implemented |
 | `ART-10` | Supporting-route dynamic compositions | `ART-07`, `ART-09`, `ART-05`, `ABT-01`, `AI-05` | Independently reasoned Home, About, AI, and reading dynamics with restrained route-specific layer packs | Causal route behavior, fallback, tests/build, and Production pass; ambient route acceptance moves to `ART-14` | implemented |
 | `ART-11` | Dynamic scene coherence and production maturation | `ART-07`, `ART-08`, `ART-09`, `ART-10` | Cross-route temporal, renderer, asset, context-loss, capability-tier, calm, and repetition review | Geometry, lifecycle, aggregate, and Production interaction evidence pass; final ambient acceptance moves to `ART-12` through `ART-15` | implemented |
-| `ART-12` | Ambient contract, asset decomposition, and Museum proof | `ART-11`, Mark's 2026-07-20 ambient feedback | Ordered `A-H` gates: baseline, Museum atlas/ledger, asset briefs, representative transparent/mask/map production, contact-sheet approval, compositor decision, coordinated integration, and release; `12A-E` complete, west and east bounded visuals accepted, central archive-core proof public for review | No-input, interaction, calm, stable, dead-zone, material, temporal-independence, foreground/background, performance, Production, and Mark review pass for `/projects` | in-review |
+| `ART-12` | Ambient contract, asset decomposition, and bounded Museum dialect proofs | `ART-11`, Mark's 2026-07-20 ambient feedback | Baseline, atlas/ledger, asset briefs, representative production/review, plus accepted coral, observatory, archive, and shared-home music proof inputs | Bounded proof tests, deployments, performance corrections, and Mark reviews retained; whole-Museum `12G/H` superseded by `ART-16` | implemented; integration superseded |
 | `ART-13` | Flagship ambient worlds | `ART-12`, `PRJ-05`, `PRJ-06` | Sequential LifeInbox, Dreamlife, and Sudoku route-local `Map -> Brief -> Produce -> Approve -> Select -> Integrate -> Accept` pipelines | Each flagship passes its idle-life and product-interaction matrix before production assets begin for the next; Production and Mark review pass | pending |
 | `ART-14` | Supporting-route ambient worlds | `ART-12`, `ART-13`, `ART-10`, `ABT-01`, `AI-05` | Sequential Home, About, AI, and reading route-local pipelines with restrained temporal density and reading-safe behavior | Representative no-input, reading, context, calm, fallback, and route-distinction reviews pass | pending |
 | `ART-15` | Pervasive motion maturation | `ART-12`, `ART-13`, `ART-14`, `QA-04` | Cross-route dead-zone closure, temporal desynchronization, material-credibility correction, asset/performance budgets, fatigue review, and Production evidence | Motion coverage ledgers contain no unexplained dominant dead zones; capability matrix, sustained observation, Production, and Mark acceptance pass | pending |
+| `ART-16` | Attention-weighted Home practice world | `ART-12`, `KG-07`, `ARC-06`, `EXP-08` | Five fixed territory anchors, shared attention compositor, neutral shell, Music/Play transition proof, sequential AI/Life/About integration, local response, calm/failure, performance boundaries | Stage `A-I` gates in Plan `21`; exact one-screen, melding, locality, renderer-budget, navigation, Production, and Mark review | ready; `A` accepted |
 
-## Project Museum Packages
+## Project Depth And Practice-Reveal Packages
 
 | ID | Package | Depends on | Deliverables | Exit evidence | Current status |
 | --- | --- | --- | --- | --- | --- |
@@ -133,6 +137,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework, `ART-04`, `LPS-03` | Valid Sudoku board, labeled computer participant, architecture trace, and lattice dialect | Product, architecture, deterministic interaction, and browser QA | complete |
 | `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06`, `ART-04`, `LPS-02` | Complete/archive lifecycle tiers, distinct signal silhouettes, reviewed state depth, retained discoveries | Every project classified; lifecycle-specific rendering and silhouette review | complete |
 | `PRJ-08` | Generalized direct routes and subdomain integration | `PRJ-04`, `ARC-03` | Static `/projects/[slug]`, canonical metadata, old-hash compatibility, reusable stage/history rules, corrected subdomain links | Route tests, refresh/depth browser QA, static production build | complete |
+| `PRJ-09` | Practice-territory project reveal | `PRJ-08`, `KG-07`, `ART-16` | Project instruments grouped by primary practice, depth handoff, cross-practice relationships, exact returns | Every project reachable; practice grouping, lifecycle, depth, subdomain, fallback, and browser QA | pending |
 
 ## About Packages
 
@@ -153,6 +158,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `QA-04` | Stimulation and capability QA | `EXP-05` | Sound-off, reduced motion, capability tier, frame-time checks | Target-device review evidence | pending |
 | `QA-05` | Release flag and rollback workflow | `BAS-03` | Preview/prod flags, rollback steps, error boundaries | Flagged feature promoted and rolled back in preview | complete |
 | `QA-06` | Tracking integrity and evidence reconciliation | `BAS-05` | Capability/package/work-item consistency checks, stale-status review, dashboard reconciliation | Audit finds no missing mappings, unsupported accepted states, or stale active work without a resume path | complete |
+| `QA-07` | Home-world integration and migration gate | `ART-16`, `PRJ-09`, `ARC-06`, `EXP-08`, `QA-04` | Functional, creative, capability, performance, accessibility, route migration, rollout, and rollback review | Preview/Production evidence plus Mark acceptance; `/projects` redirects only after a separate passing migration checkpoint | pending |
 
 ## Prototype Packages
 

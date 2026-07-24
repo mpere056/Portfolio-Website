@@ -1,6 +1,6 @@
 # Decision Register
 
-Last updated: 2026-07-20
+Last updated: 2026-07-24
 
 ## Plan Metadata
 
@@ -40,11 +40,15 @@ Track what is confirmed, what requires a prototype, what needs Mark's feedback, 
 | Progressive stimulation | Confirmed | Start calm; allow richer optional immersion. |
 | Desktop and mobile designed independently | Confirmed | Do not force one-to-one interaction parity. |
 | New content as disturbance | Confirmed | Create authored update markers and persistent discovery comparison. |
+| Home is the spatial work index | Confirmed | Consolidate project categories into Home; preserve a separate About route and individual project depth. |
+| Five fixed Home territories | Confirmed | About top, Music center, Play left, AI right, Life Systems bottom. |
+| Attention-weighted environmental melding | Confirmed | Keep anchors in place; let one dominant territory's atmosphere spread across the viewport while others recede. |
 
 ## Implementation Decisions
 
 | Date | Decision | Status | Consequence | Detailed record |
 | --- | --- | --- | --- | --- |
+| 2026-07-24 | Consolidate Home and project discovery into one five-territory attention-weighted world | Confirmed by Mark; implementation pending | `/` becomes the canonical spatial work index; About remains `/about`; four practices own projects; `/work/[practice]` provides durable selection; `/projects` migrates only after parity and rollback; accepted coral, observatory, archive, and music proofs become territory dialect inputs rather than one combined renderer | [Homepage Practice World Decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) |
 | 2026-07-20 | Use a hybrid one-clock WebGL compositor for the Museum material proof and generate directional current in code | Confirmed from Mark's material review and implemented as an isolated proof | Authored plates provide high-detail coral, organism, atmosphere, and occlusion matter; shaders/procedural geometry own deformation, refraction, illumination, caustics, advection, particles, and flow. The generated current plate is archival reference only and cannot enter runtime derivatives. `/projects/ambient-proof` gates `ART-12G`; `/projects` remains unchanged | [Hybrid Compositor Record](../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md) |
 | 2026-07-20 | Require pervasive temporal participation and decomposition-first ambient production | Confirmed from Mark's sustained visual review | Interaction response alone does not satisfy dynamic acceptance. `ART-12` runs baseline, mapping, asset brief, representative production, asset approval, compositor, integration, and release gates in order. Transparent production assets begin only after mapping/briefing and are approved before compositor selection. `ART-13` proceeds LifeInbox, Dreamlife, Sudoku; `ABT-01` gates About; `ART-14`, `QA-04`, then `ART-15` follow. Static compositions remain loading, reduced-motion, capture, and failure assets rather than the perceived standard scene | [Pervasive Ambient Worlds](2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md) |
 | 2026-07-19 | Extend the accepted static material system into route-owned layered dynamic scenes | Confirmed from Mark's dynamic-aesthetic feedback | Existing WebP compositions remain valid keyframes, posters, stable frames, and fallbacks. New route packets may combine authored raster layers, SVG, masks, DOM, Canvas, WebGL, shaders, particles, refraction, and existing 3D according to demonstrated need. Shared code owns bounded drivers/lifecycle, not one universal scene or background. `ART-07` proves the Museum model before route-by-route expansion | [Dynamic Scene Composition](20-Dynamic-Scene-Composition-And-Layered-Materials.md) |
@@ -128,8 +132,8 @@ These remain recorded without detailed planning.
 
 Resolve these in order as implementation approaches them.
 
-1. Approve or correct the portfolio lifecycle classification proposal.
-2. Select the first Museum Signal keyframe after the three visual alternatives are produced.
+1. Review the implemented primary-practice classification if any project placement feels wrong.
+2. Review neutral Home plus Music/Play transition proofs before the remaining territories are integrated.
 3. Select the first About event for a memory-room prototype when Phase 5 approaches.
 4. Decide whether the skill experiment is called a skill tree or evidence map after seeing it.
 

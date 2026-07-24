@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | superseded after accepted bounded proofs |
 | Priority | high |
 | Package | `ART-12` |
 | Capabilities | `CAP-ART-013`, `CAP-ART-014` |
@@ -16,9 +16,9 @@
 
 ## Current Truth
 
-Production `fce50af` is the known-good functional and interaction baseline. The Museum fits one desktop viewport, exposes nine collision-free project signals, contains increasing depth, responds to pointer and graph state, and preserves semantic and stable fallbacks. It does not yet satisfy pervasive ambient-world acceptance: the dominant raster composition remains temporally inert while smaller overlays move.
+This item produced accepted coral, east-observatory, archive-core, and shared-home music proof inputs. It did not complete whole-`/projects` integration. Mark's 2026-07-24 decision replaces that target with the five-territory Home world, so `ART-12G/H` are superseded rather than incomplete active work.
 
-The accepted correction is decomposition-first. West-ecology revision 4 is accepted. East-observatory revision 20 records Mark's selected values for all six families and replaces endpoint-wide hover with narrow route-segment attention plus a local shader field; Mark accepts its current visual state for now. Archive-core revision 4 is accepted with its code-generated deforming book, three cyclic pop-up worlds, stochastic miniature city, multi-axis orbital core, doorway, depth-split currents, atmosphere, particles, and proof-local response. A fourth bounded resonance-chamber proof now tests how the existing Home piano could enter the Museum without changing either canonical route. No static raster is the visible focal scene or hover response.
+The accepted correction is decomposition-first. West-ecology revision 4, east-observatory revision 20, archive-core revision 4, and the shared-Home music proof through `68e0897` are retained. No static raster is the visible focal scene or hover response in those accepted proof states.
 
 ## Resume Packet
 
@@ -28,8 +28,8 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 - Material proof: [ART-12D/E proof package](../../art-direction/2026-07-20-museum-ambient-proof/README.md) contains retained working sources, separated plates, control maps, deterministic assembly, alpha diagnostics, and manifest.
 - Compositor decision: [Hybrid Compositor Record](../../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md); the static current plate is explicitly excluded from runtime derivatives.
 - Observatory packet: [East Observatory Proof](../../art-direction/2026-07-21-museum-observatory-proof/README.md) contains retained generated sources, three alpha masters, diagnostics, deterministic derivatives, and the runtime layer contract.
-- Next exact action: Mark reviews public music revision 3 and decides whether the translucent body has the right prominence beneath the particle treatment.
-- After approval: complete `ART-12F`, then begin `ART-12G` integration without treating any one bounded proof as whole-Museum acceptance.
+- Final disposition: preserve accepted proof routes and records; do not begin `ART-12G/H`.
+- Successor: [WI-ART-16-01](../active/WI-ART-16-01.md) owns taxonomy, attention state, neutral Home, melding, project reveal, and migration.
 - Preserve: one-screen composition, all nine project destinations, graph-aware meaning, contained depth, semantic controls, stimulation behavior, reduced motion, failure poster, and current route/history behavior.
 - Do not begin with: a universal renderer, whole-image warping, parallax strips, generic particles, or route-wide synchronized breathing.
 
@@ -42,9 +42,9 @@ The accepted correction is decomposition-first. West-ecology revision 4 is accep
 | `ART-12C` Briefs | complete | Preserve/extract/manual/procedural/generate decision and production brief for each representative ingredient | Passed: Mark approved `1A, 2A, 3A` |
 | `ART-12D` Production | complete | Small transparent/mask/map/vector/sprite batch for one representative ecology crop | Passed: alpha cleanup and deterministic diagnostics complete; no later-route assets generated |
 | `ART-12E` Asset review | complete | Accepted/rejected contact sheet over diagnostic backgrounds and intended stack | Passed with revision: materials accepted for proof; directional-current plate is reference-only |
-| `ART-12F` Compositor | in-review | Bounded WebGL proofs for distinct Museum material districts | West ecology revision 4, east revision 20, and archive revision 4 are accepted; music revision 1 is rejected and shared-Home revision 2 awaits release |
-| `ART-12G` Integration | not-started | Coordinated ambient Museum preserving all existing interactive and semantic behavior | Local aggregate, idle-life, dead-zone, calm, failure, and performance checks pass |
-| `ART-12H` Release | not-started | Preview/Production captures, measurements, rollback record, and Mark review | `ART-13` may begin; otherwise record the failed gate and exact correction |
+| `ART-12F` Compositor | complete as bounded proof set | Bounded WebGL proofs for distinct Museum material districts | West ecology, east observatory, archive, and shared-Home music inputs accepted |
+| `ART-12G` Integration | superseded | Former coordinated whole-Museum integration | Replaced by `ART-16` Home integration |
+| `ART-12H` Release | superseded | Former whole-Museum release | Replaced by `QA-07` Home-world release and migration gate |
 
 Production transparent-background assets are generated only during `ART-12D`. Concept frames may inform `ART-12B/C`, but they are not production plates and cannot advance the work to `ART-12E/F`.
 

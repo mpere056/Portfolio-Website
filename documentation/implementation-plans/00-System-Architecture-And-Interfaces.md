@@ -1,6 +1,6 @@
 # System Architecture And Interface Contracts
 
-Last updated: 2026-07-19
+Last updated: 2026-07-24
 
 ## Plan Metadata
 
@@ -11,7 +11,7 @@ Last updated: 2026-07-19
 | Upstream | Comprehensive Website Vision, Decision Register, Information Architecture And Routing Decision, selected art direction |
 | Downstream | Every active implementation plan |
 | Primary outputs | Stable IDs, shared contracts, ownership boundaries, event vocabulary |
-| Execution packages | `ARC-01` through `ARC-05` |
+| Execution packages | `ARC-01` through `ARC-06` |
 | Capability tracking | `CAP-ARC-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Purpose
@@ -28,7 +28,7 @@ Use four distinct layers:
 
 | Layer | Owns | Examples |
 | --- | --- | --- |
-| Durable route | Independent loading, direct access, search/canonical metadata, and error boundary | `/`, `/about`, `/projects`, project subdomains, blog posts |
+| Durable route | Independent loading, direct access, search/canonical metadata, and error boundary | `/`, `/about`, `/work/[practice]`, `/projects/[slug]`, project subdomains, blog posts |
 | Semantic destination | Stable selected place and requested depth within or across routes | A timeline event, project exhibit, product experience, architecture layer |
 | Shareable safe state | Bounded validated state needed to restore a useful view | Selected part, authored scenario key, requested depth |
 | Transient interaction | Pointer, camera, animation, drag, local puzzle edit, and unreviewed scene state | Never treated as canonical navigation |
@@ -37,7 +37,23 @@ The destination resolver maps IDs to routes, selected areas, safe state, fallbac
 
 Browser Back closes the current meaningful depth state before leaving the durable route. Direct links restore at a safe checkpoint and never launch an unskippable animation.
 
-See `2026-07-16-Information-Architecture-And-Routing-Decision.md` for canonical, planned, legacy, internal, and gated route policy.
+See [Homepage Practice World And Routing Decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) for the active Home/work structure and `2026-07-16-Information-Architecture-And-Routing-Decision.md` for the retained route/state foundation.
+
+## Home World Ownership
+
+The Home practice world adds three distinct state layers:
+
+| Layer | Owner | Persistence |
+| --- | --- | --- |
+| Practice taxonomy | Authored content and graph compiler | Build-time, stable IDs |
+| Semantic attention | Pure Home-world reducer | Selected practice may persist; raw weights do not |
+| Rendered composition | Home compositor and territory dialects | Reconstructed from semantic state |
+
+`/` is the canonical spatial work index. `destination:practice-*` identifies durable selected-practice states, while transient territory weights stay local. `destination:projects` remains a stable compatibility alias during migration.
+
+The shared compositor may normalize attention weights, hysteresis, lifecycle, visibility, capability, and stable frames. Territory implementations own their anchor, atmosphere, material behavior, project metaphor, and selected-state choreography.
+
+At most one territory is dominant at a stable moment. Lightweight anchors remain mounted; expensive territory runtimes are visibility and dominance bounded. No contract may require mounting every proof renderer simultaneously.
 
 ## System Map
 
@@ -49,7 +65,7 @@ flowchart LR
     GRAPH --> AIAPI["AI retrieval and card tools"]
     GRAPH --> QUERIES["Graph query API"]
     QUERIES --> ABOUT["About connections"]
-    QUERIES --> MUSEUM["Project museum and evidence"]
+    QUERIES --> WORK["Home practices and project evidence"]
     QUERIES --> LIGHT["Semantic lighting"]
     QUERIES --> TOUR["Tour recommendations"]
     QUERIES --> SKILLS["Skill evidence prototype"]
@@ -59,12 +75,12 @@ flowchart LR
     ART["Accepted aesthetic art packets"] --> VISUAL
     VISUAL --> HOME
     VISUAL --> ABOUT
-    VISUAL --> MUSEUM
+    VISUAL --> WORK
     VISUAL --> SUB
 
     EXPERIENCE["Experience store"] --> HOME["First Note and Home"]
     EXPERIENCE --> TOUR
-    EXPERIENCE --> MUSEUM
+    EXPERIENCE --> WORK
     EXPERIENCE --> ABOUT
     EXPERIENCE --> AIUI["Global AI shell"]
 
@@ -73,7 +89,7 @@ flowchart LR
     AIUI --> DEST["Destination resolver"]
     DEST --> HOME
     DEST --> ABOUT
-    DEST --> MUSEUM
+    DEST --> WORK
     DEST --> SUB["Project subdomains"]
 
     STATE["Living project state"] --> COMP

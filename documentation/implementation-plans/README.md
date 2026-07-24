@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: Phase 4 interaction remediation is live at `fce50af`. `ART-12A-E` are complete. Revision 2 established the accepted quiet idle state; `ART-12F` revision 4 locally combines the grounded, independently animated proof with the exact production Museum membrane/aperture/mesh/particle hover pipeline. The public Museum renderer remains unchanged.
+Current checkpoint: `68e0897` is the known-good implementation. Coral, east-observatory, archive-core, and shared-home music proofs establish four accepted visual dialects; the music proof uses the real homepage renderer and a `40%` translucent piano body. Mark has approved replacing the separate Home/Projects primary structure with one five-territory Home world. Public routes remain unchanged while the new architecture begins additively.
 
-Current delivery order: Mark reviews the animated `ART-12F` route, then `12G` Museum integration and `12H` release. Then complete LifeInbox, Dreamlife, and Sudoku sequentially in `ART-13`; review `ABT-01`; complete Home, About, AI, and reading in `ART-14`; run `QA-04`; finish `ART-15`; then resume deeper About and living-operations work. [Program Roadmap](01-Program-Roadmap.md) is authoritative for ordering.
+Current delivery order: `ART-16A` planning reconciliation is complete. Implement practice taxonomy and the pure attention contract, build the neutral five-anchor shell, accept neutral-to-Music and neutral-to-Play melding, integrate AI, Life Systems, and About one at a time, then add project reveal and migrate destinations/routes under `QA-07`. [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md) is the active execution plan; [Program Roadmap](01-Program-Roadmap.md) remains authoritative for whole-program ordering.
 
 ## Document Authority
 
@@ -59,7 +59,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `02-Experience-Foundation.md` | Depth grammar, discovery, persistence, tour, stimulation, easter eggs | Active |
 | `03-Knowledge-Graph-And-Content.md` | Content schemas, relationships, validation, graph access | Active |
 | `04-Global-AI-And-Talking-Archive.md` | Site-wide AI, context, cards, RAG, navigation | Active |
-| `05-Projects-Museum-And-Case-Studies.md` | Museum system, project experiences, exploded layers | Active |
+| `05-Projects-Museum-And-Case-Studies.md` | Practice territories, project experiences, direct depth, exploded layers | Active |
 | `06-About-And-Memory-Depth.md` | Timeline inspection, knowledge connections, memory-room prototype | Active plus prototype |
 | `07-Living-Project-State.md` | Project lifecycle and edited current state | Active |
 | `08-Platform-Quality-And-Rollout.md` | State, performance, testing, privacy, observability, releases | Active |
@@ -75,18 +75,20 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
 | `19-Aesthetic-System-Integration-And-Delivery.md` | Cross-plan aesthetic contracts, route coverage, package sequencing, and partial-work handoffs | Active aesthetic integration control |
 | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | Layered material packs, route-owned scene logic, renderer decisions, causal motion, performance, and resumable delivery | Active dynamic-scene control |
-| `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and corrected execution sequence | Active corrective execution blueprint |
+| `21-Home-Practice-World-And-Attention-Compositor.md` | Five-territory Home, attention state, melding compositor, taxonomy, routing migration, and staged acceptance | Active current execution plan |
+| `2026-07-24-Homepage-Practice-World-And-Routing-Decision.md` | Canonical Home/Projects consolidation, positions, practices, routing, and migration guardrails | Approved decision |
+| `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and proof sequence | Retained proof foundation; Museum-only integration superseded by `ART-16` |
 | `2026-07-20-Museum-Ambient-Baseline.md` | Live `fce50af` geometry, source, interaction, semantic, fallback, idle, and runtime regression checksum | `ART-12A` complete execution artifact |
 | `2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md` | Source-normalized region atlas, depth/occlusion order, temporal bands, dead zones, and bounded proof crop | `ART-12B` complete execution artifact |
 | `2026-07-20-Museum-Ambient-Asset-Briefs.md` | Preserve/extract/manual/generate choices, palette, camera, alpha, maps, budgets, diagnostics, and eleven representative briefs | `ART-12C` review-ready execution artifact |
 | `2026-07-20-Museum-Dynamic-Creative-Review.md` | Two-minute plain-language summary of the dynamic result, first proof, motion character, exclusions, and three Mark decisions | Accepted `ART-12C` decision record: `1A, 2A, 3A` |
 | `../art-direction/2026-07-20-museum-ambient-proof/REVIEW.md` | Two-image, one-decision review for the real lower-left material stack | Completed `ART-12E` approval surface |
-| `../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md` | Hybrid renderer decision, procedural-current rejection, runtime systems, and local gate | Active `ART-12F` technical record; Mark reviews the route itself |
+| `../art-direction/2026-07-20-museum-ambient-proof/COMPOSITOR.md` | Hybrid renderer decision, procedural-current rejection, runtime systems, and local gate | Accepted proof input for `ART-16` |
 | `2026-07-19-Museum-Dynamic-Scene-Packet.md` | Executable Museum layer inventory, driver matrix, renderer decision, choreography, calm/failure matrix, and route ledger | Implemented candidate packet |
 | `2026-07-19-LifeInbox-Dynamic-Scene-Packet.md` | Executable LifeInbox state/material inventory, renderer decision, calm/failure matrix, acceptance gates, and resume ledger | Implemented candidate packet |
 | `2026-07-19-Remaining-Flagship-Dynamic-Scene-Packet.md` | Distinct Dreamlife refraction/recombination and Sudoku presence/version packets, truth correction, and resume ledger | Implemented candidate packet |
 | `2026-07-18-Aesthetic-Direction-Review.md` | Three coherent aesthetic directions and recommended synthesis for Mark's review | Active review |
-| `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved decision |
+| `2026-07-16-Information-Architecture-And-Routing-Decision.md` | Durable routes, semantic destinations, subdomains, depth/history, state ownership, and legacy routes | Approved foundation; Home/Projects amended by 2026-07-24 decision |
 | `2026-07-17-Phase-3-Vertical-Slice-Sequencing-Decision.md` | Candidate selection, museum integration, selected state, AI card, first-slice, and QA convergence order | Approved decision |
 | `2026-07-18-Aesthetic-Direction-Review.md` | Original A/B/C comparison and Mark's selected synthesis outcome | Resolved review |
 | `2026-07-18-Impossible-Observatory-Selection-Decision.md` | Selected visual world, reference analysis, material/color/motion vocabulary, project translations, guardrails | Approved decision |
@@ -99,7 +101,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 | Question | Read first | Then read |
 | --- | --- | --- |
-| What should we build next? | `13-Execution-Work-Packages.md` | `01-Program-Roadmap.md` |
+| What should we build next? | `21-Home-Practice-World-And-Attention-Compositor.md` | `../implementation-work/active/WI-ART-16-01.md` |
 | Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
 | How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |

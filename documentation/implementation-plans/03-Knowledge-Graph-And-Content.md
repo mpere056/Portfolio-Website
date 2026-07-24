@@ -1,6 +1,6 @@
 # Knowledge Graph And Content Plan
 
-Last updated: 2026-07-18
+Last updated: 2026-07-24
 
 ## Plan Metadata
 
@@ -11,7 +11,7 @@ Last updated: 2026-07-18
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), content inventory, [Living State](07-Living-Project-State.md) schema |
 | Downstream | [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md), semantic lighting, skill prototype |
 | Primary outputs | Shared loaders, schemas, graph compiler, reviewed subgraph, bounded queries |
-| Execution packages | `KG-01` through `KG-06` in [Work Packages](13-Execution-Work-Packages.md) |
+| Execution packages | `KG-01` through `KG-07` in [Work Packages](13-Execution-Work-Packages.md) |
 | Capability tracking | `CAP-KG-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
@@ -19,6 +19,8 @@ Last updated: 2026-07-18
 Expand the current MDX corpus into a validated, queryable relationship graph without abandoning authored files as the source of truth.
 
 Current status: `KG-01` through `KG-06` are complete. In addition to the shared 49-node/19-edge compiler and bounded queries, all 42 canonical Firestore chunks carry verified public graph metadata; retrieval supports bounded validated context, legacy compatibility, and destination-safe public source descriptors. `AI-03` now consumes this contract for contextual sources, while `EXP-05` and `EXP-06` use reviewed relationships and public nodes for semantic response and discoveries.
+
+`KG-07` is the next additive graph package. It introduces four stable practice nodes and one required primary-practice classification for each public project so the Home world can group work without duplicating it. Secondary relevance remains a reviewed graph relationship.
 
 ## Existing Foundation
 
@@ -91,6 +93,7 @@ type GraphNodeType =
   | 'problem'
   | 'lesson'
   | 'artifact'
+  | 'practice'
   | 'offering';
 
 interface GraphNode {
@@ -139,6 +142,7 @@ Add new types only when existing types cannot express a reviewed relationship cl
 
 Add:
 
+- `primaryPracticeId`
 - `lifecycle`
 - `capabilities`
 - `problemIds`
@@ -172,6 +176,26 @@ Add only fields with immediate use:
 - `seriesId` if a real series exists.
 
 Avoid speculative frontmatter fields with no consumer.
+
+### Practices
+
+Use the controlled IDs:
+
+- `practice:music-performance`
+- `practice:ai-possible-futures`
+- `practice:life-systems-tools`
+- `practice:play-community`
+
+Each project has exactly one primary practice. A reviewed relationship may connect it to other practices, skills, memories, or projects, but navigation ownership remains singular.
+
+Add bounded queries:
+
+- `getPractice(id)`
+- `practiceForProject(projectId)`
+- `projectsForPractice(practiceId)`
+- `relatedPractices(nodeId, limit)`
+
+Validation fails when a public project has no primary practice, an unknown practice, or multiple primary ownership declarations.
 
 ## Loader Consolidation
 

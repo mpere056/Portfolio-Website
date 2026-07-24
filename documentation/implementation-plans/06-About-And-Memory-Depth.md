@@ -51,6 +51,8 @@ The knowledge graph supplies these answers. The timeline does not invent connect
 
 About belongs to the same Observatory but is not another project museum. Its dialect is a chronological archive of traces, consequences, and remembered artifacts.
 
+The 2026-07-24 Home decision adds a top-of-world About portal. It is an illuminated memory opening that feels like the source behind the four practices, not a portrait, resume card, or fifth project category. Attention may reveal fragments and consequences, while explicit selection navigates to the existing `/about` chronology. The portrait already embedded beneath the Home piano is not duplicated.
+
 - The distant composition preserves a legible sense of time before revealing connections.
 - An inspected event changes local material, annotation, or sight lines; it does not open a generic detail card over the timeline.
 - Reviewed `led_to`, `learned_from`, and `continued_in` relationships may become a few authored lines, refracted traces, or consequence marks.

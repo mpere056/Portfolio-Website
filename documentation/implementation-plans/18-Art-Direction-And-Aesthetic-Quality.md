@@ -52,7 +52,7 @@ Corrective requirements:
 - Give all nine references accountable primary route homes without copying them.
 - Produce real visual keyframes with the exact portfolio content rather than treating a working browser scene as its own keyframe.
 - Use original raster/texture production, SVG notation, selective canvas/WebGL, and semantic HTML as a composed stack.
-- Require Home, Museum, and each flagship deepest scene to stand as artwork when interface furniture is removed.
+- Require neutral Home, each attended practice, About, and each flagship deepest scene to stand as artwork when interface furniture is removed.
 - Reopen `ART-01`, `ART-03`, `ART-04`, and the creative dimension of `QA-02` while retaining still-valid direction, behavior, content, route, and release evidence.
 
 ## Live Audit: 2026-07-18
@@ -149,9 +149,19 @@ These are rejection prompts, not a ban on individual CSS properties. A pill can 
 | Enter | Change the spatial or perceptual rules enough to feel inside the system | More content appearing below the same container |
 | Understand | Transform behavior into evidence, tradeoff, and connection | A row of architecture cards followed by links |
 
-## Museum Art Direction
+## Museum Proof Legacy And Home Territory Art Direction
 
-The museum lobby should feel curated without becoming a literal institutional museum.
+The completed Museum proofs remain the material laboratory for coral ecology, east-observatory instruments, archive memory, and the music bridge. They are no longer planned as one separate primary lobby. Their accepted materials and behaviors become dialect inputs to the Home practice world under `ART-16`.
+
+Home must not read as five panels or a portfolio dashboard. In neutral state, five anchored territories occupy one authored field. Under attention, an anchor gains bounded prominence while its atmosphere spreads much farther through masks, light, refraction, particles, fog, shadow, and occlusion. Neighboring materials overlap and recede; they do not simply shrink.
+
+| Territory | Dominant materials | Must preserve | Must avoid |
+| --- | --- | --- | --- |
+| About top | Aperture light, memory fragments, timeline traces, reflected consequences | A sense of origin behind the practices | Portrait duplication, resume panel, fifth project category |
+| Music center | Particle piano, spectral resonance, notation matter, portrait platform | Existing homepage identity and piano anchor | Replacing Home with a new chamber |
+| Play left | Coral, spores, currents, bioluminescence | Living ecological movement and local attention | Static coral focal poster |
+| AI right | Nacre lattice, lenses, orbital diagrams, cyan-gold currents | Selected observatory tuning and code-generated flow | Simultaneous global hover surge |
+| Life Systems bottom | Pages, paths, miniature architecture, memory light | Turning-page rhythm and authored worlds | Conventional bookshelf or card list |
 
 ### Required Changes
 
@@ -322,9 +332,9 @@ These are manual, repeatable prompts rather than numeric scores:
 9. `ART-09`: develop Dreamlife and Sudoku dynamic compositions separately, one route at a time.
 10. `ART-10`: reason through Home, About, AI, and reading dynamics independently rather than inheriting Museum behavior.
 11. `ART-11`: review temporal restraint, renderer loading, calm/failure states, route distinction, and whole-portfolio dynamic maturity.
-12. `ART-12`: run baseline, Museum mapping, asset briefing, representative production, asset approval, compositor selection, integration, and release in that order. Production transparent assets begin only after mapping and briefing.
+12. `ART-12`: retain the accepted bounded coral, observatory, archive, and music proofs as material and behavior evidence; Museum-only integration is superseded.
 13. `ART-13`: repeat the route-local pipeline for LifeInbox, then Dreamlife, then Sudoku. Do not produce the next route's assets before the current route reaches a known-good gate.
-14. Complete `ABT-01`, then `ART-14`: repeat the pipeline for Home, About, AI, and reading without copying flagship materials or stimulation density.
+14. `ART-16`: compose the five-territory Home in ordered neutral, two-transition, territory-by-territory, project-reveal, and release gates. Generate About portal production assets only after neutral composition fixes its real crop and depth role.
 15. Run `QA-04`, then `ART-15`: close motion coverage, capability, fatigue, performance, and Production/Mark acceptance across the desktop route matrix.
 
 Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.
@@ -336,7 +346,7 @@ Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02
 - Museum and LifeInbox remediation passes the diagnostic tests and renewed `QA-02` creative gate.
 - Six reference-family material studies, static keyframes, and rejected alternatives exist before full implementation.
 - Every supplied reference has an accountable primary route and visible translated quality; color or glow alone does not count as coverage.
-- Home, Museum, and each flagship deepest scene retain artistic composition when copy and utility controls are temporarily removed.
+- Neutral Home, every attended territory, About, and each flagship deepest scene retain artistic composition when copy and utility controls are temporarily removed.
 - Accepted art packets connect each major keyframe to real content, behavior, semantic inputs, calm/fallback states, and a performance envelope.
 - Utility controls, typography, material, motion, and darkness follow explicit hierarchies.
 - No flagship is promoted with placeholder or generic-template creative status.

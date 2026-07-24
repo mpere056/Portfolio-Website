@@ -88,7 +88,7 @@ Record before Phase 1:
 - Cold and warm model load times.
 - Largest 3D assets and textures.
 - Home frame rate on the target desktop machine.
-- Memory use after visiting Home, Projects, About, and AI.
+- Memory use after neutral Home, each attended practice, one project, About, and AI.
 - AI shell idle cost.
 - Current Vercel build duration.
 
@@ -282,6 +282,26 @@ Default safeguards:
 - Use at most one dominant continuous Canvas/WebGL scheduler per route unless measurement and review justify an exception.
 - Pause offscreen, hidden, reduced, or explicit stable-frame scenes and avoid competing animation loops. Normal idle is not a pause condition.
 - Keep core controls in semantic DOM and outside decorative hit testing.
+
+## Home Practice World Quality Gate
+
+`QA-07` evaluates the combined Home architecture and route migration. It does not accept the page merely because five anchors render.
+
+Required checks:
+
+- Neutral Home fits one reviewed desktop viewport and exposes five semantic destinations.
+- Music, Play, AI, Life Systems, and About each have separate attended stable frames.
+- Neutral-to-Music and neutral-to-Play recordings show broad atmospheric melding rather than rectangular layout resizing.
+- Pointer response is local; unrelated territories do not surge together.
+- One territory is dominant at a stable moment, with hysteresis preventing rapid flicker.
+- Keyboard focus and direct practice routes produce the same semantic result as pointer selection.
+- Only lightweight anchors and the approved dominant runtime remain active; renderer count, frame pacing, DPR, memory, and disposal are measured.
+- Lower stimulation, reduced motion, hidden tab, renderer failure, and context loss retain identity and navigation.
+- Every project appears under one validated primary practice and remains directly reachable.
+- Tour, AI cards, subdomain returns, Back, refresh, metadata, and restore use practice destinations.
+- `/projects` remains a rollback path until a separate compatibility migration checkpoint passes.
+
+The final gate requires both measured evidence and Mark's direct creative review. Screenshot stability alone cannot approve melding, temporal independence, or attention feel.
 - Fall back to the approved still composition when shaders, WebGL, assets, or capability checks fail.
 - Use one coordinated route clock with independently phased material bands rather than multiple unsynchronized frame loops or one global breathing waveform.
 - Cap DPR, texture memory, particle density, and shader passes per route packet; measure the fully animated idle state rather than only its stable poster.

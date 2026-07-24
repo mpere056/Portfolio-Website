@@ -5,6 +5,8 @@ Status: reviewed input for `ARC-03`
 Decision: `../implementation-plans/2026-07-16-Information-Architecture-And-Routing-Decision.md`
 Work item: `../implementation-work/active/WI-ARC-03-01.md`
 
+> **2026-07-24 amendment:** This remains the accepted inventory of existing IDs and routes. [Homepage Practice World And Routing Decision](../implementation-plans/2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) changes the target architecture: add four practice destinations, promote `/` as the work index, and make `destination:projects` plus `/projects` compatibility surfaces only after `ARC-06`/`QA-07` pass. Stable project IDs do not change.
+
 ## Purpose
 
 Classify the current, planned, compatibility, internal, and gated route surfaces before authoring destination-registry data. This inventory records visitor navigation truth; API routes, framework assets, and error pages are not destinations.
@@ -25,9 +27,10 @@ Destination status describes whether the semantic entry is usable. A canonical d
 
 | Surface | Current behavior | Class | Initial destination | Notes |
 | --- | --- | --- | --- | --- |
-| `/` | Live world/home route | canonical | `destination:home` | Safe global fallback |
+| `/` | Live world/home route; target five-territory work index | canonical | `destination:home` | Safe global fallback and future work overview |
 | `/about` | Live chronological About route | canonical | `destination:about` | Allows reviewed `event` safe state |
-| `/projects` | Live project overview/museum precursor | canonical | `destination:projects` | Allows reviewed `project` safe state |
+| `/work/[practice]` | Not implemented | planned | `destination:practice-*` family | Durable selected-practice state |
+| `/projects` | Live project overview during migration | current canonical; target compatibility | `destination:projects` | Do not redirect before migration gate |
 | `/projects#slug` | Live project section anchors | compatibility href | Stable project and museum destination IDs | Preserve until `/projects/[slug]` parity/redirect exists |
 | `/projects/[slug]` | Not implemented | planned | Route family, not directly resolvable yet | Flagships will transition/redirect to subdomains |
 | `/archive` | Not implemented | planned | `destination:archive` | Expanded state of global AI |
@@ -54,6 +57,17 @@ Destination status describes whether the semantic entry is usable. A canonical d
 | Kitsune Karuta | `project:kitsune-karuta` | `destination:project-kitsune-karuta` | `/projects#kitsune-karuta` | same destination until direct route exists |
 
 Stable destination IDs survive future href migration. Current anchors are implementation compatibility, not identity.
+
+## Planned Practice Destinations
+
+| Practice | Destination | Target href | Fallback before implementation |
+| --- | --- | --- | --- |
+| Music & Performance | `destination:practice-music` | `/work/music-performance` | `destination:home` |
+| AI & Possible Futures | `destination:practice-ai-futures` | `/work/ai-possible-futures` | `destination:home` |
+| Life Systems & Tools | `destination:practice-life-systems` | `/work/life-systems-tools` | `destination:home` |
+| Play & Community | `destination:practice-play` | `/work/play-community` | `destination:home` |
+
+`ARC-06` promotes these only after route and safe-state validation exists. Existing project and museum-return IDs remain stable; their hrefs migrate to the project's primary practice context later.
 
 ## Project Writing Inventory
 

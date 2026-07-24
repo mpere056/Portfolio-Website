@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-20
+Last updated: 2026-07-24
 
 ## Plan Metadata
 
@@ -53,6 +53,9 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-31` | Authored high-class aesthetics rather than a generic portfolio UI | `18`, `19`, `00`, `02` through `08` | `ART-01` through `ART-06`, `QA-02`, `PRJ-05` to `PRJ-07`, `ABT-02`, `AI-05` | `EV-ART-01-01` accepts the Impossible Observatory direction; packet selection, runtime foundation, representative remediation, route translations, coherence review, and renewed Mark acceptance remain |
 | `V-32` | Route-owned dynamic scenes built from independently responsive authored layers | `20`, `18`, `19`, `00`, `02`, `05`, `08` | `ART-07` through `ART-15` | Each route owns material layers, temporal mapping, stable/calm/failure states, measured renderer behavior, and creative acceptance without a universal composition engine |
 | `V-33` | Pervasive temporal participation across dominant visual regions | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan`, `20`, `18`, `19`, `00`, `02`, `05`, `06`, `08` | `ART-12` through `ART-15` | Standard-stimulation no-input captures show credible ambient life across every dominant region; fixed anchors participate through atmosphere, illumination, reflection, shadow, or occlusion; no poster-dominant dead zones remain |
+| `V-34` | Home is one spatial index for About and four project practices | `21`, `00`, `02`, `05`, homepage decision | `ARC-06`, `KG-07`, `ART-16`, `PRJ-09` | Neutral Home exposes five semantic territories; every project is reachable through one primary practice; About remains separate |
+| `V-35` | One territory dominates on a continuous attention spectrum | `21`, `02`, `20` | `EXP-08`, `ART-16` | Deterministic attention tests and interaction recordings prove neutral state, hysteresis, input precedence, one stable dominant target, and local response |
+| `V-36` | Territories meld atmospherically while anchors stay fixed | `21`, `18`, `19`, `20` | `ART-16`, `QA-07` | Music and Play transition proofs show broad overlapping fields without panel resizing; remaining territories pass the same creative and runtime gate |
 
 ## Requirement To Capability Control
 
@@ -78,7 +81,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | `KG` Knowledge | R | | - | | | | | P | R |
 | `AI` Global AI | R | P | R | - | P | | | P | R |
 | `ART` Art direction | | R | P | P | - | P | P | | R |
-| `PRJ` Museum | R | R | R | P | R | - | | R | R |
+| `PRJ` Practice/project depth | R | R | R | P | R | - | | R | R |
 | `ABT` About | R | R | R | P | R | | - | | R |
 | `LPS` Project state | R | | R | | | | | - | R |
 | `QA` Quality | R | | | | R | | | | - |
@@ -92,10 +95,9 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
 | Phase 3 First flagship | complete: `PRJ-01` through `PRJ-04`, `LPS-06`, `AI-04`, `QA-02` | LifeInbox full vertical slice passes product, route, state, AI, fallback, performance, creative, and corrected Preview acceptance |
 | Phase 4 Remaining flagships | functional, lifecycle, routing, AI, and interaction work is live through `fce50af`; earlier art packages are retained implemented foundations | Three distinct flagship experiences, lifecycle-driven historical depth, canonical routes, connected state, AI migration, keyframes, original matter, and supporting-route interaction pass public verification |
-| Phase 4E ambient Museum and flagships | current: `ART-12` in-progress through the `12C` review gate, then `ART-13`; earlier `ART-07` through `ART-11` are paused interaction foundations | Museum baseline and mapping are complete; production assets start only after the review-ready briefs are accepted; LifeInbox, Dreamlife, and Sudoku then pass separately before the next route produces assets |
-| Phase 5 About content and supporting ambient translation | `ABT-01`, then `ART-14`; later `ABT-02` to `ABT-04` | Reviewed About consequences precede About ambient integration; Home, About, AI, and reading retain separate route languages |
-| Whole-portfolio ambient maturation | `QA-04`, then `ART-15`; `QA-03` remains with living operations | Representative desktop route classes pass motion coverage, temporal independence, calm/fallback, capability, performance, Production, and Mark review while mobile/music remain later |
-| Phase 5 About depth continuation | `ABT-02` to `ABT-04`; consumes reviewed `ABT-01` prepared before `ART-14` | Five events inspectable; memory prototype decided |
+| Phase 4F Home practice world | `KG-07`, `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`; consumes accepted `ART-12` proofs | Taxonomy, attention, neutral shell, two-transition proof, remaining territories, project reveal, route migration, Production, and Mark gates pass in order |
+| Later route ambient continuation | `ART-13` through `ART-15`, `QA-04`; resequenced after `ART-16` | Route-local work resumes only from real shared seams established by the Home-world compositor |
+| Phase 5 About content and depth | `ABT-01` through `ABT-04`; top Home portal may precede deeper consequence work | About portal remains separate from the chronology; five events become inspectable and the memory prototype is decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |
 | Experimental | `PXP-01`, `PXP-03` | Each active prototype gets keep, revise, or remove decision; `PXP-02` remains later |
 

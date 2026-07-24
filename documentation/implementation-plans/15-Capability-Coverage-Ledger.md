@@ -244,6 +244,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
+| `CAP-KG-008` | Stable practice taxonomy and one primary practice per project | `KG-07` | `V-11`, `V-34` | `O-04` | 3 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
 
 ### CAP-KG-007: Graph-Aware Retrieval Metadata And Sources
 
@@ -311,6 +312,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
+| `CAP-EXP-015` | Continuous Home territory attention, hysteresis, and selected-state restore | `EXP-08` | `V-02`, `V-05`, `V-35` | `O-01` | 5 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
 
 ### CAP-EXP-009 Through CAP-EXP-011: Environmental Response And Stimulation
 
@@ -497,10 +499,13 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-010` | LifeInbox state-driven dynamic material transformation | `ART-08` | `V-03`, `V-04`, `V-15`, `V-17`, `V-32` | `O-03`, `O-04` | 5 | `S: accepted; C: implemented; A: accepted; I: accepted; T: accepted; Q: in-review; R: not-started` | implemented (`EV-ART-08-01`) |
 | `CAP-ART-011` | Distinct flagship and supporting-route dynamic compositions | `ART-09`, `ART-10` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-18`, `V-32` | `O-01`, `O-02`, `O-04`, `O-05` | 8 | `S: accepted; C: implemented; A: accepted; I: implemented; T: implemented; Q: in-review; R: not-started` | implemented (`EV-ART-09-01`, `EV-ART-10-01`) |
 | `CAP-ART-012` | Dynamic scene calm, failure, performance, and production maturity | `ART-07` through `ART-11` | `V-22`, `V-25`, `V-31`, `V-32` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: implemented; A: accepted; I: implemented; T: accepted; Q: in-review; R: accepted` | implemented (`EV-ART-11-03`, `EV-ART-11-04`) |
-| `CAP-ART-013` | Ambient participation contract, motion coverage ledger, and coordinated scene clock | `ART-12` | `V-22`, `V-31`, `V-32`, `V-33` | `O-01`, `O-04` | 3 | `S: accepted; C: implemented; A: working; I: not-started; T: not-started; Q: not-started; R: not-started` | in-progress |
-| `CAP-ART-014` | Decomposed material production pipeline and Museum ambient proof | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: working; T: implemented; Q: in-review; R: not-started` | in-review |
+| `CAP-ART-013` | Ambient participation contract, motion coverage ledger, and coordinated scene clock | `ART-12` | `V-22`, `V-31`, `V-32`, `V-33` | `O-01`, `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified proof foundation |
+| `CAP-ART-014` | Decomposed material production pipeline and bounded Museum dialect proofs | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified proof foundation |
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-ART-017` | Five-anchor neutral Home composition and shared attention compositor | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-ART-018` | Fixed-anchor atmospheric melding and local territory response | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-ART-019` | Home territory runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -614,23 +619,20 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: preserve their contracts during `ART-12`; reopen only a named interaction, state, lifecycle, or renderer regression.
 - Last assessed: 2026-07-20.
 
-### CAP-ART-013 Through CAP-ART-016: Pervasive Ambient Worlds
+### CAP-ART-013 Through CAP-ART-019: Ambient Proofs And Home-World Integration
 
 - Owner: Codex with Mark creative review
-- Lifecycle: `CAP-ART-013/014` in-progress; `CAP-ART-015/016` planned
+- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017` ready; `CAP-ART-018/019` planned
 - Health: on-track
-- Confidence: high in the corrected production model, Museum mapping, representative material pipeline, and selected hybrid compositor; full-Museum runtime evidence does not yet exist
-- Dimension states: `CAP-ART-013 C` implemented and `A` working; `CAP-ART-014 C/A/T` implemented, `I` working, and `Q` in-review; production integration and release remain not-started
-- Packages: `ART-12` through `ART-15`
-- Works now: Production `fce50af` supplies the functional baseline. `ART-12A-E` pass. The isolated `ART-12F` route combines accepted plates with one WebGL clock and procedural deformation, refraction, current, atmosphere, caustics, particles, and traversal; normal/reduced-motion and bounded-transfer gates pass locally.
-- Named gaps: Mark's animated proof acceptance, integration with all nine Museum signals and graph/depth/stimulation state, ten-second/full-region diagnostics, sustained performance/context-loss checks, dead-zone closure, and Production acceptance.
-- Safe exposure: retain `fce50af` as the public and rollback baseline until a Museum ambient candidate passes aggregate checks; stable posters remain available for reduced motion and renderer failure.
-- Evidence: none accepted for `V-33`; existing `EV-ART-11-03/04` document the interaction candidate and the newly superseded creative acceptance boundary.
-- Work item: `WI-ART-12-01` is in-progress.
-- Next checkpoint: Mark reviews `AB-MUS-01` through `AB-MUS-11`; once accepted, `ART-12D` produces only the representative west/lower ecology stack.
-- Last assessed: 2026-07-20 after completing `ART-12A/B` and making `ART-12C` review-ready.
+- Confidence: high in the accepted proof dialects and approved Home architecture; integrated neutral and transition evidence does not exist yet
+- Works now: `68e0897` retains the public functional site. Coral west ecology, east observatory, archive core, and shared-home music proofs have direct Mark review and tested/deployed checkpoints. The music proof uses the actual Home renderer and a `40%` translucent physical piano.
+- Named gaps: no project-practice taxonomy, pure attention reducer, neutral five-anchor composition, territory melding, About portal, project reveal, route migration, or integrated performance evidence exists.
+- Safe exposure: public `/` and `/projects` remain unchanged. Stable proof routes and posters remain available while `ART-16` begins additively.
+- Work item: `WI-ART-16-01` is ready. `WI-ART-12-01` is superseded after preserving its accepted proof results.
+- Next checkpoint: implement `KG-07` classification and the `EXP-08` pure attention contract without changing public route output.
+- Last assessed: 2026-07-24 at `68e0897`.
 
-## Museum And Shared Case-Study System
+## Project Depth And Practice-Reveal System
 
 | Capability ID | Capability | Package | Requirements | Outcome | Scope signal | Dimension state | Lifecycle |
 | --- | --- | --- | --- | --- | ---: | --- | --- |
@@ -642,6 +644,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified (`EV-PRJ-07-01`) |
 | `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-08-01`) |
+| `CAP-PRJ-009` | Practice-territory project grouping, reveal, and exact return | `PRJ-09` | `V-03`, `V-14`, `V-34` | `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
 ### CAP-PRJ-001: Typed Exhibit Registry, Loader, And Fallback Shell
 

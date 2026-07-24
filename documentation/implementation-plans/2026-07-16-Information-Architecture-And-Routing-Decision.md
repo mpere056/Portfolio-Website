@@ -1,9 +1,11 @@
 # Information Architecture And Routing Decision
 
 Date: 2026-07-16
-Status: approved
+Status: approved foundation; Home/Projects structure revised on 2026-07-24
 Requirements: `V-01`, `V-03`, `V-05`, `V-07`, `V-09`, `V-10`, `V-14`
 Packages: `ARC-02`, `ARC-03`, `ARC-05`, `EXP-01`, `EXP-02`, `AI-02`, `AI-04`, `PRJ-01`, `PRJ-08`
+
+> **Active amendment:** [Homepage Practice World And Routing Decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) replaces the separate Home and Museum-lobby model. `/` becomes the canonical work index, `/work/[practice]` becomes the planned durable category family, and `/projects` becomes a compatibility route after migration. The route/state principles, `/about`, `/projects/[slug]`, project subdomains, destination IDs, and history boundaries in this document remain valid.
 
 ## Decision
 
@@ -22,9 +24,10 @@ Shared transitions, AI, discovery state, stimulation controls, semantic lighting
 
 | Route | Role | Canonical status |
 | --- | --- | --- |
-| `/` | World atrium, First Note, return checkpoint, quiet orientation, tour entry, and major portals | canonical |
+| `/` | Five-territory Home world, First Note, return checkpoint, quiet orientation, tour entry, About portal, and canonical work index | canonical |
 | `/about` | Chronological personal environment with inspectable events and optional deeper memory states | canonical |
-| `/projects` | Museum lobby and overview for all projects | canonical |
+| `/work/[practice]` | Durable selected-practice chamber within the Home world | planned canonical route family |
+| `/projects` | Existing project overview during migration; later redirects to `/` | compatibility target after `ART-16`/`QA-07` |
 | `/projects/[slug]` | Stable direct project entry; flagship entries transition or redirect to their canonical subdomain, while smaller projects may render in the museum shell | planned canonical route family |
 | `/archive` | Optional expanded state of the global AI when the archive experience is ready | planned, not a primary navigation requirement |
 | `/chat` | Existing compatibility route during global-AI migration | legacy alias; do not remove until replacement deep links and failure handling pass |
@@ -33,14 +36,14 @@ Shared transitions, AI, discovery state, stimulation controls, semantic lighting
 
 `/templates` and its children are not part of the target information architecture because full website-template sales are no longer the intended direction. Preserve them only until a separate removal, archival, or redirect decision is verified. `/demo` is development/reference surface, not a visitor destination.
 
-## Project Museum And Subdomains
+## Home Practice World, Project Depth, And Subdomains
 
-The main `/projects` route is the museum lobby. It supports fast overview and the early depth stages for all projects.
+The main `/` route becomes the spatial overview for About and all four project practices. A selected practice may use `/work/[practice]`; individual projects retain `/projects/[slug]` and canonical subdomain behavior. The existing `/projects` route remains untouched until the additive migration and rollback gate passes.
 
 For flagship projects with subdomains:
 
-- Signal and Approach belong in the main museum.
-- Handle may begin in the museum as a lightweight preview.
+- Signal and Approach belong in the selected Home practice territory.
+- Handle may begin there as a lightweight preview.
 - Enter normally transitions into the canonical project subdomain.
 - Understand normally lives on the project subdomain through product behavior, exploded system, evidence, and living or final state.
 - A project may remain in place only when a prototype proves that cross-subdomain transition harms the experience more than it helps.
@@ -61,7 +64,7 @@ Each subdomain starts with one coherent project shell rather than many empty pag
 | `/blog` | Project writing index |
 | `/blog/[slug]` | Canonical project article |
 
-Every subdomain must return to its exact museum exhibit, not only to a generic portfolio homepage. Related memories, projects, articles, and AI cards use the same destination registry.
+Every subdomain must return to its exact project and primary practice context, not only to a generic portfolio homepage. Related memories, projects, articles, and AI cards use the same destination registry.
 
 ## Depth, URLs, And Browser History
 
@@ -113,7 +116,7 @@ The skill tree/evidence map remains a prototype, not a primary route. Memory roo
 
 ## Canonical And Legacy Behavior
 
-- Existing route fragments such as `/projects#slug` remain compatibility inputs until canonical destination resolution and redirects are verified.
+- Existing route fragments such as `/projects#slug` remain compatibility inputs until practice destinations, project returns, and redirects are verified.
 - Flagship duplicate content uses canonical metadata pointing to the project subdomain.
 - Project articles remain canonical on their subdomain even if a future `/writing` index aggregates them.
 - Old `/chat` links remain valid during migration.
@@ -158,7 +161,7 @@ Rejected because browser origin isolation makes it technically false without a s
 
 - Do not add a route merely because a depth state exists.
 - Do not encode arbitrary scene state in URLs.
-- Do not duplicate flagship canonical content between `/projects` and subdomains.
+- Do not duplicate flagship canonical content between Home practice states and subdomains.
 - Do not remove legacy routes before redirects and production evidence exist.
 - Do not wire tours, AI cards, or graph links to raw URLs; use destination IDs.
 - Do not add global visitor persistence beyond non-sensitive approved fields without privacy review.

@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-21
+Last reconciled: 2026-07-24
 
 ## Purpose
 
@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in review: `ART-12A-E` are complete, west-ecology revision 4 is accepted, and east-observatory revision 16 retains the decomposed 700-particle scene while replacing the rejected custom flow interpretation with one source-faithful LaserFlow calibration plane. Native control semantics must be reviewed before final flow composition or affected-computer performance tuning. Production `/projects` remains unchanged.
+`68e0897` is the known-good implementation and public route structure is unchanged. `WI-ART-16-01` is ready: the five-territory Home decision, attention-weighted melding model, package sequence, and tracking contracts are reconciled. The accepted coral, observatory, archive, and music proofs are retained as inputs; they are not mounted together and no `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-review | `ART-12` | West ecology accepted; source-faithful east revision 16 calibration is ready for release | Mark verifies native control semantics; Codex then composes route-specific currents and profiles performance before completing `12F` | 2026-07-22 |
-| Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox route work item only after Museum acceptance | 2026-07-20 |
-| Later | not created | planned | `ART-14` | Waits on `ART-13` checkpoints and reviewed `ABT-01` content | Create the Home route work item when dependencies pass | 2026-07-20 |
+| Now | `WI-ART-16-01` | ready | `ART-16` | Planning checkpoint `A` accepted | Implement `KG-07` practice taxonomy and `EXP-08` pure attention state without changing public routes | 2026-07-24 |
+| Next | `WI-ART-16-01` | not-started checkpoint | `ART-16D` | Waits on taxonomy and attention tests | Build the neutral five-anchor shell | 2026-07-24 |
+| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16E-I` | Each stage waits on the preceding accepted gate | Music/Play proof, remaining territories, project reveal, migration, release | 2026-07-24 |
 
 ## Active And Unfinished Items
 
@@ -32,7 +32,7 @@ Phase 4's interaction candidate is live at `fce50af`. `WI-ART-12-01` is in revie
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | paused | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-20 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | paused | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-20 |
 | `WI-ART-11-01` | Mature the dynamic scene system | paused | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
-| `WI-ART-12-01` | Prove pervasive ambient life in the Museum | in-review | high | `ART-12` | `CAP-ART-013`, `CAP-ART-014` | `active/WI-ART-12-01.md` | 2026-07-20 |
+| `WI-ART-16-01` | Build the attention-weighted Home practice world | ready | high | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-EXP-015`, `CAP-KG-008`, `CAP-PRJ-009` | `active/WI-ART-16-01.md` | 2026-07-24 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 
@@ -46,6 +46,7 @@ Package-level future work remains in `../implementation-plans/13-Execution-Work-
 
 | Work item | Final state | Package | Result | Evidence | Closed |
 | --- | --- | --- | --- | --- | --- |
+| `WI-ART-12-01` | superseded | `ART-12` | Accepted coral, observatory, archive, and shared-home music proofs retained; whole-`/projects` integration replaced by `ART-16` | Proof routes, art-direction records, tests, deployments, and Mark reviews through `68e0897` | 2026-07-24 |
 | `WI-LPS-02-01` | done | `LPS-02` | Nine lifecycle classifications and state corpus recorded with correction paths | `EV-LPS-02-01`, `EV-LPS-03-01` | 2026-07-18 |
 | `WI-ART-01-01` | done | `ART-01` | Impossible Observatory direction and reference interpretation accepted; visual production later reopened separately | `EV-ART-01-01` | 2026-07-18 |
 | `WI-QA-05-01` | done | `QA-05` | Approved Phase 3 flags promoted; public museum, subdomains, AI card, exact Handle route, and rollback verified | `EV-QA-05-01` | 2026-07-18 |

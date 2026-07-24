@@ -11,14 +11,14 @@ Last updated: 2026-07-19
 | Upstream | [Architecture](00-System-Architecture-And-Interfaces.md), [Knowledge Graph](03-Knowledge-Graph-And-Content.md), [Quality](08-Platform-Quality-And-Rollout.md) |
 | Downstream | Home, [Global AI](04-Global-AI-And-Talking-Archive.md), [Projects Museum](05-Projects-Museum-And-Case-Studies.md), [About](06-About-And-Memory-Depth.md) |
 | Primary outputs | Depth controller, discovery store, First Note, tour, stimulation, disturbances |
-| Execution packages | `EXP-01` through `EXP-07` in [Work Packages](13-Execution-Work-Packages.md) |
+| Execution packages | `EXP-01` through `EXP-08` in [Work Packages](13-Execution-Work-Packages.md) |
 | Capability tracking | `CAP-EXP-*` in [Capability Ledger](15-Capability-Coverage-Ledger.md) |
 
 ## Scope
 
 Phase 2 status: `QA-01` and `EXP-02` through `EXP-06` are complete through `51b2e7d`. The accepted shell combines versioned persistence, five-stage depth, First Note, any-order tour, graph-aware environmental response, continuous stimulation, and three meaningful free-exploration discoveries. Aggregate release evidence is tracked by `WI-QA-01-02`; Development/Preview defaults are on and Production remains deliberately off pending creative review.
 
-Implement the shared interaction system used by Home, Projects, About, AI navigation, and future experiences:
+Implement the shared interaction system used by the Home practice world, project depth, About, AI navigation, and future experiences:
 
 - Five-stage depth grammar.
 - Discovery physics.
@@ -149,6 +149,8 @@ The depth controller supplies semantic state; it does not select a color, layout
 Shared experience code may expose depth and transition reason, discovery, selected relationship, current destination, stimulation, reduced-motion state, a stable settled-frame signal, and utility roles for tour, AI, navigation, and recovery. It must not expose a universal `DepthCard`, one transition animation for every stage, or a global palette switch for projects. `ART-02` may add semantic visual roles only after the selected Museum and LifeInbox packets prove a shared need.
 
 `ART-07` may add a bounded scene-driver adapter after the Museum proof. It can normalize pointer/focus capability, route visibility, selection, depth, reviewed relationships, stimulation, and stable-frame requests. It cannot decide layer inventory, renderer, shader, camera, material response, or choreography. Those remain route-owned under `20-Dynamic-Scene-Composition-And-Layered-Materials.md`.
+
+`EXP-08` adds the Home-world attention contract. It owns neutral state, continuous bounded weights, dominance thresholds, hysteresis, input precedence, explicit selection, restore, and Back semantics. It does not own territory visuals. Pointer proximity may nominate one territory, but only focus or selection may immediately override the settled dominant target. Raw weights and animation phases are never persisted or encoded in URLs.
 
 Environmental response should migrate from an isolated instrument into the owning route only when the response makes a project, relationship, discovery, or depth transition clearer. Do not persist continuous visual values; save semantic state and reconstruct an intentional settled composition.
 
