@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-24
-Implementation commit baseline: `fce50af`; latest bounded proof Production: `7bf0d5c`
+Implementation commit baseline: `fce50af`; latest bounded proof Production: `4fc6cca`
 
 ## Plan Metadata
 
@@ -43,7 +43,7 @@ This distinction prevents two errors:
 | `ready` | 0 | No package is waiting to start; the only primary package is already active |
 | `in-progress` | 0 | The active proof remains represented by the single `ART-12F` in-review package rather than double-counted |
 | `implemented` | 10 | `ART-01`, `ART-03` through `ART-06`, and `ART-07` through `ART-11` are coded and public; their interaction evidence remains valid while ambient creative acceptance moves to `ART-12` through `ART-15` |
-| `in-review` | 1 | `ART-12F` has three accepted districts and one local music-bridge proof awaiting release and review |
+| `in-review` | 1 | `ART-12F` has three accepted districts and one public music-bridge proof awaiting creative review |
 | `pending` | 11 | Phase 5+ and ambient route-expansion packages wait on their intended sequence or feedback gates |
 | `reopened` | 1 | Renewed creative `QA-02` retains valid public/functional evidence and waits on the evolving creative acceptance path |
 | `decision-gated` | 0 | Phase 4 lifecycle classification is recorded with correction paths |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-12-01` | in-progress | `ART-12` | West revision 4, east revision 20, and archive revision 4 accepted; music chamber passes local validation | Release and review `/projects/music-proof` before deciding how the Home instrument joins `ART-12G` | 2026-07-24 |
+| Now | `WI-ART-12-01` | in-progress | `ART-12` | West revision 4, east revision 20, and archive revision 4 accepted; music chamber is public at `4fc6cca` | Review `/projects/music-proof` before deciding how the Home instrument joins `ART-12G` | 2026-07-24 |
 | Next | not created | planned | `ART-13` | Waits on accepted `ART-12H` Museum gate | Create the LifeInbox work item only after Museum acceptance | 2026-07-20 |
 | Later | not created | planned | `ART-14` | Waits on `ART-13` and reviewed `ABT-01` content | Create the Home work item when dependencies pass | 2026-07-20 |
 
@@ -210,7 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-24 | Accepted the archive interaction and implemented a Home/Museum music bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Archive hover delay/turn shorten to `1.5s`/`1.05s` without changing the slow idle rhythm; `/projects/music-proof` reuses the grand-piano GLTF as three independently breathing point registers with five traveling pressure currents, local resonators, and 220 notation motes; 221 tests, content, TypeScript, zero-error lint, and the 39-page build pass |
+| 2026-07-24 | Accepted the archive interaction and released a Home/Museum music bridge | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `4fc6cca` and Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb` shorten archive hover delay/turn to `1.5s`/`1.05s` and release `/projects/music-proof` with three independently breathing piano registers, five traveling currents, local resonators, and 220 motes; 221 tests, content, TypeScript, zero-error lint, 39-page build, exact one-screen public geometry, and zero public console errors pass |
 | 2026-07-23 | Isolated archive hover effects and added an infinite authored page cycle | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `67c96a3` and `7bf0d5c`, live in Production deployment `dpl_8UmN7Vv6YYgQz8JpT85S7xMN1BmK`, remove every legacy Museum-artwork hover reference, add proof-local refraction, curl pages around the spine, and cycle city, crystal-garden, and memory-instrument worlds on `2.4s` attended and `13.5s` idle delays; 216 tests, content, TypeScript, zero-error lint, build, one-screen geometry, and public `0 -> 1 -> 2` timing checks pass |
 | 2026-07-23 | Released and materially corrected the central authored-memory proof | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commits `8d386ef` and `0175f58`, live in Production deployment `dpl_GxZZuTaWwAYfwwv1vrVyBG8S1xL2`, replace the first clean block study with curved illuminated leaves, procedural cyan/amber tower windows, nested orbital geometry, five depth-crossing currents, bloom, vignette, atmosphere, and particles; public `1280 x 720` inspection confirms two canvases, exact one-screen geometry, local attention, and no renderer fallback |
 | 2026-07-23 | Applied Mark-selected observatory presets and localized hover | `ART-12F`, `CAP-ART-014`, `WI-ART-12-01` | Commit `9e85711` and deployment `dpl_ERWWTafLyB9CbBveLFH4oSFbin8x` make the six selected profiles authoritative under `v5`, constrain attention to each visible route segment, reduce unrelated global hover energy, and pass aggregate/build/public checks |

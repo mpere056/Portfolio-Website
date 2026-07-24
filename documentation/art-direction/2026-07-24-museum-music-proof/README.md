@@ -34,4 +34,6 @@ Five code-generated tube currents cross the chamber at different depths. A gener
 
 Archive-core revision 4 is accepted as the current authored-memory proof after its attended delay changed from `2.4s` to `1.5s` and attended turn duration changed from `1.45s` to `1.05s`. The slower `13.5s` autonomous rhythm is unchanged.
 
-The music chamber is implemented and locally verified. It is a review proof only: it does not yet merge `/` and `/projects`, replace the homepage, or authorize `ART-12G` whole-Museum integration.
+The music chamber is implemented in commit `4fc6cca` and live in Vercel Production deployment `dpl_53ZeqyWnwUXhBHGpfUZT1NydCBEb`. Public inspection confirms the canonical title, one Canvas, exact `1280 x 720` viewport/document geometry, no renderer-boundary error, and no console warnings or errors. The in-app review browser does not initialize the site's WebGL canvases, including the existing homepage Canvas, so Mark's normal-browser creative review remains the visual acceptance source.
+
+This is a review proof only: it does not yet merge `/` and `/projects`, replace the homepage, or authorize `ART-12G` whole-Museum integration.
