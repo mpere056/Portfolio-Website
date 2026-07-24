@@ -14,7 +14,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoints `A-C` accepted; private Stage `D` candidate passes local visual, interaction, test, and build gates | Deploy and collect Mark's neutral-shell review | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Stage `D` is live at the no-index review route in Production deployment `dpl_86HDa7ebRJhg227LWScj22hgFoW3` | Collect Mark's neutral-shell review | 2026-07-24 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16E` | Waits on neutral-shell acceptance | Prove neutral-to-Music and neutral-to-Play atmospheric melding | 2026-07-24 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16E-I` | Each stage waits on the preceding accepted gate | Music/Play proof, remaining territories, project reveal, migration, release | 2026-07-24 |
 

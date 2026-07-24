@@ -35,8 +35,9 @@ Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It
 - Approved behavior: fixed anchors; one dominant attention target; continuous inertial weights; broad atmospheric melding; inactive territories remain quiet and visible.
 - Performance boundary: lightweight persistent anchors, one dominant expensive dialect, one coordinated clock.
 - Verification: 56 test files / 232 tests, TypeScript, focused lint, 62-node content validation, the 40-page production build, and a `1440 x 900` no-console-error browser flow pass.
-- Review route: `/home-world-proof`.
-- Next exact action: deploy and review checkpoint `D`. Revise only named neutral-composition issues; after Mark accepts it, begin checkpoint `E` with neutral-to-Music and neutral-to-Play melding.
+- Review route: `https://www.marknperera.ca/home-world-proof`.
+- Deployment: Vercel Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`; `/`, `/projects`, and the no-index proof return `200`.
+- Next exact action: collect Mark's checkpoint `D` review. Revise only named neutral-composition issues; after acceptance, begin checkpoint `E` with neutral-to-Music and neutral-to-Play melding.
 
 ## Ordered Checkpoints
 
@@ -93,4 +94,5 @@ Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It
 - The complete 55-file / 229-test suite, TypeScript, content validation, and production build pass; public route output remains unchanged.
 - Checkpoint `D` added `/home-world-proof`, five fixed semantic anchors, the shared `HeroCube` piano identity, local selection/return behavior, and a proof-local optical matte without changing canonical routes.
 - The complete 56-file / 232-test suite, TypeScript, focused lint, 62-node content validation, 40-page build, and local `1440 x 900` browser flow pass at `557c7fb`.
+- GitHub `main` and Vercel Production deployment `dpl_86HDa7ebRJhg227LWScj22hgFoW3` contain the candidate; Home, Projects, and the no-index proof pass live smoke checks.
 - Stage `D` is in review. Stage `E` waits on Mark's neutral-shell acceptance.

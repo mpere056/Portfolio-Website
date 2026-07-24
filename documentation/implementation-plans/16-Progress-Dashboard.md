@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16D` | `557c7fb`: private shell passes 232 tests, TypeScript, lint, content validation, 40-page build, and local browser review; public routes unchanged | Deploy and collect Mark's neutral-shell review | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16D` | `557c7fb` is live in Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`; local gates and live route smoke pass | Collect Mark's neutral-shell review | 2026-07-24 |
 | Next | same work item | ready after review | `ART-16E` | Waits on neutral-shell acceptance | Prove Music and Play atmospheric melding without moving anchors | 2026-07-24 |
 | Later | same work item | not-started checkpoint | `ART-16E/F`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Prove Music/Play, then integrate remaining territories, project reveal, and migration | 2026-07-24 |
 
@@ -209,7 +209,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-24 | Implemented the additive neutral Home-world shell candidate | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Commit `557c7fb` adds `/home-world-proof`, five fixed semantic anchors, shared Home piano rendering, selection/return behavior, and optical correction; 232 tests, TypeScript, lint, content, 40-page build, and local browser review pass while canonical routes remain unchanged |
+| 2026-07-24 | Implemented and deployed the additive neutral Home-world shell candidate | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Commit `557c7fb`, live in Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`, adds the no-index `/home-world-proof`, five fixed semantic anchors, shared Home piano rendering, selection/return behavior, and optical correction; 232 tests, TypeScript, lint, content, 40-page build, local browser review, and live route smoke pass while canonical routes remain unchanged |
 | 2026-07-24 | Accepted the Home practice taxonomy and pure attention contract | `KG-07`, `EXP-08`, `ART-16B/C`, `EV-KG-07-01`, `EV-EXP-08-01` | Four stable practices, nine project classifications, bounded graph queries, and deterministic locality/hysteresis/selection/restore/Back/calm behavior pass 229 tests, TypeScript, content validation, and the 39-page build; public routes remain unchanged |
 | 2026-07-24 | Approved and reconciled the five-territory Home architecture | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`, `V-34` through `V-36` | Home becomes the target work index; About remains separate; fixed anchors and attention-weighted atmospheric melding are sequenced in Plan `21`; `/projects` remains unchanged until migration passes |
 | 2026-07-24 | Finalized the shared-home music proof input | `ART-12`, `CAP-ART-014`, superseded `WI-ART-12-01` | Commits `79d3fda` and `68e0897` retain the actual Home renderer and set the translucent physical piano to `40%`; proof becomes the Music territory input |

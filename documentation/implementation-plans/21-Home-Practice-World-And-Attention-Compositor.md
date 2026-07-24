@@ -237,6 +237,7 @@ Territory integration has one row per territory. A territory cannot be called co
 - Architecture decision: approved five-territory Home with About above, Music center, Play left, AI right, and Life Systems below.
 - Accepted non-visual foundation: four practices, nine project classifications, bounded graph queries, and a pure five-territory attention reducer pass the aggregate suite and production build.
 - Stage `D` candidate: `/home-world-proof` fits five fixed semantic anchors in one desktop viewport, reuses the actual `HeroCube`, selects and returns deterministically, mounts no complete proof runtime, and leaves canonical routes unchanged.
-- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, and local `1440 x 900` browser review with no console errors.
+- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, local `1440 x 900` browser review with no console errors, and live `200` smoke checks for Home, Projects, and the no-index proof.
+- Review artifact: `https://www.marknperera.ca/home-world-proof` in Vercel Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`.
 - Current gap: Mark has not accepted the neutral composition. React/history adoption, atmospheric melding, project reveal, and route migration remain absent.
-- Next exact action: deploy and review Stage `D`; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.
+- Next exact action: collect Mark's Stage `D` review; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.
