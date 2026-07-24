@@ -10,7 +10,7 @@ Last updated: 2026-07-24
 | Lifecycle | in-progress; pure contract accepted |
 | Capabilities | `CAP-EXP-015`, supporting `CAP-ART-017` |
 | Work item | `WI-ART-16-01` checkpoint `C` |
-| Implementation | Stage `B/C` implementation commit pending |
+| Implementation | `2608c6b` |
 | Exposure | Dormant pure state module; no React, route, or visual consumer yet |
 
 ## EV-EXP-08-01: Deterministic Territory Attention Contract

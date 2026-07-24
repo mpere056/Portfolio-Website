@@ -630,7 +630,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Safe exposure: public `/` and `/projects` remain unchanged. Stable proof routes and posters remain available while `ART-16` begins additively.
 - Work item: `WI-ART-16-01` is in progress at checkpoint `D`. `WI-ART-12-01` is superseded after preserving its accepted proof results.
 - Next checkpoint: build the lightweight neutral five-anchor Home shell around the accepted contract without migrating routes or mounting the complete proof renderers.
-- Last assessed: 2026-07-24 after the Stage `B/C` aggregate gate; implementation commit pending.
+- Last assessed: 2026-07-24 at `2608c6b`.
 
 ## Project Depth And Practice-Reveal System
 

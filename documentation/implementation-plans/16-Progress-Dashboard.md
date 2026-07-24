@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-24
-Implementation commit baseline: Stage `B/C` candidate verified; public route structure unchanged
+Implementation commit baseline: `2608c6b`; public route structure unchanged
 
 ## Plan Metadata
 

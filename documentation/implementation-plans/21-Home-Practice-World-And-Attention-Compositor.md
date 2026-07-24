@@ -232,7 +232,7 @@ Territory integration has one row per territory. A territory cannot be called co
 
 ## Current Resume Point
 
-- Known-good public implementation: `68e0897` on `main`; current public Home and project routes remain unchanged.
+- Known-good implementation: `2608c6b` on `main`; current public Home and project routes remain unchanged.
 - Accepted proof inputs: coral west ecology revision 4, east observatory selected tuning, archive-core page cycle, and shared-home music proof with the piano silhouette at `40%`.
 - Architecture decision: approved five-territory Home with About above, Music center, Play left, AI right, and Life Systems below.
 - Accepted non-visual foundation: four practices, nine project classifications, bounded graph queries, and a pure five-territory attention reducer pass the aggregate suite and production build.

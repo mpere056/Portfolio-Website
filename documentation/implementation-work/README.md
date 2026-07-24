@@ -10,7 +10,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-The known-good public route structure is unchanged. `WI-ART-16-01` is in progress: practice taxonomy and the pure attention contract are accepted, while the first visual integration has not begun. The accepted coral, observatory, archive, and music proofs remain bounded inputs; they are not mounted together and no `/projects` redirect has begun.
+`2608c6b` is the known-good implementation and the public route structure is unchanged. `WI-ART-16-01` is in progress: practice taxonomy and the pure attention contract are accepted, while the first visual integration has not begun. The accepted coral, observatory, archive, and music proofs remain bounded inputs; they are not mounted together and no `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |

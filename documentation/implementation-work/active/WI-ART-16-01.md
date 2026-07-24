@@ -27,7 +27,7 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 
 ## Resume Packet
 
-- Known-good commit: `68e0897` on `main`.
+- Known-good commit: `2608c6b` on `main`.
 - Public routes remain unchanged; no migration is partially deployed.
 - Approved map: About top, Music center, Play left, AI right, Life Systems bottom.
 - Approved behavior: fixed anchors; one dominant attention target; continuous inertial weights; broad atmospheric melding; inactive territories remain quiet and visible.
@@ -70,7 +70,7 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 ## Restart Procedure
 
 1. Read this file and the linked decision/plan.
-2. Verify `main` still contains `68e0897` or record the newer known-good commit.
+2. Verify `main` still contains `2608c6b` or record the newer known-good commit.
 3. Inspect repository status and preserve unrelated user changes.
 4. Open the current checkpoint only; do not start a later visual territory.
 5. Run focused tests, TypeScript, lint, content validation, then the aggregate suite/build when the checkpoint changes visitor behavior.
