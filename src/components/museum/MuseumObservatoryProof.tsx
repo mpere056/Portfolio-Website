@@ -35,7 +35,7 @@ import MuseumLaserFlowPlane from './MuseumLaserFlowPlane';
 import museumStyles from './MuseumShell.module.css';
 import styles from './MuseumAmbientProof.module.css';
 
-const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-laser-flow-composition-v4';
+const OBSERVATORY_TUNING_STORAGE_KEY = 'museum-observatory-laser-flow-composition-v5';
 
 type NumericFlowTuningKey = Exclude<keyof MuseumObservatoryFlowTuning, 'color'>;
 

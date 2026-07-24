@@ -41,6 +41,8 @@ export interface MuseumObservatoryFlowFamily {
   id: MuseumObservatoryFlowFamilyId;
   label: string;
   origin: readonly [number, number];
+  attentionStart: readonly [number, number];
+  attentionRadius: number;
   rotation: number;
   crop: readonly [number, number, number, number];
   filamentCount: number;
@@ -52,6 +54,30 @@ export interface MuseumObservatoryFlowFamily {
   opacity: number;
   timeOffset: number;
   order: number;
+}
+
+export function getMuseumObservatoryFlowAttention(
+  family: MuseumObservatoryFlowFamily,
+  pointer: readonly [number, number],
+  active: boolean,
+) {
+  if (!active) return 0;
+  const [pointerX, pointerY] = pointer;
+  const [startX, startY] = family.attentionStart;
+  const [endX, endY] = family.origin;
+  const routeX = endX - startX;
+  const routeY = endY - startY;
+  const routeLengthSquared = routeX * routeX + routeY * routeY;
+  const unclampedProgress = routeLengthSquared > 0
+    ? ((pointerX - startX) * routeX + (pointerY - startY) * routeY) / routeLengthSquared
+    : 0;
+  const progress = Math.min(1, Math.max(0, unclampedProgress));
+  const distance = Math.hypot(
+    pointerX - (startX + routeX * progress),
+    pointerY - (startY + routeY * progress),
+  );
+  const proximity = Math.min(1, Math.max(0, 1 - distance / family.attentionRadius));
+  return proximity * proximity * (3 - 2 * proximity);
 }
 
 export const MUSEUM_OBSERVATORY_FLOW_CONTROLS: MuseumObservatoryFlowTuning = {
@@ -74,42 +100,42 @@ export const MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS: MuseumObservatoryFlow
   'cyan-lead': {
     color: '#61edf0',
     horizontalSizing: 0.22,
-    verticalSizing: 4.25,
+    verticalSizing: 0.2,
     wispDensity: 1.35,
     wispSpeed: 17,
     wispIntensity: 6.2,
     flowSpeed: 1.18,
-    flowStrength: 0.84,
+    flowStrength: 0.14,
     fogIntensity: 0.16,
     fogScale: 0.34,
     fogFallSpeed: 0.72,
     decay: 2.2,
-    falloffStart: 2.05,
+    falloffStart: 0.6,
   },
   'gold-companion': {
     color: '#f3c96b',
     horizontalSizing: 0.16,
-    verticalSizing: 3.9,
+    verticalSizing: 0.2,
     wispDensity: 0.88,
     wispSpeed: 12.5,
     wispIntensity: 4.6,
-    flowSpeed: 0.92,
-    flowStrength: 0.74,
+    flowSpeed: 0.5,
+    flowStrength: 0,
     fogIntensity: 0.08,
     fogScale: 0.4,
     fogFallSpeed: 0.48,
-    decay: 1.95,
+    decay: 1,
     falloffStart: 1.72,
   },
   'copper-canopy': {
     color: '#e77d4f',
     horizontalSizing: 0.14,
-    verticalSizing: 4.8,
+    verticalSizing: 0.2,
     wispDensity: 1.05,
     wispSpeed: 10.5,
     wispIntensity: 4.8,
-    flowSpeed: 0.72,
-    flowStrength: 0.76,
+    flowSpeed: 1,
+    flowStrength: 0.14,
     fogIntensity: 0.09,
     fogScale: 0.28,
     fogFallSpeed: 0.44,
@@ -119,12 +145,12 @@ export const MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS: MuseumObservatoryFlow
   'ivory-undertow': {
     color: '#bfe4dc',
     horizontalSizing: 0.13,
-    verticalSizing: 4.35,
+    verticalSizing: 0.2,
     wispDensity: 0.95,
     wispSpeed: 9.5,
     wispIntensity: 4.1,
-    flowSpeed: 0.66,
-    flowStrength: 0.7,
+    flowSpeed: 0.78,
+    flowStrength: 0,
     fogIntensity: 0.07,
     fogScale: 0.31,
     fogFallSpeed: 0.4,
@@ -134,12 +160,12 @@ export const MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS: MuseumObservatoryFlow
   'nacre-arch': {
     color: '#a8c9c3',
     horizontalSizing: 0.1,
-    verticalSizing: 4.7,
+    verticalSizing: 5,
     wispDensity: 0.72,
     wispSpeed: 7.5,
     wispIntensity: 3.25,
-    flowSpeed: 0.52,
-    flowStrength: 0.52,
+    flowSpeed: 1,
+    flowStrength: 0.5,
     fogIntensity: 0.06,
     fogScale: 0.37,
     fogFallSpeed: 0.32,
@@ -149,12 +175,12 @@ export const MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS: MuseumObservatoryFlow
   'spectral-thread': {
     color: '#ead9ae',
     horizontalSizing: 0.08,
-    verticalSizing: 5,
+    verticalSizing: 1.25,
     wispDensity: 0.55,
     wispSpeed: 19,
     wispIntensity: 3,
-    flowSpeed: 1.35,
-    flowStrength: 0.72,
+    flowSpeed: 0.9,
+    flowStrength: 0.52,
     fogIntensity: 0.03,
     fogScale: 0.5,
     fogFallSpeed: 0.8,
@@ -168,6 +194,8 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
     id: 'copper-canopy',
     label: 'Copper canopy',
     origin: [0.94, 0.15],
+    attentionStart: [0.02, 0.09],
+    attentionRadius: 0.042,
     rotation: 1.57,
     crop: [0, 0.02, 1, 0.25],
     filamentCount: 9,
@@ -184,6 +212,8 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
     id: 'nacre-arch',
     label: 'Nacre arch',
     origin: [0.9, 0.17],
+    attentionStart: [0.1, 0.16],
+    attentionRadius: 0.034,
     rotation: 1.69,
     crop: [0.08, 0.05, 0.95, 0.27],
     filamentCount: 4,
@@ -200,6 +230,8 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
     id: 'ivory-undertow',
     label: 'Ivory undertow',
     origin: [0.76, 0.51],
+    attentionStart: [0.05, 0.72],
+    attentionRadius: 0.046,
     rotation: 1.93,
     crop: [0.02, 0.22, 0.82, 0.79],
     filamentCount: 10,
@@ -216,6 +248,8 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
     id: 'cyan-lead',
     label: 'Cyan lead',
     origin: [0.65, 0.43],
+    attentionStart: [0.03, 0.23],
+    attentionRadius: 0.048,
     rotation: 1.25,
     crop: [0, 0.13, 0.72, 0.63],
     filamentCount: 10,
@@ -232,6 +266,8 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
     id: 'gold-companion',
     label: 'Gold companion',
     origin: [0.67, 0.45],
+    attentionStart: [0.05, 0.31],
+    attentionRadius: 0.034,
     rotation: 1.34,
     crop: [0.04, 0.16, 0.73, 0.64],
     filamentCount: 5,
@@ -246,8 +282,10 @@ export const MUSEUM_OBSERVATORY_FLOW_FAMILIES = [
   },
   {
     id: 'spectral-thread',
-    label: 'Spectral thread',
+    label: 'Spectral lead',
     origin: [0.98, 0.37],
+    attentionStart: [0.02, 0.37],
+    attentionRadius: 0.028,
     rotation: 1.57,
     crop: [0, 0.29, 1, 0.49],
     filamentCount: 3,

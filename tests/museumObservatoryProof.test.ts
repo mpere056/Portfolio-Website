@@ -2,6 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  getMuseumObservatoryFlowAttention,
   MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_CONTROLS,
   MUSEUM_OBSERVATORY_FLOW_FAMILIES,
@@ -75,6 +76,7 @@ describe('Museum observatory compositor proof', () => {
     expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentCount >= 3)).toBe(true);
     expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentCount <= 10)).toBe(true);
     expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.filamentWidth <= 0.18)).toBe(true);
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.every(family => family.attentionRadius <= 0.05)).toBe(true);
     const croppedArea = MUSEUM_OBSERVATORY_FLOW_FAMILIES.reduce(
       (total, family) => total
         + (family.crop[2] - family.crop[0]) * (family.crop[3] - family.crop[1]),
@@ -116,6 +118,83 @@ describe('Museum observatory compositor proof', () => {
     ]);
   });
 
+  it('uses Mark-selected per-family tuning defaults', () => {
+    const selected = Object.fromEntries(
+      Object.entries(MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS).map(([id, tuning]) => [
+        id,
+        {
+          verticalSizing: tuning.verticalSizing,
+          flowSpeed: tuning.flowSpeed,
+          flowStrength: tuning.flowStrength,
+          decay: tuning.decay,
+          falloffStart: tuning.falloffStart,
+        },
+      ]),
+    );
+    expect(selected).toEqual({
+      'cyan-lead': {
+        verticalSizing: 0.2,
+        flowSpeed: 1.18,
+        flowStrength: 0.14,
+        decay: 2.2,
+        falloffStart: 0.6,
+      },
+      'gold-companion': {
+        verticalSizing: 0.2,
+        flowSpeed: 0.5,
+        flowStrength: 0,
+        decay: 1,
+        falloffStart: 1.72,
+      },
+      'copper-canopy': {
+        verticalSizing: 0.2,
+        flowSpeed: 1,
+        flowStrength: 0.14,
+        decay: 1.9,
+        falloffStart: 1.62,
+      },
+      'ivory-undertow': {
+        verticalSizing: 0.2,
+        flowSpeed: 0.78,
+        flowStrength: 0,
+        decay: 1.82,
+        falloffStart: 1.48,
+      },
+      'nacre-arch': {
+        verticalSizing: 5,
+        flowSpeed: 1,
+        flowStrength: 0.5,
+        decay: 1.62,
+        falloffStart: 1.3,
+      },
+      'spectral-thread': {
+        verticalSizing: 1.25,
+        flowSpeed: 0.9,
+        flowStrength: 0.52,
+        decay: 1.5,
+        falloffStart: 1.15,
+      },
+    });
+    expect(MUSEUM_OBSERVATORY_FLOW_FAMILIES.find(family => family.id === 'spectral-thread')?.label)
+      .toBe('Spectral lead');
+  });
+
+  it('limits hover energy to the route beneath the pointer', () => {
+    const copper = MUSEUM_OBSERVATORY_FLOW_FAMILIES.find(
+      family => family.id === 'copper-canopy',
+    )!;
+    const ivory = MUSEUM_OBSERVATORY_FLOW_FAMILIES.find(
+      family => family.id === 'ivory-undertow',
+    )!;
+    const copperMidpoint = [
+      (copper.attentionStart[0] + copper.origin[0]) / 2,
+      (copper.attentionStart[1] + copper.origin[1]) / 2,
+    ] as const;
+    expect(getMuseumObservatoryFlowAttention(copper, copperMidpoint, true)).toBe(1);
+    expect(getMuseumObservatoryFlowAttention(ivory, copperMidpoint, true)).toBe(0);
+    expect(getMuseumObservatoryFlowAttention(copper, copperMidpoint, false)).toBe(0);
+  });
+
   it('bounds continuous rendering work without freezing the ambient scene', () => {
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr).toBeLessThanOrEqual(0.9);
     expect(MUSEUM_OBSERVATORY_PERFORMANCE.idleFps).toBeLessThanOrEqual(24);
@@ -141,7 +220,7 @@ describe('Museum observatory compositor proof', () => {
     expect(proofSource).toContain('tuningRef={flowCompositionRef}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_BACK_FRAGMENT}');
     expect(proofSource).not.toContain('fragmentShader={LEGACY_FLOW_FRONT_FRAGMENT}');
-    expect(proofSource).toContain('museum-observatory-laser-flow-composition-v4');
+    expect(proofSource).toContain('museum-observatory-laser-flow-composition-v5');
     expect(proofSource).toContain('Observatory current controls');
     expect(laserSource).toContain('float flowPhase = normalizedY / max(FLOW_PERIOD, EPS) + uFlowTime * uFlowSpeed;');
     expect(laserSource).toContain('envelope *= mix(1.0 - uFlowStrength, 1.0, flow);');
@@ -163,9 +242,11 @@ describe('Museum observatory compositor proof', () => {
     expect(laserSource).toContain('horizontalBeam * uHorizontalContribution');
     expect(laserSource).toContain('const [minimumX, minimumY, maximumX, maximumY] = family.crop;');
     expect(laserSource).toContain('float cropMask = smoothstep(0.0, 0.045, vUv.x)');
-    expect(laserSource).toContain('const attention = pointerActive ? Math.exp(-distance * 5.5) : 0;');
+    expect(laserSource).toContain('getMuseumObservatoryFlowAttention(');
+    expect(laserSource).toContain('if (pointerActive && attention > 0)');
     expect(laserSource).toContain('liveUniforms.uHLenFactor.value = current.horizontalSizing;');
-    expect(laserSource).toContain('current.flowStrength + attention * 0.12');
+    expect(laserSource).toContain('current.flowStrength + attention * 0.04');
+    expect(laserSource).toContain('localAttention * 0.3');
     expect(laserSource).toContain('float filaments = filamentBundle(beamUv, beamLight + wisps * 0.12);');
     expect(laserSource).toContain('float pressure = exp(-pow(pressureDistance / 0.105, 2.0));');
     expect(laserSource).toContain('uFilamentCount');

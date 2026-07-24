@@ -4,6 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useRef, useState, type MutableRefObject } from 'react';
 import {
+  getMuseumObservatoryFlowAttention,
   MUSEUM_OBSERVATORY_PROOF_ASPECT,
   type MuseumObservatoryFlowComposition,
   type MuseumObservatoryFlowFamily,
@@ -372,14 +373,23 @@ const LASER_FLOW_FRAGMENT = /* glsl */`
     float radialFade = 1.0 - smoothstep(0.0, 0.7, length(beamUv) / 120.0);
     float fog = fogNoise * (uFogIntensity * 1.8) * bottomBias * beamMask * horizontalWeight * radialFade;
 
+    float localAttention = mouseActive * exp(
+      -distance(gl_FragCoord.xy, iMouse.xy) / max(iResolution.y * 0.052, 1.0)
+    );
     float lightAndFog = beamLight + fog;
     float filaments = filamentBundle(beamUv, beamLight + wisps * 0.12);
     float dither = (hash21(gl_FragCoord.xy) - 0.5) * (DITHER_STRENGTH / 255.0);
     float filamentTone = gammaEncode(filaments + wisps * 0.08);
     float atmosphereTone = gammaEncode(fog + beamLight * 0.018);
-    vec3 color = (filamentTone * 1.42 + atmosphereTone * 0.12) * uColor + dither;
+    vec3 color = (
+      filamentTone * (1.42 + localAttention * 0.3)
+      + atmosphereTone * (0.12 + localAttention * 0.035)
+    ) * uColor + dither;
     float alpha = clamp(
-      filamentTone * 0.94 + gammaEncode(fog) * 0.075 + beamLight * 0.012 + dither * 0.4,
+      filamentTone * (0.94 + localAttention * 0.14)
+        + gammaEncode(fog) * 0.075
+        + beamLight * 0.012
+        + dither * 0.4,
       0.0,
       1.0
     );
@@ -469,35 +479,38 @@ export default function MuseumLaserFlowPlane({
     const clampedDelta = Math.min(0.033, Math.max(0.001, delta));
     const pointerX = pointerTarget.current.x;
     const pointerY = 1 - pointerTarget.current.y;
-    const distance = Math.hypot(pointerX - family.origin[0], pointerY - family.origin[1]);
-    const attention = pointerActive ? Math.exp(-distance * 5.5) : 0;
+    const attention = getMuseumObservatoryFlowAttention(
+      family,
+      [pointerX, pointerY],
+      pointerActive,
+    );
 
     liveUniforms.iTime.value = clock.elapsedTime;
     liveUniforms.iResolution.value.set(width, height, dpr);
     liveUniforms.uFlowTime.value += clampedDelta;
     liveUniforms.uFogTime.value += clampedDelta;
-    if (pointerActive) {
+    if (pointerActive && attention > 0) {
       liveUniforms.iMouse.value.set(pointerTarget.current.x * width, pointerTarget.current.y * height, 0, 0);
     } else {
       liveUniforms.iMouse.value.set(0, 0, 0, 0);
     }
     liveUniforms.uWispDensity.value = current.wispDensity;
-    liveUniforms.uFlowSpeed.value = current.flowSpeed * (1 + attention * 0.55);
+    liveUniforms.uFlowSpeed.value = current.flowSpeed * (1 + attention * 0.12);
     liveUniforms.uVLenFactor.value = current.verticalSizing;
     liveUniforms.uHLenFactor.value = current.horizontalSizing;
-    liveUniforms.uFogIntensity.value = current.fogIntensity * (1 + attention * 0.25);
+    liveUniforms.uFogIntensity.value = current.fogIntensity * (1 + attention * 0.08);
     liveUniforms.uFogScale.value = current.fogScale;
-    liveUniforms.uWSpeed.value = current.wispSpeed * (1 + attention * 0.5);
-    liveUniforms.uWIntensity.value = current.wispIntensity * (1 + attention * 0.35);
+    liveUniforms.uWSpeed.value = current.wispSpeed * (1 + attention * 0.12);
+    liveUniforms.uWIntensity.value = current.wispIntensity * (1 + attention * 0.1);
     liveUniforms.uFlowStrength.value = THREE.MathUtils.clamp(
-      current.flowStrength + attention * 0.12,
+      current.flowStrength + attention * 0.04,
       0,
       1,
     );
     liveUniforms.uDecay.value = current.decay;
     liveUniforms.uFalloffStart.value = current.falloffStart;
     liveUniforms.uFogFallSpeed.value = current.fogFallSpeed;
-    liveUniforms.uFade.value = family.opacity * (1 + attention * 0.18);
+    liveUniforms.uFade.value = family.opacity * (1 + attention * 0.06);
     parseHexColor(current.color, liveUniforms.uColor.value);
   });
 
