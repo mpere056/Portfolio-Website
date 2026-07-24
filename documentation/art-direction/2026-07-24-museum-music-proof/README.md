@@ -28,6 +28,8 @@ Revision 4 responds to creative review that the body obscured too much of the pa
 
 Revision 5 retains the clean wireframe-free treatment and raises only the physical surface from `0.05` to `0.07` opacity after Mark found the corrected silhouette slightly too faint.
 
+Revision 6 tests Mark's requested `0.20` opacity while retaining the wireframe-free treatment.
+
 ## Boundaries
 
 - `/` continues to use `HeroCube` with its default `home` variant.
