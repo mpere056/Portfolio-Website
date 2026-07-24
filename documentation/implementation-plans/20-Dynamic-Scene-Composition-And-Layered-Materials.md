@@ -298,7 +298,7 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 ### `ART-16`: Home Practice World Integration
 
 - Reconcile plans and retain accepted proof outputs.
-- Implement practice taxonomy and pure attention contracts.
+- Practice taxonomy and pure attention contracts accepted on 2026-07-24.
 - Build the neutral five-anchor shell.
 - Prove neutral-to-Music and neutral-to-Play melding.
 - Integrate AI, Life Systems, and About sequentially.

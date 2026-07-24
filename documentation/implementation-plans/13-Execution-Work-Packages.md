@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-20
+Last updated: 2026-07-24
 
 ## Plan Metadata
 
@@ -68,7 +68,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `KG-04` | Initial reviewed subgraph | `KG-03`, `LPS-01` | Three flagships, five events, skills, posts, reviewed edges | Review sign-off and fixture snapshot | complete |
 | `KG-05` | Bounded query and render adapters | `KG-04`, `ARC-03` | Related-content, About, evidence, tour, semantic-edge queries | Deterministic ordering and visibility tests | complete |
 | `KG-06` | Graph-aware RAG metadata | `KG-04`, `KG-05` | Ingestion metadata, expansion/reranking, public source descriptors | Retrieval tests with current context | complete |
-| `KG-07` | Practice taxonomy and project ownership | `KG-05`, `PRJ-08` | Four stable practice nodes, one primary practice per project, bounded practice queries, reviewed secondary links | Content validation and project-to-practice fixtures | ready |
+| `KG-07` | Practice taxonomy and project ownership | `KG-05`, `PRJ-08` | Four stable practice nodes, one primary practice per project, bounded practice queries, reviewed secondary links | Content validation and project-to-practice fixtures | complete; secondary links remain optional future enrichment |
 
 ## Experience Foundation Packages
 
@@ -81,7 +81,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `EXP-05` | Environmental response system | `EXP-02`, `KG-05` | Proximity/handle prototypes, semantic-light adapter, stimulation consumers | Three-rule prototype and review decision | complete |
 | `EXP-06` | Meaningful discovery registry | `EXP-01`, `KG-04` | Easter-egg schema, three initial discoveries, no completion UI | Tour exclusion and discovery tests | complete |
 | `EXP-07` | New-content disturbances | `EXP-01`, `LPS-04` | Version comparison, disturbance selector, seen behavior | Return-visitor integration test | pending |
-| `EXP-08` | Home attention and selected-practice behavior | `EXP-01`, `EXP-05`, `ARC-06` | Pure territory-attention reducer, hysteresis, input precedence, selected-state restore, tour/AI migration | Neutral, locality, focus, selection, calm, restore, and Back tests | pending |
+| `EXP-08` | Home attention and selected-practice behavior | `EXP-01`, `EXP-05`, `ARC-06` | Pure territory-attention reducer, hysteresis, input precedence, selected-state restore, tour/AI migration | Neutral, locality, focus, selection, calm, restore, and Back tests | in-progress; pure contract accepted, route/tour/AI adoption pending |
 
 ## Global AI Packages
 
@@ -123,7 +123,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ART-13` | Flagship ambient worlds | `ART-12`, `PRJ-05`, `PRJ-06` | Sequential LifeInbox, Dreamlife, and Sudoku route-local `Map -> Brief -> Produce -> Approve -> Select -> Integrate -> Accept` pipelines | Each flagship passes its idle-life and product-interaction matrix before production assets begin for the next; Production and Mark review pass | pending |
 | `ART-14` | Supporting-route ambient worlds | `ART-12`, `ART-13`, `ART-10`, `ABT-01`, `AI-05` | Sequential Home, About, AI, and reading route-local pipelines with restrained temporal density and reading-safe behavior | Representative no-input, reading, context, calm, fallback, and route-distinction reviews pass | pending |
 | `ART-15` | Pervasive motion maturation | `ART-12`, `ART-13`, `ART-14`, `QA-04` | Cross-route dead-zone closure, temporal desynchronization, material-credibility correction, asset/performance budgets, fatigue review, and Production evidence | Motion coverage ledgers contain no unexplained dominant dead zones; capability matrix, sustained observation, Production, and Mark acceptance pass | pending |
-| `ART-16` | Attention-weighted Home practice world | `ART-12`, `KG-07`, `ARC-06`, `EXP-08` | Five fixed territory anchors, shared attention compositor, neutral shell, Music/Play transition proof, sequential AI/Life/About integration, local response, calm/failure, performance boundaries | Stage `A-I` gates in Plan `21`; exact one-screen, melding, locality, renderer-budget, navigation, Production, and Mark review | ready; `A` accepted |
+| `ART-16` | Attention-weighted Home practice world | `ART-12`, `KG-07`, `ARC-06`, `EXP-08` | Five fixed territory anchors, shared attention compositor, neutral shell, Music/Play transition proof, sequential AI/Life/About integration, local response, calm/failure, performance boundaries | Stage `A-I` gates in Plan `21`; exact one-screen, melding, locality, renderer-budget, navigation, Production, and Mark review | in-progress; `A-C` accepted, `D` ready |
 
 ## Project Depth And Practice-Reveal Packages
 

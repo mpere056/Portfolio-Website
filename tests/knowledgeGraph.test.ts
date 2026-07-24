@@ -11,12 +11,19 @@ describe('knowledge graph compiler', () => {
   it('compiles the current corpus and reviewed initial subgraph deterministically', async () => {
     const graph = await loadKnowledgeGraph();
     expect(graph.issues).toEqual([]);
-    expect(graph.nodes).toHaveLength(58);
+    expect(graph.nodes).toHaveLength(62);
     expect(graph.relationships).toHaveLength(28);
     expect(graph.relationships.map(relationship => relationship.id)).toEqual(
       [...graph.relationships].map(relationship => relationship.id).sort(),
     );
     expect(graph.nodes.filter(node => node.type === 'skill')).toHaveLength(10);
+    expect(graph.nodes.filter(node => node.type === 'practice').map(node => node.id).sort())
+      .toEqual([
+        'practice:ai-possible-futures',
+        'practice:life-systems-tools',
+        'practice:music-performance',
+        'practice:play-community',
+      ]);
   });
 
   it('rejects broken references, duplicate IDs, unreviewed public edges, and private leaks', () => {

@@ -244,7 +244,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-KG-005` | Deterministic bounded graph-query API | `KG-05` | `V-11`, `V-12` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-006` | Render adapters for related content and semantic edges | `KG-05` | `V-12`, `V-13` | `O-01` | 3 | `S: accepted; C: not-applicable; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: not-applicable` | verified |
 | `CAP-KG-007` | Graph-aware retrieval metadata and source descriptors | `KG-06` | `V-09`, `V-11` | `O-02` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: not-applicable; R: accepted` | verified |
-| `CAP-KG-008` | Stable practice taxonomy and one primary practice per project | `KG-07` | `V-11`, `V-34` | `O-04` | 3 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-KG-008` | Stable practice taxonomy and one primary practice per project | `KG-07` | `V-11`, `V-34` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified (`EV-KG-07-01`) |
 
 ### CAP-KG-007: Graph-Aware Retrieval Metadata And Sources
 
@@ -312,7 +312,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-EXP-012` | Meaningful hidden-discovery registry | `EXP-06` | `V-08`, `V-20` | `O-01` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-013` | Tour exclusion and no-score discovery behavior | `EXP-06` | `V-08`, `V-20` | `O-01` | 2 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified |
 | `CAP-EXP-014` | Returning-visitor new-content disturbances | `EXP-07` | `V-23` | `O-06` | 3 | `U/U/U/U/U/U/U` | unassessed |
-| `CAP-EXP-015` | Continuous Home territory attention, hysteresis, and selected-state restore | `EXP-08` | `V-02`, `V-05`, `V-35` | `O-01` | 5 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-EXP-015` | Continuous Home territory attention, hysteresis, and selected-state restore | `EXP-08` | `V-02`, `V-05`, `V-35` | `O-01` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-started` | implemented foundation (`EV-EXP-08-01`) |
 
 ### CAP-EXP-009 Through CAP-EXP-011: Environmental Response And Stimulation
 
@@ -503,7 +503,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-014` | Decomposed material production pipeline and bounded Museum dialect proofs | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified proof foundation |
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
-| `CAP-ART-017` | Five-anchor neutral Home composition and shared attention compositor | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: ready; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | ready |
+| `CAP-ART-017` | Five-anchor neutral Home composition and shared attention compositor | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: not-started; I: not-started; T: accepted; Q: in-progress; R: not-started` | in-progress |
 | `CAP-ART-018` | Fixed-anchor atmospheric melding and local territory response | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-019` | Home territory runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 
@@ -622,15 +622,15 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-ART-013 Through CAP-ART-019: Ambient Proofs And Home-World Integration
 
 - Owner: Codex with Mark creative review
-- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017` ready; `CAP-ART-018/019` planned
+- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017` in progress with its semantic contract accepted; `CAP-ART-018/019` planned
 - Health: on-track
 - Confidence: high in the accepted proof dialects and approved Home architecture; integrated neutral and transition evidence does not exist yet
-- Works now: `68e0897` retains the public functional site. Coral west ecology, east observatory, archive core, and shared-home music proofs have direct Mark review and tested/deployed checkpoints. The music proof uses the actual Home renderer and a `40%` translucent physical piano.
-- Named gaps: no project-practice taxonomy, pure attention reducer, neutral five-anchor composition, territory melding, About portal, project reveal, route migration, or integrated performance evidence exists.
+- Works now: The public functional site remains unchanged. Four controlled practices, four public practice graph nodes, one required primary practice for each of nine projects, bounded forward/reverse queries, and the pure five-territory attention contract now pass validation. The reducer covers equal neutral state, localized pointer sampling, focus/selection precedence, hysteresis, semantic restore, calm, reduced motion, and entered-to-selected-to-neutral Back behavior.
+- Named gaps: no neutral five-anchor composition, React/history adoption, territory melding, About portal, project reveal, route migration, or integrated performance evidence exists.
 - Safe exposure: public `/` and `/projects` remain unchanged. Stable proof routes and posters remain available while `ART-16` begins additively.
-- Work item: `WI-ART-16-01` is ready. `WI-ART-12-01` is superseded after preserving its accepted proof results.
-- Next checkpoint: implement `KG-07` classification and the `EXP-08` pure attention contract without changing public route output.
-- Last assessed: 2026-07-24 at `68e0897`.
+- Work item: `WI-ART-16-01` is in progress at checkpoint `D`. `WI-ART-12-01` is superseded after preserving its accepted proof results.
+- Next checkpoint: build the lightweight neutral five-anchor Home shell around the accepted contract without migrating routes or mounting the complete proof renderers.
+- Last assessed: 2026-07-24 after the Stage `B/C` aggregate gate; implementation commit pending.
 
 ## Project Depth And Practice-Reveal System
 

@@ -6,6 +6,7 @@ import {
   type ExperienceId,
   type NodeId,
 } from './portfolioContracts';
+import { isPracticeId, type PracticeId } from './practices';
 
 export type ProjectNodeId = `project:${string}`;
 
@@ -16,6 +17,7 @@ export interface Project {
   year: string;
   headline: string;
   summary: string;
+  primaryPracticeId: PracticeId;
   moreInfo: string[];
   tech: string[];
   media: {
@@ -61,6 +63,10 @@ export async function getProjects(): Promise<Project[]> {
     if (experienceId !== undefined && (typeof experienceId !== 'string' || !isExperienceId(experienceId))) {
       throw new Error(`Project ${slug} has an invalid experienceId`);
     }
+    const primaryPracticeId = frontmatter.primaryPracticeId;
+    if (typeof primaryPracticeId !== 'string' || !isPracticeId(primaryPracticeId)) {
+      throw new Error(`Project ${slug} has an invalid primaryPracticeId`);
+    }
 
     const normalized: Project = {
       nodeId: record.nodeId as ProjectNodeId,
@@ -69,6 +75,7 @@ export async function getProjects(): Promise<Project[]> {
       year: String(frontmatter.year ?? ''),
       headline: String(frontmatter.headline ?? ''),
       summary: String(frontmatter.summary ?? ''),
+      primaryPracticeId,
       moreInfo: (frontmatter.moreInfo as string[] | undefined)
         ?? (frontmatter['more-info'] as string[] | undefined)
         ?? [],

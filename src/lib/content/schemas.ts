@@ -5,6 +5,7 @@ import {
   isNodeId,
 } from '../portfolioContracts';
 import type { AuthoredContentRecord } from './loaders';
+import { isPracticeId } from '../practices';
 
 export interface ContentSchemaIssue {
   nodeId?: string;
@@ -14,7 +15,7 @@ export interface ContentSchemaIssue {
 }
 
 const REQUIRED_FIELDS: Record<AuthoredContentRecord['kind'], readonly string[]> = {
-  project: ['slug', 'name', 'year', 'headline', 'summary'],
+  project: ['slug', 'name', 'year', 'headline', 'summary', 'primaryPracticeId'],
   about: ['id', 'from', 'headline', 'summary'],
   blog: ['slug', 'title', 'description', 'date'],
   misc: [],
@@ -98,6 +99,16 @@ export function validateContentRecord(record: AuthoredContentRecord): ContentSch
         path: 'experienceId',
         code: 'invalid-experience-id',
         message: 'experienceId must be a valid experience ID',
+      });
+    }
+    if (record.frontmatter.primaryPracticeId !== undefined
+      && (typeof record.frontmatter.primaryPracticeId !== 'string'
+        || !isPracticeId(record.frontmatter.primaryPracticeId))) {
+      issues.push({
+        nodeId: record.nodeId,
+        path: 'primaryPracticeId',
+        code: 'invalid-practice-id',
+        message: 'primaryPracticeId must use the controlled practice vocabulary',
       });
     }
   }

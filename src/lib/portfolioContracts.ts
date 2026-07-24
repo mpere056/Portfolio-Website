@@ -11,6 +11,7 @@ export const GRAPH_ONLY_NODE_NAMESPACES = [
   'media',
   'repository',
   'offering',
+  'practice',
 ] as const;
 
 export type GraphOnlyNodeNamespace = (typeof GRAPH_ONLY_NODE_NAMESPACES)[number];

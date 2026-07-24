@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-21
+Last updated: 2026-07-24
 
 ## Purpose
 
@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: `68e0897` is the known-good implementation. Coral, east-observatory, archive-core, and shared-home music proofs establish four accepted visual dialects; the music proof uses the real homepage renderer and a `40%` translucent piano body. Mark has approved replacing the separate Home/Projects primary structure with one five-territory Home world. Public routes remain unchanged while the new architecture begins additively.
+Current checkpoint: the Stage `B/C` candidate is locally verified. Coral, east-observatory, archive-core, and shared-home music proofs establish four accepted visual dialects; the music proof uses the real homepage renderer and a `40%` translucent piano body. Four stable practices, nine project classifications, and the pure five-territory attention contract now exist. Public routes remain unchanged while the new architecture proceeds additively.
 
-Current delivery order: `ART-16A` planning reconciliation is complete. Implement practice taxonomy and the pure attention contract, build the neutral five-anchor shell, accept neutral-to-Music and neutral-to-Play melding, integrate AI, Life Systems, and About one at a time, then add project reveal and migrate destinations/routes under `QA-07`. [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md) is the active execution plan; [Program Roadmap](01-Program-Roadmap.md) remains authoritative for whole-program ordering.
+Current delivery order: `ART-16A-C` are accepted. Build the neutral five-anchor shell, accept neutral-to-Music and neutral-to-Play melding, integrate AI, Life Systems, and About one at a time, then add project reveal and migrate destinations/routes under `QA-07`. [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md) is the active execution plan; [Program Roadmap](01-Program-Roadmap.md) remains authoritative for whole-program ordering.
 
 ## Document Authority
 

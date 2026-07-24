@@ -1,4 +1,8 @@
 [
+  { "id": "practice:music-performance", "type": "practice", "title": "Music & Performance", "summary": "Arrangements, performances, teaching, sound, and musical tools.", "visibility": "public", "tags": ["music", "performance"] },
+  { "id": "practice:ai-possible-futures", "type": "practice", "title": "AI & Possible Futures", "summary": "AI products and experiments that help people imagine, interpret, and shape what comes next.", "visibility": "public", "tags": ["ai", "futures"] },
+  { "id": "practice:life-systems-tools", "type": "practice", "title": "Life Systems & Tools", "summary": "Practical systems for capture, organization, reasoning, and dependable everyday work.", "visibility": "public", "tags": ["systems", "tools"] },
+  { "id": "practice:play-community", "type": "practice", "title": "Play & Community", "summary": "Games, social experiments, Discord projects, and playful systems built with and for communities.", "visibility": "public", "tags": ["play", "community"] },
   { "id": "skill:ai-product-design", "type": "skill", "title": "AI Product Design", "summary": "Designing AI as a support for judgment, exploration, and usable product loops.", "visibility": "public", "tags": ["ai", "product"] },
   { "id": "skill:automation", "type": "skill", "title": "Automation", "summary": "Turning repeated manual processes into dependable software-assisted workflows.", "visibility": "public", "tags": ["systems"] },
   { "id": "skill:community-growth", "type": "skill", "title": "Community Growth", "summary": "Experimenting with acquisition, retention, and operations in a rapidly growing online community.", "visibility": "public", "tags": ["community"] },

@@ -17,6 +17,11 @@ import {
   type GraphRelationship,
   type GraphRelationshipType,
 } from './graph';
+import {
+  isPracticeId,
+  practiceNodeId,
+  type PracticeId,
+} from '../practices';
 
 export interface BoundedQueryOptions {
   limit?: number;
@@ -231,6 +236,36 @@ export function createKnowledgeGraphQueries(graph: CompiledKnowledgeGraph) {
       .slice(0, clampLimit(options.limit));
   }
 
+  function getPractice(practiceId: PracticeId) {
+    const node = nodeMap.get(practiceNodeId(practiceId));
+    return node?.type === 'practice' && isPublicNode(node) ? node : undefined;
+  }
+
+  function practiceForProject(projectId: NodeId) {
+    const project = nodeMap.get(projectId);
+    if (
+      project?.type !== 'project'
+      || !project.primaryPracticeId
+      || !isPracticeId(project.primaryPracticeId)
+    ) return undefined;
+    return getPractice(project.primaryPracticeId);
+  }
+
+  function projectsForPractice(
+    practiceId: PracticeId,
+    options: BoundedQueryOptions = {},
+  ) {
+    if (!getPractice(practiceId)) return [];
+    return graph.nodes
+      .filter(node => (
+        node.type === 'project'
+        && node.primaryPracticeId === practiceId
+        && isPublicNode(node)
+      ))
+      .sort(sortNodes)
+      .slice(0, clampLimit(options.limit, MAX_RESULT_LIMIT));
+  }
+
   function getConsequencesForTimelineEvent(nodeId: NodeId, options: BoundedQueryOptions = {}) {
     const allowedTypes = new Set<GraphRelationshipType>([
       'led_to',
@@ -419,6 +454,9 @@ export function createKnowledgeGraphQueries(graph: CompiledKnowledgeGraph) {
   return {
     getPublicRelationships,
     getRelatedProjects,
+    getPractice,
+    practiceForProject,
+    projectsForPractice,
     getConsequencesForTimelineEvent,
     getEvidenceForSkill,
     getHiddenDiscoveries,

@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | ready |
+| State | in-progress |
 | Priority | high |
 | Package | `ART-16` |
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
@@ -23,7 +23,7 @@ The public site still has separate `/` and `/projects` primary worlds. Four boun
 - AI & Possible Futures uses the accepted east-observatory scene and selected flow tuning.
 - Life Systems & Tools uses the accepted archive-core book, orbital, and page-cycle proof.
 
-These proofs are not a composed Home and must not be mounted together wholesale. No About portal proof, project-practice taxonomy, attention reducer, neutral five-anchor composition, or route migration exists yet.
+These proofs are not a composed Home and must not be mounted together wholesale. The non-visual foundation now exists: four controlled practices, nine required project classifications, bounded practice queries, and a pure attention contract cover locality, hysteresis, precedence, selection, restore, calm, reduced motion, and Back. No About portal proof, neutral five-anchor composition, React/history adoption, or route migration exists yet.
 
 ## Resume Packet
 
@@ -32,16 +32,17 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 - Approved map: About top, Music center, Play left, AI right, Life Systems bottom.
 - Approved behavior: fixed anchors; one dominant attention target; continuous inertial weights; broad atmospheric melding; inactive territories remain quiet and visible.
 - Performance boundary: lightweight persistent anchors, one dominant expensive dialect, one coordinated clock.
-- Next exact action: add stable practice IDs and project classification, then implement the pure attention-state reducer and its deterministic tests. Do not change route output or redirect `/projects` yet.
+- Verification: 55 test files / 229 tests, TypeScript, 62-node content validation, and the 39-page production build pass.
+- Next exact action: implement checkpoint `D`, a lightweight neutral five-anchor shell that preserves the current piano identity. Use placeholders or bounded anchor representations for the other territories; do not mount four proof runtimes or redirect `/projects`.
 
 ## Ordered Checkpoints
 
 | Checkpoint | State | Acceptance |
 | --- | --- | --- |
 | `A` Planning reconciliation | accepted | Canonical decision, execution plan, package, tracking, and supersession are linked |
-| `B` Practice taxonomy | ready | Every current project has one validated primary practice; bounded queries pass |
-| `C` Attention contract | not-started | Neutral, locality, dominance, hysteresis, selection, restore, and calm tests pass |
-| `D` Neutral shell | not-started | Five semantic lightweight anchors fit one desktop viewport without replacing Home identity |
+| `B` Practice taxonomy | accepted | Every current project has one validated primary practice; bounded forward/reverse queries pass |
+| `C` Attention contract | accepted | Neutral, locality, dominance, hysteresis, focus/selection precedence, restore, Back, calm, and reduced-motion tests pass |
+| `D` Neutral shell | ready | Five semantic lightweight anchors fit one desktop viewport without replacing Home identity |
 | `E` Music/Play transition proof | not-started | Two atmospheric melding transitions pass fixed-anchor and locality review |
 | `F1` AI territory | not-started | Observatory dialect integrates within the shared budget |
 | `F2` Life Systems territory | not-started | Archive dialect integrates within the shared budget |
@@ -57,8 +58,8 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 - [x] Fixed-anchor, atmosphere-dominant melding is approved.
 - [x] One dominant target with continuous attention strength is approved.
 - [x] Expensive proof scenes will not all mount at once.
-- [ ] Practice taxonomy is implemented and reviewed.
-- [ ] Pure attention behavior is implemented and tested.
+- [x] Practice taxonomy is implemented and reviewed.
+- [x] Pure attention behavior is implemented and tested.
 - [ ] Neutral shell is implemented without public route migration.
 - [ ] Two transition proofs are accepted before remaining territory integration.
 - [ ] All four practices reveal correct project sets.
@@ -84,3 +85,6 @@ These proofs are not a composed Home and must not be mounted together wholesale.
 - Mark clarified that neutral territory equality should transition into one spectrum-weighted dominant category.
 - Mark rejected simple panel growth: anchors stay fixed while atmospheres overlap, meld, and occupy more of the viewport.
 - The program now treats four accepted proofs as territory-dialect evidence and opens `ART-16` for integrated Home work.
+- Checkpoint `B` added four controlled practice nodes, required one primary practice for all nine projects, and added bounded project-to-practice queries.
+- Checkpoint `C` added the pure attention reducer with deterministic neutral, locality, hysteresis, precedence, selection, restore, Back, calm, settlement, and reduced-motion coverage.
+- The complete 55-file / 229-test suite, TypeScript, content validation, and production build pass; public route output remains unchanged.

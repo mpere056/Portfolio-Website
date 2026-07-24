@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-19
+Last updated: 2026-07-24
 
 ## Purpose
 
@@ -40,6 +40,13 @@ Examples:
 | `EV-QA-01-02` through `EV-QA-01-04` | Phase 2 aggregate | accepted | `QA-01.md` |
 
 Aggregate local, protected Preview, and production-safe deployment records are complete in `QA-01.md`.
+
+## Home Practice World Foundation
+
+| Evidence ID | Package | Status | Durable record |
+| --- | --- | --- | --- |
+| `EV-KG-07-01` | `KG-07` | accepted | `KG-07.md` |
+| `EV-EXP-08-01` | `EXP-08` | accepted contract | `EXP-08.md` |
 
 ## Phase 3 First Flagship
 
@@ -164,6 +171,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-KG-05-01` | `KG-05` | `CAP-KG-005`, `CAP-KG-006` | integration-test | accepted | `e14b103`, 88-test/type/build gate | 2026-07-16 | `KG-05.md` |
 | `EV-KG-06-01` | `KG-06` | `CAP-KG-007` | integration-test | accepted | `7597c1b`, 93-test/type/build gate | 2026-07-16 | `KG-06.md` |
 | `EV-KG-06-02` | `KG-06` | `CAP-KG-007` | integration-test | accepted | `aeff727`, 42-document free Firestore backfill | 2026-07-16 | `KG-06.md` |
+| `EV-KG-07-01` | `KG-07` | `CAP-KG-008` | contract / integration-test | accepted | Stage `B/C` local aggregate gate | 2026-07-24 | `KG-07.md` |
 | `EV-AI-02-01` | `AI-02` | `CAP-AI-003`, `CAP-AI-004` | integration-test | accepted | `3dfef6b`, shell/provider/flag gate | 2026-07-16 | `AI-02.md` |
 | `EV-AI-02-02` | `AI-02` | `CAP-AI-003`, `CAP-AI-004` | browser-flow | accepted | `3dfef6b`, local Development | 2026-07-16 | `AI-02.md` |
 | `EV-AI-03-01` | `AI-03` | `CAP-AI-005` | privacy-security | accepted | `aeb3152`, request/source/retrieval fixtures | 2026-07-16 | `AI-03.md` |
@@ -174,6 +182,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-EXP-05-03` | `EXP-05` | `CAP-EXP-009`, `CAP-EXP-010`, `CAP-EXP-011` | integration-test | accepted | `4276e6b`, local production build | 2026-07-17 | `EXP-05.md` |
 | `EV-EXP-06-01` | `EXP-06` | `CAP-EXP-012`, `CAP-EXP-013` | integration-test | accepted | `51b2e7d`, focused discovery/store/tour gate | 2026-07-17 | `EXP-06.md` |
 | `EV-EXP-06-02` | `EXP-06` | `CAP-EXP-012`, `CAP-EXP-013` | browser-flow | accepted | `51b2e7d`, local Development | 2026-07-17 | `EXP-06.md` |
+| `EV-EXP-08-01` | `EXP-08` | `CAP-EXP-015`, `CAP-ART-017` | contract / unit-test | accepted | Stage `B/C` local aggregate gate | 2026-07-24 | `EXP-08.md` |
 | `EV-QA-01-02` | `QA-01` | `CAP-QA-001` | integration-test | accepted | Phase 2 aggregate recorded at `3de7c3c` | 2026-07-17 | `QA-01.md` |
 | `EV-QA-01-03` | `QA-01` | `CAP-QA-001` | preview | accepted | Vercel `dpl_4nL6kUcQjAfUjKdkNdCrDw4giwv9` | 2026-07-17 | `QA-01.md` |
 | `EV-QA-01-04` | `QA-01` | `CAP-QA-001` | production | accepted | Vercel `dpl_51xD2i8nQU8zEgjFiHnvNCvB2JqA` and public routes | 2026-07-17 | `QA-01.md` |

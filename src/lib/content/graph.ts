@@ -8,6 +8,7 @@ import {
 } from '../portfolioContracts';
 import { loadContentRecords, type AuthoredContentRecord } from './loaders';
 import { validateContentRecords, type ContentSchemaIssue } from './schemas';
+import { isPracticeId, practiceNodeId, type PracticeId } from '../practices';
 
 export const GRAPH_RELATIONSHIP_TYPES = [
   'inspired',
@@ -34,6 +35,7 @@ export interface GraphNode {
   sourcePath?: string;
   visibility: GraphVisibility;
   tags: readonly string[];
+  primaryPracticeId?: PracticeId;
 }
 
 export interface GraphRelationship {
@@ -89,6 +91,10 @@ function contentNode(record: AuthoredContentRecord): GraphNode | undefined {
     sourcePath: record.relativePath,
     visibility,
     tags: [...new Set([...stringList(fields.tags), ...stringList(fields.tech)])],
+    ...(record.kind === 'project' && typeof fields.primaryPracticeId === 'string'
+      && isPracticeId(fields.primaryPracticeId)
+      ? { primaryPracticeId: fields.primaryPracticeId }
+      : {}),
   };
 }
 
@@ -113,6 +119,25 @@ export function validateKnowledgeGraph(
       issues.push({ code: 'missing-node-copy', subjectId: node.id, message: 'Node title and summary are required' });
     }
     nodeMap.set(node.id, node);
+  }
+  for (const node of nodes) {
+    if (node.type !== 'project') continue;
+    if (!node.primaryPracticeId) {
+      issues.push({
+        code: 'missing-project-practice',
+        subjectId: node.id,
+        message: 'Project nodes require one primary practice',
+      });
+      continue;
+    }
+    const practiceNode = nodeMap.get(practiceNodeId(node.primaryPracticeId));
+    if (!practiceNode || practiceNode.type !== 'practice') {
+      issues.push({
+        code: 'missing-practice-node',
+        subjectId: node.id,
+        message: `Missing practice graph node: ${practiceNodeId(node.primaryPracticeId)}`,
+      });
+    }
   }
 
   const relationshipIds = new Set<string>();
