@@ -1,8 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import {
+  useEffect,
   useReducer,
+  useRef,
+  useState,
   type CSSProperties,
   type PointerEvent,
 } from 'react';
@@ -12,10 +16,37 @@ import {
   reduceHomeAttention,
   type HomeTerritoryId,
 } from '@/lib/experience/homeAttention';
-import { HOME_TERRITORY_ANCHORS } from '@/lib/experience/homePracticeWorld';
+import {
+  HOME_TERRITORY_ANCHORS,
+  sampleHomeWorldProximities,
+} from '@/lib/experience/homePracticeWorld';
 import { MUSEUM_AMBIENT_PROOF_ASSETS } from '@/lib/museum/ambientProof';
 import { MUSEUM_OBSERVATORY_PROOF_ASSETS } from '@/lib/museum/observatoryProof';
 import styles from './HomePracticeWorldNeutral.module.css';
+
+const AmbientProof = dynamic(
+  () => import('@/components/museum/MuseumAmbientProof'),
+  { ssr: false },
+);
+const ObservatoryProof = dynamic(
+  () => import('@/components/museum/MuseumObservatoryProof'),
+  { ssr: false },
+);
+const ArchiveProof = dynamic(
+  () => import('@/components/museum/MuseumArchiveCoreProof'),
+  { ssr: false },
+);
+
+type ProofTerritoryId = Extract<
+  HomeTerritoryId,
+  'play' | 'ai-futures' | 'life-systems'
+>;
+
+const PROOF_TERRITORIES: readonly ProofTerritoryId[] = [
+  'play',
+  'ai-futures',
+  'life-systems',
+];
 
 const ACCENTS: Readonly<Record<HomeTerritoryId, string>> = {
   about: '#d9c8a5',
@@ -154,28 +185,121 @@ function TerritoryInstrument({ id }: { id: HomeTerritoryId }) {
   return <OrbitInstrument kind={id} />;
 }
 
+function isProofTerritory(id: HomeTerritoryId | null): id is ProofTerritoryId {
+  return id !== null && PROOF_TERRITORIES.includes(id as ProofTerritoryId);
+}
+
+function revealStrength(proximity: number, selected: boolean) {
+  if (selected) return 1;
+  const normalized = Math.max(0, Math.min(1, (proximity - 0.04) / 0.82));
+  return normalized * normalized * (3 - 2 * normalized);
+}
+
+function ProofWorld({
+  id,
+  active,
+}: {
+  id: ProofTerritoryId;
+  active: boolean;
+}) {
+  if (id === 'play') return <AmbientProof embedded active={active} />;
+  if (id === 'ai-futures') return <ObservatoryProof embedded active={active} />;
+  return <ArchiveProof embedded active={active} />;
+}
+
 export default function HomePracticeWorldNeutral() {
   const [state, dispatch] = useReducer(
     reduceHomeAttention,
     undefined,
     createHomeWorldState,
   );
+  const pointerFrame = useRef<number | null>(null);
+  const pendingPointer = useRef({ x: 0.5, y: 0.5 });
+  const [proofLayers, setProofLayers] = useState<ProofTerritoryId[]>([]);
+  const dominantProofId = isProofTerritory(state.dominantId)
+    ? state.dominantId
+    : null;
 
-  const attend = (
-    id: HomeTerritoryId,
-    event: PointerEvent<HTMLButtonElement>,
-  ) => {
+  useEffect(() => {
+    if (!dominantProofId) return;
+    setProofLayers(current => [
+      dominantProofId,
+      ...current.filter(id => id !== dominantProofId),
+    ].slice(0, 2));
+    const prune = window.setTimeout(() => {
+      setProofLayers(current => (
+        current.includes(dominantProofId) ? [dominantProofId] : current
+      ));
+    }, 1400);
+    return () => window.clearTimeout(prune);
+  }, [dominantProofId]);
+
+  useEffect(() => () => {
+    if (pointerFrame.current !== null) {
+      window.cancelAnimationFrame(pointerFrame.current);
+    }
+  }, []);
+
+  const samplePointer = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === 'touch') return;
-    dispatch({ type: 'sample-proximity', proximities: { [id]: 1 } });
+    const bounds = event.currentTarget.getBoundingClientRect();
+    pendingPointer.current = {
+      x: (event.clientX - bounds.left) / bounds.width,
+      y: (event.clientY - bounds.top) / bounds.height,
+    };
+    if (pointerFrame.current !== null) return;
+    pointerFrame.current = window.requestAnimationFrame(() => {
+      dispatch({
+        type: 'sample-proximity',
+        proximities: sampleHomeWorldProximities(pendingPointer.current),
+      });
+      pointerFrame.current = null;
+    });
   };
+
+  const worldFocus = Math.max(
+    ...HOME_TERRITORY_ANCHORS.map(({ id }) => revealStrength(
+      state.territories[id].proximity,
+      state.territories[id].selected,
+    )),
+  );
 
   return (
     <div
       className={styles.world}
+      style={{ '--world-focus': worldFocus } as CSSProperties}
       data-home-world-mode={state.mode}
       data-dominant-territory={state.dominantId ?? 'none'}
+      onPointerMove={samplePointer}
+      onPointerLeave={() => dispatch({ type: 'calm' })}
     >
       <HeroCube variant="practice-neutral" />
+      <div className={styles.worldCompositor} aria-hidden="true">
+        {proofLayers.map((id, index) => {
+          const territory = state.territories[id];
+          const strength = revealStrength(
+            territory.proximity,
+            territory.selected,
+          );
+          const anchor = HOME_TERRITORY_ANCHORS.find(item => item.id === id)!;
+          return (
+            <div
+              className={styles.worldLayer}
+              data-proof-world={id}
+              data-active={index === 0 && strength > 0.02}
+              key={id}
+              style={{
+                '--proof-strength': strength,
+                '--proof-origin-x': `${anchor.position.x}%`,
+                '--proof-origin-y': `${anchor.position.y}%`,
+                zIndex: proofLayers.length - index,
+              } as CSSProperties}
+            >
+              <ProofWorld id={id} active={strength > 0.02} />
+            </div>
+          );
+        })}
+      </div>
       <section
         className={styles.anchorLayer}
         aria-label="Explore Mark's practices and story"
@@ -194,13 +318,15 @@ export default function HomePracticeWorldNeutral() {
                 '--anchor-y': `${anchor.position.y}%`,
                 '--territory-accent': ACCENTS[anchor.id],
                 '--territory-weight': territory.targetWeight,
+                '--territory-proximity': revealStrength(
+                  territory.proximity,
+                  territory.selected,
+                ),
               } as CSSProperties}
               aria-pressed={selected}
               aria-label={`${anchor.label}: ${anchor.signal}`}
               data-territory={anchor.id}
               data-practice={anchor.practiceId}
-              onPointerEnter={event => attend(anchor.id, event)}
-              onPointerLeave={() => dispatch({ type: 'calm' })}
               onFocus={() => dispatch({ type: 'focus', id: anchor.id })}
               onBlur={() => dispatch({ type: 'focus', id: null })}
               onClick={() => dispatch({

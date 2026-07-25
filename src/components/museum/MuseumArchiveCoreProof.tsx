@@ -1233,7 +1233,15 @@ function StaticFallback() {
   );
 }
 
-export default function MuseumArchiveCoreProof() {
+export interface MuseumArchiveCoreProofProps {
+  embedded?: boolean;
+  active?: boolean;
+}
+
+export default function MuseumArchiveCoreProof({
+  embedded = false,
+  active = true,
+}: MuseumArchiveCoreProofProps = {}) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
@@ -1275,12 +1283,13 @@ export default function MuseumArchiveCoreProof() {
     if (pointerFrame.current !== null) window.cancelAnimationFrame(pointerFrame.current);
   }, []);
 
+  const sceneVisible = visible && active;
   const sceneFrame = getMuseumSceneFrame({
     pointer: scenePointer,
     apertureTarget: pointerActive ? scenePointer : undefined,
     stimulation: 1,
     reducedMotion,
-    visible,
+    visible: sceneVisible,
   });
   const sceneStyle = {
     '--scene-x': `${sceneFrame.pointer.x * 100}%`,
@@ -1298,10 +1307,11 @@ export default function MuseumArchiveCoreProof() {
 
   return (
     <main
-      className={styles.proof}
+      className={`${styles.proof} ${embedded ? styles.embeddedProof : ''}`}
       data-reduced-motion={reducedMotion}
       data-attention-active={pointerActive}
       data-book-world={bookWorld}
+      data-embedded={embedded}
     >
       <div
         className={styles.stage}
@@ -1324,7 +1334,7 @@ export default function MuseumArchiveCoreProof() {
             <Canvas
               aria-label="Animated central Museum archive compositor"
               dpr={MUSEUM_ARCHIVE_PROOF_PERFORMANCE.dpr}
-              frameloop={visible ? 'always' : 'never'}
+              frameloop={sceneVisible ? 'always' : 'never'}
               camera={{ position: [0, 1.15, 7.7], fov: 43, near: 0.1, far: 30 }}
               gl={{
                 alpha: true,
@@ -1358,16 +1368,20 @@ export default function MuseumArchiveCoreProof() {
         </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>
-      <header className={styles.caption}>
-        <Link href="/projects">Return to the Museum</Link>
-        <div>
-          <p>Material proof 03 / archive core</p>
-          <h1>Memory is not stored here. It keeps becoming.</h1>
-        </div>
-      </header>
-      <p className={styles.legend}>
-        deforming leaves / stochastic city light / orbital refraction / crossing currents / threshold mist
-      </p>
+      {!embedded ? (
+        <>
+          <header className={styles.caption}>
+            <Link href="/projects">Return to the Museum</Link>
+            <div>
+              <p>Material proof 03 / archive core</p>
+              <h1>Memory is not stored here. It keeps becoming.</h1>
+            </div>
+          </header>
+          <p className={styles.legend}>
+            deforming leaves / stochastic city light / orbital refraction / crossing currents / threshold mist
+          </p>
+        </>
+      ) : null}
     </main>
   );
 }

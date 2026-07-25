@@ -255,7 +255,7 @@ describe('Museum observatory compositor proof', () => {
     expect(proofSource).toContain("buildFlowTuningPreset('max', tuning)");
     expect(proofSource).toContain('Current family');
     expect(proofSource).toContain('Values save in this browser.');
-    expect(proofSource).toContain("frameloop={visible ? 'demand' : 'never'}");
+    expect(proofSource).toContain("frameloop={sceneVisible ? 'demand' : 'never'}");
     expect(proofSource).not.toContain('<animateMotion');
     expect(proofSource).not.toContain('observatoryFlowTracer');
   });

@@ -1287,7 +1287,15 @@ function ObservatoryTuningPanel({
   );
 }
 
-export default function MuseumObservatoryProof() {
+export interface MuseumObservatoryProofProps {
+  embedded?: boolean;
+  active?: boolean;
+}
+
+export default function MuseumObservatoryProof({
+  embedded = false,
+  active = true,
+}: MuseumObservatoryProofProps = {}) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
@@ -1317,12 +1325,13 @@ export default function MuseumObservatoryProof() {
     if (!pointerActive) setPointerActive(true);
   };
 
+  const sceneVisible = visible && active;
   const sceneFrame = getMuseumSceneFrame({
     pointer: scenePointer,
     apertureTarget: pointerActive ? scenePointer : undefined,
     stimulation: 1,
     reducedMotion,
-    visible,
+    visible: sceneVisible,
   });
   const sceneStyle = {
     '--scene-x': `${sceneFrame.pointer.x * 100}%`,
@@ -1387,7 +1396,12 @@ export default function MuseumObservatoryProof() {
   }, []);
 
   return (
-    <main className={`${styles.proof} ${styles.observatoryProof}`} data-reduced-motion={reducedMotion} data-attention-active={pointerActive}>
+    <main
+      className={`${styles.proof} ${styles.observatoryProof} ${embedded ? styles.embeddedProof : ''}`}
+      data-reduced-motion={reducedMotion}
+      data-attention-active={pointerActive}
+      data-embedded={embedded}
+    >
       <div
         className={styles.stage}
         style={sceneStyle}
@@ -1410,7 +1424,7 @@ export default function MuseumObservatoryProof() {
             <Canvas
               aria-label="Animated eastern Museum observatory compositor"
               dpr={MUSEUM_OBSERVATORY_PERFORMANCE.renderDpr}
-              frameloop={visible ? 'demand' : 'never'}
+              frameloop={sceneVisible ? 'demand' : 'never'}
               orthographic
               camera={{
                 left: -MUSEUM_OBSERVATORY_PROOF_ASPECT,
@@ -1424,7 +1438,7 @@ export default function MuseumObservatoryProof() {
               gl={{ alpha: true, antialias: false, depth: false, stencil: false, powerPreference: 'high-performance' }}
               onCreated={({ gl }) => { gl.outputColorSpace = THREE.SRGBColorSpace; }}
             >
-              <FrameScheduler enabled={visible} attentionActive={pointerActive} />
+              <FrameScheduler enabled={sceneVisible} attentionActive={pointerActive} />
               <Suspense fallback={null}>
                 <ObservatoryScene
                   pointerActive={pointerActive}
@@ -1453,7 +1467,7 @@ export default function MuseumObservatoryProof() {
             target={sceneFrame.aperture}
             energy={sceneFrame.energy}
             count={sceneFrame.particleCount}
-            reducedMotion={reducedMotion || !visible}
+            reducedMotion={reducedMotion || !sceneVisible}
             maxDpr={0.8}
             maxFps={24}
           />
@@ -1461,25 +1475,29 @@ export default function MuseumObservatoryProof() {
         </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>
-      <ObservatoryTuningPanel
-        selectedFamilyId={selectedFlowFamilyId}
-        tuning={flowComposition[selectedFlowFamilyId]}
-        onSelectFamily={setSelectedFlowFamilyId}
-        onChange={updateFlowTuning}
-        onReset={() => {
-          updateFlowTuning({
-            ...MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS[selectedFlowFamilyId],
-          });
-        }}
-      />
-      <header className={styles.caption}>
-        <Link href="/projects">Return to the Museum</Link>
-        <div>
-          <p>Material proof 02 / east observatory</p>
-          <h1>The architecture holds still. Its instruments do not.</h1>
-        </div>
-      </header>
-      <p className={styles.legend}>unequal optical ratios / migrating nacre light / directional signal current / local refraction / layered haze</p>
+      {!embedded ? (
+        <>
+          <ObservatoryTuningPanel
+            selectedFamilyId={selectedFlowFamilyId}
+            tuning={flowComposition[selectedFlowFamilyId]}
+            onSelectFamily={setSelectedFlowFamilyId}
+            onChange={updateFlowTuning}
+            onReset={() => {
+              updateFlowTuning({
+                ...MUSEUM_OBSERVATORY_FLOW_COMPOSITION_CONTROLS[selectedFlowFamilyId],
+              });
+            }}
+          />
+          <header className={styles.caption}>
+            <Link href="/projects">Return to the Museum</Link>
+            <div>
+              <p>Material proof 02 / east observatory</p>
+              <h1>The architecture holds still. Its instruments do not.</h1>
+            </div>
+          </header>
+          <p className={styles.legend}>unequal optical ratios / migrating nacre light / directional signal current / local refraction / layered haze</p>
+        </>
+      ) : null}
     </main>
   );
 }

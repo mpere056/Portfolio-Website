@@ -58,3 +58,19 @@ export function homeTerritoryAnchor(id: HomeTerritoryId) {
 export function territoryForPractice(practiceId: PracticeId) {
   return HOME_TERRITORY_ANCHORS.find(anchor => anchor.practiceId === practiceId);
 }
+
+function smoothstep(value: number) {
+  const clamped = Math.max(0, Math.min(1, value));
+  return clamped * clamped * (3 - 2 * clamped);
+}
+
+export function sampleHomeWorldProximities(
+  pointer: Readonly<{ x: number; y: number }>,
+): Record<HomeTerritoryId, number> {
+  return Object.fromEntries(HOME_TERRITORY_ANCHORS.map((anchor) => {
+    const dx = (pointer.x * 100 - anchor.position.x) / 48;
+    const dy = (pointer.y * 100 - anchor.position.y) / 44;
+    const distance = Math.hypot(dx, dy);
+    return [anchor.id, smoothstep(1 - distance)];
+  })) as Record<HomeTerritoryId, number>;
+}

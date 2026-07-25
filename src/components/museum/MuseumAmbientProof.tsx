@@ -681,7 +681,15 @@ function StaticFallback() {
   );
 }
 
-export default function MuseumAmbientProof() {
+export interface MuseumAmbientProofProps {
+  embedded?: boolean;
+  active?: boolean;
+}
+
+export default function MuseumAmbientProof({
+  embedded = false,
+  active = true,
+}: MuseumAmbientProofProps = {}) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(true);
   const [pointerActive, setPointerActive] = useState(false);
@@ -698,12 +706,13 @@ export default function MuseumAmbientProof() {
     if (!pointerActive) setPointerActive(true);
   };
 
+  const sceneVisible = visible && active;
   const sceneFrame = getMuseumSceneFrame({
     pointer: scenePointer,
     apertureTarget: pointerActive ? scenePointer : undefined,
     stimulation: 1,
     reducedMotion,
-    visible,
+    visible: sceneVisible,
   });
   const sceneStyle = {
     '--scene-x': `${sceneFrame.pointer.x * 100}%`,
@@ -734,7 +743,12 @@ export default function MuseumAmbientProof() {
   }, []);
 
   return (
-    <main className={styles.proof} data-reduced-motion={reducedMotion} data-attention-active={pointerActive}>
+    <main
+      className={`${styles.proof} ${embedded ? styles.embeddedProof : ''}`}
+      data-reduced-motion={reducedMotion}
+      data-attention-active={pointerActive}
+      data-embedded={embedded}
+    >
       <div
         className={styles.stage}
         style={sceneStyle}
@@ -752,7 +766,7 @@ export default function MuseumAmbientProof() {
             <Canvas
               aria-label="Animated lower-left Museum material compositor"
               dpr={[1, 1.5]}
-              frameloop={visible ? 'always' : 'never'}
+              frameloop={sceneVisible ? 'always' : 'never'}
               orthographic
               camera={{
                 left: -MUSEUM_AMBIENT_PROOF_ASPECT,
@@ -787,20 +801,24 @@ export default function MuseumAmbientProof() {
             target={sceneFrame.aperture}
             energy={sceneFrame.energy}
             count={sceneFrame.particleCount}
-            reducedMotion={reducedMotion || !visible}
+            reducedMotion={reducedMotion || !sceneVisible}
           />
           <span className={museumStyles.ecologyVeil} />
         </div>
         <div className={styles.grain} aria-hidden="true" />
       </div>
-      <header className={styles.caption}>
-        <Link href="/projects">Return to the Museum</Link>
-        <div>
-          <p>Material proof 01 / west ecology</p>
-          <h1>Watch before touching. Each material keeps its own time.</h1>
-        </div>
-      </header>
-      <p className={styles.legend}>idle coral tide / migrating material light / local delayed attention / procedural current / depth passage</p>
+      {!embedded ? (
+        <>
+          <header className={styles.caption}>
+            <Link href="/projects">Return to the Museum</Link>
+            <div>
+              <p>Material proof 01 / west ecology</p>
+              <h1>Watch before touching. Each material keeps its own time.</h1>
+            </div>
+          </header>
+          <p className={styles.legend}>idle coral tide / migrating material light / local delayed attention / procedural current / depth passage</p>
+        </>
+      ) : null}
     </main>
   );
 }

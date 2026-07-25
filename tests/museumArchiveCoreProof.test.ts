@@ -62,7 +62,7 @@ describe('Museum archive core proof', () => {
     expect(source).toContain('getMuseumSceneFrame');
     expect(source).not.toContain('museum-signal-ecology.webp');
     expect(source).not.toContain('MuseumParticleField');
-    expect(source).toContain("frameloop={visible ? 'always' : 'never'}");
+    expect(source).toContain("frameloop={sceneVisible ? 'always' : 'never'}");
     expect(source).toContain('reducedMotion ? null');
   });
 
