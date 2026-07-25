@@ -31,7 +31,7 @@ describe('neutral Home practice world', () => {
       .toBe('/about');
   });
 
-  it('uses one shared piano renderer and lightweight semantic territory instruments', async () => {
+  it('uses the accepted proof materials without mounting the full proof runtimes', async () => {
     const [component, hero] = await Promise.all([
       readFile(
         path.join(root, 'src/components/home/HomePracticeWorldNeutral.tsx'),
@@ -41,13 +41,23 @@ describe('neutral Home practice world', () => {
     ]);
 
     expect(component).toContain('<HeroCube variant="practice-neutral" />');
+    expect(component).toContain('MUSEUM_AMBIENT_PROOF_ASSETS.coral');
+    expect(component).toContain('MUSEUM_AMBIENT_PROOF_ASSETS.organism');
+    expect(component).toContain('MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory');
+    expect(component).toContain('MUSEUM_OBSERVATORY_PROOF_ASSETS.city');
+    expect(component).toContain('data-territory-visual="archive-book"');
+    expect(component).toContain("'piano-resonance'");
     expect(component).toContain('HOME_TERRITORY_ANCHORS.map');
     expect(component).toContain("type: 'sample-proximity'");
     expect(component).toContain("type: 'focus'");
     expect(component).toContain("type: 'select'");
-    expect(component).not.toMatch(/ambient-proof|observatory-proof|archive-core-proof/);
+    expect(component).not.toMatch(
+      /<MuseumAmbientProof|<MuseumObservatoryProof|<MuseumArchiveCoreProof/,
+    );
     expect(hero).toContain("'practice-neutral'");
     expect(hero).toContain('musicProof || practiceNeutral ? <PianoGhost /> : null');
+    expect(hero).toContain('{!practiceNeutral ? (');
+    expect(hero).toContain('{!practiceNeutral ? <CursorLight /> : null}');
   });
 
   it('keeps the proof additive, private, and separate from the canonical Home route', async () => {

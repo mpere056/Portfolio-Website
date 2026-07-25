@@ -56,19 +56,23 @@ export default function HeroCube({
             '--home-notation': getHomeSceneFrame(state.phase, state.reducedMotionRequested).notation,
           } as CSSProperties}
         >
-          <div aria-hidden="true" className={supportingStyles.homeMaterial}>
-            <Image
-              src={ART_DIRECTION_ASSETS.home.src}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="motion-safe:animate-[homePresence_14s_ease-in-out_infinite_alternate]"
-            />
-          </div>
-          <div aria-hidden="true" className={supportingStyles.homeFragment}>
-            <Image src={ART_DIRECTION_ASSETS.home.src} alt="" fill priority sizes="100vw" />
-          </div>
+          {!practiceNeutral ? (
+            <>
+              <div aria-hidden="true" className={supportingStyles.homeMaterial}>
+                <Image
+                  src={ART_DIRECTION_ASSETS.home.src}
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="motion-safe:animate-[homePresence_14s_ease-in-out_infinite_alternate]"
+                />
+              </div>
+              <div aria-hidden="true" className={supportingStyles.homeFragment}>
+                <Image src={ART_DIRECTION_ASSETS.home.src} alt="" fill priority sizes="100vw" />
+              </div>
+            </>
+          ) : null}
           <svg aria-hidden="true" className={supportingStyles.homeNotation} viewBox="0 0 1200 700" fill="none">
             <ellipse cx="604" cy="372" rx="318" ry="124" stroke="currentColor" strokeWidth="1" strokeDasharray="2 16" />
             <ellipse cx="604" cy="372" rx="420" ry="188" stroke="currentColor" strokeWidth="0.7" strokeDasharray="1 22" />
@@ -105,7 +109,7 @@ export default function HeroCube({
             </HeroScaleGroup>
             <HeroPostProcessing />
             <OrbitControls autoRotate={!state.reducedMotionRequested} autoRotateSpeed={0.7} />
-            <CursorLight />
+            {!practiceNeutral ? <CursorLight /> : null}
             {presentation.navigationVisible && !practiceNeutral && (
               <>
                 <NavPointer text="About Me" path="/about" position={[-2, 1.5, 2]} />

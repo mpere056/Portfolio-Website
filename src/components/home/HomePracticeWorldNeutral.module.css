@@ -80,6 +80,10 @@
   transform: translate(-50%, -50%);
 }
 
+.orbitInstrument {
+  opacity: 0.82;
+}
+
 .outerOrbit,
 .innerOrbit,
 .core,
@@ -119,6 +123,358 @@
   border-radius: 50%;
   transform: rotate(-18deg);
   opacity: 0.6;
+}
+
+.proofInstrument {
+  width: clamp(13rem, 22vw, 22rem);
+  aspect-ratio: 1.25;
+  pointer-events: none;
+  isolation: isolate;
+  filter:
+    drop-shadow(0 1.5rem 2.8rem rgb(0 0 0 / 82%))
+    brightness(calc(0.58 + var(--territory-weight) * 0.86));
+}
+
+.proofInstrument::after {
+  content: '';
+  position: absolute;
+  inset: 8% 4%;
+  z-index: 8;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--territory-accent) 17%, transparent),
+    transparent 66%
+  );
+  opacity: calc(0.28 + var(--territory-weight));
+  mix-blend-mode: screen;
+  animation: materialBreath 7.8s ease-in-out infinite alternate;
+}
+
+.proofPlate {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 78%;
+  will-change: transform, filter, opacity;
+}
+
+.proofPlate img {
+  object-fit: contain;
+}
+
+.playInstrument {
+  top: 43%;
+  width: clamp(15rem, 25vw, 24rem);
+  aspect-ratio: 1.24;
+  transform: translate(-42%, -50%) rotate(-2deg);
+}
+
+.coralPlate {
+  z-index: 3;
+  filter: saturate(0.92) contrast(1.05);
+  animation: coralTide 8.4s ease-in-out infinite alternate;
+}
+
+.organismPlate {
+  z-index: 4;
+  transform-origin: 48% 55%;
+  animation: organismFloat 10.8s ease-in-out infinite alternate;
+}
+
+.ringsPlate {
+  z-index: 5;
+  transform-origin: 55% 48%;
+  animation: receiverDrift 15s linear infinite;
+}
+
+.reefLight {
+  position: absolute;
+  inset: 20% 18% 10% 5%;
+  z-index: 6;
+  border-radius: 46% 54% 38% 62%;
+  background:
+    radial-gradient(circle at 34% 46%, rgb(45 255 232 / 38%), transparent 8%),
+    radial-gradient(circle at 50% 57%, rgb(255 109 54 / 26%), transparent 11%),
+    linear-gradient(112deg, transparent 22%, rgb(101 217 207 / 14%) 45%, transparent 66%);
+  mix-blend-mode: screen;
+  filter: blur(7px);
+  animation: reefIllumination 6.6s ease-in-out infinite alternate;
+}
+
+.reefMotes,
+.observatoryMotes {
+  position: absolute;
+  inset: 8%;
+  z-index: 9;
+}
+
+.reefMotes i,
+.observatoryMotes i {
+  position: absolute;
+  width: 0.18rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--territory-accent);
+  box-shadow: 0 0 0.8rem var(--territory-accent);
+  opacity: 0.28;
+  animation: proofMote 7s ease-in-out infinite;
+}
+
+.reefMotes i:nth-child(1) { left: 12%; top: 64%; animation-delay: -1s; }
+.reefMotes i:nth-child(2) { left: 34%; top: 22%; animation-delay: -4s; }
+.reefMotes i:nth-child(3) { left: 48%; top: 74%; animation-delay: -2.5s; }
+.reefMotes i:nth-child(4) { left: 68%; top: 41%; animation-delay: -5.5s; }
+.reefMotes i:nth-child(5) { left: 81%; top: 68%; animation-delay: -3.2s; }
+
+.aiInstrument {
+  top: 44%;
+  width: clamp(16rem, 26vw, 25rem);
+  aspect-ratio: 1.08;
+  transform: translate(-58%, -50%) rotate(1deg);
+}
+
+.portalPlate {
+  z-index: 2;
+  opacity: 0.76;
+  animation: portalDrift 11s ease-in-out infinite alternate;
+}
+
+.observatoryPlate {
+  z-index: 4;
+  animation: observatorySettle 13s ease-in-out infinite alternate;
+}
+
+.cityPlate {
+  z-index: 5;
+  animation: cityLight 9s ease-in-out infinite alternate;
+}
+
+.signalCurrent {
+  position: absolute;
+  left: -16%;
+  right: 19%;
+  z-index: 3;
+  height: 13%;
+  border-radius: 50%;
+  mask-image: linear-gradient(90deg, transparent, #000 13% 84%, transparent);
+  animation: currentTravel 5.8s linear infinite;
+}
+
+.signalCurrent::before,
+.signalCurrent::after {
+  content: '';
+  position: absolute;
+  inset: 32% 0;
+  border-top: 1px solid currentcolor;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 0.45rem currentcolor);
+  transform: skewY(-4deg);
+}
+
+.signalCurrent::after {
+  inset: 54% 8% 0;
+  opacity: 0.48;
+  transform: skewY(5deg);
+}
+
+.signalCurrentCyan {
+  top: 42%;
+  color: #55e8e6;
+  background: linear-gradient(90deg, transparent, rgb(85 232 230 / 18%) 42% 58%, transparent);
+}
+
+.signalCurrentGold {
+  top: 31%;
+  color: #efc676;
+  opacity: 0.62;
+  animation-duration: 8.4s;
+  animation-delay: -3s;
+}
+
+.observatoryLight {
+  position: absolute;
+  inset: 16% 4% 8% 25%;
+  z-index: 7;
+  background:
+    radial-gradient(circle at 61% 40%, rgb(242 214 155 / 34%), transparent 8%),
+    radial-gradient(circle at 72% 70%, rgb(211 99 74 / 26%), transparent 18%),
+    linear-gradient(118deg, transparent 30%, rgb(119 238 230 / 12%) 49%, transparent 64%);
+  mix-blend-mode: screen;
+  filter: blur(5px);
+  animation: observatoryIllumination 7.4s ease-in-out infinite alternate;
+}
+
+.observatoryMotes i:nth-child(1) { left: 18%; top: 32%; animation-delay: -2s; }
+.observatoryMotes i:nth-child(2) { left: 43%; top: 66%; animation-delay: -5s; }
+.observatoryMotes i:nth-child(3) { left: 71%; top: 28%; animation-delay: -3.5s; }
+.observatoryMotes i:nth-child(4) { left: 84%; top: 58%; animation-delay: -6s; }
+
+.bookInstrument {
+  top: 36%;
+  width: clamp(11.5rem, 17vw, 17rem);
+  aspect-ratio: 1.72;
+  transform: translate(-50%, -50%) perspective(28rem) rotateX(53deg);
+  filter:
+    drop-shadow(0 1.5rem 1.2rem rgb(0 0 0 / 74%))
+    brightness(calc(0.68 + var(--territory-weight) * 0.76));
+}
+
+.bookShadow {
+  position: absolute;
+  inset: 16% 3% 4%;
+  border-radius: 48%;
+  background: rgb(0 0 0 / 64%);
+  filter: blur(0.7rem);
+  transform: translateY(24%);
+}
+
+.bookPage {
+  position: absolute;
+  top: 11%;
+  bottom: 14%;
+  width: 47.5%;
+  overflow: hidden;
+  border: 1px solid rgb(239 210 157 / 28%);
+  background:
+    repeating-linear-gradient(175deg, transparent 0 12%, rgb(111 78 45 / 13%) 13% 14%),
+    linear-gradient(150deg, #9e8059, #d1b887 54%, #806442);
+  box-shadow: inset 0 0 1.2rem rgb(75 44 20 / 48%);
+}
+
+.bookPageLeft {
+  left: 3%;
+  border-radius: 18% 5% 5% 14%;
+  transform: skewY(4deg);
+}
+
+.bookPageRight {
+  right: 3%;
+  border-radius: 5% 18% 14% 5%;
+  transform: skewY(-4deg);
+}
+
+.bookPage i {
+  position: absolute;
+  left: 18%;
+  right: 16%;
+  height: 1px;
+  background: rgb(74 54 39 / 24%);
+}
+
+.bookPage i:nth-child(1) { top: 25%; }
+.bookPage i:nth-child(2) { top: 42%; }
+.bookPage i:nth-child(3) { top: 59%; }
+
+.bookLeaf {
+  position: absolute;
+  top: 10%;
+  right: 4%;
+  z-index: 5;
+  width: 47%;
+  height: 74%;
+  border-radius: 7% 18% 14% 6%;
+  border-right: 1px solid rgb(255 229 179 / 42%);
+  background: linear-gradient(90deg, transparent, rgb(246 221 173 / 34%));
+  transform-origin: 0 50%;
+  animation: archiveLeaf 12s ease-in-out infinite;
+}
+
+.bookSpine {
+  position: absolute;
+  top: 13%;
+  bottom: 10%;
+  left: 49.5%;
+  z-index: 6;
+  width: 1.5%;
+  background: linear-gradient(90deg, #49321f, #d4af72, #3a271a);
+  box-shadow: 0 0 0.8rem rgb(244 183 88 / 30%);
+}
+
+.archiveCity {
+  position: absolute;
+  left: 27%;
+  right: 25%;
+  bottom: 36%;
+  z-index: 7;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 3%;
+  height: 45%;
+  transform: rotateX(-48deg) translateY(-8%);
+  transform-origin: 50% 100%;
+}
+
+.archiveCity i {
+  display: block;
+  width: 10%;
+  height: 48%;
+  border: 1px solid rgb(103 236 226 / 38%);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 35%, rgb(90 246 231 / 52%) 38% 48%),
+    linear-gradient(#6ec7bf, #183b42);
+  box-shadow: 0 0 0.7rem rgb(86 227 219 / 26%);
+  animation: archiveWindow 4.5s steps(4, end) infinite;
+}
+
+.archiveCity i:nth-child(2) { height: 74%; animation-delay: -2.4s; }
+.archiveCity i:nth-child(3) { height: 96%; animation-delay: -1.2s; }
+.archiveCity i:nth-child(4) { height: 62%; animation-delay: -3.2s; }
+.archiveCity i:nth-child(5) { height: 82%; animation-delay: -0.6s; }
+
+.archiveOrbit {
+  position: absolute;
+  left: 50%;
+  top: -15%;
+  z-index: 8;
+  width: 28%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(246 196 112 / 42%);
+  border-radius: 50%;
+  box-shadow: 0 0 1.2rem rgb(100 226 220 / 22%);
+  transform: translateX(-50%) rotateX(-48deg);
+  animation: territoryOrbit 15s linear infinite;
+}
+
+.archiveOrbit::before,
+.archiveOrbit::after {
+  content: '';
+  position: absolute;
+  inset: 14% -9%;
+  border: 1px solid rgb(101 232 225 / 42%);
+  border-radius: 50%;
+  transform: rotate(58deg);
+}
+
+.archiveOrbit::after {
+  transform: rotate(-58deg);
+}
+
+.archiveOrbit i {
+  position: absolute;
+  width: 11%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f1be65;
+  box-shadow: 0 0 0.55rem #f1be65;
+}
+
+.archiveOrbit i:nth-child(1) { left: 2%; top: 45%; }
+.archiveOrbit i:nth-child(2) { right: 9%; top: 14%; background: #65d9cf; }
+.archiveOrbit i:nth-child(3) { right: 16%; bottom: 2%; background: #f6e8c3; }
+
+.archiveGlow {
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  top: 20%;
+  bottom: 20%;
+  z-index: 9;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(252 184 79 / 44%), transparent 67%);
+  filter: blur(0.35rem);
+  mix-blend-mode: screen;
+  animation: materialBreath 5.5s ease-in-out infinite alternate;
 }
 
 .copy {
@@ -202,6 +558,37 @@
   transform: translateY(22%) rotate(8deg) skewX(-18deg);
 }
 
+.play:hover .proofInstrument,
+.play:focus-visible .proofInstrument {
+  filter:
+    drop-shadow(0 1.5rem 2.8rem rgb(0 0 0 / 82%))
+    drop-shadow(0 0 1.4rem rgb(101 217 207 / 18%))
+    brightness(calc(0.72 + var(--territory-weight) * 0.94));
+}
+
+.ai-futures:hover .proofInstrument,
+.ai-futures:focus-visible .proofInstrument {
+  filter:
+    drop-shadow(0 1.5rem 2.8rem rgb(0 0 0 / 82%))
+    drop-shadow(0 0 1.5rem rgb(240 199 120 / 18%))
+    brightness(calc(0.7 + var(--territory-weight) * 0.92));
+}
+
+.life-systems:hover .bookLeaf,
+.life-systems:focus-visible .bookLeaf {
+  animation-duration: 4.2s;
+}
+
+.play:hover .coralPlate,
+.play:focus-visible .coralPlate {
+  animation-duration: 4.8s;
+}
+
+.ai-futures:hover .signalCurrent,
+.ai-futures:focus-visible .signalCurrent {
+  animation-duration: 3.2s;
+}
+
 .status {
   position: absolute;
   left: 50%;
@@ -246,11 +633,85 @@
   to { opacity: 0.82; transform: scale(1.08); }
 }
 
+@keyframes materialBreath {
+  from { opacity: 0.22; transform: scale(0.92); }
+  to { opacity: 0.68; transform: scale(1.06); }
+}
+
+@keyframes coralTide {
+  from { transform: rotate(-1.2deg) skewX(-0.5deg) scaleY(0.985); }
+  to { transform: rotate(1deg) skewX(0.8deg) scaleY(1.015); }
+}
+
+@keyframes organismFloat {
+  from { transform: translate3d(-0.5%, 0.8%, 0) rotate(-0.8deg); }
+  to { transform: translate3d(0.8%, -1.2%, 0) rotate(0.9deg); }
+}
+
+@keyframes receiverDrift {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reefIllumination {
+  from { opacity: 0.34; transform: translateX(-3%) scale(0.92); }
+  to { opacity: 0.86; transform: translateX(5%) scale(1.08); }
+}
+
+@keyframes proofMote {
+  0%, 100% { opacity: 0; transform: translate3d(0, 0.65rem, 0) scale(0.6); }
+  35% { opacity: 0.66; }
+  70% { opacity: 0.18; transform: translate3d(0.42rem, -0.9rem, 0) scale(1.2); }
+}
+
+@keyframes portalDrift {
+  from { transform: translate3d(-0.8%, 0.5%, 0); opacity: 0.6; }
+  to { transform: translate3d(0.9%, -0.6%, 0); opacity: 0.82; }
+}
+
+@keyframes observatorySettle {
+  from { transform: rotate(-0.35deg) translateY(0.3%); }
+  to { transform: rotate(0.35deg) translateY(-0.35%); }
+}
+
+@keyframes cityLight {
+  from { filter: brightness(0.82) saturate(0.88); }
+  to { filter: brightness(1.12) saturate(1.08); }
+}
+
+@keyframes currentTravel {
+  from { transform: translateX(-8%) skewY(-1deg); filter: brightness(0.74); }
+  50% { filter: brightness(1.4); }
+  to { transform: translateX(12%) skewY(1deg); filter: brightness(0.84); }
+}
+
+@keyframes observatoryIllumination {
+  from { opacity: 0.28; transform: translateX(-4%) scale(0.94); }
+  to { opacity: 0.8; transform: translateX(5%) scale(1.08); }
+}
+
+@keyframes archiveLeaf {
+  0%, 72%, 100% { transform: rotateY(0deg); opacity: 0.32; }
+  84% { transform: rotateY(-84deg); opacity: 0.74; }
+}
+
+@keyframes archiveWindow {
+  0%, 100% { filter: brightness(0.72); opacity: 0.72; }
+  50% { filter: brightness(1.28); opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anchor,
   .outerOrbit,
   .innerOrbit,
-  .core {
+  .core,
+  .proofPlate,
+  .signalCurrent,
+  .reefMotes i,
+  .observatoryMotes i,
+  .bookLeaf,
+  .archiveCity i,
+  .archiveOrbit,
+  .archiveGlow {
     animation: none;
     transition-duration: 120ms;
   }
@@ -260,5 +721,7 @@
   .play { --anchor-x: 16% !important; }
   .ai-futures { --anchor-x: 84% !important; }
   .anchor { width: 7rem; }
+  .proofInstrument { width: 12rem; }
+  .bookInstrument { width: 10rem; }
   .signal { display: none; }
 }
