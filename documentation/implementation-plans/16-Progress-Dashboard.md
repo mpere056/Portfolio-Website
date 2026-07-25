@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-24
-Implementation commit baseline: `557c7fb`; public route structure unchanged
+Implementation commit baseline: `51fb4ec`; public route structure unchanged
 
 ## Plan Metadata
 
@@ -15,7 +15,7 @@ Implementation commit baseline: `557c7fb`; public route structure unchanged
 
 ## Current Program State
 
-**Four bounded visual dialects are accepted, `ART-16A-C` are accepted, and the private Stage `D` neutral Home shell is locally verified at `557c7fb` and awaiting Mark review.**
+**Four bounded visual dialects are accepted, `ART-16A-C` are accepted, and the revised Stage `D` neutral Home shell visibly integrates those dialects at `51fb4ec` and awaits Mark review.**
 
 Coral west ecology, east observatory, archive-core, and shared-home music proofs retain tested/deployed checkpoints and Mark review. The music proof now uses the actual `HeroCube` and a `40%` translucent physical piano. Mark approved About at the top, Music center, Play left, AI right, and Life Systems below. One territory becomes dominant on a continuous attention spectrum while its atmosphere melds across the viewport; anchors remain fixed and inactive territories recede without disappearing. Public `/` and `/projects` remain unchanged until additive taxonomy, attention, visual, project, navigation, and rollback gates pass.
 
@@ -108,7 +108,7 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 52 | `ART-16A` | Home-world planning reconciliation | accepted | Decision, Plan `21`, packages, capabilities, and work item align | Preserve during implementation |
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
-| 55 | `ART-16D/E` | Neutral shell and two-transition proof | `D` in-review | Private shell passes 232 tests, build, and local browser flow at `557c7fb` | Mark accepts/revises five-anchor neutral composition, then Music and Play melding |
+| 55 | `ART-16D/E` | Neutral shell and two-transition proof | `D` revised and in-review | Private shell visibly reuses all accepted proof identities and passes 232 tests, build, local browser review, and Production at `51fb4ec` | Mark accepts/revises proof-derived neutral composition, then Music and Play melding |
 | 56 | `ART-16F` | AI, Life Systems, and About territories | pending | Music/Play proof accepted | Integrate one territory at a time |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16D` | `557c7fb` is live in Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`; local gates and live route smoke pass | Collect Mark's neutral-shell review | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16D` | `51fb4ec` is live in Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`; proof-derived anchors, local gates, and live route smoke pass | Collect Mark's revised neutral-shell review | 2026-07-24 |
 | Next | same work item | ready after review | `ART-16E` | Waits on neutral-shell acceptance | Prove Music and Play atmospheric melding without moving anchors | 2026-07-24 |
 | Later | same work item | not-started checkpoint | `ART-16E/F`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Prove Music/Play, then integrate remaining territories, project reveal, and migration | 2026-07-24 |
 
@@ -152,7 +152,7 @@ No Phase 2 or Phase 3 functional package is partial. The Home-world architecture
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, and one-viewport geometry exist | No standalone action; Home integration may reveal a named reusable-seam regression | Preserve behavior and current rollback routes | Reopen only a named regression from `ART-16` | Retained candidate and rollout evidence |
 | `CAP-ART-013/014` | superseded `WI-ART-12-01` | Decomposition pipeline plus coral, observatory, archive, and music proof dialects are accepted | No whole-Museum integration remains | Preserve proof routes and records through `68e0897` | Supply bounded inputs to `ART-16` | Tests, deployments, and Mark reviews retained |
-| `CAP-KG-008`, `CAP-EXP-015`, `CAP-ART-017` | `WI-ART-16-01` | Taxonomy, attention behavior, and private five-anchor neutral shell are implemented and locally verified | Mark neutral review and browser/history adoption remain | No-index proof only; public routes unchanged | Review Stage `D`, then begin `E` after acceptance | `EV-ART-16-01`; 56 files / 232 tests, content, TypeScript, lint, 40-page build, browser flow |
+| `CAP-KG-008`, `CAP-EXP-015`, `CAP-ART-017` | `WI-ART-16-01` | Taxonomy, attention behavior, and private five-anchor neutral shell visibly reuse the accepted proof identities and are verified | Mark revised-neutral review and browser/history adoption remain | No-index proof only; public routes unchanged | Review Stage `D`, then begin `E` after acceptance | `EV-ART-16-01`; 56 files / 232 tests, content, TypeScript, lint, 40-page build, browser flow |
 | `CAP-ART-018/019`, `CAP-PRJ-009` | `WI-ART-16-01` later checkpoints | Accepted proof dialects and project framework exist | Melding, territory lifecycle, About portal, project reveal, and migration remain | Do not mount all proof renderers or redirect `/projects` | Wait on neutral shell and two-transition gate | No integrated evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
@@ -209,6 +209,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-24 | Replaced generic neutral anchors with the accepted proof identities | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Mark rejected the first glyph-only iteration; commit `51fb4ec`, live in Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`, now integrates separated coral/organism and observatory/city/portal plates, a code-built animated archive book, and the existing piano while keeping complete proof runtimes unmounted; 232 tests, TypeScript, lint, content, 40-page build, local visual/interaction review, and live route smoke pass |
 | 2026-07-24 | Implemented and deployed the additive neutral Home-world shell candidate | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Commit `557c7fb`, live in Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`, adds the no-index `/home-world-proof`, five fixed semantic anchors, shared Home piano rendering, selection/return behavior, and optical correction; 232 tests, TypeScript, lint, content, 40-page build, local browser review, and live route smoke pass while canonical routes remain unchanged |
 | 2026-07-24 | Accepted the Home practice taxonomy and pure attention contract | `KG-07`, `EXP-08`, `ART-16B/C`, `EV-KG-07-01`, `EV-EXP-08-01` | Four stable practices, nine project classifications, bounded graph queries, and deterministic locality/hysteresis/selection/restore/Back/calm behavior pass 229 tests, TypeScript, content validation, and the 39-page build; public routes remain unchanged |
 | 2026-07-24 | Approved and reconciled the five-territory Home architecture | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`, `V-34` through `V-36` | Home becomes the target work index; About remains separate; fixed anchors and attention-weighted atmospheric melding are sequenced in Plan `21`; `/projects` remains unchanged until migration passes |

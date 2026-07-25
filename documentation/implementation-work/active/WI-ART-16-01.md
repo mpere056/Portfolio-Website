@@ -25,19 +25,19 @@ The public site still has separate `/` and `/projects` primary worlds. Four boun
 
 These proofs are not mounted together wholesale. The non-visual foundation now exists: four controlled practices, nine required project classifications, bounded practice queries, and a pure attention contract cover locality, hysteresis, precedence, selection, restore, calm, reduced motion, and Back.
 
-Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It reuses the actual Home piano renderer, adds five fixed semantic anchors, supports neutral/selected/return behavior, fits one desktop viewport, and mounts no full coral, observatory, or archive proof runtime. Canonical `/` and `/projects` remain unchanged. The candidate is locally verified but awaits Mark's visual acceptance; atmospheric melding, About production treatment, React/history adoption, and route migration do not exist yet.
+Checkpoint `D` now has a revised additive no-index candidate at `/home-world-proof`. It reuses the actual Home piano renderer and visibly integrates the accepted coral/organism plates, observatory/city/portal plates, and a lightweight code-built archive book as persistent anchors. Each anchor has independent idle motion and local emphasis, while the complete proof runtimes remain unmounted. The generic-glyph first iteration was rejected and is superseded by `51fb4ec`. Canonical `/` and `/projects` remain unchanged. Atmospheric melding, About production treatment, React/history adoption, and route migration do not exist yet.
 
 ## Resume Packet
 
-- Known-good implementation commit: `557c7fb` on `main`.
+- Known-good implementation commit: `51fb4ec` on `main`.
 - Public routes remain unchanged; no migration is partially deployed.
 - Approved map: About top, Music center, Play left, AI right, Life Systems bottom.
 - Approved behavior: fixed anchors; one dominant attention target; continuous inertial weights; broad atmospheric melding; inactive territories remain quiet and visible.
 - Performance boundary: lightweight persistent anchors, one dominant expensive dialect, one coordinated clock.
-- Verification: 56 test files / 232 tests, TypeScript, focused lint, 62-node content validation, the 40-page production build, and a `1440 x 900` no-console-error browser flow pass.
+- Verification: 56 test files / 232 tests, TypeScript, focused lint, 62-node content validation, the 40-page production build, local one-screen browser review, and live route smoke.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Deployment: Vercel Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`; `/`, `/projects`, and the no-index proof return `200`.
-- Next exact action: collect Mark's checkpoint `D` review. Revise only named neutral-composition issues; after acceptance, begin checkpoint `E` with neutral-to-Music and neutral-to-Play melding.
+- Deployment: Vercel Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`; `/`, `/projects`, and the no-index proof return `200`.
+- Next exact action: collect Mark's review of the proof-derived neutral composition. Revise only named balance or legibility issues; after acceptance, begin checkpoint `E` with neutral-to-Music and neutral-to-Play melding.
 
 ## Ordered Checkpoints
 
@@ -74,7 +74,7 @@ Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It
 ## Restart Procedure
 
 1. Read this file and the linked decision/plan.
-2. Verify `main` still contains `557c7fb` or record the newer known-good commit.
+2. Verify `main` still contains `51fb4ec` or record the newer known-good commit.
 3. Inspect repository status and preserve unrelated user changes.
 4. Open the current checkpoint only; do not start a later visual territory.
 5. Run focused tests, TypeScript, lint, content validation, then the aggregate suite/build when the checkpoint changes visitor behavior.
@@ -95,4 +95,7 @@ Checkpoint `D` now has an additive no-index candidate at `/home-world-proof`. It
 - Checkpoint `D` added `/home-world-proof`, five fixed semantic anchors, the shared `HeroCube` piano identity, local selection/return behavior, and a proof-local optical matte without changing canonical routes.
 - The complete 56-file / 232-test suite, TypeScript, focused lint, 62-node content validation, 40-page build, and local `1440 x 900` browser flow pass at `557c7fb`.
 - GitHub `main` and Vercel Production deployment `dpl_86HDa7ebRJhg227LWScj22hgFoW3` contain the candidate; Home, Projects, and the no-index proof pass live smoke checks.
-- Stage `D` is in review. Stage `E` waits on Mark's neutral-shell acceptance.
+- Mark rejected the first Stage `D` visual iteration because generic orbit glyphs did not visibly reuse the accepted coral, observatory, and archive proofs.
+- Revision `51fb4ec` integrates their actual separated material plates and a code-built archive book, preserves independent idle motion, removes the unrelated Home backdrop/global cursor light from proof mode, and keeps the complete proof runtimes unmounted.
+- GitHub `main` and Vercel Production deployment `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V` contain the revised candidate; 232 tests, TypeScript, lint, content validation, the 40-page build, local visual/interaction review, and live route smoke pass.
+- Stage `D` remains in review. Stage `E` waits on Mark's revised neutral-shell acceptance.

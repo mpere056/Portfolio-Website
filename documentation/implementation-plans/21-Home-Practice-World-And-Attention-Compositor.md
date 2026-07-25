@@ -232,12 +232,13 @@ Territory integration has one row per territory. A territory cannot be called co
 
 ## Current Resume Point
 
-- Known-good implementation: `557c7fb` on `main`; current public Home and project routes remain unchanged.
+- Known-good implementation: `51fb4ec` on `main`; current public Home and project routes remain unchanged.
 - Accepted proof inputs: coral west ecology revision 4, east observatory selected tuning, archive-core page cycle, and shared-home music proof with the piano silhouette at `40%`.
 - Architecture decision: approved five-territory Home with About above, Music center, Play left, AI right, and Life Systems below.
 - Accepted non-visual foundation: four practices, nine project classifications, bounded graph queries, and a pure five-territory attention reducer pass the aggregate suite and production build.
-- Stage `D` candidate: `/home-world-proof` fits five fixed semantic anchors in one desktop viewport, reuses the actual `HeroCube`, selects and returns deterministically, mounts no complete proof runtime, and leaves canonical routes unchanged.
-- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, local `1440 x 900` browser review with no console errors, and live `200` smoke checks for Home, Projects, and the no-index proof.
-- Review artifact: `https://www.marknperera.ca/home-world-proof` in Vercel Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`.
+- Stage `D` candidate: `/home-world-proof` fits five fixed semantic anchors in one desktop viewport, reuses the actual `HeroCube`, the accepted coral/organism and observatory/city/portal plates, and a lightweight code-built archive book, selects and returns deterministically, mounts no complete proof runtime, and leaves canonical routes unchanged.
+- Revision history: Mark rejected the generic-glyph first iteration because it did not visibly use the accepted proofs. `51fb4ec` replaces those substitutes, adds independent idle motion and local emphasis, and removes the proof-mode legacy Home backdrop/global cursor light.
+- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, local one-screen browser review, and live `200` smoke checks for Home, Projects, and the no-index proof.
+- Review artifact: `https://www.marknperera.ca/home-world-proof` in Vercel Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`.
 - Current gap: Mark has not accepted the neutral composition. React/history adoption, atmospheric melding, project reveal, and route migration remain absent.
-- Next exact action: collect Mark's Stage `D` review; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.
+- Next exact action: collect Mark's review of the revised Stage `D` balance; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.

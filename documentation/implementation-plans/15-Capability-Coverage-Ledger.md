@@ -625,13 +625,13 @@ Until a capability receives its own detail record, these defaults apply:
 - Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017` has a Stage `D` candidate in review; `CAP-ART-018/019` planned
 - Health: on-track
 - Confidence: high in the accepted contracts and additive implementation; neutral creative acceptance and transition quality remain open
-- Works now: Public `/` and `/projects` remain unchanged. Four controlled practices, nine required project classifications, bounded graph queries, and the pure attention contract pass validation. The private `/home-world-proof` composes five fixed semantic anchors in one desktop viewport, reuses the actual Home piano renderer, supports selected/return behavior, and mounts no complete Museum proof runtime.
+- Works now: Public `/` and `/projects` remain unchanged. Four controlled practices, nine required project classifications, bounded graph queries, and the pure attention contract pass validation. The private `/home-world-proof` composes five fixed semantic anchors in one desktop viewport, reuses the actual Home piano renderer, visibly integrates the accepted coral/organism and observatory/city/portal plates plus a lightweight code-built archive book, supports selected/return behavior, and mounts no complete Museum proof runtime.
 - Named gaps: Mark has not accepted the neutral composition. React/history adoption, Music/Play melding, remaining territory runtimes, About portal, project reveal, route migration, and integrated performance evidence do not exist.
 - Safe exposure: only the no-index proof route contains the integrated shell; canonical routes and rollback surfaces are unchanged.
-- Evidence: `EV-ART-16-01` records 56 files / 232 tests, TypeScript, focused lint, content validation, the 40-page build, and local `1440 x 900` browser review.
+- Evidence: `EV-ART-16-01` records 56 files / 232 tests, TypeScript, focused lint, content validation, the 40-page build, local browser review, and Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`.
 - Work item: `WI-ART-16-01` is in review at checkpoint `D`. `WI-ART-12-01` is superseded after preserving its accepted proof results.
-- Next checkpoint: deploy and collect Mark's neutral-shell review; begin Stage `E` only after acceptance.
-- Last assessed: 2026-07-24 at `557c7fb`.
+- Next checkpoint: collect Mark's review of the revised proof-derived neutral shell; begin Stage `E` only after acceptance.
+- Last assessed: 2026-07-24 at `51fb4ec`.
 
 ## Project Depth And Practice-Reveal System
 
