@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`51fb4ec` is the known-good implementation and the public route structure is unchanged. `WI-ART-16-01` is in review: the revised `/home-world-proof` visibly reuses the accepted coral, observatory, archive, and music proof identities as bounded persistent anchors without mounting their complete runtimes together. The first generic-glyph iteration was rejected and replaced; no `/projects` redirect has begun.
+`ae8c6a2` is the known-good implementation and the public route structure is unchanged. `WI-ART-16-01` is in review: `/home-world-proof` now embeds the complete accepted coral, observatory, and archive runtimes as cursor-proximity-weighted viewport worlds while Music retains the shared Home renderer. The earlier generic-glyph and landmark-only candidates are retained as rejected history; no `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Revised Stage `D` is live at the no-index review route in Production deployment `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V` | Collect Mark's proof-derived neutral-shell review | 2026-07-24 |
-| Next | `WI-ART-16-01` | ready after review | `ART-16E` | Waits on neutral-shell acceptance | Prove neutral-to-Music and neutral-to-Play atmospheric melding | 2026-07-24 |
-| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16E-I` | Each stage waits on the preceding accepted gate | Music/Play proof, remaining territories, project reveal, migration, release | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoints `D-F2`: full-world compositor passes 233 tests and build; deployment pending | Deploy and collect full-world proximity/melding review | 2026-07-24 |
+| Next | `WI-ART-16-01` | ready after review | `ART-16F3` | Waits on integrated-world acceptance | Brief and build the About memory portal | 2026-07-24 |
+| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16G-I` | Each stage waits on the preceding accepted gate | Project reveal, navigation migration, and release | 2026-07-24 |
 
 ## Active And Unfinished Items
 

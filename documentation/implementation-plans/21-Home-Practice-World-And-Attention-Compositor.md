@@ -7,7 +7,7 @@ Last updated: 2026-07-24
 | Field | Value |
 | --- | --- |
 | Plan ID | `HOME-WORLD` |
-| Status | Active; taxonomy and attention contract accepted, neutral shell candidate in review |
+| Status | Active; full-world proximity compositor candidate in review |
 | Upstream | [Homepage decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md), [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Dynamic scenes](20-Dynamic-Scene-Composition-And-Layered-Materials.md) |
 | Downstream | Home, About entry, project navigation, tour, AI cards, returning state, destination migration |
 | Primary packages | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
@@ -178,9 +178,9 @@ Rollback must restore the current `/projects` route without changing stable proj
 | `A` Reconcile | `ART-16` | Canonical decision, plan, work item, and superseded Museum steps recorded | Planning integrity and Mark direction agree |
 | `B` Taxonomy | `KG-07` | Practice nodes, project classification, graph queries, validators | Accepted: every project has one validated primary practice |
 | `C` Contracts | `ARC-06`, `EXP-08` | Territory IDs, pure attention reducer, hysteresis, route/restore policy | Accepted foundation: deterministic tests cover neutral, locality, focus, selection, calm, restore, Back, and reduced motion; browser adoption remains Stage `H` |
-| `D` Neutral shell | `ART-16` | Implemented private candidate: five lightweight anchors, shared Home piano, semantic selection/return, no route migration | In review: local one-screen, interaction, regression, and build gates pass; Mark visual acceptance remains |
-| `E` Transition proof | `ART-16` | Neutral-to-Music and neutral-to-Play melding | Fixed anchors, broad atmosphere, no panel resizing, no global simultaneous reaction |
-| `F` Territory integration | `ART-16` | AI, Life Systems, then About dialects integrated one at a time | Each territory passes idle, local-attention, calm, and budget checks before the next |
+| `D` Neutral shell | `ART-16` | Implemented private candidate: five fixed anchors, shared Home piano, semantic selection/return, no route migration | In review: neutral state remains one screen and mounts no expensive proof runtime |
+| `E` Transition proof | `ART-16` | Implemented candidate: continuous proximity expands the complete Play world; Music remains the shared Home world | In review: fixed anchors, broad atmosphere, no panel resizing, click optional |
+| `F` Territory integration | `ART-16` | `F1/F2` implemented candidate: complete AI/observatory and Life Systems/archive worlds; `F3` About remains not started | Each territory passes idle, local-attention, calm, lifecycle, and budget checks before acceptance |
 | `G` Project reveal | `PRJ-09` | Selected-practice project instruments and individual project handoff | All current projects reachable without a card-grid fallback becoming primary |
 | `H` Navigation migration | `ARC-06`, `EXP-08` | Tour, AI, return, restore, metadata, and `/projects` compatibility migration | Deep link, Back, refresh, and rollback matrix passes |
 | `I` Release | `QA-07` | Preview, capability, performance, production, and Mark acceptance | Home promoted; `/projects` redirect only if separately approved by gate |
@@ -232,13 +232,14 @@ Territory integration has one row per territory. A territory cannot be called co
 
 ## Current Resume Point
 
-- Known-good implementation: `51fb4ec` on `main`; current public Home and project routes remain unchanged.
+- Known-good implementation: `ae8c6a2` on `main`; current public Home and project routes remain unchanged.
 - Accepted proof inputs: coral west ecology revision 4, east observatory selected tuning, archive-core page cycle, and shared-home music proof with the piano silhouette at `40%`.
 - Architecture decision: approved five-territory Home with About above, Music center, Play left, AI right, and Life Systems below.
 - Accepted non-visual foundation: four practices, nine project classifications, bounded graph queries, and a pure five-territory attention reducer pass the aggregate suite and production build.
-- Stage `D` candidate: `/home-world-proof` fits five fixed semantic anchors in one desktop viewport, reuses the actual `HeroCube`, the accepted coral/organism and observatory/city/portal plates, and a lightweight code-built archive book, selects and returns deterministically, mounts no complete proof runtime, and leaves canonical routes unchanged.
-- Revision history: Mark rejected the generic-glyph first iteration because it did not visibly use the accepted proofs. `51fb4ec` replaces those substitutes, adds independent idle motion and local emphasis, and removes the proof-mode legacy Home backdrop/global cursor light.
-- Verification: 56 files / 232 tests, TypeScript, focused lint, 62-node content validation, 40-page production build, local one-screen browser review, and live `200` smoke checks for Home, Projects, and the no-index proof.
-- Review artifact: `https://www.marknperera.ca/home-world-proof` in Vercel Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`.
-- Current gap: Mark has not accepted the neutral composition. React/history adoption, atmospheric melding, project reveal, and route migration remain absent.
-- Next exact action: collect Mark's review of the revised Stage `D` balance; after acceptance, implement only neutral-to-Music and neutral-to-Play melding in Stage `E`.
+- Current candidate: `/home-world-proof` keeps five fixed semantic anchors but uses them only as spatial affordances. Global cursor proximity continuously weights all territories; the complete accepted Play, AI/observatory, and Life Systems/archive runtimes expand through viewport masks and atmosphere instead of enlarging proxy icons. Music retains the shared `HeroCube`; click only locks a selection.
+- Runtime boundary: only the dominant expensive proof runtime remains active, one outgoing runtime may remain briefly for a real crossfade, and invisible canvases pause. The neutral state mounts no expensive proof runtime.
+- Revision history: Mark rejected both the generic-glyph candidate and the proof-derived landmark-only candidate at `51fb4ec`. Implementation `ae8c6a2` replaces the latter with full-world composition and fades duplicate landmark art as its complete world arrives.
+- Verification: 56 files / 233 tests, TypeScript, focused lint, and the 40-page production build pass. Local browser review confirmed neutral no-runtime behavior, continuous intermediate proximity, and full Play-world takeover without clicking.
+- Review artifact: `https://www.marknperera.ca/home-world-proof`; deployment containing `ae8c6a2` is pending.
+- Current gap: Mark has not accepted full-world proximity, cross-world melding, or territory balance. About production treatment, React/history adoption, project reveal, and route migration remain absent.
+- Next exact action: deploy the current candidate and collect a short visual review of takeover range, overlap, and fixed-anchor composition; then revise only named issues before starting the About portal.
