@@ -14,7 +14,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoints `D-F2`: full-world compositor passes 233 tests and build; deployment pending | Deploy and collect full-world proximity/melding review | 2026-07-24 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoints `D-F2`: full-world compositor passes 233 tests/build and is live in `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` | Collect full-world proximity/melding review | 2026-07-24 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16F3` | Waits on integrated-world acceptance | Brief and build the About memory portal | 2026-07-24 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16G-I` | Each stage waits on the preceding accepted gate | Project reveal, navigation migration, and release | 2026-07-24 |
 

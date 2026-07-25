@@ -12,7 +12,7 @@ Last updated: 2026-07-24
 | Work item | `WI-ART-16-01` checkpoints `D`, `E`, `F1`, and `F2` |
 | Implementation | `ae8c6a2` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Pending deployment of `ae8c6a2` plus tracking updates |
+| Deployment | Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -46,4 +46,4 @@ Implementation `ae8c6a2` makes each accepted proof reusable without its route ca
 - Practice routes, project reveal, browser-history adoption, and `/projects` migration remain unbuilt.
 - Production performance and calm/failure matrices require review after the visual behavior is accepted.
 
-The next action is deployment and Mark review of `EV-ART-16-02`, not additional landmark enlargement.
+Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` contains implementation `ae8c6a2` and tracking commit `72ffe5b`. Live Home, Projects, and the no-index proof return `200`. The next action is Mark review of `EV-ART-16-02`, not additional landmark enlargement.

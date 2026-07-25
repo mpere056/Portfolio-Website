@@ -240,6 +240,6 @@ Territory integration has one row per territory. A territory cannot be called co
 - Runtime boundary: only the dominant expensive proof runtime remains active, one outgoing runtime may remain briefly for a real crossfade, and invisible canvases pause. The neutral state mounts no expensive proof runtime.
 - Revision history: Mark rejected both the generic-glyph candidate and the proof-derived landmark-only candidate at `51fb4ec`. Implementation `ae8c6a2` replaces the latter with full-world composition and fades duplicate landmark art as its complete world arrives.
 - Verification: 56 files / 233 tests, TypeScript, focused lint, and the 40-page production build pass. Local browser review confirmed neutral no-runtime behavior, continuous intermediate proximity, and full Play-world takeover without clicking.
-- Review artifact: `https://www.marknperera.ca/home-world-proof`; deployment containing `ae8c6a2` is pending.
+- Review artifact: `https://www.marknperera.ca/home-world-proof` in Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib`.
 - Current gap: Mark has not accepted full-world proximity, cross-world melding, or territory balance. About production treatment, React/history adoption, project reveal, and route migration remain absent.
-- Next exact action: deploy the current candidate and collect a short visual review of takeover range, overlap, and fixed-anchor composition; then revise only named issues before starting the About portal.
+- Next exact action: collect a short visual review of takeover range, overlap, and fixed-anchor composition; then revise only named issues before starting the About portal.

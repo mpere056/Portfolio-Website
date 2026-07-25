@@ -36,8 +36,8 @@ The landmark-only Stage `D` candidate at `51fb4ec` failed Mark's creative review
 - Performance boundary: lightweight persistent anchors, one dominant expensive dialect, at most one outgoing crossfade dialect for `1400ms`, and paused invisible frame loops.
 - Verification: 56 test files / 233 tests, TypeScript, focused lint, the 40-route production build, and local continuous west-ecology takeover review.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Deployment: pending a new Production deployment containing `ae8c6a2` and this tracking update.
-- Next exact action: deploy and collect Mark's review of proximity range, full-world takeover, cross-world melding, and fixed-anchor composition. Revise only named behavior or visual issues.
+- Deployment: Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` contains implementation `ae8c6a2` and tracking commit `72ffe5b`.
+- Next exact action: collect Mark's review of proximity range, full-world takeover, cross-world melding, and fixed-anchor composition. Revise only named behavior or visual issues.
 
 ## Ordered Checkpoints
 
@@ -103,3 +103,4 @@ The landmark-only Stage `D` candidate at `51fb4ec` failed Mark's creative review
 - Mark rejected the proof-derived landmark revision because the full proof worlds still did not occupy the page and proximity was not driving a continuous atmospheric takeover.
 - Implementation `ae8c6a2` makes all three accepted Museum proofs embeddable, samples continuous global proximity, expands the dominant world through a radial viewport mask, crossfades a bounded outgoing runtime, pauses invisible canvases, and fades duplicate landmark artwork.
 - The complete 56-file / 233-test suite, TypeScript, focused lint, and 40-route production build pass. `EV-ART-16-02` is the current visual candidate.
+- Production deployment `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` is ready and aliased to `https://www.marknperera.ca`; Home, Projects, and the no-index proof return `200`.
