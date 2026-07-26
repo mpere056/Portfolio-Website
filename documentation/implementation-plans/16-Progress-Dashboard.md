@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-26
-Implementation commit baseline: `30e6c88`; local piano-clearing candidate pending commit; public route structure unchanged
+Implementation commit baseline: `3d60173`; piano-clearing candidate deployed for private review; public route structure unchanged
 
 ## Plan Metadata
 
@@ -108,7 +108,7 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 52 | `ART-16A` | Piano-clearing direction reset | accepted | 2026-07-26 decision, Plan `22`, packages, capabilities, and work item align | Preserve during implementation |
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
-| 55 | `ART-16A/B` | Direction reset and empty piano clearing | `A` accepted; `B` implemented candidate and in-review | One finite clearing, existing piano, instanced grass, low-poly horizon, capped DPR, no post/shadows; focused checks and 40-route build pass | Commit, deploy, and collect clearing-only review |
+| 55 | `ART-16A/B` | Direction reset and empty piano clearing | `A` accepted; `B` deployed candidate and in-review | One finite clearing, existing piano, instanced grass, low-poly horizon, capped DPR, no post/shadows; 237 tests and 40-route build pass | Collect clearing-only review |
 | 56 | `ART-16C/D` | Pianist/About entry and four practice instruments | pending | Clearing accepted | Integrate one feedback-gated layer at a time |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16B` | Local clearing passes focused lint, TypeScript, content, eight focused tests, and 40-route build; commit/deploy pending | Commit, deploy, and collect clearing-only review | 2026-07-26 |
+| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `3d60173`, deployment `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`, 237 tests, 40-route build, and live smoke checks pass | Collect clearing-only review | 2026-07-26 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 
@@ -152,7 +152,7 @@ No Phase 2 or Phase 3 functional package is partial. The Home-world architecture
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, and one-viewport geometry exist | No standalone action; Home integration may reveal a named reusable-seam regression | Preserve behavior and current rollback routes | Reopen only a named regression from `ART-16` | Retained candidate and rollout evidence |
 | `CAP-ART-013/014` | superseded `WI-ART-12-01` | Decomposition pipeline plus coral, observatory, archive, and music proof dialects are accepted | No whole-Museum integration remains | Preserve proof routes and records through `68e0897` | Supply bounded inputs to `ART-16` | Tests, deployments, and Mark reviews retained |
-| `CAP-KG-008`, `CAP-ART-017`, `CAP-ART-019` | `WI-ART-16-01` | Four-practice taxonomy remains; a finite piano clearing with explicit render/lifecycle budgets is implemented locally | Mark clearing review and target-machine performance remain | No-index proof only; public routes unchanged | Deploy and review Checkpoint `B` | `EV-ART-16-03`; focused lint, TypeScript, tests, content, 40-page build |
+| `CAP-KG-008`, `CAP-ART-017`, `CAP-ART-019` | `WI-ART-16-01` | Four-practice taxonomy remains; a finite piano clearing with explicit render/lifecycle budgets is deployed | Mark clearing review and target-machine performance remain | No-index proof only; public routes unchanged | Review Checkpoint `B` | `EV-ART-16-03`; `3d60173`; Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; 237 tests; 40-page build |
 | `CAP-ART-018` | `WI-ART-16-01` later checkpoint | Preview/selected-state contract is documented | Screens and every category environment remain unbuilt | One active environment later; no simultaneous full worlds | Wait on Checkpoints `B-D` | No implementation evidence |
 | `CAP-PRJ-009` | `WI-ART-16-01` later checkpoint | Taxonomy and individual project framework exist | Practice instruments, reveal, exact handoff, and return remain | Do not redirect `/projects` | Wait on accepted clearing, pianist, screens, and first environment | No integrated evidence yet |
 
@@ -210,7 +210,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
-| 2026-07-26 | Reset Home to one bounded outdoor piano clearing | `ART-16A/B`, `CAP-ART-017/019`, `EV-ART-16-02/03` | Mark rejected the full proof-world compositor. The new local candidate keeps one Canvas, the existing piano, finite terrain, 760 shader-swayed grass instances, 18 low-poly trees, capped DPR, no post-processing/shadows, and no later pianist/screens/environments; focused checks and the 40-route build pass. |
+| 2026-07-26 | Reset Home to one bounded outdoor piano clearing | `ART-16A/B`, `CAP-ART-017/019`, `EV-ART-16-02/03` | Mark rejected the full proof-world compositor. Commit `3d60173`, live in `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`, keeps one Canvas, the existing piano, finite terrain, 760 shader-swayed grass instances, 18 low-poly trees, capped DPR, no post-processing/shadows, and no later pianist/screens/environments; 237 tests, the 40-route build, and live smoke checks pass. |
 | 2026-07-24 | Replaced landmark enlargement with complete cursor-proximity proof worlds | `ART-16D-F2`, `CAP-ART-017/018/019`, `EV-ART-16-02` | Mark rejected `51fb4ec` because its proxy landmarks grew without their worlds. Commit `ae8c6a2`, live in Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib`, embeds the accepted coral, observatory, and archive runtimes as masked viewport atmospheres, keeps Music shared, bounds active/outgoing runtimes, pauses invisible canvases, and passes 233 tests, TypeScript, lint, build, local review, and live `200` route smoke. |
 | 2026-07-24 | Replaced generic neutral anchors with the accepted proof identities | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Mark rejected the first glyph-only iteration; commit `51fb4ec`, live in Production `dpl_AxWpbTP2pNUmqTHWniK3DQWoqY9V`, now integrates separated coral/organism and observatory/city/portal plates, a code-built animated archive book, and the existing piano while keeping complete proof runtimes unmounted; 232 tests, TypeScript, lint, content, 40-page build, local visual/interaction review, and live route smoke pass |
 | 2026-07-24 | Implemented and deployed the additive neutral Home-world shell candidate | `ART-16D`, `CAP-ART-017`, `EV-ART-16-01` | Commit `557c7fb`, live in Production `dpl_86HDa7ebRJhg227LWScj22hgFoW3`, adds the no-index `/home-world-proof`, five fixed semantic anchors, shared Home piano rendering, selection/return behavior, and optical correction; 232 tests, TypeScript, lint, content, 40-page build, local browser review, and live route smoke pass while canonical routes remain unchanged |
@@ -284,4 +284,4 @@ Run this checklist at least at package start, merge, preview, production promoti
 
 ## Next Dashboard Update
 
-The next update occurs after the `ART-16B` clearing candidate is committed, deployed, and reviewed, or if a regression changes its verified performance boundary.
+The next update occurs after Mark reviews the deployed `ART-16B` clearing candidate, or if a regression changes its verified performance boundary.

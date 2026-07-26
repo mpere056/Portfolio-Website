@@ -24,13 +24,14 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 
 ## Resume Packet
 
-- Known-good public commit: `30e6c88` on `main`.
-- Current implementation: local Checkpoint `B` candidate; commit and deployment pending.
+- Known-good deployed commit: `3d60173` on `main`.
+- Current implementation: Checkpoint `B` candidate is committed, pushed, and deployed.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, content validation, eight focused tests, and the 40-route production build pass.
+- Verification: focused lint, TypeScript, content validation, all 57 test files / 237 tests, the 40-route production build, and live `200` smoke checks pass.
 - Performance boundary: one canvas, DPR at most `1.25`, 760 grass instances in one draw, 18 trees in two draws, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Next exact action: commit, push, deploy, and collect only the clearing composition/style/performance review.
+- Deployment: `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
+- Next exact action: collect only the clearing composition, style, aliveness, framing, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 

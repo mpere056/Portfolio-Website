@@ -114,7 +114,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 
 ## Resume Point
 
-- Checkpoint `B` is implemented locally on the no-index proof route.
-- Focused lint, TypeScript, content validation, eight focused tests, and the 40-route production build pass.
+- Checkpoint `B` is committed at `3d60173` and deployed on the no-index proof route in `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
+- Focused lint, TypeScript, content validation, all 57 test files / 237 tests, the 40-route production build, and live route smoke checks pass.
 - Mark has not reviewed the rendered clearing.
-- Exact next action: deploy the private proof and collect only the five Checkpoint `B` answers.
+- Exact next action: collect only the five Checkpoint `B` answers.

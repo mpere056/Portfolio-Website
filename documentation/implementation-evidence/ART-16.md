@@ -10,9 +10,9 @@ Last updated: 2026-07-26
 | Lifecycle | in-progress; empty-clearing candidate in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Local candidate; commit pending |
+| Implementation | Commit `3d60173` on `main` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Pending |
+| Deployment | Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; private proof route live |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -44,7 +44,8 @@ Last updated: 2026-07-26
 | Claim | One compact outdoor clearing can provide a coherent, performant Home foundation centered on the existing piano without building an explorable game world. |
 | Scope | Terrain, piano, instanced grass, low-poly horizon, sky, clouds, light, restrained camera breathing, calm/reduced-motion behavior. No pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; 760 grass instances in one draw; 18 trees in two draws; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
-| Automated evidence | `tests/pianoClearingProof.test.ts` and `tests/homePracticeWorld.test.ts` pass; focused lint, TypeScript, content validation, and the 40-route production build pass. |
+| Automated evidence | `tests/pianoClearingProof.test.ts` and `tests/homePracticeWorld.test.ts` pass; focused lint, TypeScript, content validation, all 57 test files / 237 tests, and the 40-route production build pass. |
+| Production evidence | Commit `3d60173`; deployment `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; `/`, `/projects`, and `/home-world-proof` return `200`. |
 | Visual evidence | Pending Mark review on the private route. |
 
 ## Named Gaps
@@ -56,4 +57,4 @@ Last updated: 2026-07-26
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to deploy `EV-ART-16-03` and review only the clearing. No later checkpoint begins until that environment is accepted.
+The next action is to review only the deployed clearing. No later checkpoint begins until that environment is accepted.
