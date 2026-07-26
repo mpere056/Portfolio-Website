@@ -6,6 +6,8 @@ Requirements: `V-31`, `V-32`, `V-33`
 Packages: historical `ART-12` through `ART-15`; active integration continues in `ART-16`
 
 > **2026-07-24 amendment:** Mark approved consolidating project discovery into the five-territory Home. The pervasive-participation, decomposition, material, clock, and diagnostics contracts remain authoritative. Whole-`/projects` integration is no longer the next step. Coral, observatory, archive, and music proof outputs feed [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md).
+>
+> **2026-07-26 amendment:** Mark rejected the five-territory compositor. Its proof outputs remain historical material evidence, while active Home implementation moves to the single [Piano Clearing Home](22-Piano-Clearing-Home-World.md).
 Capabilities: `CAP-ART-013` through `CAP-ART-016`
 
 ## Planning Correction

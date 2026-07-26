@@ -49,7 +49,7 @@ What remains after the `fce50af` Production candidate:
 - The current scheduler contract does not expose reviewed independent temporal channels for organic, mechanical, atmospheric, flow, illumination, and occlusion behavior.
 - Transparent foreground/midground plates and route-specific displacement, flow, depth, emission, and occlusion maps remain to be produced.
 
-The earlier material sequence remains a valid keyframe and functional foundation. `ART-07` through `ART-11` prove interaction response and route distinction; `ART-12` proves four bounded material dialects; `ART-16` now owns their attention-weighted Home integration. `ART-13` through `ART-15` are resequenced after that gate.
+The earlier material sequence remains a valid keyframe and functional foundation. `ART-07` through `ART-11` prove interaction response and route distinction; `ART-12` proves four bounded material dialects. Mark rejected direct proof-world Home integration, so `ART-16` now owns one piano clearing and later bounded category-state translations. `ART-13` through `ART-15` remain resequenced after that gate.
 
 ## Attention-Weighted Multi-Territory Composition
 

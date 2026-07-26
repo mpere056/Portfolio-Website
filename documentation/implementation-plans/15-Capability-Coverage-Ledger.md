@@ -503,9 +503,9 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-014` | Decomposed material production pipeline and bounded Museum dialect proofs | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified proof foundation |
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
-| `CAP-ART-017` | Five-anchor neutral Home composition and shared attention compositor | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: accepted; Q: in-review; R: not-started` | in-review (`EV-ART-16-02`) |
-| `CAP-ART-018` | Fixed-anchor atmospheric melding and local territory response | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-02`) |
-| `CAP-ART-019` | Home territory runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-02`) |
+| `CAP-ART-017` | Shared piano-clearing Home composition and semantic navigation frame | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-03`) |
+| `CAP-ART-018` | Practice-screen environmental preview and selected-state transformation | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned after clearing and screens |
+| `CAP-ART-019` | Home-world runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-03`) |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -619,19 +619,19 @@ Until a capability receives its own detail record, these defaults apply:
 - Next checkpoint: preserve their contracts during `ART-12`; reopen only a named interaction, state, lifecycle, or renderer regression.
 - Last assessed: 2026-07-20.
 
-### CAP-ART-013 Through CAP-ART-019: Ambient Proofs And Home-World Integration
+### CAP-ART-013 Through CAP-ART-019: Ambient Proofs And Piano-Clearing Home
 
 - Owner: Codex with Mark creative review
-- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017/018/019` have a bounded full-world compositor candidate in review
+- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017/019` have a bounded clearing candidate in review; `CAP-ART-018` waits on clearing and screen acceptance
 - Health: on-track
-- Confidence: high in the accepted contracts and bounded runtime implementation; integrated creative acceptance, production performance, and remaining feature depth remain open
-- Works now: Public `/` and `/projects` remain unchanged. Four controlled practices, nine required project classifications, bounded graph queries, and the pure attention contract pass validation. The private `/home-world-proof` composes five fixed semantic anchors, continuously weights them from global cursor proximity, and lets the complete accepted Play, AI/observatory, and Life Systems/archive worlds expand across the viewport. Music retains the actual Home piano renderer. One dominant expensive runtime is active, one outgoing runtime may crossfade briefly, and invisible canvases pause.
-- Named gaps: Mark has not accepted the full-world transition composition. About production treatment, React/history adoption, project reveal, route migration, production performance evidence, and release acceptance do not exist.
+- Confidence: high in the bounded first-proof implementation; visual acceptance, target-machine performance, and all later interaction layers remain open
+- Works now: Public `/` and `/projects` remain unchanged. Four controlled practices, nine project classifications, and bounded graph queries remain valid. The private `/home-world-proof` now contains one finite outdoor clearing with the existing grand piano, displaced terrain, shader-driven instanced grass, low-poly horizon, sky, clouds, restrained camera breathing, capped DPR, and no post-processing or real-time shadows.
+- Named gaps: Mark has not accepted the clearing. The pianist/About entry, four practice screens, environmental preview, selected category states, project reveal, history/restore, route migration, production performance evidence, and release acceptance do not exist.
 - Safe exposure: only the no-index proof route contains the integrated shell; canonical routes and rollback surfaces are unchanged.
-- Evidence: `EV-ART-16-01` retains the rejected landmark-only candidate. `EV-ART-16-02` records 56 files / 233 tests, TypeScript, focused lint, the 40-page build, and local neutral/proximity/full-takeover browser review for implementation `ae8c6a2`.
-- Work item: `WI-ART-16-01` is in review across checkpoints `D`, `E`, `F1`, and `F2`; `F3` About has not started. `WI-ART-12-01` is superseded after preserving its accepted proof results.
-- Next checkpoint: deploy and collect Mark's review of the full-world proximity and melding candidate; revise named issues before About.
-- Last assessed: 2026-07-24 at `ae8c6a2`.
+- Evidence: `EV-ART-16-01` and `EV-ART-16-02` retain rejected Home candidates. `EV-ART-16-03` records the bounded clearing implementation, focused lint/TypeScript/tests/content, and the 40-route build.
+- Work item: `WI-ART-16-01` is in review at Checkpoint `B`; later checkpoints are not started. `WI-ART-12-01` remains superseded after preserving its accepted proof results.
+- Next checkpoint: deploy and collect clearing-only visual and performance review; do not begin the pianist or screens before acceptance.
+- Last assessed: 2026-07-26, local candidate pending commit.
 
 ## Project Depth And Practice-Reveal System
 

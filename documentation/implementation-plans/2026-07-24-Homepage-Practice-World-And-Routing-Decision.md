@@ -1,10 +1,13 @@
 # Homepage Practice World And Routing Decision
 
 Date: 2026-07-24
-Status: approved direction; implementation pending
+Status: superseded for Home composition and attention behavior on 2026-07-26
+Superseded by: [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md)
 Supersedes in part: [2026-07-16 Information Architecture And Routing Decision](2026-07-16-Information-Architecture-And-Routing-Decision.md)
 Requirements: `V-01`, `V-02`, `V-03`, `V-08`, `V-11`, `V-14`, `V-31`, `V-32`, `V-33`, `V-34`, `V-35`, `V-36`
 Packages: `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`
+
+> Historical decision. The four-practice taxonomy and separate About route remain useful, but the five-territory layout and proof-world compositor are rejected. Do not resume implementation from this document.
 
 ## Decision
 

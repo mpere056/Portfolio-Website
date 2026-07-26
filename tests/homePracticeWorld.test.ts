@@ -78,14 +78,13 @@ describe('neutral Home practice world', () => {
     expect(hero).toContain('{!practiceNeutral ? <CursorLight /> : null}');
   });
 
-  it('keeps the proof additive, private, and separate from the canonical Home route', async () => {
-    const [proofPage, homePage] = await Promise.all([
-      readFile(path.join(root, 'src/app/home-world-proof/page.tsx'), 'utf8'),
-      readFile(path.join(root, 'src/app/page.tsx'), 'utf8'),
-    ]);
+  it('retains the rejected compositor source as evidence without routing to it', async () => {
+    const proofPage = await readFile(
+      path.join(root, 'src/app/home-world-proof/page.tsx'),
+      'utf8',
+    );
 
-    expect(proofPage).toContain('robots: { index: false, follow: false }');
-    expect(proofPage).toContain('<HomePracticeWorldNeutral />');
-    expect(homePage).not.toContain('HomePracticeWorldNeutral');
+    expect(proofPage).not.toContain('<HomePracticeWorldNeutral />');
+    expect(proofPage).toContain('<PianoClearingProof />');
   });
 });

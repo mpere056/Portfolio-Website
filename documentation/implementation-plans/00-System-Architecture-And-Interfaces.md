@@ -37,23 +37,23 @@ The destination resolver maps IDs to routes, selected areas, safe state, fallbac
 
 Browser Back closes the current meaningful depth state before leaving the durable route. Direct links restore at a safe checkpoint and never launch an unskippable animation.
 
-See [Homepage Practice World And Routing Decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) for the active Home/work structure and `2026-07-16-Information-Architecture-And-Routing-Decision.md` for the retained route/state foundation.
+See [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) for the active Home structure and `2026-07-16-Information-Architecture-And-Routing-Decision.md` for the retained route/state foundation.
 
 ## Home World Ownership
 
-The Home practice world adds three distinct state layers:
+The piano-clearing Home adds three distinct state layers:
 
 | Layer | Owner | Persistence |
 | --- | --- | --- |
 | Practice taxonomy | Authored content and graph compiler | Build-time, stable IDs |
-| Semantic attention | Pure Home-world reducer | Selected practice may persist; raw weights do not |
-| Rendered composition | Home compositor and territory dialects | Reconstructed from semantic state |
+| Semantic state | Clearing, screen focus, preview practice, selected practice | Selected practice may persist; raw pointer coordinates do not |
+| Rendered composition | One Home canvas and bounded environmental state layers | Reconstructed from semantic state |
 
-`/` is the canonical spatial work index. `destination:practice-*` identifies durable selected-practice states, while transient territory weights stay local. `destination:projects` remains a stable compatibility alias during migration.
+`/` remains the intended canonical spatial work index. `destination:practice-*` may identify durable selected-practice states later, while transient screen focus and preview influence stay local. `destination:projects` remains a stable compatibility alias during migration.
 
-The shared compositor may normalize attention weights, hysteresis, lifecycle, visibility, capability, and stable frames. Territory implementations own their anchor, atmosphere, material behavior, project metaphor, and selected-state choreography.
+One clearing runtime owns camera, scene clock, visibility, capability, calm state, and stable frames. Later practice implementations own one screen instrument, preview influence, selected environment, project metaphor, and selected-state choreography.
 
-At most one territory is dominant at a stable moment. Lightweight anchors remain mounted; expensive territory runtimes are visibility and dominance bounded. No contract may require mounting every proof renderer simultaneously.
+At most one practice environment is primary at a stable moment. Hover preview is lightweight and reversible; selected environments are lazy and lifecycle bounded. No contract may require mounting every category world simultaneously.
 
 ## System Map
 

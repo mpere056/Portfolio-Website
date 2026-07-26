@@ -158,8 +158,8 @@ Back, refresh, deep links, and cross-subdomain return must restore a composed sa
 
 | Surface | Observatory role | Required packet or gate | Planned package |
 | --- | --- | --- | --- |
-| `/` Home practice world | First threshold and five anchored territories with one attention-dominant atmosphere | Neutral, Music, Play, AI, Life Systems, and About attended packets | `ART-16` |
-| `/work/[practice]` | Durable selected-practice chamber in the same world | Selected territory plus project instrument reveal | `ART-16`, `PRJ-09` |
+| `/` Home practice world (piano clearing) | One outdoor clearing, piano, future pianist, and four practice instruments | Clearing, pianist, screens, one preview, one selected environment, then remaining practice packets | `ART-16` |
+| `/work/[practice]` | Durable selected-practice state derived from the same clearing | Selected environment plus project instrument reveal | `ART-16`, `PRJ-09` |
 | `/projects` compatibility | Existing Museum during additive migration | Preserve as rollback; no new canonical art dependency | `ARC-06`, `QA-07` |
 | LifeInbox museum depth and subdomain | Trusted receiving instrument and trace through system boundaries | Handle and Understand packets using one persistent specimen | `ART-01`, `ART-03` |
 | Dreamlife subdomain | Refractive instrument for futures and iterative choice | Signal/Handle/deep-state packet before `PRJ-05` styling | `ART-04` |
@@ -267,13 +267,13 @@ Earlier assignments remain the source of silhouette, composition, content, and i
 - Produce transparent assets, masks, vectors, sprites, and motion maps only after the region map and asset briefs are reviewed, and before selecting the final compositor.
 - Do not continue into whole-`/projects` integration; that step is superseded by `ART-16`.
 
-### `ART-16`: Attention-Weighted Home Practice World
+### `ART-16`: Piano Clearing Home World
 
-- Implement taxonomy and pure attention contracts before visual route migration.
-- Build one neutral shell with five lightweight fixed anchors.
-- Prove Music and Play atmospheric melding before integrating the remaining territories.
-- Mount expensive dialect behavior only for the current dominant territory.
-- Integrate AI, Life Systems, and About one at a time.
+- Accept one finite outdoor clearing around the existing piano before adding interface layers.
+- Add the simple pianist/About entry only after the empty clearing passes review.
+- Design four practice screens as instruments inside the world, not cards.
+- Prove one local translucent preview and one selected environment before expanding to all practices.
+- Keep one scene owner and at most one primary category environment.
 - Add project reveal and migrate destinations only after visual/runtime acceptance.
 
 ### `ART-13`: Flagship Ambient Worlds
@@ -310,9 +310,9 @@ Earlier assignments remain the source of silhouette, composition, content, and i
 11. Run `ART-11` only after each representative route class has its own known-good dynamic checkpoint.
 12. Begin `ART-12` with baseline reconciliation, the Museum source-region atlas, and motion coverage ledger, not asset generation or renderer code.
 13. Write approved asset briefs before generating one representative transparent/mask/map stack; approve that contact sheet before compositor selection.
-14. Begin `ART-16` with taxonomy and pure attention state, then the neutral shell; do not begin by combining proof canvases.
-15. Accept neutral-to-Music and neutral-to-Play before AI, Life Systems, or About integration.
-16. Brief the top About portal only after neutral Home fixes its composition; deeper `/about` consequence work still waits on `ABT-01`.
+14. Begin `ART-16` with the finite piano clearing; do not resume the rejected proof-world compositor.
+15. Accept the clearing before the pianist or practice screens.
+16. Accept one preview and selected environment before producing the remaining practice environments; deeper `/about` consequence work still waits on `ABT-01`.
 17. Do not resume broad `ART-13` through `ART-15` expansion until `ART-16` establishes the shared Home lifecycle and exposes any real reusable seams.
 18. Run `QA-07` before changing `/projects` from rollback surface to compatibility redirect.
 

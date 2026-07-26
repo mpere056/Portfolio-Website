@@ -149,19 +149,19 @@ These are rejection prompts, not a ban on individual CSS properties. A pill can 
 | Enter | Change the spatial or perceptual rules enough to feel inside the system | More content appearing below the same container |
 | Understand | Transform behavior into evidence, tradeoff, and connection | A row of architecture cards followed by links |
 
-## Museum Proof Legacy And Home Territory Art Direction
+## Museum Proof Legacy And Piano-Clearing Art Direction
 
-The completed Museum proofs remain the material laboratory for coral ecology, east-observatory instruments, archive memory, and the music bridge. They are no longer planned as one separate primary lobby. Their accepted materials and behaviors become dialect inputs to the Home practice world under `ART-16`.
+The completed Museum proofs remain a material laboratory for future category environments, but Mark rejected combining their complete worlds on Home. `ART-16` now begins with one outdoor clearing centered on the grand piano.
 
-Home must not read as five panels or a portfolio dashboard. In neutral state, five anchored territories occupy one authored field. Under attention, an anchor gains bounded prominence while its atmosphere spreads much farther through masks, light, refraction, particles, fog, shadow, and occlusion. Neighboring materials overlap and recede; they do not simply shrink.
+Home must not read as a portfolio dashboard or a miniature game map. The finite clearing should feel larger than the camera frame through horizon, atmosphere, light, and implied continuation, not through world size or object count. The piano remains the focal anchor. Later screens are instruments inside the clearing, and later category previews enter as translucent environmental influence rather than pasted imagery.
 
-| Territory | Dominant materials | Must preserve | Must avoid |
-| --- | --- | --- | --- |
-| About top | Aperture light, memory fragments, timeline traces, reflected consequences | A sense of origin behind the practices | Portrait duplication, resume panel, fifth project category |
-| Music center | Particle piano, spectral resonance, notation matter, portrait platform | Existing homepage identity and piano anchor | Replacing Home with a new chamber |
-| Play left | Coral, spores, currents, bioluminescence | Living ecological movement and local attention | Static coral focal poster |
-| AI right | Nacre lattice, lenses, orbital diagrams, cyan-gold currents | Selected observatory tuning and code-generated flow | Simultaneous global hover surge |
-| Life Systems bottom | Pages, paths, miniature architecture, memory light | Turning-page rhythm and authored worlds | Conventional bookshelf or card list |
+| Layer | Must preserve | Must avoid |
+| --- | --- | --- |
+| Clearing | Outdoor openness, coherent ground contact, calm life, strong piano silhouette | Infinite terrain, generic asset-pack meadow, busy props |
+| Pianist | Simple authored presence and readable playing gesture | Uncanny realism, complex avatar system, focus theft |
+| Practice screens | Four distinct but related spatial instruments | Floating SaaS cards, equal dashboard panels |
+| Preview environment | Local reversible atmosphere that melds with the field | Complete world swap on hover, global simultaneous reaction |
+| Selected environment | Strong category identity with spatial continuity | Abrupt unrelated-page cut, four mounted worlds |
 
 ### Required Changes
 
@@ -334,7 +334,7 @@ These are manual, repeatable prompts rather than numeric scores:
 11. `ART-11`: review temporal restraint, renderer loading, calm/failure states, route distinction, and whole-portfolio dynamic maturity.
 12. `ART-12`: retain the accepted bounded coral, observatory, archive, and music proofs as material and behavior evidence; Museum-only integration is superseded.
 13. `ART-13`: repeat the route-local pipeline for LifeInbox, then Dreamlife, then Sudoku. Do not produce the next route's assets before the current route reaches a known-good gate.
-14. `ART-16`: compose the five-territory Home in ordered neutral, two-transition, territory-by-territory, project-reveal, and release gates. Generate About portal production assets only after neutral composition fixes its real crop and depth role.
+14. `ART-16`: accept the empty piano clearing first, then the pianist/About entry, four practice instruments, one preview, one selected environment, remaining practices, project reveal, and release in that order.
 15. Run `QA-04`, then `ART-15`: close motion coverage, capability, fatigue, performance, and Production/Mark acceptance across the desktop route matrix.
 
 Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.

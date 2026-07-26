@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-24
+Last updated: 2026-07-26
 
 ## Purpose
 
@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: `557c7fb` is the locally verified Stage `D` implementation candidate. Coral, east-observatory, archive-core, and shared-home music proofs establish four accepted visual dialects; the music proof uses the real homepage renderer and a `40%` translucent piano body. Four stable practices, nine project classifications, the pure five-territory attention contract, and a private five-anchor shell now exist. Public routes remain unchanged while the neutral composition awaits Mark review.
+Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. A new private candidate builds one bounded outdoor clearing around the existing grand piano with instanced shader-driven grass and explicit performance limits. Public routes remain unchanged while Mark reviews the empty clearing.
 
-Current delivery order: `ART-16A-C` are accepted and the private `ART-16D` neutral-shell candidate is in review. Accept or revise that one-screen shell, then prove neutral-to-Music and neutral-to-Play melding, integrate AI, Life Systems, and About one at a time, add project reveal, and migrate destinations/routes under `QA-07`. [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md) is the active execution plan; [Program Roadmap](01-Program-Roadmap.md) remains authoritative for whole-program ordering.
+Current delivery order: accept or revise the clearing only, then separately prototype the pianist/About entry, four category instruments, one translucent environmental preview, and one selected category environment. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the active execution plan; [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
 
 ## Document Authority
 
@@ -75,8 +75,10 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `18-Art-Direction-And-Aesthetic-Quality.md` | Authored visual world, project dialects, anti-generic checks, keyframe workflow, creative evidence | Active art-direction control |
 | `19-Aesthetic-System-Integration-And-Delivery.md` | Cross-plan aesthetic contracts, route coverage, package sequencing, and partial-work handoffs | Active aesthetic integration control |
 | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | Layered material packs, route-owned scene logic, renderer decisions, causal motion, performance, and resumable delivery | Active dynamic-scene control |
-| `21-Home-Practice-World-And-Attention-Compositor.md` | Five-territory Home, attention state, melding compositor, taxonomy, routing migration, and staged acceptance | Active current execution plan |
-| `2026-07-24-Homepage-Practice-World-And-Routing-Decision.md` | Canonical Home/Projects consolidation, positions, practices, routing, and migration guardrails | Approved decision |
+| `21-Home-Practice-World-And-Attention-Compositor.md` | Rejected five-territory and full proof-world compositor history | Superseded by Plan `22` |
+| `22-Piano-Clearing-Home-World.md` | Single outdoor clearing, piano anchor, future pianist/screens/environment states, and staged acceptance | Active current execution plan |
+| `2026-07-26-Piano-Clearing-Home-Reset-Decision.md` | Single-clearing composition, later interaction model, continuity, and performance boundaries | Approved decision |
+| `2026-07-24-Homepage-Practice-World-And-Routing-Decision.md` | Historical five-territory Home decision; four-practice taxonomy retained | Superseded in part |
 | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and proof sequence | Retained proof foundation; Museum-only integration superseded by `ART-16` |
 | `2026-07-20-Museum-Ambient-Baseline.md` | Live `fce50af` geometry, source, interaction, semantic, fallback, idle, and runtime regression checksum | `ART-12A` complete execution artifact |
 | `2026-07-20-Museum-Region-Atlas-And-Motion-Ledger.md` | Source-normalized region atlas, depth/occlusion order, temporal bands, dead zones, and bounded proof crop | `ART-12B` complete execution artifact |
@@ -101,7 +103,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 | Question | Read first | Then read |
 | --- | --- | --- |
-| What should we build next? | `21-Home-Practice-World-And-Attention-Compositor.md` | `../implementation-work/active/WI-ART-16-01.md` |
+| What should we build next? | `22-Piano-Clearing-Home-World.md` | `../implementation-work/active/WI-ART-16-01.md` |
 | Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
 | How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |

@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current implementation checkpoint: `68e0897` preserves the production foundation and four bounded visual dialects. Mark approved a new primary architecture on 2026-07-24: `/` will become a five-territory Home and work index, while `/projects` remains unchanged until the additive migration passes. `ART-16` is now the active integration package.
+Current implementation checkpoint: `30e6c88` preserves the production foundation. On 2026-07-26 Mark rejected the five-territory compositor and reset `/` toward one bounded outdoor piano clearing. `/projects` remains unchanged until the additive migration passes. `ART-16` is the active integration package.
 
 ## Dependency Order
 
@@ -60,7 +60,7 @@ The critical dependency chain is:
 
 Semantic lighting depends on the relationship graph. AI cards depend on stable object and route identifiers. Living project state should exist before project exhibits claim to show current status. Production styling for a major surface depends on an accepted aesthetic art packet; shared visual infrastructure depends on representative packets rather than preceding them as a generic design system.
 
-The approved information architecture is technically multi-route and experientially one world. `/` is the five-territory Home and canonical work index, `/about` remains one chronology, `/work/[practice]` is the planned durable selected-practice family, and flagship Enter/Understand states normally live on canonical project subdomains. `/projects` becomes a compatibility route only after migration. Depth does not automatically create pages.
+The approved information architecture is technically multi-route and experientially one world. `/` targets one piano-clearing Home and canonical work index, `/about` remains one chronology reached later through the pianist, `/work/[practice]` remains the planned durable selected-practice family, and flagship Enter/Understand states normally live on canonical project subdomains. `/projects` becomes a compatibility route only after migration. Depth does not automatically create pages.
 
 ## Critical Path And Safe Parallelism
 
@@ -342,7 +342,7 @@ Phase 4 began with the `LPS-02` lifecycle set and `ART-01` direction selection. 
 
 The reference-rich static material foundation remains live and valid. Mark's 2026-07-19 feedback promotes a new follow-on rather than reopening it as failed work: route artwork should be composed from independently addressable authored layers, and movement should respond to visitor or semantic state rather than drift as one flattened poster.
 
-Current checkpoint: `ART-07` through `ART-11` retain valid interaction and lifecycle foundations. `ART-12` produced accepted coral, observatory, archive, and shared-home music proof dialects. Mark's 2026-07-24 architecture decision supersedes whole-Museum integration: `ART-16` now composes those lessons into the five-territory Home before any `/projects` redirect.
+Current checkpoint: `ART-07` through `ART-11` retain valid interaction and lifecycle foundations. `ART-12` produced useful coral, observatory, archive, and shared-home music proof dialects. Mark's 2026-07-26 reset supersedes their combined Home compositor: `ART-16` now builds one piano clearing, then adds the pianist, category instruments, and bounded environment states before any `/projects` redirect.
 
 Execution order:
 

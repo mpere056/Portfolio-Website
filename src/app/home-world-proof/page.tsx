@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import HomePracticeWorldNeutral from '@/components/home/HomePracticeWorldNeutral';
+import PianoClearingProof from '@/components/home/PianoClearingProof';
 
 export const metadata: Metadata = {
-  title: 'Home Practice World Proof | Mark Perera',
-  description: 'A private neutral-composition proof for the evolving portfolio home.',
+  title: 'Piano Clearing Proof | Mark Perera',
+  description: 'A private, performance-bounded outdoor world proof for the evolving portfolio home.',
   robots: { index: false, follow: false },
 };
 
 export default function HomeWorldProofPage() {
-  return <HomePracticeWorldNeutral />;
+  return <PianoClearingProof />;
 }

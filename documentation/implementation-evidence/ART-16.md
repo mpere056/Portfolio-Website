@@ -1,18 +1,18 @@
 # ART-16 Evidence
 
-Last updated: 2026-07-24
+Last updated: 2026-07-26
 
 ## Package Snapshot
 
 | Field | Value |
 | --- | --- |
-| Package | `ART-16` Attention-weighted Home practice world |
-| Lifecycle | in-progress; full-world compositor candidate in review |
-| Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-EXP-015` |
-| Work item | `WI-ART-16-01` checkpoints `D`, `E`, `F1`, and `F2` |
-| Implementation | `ae8c6a2` |
+| Package | `ART-16` Piano clearing Home world |
+| Lifecycle | in-progress; empty-clearing candidate in review |
+| Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
+| Work item | `WI-ART-16-01` checkpoint `B` |
+| Implementation | Local candidate; commit pending |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` |
+| Deployment | Pending |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -20,30 +20,40 @@ Last updated: 2026-07-24
 | --- | --- |
 | Status | failed |
 | Type | creative-review |
-| Claim tested | Recognizable proof-derived anchor assemblies could represent the accepted worlds while complete proof runtimes remained unmounted. |
-| Failure | Mark found that the result still enlarged placeholder-like objects instead of letting the complete proof-world atmospheres progressively occupy and meld across the viewport. |
-| Preserved value | Five fixed semantic positions, the pure attention reducer, one-screen geometry, the shared piano identity, and the no-index additive route remain valid foundations. |
-| Superseded by | `EV-ART-16-02` |
+| Claim tested | Proof-derived anchor assemblies could represent accepted project worlds in one Home composition. |
+| Failure | Mark found that the result enlarged placeholder-like objects rather than creating environmental presence. |
+| Preserved value | Private proof route, project taxonomy, and performance isolation. |
 
-## EV-ART-16-02: Proximity-Weighted Full-World Compositor Candidate
+## EV-ART-16-02: Proximity-Weighted Full-World Compositor
+
+| Field | Value |
+| --- | --- |
+| Status | failed |
+| Type | creative-review |
+| Claim tested | Complete accepted proof worlds could progressively occupy and meld across Home under cursor proximity. |
+| Failure | Mark found the integrated result visually unsuccessful and requested a drastic change to one outdoor piano world. |
+| Preserved value | Bounded runtime ownership, visibility pausing, reduced-motion behavior, four-practice taxonomy, and additive route safety. |
+| Deployment | `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` remains historical evidence only. |
+
+## EV-ART-16-03: Piano Clearing Environmental Proof
 
 | Field | Value |
 | --- | --- |
 | Status | candidate |
-| Type | integration-test / browser-flow / visual-review |
-| Claim | Cursor distance continuously weights all five fixed territories. Play, AI, and Life Systems mount their accepted full animated proof runtimes as expanding viewport atmospheres; Music retains the shared Home piano world. Click is an optional selection lock, not the trigger for visual takeover. |
-| Runtime policy | At most one proof runtime remains dominant after a `1400ms` transition window. The outgoing runtime may briefly overlap for a real crossfade, and invisible runtimes pause their frame loops. |
-| Automated evidence | `tests/homePracticeWorld.test.ts`, `tests/homeAttention.test.ts`, proof-runtime tests, and the complete 56-file / 233-test suite pass. TypeScript, focused lint, and the 40-route production build pass. |
-| Browser evidence | Local in-app review confirms neutral has no proof runtime mounted; moving toward Play produces `dominant=play`, mounts the accepted west-ecology runtime, reaches full viewport opacity without clicking, and preserves a continuous intermediate state. |
-
-Implementation `ae8c6a2` makes each accepted proof reusable without its route caption, tuning panel, or proof-page chrome. `HomePracticeWorldNeutral` samples global pointer proximity once per animation frame, uses radial masks and broad opacity/scale/color transitions to grow atmospheres from fixed anchors, crossfades outgoing and incoming dialects, pauses hidden canvases, and fades duplicate landmark artwork once its full world arrives.
+| Type | implementation-test / build / visual-review |
+| Claim | One compact outdoor clearing can provide a coherent, performant Home foundation centered on the existing piano without building an explorable game world. |
+| Scope | Terrain, piano, instanced grass, low-poly horizon, sky, clouds, light, restrained camera breathing, calm/reduced-motion behavior. No pianist, screens, category environments, or route migration. |
+| Runtime policy | One canvas; DPR capped at `1.25`; 760 grass instances in one draw; 18 trees in two draws; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
+| Automated evidence | `tests/pianoClearingProof.test.ts` and `tests/homePracticeWorld.test.ts` pass; focused lint, TypeScript, content validation, and the 40-route production build pass. |
+| Visual evidence | Pending Mark review on the private route. |
 
 ## Named Gaps
 
-- Mark has not accepted the new full-world composition, transition range, territory balance, or cross-world melding.
-- The About memory portal still needs its own authored production treatment.
-- Music uses the existing Home renderer but still needs explicit neutral-to-Music atmosphere acceptance.
-- Practice routes, project reveal, browser-history adoption, and `/projects` migration remain unbuilt.
-- Production performance and calm/failure matrices require review after the visual behavior is accepted.
+- The clearing has not received visual or performance acceptance from Mark.
+- The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
+- The pianist/About entry is not built.
+- The four category screens are not designed or built.
+- Hover environmental preview and selected environment replacement are not built.
+- Project reveal, history, restore, route migration, and public release are not built.
 
-Vercel Production `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib` contains implementation `ae8c6a2` and tracking commit `72ffe5b`. Live Home, Projects, and the no-index proof return `200`. The next action is Mark review of `EV-ART-16-02`, not additional landmark enlargement.
+The next action is to deploy `EV-ART-16-03` and review only the clearing. No later checkpoint begins until that environment is accepted.

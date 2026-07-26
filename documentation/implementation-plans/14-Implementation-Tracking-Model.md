@@ -191,20 +191,21 @@ An accepted evidence range in a phase summary is not registration. Every evidenc
 
 ## Partial Implementation Record
 
-For the Home practice world, track these checkpoints separately for each territory:
+For the piano-clearing Home, track these checkpoints separately:
 
-- Primary content and practice ownership.
-- Lightweight anchor.
-- Inactive ambient behavior.
-- Weighted atmospheric field.
-- Local attended response.
-- Selected or project-reveal state.
+- Permanent clearing composition and performance.
+- Pianist/About entry.
+- Four practice-screen forms and semantic controls.
+- One local preview environment.
+- One selected environment.
+- Remaining three practice environments.
+- Project reveal and handoff.
 - Direct route and restore behavior.
 - Lower-stimulation, reduced-motion, and failure state.
 - Renderer lifecycle and measured budget.
-- Mark creative review.
+- Mark creative review at every visual checkpoint.
 
-An anchor alone is not a completed territory. A visually accepted territory is not a completed navigation migration. A passing route migration is not proof that atmospheric melding or runtime budgets are accepted.
+An accepted clearing is not an accepted screen system. An accepted preview is not a completed selected environment. A visually accepted environment is not a completed navigation migration. A passing route migration is not proof that runtime budgets are accepted.
 
 Every capability with a `working`, `blocked`, or `paused` dimension should answer:
 

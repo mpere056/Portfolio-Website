@@ -7,11 +7,13 @@ Last updated: 2026-07-24
 | Field | Value |
 | --- | --- |
 | Plan ID | `HOME-WORLD` |
-| Status | Active; full-world proximity compositor candidate in review |
+| Status | Superseded on 2026-07-26 by the piano-clearing Home direction |
 | Upstream | [Homepage decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md), [Architecture](00-System-Architecture-And-Interfaces.md), [Experience](02-Experience-Foundation.md), [Dynamic scenes](20-Dynamic-Scene-Composition-And-Layered-Materials.md) |
 | Downstream | Home, About entry, project navigation, tour, AI cards, returning state, destination migration |
 | Primary packages | `ARC-06`, `KG-07`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
 | Active work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
+
+> Historical execution plan. Mark rejected the full-world compositor in `EV-ART-16-02`. Resume from [Plan 22](22-Piano-Clearing-Home-World.md); retain this plan only as decision and implementation history.
 
 ## Objective
 
