@@ -52,3 +52,24 @@ export function pianoClearingTerrainHeight(x: number, z: number): number {
   const pianoShelf = Math.exp(-(((x - 5.2) ** 2) / 28 + ((z - 4.2) ** 2) / 12)) * 0.09;
   return 2.45 + broad + foregroundLift + farTerrace - ravine - riverBed - pianoShelf;
 }
+
+export function pianoClearingTreeAllowed(x: number, z: number): boolean {
+  const riverCenter = pianoClearingRiverCenterX(z);
+  const riverClearance = pianoClearingRiverWidth(z) + 5.4;
+  const height = pianoClearingTerrainHeight(x, z);
+  const sampleRadius = 0.45;
+  const slopeX = Math.abs(
+    pianoClearingTerrainHeight(x + sampleRadius, z)
+    - pianoClearingTerrainHeight(x - sampleRadius, z),
+  );
+  const slopeZ = Math.abs(
+    pianoClearingTerrainHeight(x, z + sampleRadius)
+    - pianoClearingTerrainHeight(x, z - sampleRadius),
+  );
+
+  return (
+    Math.abs(x - riverCenter) > riverClearance
+    && height > -0.9
+    && slopeX + slopeZ < 0.76
+  );
+}

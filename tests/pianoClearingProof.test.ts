@@ -6,6 +6,7 @@ import {
   pianoClearingRiverCenterX,
   pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
+  pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
 
 const root = process.cwd();
@@ -41,6 +42,21 @@ describe('piano clearing Home proof', () => {
     expect(pianoClearingRiverWidth(farZ)).toBeLessThan(2);
   });
 
+  it('keeps horizon trees clear of the river and steep ravine walls', () => {
+    for (const z of [-28, -32, -36, -40]) {
+      const riverCenter = pianoClearingRiverCenterX(z);
+      expect(pianoClearingTreeAllowed(riverCenter, z)).toBe(false);
+      expect(pianoClearingTreeAllowed(riverCenter + 3, z)).toBe(false);
+      expect(pianoClearingTreeAllowed(riverCenter - 3, z)).toBe(false);
+      expect(
+        pianoClearingTreeAllowed(
+          riverCenter + pianoClearingRiverWidth(z) + 9,
+          z,
+        ),
+      ).toBe(true);
+    }
+  });
+
   it('renders the existing piano as one bounded particle cloud in a fixed scenic world', async () => {
     const component = await readFile(
       path.join(root, 'src/components/home/PianoClearingProof.tsx'),
@@ -57,6 +73,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
+    expect(component).toContain('pianoClearingTreeAllowed(x, z)');
+    expect(component).toContain('ref={crownHighlights}');
     expect(component).toContain('<StoneViaduct />');
     expect(component).toContain('<PassingTrain reducedMotion={reducedMotion} />');
     expect(component).toContain('<CameraRig reducedMotion={reducedMotion} />');

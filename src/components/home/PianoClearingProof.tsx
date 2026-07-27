@@ -17,6 +17,7 @@ import {
   pianoClearingRiverCenterX,
   pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
+  pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
 import styles from './PianoClearingProof.module.css';
 
@@ -102,17 +103,21 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uWind: { value: reducedMotion ? 0 : 1 },
-      uFogColor: { value: new THREE.Color('#b9b9a5') },
+      uFogColor: { value: new THREE.Color('#c4bea0') },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uWind;
       varying vec2 vUv;
       varying float vFog;
+      varying float vWarm;
       void main() {
         vUv = uv;
         vec3 blade = position;
         vec3 root = instanceMatrix[3].xyz;
+        float rightField = smoothstep(0.5, 12.0, root.x);
+        float nearField = smoothstep(-12.0, 8.0, root.z);
+        vWarm = rightField * nearField;
         float phase = root.x * 0.41 + root.z * 0.29;
         float breeze = sin(uTime * 0.62 + phase) * 0.065;
         breeze += sin(uTime * 0.27 + phase * 1.7) * 0.035;
@@ -128,12 +133,19 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       uniform vec3 uFogColor;
       varying vec2 vUv;
       varying float vFog;
+      varying float vWarm;
       void main() {
         vec3 rootColor = vec3(0.12, 0.25, 0.14);
         vec3 middleColor = vec3(0.42, 0.57, 0.24);
         vec3 tipColor = vec3(0.76, 0.72, 0.32);
+        vec3 warmRoot = vec3(0.25, 0.31, 0.08);
+        vec3 warmMiddle = vec3(0.63, 0.65, 0.17);
+        vec3 warmTip = vec3(0.94, 0.79, 0.31);
         vec3 color = mix(rootColor, middleColor, smoothstep(0.0, 0.66, vUv.y));
         color = mix(color, tipColor, smoothstep(0.58, 1.0, vUv.y));
+        vec3 warmColor = mix(warmRoot, warmMiddle, smoothstep(0.0, 0.66, vUv.y));
+        warmColor = mix(warmColor, warmTip, smoothstep(0.58, 1.0, vUv.y));
+        color = mix(color, warmColor, vWarm * 0.78);
         color = mix(color, uFogColor, vFog * 0.78);
         gl_FragColor = vec4(color, 1.0);
       }
@@ -481,15 +493,35 @@ function PianoShadow() {
 function DistantLandscape() {
   const trees = useMemo(() => {
     const random = seededRandom(1827);
-    return Array.from({ length: PIANO_CLEARING_PERFORMANCE.horizonTrees }, () => ({
-      x: -25 + random() * 50,
-      z: -28 - random() * 12,
-      scale: 0.3 + random() * 0.54,
-      rotation: random() * Math.PI,
-    }));
+    const accepted: {
+      x: number;
+      z: number;
+      scale: number;
+      rotation: number;
+    }[] = [];
+    let attempts = 0;
+
+    while (
+      accepted.length < PIANO_CLEARING_PERFORMANCE.horizonTrees
+      && attempts < PIANO_CLEARING_PERFORMANCE.horizonTrees * 80
+    ) {
+      attempts += 1;
+      const x = -25 + random() * 50;
+      const z = -28 - random() * 12;
+      if (!pianoClearingTreeAllowed(x, z)) continue;
+      accepted.push({
+        x,
+        z,
+        scale: 0.3 + random() * 0.54,
+        rotation: random() * Math.PI,
+      });
+    }
+
+    return accepted;
   }, []);
   const trunks = useRef<THREE.InstancedMesh>(null);
   const crowns = useRef<THREE.InstancedMesh>(null);
+  const crownHighlights = useRef<THREE.InstancedMesh>(null);
 
   useEffect(() => {
     const dummy = new THREE.Object3D();
@@ -505,9 +537,21 @@ function DistantLandscape() {
       dummy.scale.set(tree.scale * 0.62, tree.scale * 0.9, tree.scale * 0.62);
       dummy.updateMatrix();
       crowns.current?.setMatrixAt(index, dummy.matrix);
+
+      dummy.position.set(
+        tree.x - tree.scale * 0.17,
+        y + tree.scale * 1.45,
+        tree.z + tree.scale * 0.04,
+      );
+      dummy.scale.set(tree.scale * 0.43, tree.scale * 0.54, tree.scale * 0.43);
+      dummy.updateMatrix();
+      crownHighlights.current?.setMatrixAt(index, dummy.matrix);
     });
     if (trunks.current) trunks.current.instanceMatrix.needsUpdate = true;
     if (crowns.current) crowns.current.instanceMatrix.needsUpdate = true;
+    if (crownHighlights.current) {
+      crownHighlights.current.instanceMatrix.needsUpdate = true;
+    }
   }, [trees]);
 
   return (
@@ -539,7 +583,11 @@ function DistantLandscape() {
       </instancedMesh>
       <instancedMesh ref={crowns} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#71845a" />
+        <meshToonMaterial color="#526f50" />
+      </instancedMesh>
+      <instancedMesh ref={crownHighlights} args={[undefined, undefined, trees.length]}>
+        <icosahedronGeometry args={[1, 1]} />
+        <meshToonMaterial color="#87975f" />
       </instancedMesh>
     </>
   );
@@ -925,9 +973,9 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
             <mesh key={index} position={[x, y, z]} scale={[scale * 1.35, scale * 0.58, scale * 0.66]}>
               <sphereGeometry args={[1, 10, 7]} />
               <meshBasicMaterial
-                color={index === 5 ? '#b7acc3' : index % 3 === 0 ? '#e8cfb4' : '#fff2d9'}
+                color={index === 5 ? '#a994b8' : index % 3 === 0 ? '#e6bfa4' : '#ffe8bd'}
                 transparent
-                opacity={index === 5 ? 0.24 : 0.42}
+                opacity={index === 5 ? 0.3 : 0.5}
                 depthWrite={false}
               />
             </mesh>
@@ -1060,9 +1108,9 @@ const PianoClearingScene = memo(function PianoClearingScene({
   return (
     <>
       <SkyDome />
-      <fogExp2 attach="fog" args={['#b8c8a5', 0.021]} />
-      <hemisphereLight args={['#fff3ce', '#526043', 2.05]} />
-      <directionalLight position={[-7, 12, 5]} color="#ffd995" intensity={2.35} />
+      <fogExp2 attach="fog" args={['#bcc6a4', 0.0185]} />
+      <hemisphereLight args={['#fff0c2', '#405849', 2.1]} />
+      <directionalLight position={[-9, 10, 4]} color="#ffc979" intensity={2.55} />
       <DistantLandscape />
       <Ground />
       <Stream reducedMotion={reducedMotion} />
