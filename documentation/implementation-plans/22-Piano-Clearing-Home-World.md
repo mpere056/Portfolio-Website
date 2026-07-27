@@ -118,7 +118,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 
 - The first enclosed clearing at `3d60173` received revision feedback: restore the particle piano and expose a much longer pastoral view.
 - The first riverside-overlook candidate at `cd0b673` / `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` received revision feedback because its river, grass, and piano read at nearly one level, its horizon blocked the sky, and its piano was not framed as the foreground anchor.
-- The current local candidate rebuilds the terrain and camera around an explicit high plateau, steep drop, low lateral river, opposite hillside, lower horizon, and right-foreground particle piano. It adds bounded rocks, wildflowers, trees, and clouds without changing the one-canvas runtime policy.
+- Commit `8dce371`, live in Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`, rebuilds the terrain and camera around an explicit high plateau, steep drop, low lateral river, opposite hillside, lower horizon, and right-foreground particle piano. It adds bounded rocks, wildflowers, trees, and clouds without changing the one-canvas runtime policy.
 - Focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass.
 - Headless software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof, so normal target-browser visual/performance review is still required.
-- Exact next action: commit and deploy the elevated valley candidate, then collect only the five revised Checkpoint `B` answers.
+- Exact next action: collect only the five revised Checkpoint `B` answers for the deployed elevated valley candidate.

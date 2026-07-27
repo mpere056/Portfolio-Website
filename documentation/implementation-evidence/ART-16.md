@@ -10,9 +10,9 @@ Last updated: 2026-07-26
 | Lifecycle | in-progress; elevated valley revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Elevated valley revision implemented locally; commit pending |
+| Implementation | Commit `8dce371` on `main` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Previous Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; elevated valley revision pending deployment |
+| Deployment | Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`; private proof route live |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -40,7 +40,7 @@ Last updated: 2026-07-26
 | Field | Value |
 | --- | --- |
 | Status | revision-requested |
-| Type | implementation-test / build / visual-review |
+| Type | implementation-test / build / production / visual-review |
 | Claim | One compact outdoor clearing can provide a coherent, performant Home foundation centered on the existing piano without building an explorable game world. |
 | Scope | Terrain, piano, instanced grass, low-poly horizon, sky, clouds, light, restrained camera breathing, calm/reduced-motion behavior. No pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; 760 grass instances in one draw; 18 trees in two draws; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
@@ -71,7 +71,7 @@ Last updated: 2026-07-26
 | Scope | Right-foreground particle piano, high plateau, visible cliff descent, lateral valley-floor river, opposite hillside, low horizon masses, sparse trees, rocks, wildflowers, clouds, moving grass and water, and restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 8,200 piano points in one draw; 1,100 grass instances in one draw; 34 trees in two draws; 18 instanced riverbank rocks; 120 wildflower points; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
 | Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
-| Production evidence | Pending commit and deployment. |
+| Production evidence | Commit `8dce371`; Git-connected Production deployment `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU` is Ready; `/`, `/projects`, and `/home-world-proof` return `200`, and the proof exposes the new valley marker. |
 | Visual evidence | Pending Mark review of elevation, framing, distance, and pastoral detail. Headless software-WebGL cannot finish the shared piano GLTF, so review remains on the normal target browser. |
 
 ## Named Gaps
@@ -83,4 +83,4 @@ Last updated: 2026-07-26
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to commit, deploy, and review only the elevated valley composition. No later checkpoint begins until that environment is accepted.
+The next action is to review only the deployed elevated valley composition. No later checkpoint begins until that environment is accepted.
