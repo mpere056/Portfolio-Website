@@ -123,4 +123,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass.
 - A piano-only Suspense boundary prevents the model load from blanking the rest of the world. Local and Production `1280 x 720` browser inspection confirms the composition and zero console warnings/errors.
 - Production deployment `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` is Ready at `/home-world-proof`.
-- Exact next action: collect only the revised Checkpoint `B` visual and target-machine performance answers.
+- Mark found that deployment still too different from the supplied screenshot: its grass was sparse/coarse and its river/current read horizontally instead of following the valley toward the viewer.
+- The current local replacement uses one shared path to carve the ravine, bend and widen the water from distant center to foreground, exclude vegetation from water and steep banks, and orient shader travel downstream. It increases visual grass density to 7,200 tapered three-blade clumps while retaining one instanced draw.
+- Focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local browser inspection pass for this replacement. Two local frames `1.4s` apart confirm downstream water motion; no numerical frame-rate claim is made.
+- Exact next action: commit and deploy the path-carved replacement, then collect only Checkpoint `B` composition, grass, river-direction, aliveness, and target-machine performance answers.

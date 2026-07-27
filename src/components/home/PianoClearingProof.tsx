@@ -14,8 +14,8 @@ import {
 import {
   PIANO_CLEARING_CAMERA,
   PIANO_CLEARING_PERFORMANCE,
-  pianoClearingStreamCenter,
-  pianoClearingStreamWidth,
+  pianoClearingRiverCenterX,
+  pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
 } from '@/lib/artDirection/pianoClearing';
 import styles from './PianoClearingProof.module.css';
@@ -54,18 +54,34 @@ function createGroundGeometry() {
 
 function createGrassGeometry() {
   const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([
-    -0.045, 0, 0, 0.045, 0, 0, 0.025, 0.72, 0, -0.02, 0.72, 0,
-    0, 0, -0.045, 0, 0, 0.045, 0, 0.72, 0.025, 0, 0.72, -0.02,
-  ]), 3));
-  geometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array([
-    0, 0, 1, 0, 1, 1, 0, 1,
-    0, 0, 1, 0, 1, 1, 0, 1,
-  ]), 2));
-  geometry.setIndex([
-    0, 1, 2, 0, 2, 3,
-    4, 5, 6, 4, 6, 7,
-  ]);
+  const positions: number[] = [];
+  const uvs: number[] = [];
+  const indices: number[] = [];
+
+  for (let blade = 0; blade < 3; blade += 1) {
+    const angle = (blade / 3) * Math.PI;
+    const tangentX = Math.cos(angle);
+    const tangentZ = Math.sin(angle);
+    const halfWidth = 0.021 + blade * 0.0025;
+    const height = 0.32 + blade * 0.026;
+    const leanX = Math.sin(angle + 0.8) * 0.034;
+    const leanZ = Math.cos(angle + 0.8) * 0.034;
+    const offset = blade * 4;
+
+    positions.push(
+      -tangentX * halfWidth, 0, -tangentZ * halfWidth,
+      tangentX * halfWidth, 0, tangentZ * halfWidth,
+      tangentX * halfWidth * 0.22 + leanX, height * 0.76, tangentZ * halfWidth * 0.22 + leanZ,
+      leanX, height, leanZ,
+    );
+    uvs.push(0, 0, 1, 0, 0.72, 0.76, 0.5, 1);
+    indices.push(offset, offset + 1, offset + 2, offset, offset + 2, offset + 3);
+  }
+
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
   return geometry;
 }
 
@@ -104,9 +120,11 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       varying float vFog;
       void main() {
-        vec3 rootColor = vec3(0.16, 0.27, 0.09);
-        vec3 tipColor = vec3(0.87, 0.77, 0.24);
-        vec3 color = mix(rootColor, tipColor, vUv.y);
+        vec3 rootColor = vec3(0.15, 0.25, 0.08);
+        vec3 middleColor = vec3(0.49, 0.58, 0.20);
+        vec3 tipColor = vec3(0.90, 0.79, 0.31);
+        vec3 color = mix(rootColor, middleColor, smoothstep(0.0, 0.66, vUv.y));
+        color = mix(color, tipColor, smoothstep(0.58, 1.0, vUv.y));
         color = mix(color, uFogColor, vFog * 0.78);
         gl_FragColor = vec4(color, 1.0);
       }
@@ -119,27 +137,35 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     const matrices: THREE.Matrix4[] = [];
 
     while (matrices.length < PIANO_CLEARING_PERFORMANCE.grassInstances) {
-      const x = (random() - 0.5) * 54;
-      const z = 9.5 - random() * 44;
-      const streamGap = Math.abs(z - pianoClearingStreamCenter(x));
+      const x = (random() - 0.5) * 58;
+      const z = 11 - random() * 48;
+      const riverCenter = pianoClearingRiverCenterX(z);
+      const streamGap = Math.abs(x - riverCenter);
       const pianoGap = Math.hypot((x - PIANO_POSITION.x) * 0.9, z - PIANO_POSITION.z);
-      const steepCliff = z < 2.2 && z > -5.4;
-      const ravineFloor = z <= -5.4 && z > -20;
+      const height = pianoClearingTerrainHeight(x, z);
+      const slopeX = Math.abs(
+        pianoClearingTerrainHeight(x + 0.35, z) - pianoClearingTerrainHeight(x - 0.35, z),
+      );
+      const slopeZ = Math.abs(
+        pianoClearingTerrainHeight(x, z + 0.35) - pianoClearingTerrainHeight(x, z - 0.35),
+      );
+      const steepBank = slopeX + slopeZ > 0.88;
       if (
-        streamGap < pianoClearingStreamWidth(x) + 1.2
+        streamGap < pianoClearingRiverWidth(z) + 1.25
         || pianoGap < 3.15
-        || steepCliff
-        || ravineFloor
+        || steepBank
+        || height < -1.8
       ) continue;
 
-      dummy.position.set(x, GROUND_Y + pianoClearingTerrainHeight(x, z), z);
+      dummy.position.set(x, GROUND_Y + height, z);
       dummy.rotation.set(
         (random() - 0.5) * 0.06,
         random() * Math.PI,
         (random() - 0.5) * 0.06,
       );
-      const scale = (0.48 + random() * 0.95) * (z < -14 ? 0.62 : 1);
-      dummy.scale.set(0.72 + random() * 0.5, scale, 0.72 + random() * 0.5);
+      const distanceScale = THREE.MathUtils.lerp(0.54, 1, THREE.MathUtils.clamp((z + 34) / 42, 0, 1));
+      const scale = (0.58 + random() * 0.58) * distanceScale;
+      dummy.scale.set(0.76 + random() * 0.42, scale, 0.76 + random() * 0.42);
       dummy.updateMatrix();
       matrices.push(dummy.matrix.clone());
     }
@@ -177,10 +203,12 @@ function Ground() {
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
+          varying vec3 vWorld;
           void main() {
             vec4 worldPosition = modelMatrix * vec4(position, 1.0);
             vec4 viewPosition = viewMatrix * worldPosition;
             vec3 worldNormal = normalize(mat3(modelMatrix) * normal);
+            vWorld = worldPosition.xyz;
             vHeight = worldPosition.y;
             vSlope = 1.0 - abs(worldNormal.y);
             vDepth = -viewPosition.z;
@@ -191,17 +219,23 @@ function Ground() {
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
+          varying vec3 vWorld;
           void main() {
-            vec3 valley = vec3(0.10, 0.24, 0.27);
-            vec3 hillside = vec3(0.36, 0.50, 0.29);
-            vec3 plateau = vec3(0.78, 0.70, 0.22);
-            float middle = smoothstep(-4.8, -1.1, vHeight);
-            float top = smoothstep(-0.5, 0.7, vHeight);
-            vec3 color = mix(valley, hillside, middle);
-            color = mix(color, plateau, top);
-            color *= 1.0 - vSlope * 0.52;
-            float bands = sin(vHeight * 8.0 + vSlope * 5.0) * 0.018;
-            color += bands;
+            vec3 ravine = vec3(0.08, 0.21, 0.23);
+            vec3 shadedGrass = vec3(0.27, 0.40, 0.20);
+            vec3 field = vec3(0.49, 0.59, 0.25);
+            vec3 sunField = vec3(0.76, 0.70, 0.24);
+            float elevation = smoothstep(-4.9, 1.25, vHeight);
+            vec3 color = mix(ravine, shadedGrass, elevation);
+            color = mix(color, field, smoothstep(-0.3, 2.2, vHeight));
+            float riverCenter = 1.15 - clamp((vWorld.z + 32.0) / 42.0, 0.0, 1.0) * 9.4;
+            float nearField = smoothstep(-9.0, 7.0, vWorld.z);
+            float rightField = smoothstep(riverCenter + 2.8, riverCenter + 13.0, vWorld.x) * nearField;
+            color = mix(color, sunField, rightField * 0.9);
+            color *= 1.0 - vSlope * 0.58;
+            float brush = sin(vWorld.x * 0.42 + sin(vWorld.z * 0.21) * 2.0) * 0.018;
+            brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.012;
+            color += brush * (0.4 + elevation * 0.6);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.78, 0.75, 0.58), fog * 0.76);
             gl_FragColor = vec4(color, 1.0);
@@ -221,11 +255,11 @@ function createStreamGeometry() {
 
   for (let index = 0; index <= segments; index += 1) {
     const progress = index / segments;
-    const x = -39 + progress * 78;
-    const centerZ = pianoClearingStreamCenter(x);
-    const width = pianoClearingStreamWidth(x);
-    const y = GROUND_Y + pianoClearingTerrainHeight(x, centerZ) + 4.5;
-    positions.push(x, y, centerZ - width, x, y, centerZ + width);
+    const z = 10 - progress * 47;
+    const centerX = pianoClearingRiverCenterX(z);
+    const width = pianoClearingRiverWidth(z);
+    const y = GROUND_Y + pianoClearingTerrainHeight(centerX, z) + 0.42;
+    positions.push(centerX - width, y, z, centerX + width, y, z);
     uvs.push(0, progress, 1, progress);
     if (index < segments) {
       const offset = index * 2;
@@ -250,10 +284,16 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
       uMotion: { value: reducedMotion ? 0 : 1 },
     },
     vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
       varying vec2 vUv;
       void main() {
         vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        vec3 transformed = position;
+        float ripple = sin(uv.y * 64.0 + uTime * 1.45 * uMotion + uv.x * 4.0) * 0.028;
+        ripple += sin(uv.y * 117.0 + uTime * 2.1 * uMotion) * 0.012;
+        transformed.y += ripple;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
     `,
     fragmentShader: `
@@ -262,13 +302,22 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       void main() {
         float time = uTime * uMotion;
-        float current = sin(vUv.y * 72.0 - time * 1.35 + sin(vUv.y * 13.0) * 1.2);
-        float fine = sin(vUv.y * 155.0 - time * 2.1 + vUv.x * 7.0);
-        float edge = smoothstep(0.0, 0.18, vUv.x) * smoothstep(1.0, 0.82, vUv.x);
-        vec3 deep = vec3(0.12, 0.35, 0.50);
-        vec3 sun = vec3(0.78, 0.85, 0.73);
-        vec3 color = mix(deep, sun, max(0.0, current) * 0.24 + max(0.0, fine) * 0.1);
-        float alpha = (0.8 + max(0.0, current) * 0.16) * edge;
+        // Positive time moves wave fronts toward decreasing UV.y: distance to foreground.
+        float downstream = vUv.y * 46.0 + time * 2.3;
+        float broad = sin(downstream + sin(vUv.y * 8.0) * 1.25 + vUv.x * 1.8);
+        float middle = sin(vUv.y * 93.0 + time * 3.5 + vUv.x * 8.0);
+        float fine = sin(vUv.y * 181.0 + time * 5.1 - vUv.x * 11.0);
+        float travellingPool = pow(max(0.0, sin(vUv.y * 18.0 + time * 1.75)), 4.0);
+        float bank = smoothstep(0.0, 0.12, vUv.x) * smoothstep(1.0, 0.88, vUv.x);
+        float bankFoam = pow(1.0 - abs(vUv.x * 2.0 - 1.0), 7.0);
+        vec3 deep = vec3(0.055, 0.24, 0.36);
+        vec3 middleBlue = vec3(0.20, 0.48, 0.58);
+        vec3 sun = vec3(0.56, 0.69, 0.66);
+        float light = max(0.0, broad) * 0.22 + max(0.0, middle) * 0.1;
+        light += max(0.0, fine) * 0.045 + travellingPool * 0.18;
+        vec3 color = mix(deep, middleBlue, 0.48 + broad * 0.12);
+        color = mix(color, sun, light * 0.58 + bankFoam * 0.045);
+        float alpha = (0.9 + travellingPool * 0.08) * bank;
         gl_FragColor = vec4(color, alpha);
       }
     `,
@@ -539,40 +588,6 @@ function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 function ValleyDetails() {
-  const rocksRef = useRef<THREE.InstancedMesh>(null);
-  const rocks = useMemo(() => {
-    const random = seededRandom(9317);
-    return Array.from({ length: PIANO_CLEARING_PERFORMANCE.valleyRocks }, () => {
-      const x = -22 + random() * 44;
-      const centerZ = pianoClearingStreamCenter(x);
-      const side = random() > 0.5 ? -1 : 1;
-      const z = centerZ + side * (pianoClearingStreamWidth(x) + 0.7 + random() * 2.3);
-      return {
-        x,
-        z,
-        scale: 0.18 + random() * 0.48,
-        rotation: random() * Math.PI,
-      };
-    });
-  }, []);
-
-  useEffect(() => {
-    const dummy = new THREE.Object3D();
-    rocks.forEach((rock, index) => {
-      const y = GROUND_Y + pianoClearingTerrainHeight(rock.x, rock.z);
-      dummy.position.set(rock.x, y + rock.scale * 0.34, rock.z);
-      dummy.rotation.set(
-        rock.rotation * 0.12,
-        rock.rotation,
-        rock.rotation * 0.08,
-      );
-      dummy.scale.set(rock.scale * 1.2, rock.scale * 0.72, rock.scale);
-      dummy.updateMatrix();
-      rocksRef.current?.setMatrixAt(index, dummy.matrix);
-    });
-    if (rocksRef.current) rocksRef.current.instanceMatrix.needsUpdate = true;
-  }, [rocks]);
-
   const flowers = useMemo(() => {
     const random = seededRandom(5401);
     const positions = new Float32Array(PIANO_CLEARING_PERFORMANCE.wildflowers * 3);
@@ -600,22 +615,16 @@ function ValleyDetails() {
   }, []);
 
   return (
-    <>
-      <instancedMesh ref={rocksRef} args={[undefined, undefined, rocks.length]}>
-        <dodecahedronGeometry args={[1, 0]} />
-        <meshToonMaterial color="#536855" />
-      </instancedMesh>
-      <points geometry={flowers} frustumCulled={false}>
-        <pointsMaterial
-          size={0.095}
-          sizeAttenuation
-          vertexColors
-          transparent
-          opacity={0.92}
-          depthWrite={false}
-        />
-      </points>
-    </>
+    <points geometry={flowers} frustumCulled={false}>
+      <pointsMaterial
+        size={0.095}
+        sizeAttenuation
+        vertexColors
+        transparent
+        opacity={0.92}
+        depthWrite={false}
+      />
+    </points>
   );
 }
 
@@ -667,14 +676,14 @@ function SkyDome() {
           varying vec3 vWorld;
           void main() {
             float height = smoothstep(-0.12, 0.78, vWorld.y);
-            vec3 horizon = vec3(0.96, 0.84, 0.60);
-            vec3 zenith = vec3(0.67, 0.65, 0.72);
+            vec3 horizon = vec3(0.89, 0.82, 0.68);
+            vec3 zenith = vec3(0.66, 0.64, 0.70);
             vec3 color = mix(horizon, zenith, height);
             vec3 sunDirection = normalize(vec3(0.02, 0.14, -0.99));
             float sunFacing = max(dot(vWorld, sunDirection), 0.0);
             float halo = pow(sunFacing, 15.0);
             float disk = smoothstep(0.9974, 0.9991, sunFacing);
-            color += vec3(1.0, 0.74, 0.38) * halo * 0.33;
+            color += vec3(1.0, 0.76, 0.44) * halo * 0.2;
             color += vec3(1.0, 0.95, 0.74) * disk * 0.92;
             gl_FragColor = vec4(color, 1.0);
           }
@@ -903,6 +912,7 @@ export default function PianoClearingProof() {
     <main
       className={styles.world}
       data-piano-clearing-proof=""
+      data-river-flow="far-to-foreground"
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
       <Canvas

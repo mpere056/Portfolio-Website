@@ -3,8 +3,8 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   PIANO_CLEARING_PERFORMANCE,
-  pianoClearingStreamCenter,
-  pianoClearingStreamWidth,
+  pianoClearingRiverCenterX,
+  pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
 } from '@/lib/artDirection/pianoClearing';
 
@@ -12,7 +12,7 @@ const root = process.cwd();
 
 describe('piano clearing Home proof', () => {
   it('keeps the first environmental proof deliberately bounded', () => {
-    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(1600);
+    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(7200);
     expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
     expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
     expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(48);
@@ -24,18 +24,19 @@ describe('piano clearing Home proof', () => {
   });
 
   it('separates the piano plateau, steep descent, river floor, and opposite hillside', () => {
-    const x = 0;
-    const streamZ = pianoClearingStreamCenter(x);
-    const plateau = pianoClearingTerrainHeight(x, 4);
-    const cliffBottom = pianoClearingTerrainHeight(x, -6);
-    const riverFloor = pianoClearingTerrainHeight(x, streamZ);
-    const oppositeHill = pianoClearingTerrainHeight(x, -26);
+    const nearZ = 4;
+    const farZ = -27;
+    const nearCenter = pianoClearingRiverCenterX(nearZ);
+    const farCenter = pianoClearingRiverCenterX(farZ);
+    const riverFloor = pianoClearingTerrainHeight(nearCenter, nearZ);
+    const rightPlateau = pianoClearingTerrainHeight(nearCenter + 12, nearZ);
+    const leftPlateau = pianoClearingTerrainHeight(nearCenter - 12, nearZ);
 
-    expect(plateau - cliffBottom).toBeGreaterThan(5);
-    expect(plateau - riverFloor).toBeGreaterThan(5.5);
-    expect(oppositeHill - riverFloor).toBeGreaterThan(3.5);
-    expect(pianoClearingStreamWidth(x)).toBeGreaterThan(1.8);
-    expect(pianoClearingStreamWidth(x)).toBeLessThan(2.3);
+    expect(rightPlateau - riverFloor).toBeGreaterThan(6);
+    expect(leftPlateau - riverFloor).toBeGreaterThan(5);
+    expect(nearCenter).toBeLessThan(farCenter);
+    expect(pianoClearingRiverWidth(nearZ)).toBeGreaterThan(3.5);
+    expect(pianoClearingRiverWidth(farZ)).toBeLessThan(1.9);
   });
 
   it('renders the existing piano as one bounded particle cloud in a fixed scenic world', async () => {
@@ -49,6 +50,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<Suspense fallback={null}>');
     expect(component).toContain('opacity: 0.18');
     expect(component).toContain('<Stream reducedMotion={reducedMotion} />');
+    expect(component).toContain('data-river-flow="far-to-foreground"');
+    expect(component).toContain('vUv.y * 46.0 + time * 2.3');
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');

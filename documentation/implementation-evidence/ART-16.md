@@ -1,18 +1,18 @@
 # ART-16 Evidence
 
-Last updated: 2026-07-26
+Last updated: 2026-07-27
 
 ## Package Snapshot
 
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; reference-matched valley revision in review |
+| Lifecycle | in-progress; path-carved valley revision verified locally and awaiting deployment |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Reference-matched valley revision implemented in `f4d47c9` and depth-refined in `e654881` |
+| Implementation | Five-band revision in `f4d47c9` / `e654881` received revision feedback; path-carved river replacement is the current local candidate |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` |
+| Deployment | Previous candidate: Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u`; replacement pending |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -78,7 +78,7 @@ Last updated: 2026-07-26
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | Reconstructing the supplied image as five explicit depth bands can closely preserve its composition and styling while omitting the bridge and train and retaining a dynamic particle piano. |
 | Scope | Pale gray-lilac sky and centered sun; warm polygonal clouds and floating distant forms; soft pink near-left foliage and green upper-right canopy; miniature far-ridge tree line; smooth dark ravine; widened animated valley-floor water; lower-left boulder cluster; strongly rising golden right foreground ridge; particle piano with an `18%` translucent silhouette for readability. No bridge, train, pianist, screens, category environments, or route migration. |
@@ -86,15 +86,29 @@ Last updated: 2026-07-26
 | Automated evidence | Focused ESLint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass. |
 | Browser evidence | Local and Production `1280 x 720` browser inspection confirmed the golden right ridge, steep dark ravine, broad visible river band, opposite ridge, sky proportion, foliage framing, and piano placement together. One live WebGL canvas rendered with no console warnings or errors. |
 | Production evidence | Commits `f4d47c9` and `e654881`; Git-connected Production deployment `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` is Ready at `/home-world-proof`; the proof marker and one canvas are present. |
+| Visual evidence | Mark found the composition better but still too different from the supplied image. The grass remained sparse and visually coarse, and the river read as a horizontal strip whose highlights moved left-to-right rather than downstream through the valley. |
+
+## EV-ART-16-07: Path-Carved Downstream Valley
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | One shared river path can control the terrain cut, water geometry, grass exclusion, rock placement, and shader direction so the valley reads as one perspective composition rather than separate horizontal bands. |
+| Scope | River beginning near the distant center and widening toward the lower foreground; steep banks carved from the same centerline; high grass fields on both sides; denser tapered grass; cooler pale sky and blue-gray water; low-left ravine rocks; particle piano retained on the elevated right field. No bridge, train, pianist, screens, category environments, or route migration. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points in one draw; 7,200 three-blade grass clumps in one instanced draw; 46 trees in two draws; five fixed ravine rocks; 160 wildflower points; 180 atmospheric motes; five cloud groups; one water shader; no post-processing, shadows, physics, or orbit controls. |
+| Automated evidence | Focused ESLint and TypeScript pass; all 57 test files / 237 tests pass; the 40-route production build passes. Tests bind the river taper, centerline bend, carved bank heights, downstream marker, and shader travel direction. |
+| Browser evidence | Local `1280 x 720` inspection confirms one canvas, no console warnings/errors, and visible water-band displacement between frames `1.4s` apart along the distance-to-foreground axis. No numerical frame-rate claim was recorded. |
+| Production evidence | Pending commit and Git-connected deployment. |
 | Visual evidence | Pending Mark review against the supplied reference image. |
 
 ## Named Gaps
 
-- The deployed reference-matched valley candidate has not received visual or performance acceptance from Mark.
+- The path-carved valley candidate has not received visual or performance acceptance from Mark.
 - The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to commit, deploy, and review only the reference-matched valley composition. No later checkpoint begins until that environment is accepted.
+The next action is to commit, deploy, and review only the path-carved valley composition. No later checkpoint begins until that environment is accepted.

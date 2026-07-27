@@ -52,7 +52,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-05` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-06` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-07` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -91,7 +92,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-05` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-06` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-07` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -240,7 +242,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-16-03` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `3d60173`, Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`: bounded opaque-piano clearing passed technical gates, but Mark requested the original particle piano and a long riverside pastoral vista | 2026-07-26 | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `cd0b673`, Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`: technical gates pass, but Mark found a flat elevation read, blocked sky, and missing high-plateau piano framing | 2026-07-27 | `ART-16.md` |
 | `EV-ART-16-05` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `8dce371`, Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`: elevation improved substantially, but Mark requested exact reference composition and styling rather than a broad valley meadow | 2026-07-27 | `ART-16.md` |
-| `EV-ART-16-06` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | candidate | Commits `f4d47c9` and `e654881`, Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u`: five-band rebuild matches the supplied image's framed pale sky, far ridge, steep dark ravine, broad valley water, large golden right slope, boulders, atmospheric foliage, and high-field particle piano while omitting bridge/train; 237 tests, content, browser inspection, and build pass | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | revision-requested | Commits `f4d47c9` and `e654881`, Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u`: technical gates pass, but Mark found the grass sparse/coarse and the river a horizontal strip with an unrealistic left-to-right current | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-07` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / browser-flow / visual-review | candidate | A shared path now carves the ravine, bends and widens the river from distant center to foreground, excludes 7,200 instanced grass clumps from water/steep banks, and drives downstream shader travel; 237 tests, TypeScript, lint, local browser inspection, and the 40-route build pass | 2026-07-27 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

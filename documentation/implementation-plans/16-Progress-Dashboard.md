@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-27
-Implementation commit baseline: `e654881`; reference-matched particle-piano valley deployed and awaiting Mark review; public route structure unchanged
+Implementation commit baseline: `e654881`; five-band valley revision-requested, path-carved replacement verified locally and awaiting deployment; public route structure unchanged
 
 ## Plan Metadata
 
@@ -200,8 +200,8 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
-| Candidate | 12 | Includes the deployed `ART-16` reference-matched particle-piano valley; no candidate is being treated as final creative acceptance |
-| Revision-requested | 3 | Three earlier `ART-16` clearings remain technical evidence but no longer represent the requested exact reference composition |
+| Candidate | 12 | Includes the local `ART-16` path-carved particle-piano valley; no candidate is being treated as final creative acceptance |
+| Revision-requested | 4 | Four earlier `ART-16` clearings remain technical evidence but no longer represent the requested exact reference composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |
 
@@ -211,6 +211,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-27 | Replaced the horizontal river bands with one perspective river/terrain path | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-06/07` | Mark found `e654881` still too different, with sparse/coarse grass and an unrealistic left-to-right current. The local replacement now bends and widens water from distant center to lower foreground, carves the ravine and vegetation exclusions from that same path, drives shader travel downstream, and renders 7,200 fine three-blade grass clumps in one instanced draw. Focused lint, TypeScript, 237 tests, local browser inspection, and the 40-route build pass; deployment and Mark review remain. |
 | 2026-07-27 | Rebuilt and deployed the valley in the supplied reference's depth hierarchy | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-05/06` | Mark found `8dce371` much better but still unlike the supplied screenshot. Commits `f4d47c9` and `e654881`, Ready in Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u`, author five visual bands: framed pale sky/centered sun, miniature far ridge, steep dark ravine, broad valley water, and a much larger golden right foreground slope. Pink/green near foliage, low-left boulders, distant forms, atmospheric motes, and a particle piano with an `18%` ghost reproduce the missing details without bridge/train. A piano-only Suspense boundary prevents asset loading from blanking the world. Local/Production browser inspection, 237 tests, content, TypeScript, lint, and the 40-route build pass; Production has one live canvas and zero console warnings/errors. |
 | 2026-07-27 | Rebuilt and deployed the riverside proof as an elevated valley overlook | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-04/05` | Mark found the deployed riverside candidate effectively flat, with the river at the grass level, the horizon obscuring the sky, and the piano outside its intended high-field framing. Commit `8dce371`, Ready in Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`, separates a right-foreground particle-piano plateau, steep valley wall, lateral valley-floor river, opposite hillside, and low horizon; bounded rocks, wildflowers, trees, and clouds add detail while one canvas, capped DPR, and no post-processing/shadows remain. Focused lint, TypeScript, 237 tests, content validation, the 40-route build, and live route smoke pass. |
 | 2026-07-26 | Reset Home to one bounded outdoor piano clearing | `ART-16A/B`, `CAP-ART-017/019`, `EV-ART-16-02/03` | Mark rejected the full proof-world compositor. Commit `3d60173`, live in `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`, keeps one Canvas, the existing piano, finite terrain, 760 shader-swayed grass instances, 18 low-poly trees, capped DPR, no post-processing/shadows, and no later pianist/screens/environments; 237 tests, the 40-route build, and live smoke checks pass. |

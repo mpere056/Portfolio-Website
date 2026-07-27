@@ -12,7 +12,7 @@
 .canvas {
   position: absolute !important;
   inset: 0;
-  filter: saturate(0.88) contrast(0.92) brightness(1.06);
+  filter: saturate(0.9) contrast(0.94) brightness(1.01);
 }
 
 .atmosphere {
@@ -35,8 +35,8 @@
   z-index: 3;
   background: radial-gradient(
     circle at 51% 22%,
-    rgba(255, 247, 215, 0.35) 0,
-    rgba(255, 219, 143, 0.13) 18%,
+    rgba(255, 247, 215, 0.22) 0,
+    rgba(255, 219, 143, 0.08) 18%,
     transparent 39%
   );
   mix-blend-mode: screen;
