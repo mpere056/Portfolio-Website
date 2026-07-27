@@ -10,9 +10,9 @@ Last updated: 2026-07-26
 | Lifecycle | in-progress; reference-matched valley revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Reference-matched valley revision implemented locally; commit pending |
+| Implementation | Reference-matched valley revision implemented in `f4d47c9` and depth-refined in `e654881` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Previous Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`; replacement pending |
+| Deployment | Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -79,18 +79,18 @@ Last updated: 2026-07-26
 | Field | Value |
 | --- | --- |
 | Status | candidate |
-| Type | implementation-test / build / local-browser / visual-review |
+| Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | Reconstructing the supplied image as five explicit depth bands can closely preserve its composition and styling while omitting the bridge and train and retaining a dynamic particle piano. |
 | Scope | Pale gray-lilac sky and centered sun; warm polygonal clouds and floating distant forms; soft pink near-left foliage and green upper-right canopy; miniature far-ridge tree line; smooth dark ravine; widened animated valley-floor water; lower-left boulder cluster; strongly rising golden right foreground ridge; particle piano with an `18%` translucent silhouette for readability. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points in one draw; 1,560 grass instances; 46 trees in two draws; 24 instanced riverbank rocks; 160 wildflower points; 180 atmospheric motes; five cloud groups; one water shader; no post-processing, shadows, physics, or orbit controls. The piano has an isolated Suspense boundary so its asset load cannot blank the world. |
 | Automated evidence | Focused ESLint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass. |
-| Browser evidence | Local `1280 x 720` browser inspection iterated the silhouette until the golden right ridge, dark ravine, visible river, far ridge, sky proportion, foliage framing, and piano placement read together. No console warnings or errors were present. |
-| Production evidence | Pending commit and deployment. |
+| Browser evidence | Local and Production `1280 x 720` browser inspection confirmed the golden right ridge, steep dark ravine, broad visible river band, opposite ridge, sky proportion, foliage framing, and piano placement together. One live WebGL canvas rendered with no console warnings or errors. |
+| Production evidence | Commits `f4d47c9` and `e654881`; Git-connected Production deployment `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` is Ready at `/home-world-proof`; the proof marker and one canvas are present. |
 | Visual evidence | Pending Mark review against the supplied reference image. |
 
 ## Named Gaps
 
-- The reference-matched valley candidate has not received visual or performance acceptance from Mark.
+- The deployed reference-matched valley candidate has not received visual or performance acceptance from Mark.
 - The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
