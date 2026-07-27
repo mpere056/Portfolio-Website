@@ -7,12 +7,12 @@ Last updated: 2026-07-26
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; elevated valley revision in review |
+| Lifecycle | in-progress; reference-matched valley revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Commit `8dce371` on `main` |
+| Implementation | Reference-matched valley revision implemented locally; commit pending |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`; private proof route live |
+| Deployment | Previous Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`; replacement pending |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -65,22 +65,36 @@ Last updated: 2026-07-26
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / visual-review |
 | Claim | A deliberately terraced landscape can reproduce the requested viewpoint: particle piano on a high foreground grass plateau, steep valley wall below it, water on the valley floor, and a subordinate opposite hillside beneath an open sky. |
 | Scope | Right-foreground particle piano, high plateau, visible cliff descent, lateral valley-floor river, opposite hillside, low horizon masses, sparse trees, rocks, wildflowers, clouds, moving grass and water, and restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 8,200 piano points in one draw; 1,100 grass instances in one draw; 34 trees in two draws; 18 instanced riverbank rocks; 120 wildflower points; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
 | Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
 | Production evidence | Commit `8dce371`; Git-connected Production deployment `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU` is Ready; `/`, `/projects`, and `/home-world-proof` return `200`, and the proof exposes the new valley marker. |
-| Visual evidence | Pending Mark review of elevation, framing, distance, and pastoral detail. Headless software-WebGL cannot finish the shared piano GLTF, so review remains on the normal target browser. |
+| Visual evidence | Mark found this substantially better but still unlike the supplied reference: the valley remained too meadow-like, the foreground ridge was too small, and the atmosphere lacked the reference's exact near-foliage / pale-sky / sunlit-ridge / dark-ravine / valley-water hierarchy. |
+
+## EV-ART-16-06: Reference-Matched Valley Bands
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / local-browser / visual-review |
+| Claim | Reconstructing the supplied image as five explicit depth bands can closely preserve its composition and styling while omitting the bridge and train and retaining a dynamic particle piano. |
+| Scope | Pale gray-lilac sky and centered sun; warm polygonal clouds and floating distant forms; soft pink near-left foliage and green upper-right canopy; miniature far-ridge tree line; smooth dark ravine; widened animated valley-floor water; lower-left boulder cluster; strongly rising golden right foreground ridge; particle piano with an `18%` translucent silhouette for readability. No bridge, train, pianist, screens, category environments, or route migration. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points in one draw; 1,560 grass instances; 46 trees in two draws; 24 instanced riverbank rocks; 160 wildflower points; 180 atmospheric motes; five cloud groups; one water shader; no post-processing, shadows, physics, or orbit controls. The piano has an isolated Suspense boundary so its asset load cannot blank the world. |
+| Automated evidence | Focused ESLint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass. |
+| Browser evidence | Local `1280 x 720` browser inspection iterated the silhouette until the golden right ridge, dark ravine, visible river, far ridge, sky proportion, foliage framing, and piano placement read together. No console warnings or errors were present. |
+| Production evidence | Pending commit and deployment. |
+| Visual evidence | Pending Mark review against the supplied reference image. |
 
 ## Named Gaps
 
-- The elevated valley candidate has not received visual or performance acceptance from Mark.
+- The reference-matched valley candidate has not received visual or performance acceptance from Mark.
 - The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the deployed elevated valley composition. No later checkpoint begins until that environment is accepted.
+The next action is to commit, deploy, and review only the reference-matched valley composition. No later checkpoint begins until that environment is accepted.

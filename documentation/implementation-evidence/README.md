@@ -51,7 +51,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-02` | `ART-16` | failed | `ART-16.md` |
 | `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-05` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-05` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -89,7 +90,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-02` | `ART-16` | failed | `ART-16.md` |
 | `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-05` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-05` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -237,7 +239,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-16-02` | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-EXP-015` | creative-review | failed | Complete proof worlds expanded under proximity with bounded lifecycle, but Mark rejected the integrated visual direction and requested one outdoor piano clearing | 2026-07-26 | `ART-16.md` |
 | `EV-ART-16-03` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `3d60173`, Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`: bounded opaque-piano clearing passed technical gates, but Mark requested the original particle piano and a long riverside pastoral vista | 2026-07-26 | `ART-16.md` |
 | `EV-ART-16-04` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `cd0b673`, Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`: technical gates pass, but Mark found a flat elevation read, blocked sky, and missing high-plateau piano framing | 2026-07-27 | `ART-16.md` |
-| `EV-ART-16-05` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / visual-review | candidate | Commit `8dce371`, Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`: elevated-valley candidate explicitly separates the particle-piano plateau, steep descent, lateral valley-floor river, opposite hillside, and low horizon; 237 tests, content, build, and live smoke pass; creative review pending | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-05` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `8dce371`, Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`: elevation improved substantially, but Mark requested exact reference composition and styling rather than a broad valley meadow | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-06` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / local-browser / visual-review | candidate | Local five-band rebuild matches the supplied image's framed pale sky, far ridge, dark ravine, valley water, large golden right slope, boulders, atmospheric foliage, and high-field particle piano while omitting bridge/train; 237 tests, content, browser inspection, and build pass | 2026-07-27 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

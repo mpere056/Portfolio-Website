@@ -20,21 +20,21 @@ Mark rejected the full proof-world compositor in `EV-ART-16-02` and requested a 
 
 Mark reviewed the first Checkpoint `B` clearing and requested a more specific composition: restore the original particle-built piano; look outward across a grassy overlook toward a visible stream, distant landscape, open sky, and a few clouds; use a warm hand-painted pastoral animation language; and include no bridge or train.
 
-Mark reviewed the first riverside candidate and found that its piano, grass, and water read at nearly one elevation, the distant mass obscured the sky, and the piano was not framed as the high foreground anchor. The current deployed Checkpoint `B` candidate therefore rebuilds the scene as an explicit terraced composition: an 8,200-point piano on a high right-foreground plateau, a steep valley wall, a lateral river on the valley floor, a lower opposite hillside and horizon, four cloud groups, 1,100 grass instances, 34 distant trees, 18 riverbank rocks, and 120 wildflower points. It retains one canvas, capped DPR, moving grass and water, restrained camera breathing, and no opaque piano, post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
+Mark found the deployed elevated candidate substantially better but still unlike the supplied reference. The current local Checkpoint `B` candidate therefore reconstructs the reference as five explicit bands: pale framed sky and centered sun, miniature far ridge, smooth dark ravine, widened valley-floor water, and a large diagonal golden right foreground ridge carrying the piano. Pink/green near foliage, distant floating forms, lower-left boulders, atmospheric motes, and a faint translucent piano silhouette restore the missing detail and depth language. It retains one canvas, capped DPR, moving grass/water/clouds/motes, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `8dce371` on `main`; creative review pending.
-- Current implementation: elevated valley Checkpoint `B` candidate is committed, pushed, automatically deployed, and verified live.
+- Known-good deployed commit: `8dce371` on `main`; creative review requested exact-reference reconstruction.
+- Current implementation: reference-matched Checkpoint `B` candidate is local and fully verified; commit, push, and deployment remain.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass; deployment checks remain.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 8,200 piano points in one draw, 1,100 grass instances in one draw, 34 trees in two draws, 18 instanced rocks, 120 wildflower points, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
+- Verification: local `1280 x 720` browser inspection, focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass; deployment checks remain.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 1,560 grass instances, 46 trees in two draws, 24 instanced rocks, 160 wildflower points, 180 motes, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`, Ready in Production.
-- Headless caveat: software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof; review in a normal target browser.
-- Next exact action: collect only the elevation, particle-piano framing, pastoral-style, aliveness, and target-machine smoothness review.
+- Deployment: previous candidate `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`; replacement pending.
+- Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
+- Next exact action: commit, push, and deploy the reference-matched candidate, then collect only the exact-reference, particle-piano framing, aliveness, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -101,3 +101,6 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - The detail budget increases to 8,200 piano points, 1,100 grass instances, 34 trees, 18 rocks, 120 wildflowers, and four cloud groups while retaining one canvas, capped DPR, and no post-processing or shadows.
 - Focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass.
 - Commit `8dce371` is pushed to `main`; Git-connected Production deployment `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU` is Ready, and `/`, `/projects`, and `/home-world-proof` return `200`.
+- Mark found that deployment much better but requested the supplied screenshot's composition and styling exactly, without its bridge and train.
+- The new local candidate rebuilds five explicit depth bands, enlarges the golden right ridge, clears grass from the ravine, widens the visible water, adds near foliage / far forms / boulders / motes, and clarifies the particle piano with an `18%` translucent silhouette.
+- Local browser inspection, focused lint, TypeScript, 237 tests, content validation, and the 40-route build pass.

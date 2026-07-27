@@ -62,16 +62,16 @@ Preview should modify atmosphere rather than scale the screen dramatically. Sele
 The current Checkpoint `B` implementation intentionally contains:
 
 - one React Three Fiber canvas;
-- one 72 by 60 unit displaced terrain patch with a high foreground plateau, steep descent, low river bed, and opposite rise;
-- the existing grand piano sampled into at most 8,200 GPU points in one draw, with no opaque piano render;
-- 1,100 instanced crossed grass blades in one draw;
-- 34 low-poly horizon trees in two instanced draws;
-- 18 instanced riverbank rocks and 120 point-rendered wildflowers;
+- one 78 by 68 unit displaced terrain patch authored as a high diagonal foreground ridge, steep dark ravine, low river bed, and opposite rise;
+- the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
+- 1,560 instanced crossed grass blades in one draw, excluded from the ravine floor;
+- 46 miniature low-poly horizon trees in two instanced draws;
+- 24 instanced riverbank rocks, a lower-left boulder cluster, 160 point-rendered wildflowers, and 180 atmospheric motes;
 - three layered low-poly hill masses;
-- four slow cloud groups;
+- five slow cloud groups, distant floating forms, and oversized translucent near foliage framing the left and upper-right edges;
 - one lateral shader-driven water ribbon visibly below the piano plateau;
 - one sky shader, hemisphere light, directional light, fog, and a fake piano contact shadow;
-- fixed scenic-overlook camera with at most `0.14` world units of pointer travel;
+- fixed low scenic-overlook camera with at most `0.10` world units of pointer travel;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -118,7 +118,8 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 
 - The first enclosed clearing at `3d60173` received revision feedback: restore the particle piano and expose a much longer pastoral view.
 - The first riverside-overlook candidate at `cd0b673` / `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` received revision feedback because its river, grass, and piano read at nearly one level, its horizon blocked the sky, and its piano was not framed as the foreground anchor.
-- Commit `8dce371`, live in Production `dpl_3qCEWbjFJ3XectpdsR7bWPhJaDHU`, rebuilds the terrain and camera around an explicit high plateau, steep drop, low lateral river, opposite hillside, lower horizon, and right-foreground particle piano. It adds bounded rocks, wildflowers, trees, and clouds without changing the one-canvas runtime policy.
+- Mark found `8dce371` much better but still unlike the supplied screenshot because it retained a broad-meadow read and undersized foreground ridge.
+- The current local candidate rebuilds the image as five explicit depth bands matching the reference: framed pale sky and centered sun, miniature far ridge, smooth dark ravine, widened valley-floor water, and a large diagonal golden right ridge carrying the piano. It adds the reference's pink/green near foliage, distant floating forms, low-left boulders, atmospheric motes, and a faint piano silhouette while retaining one canvas and bounded runtime.
 - Focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass.
-- Headless software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof, so normal target-browser visual/performance review is still required.
-- Exact next action: collect only the five revised Checkpoint `B` answers for the deployed elevated valley candidate.
+- A piano-only Suspense boundary now prevents the model load from blanking the rest of the world; local `1280 x 720` browser inspection confirms the environmental composition while the piano finishes loading.
+- Exact next action: commit and deploy the reference-matched candidate, then collect only the five revised Checkpoint `B` answers.

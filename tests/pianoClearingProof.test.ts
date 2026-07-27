@@ -12,12 +12,13 @@ const root = process.cwd();
 
 describe('piano clearing Home proof', () => {
   it('keeps the first environmental proof deliberately bounded', () => {
-    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(1200);
-    expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(8500);
+    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(1600);
+    expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
     expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
-    expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(36);
-    expect(PIANO_CLEARING_PERFORMANCE.valleyRocks).toBeLessThanOrEqual(20);
-    expect(PIANO_CLEARING_PERFORMANCE.wildflowers).toBeLessThanOrEqual(140);
+    expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(48);
+    expect(PIANO_CLEARING_PERFORMANCE.valleyRocks).toBeLessThanOrEqual(24);
+    expect(PIANO_CLEARING_PERFORMANCE.wildflowers).toBeLessThanOrEqual(160);
+    expect(PIANO_CLEARING_PERFORMANCE.atmosphericMotes).toBeLessThanOrEqual(200);
     expect(PIANO_CLEARING_PERFORMANCE.realtimeShadows).toBe(false);
     expect(PIANO_CLEARING_PERFORMANCE.postProcessing).toBe(false);
   });
@@ -30,11 +31,11 @@ describe('piano clearing Home proof', () => {
     const riverFloor = pianoClearingTerrainHeight(x, streamZ);
     const oppositeHill = pianoClearingTerrainHeight(x, -26);
 
-    expect(plateau - cliffBottom).toBeGreaterThan(3.4);
-    expect(plateau - riverFloor).toBeGreaterThan(3.5);
-    expect(oppositeHill - riverFloor).toBeGreaterThan(2);
-    expect(pianoClearingStreamWidth(x)).toBeGreaterThan(1);
-    expect(pianoClearingStreamWidth(x)).toBeLessThan(1.5);
+    expect(plateau - cliffBottom).toBeGreaterThan(5);
+    expect(plateau - riverFloor).toBeGreaterThan(5.5);
+    expect(oppositeHill - riverFloor).toBeGreaterThan(3.5);
+    expect(pianoClearingStreamWidth(x)).toBeGreaterThan(1.35);
+    expect(pianoClearingStreamWidth(x)).toBeLessThan(1.7);
   });
 
   it('renders the existing piano as one bounded particle cloud in a fixed scenic world', async () => {
@@ -45,6 +46,8 @@ describe('piano clearing Home proof', () => {
 
     expect(component).toContain("useGLTF('/models/grand_piano/grand_piano_(GLB).gltf')");
     expect(component).toContain('<ParticlePiano reducedMotion={reducedMotion} />');
+    expect(component).toContain('<Suspense fallback={null}>');
+    expect(component).toContain('opacity: 0.18');
     expect(component).toContain('<Stream reducedMotion={reducedMotion} />');
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
