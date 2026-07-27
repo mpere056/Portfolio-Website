@@ -7,12 +7,12 @@ Last updated: 2026-07-26
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; riverside-overlook revision in review |
+| Lifecycle | in-progress; elevated valley revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Commit `cd0b673` on `main` |
+| Implementation | Elevated valley revision implemented locally; commit pending |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; private proof route live |
+| Deployment | Previous Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; elevated valley revision pending deployment |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -52,22 +52,35 @@ Last updated: 2026-07-26
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / visual-review |
 | Claim | A lightweight hand-painted pastoral river valley can provide the requested long view while the particle piano remains the permanent magical foreground anchor. |
 | Scope | Sloping terrain shelf, visible winding stream, particle piano, grass, layered hills, sparse distant trees, open sky, three cloud groups, restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 6,200 piano points in one draw; 720 grass instances in one draw; 22 trees in two draws; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
-| Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
+| Automated evidence | Focused ESLint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass. |
 | Production evidence | Deployment `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; `/`, `/projects`, and `/home-world-proof` return `200`; Vercel content validation, TypeScript, and 40-route build pass. |
-| Visual evidence | Pending Mark review. Isolated headless Chrome loads the route shell but, like the existing known-good music proof, does not finish this shared piano GLTF; the observatory control renders under the same software-WebGL setup, so target-browser review remains required. |
+| Visual evidence | Mark found that the river, grass, and piano read at nearly the same elevation, the distant mass blocked the sky, and the piano fell outside the intended foreground framing. The route passed technical gates but did not reproduce the requested high-overlook composition. |
+
+## EV-ART-16-05: Elevated Particle-Piano Valley
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / visual-review |
+| Claim | A deliberately terraced landscape can reproduce the requested viewpoint: particle piano on a high foreground grass plateau, steep valley wall below it, water on the valley floor, and a subordinate opposite hillside beneath an open sky. |
+| Scope | Right-foreground particle piano, high plateau, visible cliff descent, lateral valley-floor river, opposite hillside, low horizon masses, sparse trees, rocks, wildflowers, clouds, moving grass and water, and restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 8,200 piano points in one draw; 1,100 grass instances in one draw; 34 trees in two draws; 18 instanced riverbank rocks; 120 wildflower points; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
+| Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
+| Production evidence | Pending commit and deployment. |
+| Visual evidence | Pending Mark review of elevation, framing, distance, and pastoral detail. Headless software-WebGL cannot finish the shared piano GLTF, so review remains on the normal target browser. |
 
 ## Named Gaps
 
-- The revised overlook has not received visual or performance acceptance from Mark.
+- The elevated valley candidate has not received visual or performance acceptance from Mark.
 - The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the deployed overlook. No later checkpoint begins until that environment is accepted.
+The next action is to commit, deploy, and review only the elevated valley composition. No later checkpoint begins until that environment is accepted.

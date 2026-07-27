@@ -1,35 +1,38 @@
 export const PIANO_CLEARING_PERFORMANCE = {
   maxDpr: 1.25,
-  grassInstances: 720,
-  pianoParticles: 6200,
-  horizonTrees: 22,
-  cloudGroups: 3,
+  grassInstances: 1100,
+  pianoParticles: 8200,
+  horizonTrees: 34,
+  valleyRocks: 18,
+  wildflowers: 120,
+  cloudGroups: 4,
   realtimeShadows: false,
   postProcessing: false,
 } as const;
 
 export const PIANO_CLEARING_CAMERA = {
-  position: [8.8, 5.7, 13.6] as const,
-  target: [-0.4, -1.2, -7.4] as const,
-  fov: 36,
-  maxPointerTravel: 0.18,
+  position: [0.8, 4.4, 15.5] as const,
+  target: [0, -0.3, -16] as const,
+  fov: 39,
+  maxPointerTravel: 0.14,
 } as const;
 
-export function pianoClearingStreamCenter(z: number): number {
-  return 1.25 + Math.sin((z + 9) * 0.17) * 2.35;
+export function pianoClearingStreamCenter(x: number): number {
+  return -9.5 + Math.sin((x + 4) * 0.13) * 1.65 + Math.sin(x * 0.045) * 0.8;
 }
 
-export function pianoClearingStreamWidth(z: number): number {
-  const approach = Math.max(0, Math.min(1, (z + 30) / 36));
-  return 0.75 + approach * 1.15;
+export function pianoClearingStreamWidth(x: number): number {
+  return 1.05 + (Math.sin(x * 0.09) * 0.5 + 0.5) * 0.38;
 }
 
 export function pianoClearingTerrainHeight(x: number, z: number): number {
-  const broad = Math.sin(x * 0.13) * 0.22 + Math.cos(z * 0.16) * 0.16;
-  const farDrop = -Math.max(0, Math.min(1, (-z - 1) / 25)) * 1.35;
-  const streamDistance = x - pianoClearingStreamCenter(z);
-  const valleyWidth = pianoClearingStreamWidth(z) * 1.85;
-  const valley = Math.exp(-(streamDistance * streamDistance) / (valleyWidth * valleyWidth)) * 0.92;
-  const pianoShelf = Math.exp(-(((x + 2.2) ** 2) / 19 + ((z - 2.1) ** 2) / 13)) * 0.18;
-  return broad + farDrop - valley - pianoShelf;
+  const cliffProgress = Math.max(0, Math.min(1, (2.2 - z) / 8.2));
+  const oppositeRise = Math.max(0, Math.min(1, (-z - 11) / 17));
+  const broad = Math.sin(x * 0.11) * 0.16 + Math.cos(z * 0.13) * 0.11;
+  const elevation = 2.05 - cliffProgress * 4.25 + oppositeRise * 3.15;
+  const streamDistance = z - pianoClearingStreamCenter(x);
+  const valleyWidth = pianoClearingStreamWidth(x) * 1.9;
+  const riverBed = Math.exp(-(streamDistance * streamDistance) / (valleyWidth * valleyWidth)) * 0.32;
+  const plateauSoftening = Math.exp(-(((x - 4) ** 2) / 32 + ((z - 3.2) ** 2) / 20)) * 0.1;
+  return elevation + broad - riverBed - plateauSoftening;
 }

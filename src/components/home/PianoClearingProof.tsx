@@ -20,7 +20,7 @@ import {
 import styles from './PianoClearingProof.module.css';
 
 const GROUND_Y = -1.45;
-const PIANO_POSITION = new THREE.Vector3(-2.35, -0.12, 2.25);
+const PIANO_POSITION = new THREE.Vector3(4.1, 1.88, 3.15);
 
 function seededRandom(seed: number) {
   let state = seed >>> 0;
@@ -31,12 +31,12 @@ function seededRandom(seed: number) {
 }
 
 function createGroundGeometry() {
-  const geometry = new THREE.PlaneGeometry(64, 58, 58, 52);
+  const geometry = new THREE.PlaneGeometry(72, 60, 64, 56);
   const positions = geometry.attributes.position;
 
   for (let index = 0; index < positions.count; index += 1) {
     const x = positions.getX(index);
-    const worldZ = -positions.getY(index) - 9;
+    const worldZ = -positions.getY(index) - 8;
     positions.setZ(index, pianoClearingTerrainHeight(x, worldZ));
   }
 
@@ -70,7 +70,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uWind: { value: reducedMotion ? 0 : 1 },
-      uFogColor: { value: new THREE.Color('#b4c99b') },
+      uFogColor: { value: new THREE.Color('#bcc99e') },
     },
     vertexShader: `
       uniform float uTime;
@@ -97,8 +97,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       varying float vFog;
       void main() {
-        vec3 rootColor = vec3(0.20, 0.34, 0.10);
-        vec3 tipColor = vec3(0.70, 0.77, 0.28);
+        vec3 rootColor = vec3(0.18, 0.31, 0.08);
+        vec3 tipColor = vec3(0.79, 0.74, 0.25);
         vec3 color = mix(rootColor, tipColor, vUv.y);
         color = mix(color, uFogColor, vFog * 0.78);
         gl_FragColor = vec4(color, 1.0);
@@ -112,11 +112,16 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     const matrices: THREE.Matrix4[] = [];
 
     while (matrices.length < PIANO_CLEARING_PERFORMANCE.grassInstances) {
-      const x = (random() - 0.5) * 40;
-      const z = 7 - random() * 38;
-      const streamGap = Math.abs(x - pianoClearingStreamCenter(z));
-      const pianoGap = Math.hypot((x + 2.35) * 0.9, z - 2.25);
-      if (streamGap < pianoClearingStreamWidth(z) + 1.15 || pianoGap < 3.25) continue;
+      const x = (random() - 0.5) * 48;
+      const z = 9 - random() * 39;
+      const streamGap = Math.abs(z - pianoClearingStreamCenter(x));
+      const pianoGap = Math.hypot((x - PIANO_POSITION.x) * 0.9, z - PIANO_POSITION.z);
+      const steepCliff = z < 1.2 && z > -7.4;
+      if (
+        streamGap < pianoClearingStreamWidth(x) + 1.2
+        || pianoGap < 3.15
+        || steepCliff
+      ) continue;
 
       dummy.position.set(x, GROUND_Y + pianoClearingTerrainHeight(x, z), z);
       dummy.rotation.set(
@@ -124,7 +129,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         random() * Math.PI,
         (random() - 0.5) * 0.06,
       );
-      const scale = (0.48 + random() * 0.75) * (z < -12 ? 0.72 : 1);
+      const scale = (0.52 + random() * 0.82) * (z < -12 ? 0.72 : 1);
       dummy.scale.set(0.72 + random() * 0.5, scale, 0.72 + random() * 0.5);
       dummy.updateMatrix();
       matrices.push(dummy.matrix.clone());
@@ -157,8 +162,43 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
 function Ground() {
   const geometry = useMemo(() => createGroundGeometry(), []);
   return (
-    <mesh geometry={geometry} position={[0, GROUND_Y, -9]} rotation={[-Math.PI / 2, 0, 0]}>
-      <meshToonMaterial color="#89a94b" />
+    <mesh geometry={geometry} position={[0, GROUND_Y, -8]} rotation={[-Math.PI / 2, 0, 0]}>
+      <shaderMaterial
+        vertexShader={`
+          varying float vHeight;
+          varying float vSlope;
+          varying float vDepth;
+          void main() {
+            vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+            vec4 viewPosition = viewMatrix * worldPosition;
+            vec3 worldNormal = normalize(mat3(modelMatrix) * normal);
+            vHeight = worldPosition.y;
+            vSlope = 1.0 - abs(worldNormal.y);
+            vDepth = -viewPosition.z;
+            gl_Position = projectionMatrix * viewPosition;
+          }
+        `}
+        fragmentShader={`
+          varying float vHeight;
+          varying float vSlope;
+          varying float vDepth;
+          void main() {
+            vec3 valley = vec3(0.20, 0.35, 0.29);
+            vec3 hillside = vec3(0.48, 0.57, 0.28);
+            vec3 plateau = vec3(0.72, 0.70, 0.24);
+            float middle = smoothstep(-3.4, -1.1, vHeight);
+            float top = smoothstep(-0.8, 0.38, vHeight);
+            vec3 color = mix(valley, hillside, middle);
+            color = mix(color, plateau, top);
+            color *= 1.0 - vSlope * 0.34;
+            float bands = sin(vHeight * 7.0 + vSlope * 4.0) * 0.025;
+            color += bands;
+            float fog = smoothstep(34.0, 78.0, vDepth);
+            color = mix(color, vec3(0.73, 0.78, 0.61), fog * 0.72);
+            gl_FragColor = vec4(color, 1.0);
+          }
+        `}
+      />
     </mesh>
   );
 }
@@ -168,15 +208,15 @@ function createStreamGeometry() {
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
-  const segments = 52;
+  const segments = 64;
 
   for (let index = 0; index <= segments; index += 1) {
     const progress = index / segments;
-    const z = 6.5 - progress * 40;
-    const center = pianoClearingStreamCenter(z);
-    const width = pianoClearingStreamWidth(z);
-    const y = GROUND_Y + pianoClearingTerrainHeight(center, z) + 0.18;
-    positions.push(center - width, y, z, center + width, y, z);
+    const x = -34 + progress * 68;
+    const centerZ = pianoClearingStreamCenter(x);
+    const width = pianoClearingStreamWidth(x);
+    const y = GROUND_Y + pianoClearingTerrainHeight(x, centerZ) + 0.2;
+    positions.push(x, y, centerZ - width, x, y, centerZ + width);
     uvs.push(0, progress, 1, progress);
     if (index < segments) {
       const offset = index * 2;
@@ -293,7 +333,7 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
         transformed += normalize(position + vec3(0.001)) * pulse * 0.008 * uMotion;
         vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         vPulse = pulse;
-        gl_PointSize = (2.1 + aSeed * 1.9 + pulse * 0.25 * uMotion) * uDpr * (15.0 / max(2.0, -viewPosition.z));
+        gl_PointSize = (2.4 + aSeed * 2.2 + pulse * 0.28 * uMotion) * uDpr * (21.0 / max(2.0, -viewPosition.z));
         gl_Position = projectionMatrix * viewPosition;
       }
     `,
@@ -303,8 +343,8 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       void main() {
         vec2 centered = gl_PointCoord - 0.5;
         float circle = 1.0 - smoothstep(0.32, 0.5, length(centered));
-        vec3 blue = vec3(0.48, 0.76, 0.95);
-        vec3 ivory = vec3(1.0, 0.91, 0.62);
+        vec3 blue = vec3(0.25, 0.58, 0.96);
+        vec3 ivory = vec3(1.0, 0.83, 0.42);
         vec3 color = mix(blue, ivory, smoothstep(0.42, 0.95, vSeed));
         float light = 0.72 + (vPulse * 0.5 + 0.5) * 0.28;
         gl_FragColor = vec4(color * light, circle * (0.7 + vSeed * 0.28));
@@ -322,8 +362,8 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
   return (
     <group
       position={PIANO_POSITION}
-      rotation={[0, -0.26, 0]}
-      scale={1.78}
+      rotation={[0, -0.52, 0]}
+      scale={1.62}
     >
       <points geometry={geometry} material={material} frustumCulled={false} />
     </group>
@@ -347,10 +387,10 @@ function PianoShadow() {
 function DistantLandscape() {
   const trees = useMemo(() => {
     const random = seededRandom(1827);
-    return Array.from({ length: PIANO_CLEARING_PERFORMANCE.horizonTrees }, (_, index) => ({
-      x: -18 + index * 1.7 + (random() - 0.5) * 1.1,
-      z: -22 - random() * 7,
-      scale: 0.5 + random() * 0.95,
+    return Array.from({ length: PIANO_CLEARING_PERFORMANCE.horizonTrees }, () => ({
+      x: -23 + random() * 46,
+      z: -15 - random() * 16,
+      scale: 0.5 + random() * 1.05,
       rotation: random() * Math.PI,
     }));
   }, []);
@@ -378,18 +418,22 @@ function DistantLandscape() {
 
   return (
     <>
-      <group position={[0, -4.1, -38]}>
-        <mesh position={[-16, 4.8, -6]} scale={[19, 7.2, 6]}>
+      <group position={[0, -1.8, -43]}>
+        <mesh position={[-22, 2.7, -2]} scale={[15, 3.9, 5]}>
           <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#718c6d" />
+          <meshToonMaterial color="#6e8b72" />
         </mesh>
-        <mesh position={[2, 3.9, -11]} scale={[24, 6.4, 7]}>
+        <mesh position={[-4, 2.25, -6]} scale={[17, 3.4, 5.4]}>
           <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#8fa27b" />
+          <meshToonMaterial color="#91a27c" />
         </mesh>
-        <mesh position={[20, 5.3, -7]} scale={[17, 8, 6]}>
+        <mesh position={[13, 2.65, -4]} scale={[15, 4.1, 5.2]}>
           <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#667f6d" />
+          <meshToonMaterial color="#758d72" />
+        </mesh>
+        <mesh position={[28, 2.1, -8]} scale={[14, 3.3, 4.8]}>
+          <dodecahedronGeometry args={[1, 1]} />
+          <meshToonMaterial color="#8ca078" />
         </mesh>
       </group>
       <instancedMesh ref={trunks} args={[undefined, undefined, trees.length]}>
@@ -400,6 +444,87 @@ function DistantLandscape() {
         <icosahedronGeometry args={[1, 1]} />
         <meshToonMaterial color="#587746" />
       </instancedMesh>
+    </>
+  );
+}
+
+function ValleyDetails() {
+  const rocksRef = useRef<THREE.InstancedMesh>(null);
+  const rocks = useMemo(() => {
+    const random = seededRandom(9317);
+    return Array.from({ length: PIANO_CLEARING_PERFORMANCE.valleyRocks }, () => {
+      const x = -22 + random() * 44;
+      const centerZ = pianoClearingStreamCenter(x);
+      const side = random() > 0.5 ? -1 : 1;
+      const z = centerZ + side * (pianoClearingStreamWidth(x) + 0.7 + random() * 2.3);
+      return {
+        x,
+        z,
+        scale: 0.18 + random() * 0.48,
+        rotation: random() * Math.PI,
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    const dummy = new THREE.Object3D();
+    rocks.forEach((rock, index) => {
+      const y = GROUND_Y + pianoClearingTerrainHeight(rock.x, rock.z);
+      dummy.position.set(rock.x, y + rock.scale * 0.34, rock.z);
+      dummy.rotation.set(
+        rock.rotation * 0.12,
+        rock.rotation,
+        rock.rotation * 0.08,
+      );
+      dummy.scale.set(rock.scale * 1.2, rock.scale * 0.72, rock.scale);
+      dummy.updateMatrix();
+      rocksRef.current?.setMatrixAt(index, dummy.matrix);
+    });
+    if (rocksRef.current) rocksRef.current.instanceMatrix.needsUpdate = true;
+  }, [rocks]);
+
+  const flowers = useMemo(() => {
+    const random = seededRandom(5401);
+    const positions = new Float32Array(PIANO_CLEARING_PERFORMANCE.wildflowers * 3);
+    const colors = new Float32Array(PIANO_CLEARING_PERFORMANCE.wildflowers * 3);
+    const ivory = new THREE.Color('#fff3c8');
+    const blue = new THREE.Color('#b7d7ef');
+
+    for (let index = 0; index < PIANO_CLEARING_PERFORMANCE.wildflowers; index += 1) {
+      let x = -17 + random() * 34;
+      let z = 2.2 + random() * 6.2;
+      if (Math.hypot(x - PIANO_POSITION.x, z - PIANO_POSITION.z) < 3.4) {
+        x -= 5.5;
+        z += 1.4;
+      }
+      const y = GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.18 + random() * 0.12;
+      const color = random() > 0.28 ? ivory : blue;
+      positions.set([x, y, z], index * 3);
+      colors.set([color.r, color.g, color.b], index * 3);
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    return geometry;
+  }, []);
+
+  return (
+    <>
+      <instancedMesh ref={rocksRef} args={[undefined, undefined, rocks.length]}>
+        <dodecahedronGeometry args={[1, 0]} />
+        <meshToonMaterial color="#536855" />
+      </instancedMesh>
+      <points geometry={flowers} frustumCulled={false}>
+        <pointsMaterial
+          size={0.095}
+          sizeAttenuation
+          vertexColors
+          transparent
+          opacity={0.92}
+          depthWrite={false}
+        />
+      </points>
     </>
   );
 }
@@ -444,6 +569,7 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
     useRef<THREE.Group>(null),
     useRef<THREE.Group>(null),
     useRef<THREE.Group>(null),
+    useRef<THREE.Group>(null),
   ];
 
   useFrame(({ clock }) => {
@@ -457,9 +583,10 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
   });
 
   const cloudData = [
-    { position: [-11, 8.4, -22] as const, scale: 1.5 },
-    { position: [3, 10.5, -31] as const, scale: 1.9 },
-    { position: [14, 7.4, -25] as const, scale: 1.25 },
+    { position: [-15, 9.6, -27] as const, scale: 1.45 },
+    { position: [-2, 11.4, -38] as const, scale: 1.75 },
+    { position: [13, 8.8, -31] as const, scale: 1.2 },
+    { position: [24, 10.4, -42] as const, scale: 1.5 },
   ];
 
   return (
@@ -524,6 +651,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <Ground />
       <Stream reducedMotion={reducedMotion} />
       <GrassField reducedMotion={reducedMotion} />
+      <ValleyDetails />
       <PianoShadow />
       <ParticlePiano reducedMotion={reducedMotion} />
       <Clouds reducedMotion={reducedMotion} />
@@ -578,8 +706,8 @@ export default function PianoClearingProof() {
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
       <p className={styles.proofLabel}>
-        Environmental proof 02
-        <strong>The riverside piano</strong>
+        Environmental proof 03
+        <strong>The valley piano</strong>
       </p>
     </main>
   );

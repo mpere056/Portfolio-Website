@@ -16,7 +16,7 @@ Last updated: 2026-07-26
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: a grassy shelf, visible winding stream, distant layered hills and trees, open sky, and a few clouds. There is no bridge, train, walking, or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. There is no bridge, train, walking, or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
 
 ## Scene Grammar
 
@@ -24,7 +24,7 @@ Build a highly optimized, cinematic outdoor Home world centered on the particle 
 
 The permanent layer makes every later state feel like the same place:
 
-- fixed clearing footprint;
+- fixed overlook footprint with an explicit foreground plateau, valley wall, valley floor, and opposite hillside;
 - particle-built grand piano and its ground contact;
 - authored camera and focal hierarchy;
 - bounded sloping river-valley terrain and a long layered horizon;
@@ -59,18 +59,19 @@ Preview should modify atmosphere rather than scale the screen dramatically. Sele
 
 ## First Proof Implementation
 
-The revised Checkpoint `B` implementation intentionally contains:
+The current Checkpoint `B` implementation intentionally contains:
 
 - one React Three Fiber canvas;
-- one 64 by 58 unit displaced terrain patch with a lowered stream valley;
-- the existing grand piano sampled into at most 6,200 GPU points in one draw, with no opaque piano render;
-- 720 instanced crossed grass blades in one draw;
-- 22 low-poly horizon trees in two instanced draws;
+- one 72 by 60 unit displaced terrain patch with a high foreground plateau, steep descent, low river bed, and opposite rise;
+- the existing grand piano sampled into at most 8,200 GPU points in one draw, with no opaque piano render;
+- 1,100 instanced crossed grass blades in one draw;
+- 34 low-poly horizon trees in two instanced draws;
+- 18 instanced riverbank rocks and 120 point-rendered wildflowers;
 - three layered low-poly hill masses;
-- three slow cloud groups;
-- one shader-driven water ribbon with visible directional flow;
+- four slow cloud groups;
+- one lateral shader-driven water ribbon visibly below the piano plateau;
 - one sky shader, hemisphere light, directional light, fog, and a fake piano contact shadow;
-- fixed scenic-overlook camera with at most `0.18` world units of pointer travel;
+- fixed scenic-overlook camera with at most `0.14` world units of pointer travel;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -94,7 +95,7 @@ Mark reviews only a short list:
 
 1. Does this feel like the right warm, hand-painted pastoral world?
 2. Is the particle piano the right size, position, angle, density, and visual focus?
-3. Does the grassy overlook clearly reveal a winding stream, distant landscape, open sky, and a few clouds without suggesting a full explorable map?
+3. Does the piano unmistakably sit above a valley-floor river, with a visible descent, distant landscape, open sky, and a few clouds without suggesting a full explorable map?
 4. Do water, grass, particles, clouds, and light make the scene alive enough while remaining calm?
 5. Does it remain smooth on the computers that struggled with earlier proofs?
 
@@ -116,7 +117,8 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 ## Resume Point
 
 - The first enclosed clearing at `3d60173` received revision feedback: restore the particle piano and expose a much longer pastoral view.
-- The revised riverside-overlook candidate is committed at `cd0b673` and deployed in `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` with one particle draw, one water shader, one grass draw, two tree draws, and no opaque piano, bridge, train, post-processing, or navigation.
-- Focused lint, TypeScript, all 57 test files / 237 tests, content validation, the 40-route production build, Vercel build, and live route smoke checks pass.
+- The first riverside-overlook candidate at `cd0b673` / `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` received revision feedback because its river, grass, and piano read at nearly one level, its horizon blocked the sky, and its piano was not framed as the foreground anchor.
+- The current local candidate rebuilds the terrain and camera around an explicit high plateau, steep drop, low lateral river, opposite hillside, lower horizon, and right-foreground particle piano. It adds bounded rocks, wildflowers, trees, and clouds without changing the one-canvas runtime policy.
+- Focused lint, TypeScript, all 57 test files / 237 tests, content validation at 62 nodes / 28 relationships, and the 40-route production build pass.
 - Headless software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof, so normal target-browser visual/performance review is still required.
-- Exact next action: collect only the five revised Checkpoint `B` answers.
+- Exact next action: commit and deploy the elevated valley candidate, then collect only the five revised Checkpoint `B` answers.
