@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-26
+Last reconciled: 2026-07-27
 
 ## Purpose
 
@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`cd0b673` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the particle-piano riverside-overlook candidate for private review. The enclosed opaque-piano clearing remains revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
+`d6e9a26` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the source-guided particle-piano viaduct valley for private review. Earlier clearing and path-only variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B` revision: `cd0b673`, Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`, 237 tests, build, and smoke checks pass | Collect vista-only review | 2026-07-26 |
-| Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
-| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-26 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: `d6e9a26`, Production `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe`, 237 tests, build, and live visual checks pass | Collect source-parity and target-machine smoothness review | 2026-07-27 |
+| Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-27 |
+| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-27 |
 
 ## Active And Unfinished Items
 

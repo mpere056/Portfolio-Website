@@ -62,16 +62,17 @@ Preview should modify atmosphere rather than scale the screen dramatically. Sele
 The current Checkpoint `B` implementation intentionally contains:
 
 - one React Three Fiber canvas;
-- one 78 by 68 unit displaced terrain patch authored as a high diagonal foreground ridge, steep dark ravine, low river bed, and opposite rise;
+- one 78 by 68 unit displaced terrain patch authored as a high right foreground field, asymmetric dark ravine, path-carved river bed, and opposite rise;
 - the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
-- 1,560 instanced crossed grass blades in one draw, excluded from the ravine floor;
-- 46 miniature low-poly horizon trees in two instanced draws;
-- 24 instanced riverbank rocks, a lower-left boulder cluster, 160 point-rendered wildflowers, and 180 atmospheric motes;
-- three layered low-poly hill masses;
+- 11,000 instanced three-blade grass clumps in one draw, excluded from water and steep banks;
+- 58 miniature low-poly horizon trees in two instanced draws;
+- five fixed ravine rocks, 160 point-rendered wildflowers, and 180 atmospheric motes;
+- three smoothed layered ridge silhouettes;
 - five slow cloud groups, distant floating forms, and oversized translucent near foliage framing the left and upper-right edges;
-- one lateral shader-driven water ribbon visibly below the piano plateau;
+- one path-aligned shader-driven water ribbon with painted depth plates and downstream travel;
+- one dark five-arch viaduct and bounded three-car train used as middle-distance depth cues from the supplied source;
 - one sky shader, hemisphere light, directional light, fog, and a fake piano contact shadow;
-- fixed low scenic-overlook camera with at most `0.10` world units of pointer travel;
+- fixed low scenic-overlook camera with at most `0.08` world units of pointer travel;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -125,6 +126,8 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Production deployment `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` is Ready at `/home-world-proof`.
 - Mark found that deployment still too different from the supplied screenshot: its grass was sparse/coarse and its river/current read horizontally instead of following the valley toward the viewer.
 - Commit `31a2ad8` uses one shared path to carve the ravine, bend and widen the water from distant center to foreground, exclude vegetation from water and steep banks, and orient shader travel downstream. It increases visual grass density to 7,200 tapered three-blade clumps while retaining one instanced draw.
-- Focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, local browser inspection, and a Production `1280 x 720` check pass. Two local frames `1.4s` apart confirm downstream water motion; Production has one canvas, one-screen geometry, and zero console warnings/errors. No numerical frame-rate claim is made.
-- Production deployment `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready.
-- Exact next action: collect only Checkpoint `B` composition, grass, river-direction, aliveness, and target-machine performance answers.
+- Mark found that path geometry better but still requested closer parity, supplied the original HTML, and allowed the bridge and train.
+- Commit `d6e9a26` translates the source's visual hierarchy into the bounded proof: lower source-guided camera, 11,000-clump meadow, painted downstream river, smooth ridge layers, warm/lavender clouds, dark five-arch viaduct, visible three-car train, and retained particle piano.
+- Focused lint, TypeScript, all 57 test files / 237 tests, the clean 40-route production build, local visual review, and Production browser verification pass. Production has one canvas, one-screen geometry, `far-to-foreground` flow, and zero console warnings/errors. No numerical frame-rate claim is made.
+- Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
+- Exact next action: collect only Checkpoint `B` source-parity, composition, aliveness, and target-machine performance answers.

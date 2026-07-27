@@ -92,7 +92,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | One shared river path can control the terrain cut, water geometry, grass exclusion, rock placement, and shader direction so the valley reads as one perspective composition rather than separate horizontal bands. |
 | Scope | River beginning near the distant center and widening toward the lower foreground; steep banks carved from the same centerline; high grass fields on both sides; denser tapered grass; cooler pale sky and blue-gray water; low-left ravine rocks; particle piano retained on the elevated right field. No bridge, train, pianist, screens, category environments, or route migration. |
@@ -100,15 +100,29 @@ Last updated: 2026-07-27
 | Automated evidence | Focused ESLint and TypeScript pass; all 57 test files / 237 tests pass; the 40-route production build passes. Tests bind the river taper, centerline bend, carved bank heights, downstream marker, and shader travel direction. |
 | Browser evidence | Local `1280 x 720` inspection confirms one canvas, no console warnings/errors, and visible water-band displacement between frames `1.4s` apart along the distance-to-foreground axis. No numerical frame-rate claim was recorded. |
 | Production evidence | Commit `31a2ad8`; Git-connected Production deployment `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready at `/home-world-proof`. A `1280 x 720` live check confirms `data-river-flow="far-to-foreground"`, one canvas, one-screen geometry, and zero console warnings/errors. |
-| Visual evidence | Pending Mark review against the supplied reference image. |
+| Visual evidence | Mark found the path geometry and current direction better, but still requested closer parity with the supplied source. He supplied the original HTML and explicitly allowed restoring the bridge and train when that improved fidelity. |
+
+## EV-ART-16-08: Source-Guided Viaduct Valley
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / production / browser-flow / visual-review |
+| Claim | The supplied source can be translated into a bounded fixed-view composition by preserving its low grazing light, asymmetric ravine, spline-like downstream water, dense multi-scale meadow, cloud volumes, layered ridges, dark viaduct, and incidental train without copying its million-blade, reflection, shadow-map, and post-processing costs. |
+| Scope | Particle piano retained on the high right field; 11,000 three-blade grass clumps; widened path-carved river with painted depth plates; smoothed three-layer ridge silhouettes; five warm/lavender cloud groups; five-arch dark viaduct and continuously visible low-poly train; original-inspired pale sky, pink left haze, green right framing, and source-guided camera. No pianist, practice screens, category environments, route migration, orbit controls, real-time shadows, or post-processing. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points in one draw; 11,000 three-blade grass clumps in one instanced draw; 58 trees in two draws; five fixed rocks; 160 wildflower points; 180 atmospheric motes; five cloud groups; five bridge arches; three train cars; one water shader; hidden/reduced-motion lifecycle; no post-processing or real-time shadows. |
+| Automated evidence | Focused ESLint and TypeScript pass; all 57 test files / 237 tests pass; the clean 40-route production build passes. Tests bind performance caps, the five-arch/three-car limit, downstream geometry, river taper, piano isolation, and absence of controls/post-processing/shadow maps. |
+| Browser evidence | Local `1280 x 720` review established the source hierarchy before delivery. Production Chrome confirms the marker, `data-river-flow="far-to-foreground"`, one canvas, exact one-screen geometry, and zero console warnings/errors after the WebGL scene completes. |
+| Production evidence | Commit `d6e9a26`; Git-connected Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the three project subdomains. |
+| Visual evidence | Pending Mark review of the source-guided bridge, train, meadow, river, cloud, ridge, and piano composition. |
 
 ## Named Gaps
 
-- The path-carved valley candidate has not received visual or performance acceptance from Mark.
-- The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
+- The source-guided viaduct valley has not received visual or target-machine performance acceptance from Mark.
+- The supplied HTML is now the visual-logic reference; literal parity is not claimed because the fixed homepage proof deliberately excludes the source's million-blade grass, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to commit, deploy, and review only the path-carved valley composition. No later checkpoint begins until that environment is accepted.
+The next action is to review only the source-guided viaduct valley composition and target-machine smoothness. No later checkpoint begins until that environment is accepted.

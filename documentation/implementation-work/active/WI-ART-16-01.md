@@ -18,25 +18,25 @@
 
 Mark rejected the full proof-world compositor in `EV-ART-16-02` and requested a drastic reset. Home now targets one bounded outdoor clearing centered on the grand piano. The four project practices remain valid taxonomy, but they will later appear as four diegetic screens. About will later be represented by a simple pianist rather than a fifth territory.
 
-Mark reviewed the first Checkpoint `B` clearing and requested a more specific composition: restore the original particle-built piano; look outward across a grassy overlook toward a visible stream, distant landscape, open sky, and a few clouds; use a warm hand-painted pastoral animation language; and include no bridge or train.
+Mark reviewed the first Checkpoint `B` clearing and requested a more specific composition: restore the original particle-built piano; look outward across a grassy overlook toward a visible stream, distant landscape, open sky, and a few clouds; and use a warm hand-painted pastoral animation language. He later supplied the original HTML and explicitly allowed the bridge and train when they improved source parity.
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-The current deployed Checkpoint `B` candidate replaces independent bands with one shared perspective river path. The same centerline carves the ravine, bends and widens the water from distant center to lower foreground, excludes grass from water and steep banks, and orients shader travel downstream. Both high fields use 7,200 fine tapered grass clumps in one instanced draw; the particle piano remains on the right field. It retains one canvas, capped DPR, moving grass/water/clouds/motes, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
+Mark found the path-carved candidate better but still too different from the original. The current deployed Checkpoint `B` candidate therefore uses the supplied HTML as a visual-logic reference. It keeps the shared downstream river path, increases the meadow to 11,000 tapered clumps, lowers and widens the camera, replaces blocky hills with smooth layered ridge silhouettes, develops warm/lavender cloud volumes, and restores a bounded dark five-arch viaduct with a continuously visible three-car train. The particle piano remains on the elevated right field. It retains one canvas, capped DPR, moving grass/water/clouds/motes/train, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, or game-world navigation.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `31a2ad8` on `main`; creative and target-machine performance review remain.
-- Current implementation: path-carved Checkpoint `B` replacement is deployed and fully verified technically.
+- Known-good deployed commit: `d6e9a26` on `main`; creative and target-machine performance review remain.
+- Current implementation: source-guided viaduct Checkpoint `B` replacement is deployed and fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local/Production `1280 x 720` browser inspection pass; Production renders one canvas in one screen with zero console warnings/errors, and local frames `1.4s` apart show downstream water motion.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 7,200 three-blade grass clumps in one instanced draw, 46 trees in two draws, five fixed rocks, 160 wildflower points, 180 motes, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
+- Verification: focused lint, TypeScript, all 57 test files / 237 tests, the clean 40-route production build, and local/Production browser inspection pass; Production renders one canvas in one screen with `far-to-foreground` flow and zero console warnings/errors.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 11,000 three-blade grass clumps in one instanced draw, 58 trees in two draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready.
+- Deployment: `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: collect only composition, grass, river direction, aliveness, and target-machine smoothness review.
+- Next exact action: collect only source-parity, composition, aliveness, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -85,6 +85,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Generic anchors, proof-derived landmarks, and then complete proximity-weighted proof worlds were tried on the private route.
 - `EV-ART-16-01` records the rejected landmark candidate.
 - `EV-ART-16-02` records the rejected full-world compositor candidate deployed in `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib`.
+
+### 2026-07-27 Source-Guided Revision
+
+- `EV-ART-16-07` moved to revision-requested after Mark supplied the original HTML and requested closer source parity.
+- Commit `d6e9a26` restores the bridge and train as bounded depth cues while preserving the particle piano and path-carved downstream river.
+- Git-connected Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
+- All 57 test files / 237 tests, TypeScript, focused lint, the 40-route build, and live one-screen browser verification pass.
 
 ### 2026-07-26
 
