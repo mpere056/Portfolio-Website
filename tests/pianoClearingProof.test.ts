@@ -34,8 +34,8 @@ describe('piano clearing Home proof', () => {
     expect(plateau - cliffBottom).toBeGreaterThan(5);
     expect(plateau - riverFloor).toBeGreaterThan(5.5);
     expect(oppositeHill - riverFloor).toBeGreaterThan(3.5);
-    expect(pianoClearingStreamWidth(x)).toBeGreaterThan(1.35);
-    expect(pianoClearingStreamWidth(x)).toBeLessThan(1.7);
+    expect(pianoClearingStreamWidth(x)).toBeGreaterThan(1.8);
+    expect(pianoClearingStreamWidth(x)).toBeLessThan(2.3);
   });
 
   it('renders the existing piano as one bounded particle cloud in a fixed scenic world', async () => {

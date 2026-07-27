@@ -224,7 +224,7 @@ function createStreamGeometry() {
     const x = -39 + progress * 78;
     const centerZ = pianoClearingStreamCenter(x);
     const width = pianoClearingStreamWidth(x);
-    const y = GROUND_Y + pianoClearingTerrainHeight(x, centerZ) + 1.05;
+    const y = GROUND_Y + pianoClearingTerrainHeight(x, centerZ) + 4.5;
     positions.push(x, y, centerZ - width, x, y, centerZ + width);
     uvs.push(0, progress, 1, progress);
     if (index < segments) {
