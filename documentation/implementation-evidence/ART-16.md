@@ -7,10 +7,10 @@ Last updated: 2026-07-26
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; empty-clearing candidate in review |
+| Lifecycle | in-progress; riverside-overlook revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Commit `3d60173` on `main` |
+| Implementation | Revised local candidate; commit pending |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
 | Deployment | Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; private proof route live |
 
@@ -39,22 +39,34 @@ Last updated: 2026-07-26
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / visual-review |
 | Claim | One compact outdoor clearing can provide a coherent, performant Home foundation centered on the existing piano without building an explorable game world. |
 | Scope | Terrain, piano, instanced grass, low-poly horizon, sky, clouds, light, restrained camera breathing, calm/reduced-motion behavior. No pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; 760 grass instances in one draw; 18 trees in two draws; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
 | Automated evidence | `tests/pianoClearingProof.test.ts` and `tests/homePracticeWorld.test.ts` pass; focused lint, TypeScript, content validation, all 57 test files / 237 tests, and the 40-route production build pass. |
 | Production evidence | Commit `3d60173`; deployment `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; `/`, `/projects`, and `/home-world-proof` return `200`. |
-| Visual evidence | Pending Mark review on the private route. |
+| Visual evidence | Mark requested the particle piano be restored and the enclosed view replaced by a stream-facing pastoral overlook with distant scenery, sky, and clouds; no bridge or train. |
+
+## EV-ART-16-04: Particle Piano Riverside Overlook
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / visual-review |
+| Claim | A lightweight hand-painted pastoral river valley can provide the requested long view while the particle piano remains the permanent magical foreground anchor. |
+| Scope | Sloping terrain shelf, visible winding stream, particle piano, grass, layered hills, sparse distant trees, open sky, three cloud groups, restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 6,200 piano points in one draw; 720 grass instances in one draw; 22 trees in two draws; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
+| Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
+| Visual evidence | Pending Mark review on the private route after deployment. |
 
 ## Named Gaps
 
-- The clearing has not received visual or performance acceptance from Mark.
+- The revised overlook has not received visual or performance acceptance from Mark.
 - The CodePen source was blocked by CodePen's browser challenge, so the proof follows Mark's described bounded outdoor-world qualities rather than claiming source-level parity.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the deployed clearing. No later checkpoint begins until that environment is accepted.
+The next action is to deploy and review only the revised overlook. No later checkpoint begins until that environment is accepted.

@@ -18,20 +18,22 @@
 
 Mark rejected the full proof-world compositor in `EV-ART-16-02` and requested a drastic reset. Home now targets one bounded outdoor clearing centered on the grand piano. The four project practices remain valid taxonomy, but they will later appear as four diegetic screens. About will later be represented by a simple pianist rather than a fifth territory.
 
-Checkpoint `B` is implemented locally on the private `/home-world-proof` route. It uses one fixed React Three Fiber scene with a finite terrain patch, the existing piano model, 760 shader-swayed grass instances, 18 low-poly horizon trees, two cloud groups, restrained camera breathing, capped DPR, no post-processing, no real-time shadows, no orbit controls, and no game-world navigation.
+Mark reviewed the first Checkpoint `B` clearing and requested a more specific composition: restore the original particle-built piano; look outward across a grassy overlook toward a visible stream, distant landscape, open sky, and a few clouds; use a warm hand-painted pastoral animation language; and include no bridge or train.
+
+The revised Checkpoint `B` candidate is implemented locally on the private `/home-world-proof` route. It uses one fixed React Three Fiber scene with a 64 by 58 unit sloping river valley, at most 6,200 piano points in one draw, a shader-driven moving stream, 720 shader-swayed grass instances, 22 low-poly horizon trees, three hill masses, three cloud groups, restrained camera breathing, capped DPR, and no opaque piano, post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `3d60173` on `main`.
-- Current implementation: Checkpoint `B` candidate is committed, pushed, and deployed.
+- Known-good deployed commit: `3d60173` on `main`; creative revision requested.
+- Current implementation: revised riverside-overlook Checkpoint `B` candidate is local and verified; commit and deployment pending.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, content validation, all 57 test files / 237 tests, the 40-route production build, and live `200` smoke checks pass.
-- Performance boundary: one canvas, DPR at most `1.25`, 760 grass instances in one draw, 18 trees in two draws, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
+- Verification: focused lint, TypeScript, eight focused tests, and the 40-route production build pass.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 6,200 piano points in one draw, 720 grass instances in one draw, 22 trees in two draws, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
-- Next exact action: collect only the clearing composition, style, aliveness, framing, and target-machine smoothness review.
+- Previous deployment: `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
+- Next exact action: commit and deploy the revision, then collect only the vista, particle-piano, pastoral-style, aliveness, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -87,3 +89,5 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - The five-territory layout and proof-world takeover mechanism are superseded; the four-practice taxonomy remains.
 - The first local clearing proof implements only the environment and piano with bounded geometry, instancing, shader wind, fixed camera, and no later interface layers.
 - Focused lint, TypeScript, content validation, eight focused tests, and the 40-route production build pass.
+- Mark requested a scenic revision: particle piano, visible stream, long-distance hills, sky, and clouds in a warm hand-painted pastoral language, without a bridge or train.
+- The local revision replaces the opaque piano with one GPU point cloud and rebuilds the terrain, water, horizon, sky, clouds, palette, and camera while preserving the strict runtime boundary.

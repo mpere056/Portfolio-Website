@@ -16,7 +16,7 @@ Last updated: 2026-07-26
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the existing grand piano. Establish the place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: a grassy shelf, visible winding stream, distant layered hills and trees, open sky, and a few clouds. There is no bridge, train, walking, or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
 
 ## Scene Grammar
 
@@ -25,9 +25,9 @@ Build a highly optimized, cinematic outdoor Home world centered on the existing 
 The permanent layer makes every later state feel like the same place:
 
 - fixed clearing footprint;
-- grand piano and its ground contact;
+- particle-built grand piano and its ground contact;
 - authored camera and focal hierarchy;
-- bounded terrain and horizon;
+- bounded sloping river-valley terrain and a long layered horizon;
 - shared sky, fog, and light direction;
 - one coordinated scene clock and lifecycle owner.
 
@@ -59,17 +59,18 @@ Preview should modify atmosphere rather than scale the screen dramatically. Sele
 
 ## First Proof Implementation
 
-The initial implementation intentionally contains:
+The revised Checkpoint `B` implementation intentionally contains:
 
 - one React Three Fiber canvas;
-- one 46 by 34 unit displaced terrain patch;
-- the existing grand piano model;
-- 760 instanced crossed grass blades in one draw;
-- 18 low-poly horizon trees in two instanced draws;
-- three low-poly horizon masses;
-- two slow cloud groups;
+- one 64 by 58 unit displaced terrain patch with a lowered stream valley;
+- the existing grand piano sampled into at most 6,200 GPU points in one draw, with no opaque piano render;
+- 720 instanced crossed grass blades in one draw;
+- 22 low-poly horizon trees in two instanced draws;
+- three layered low-poly hill masses;
+- three slow cloud groups;
+- one shader-driven water ribbon with visible directional flow;
 - one sky shader, hemisphere light, directional light, fog, and a fake piano contact shadow;
-- fixed camera with at most `0.24` world units of pointer travel;
+- fixed scenic-overlook camera with at most `0.18` world units of pointer travel;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -91,10 +92,10 @@ The initial implementation intentionally contains:
 
 Mark reviews only a short list:
 
-1. Does this feel like the right outdoor world?
-2. Is the piano the right size, position, angle, and visual focus?
-3. Do grass, terrain, horizon, sky, and lighting feel cohesive rather than like primitives?
-4. Is the scene alive enough while remaining calm?
+1. Does this feel like the right warm, hand-painted pastoral world?
+2. Is the particle piano the right size, position, angle, density, and visual focus?
+3. Does the grassy overlook clearly reveal a winding stream, distant landscape, open sky, and a few clouds without suggesting a full explorable map?
+4. Do water, grass, particles, clouds, and light make the scene alive enough while remaining calm?
 5. Does it remain smooth on the computers that struggled with earlier proofs?
 
 Checkpoint `B` is not accepted merely because it builds or performs well. Visual acceptance is required before the pianist or screens begin.
@@ -114,7 +115,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 
 ## Resume Point
 
-- Checkpoint `B` is committed at `3d60173` and deployed on the no-index proof route in `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
-- Focused lint, TypeScript, content validation, all 57 test files / 237 tests, the 40-route production build, and live route smoke checks pass.
-- Mark has not reviewed the rendered clearing.
-- Exact next action: collect only the five Checkpoint `B` answers.
+- The first enclosed clearing at `3d60173` received revision feedback: restore the particle piano and expose a much longer pastoral view.
+- The revised riverside-overlook candidate is implemented locally with one particle draw, one water shader, one grass draw, two tree draws, and no opaque piano, bridge, train, post-processing, or navigation.
+- Focused lint, TypeScript, eight focused tests, and the 40-route production build pass.
+- Exact next action: commit, deploy, and collect only the five revised Checkpoint `B` answers.

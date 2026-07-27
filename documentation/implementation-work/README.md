@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`3d60173` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` has reset to the piano-clearing direction. The private route contains the deployed empty-clearing candidate; both the landmark and full proof-world compositors are retained as failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
+`3d60173` is the known-good deployed implementation and the public route structure is unchanged, but its enclosed opaque-piano composition received revision feedback. `WI-ART-16-01` now has a locally verified particle-piano riverside-overlook candidate awaiting commit and deployment. The landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: commit `3d60173`, Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`, 237 tests, build, and smoke checks pass | Collect clearing-only review | 2026-07-26 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B` revision: particle piano, moving stream, distant hills/trees, sky, and clouds pass focused checks and the 40-route build locally | Commit, deploy, and collect vista-only review | 2026-07-26 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-26 |
 

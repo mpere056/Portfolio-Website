@@ -49,7 +49,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-EXP-08-01` | `EXP-08` | accepted contract | `EXP-08.md` |
 | `EV-ART-16-01` | `ART-16` | failed | `ART-16.md` |
 | `EV-ART-16-02` | `ART-16` | failed | `ART-16.md` |
-| `EV-ART-16-03` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-04` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -85,7 +86,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-11-04` | `ART-11` | candidate | `ART-11.md` |
 | `EV-ART-16-01` | `ART-16` | failed | `ART-16.md` |
 | `EV-ART-16-02` | `ART-16` | failed | `ART-16.md` |
-| `EV-ART-16-03` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-03` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-04` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -231,7 +233,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-11-04` | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | browser-flow | candidate | one-viewport Museum, contained depth, distinct direct project scenes, focused tests, and desktop geometry/interaction matrix | 2026-07-20 | `ART-11.md` |
 | `EV-ART-16-01` | `ART-16` | `CAP-ART-017`, `CAP-EXP-015` | creative-review | failed | Proof-derived landmarks remained scaled symbols rather than complete atmospheres; Mark rejected the substitution while retaining the fixed-anchor and attention foundations | 2026-07-24 | `ART-16.md` |
 | `EV-ART-16-02` | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-EXP-015` | creative-review | failed | Complete proof worlds expanded under proximity with bounded lifecycle, but Mark rejected the integrated visual direction and requested one outdoor piano clearing | 2026-07-26 | `ART-16.md` |
-| `EV-ART-16-03` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production | candidate | Commit `3d60173`, Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`: bounded piano clearing uses one Canvas, capped DPR, instanced shader grass, low-poly horizon, no post-processing/shadows; 237 tests, 40-route build, and live smoke pass; visual review pending | 2026-07-26 | `ART-16.md` |
+| `EV-ART-16-03` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / creative-review | revision-requested | Commit `3d60173`, Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`: bounded opaque-piano clearing passed technical gates, but Mark requested the original particle piano and a long riverside pastoral vista | 2026-07-26 | `ART-16.md` |
+| `EV-ART-16-04` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build | candidate | Local particle-piano riverside overlook uses one Canvas, one point draw, one moving-water shader, instanced grass/trees, layered hills, sky, and clouds; focused lint, TypeScript, eight focused tests, and 40-route build pass; deployment and visual review pending | 2026-07-26 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

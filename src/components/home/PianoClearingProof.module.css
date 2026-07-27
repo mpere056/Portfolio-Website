@@ -4,8 +4,8 @@
   height: 100svh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 61% 25%, rgba(255, 227, 157, 0.2), transparent 29%),
-    linear-gradient(180deg, #6e94ad 0%, #a9bdad 45%, #263a2b 100%);
+    radial-gradient(circle at 28% 24%, rgba(255, 231, 159, 0.34), transparent 31%),
+    linear-gradient(180deg, #69a8c4 0%, #d4c995 48%, #738642 100%);
   isolation: isolate;
 }
 
@@ -20,8 +20,8 @@
   inset: 0;
   z-index: 2;
   background:
-    linear-gradient(180deg, rgba(16, 31, 39, 0.02) 0%, transparent 52%, rgba(8, 15, 11, 0.3) 100%),
-    radial-gradient(ellipse at 50% 72%, transparent 18%, rgba(11, 22, 17, 0.1) 54%, rgba(5, 10, 8, 0.44) 112%);
+    linear-gradient(180deg, rgba(255, 239, 190, 0.08) 0%, transparent 54%, rgba(38, 48, 27, 0.16) 100%),
+    radial-gradient(ellipse at 49% 76%, transparent 22%, rgba(57, 70, 43, 0.06) 62%, rgba(28, 36, 23, 0.2) 118%);
   mix-blend-mode: multiply;
 }
 
@@ -31,10 +31,10 @@
   inset: 0;
   z-index: 3;
   background: radial-gradient(
-    circle at 67% 22%,
-    rgba(255, 242, 194, 0.2) 0,
-    rgba(255, 226, 153, 0.07) 18%,
-    transparent 38%
+    circle at 27% 22%,
+    rgba(255, 246, 205, 0.28) 0,
+    rgba(255, 218, 133, 0.11) 20%,
+    transparent 42%
   );
   mix-blend-mode: screen;
 }
@@ -44,7 +44,7 @@
   position: absolute;
   inset: -50%;
   z-index: 4;
-  opacity: 0.055;
+  opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.72'/%3E%3C/svg%3E");
   transform: rotate(4deg);
 }
@@ -54,7 +54,7 @@
   left: clamp(20px, 3vw, 46px);
   top: clamp(20px, 3vw, 42px);
   z-index: 5;
-  color: rgba(237, 244, 226, 0.56);
+  color: rgba(49, 63, 48, 0.62);
   font-family: var(--font-mono, monospace);
   font-size: 9px;
   font-weight: 600;
@@ -65,7 +65,7 @@
 
 .proofLabel strong {
   display: block;
-  color: rgba(250, 247, 226, 0.84);
+  color: rgba(40, 52, 40, 0.88);
   font-family: var(--font-serif, serif);
   font-size: clamp(17px, 1.45vw, 23px);
   font-weight: 400;
