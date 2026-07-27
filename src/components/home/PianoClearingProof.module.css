@@ -12,7 +12,7 @@
 .canvas {
   position: absolute !important;
   inset: 0;
-  filter: saturate(0.9) contrast(0.94) brightness(1.01);
+  filter: saturate(0.84) contrast(0.9) brightness(1.035);
 }
 
 .atmosphere {
@@ -21,10 +21,10 @@
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(circle at -2% 46%, rgba(190, 146, 177, 0.32), transparent 24%),
-    radial-gradient(circle at 104% 14%, rgba(62, 111, 65, 0.22), transparent 21%),
-    linear-gradient(180deg, rgba(228, 217, 211, 0.1) 0%, transparent 52%, rgba(30, 47, 39, 0.2) 100%),
-    radial-gradient(ellipse at 48% 73%, transparent 20%, rgba(57, 70, 43, 0.05) 60%, rgba(28, 36, 23, 0.22) 118%);
+    radial-gradient(circle at -3% 42%, rgba(188, 142, 180, 0.4), transparent 27%),
+    radial-gradient(circle at 103% 12%, rgba(57, 111, 67, 0.28), transparent 23%),
+    linear-gradient(180deg, rgba(226, 218, 218, 0.11) 0%, transparent 48%, rgba(28, 48, 43, 0.24) 100%),
+    radial-gradient(ellipse at 48% 70%, transparent 17%, rgba(57, 70, 43, 0.04) 58%, rgba(25, 34, 25, 0.2) 118%);
   mix-blend-mode: multiply;
 }
 
@@ -35,9 +35,9 @@
   z-index: 3;
   background: radial-gradient(
     circle at 51% 22%,
-    rgba(255, 247, 215, 0.22) 0,
-    rgba(255, 219, 143, 0.08) 18%,
-    transparent 39%
+    rgba(255, 249, 221, 0.28) 0,
+    rgba(255, 218, 146, 0.1) 18%,
+    transparent 41%
   );
   mix-blend-mode: screen;
 }

@@ -28,6 +28,15 @@ const PIANO_POSITION = new THREE.Vector3(
   GROUND_Y + pianoClearingTerrainHeight(PIANO_X, PIANO_Z) + 1.12,
   PIANO_Z,
 );
+const BRIDGE_Z = -17.2;
+const BRIDGE_X = pianoClearingRiverCenterX(BRIDGE_Z);
+const BRIDGE_WATER_Y = (
+  GROUND_Y
+  + pianoClearingTerrainHeight(BRIDGE_X, BRIDGE_Z)
+  + 0.42
+);
+const BRIDGE_DECK_Y = BRIDGE_WATER_Y + 4.65;
+const BRIDGE_LENGTH = 37.5;
 
 function seededRandom(seed: number) {
   let state = seed >>> 0;
@@ -62,8 +71,8 @@ function createGrassGeometry() {
     const angle = (blade / 3) * Math.PI;
     const tangentX = Math.cos(angle);
     const tangentZ = Math.sin(angle);
-    const halfWidth = 0.021 + blade * 0.0025;
-    const height = 0.32 + blade * 0.026;
+    const halfWidth = 0.026 + blade * 0.003;
+    const height = 0.29 + blade * 0.024;
     const leanX = Math.sin(angle + 0.8) * 0.034;
     const leanZ = Math.cos(angle + 0.8) * 0.034;
     const offset = blade * 4;
@@ -93,7 +102,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uWind: { value: reducedMotion ? 0 : 1 },
-      uFogColor: { value: new THREE.Color('#d8cda4') },
+      uFogColor: { value: new THREE.Color('#b9b9a5') },
     },
     vertexShader: `
       uniform float uTime;
@@ -120,9 +129,9 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       varying float vFog;
       void main() {
-        vec3 rootColor = vec3(0.15, 0.25, 0.08);
-        vec3 middleColor = vec3(0.49, 0.58, 0.20);
-        vec3 tipColor = vec3(0.90, 0.79, 0.31);
+        vec3 rootColor = vec3(0.12, 0.25, 0.14);
+        vec3 middleColor = vec3(0.42, 0.57, 0.24);
+        vec3 tipColor = vec3(0.76, 0.72, 0.32);
         vec3 color = mix(rootColor, middleColor, smoothstep(0.0, 0.66, vUv.y));
         color = mix(color, tipColor, smoothstep(0.58, 1.0, vUv.y));
         color = mix(color, uFogColor, vFog * 0.78);
@@ -163,9 +172,9 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         random() * Math.PI,
         (random() - 0.5) * 0.06,
       );
-      const distanceScale = THREE.MathUtils.lerp(0.54, 1, THREE.MathUtils.clamp((z + 34) / 42, 0, 1));
-      const scale = (0.58 + random() * 0.58) * distanceScale;
-      dummy.scale.set(0.76 + random() * 0.42, scale, 0.76 + random() * 0.42);
+      const nearWeight = THREE.MathUtils.clamp((z + 35) / 45, 0, 1);
+      const scale = (0.62 + random() * 0.5) * THREE.MathUtils.lerp(0.72, 1.18, nearWeight);
+      dummy.scale.set(0.9 + random() * 0.46, scale, 0.9 + random() * 0.46);
       dummy.updateMatrix();
       matrices.push(dummy.matrix.clone());
     }
@@ -221,20 +230,23 @@ function Ground() {
           varying float vDepth;
           varying vec3 vWorld;
           void main() {
-            vec3 ravine = vec3(0.08, 0.21, 0.23);
-            vec3 shadedGrass = vec3(0.27, 0.40, 0.20);
-            vec3 field = vec3(0.49, 0.59, 0.25);
-            vec3 sunField = vec3(0.76, 0.70, 0.24);
+            vec3 ravine = vec3(0.07, 0.19, 0.22);
+            vec3 shadedGrass = vec3(0.24, 0.40, 0.25);
+            vec3 field = vec3(0.48, 0.61, 0.29);
+            vec3 sunField = vec3(0.72, 0.69, 0.27);
             float elevation = smoothstep(-4.9, 1.25, vHeight);
             vec3 color = mix(ravine, shadedGrass, elevation);
             color = mix(color, field, smoothstep(-0.3, 2.2, vHeight));
-            float riverCenter = 1.15 - clamp((vWorld.z + 32.0) / 42.0, 0.0, 1.0) * 9.4;
+            float riverCenter = 0.7 - clamp((vWorld.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
             float nearField = smoothstep(-9.0, 7.0, vWorld.z);
             float rightField = smoothstep(riverCenter + 2.8, riverCenter + 13.0, vWorld.x) * nearField;
             color = mix(color, sunField, rightField * 0.9);
             color *= 1.0 - vSlope * 0.58;
-            float brush = sin(vWorld.x * 0.42 + sin(vWorld.z * 0.21) * 2.0) * 0.018;
-            brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.012;
+            float brush = sin(vWorld.x * 0.42 + sin(vWorld.z * 0.21) * 2.0) * 0.024;
+            brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.018;
+            float meadow = sin(vWorld.x * 1.73 + sin(vWorld.z * 0.37) * 2.1);
+            meadow *= sin(vWorld.z * 2.16 - vWorld.x * 0.28);
+            color += smoothstep(0.63, 0.96, meadow) * vec3(0.07, 0.08, 0.015) * elevation;
             color += brush * (0.4 + elevation * 0.6);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.78, 0.75, 0.58), fog * 0.76);
@@ -310,12 +322,17 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
         float travellingPool = pow(max(0.0, sin(vUv.y * 18.0 + time * 1.75)), 4.0);
         float bank = smoothstep(0.0, 0.12, vUv.x) * smoothstep(1.0, 0.88, vUv.x);
         float bankFoam = pow(1.0 - abs(vUv.x * 2.0 - 1.0), 7.0);
-        vec3 deep = vec3(0.055, 0.24, 0.36);
-        vec3 middleBlue = vec3(0.20, 0.48, 0.58);
-        vec3 sun = vec3(0.56, 0.69, 0.66);
+        float depth = 1.0 - abs(vUv.x * 2.0 - 1.0);
+        float plateA = smoothstep(0.14, 0.34, depth + broad * 0.05);
+        float plateB = smoothstep(0.48, 0.74, depth + middle * 0.025);
+        vec3 shallow = vec3(0.46, 0.66, 0.64);
+        vec3 middleBlue = vec3(0.23, 0.49, 0.53);
+        vec3 deep = vec3(0.08, 0.28, 0.36);
+        vec3 sun = vec3(0.79, 0.78, 0.65);
         float light = max(0.0, broad) * 0.22 + max(0.0, middle) * 0.1;
         light += max(0.0, fine) * 0.045 + travellingPool * 0.18;
-        vec3 color = mix(deep, middleBlue, 0.48 + broad * 0.12);
+        vec3 color = mix(shallow, middleBlue, plateA);
+        color = mix(color, deep, plateB);
         color = mix(color, sun, light * 0.58 + bankFoam * 0.045);
         float alpha = (0.9 + travellingPool * 0.08) * bank;
         gl_FragColor = vec4(color, alpha);
@@ -495,33 +512,199 @@ function DistantLandscape() {
 
   return (
     <>
-      <group position={[0, -2.8, -49]}>
-        <mesh position={[-25, 3.2, -3]} scale={[18, 4.6, 5]}>
-          <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#8b9b78" />
-        </mesh>
-        <mesh position={[-6, 3.7, -7]} scale={[20, 5.1, 5.5]}>
-          <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#9aa77f" />
-        </mesh>
-        <mesh position={[14, 3.35, -5]} scale={[18, 4.7, 5.2]}>
-          <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#869975" />
-        </mesh>
-        <mesh position={[31, 2.7, -9]} scale={[16, 3.9, 4.8]}>
-          <dodecahedronGeometry args={[1, 1]} />
-          <meshToonMaterial color="#9aa67c" />
-        </mesh>
-      </group>
+      <RidgeBand
+        z={-66}
+        baseY={-4.5}
+        color="#a7ad93"
+        opacity={0.72}
+        heights={[3.3, 4.5, 4, 5.1, 4.15, 4.7, 3.6]}
+      />
+      <RidgeBand
+        z={-55}
+        baseY={-4.3}
+        color="#899b78"
+        opacity={0.78}
+        heights={[2.4, 3.4, 2.8, 4, 3.15, 3.75, 2.55]}
+      />
+      <RidgeBand
+        z={-45}
+        baseY={-4.1}
+        color="#718866"
+        opacity={0.84}
+        heights={[1.45, 2.4, 1.85, 2.9, 2.1, 2.5, 1.6]}
+      />
       <instancedMesh ref={trunks} args={[undefined, undefined, trees.length]}>
         <cylinderGeometry args={[0.5, 0.62, 1.6, 5]} />
-        <meshToonMaterial color="#5e6545" />
+        <meshToonMaterial color="#596346" />
       </instancedMesh>
       <instancedMesh ref={crowns} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#657a4d" />
+        <meshToonMaterial color="#71845a" />
       </instancedMesh>
     </>
+  );
+}
+
+function RidgeBand({
+  z,
+  baseY,
+  color,
+  opacity,
+  heights,
+}: {
+  z: number;
+  baseY: number;
+  color: string;
+  opacity: number;
+  heights: number[];
+}) {
+  const geometry = useMemo(() => {
+    const positions: number[] = [];
+    const indices: number[] = [];
+    const span = 84;
+    const subdivisions = 36;
+
+    for (let index = 0; index <= subdivisions; index += 1) {
+      const progress = index / subdivisions;
+      const scaled = progress * (heights.length - 1);
+      const left = Math.min(Math.floor(scaled), heights.length - 2);
+      const blend = (1 - Math.cos((scaled - left) * Math.PI)) * 0.5;
+      const height = THREE.MathUtils.lerp(heights[left], heights[left + 1], blend);
+      const x = -span / 2 + progress * span;
+      positions.push(x, baseY, 0, x, height, 0);
+      if (index < subdivisions) {
+        const offset = index * 2;
+        indices.push(offset, offset + 2, offset + 1, offset + 1, offset + 2, offset + 3);
+      }
+    }
+
+    const buffer = new THREE.BufferGeometry();
+    buffer.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    buffer.setIndex(indices);
+    return buffer;
+  }, [baseY, heights]);
+
+  return (
+    <mesh geometry={geometry} position={[0, 0, z]}>
+      <meshBasicMaterial
+        color={color}
+        transparent
+        opacity={opacity}
+        depthWrite={false}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+  );
+}
+
+function StoneViaduct() {
+  const archSpacing = BRIDGE_LENGTH / PIANO_CLEARING_PERFORMANCE.bridgeArches;
+  const leftEdge = -BRIDGE_LENGTH / 2;
+  const stone = '#36434b';
+  const sunStone = '#48535a';
+
+  return (
+    <group position={[BRIDGE_X, 0, BRIDGE_Z]}>
+      <mesh position={[0, BRIDGE_DECK_Y, 0]} scale={[BRIDGE_LENGTH, 0.52, 1.15]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshToonMaterial color={sunStone} fog={false} />
+      </mesh>
+      {Array.from({ length: 13 }, (_, index) => (
+        <mesh
+          key={`masonry-${index}`}
+          position={[leftEdge + 1.45 + index * 2.88, BRIDGE_DECK_Y + 0.03, 0.584]}
+          scale={[2.45, 0.055, 0.018]}
+        >
+          <boxGeometry args={[1, 1, 1]} />
+          <meshBasicMaterial color="#738087" transparent opacity={0.62} fog={false} />
+        </mesh>
+      ))}
+      <mesh position={[0, BRIDGE_DECK_Y + 0.39, -0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshToonMaterial color="#626d72" fog={false} />
+      </mesh>
+      <mesh position={[0, BRIDGE_DECK_Y + 0.39, 0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshToonMaterial color="#313c44" fog={false} />
+      </mesh>
+      {Array.from({ length: PIANO_CLEARING_PERFORMANCE.bridgeArches + 1 }, (_, index) => {
+        if (index === 0 || index === PIANO_CLEARING_PERFORMANCE.bridgeArches) return null;
+        const x = leftEdge + index * archSpacing;
+        const bankY = GROUND_Y + pianoClearingTerrainHeight(BRIDGE_X + x, BRIDGE_Z);
+        const height = Math.max(1.2, BRIDGE_DECK_Y - bankY - 0.2);
+        return (
+          <mesh key={`pier-${index}`} position={[x, bankY + height / 2, 0]} scale={[0.62, height, 1.05]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshToonMaterial color={index % 2 ? stone : '#3e4950'} fog={false} />
+          </mesh>
+        );
+      })}
+      {Array.from({ length: PIANO_CLEARING_PERFORMANCE.bridgeArches }, (_, index) => {
+        const x = leftEdge + archSpacing * (index + 0.5);
+        const radius = archSpacing * 0.43;
+        return (
+          <group key={`arch-${index}`} position={[x, BRIDGE_DECK_Y - radius - 0.23, 0]}>
+            <mesh position={[0, 0, -0.53]}>
+              <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
+              <meshToonMaterial color="#566167" fog={false} />
+            </mesh>
+            <mesh position={[0, 0, 0.53]}>
+              <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
+              <meshToonMaterial color="#303b43" fog={false} />
+            </mesh>
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
+function PassingTrain({ reducedMotion }: { reducedMotion: boolean }) {
+  const train = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!train.current) return;
+    train.current.position.x = reducedMotion
+      ? -5.4
+      : -5.4 + Math.sin(clock.elapsedTime * 0.075) * 4.2;
+  });
+
+  return (
+    <group
+      ref={train}
+      position={[0, BRIDGE_DECK_Y + 0.72, BRIDGE_Z]}
+      rotation={[0, 0, 0]}
+      scale={0.72}
+    >
+      <group position={[-2.45, 0, 0]}>
+        <mesh position={[0, 0.22, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.46, 0.46, 1.65, 10]} />
+          <meshToonMaterial color="#29272e" />
+        </mesh>
+        <mesh position={[0.7, 0.18, 0]} scale={[0.78, 0.9, 0.8]}>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshToonMaterial color="#3c3133" />
+        </mesh>
+        <mesh position={[-0.45, 0.83, 0]}>
+          <cylinderGeometry args={[0.13, 0.25, 0.58, 8]} />
+          <meshToonMaterial color="#24232a" />
+        </mesh>
+      </group>
+      {Array.from({ length: PIANO_CLEARING_PERFORMANCE.trainCars }, (_, index) => (
+        <group key={index} position={[index * 1.7, 0.1, 0]}>
+          <mesh scale={[1.45, 0.76, 0.86]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshToonMaterial color={index % 2 ? '#594044' : '#65464a'} />
+          </mesh>
+          {[-0.42, 0, 0.42].map((x) => (
+            <mesh key={x} position={[x, 0.08, 0.44]} scale={[0.2, 0.22, 0.02]}>
+              <planeGeometry args={[1, 1]} />
+              <meshBasicMaterial color="#f1c878" toneMapped={false} />
+            </mesh>
+          ))}
+        </group>
+      ))}
+    </group>
   );
 }
 
@@ -676,15 +859,17 @@ function SkyDome() {
           varying vec3 vWorld;
           void main() {
             float height = smoothstep(-0.12, 0.78, vWorld.y);
-            vec3 horizon = vec3(0.89, 0.82, 0.68);
-            vec3 zenith = vec3(0.66, 0.64, 0.70);
+            vec3 horizon = vec3(0.89, 0.84, 0.76);
+            vec3 upper = vec3(0.66, 0.76, 0.82);
+            vec3 zenith = vec3(0.43, 0.61, 0.75);
             vec3 color = mix(horizon, zenith, height);
-            vec3 sunDirection = normalize(vec3(0.02, 0.14, -0.99));
+            color = mix(color, upper, smoothstep(0.18, 0.54, height) * 0.32);
+            vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
             float sunFacing = max(dot(vWorld, sunDirection), 0.0);
-            float halo = pow(sunFacing, 15.0);
-            float disk = smoothstep(0.9974, 0.9991, sunFacing);
-            color += vec3(1.0, 0.76, 0.44) * halo * 0.2;
-            color += vec3(1.0, 0.95, 0.74) * disk * 0.92;
+            float halo = pow(sunFacing, 11.0);
+            float disk = smoothstep(0.997, 0.999, sunFacing);
+            color += vec3(1.0, 0.76, 0.48) * halo * 0.26;
+            color += vec3(1.0, 0.96, 0.8) * disk * 0.96;
             gl_FragColor = vec4(color, 1.0);
           }
         `}
@@ -713,11 +898,11 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
   });
 
   const cloudData = [
-    { position: [-17, 9.1, -30] as const, scale: 1.8 },
-    { position: [-5, 10.7, -41] as const, scale: 1.4 },
-    { position: [7, 9.3, -35] as const, scale: 1.7 },
-    { position: [18, 7.9, -32] as const, scale: 1.25 },
-    { position: [28, 10.8, -46] as const, scale: 1.55 },
+    { position: [-19, 8.8, -31] as const, scale: 2.05 },
+    { position: [-6.5, 10.1, -39] as const, scale: 1.5 },
+    { position: [7, 9.5, -35] as const, scale: 1.85 },
+    { position: [18.5, 7.8, -31] as const, scale: 1.35 },
+    { position: [28, 10.5, -44] as const, scale: 1.65 },
   ];
 
   return (
@@ -730,14 +915,21 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
           scale={cloud.scale}
         >
           {[
-            [-1.3, 0, 0],
-            [-0.2, 0.32, 0],
-            [1.1, 0.06, 0],
-            [0.35, -0.18, 0.12],
-          ].map((offset, index) => (
-            <mesh key={index} position={offset as [number, number, number]} scale={[1.8, 0.62, 0.72]}>
-              <icosahedronGeometry args={[1, 1]} />
-              <meshBasicMaterial color="#ffe6bf" transparent opacity={0.38} depthWrite={false} />
+            [-1.5, -0.05, 0, 1.35],
+            [-0.65, 0.28, 0.02, 1.2],
+            [0.18, 0.46, 0, 1.35],
+            [1.05, 0.12, 0.04, 1.3],
+            [1.7, -0.08, 0.08, 1.05],
+            [-0.15, -0.23, 0.11, 1.55],
+          ].map(([x, y, z, scale], index) => (
+            <mesh key={index} position={[x, y, z]} scale={[scale * 1.35, scale * 0.58, scale * 0.66]}>
+              <sphereGeometry args={[1, 10, 7]} />
+              <meshBasicMaterial
+                color={index === 5 ? '#b7acc3' : index % 3 === 0 ? '#e8cfb4' : '#fff2d9'}
+                transparent
+                opacity={index === 5 ? 0.24 : 0.42}
+                depthWrite={false}
+              />
             </mesh>
           ))}
         </group>
@@ -874,6 +1066,8 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <DistantLandscape />
       <Ground />
       <Stream reducedMotion={reducedMotion} />
+      <StoneViaduct />
+      <PassingTrain reducedMotion={reducedMotion} />
       <GrassField reducedMotion={reducedMotion} />
       <ValleyDetails />
       <RavineAccents />
@@ -928,7 +1122,7 @@ export default function PianoClearingProof() {
           position: [...PIANO_CLEARING_CAMERA.position],
           fov: PIANO_CLEARING_CAMERA.fov,
           near: 0.1,
-          far: 110,
+          far: 145,
         }}
       >
         <PianoClearingScene reducedMotion={reducedMotion} />

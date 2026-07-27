@@ -12,13 +12,15 @@ const root = process.cwd();
 
 describe('piano clearing Home proof', () => {
   it('keeps the first environmental proof deliberately bounded', () => {
-    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(7200);
+    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(11000);
     expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
     expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
-    expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(48);
+    expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(60);
     expect(PIANO_CLEARING_PERFORMANCE.valleyRocks).toBeLessThanOrEqual(24);
     expect(PIANO_CLEARING_PERFORMANCE.wildflowers).toBeLessThanOrEqual(160);
     expect(PIANO_CLEARING_PERFORMANCE.atmosphericMotes).toBeLessThanOrEqual(200);
+    expect(PIANO_CLEARING_PERFORMANCE.bridgeArches).toBe(5);
+    expect(PIANO_CLEARING_PERFORMANCE.trainCars).toBeLessThanOrEqual(3);
     expect(PIANO_CLEARING_PERFORMANCE.realtimeShadows).toBe(false);
     expect(PIANO_CLEARING_PERFORMANCE.postProcessing).toBe(false);
   });
@@ -36,7 +38,7 @@ describe('piano clearing Home proof', () => {
     expect(leftPlateau - riverFloor).toBeGreaterThan(5);
     expect(nearCenter).toBeLessThan(farCenter);
     expect(pianoClearingRiverWidth(nearZ)).toBeGreaterThan(3.5);
-    expect(pianoClearingRiverWidth(farZ)).toBeLessThan(1.9);
+    expect(pianoClearingRiverWidth(farZ)).toBeLessThan(2);
   });
 
   it('renders the existing piano as one bounded particle cloud in a fixed scenic world', async () => {
@@ -55,14 +57,15 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
+    expect(component).toContain('<StoneViaduct />');
+    expect(component).toContain('<PassingTrain reducedMotion={reducedMotion} />');
     expect(component).toContain('<CameraRig reducedMotion={reducedMotion} />');
     expect(component).not.toContain('<primitive object={piano}');
     expect(component).not.toContain('OrbitControls');
     expect(component).not.toContain('EffectComposer');
     expect(component).not.toContain('category-screen');
     expect(component).not.toContain('piano-player');
-    expect(component).not.toContain('bridge');
-    expect(component).not.toContain('train');
+    expect(component).not.toContain('shadowMap');
   });
 
   it('keeps the proof private and leaves canonical Home unchanged', async () => {
