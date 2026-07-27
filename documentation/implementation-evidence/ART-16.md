@@ -7,12 +7,12 @@ Last updated: 2026-07-27
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; path-carved valley revision verified locally and awaiting deployment |
+| Lifecycle | in-progress; path-carved valley revision deployed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Five-band revision in `f4d47c9` / `e654881` received revision feedback; path-carved river replacement is the current local candidate |
+| Implementation | Path-carved river replacement implemented and deployed in `31a2ad8` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Previous candidate: Production `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u`; replacement pending |
+| Deployment | Production `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -93,13 +93,13 @@ Last updated: 2026-07-27
 | Field | Value |
 | --- | --- |
 | Status | candidate |
-| Type | implementation-test / build / browser-flow / visual-review |
+| Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | One shared river path can control the terrain cut, water geometry, grass exclusion, rock placement, and shader direction so the valley reads as one perspective composition rather than separate horizontal bands. |
 | Scope | River beginning near the distant center and widening toward the lower foreground; steep banks carved from the same centerline; high grass fields on both sides; denser tapered grass; cooler pale sky and blue-gray water; low-left ravine rocks; particle piano retained on the elevated right field. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points in one draw; 7,200 three-blade grass clumps in one instanced draw; 46 trees in two draws; five fixed ravine rocks; 160 wildflower points; 180 atmospheric motes; five cloud groups; one water shader; no post-processing, shadows, physics, or orbit controls. |
 | Automated evidence | Focused ESLint and TypeScript pass; all 57 test files / 237 tests pass; the 40-route production build passes. Tests bind the river taper, centerline bend, carved bank heights, downstream marker, and shader travel direction. |
 | Browser evidence | Local `1280 x 720` inspection confirms one canvas, no console warnings/errors, and visible water-band displacement between frames `1.4s` apart along the distance-to-foreground axis. No numerical frame-rate claim was recorded. |
-| Production evidence | Pending commit and Git-connected deployment. |
+| Production evidence | Commit `31a2ad8`; Git-connected Production deployment `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready at `/home-world-proof`. A `1280 x 720` live check confirms `data-river-flow="far-to-foreground"`, one canvas, one-screen geometry, and zero console warnings/errors. |
 | Visual evidence | Pending Mark review against the supplied reference image. |
 
 ## Named Gaps

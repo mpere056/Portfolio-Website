@@ -22,21 +22,21 @@ Mark reviewed the first Checkpoint `B` clearing and requested a more specific co
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-The current local Checkpoint `B` candidate replaces independent bands with one shared perspective river path. The same centerline carves the ravine, bends and widens the water from distant center to lower foreground, excludes grass from water and steep banks, and orients shader travel downstream. Both high fields use 7,200 fine tapered grass clumps in one instanced draw; the particle piano remains on the right field. It retains one canvas, capped DPR, moving grass/water/clouds/motes, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
+The current deployed Checkpoint `B` candidate replaces independent bands with one shared perspective river path. The same centerline carves the ravine, bends and widens the water from distant center to lower foreground, excludes grass from water and steep banks, and orients shader travel downstream. Both high fields use 7,200 fine tapered grass clumps in one instanced draw; the particle piano remains on the right field. It retains one canvas, capped DPR, moving grass/water/clouds/motes, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, bridge, train, or game-world navigation.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `e654881` on `main`; technically stable but revision-requested.
-- Current implementation: path-carved Checkpoint `B` replacement is verified locally and awaits commit/deployment.
+- Known-good deployed commit: `31a2ad8` on `main`; creative and target-machine performance review remain.
+- Current implementation: path-carved Checkpoint `B` replacement is deployed and fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local `1280 x 720` browser inspection pass; one canvas renders with zero local console warnings/errors, and frames `1.4s` apart show downstream water motion.
+- Verification: focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local/Production `1280 x 720` browser inspection pass; Production renders one canvas in one screen with zero console warnings/errors, and local frames `1.4s` apart show downstream water motion.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 7,200 three-blade grass clumps in one instanced draw, 46 trees in two draws, five fixed rocks, 160 wildflower points, 180 motes, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: previous candidate `dpl_42cLHfRnkFoEDBY92CrZKLpMNd7u` is Ready but revision-requested; replacement pending.
+- Deployment: `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: commit and deploy the path-carved replacement, then collect only composition, grass, river direction, aliveness, and target-machine smoothness review.
+- Next exact action: collect only composition, grass, river direction, aliveness, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -110,4 +110,6 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Production browser inspection confirms the proof marker, one live canvas, the broad river / ravine / ridge hierarchy, and no console warnings or errors.
 - Mark found the five-band deployment still too different from the supplied screenshot, with sparse/coarse grass and a horizontal river/current.
 - The local replacement defines one distance-oriented river centerline, carves terrain around it, widens it toward the foreground, excludes grass from water/steep banks, and moves water bands downstream. Fine grass density increases to 7,200 clumps without increasing draw count.
-- Focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local browser inspection pass. Production verification remains pending.
+- Focused lint, TypeScript, all 57 test files / 237 tests, the 40-route production build, and local browser inspection passed before deployment.
+- Commit `31a2ad8` is pushed to `main`; Git-connected Production deployment `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` is Ready.
+- Production `1280 x 720` inspection confirms the downstream marker, one canvas, no page overflow, and zero console warnings/errors.
