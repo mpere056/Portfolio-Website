@@ -1,6 +1,6 @@
 export const PIANO_CLEARING_PERFORMANCE = {
   maxDpr: 1.25,
-  grassInstances: 11000,
+  grassInstances: 32000,
   pianoParticles: 9000,
   horizonTrees: 58,
   valleyRocks: 5,

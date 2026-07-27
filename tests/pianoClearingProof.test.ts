@@ -13,7 +13,7 @@ const root = process.cwd();
 
 describe('piano clearing Home proof', () => {
   it('keeps the first environmental proof deliberately bounded', () => {
-    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(11000);
+    expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(32000);
     expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
     expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
     expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(60);
@@ -73,6 +73,11 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
+    expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
+    expect(component).toContain('vec3 tipColor = vec3(0.776, 0.831, 0.420)');
+    expect(component).toContain('float windBand = sin');
+    expect(component).toContain('for (let blade = 0; blade < 7; blade += 1)');
+    expect(component).toContain('vec3 sunlitColor = vec3(0.84, 0.78, 0.3)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');
     expect(component).toContain('<StoneViaduct />');

@@ -12,7 +12,8 @@
 .canvas {
   position: absolute !important;
   inset: 0;
-  filter: saturate(1.04) contrast(0.97) brightness(1.025);
+  filter: saturate(1.02) contrast(0.95) brightness(1.04) blur(0.22px);
+  transform: scale(1.001);
 }
 
 .atmosphere {

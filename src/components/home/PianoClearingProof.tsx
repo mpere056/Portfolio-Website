@@ -68,21 +68,25 @@ function createGrassGeometry() {
   const uvs: number[] = [];
   const indices: number[] = [];
 
-  for (let blade = 0; blade < 3; blade += 1) {
-    const angle = (blade / 3) * Math.PI;
+  for (let blade = 0; blade < 7; blade += 1) {
+    const angle = (blade / 7) * Math.PI + blade * 0.37;
     const tangentX = Math.cos(angle);
     const tangentZ = Math.sin(angle);
-    const halfWidth = 0.026 + blade * 0.003;
-    const height = 0.29 + blade * 0.024;
-    const leanX = Math.sin(angle + 0.8) * 0.034;
-    const leanZ = Math.cos(angle + 0.8) * 0.034;
+    const halfWidth = 0.0055 + blade * 0.0005;
+    const height = 0.34 + (blade % 3) * 0.06;
+    const radialOffset = 0.018 + (blade % 2) * 0.024;
+    const centerX = Math.sin(angle * 2.3) * radialOffset;
+    const centerZ = Math.cos(angle * 1.7) * radialOffset;
+    const leanX = Math.sin(angle + 0.8) * (0.075 + blade * 0.006);
+    const leanZ = Math.cos(angle + 0.8) * (0.075 + blade * 0.006);
     const offset = blade * 4;
 
     positions.push(
-      -tangentX * halfWidth, 0, -tangentZ * halfWidth,
-      tangentX * halfWidth, 0, tangentZ * halfWidth,
-      tangentX * halfWidth * 0.22 + leanX, height * 0.76, tangentZ * halfWidth * 0.22 + leanZ,
-      leanX, height, leanZ,
+      centerX - tangentX * halfWidth, 0, centerZ - tangentZ * halfWidth,
+      centerX + tangentX * halfWidth, 0, centerZ + tangentZ * halfWidth,
+      centerX + tangentX * halfWidth * 0.2 + leanX, height * 0.72,
+      centerZ + tangentZ * halfWidth * 0.2 + leanZ,
+      centerX + leanX, height, centerZ + leanZ,
     );
     uvs.push(0, 0, 1, 0, 0.72, 0.76, 0.5, 1);
     indices.push(offset, offset + 1, offset + 2, offset, offset + 2, offset + 3);
@@ -103,7 +107,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uWind: { value: reducedMotion ? 0 : 1 },
-      uFogColor: { value: new THREE.Color('#c4bea0') },
+      uFogColor: { value: new THREE.Color('#c5c7ad') },
     },
     vertexShader: `
       uniform float uTime;
@@ -111,21 +115,32 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       varying float vFog;
       varying float vWarm;
+      varying float vBend;
+      varying float vVariation;
       void main() {
         vUv = uv;
         vec3 blade = position;
         vec3 root = instanceMatrix[3].xyz;
         float rightField = smoothstep(0.5, 12.0, root.x);
         float nearField = smoothstep(-12.0, 8.0, root.z);
-        vWarm = rightField * nearField;
+        vWarm = rightField * nearField * 0.9;
         float phase = root.x * 0.41 + root.z * 0.29;
-        float breeze = sin(uTime * 0.62 + phase) * 0.065;
-        breeze += sin(uTime * 0.27 + phase * 1.7) * 0.035;
+        float clump = sin(root.x * 0.73 + sin(root.z * 0.41) * 1.7) * 0.5 + 0.5;
+        float variation = sin(root.x * 2.17 + root.z * 1.31) * 0.5 + 0.5;
+        float broadFront = sin(root.x * 0.22 + root.z * 0.47 - uTime * 0.72);
+        float fineFront = sin(root.x * 0.58 - root.z * 0.16 - uTime * 1.08 + phase);
+        float gust = smoothstep(0.28, 0.96, broadFront * 0.68 + fineFront * 0.32);
+        float breeze = sin(uTime * 0.52 + phase) * 0.055;
+        breeze += sin(uTime * 0.24 + phase * 1.7) * 0.028;
+        breeze += gust * 0.115;
+        blade.y *= 0.82 + clump * 0.34 + variation * 0.1;
         blade.x += breeze * uv.y * uv.y * uWind;
-        blade.z += cos(uTime * 0.45 + phase) * 0.025 * uv.y * uWind;
+        blade.z += (cos(uTime * 0.39 + phase) * 0.028 + gust * 0.052) * uv.y * uWind;
+        vBend = clamp(abs(breeze) * 4.4 + gust * 0.38, 0.0, 1.0);
+        vVariation = variation;
         vec4 worldPosition = modelMatrix * instanceMatrix * vec4(blade, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
-        vFog = smoothstep(18.0, 48.0, -viewPosition.z);
+        vFog = smoothstep(13.0, 46.0, -viewPosition.z);
         gl_Position = projectionMatrix * viewPosition;
       }
     `,
@@ -134,19 +149,28 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying vec2 vUv;
       varying float vFog;
       varying float vWarm;
+      varying float vBend;
+      varying float vVariation;
       void main() {
-        vec3 rootColor = vec3(0.12, 0.25, 0.14);
-        vec3 middleColor = vec3(0.42, 0.57, 0.24);
-        vec3 tipColor = vec3(0.76, 0.72, 0.32);
-        vec3 warmRoot = vec3(0.25, 0.31, 0.08);
-        vec3 warmMiddle = vec3(0.63, 0.65, 0.17);
-        vec3 warmTip = vec3(0.94, 0.79, 0.31);
-        vec3 color = mix(rootColor, middleColor, smoothstep(0.0, 0.66, vUv.y));
-        color = mix(color, tipColor, smoothstep(0.58, 1.0, vUv.y));
-        vec3 warmColor = mix(warmRoot, warmMiddle, smoothstep(0.0, 0.66, vUv.y));
-        warmColor = mix(warmColor, warmTip, smoothstep(0.58, 1.0, vUv.y));
-        color = mix(color, warmColor, vWarm * 0.78);
-        color = mix(color, uFogColor, vFog * 0.78);
+        vec3 baseColor = vec3(0.205, 0.365, 0.318);
+        vec3 lowColor = vec3(0.292, 0.463, 0.324);
+        vec3 middleColor = vec3(0.424, 0.604, 0.278);
+        vec3 upperColor = vec3(0.576, 0.722, 0.306);
+        vec3 tipColor = vec3(0.776, 0.831, 0.420);
+        vec3 dryColor = vec3(0.851, 0.753, 0.475);
+        vec3 sheenColor = vec3(0.929, 0.941, 0.784);
+        vec3 sunlitColor = vec3(0.84, 0.78, 0.3);
+        vec3 color = mix(baseColor, lowColor, smoothstep(0.0, 0.26, vUv.y));
+        color = mix(color, middleColor, smoothstep(0.2, 0.62, vUv.y));
+        color = mix(color, upperColor, smoothstep(0.56, 0.84, vUv.y));
+        color = mix(color, tipColor, smoothstep(0.8, 1.0, vUv.y));
+        float dry = smoothstep(0.68, 0.98, vVariation) * smoothstep(0.44, 1.0, vUv.y);
+        color = mix(color, dryColor, dry * (0.28 + vWarm * 0.3));
+        color = mix(color, sunlitColor, vWarm * smoothstep(0.08, 0.88, vUv.y) * 0.68);
+        color *= 0.88 + vVariation * 0.22;
+        color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
+        color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
+        color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
       }
     `,
@@ -185,8 +209,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         (random() - 0.5) * 0.06,
       );
       const nearWeight = THREE.MathUtils.clamp((z + 35) / 45, 0, 1);
-      const scale = (0.62 + random() * 0.5) * THREE.MathUtils.lerp(0.72, 1.18, nearWeight);
-      dummy.scale.set(0.9 + random() * 0.46, scale, 0.9 + random() * 0.46);
+      const scale = (0.72 + random() * 0.32) * THREE.MathUtils.lerp(0.92, 1.02, nearWeight);
+      dummy.scale.set(0.9 + random() * 0.25, scale, 0.9 + random() * 0.25);
       dummy.updateMatrix();
       matrices.push(dummy.matrix.clone());
     }
@@ -215,12 +239,14 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function Ground() {
+function Ground({ reducedMotion }: { reducedMotion: boolean }) {
   const geometry = useMemo(() => createGroundGeometry(), []);
-  return (
-    <mesh geometry={geometry} position={[0, GROUND_Y, -10]} rotation={[-Math.PI / 2, 0, 0]}>
-      <shaderMaterial
-        vertexShader={`
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
@@ -235,38 +261,60 @@ function Ground() {
             vDepth = -viewPosition.z;
             gl_Position = projectionMatrix * viewPosition;
           }
-        `}
-        fragmentShader={`
+        `,
+    fragmentShader: `
+          uniform float uTime;
+          uniform float uMotion;
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
           varying vec3 vWorld;
           void main() {
             vec3 ravine = vec3(0.07, 0.19, 0.22);
-            vec3 shadedGrass = vec3(0.24, 0.40, 0.25);
-            vec3 field = vec3(0.48, 0.61, 0.29);
-            vec3 sunField = vec3(0.72, 0.69, 0.27);
+            vec3 shadedGrass = vec3(0.208, 0.337, 0.31);
+            vec3 field = vec3(0.416, 0.573, 0.31);
+            vec3 sunField = vec3(0.7, 0.66, 0.25);
             float elevation = smoothstep(-4.9, 1.25, vHeight);
             vec3 color = mix(ravine, shadedGrass, elevation);
             color = mix(color, field, smoothstep(-0.3, 2.2, vHeight));
             float riverCenter = 0.7 - clamp((vWorld.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
             float nearField = smoothstep(-9.0, 7.0, vWorld.z);
             float rightField = smoothstep(riverCenter + 2.8, riverCenter + 13.0, vWorld.x) * nearField;
-            color = mix(color, sunField, rightField * 0.9);
+            color = mix(color, sunField, rightField * 0.72);
             color *= 1.0 - vSlope * 0.58;
             float brush = sin(vWorld.x * 0.42 + sin(vWorld.z * 0.21) * 2.0) * 0.024;
             brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.018;
             float meadow = sin(vWorld.x * 1.73 + sin(vWorld.z * 0.37) * 2.1);
             meadow *= sin(vWorld.z * 2.16 - vWorld.x * 0.28);
-            color += smoothstep(0.63, 0.96, meadow) * vec3(0.07, 0.08, 0.015) * elevation;
+            color += smoothstep(0.63, 0.96, meadow) * vec3(0.045, 0.06, 0.018) * elevation;
+            float swardA = sin(vWorld.x * 6.9 + vWorld.z * 1.6);
+            float swardB = sin(vWorld.x * 18.7 + vWorld.z * 3.1 + sin(vWorld.z * 0.9));
+            float sward = swardA * 0.5 + swardB * 0.5;
+            color = mix(color, color * 1.18 + vec3(0.055, 0.075, 0.018), smoothstep(0.2, 0.94, sward) * elevation * 0.28);
+            float windBand = sin(vWorld.x * 0.22 + vWorld.z * 0.47 - uTime * 0.72 * uMotion);
+            windBand += sin(vWorld.x * 0.58 - vWorld.z * 0.16 - uTime * 1.08 * uMotion) * 0.42;
+            float sheen = smoothstep(0.68, 1.18, windBand) * elevation;
+            color = mix(color, vec3(0.78, 0.82, 0.53), sheen * 0.18);
             color += brush * (0.4 + elevation * 0.6);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.78, 0.75, 0.58), fog * 0.76);
             gl_FragColor = vec4(color, 1.0);
           }
-        `}
-      />
-    </mesh>
+        `,
+  }), [reducedMotion]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
+  return (
+    <mesh
+      geometry={geometry}
+      material={material}
+      position={[0, GROUND_Y, -10]}
+      rotation={[-Math.PI / 2, 0, 0]}
+    />
   );
 }
 
@@ -1112,7 +1160,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <hemisphereLight args={['#fff0c2', '#405849', 2.1]} />
       <directionalLight position={[-9, 10, 4]} color="#ffc979" intensity={2.55} />
       <DistantLandscape />
-      <Ground />
+      <Ground reducedMotion={reducedMotion} />
       <Stream reducedMotion={reducedMotion} />
       <StoneViaduct />
       <PassingTrain reducedMotion={reducedMotion} />
