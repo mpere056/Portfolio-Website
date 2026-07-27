@@ -26,14 +26,15 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 
 ## Resume Packet
 
-- Known-good deployed commit: `3d60173` on `main`; creative revision requested.
-- Current implementation: revised riverside-overlook Checkpoint `B` candidate is local and verified; commit and deployment pending.
+- Known-good deployed commit: `cd0b673` on `main`; creative review pending.
+- Current implementation: revised riverside-overlook Checkpoint `B` candidate is committed, pushed, and deployed.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, eight focused tests, and the 40-route production build pass.
+- Verification: focused lint, TypeScript, all 57 test files / 237 tests, content validation, the 40-route production build, Vercel build, and live `200` smoke checks pass.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 6,200 piano points in one draw, 720 grass instances in one draw, 22 trees in two draws, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Previous deployment: `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`.
-- Next exact action: commit and deploy the revision, then collect only the vista, particle-piano, pastoral-style, aliveness, and target-machine smoothness review.
+- Deployment: `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`.
+- Headless caveat: software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof; review in a normal target browser.
+- Next exact action: collect only the vista, particle-piano, pastoral-style, aliveness, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -91,3 +92,4 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Focused lint, TypeScript, content validation, eight focused tests, and the 40-route production build pass.
 - Mark requested a scenic revision: particle piano, visible stream, long-distance hills, sky, and clouds in a warm hand-painted pastoral language, without a bridge or train.
 - The local revision replaces the opaque piano with one GPU point cloud and rebuilds the terrain, water, horizon, sky, clouds, palette, and camera while preserving the strict runtime boundary.
+- Commit `cd0b673` and Production deployment `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` release the revision to the private route; 237 tests, content validation, local/Vercel builds, and live route smoke checks pass.

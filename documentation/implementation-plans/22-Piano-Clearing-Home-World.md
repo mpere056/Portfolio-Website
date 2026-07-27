@@ -116,6 +116,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 ## Resume Point
 
 - The first enclosed clearing at `3d60173` received revision feedback: restore the particle piano and expose a much longer pastoral view.
-- The revised riverside-overlook candidate is implemented locally with one particle draw, one water shader, one grass draw, two tree draws, and no opaque piano, bridge, train, post-processing, or navigation.
-- Focused lint, TypeScript, eight focused tests, and the 40-route production build pass.
-- Exact next action: commit, deploy, and collect only the five revised Checkpoint `B` answers.
+- The revised riverside-overlook candidate is committed at `cd0b673` and deployed in `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA` with one particle draw, one water shader, one grass draw, two tree draws, and no opaque piano, bridge, train, post-processing, or navigation.
+- Focused lint, TypeScript, all 57 test files / 237 tests, content validation, the 40-route production build, Vercel build, and live route smoke checks pass.
+- Headless software-WebGL does not finish the shared piano GLTF on either this route or the existing music proof, so normal target-browser visual/performance review is still required.
+- Exact next action: collect only the five revised Checkpoint `B` answers.

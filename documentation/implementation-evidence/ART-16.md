@@ -10,9 +10,9 @@ Last updated: 2026-07-26
 | Lifecycle | in-progress; riverside-overlook revision in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Revised local candidate; commit pending |
+| Implementation | Commit `cd0b673` on `main` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_3zdgVT65tW7z3XENPRCMn4Ec1T3d`; private proof route live |
+| Deployment | Production `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; private proof route live |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -58,7 +58,8 @@ Last updated: 2026-07-26
 | Scope | Sloping terrain shelf, visible winding stream, particle piano, grass, layered hills, sparse distant trees, open sky, three cloud groups, restrained camera breathing. No bridge, train, pianist, screens, category environments, or route migration. |
 | Runtime policy | One canvas; DPR capped at `1.25`; at most 6,200 piano points in one draw; 720 grass instances in one draw; 22 trees in two draws; one water shader; no opaque piano, post-processing, shadows, physics, or orbit controls. |
 | Automated evidence | Focused ESLint, TypeScript, eight focused tests, and the 40-route production build pass. |
-| Visual evidence | Pending Mark review on the private route after deployment. |
+| Production evidence | Deployment `dpl_BGi4QF3NKGdn9UBR6vRSnC79vGiA`; `/`, `/projects`, and `/home-world-proof` return `200`; Vercel content validation, TypeScript, and 40-route build pass. |
+| Visual evidence | Pending Mark review. Isolated headless Chrome loads the route shell but, like the existing known-good music proof, does not finish this shared piano GLTF; the observatory control renders under the same software-WebGL setup, so target-browser review remains required. |
 
 ## Named Gaps
 
@@ -69,4 +70,4 @@ Last updated: 2026-07-26
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to deploy and review only the revised overlook. No later checkpoint begins until that environment is accepted.
+The next action is to review only the deployed overlook. No later checkpoint begins until that environment is accepted.
