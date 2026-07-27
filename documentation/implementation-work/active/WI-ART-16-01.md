@@ -28,13 +28,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 
 ## Resume Packet
 
-- Known-good deployed commit: `d6e9a26` on `main`; creative and target-machine performance review remain.
-- Current implementation: source-guided viaduct Checkpoint `B` replacement is deployed and fully verified technically.
+- Known-good deployed commit: `98a1dca` on `main`; creative and target-machine performance review remain.
+- Current implementation: river-safe, warmer pastoral viaduct Checkpoint `B` replacement is deployed and fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 237 tests, the clean 40-route production build, and local/Production browser inspection pass; Production renders one canvas in one screen with `far-to-foreground` flow and zero console warnings/errors.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 11,000 three-blade grass clumps in one instanced draw, 58 trees in two draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
+- Verification: focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local browser inspection pass; the Git-connected Production deployment is Ready.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 11,000 three-blade grass clumps in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
+- Deployment: `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
 - Next exact action: collect only source-parity, composition, aliveness, and target-machine smoothness review.
 
@@ -92,6 +92,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Commit `d6e9a26` restores the bridge and train as bounded depth cues while preserving the particle piano and path-carved downstream river.
 - Git-connected Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
 - All 57 test files / 237 tests, TypeScript, focused lint, the 40-route build, and live one-screen browser verification pass.
+
+### 2026-07-27 River-Safe Pastoral Revision
+
+- Mark found the source-guided viaduct version better, but identified trees rooted in the river and requested stronger warm hand-painted pastoral styling.
+- Commit `98a1dca` makes tree eligibility derive from river clearance, terrain height, and local slope; adds one instanced canopy highlight; warms the sunlit grass field and clouds; and restores color separation without post-processing or shadows.
+- Focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route build, and local one-screen visual review pass.
+- Production deployment `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready. Checkpoint `B` remains in review.
 
 ### 2026-07-26
 

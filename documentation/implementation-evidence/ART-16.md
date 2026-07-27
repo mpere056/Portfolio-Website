@@ -7,12 +7,12 @@ Last updated: 2026-07-27
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; path-carved valley revision deployed and in review |
+| Lifecycle | in-progress; river-safe pastoral valley revision deployed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Path-carved river replacement implemented and deployed in `31a2ad8` |
+| Implementation | River-safe tree placement and warmer hand-painted pastoral treatment deployed in `98a1dca` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA` |
+| Deployment | Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -106,7 +106,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | The supplied source can be translated into a bounded fixed-view composition by preserving its low grazing light, asymmetric ravine, spline-like downstream water, dense multi-scale meadow, cloud volumes, layered ridges, dark viaduct, and incidental train without copying its million-blade, reflection, shadow-map, and post-processing costs. |
 | Scope | Particle piano retained on the high right field; 11,000 three-blade grass clumps; widened path-carved river with painted depth plates; smoothed three-layer ridge silhouettes; five warm/lavender cloud groups; five-arch dark viaduct and continuously visible low-poly train; original-inspired pale sky, pink left haze, green right framing, and source-guided camera. No pianist, practice screens, category environments, route migration, orbit controls, real-time shadows, or post-processing. |
@@ -114,15 +114,29 @@ Last updated: 2026-07-27
 | Automated evidence | Focused ESLint and TypeScript pass; all 57 test files / 237 tests pass; the clean 40-route production build passes. Tests bind performance caps, the five-arch/three-car limit, downstream geometry, river taper, piano isolation, and absence of controls/post-processing/shadow maps. |
 | Browser evidence | Local `1280 x 720` review established the source hierarchy before delivery. Production Chrome confirms the marker, `data-river-flow="far-to-foreground"`, one canvas, exact one-screen geometry, and zero console warnings/errors after the WebGL scene completes. |
 | Production evidence | Commit `d6e9a26`; Git-connected Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the three project subdomains. |
-| Visual evidence | Pending Mark review of the source-guided bridge, train, meadow, river, cloud, ridge, and piano composition. |
+| Visual evidence | Mark found the source-guided result improved, but identified trees appearing in the river and requested a stronger warm hand-painted pastoral animation language. |
+
+## EV-ART-16-09: River-Safe Pastoral Foliage Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / production / browser-flow / visual-review |
+| Claim | Tree placement can derive from the same river and ravine model as grass, while warmer field variation, clustered two-tone canopies, fuller clouds, and recovered saturation improve the pastoral animation read without adding expensive scene systems. |
+| Scope | Distant trees now require stable terrain beyond a widened river/ravine exclusion; the right foreground receives shader-authored sunlit grass variation; each tree gains one instanced canopy highlight; cloud warmth, fog separation, scene lighting, and final color grading are refined. Bridge, train, downstream river, particle piano, camera, route exposure, and later checkpoints are unchanged. |
+| Runtime policy | One canvas; DPR capped at `1.25`; at most 9,000 piano points; 11,000 grass clumps; 58 trees in three instanced draws; five cloud groups; no post-processing or real-time shadows. |
+| Automated evidence | Focused lint and TypeScript pass; all 57 test files / 238 tests pass; the clean 40-route production build passes. Tests bind representative river and ravine tree exclusions. |
+| Browser evidence | Local `1280 x 720` review confirms a clear river corridor through the bridge and distant valley, bank-owned tree clusters, warmer foreground grass, cooler ravine depth, and one-screen rendering. |
+| Production evidence | Commit `98a1dca`; Git-connected Production deployment `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready and aliased to `www.marknperera.ca` and the canonical project domains. |
+| Visual evidence | Pending Mark review of the corrected tree placement, warmer color/light treatment, and target-machine smoothness. |
 
 ## Named Gaps
 
-- The source-guided viaduct valley has not received visual or target-machine performance acceptance from Mark.
+- The river-safe pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
 - The supplied HTML is now the visual-logic reference; literal parity is not claimed because the fixed homepage proof deliberately excludes the source's million-blade grass, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the source-guided viaduct valley composition and target-machine smoothness. No later checkpoint begins until that environment is accepted.
+The next action is to review only the river-safe pastoral valley composition and target-machine smoothness. No later checkpoint begins until that environment is accepted.

@@ -130,4 +130,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Commit `d6e9a26` translates the source's visual hierarchy into the bounded proof: lower source-guided camera, 11,000-clump meadow, painted downstream river, smooth ridge layers, warm/lavender clouds, dark five-arch viaduct, visible three-car train, and retained particle piano.
 - Focused lint, TypeScript, all 57 test files / 237 tests, the clean 40-route production build, local visual review, and Production browser verification pass. Production has one canvas, one-screen geometry, `far-to-foreground` flow, and zero console warnings/errors. No numerical frame-rate claim is made.
 - Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
-- Exact next action: collect only Checkpoint `B` source-parity, composition, aliveness, and target-machine performance answers.
+- Mark found that source-guided revision better, but requested river-safe tree placement and a warmer hand-painted pastoral animation treatment.
+- Commit `98a1dca` derives distant-tree eligibility from the river/ravine terrain model, adds one low-cost canopy-highlight instance layer, and refines grass, cloud, fog, lighting, and final color separation.
+- Focused lint, TypeScript, all 57 test files / 238 tests, the 40-route production build, and local one-screen visual review pass. Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready.
+- Exact next action: collect only Checkpoint `B` tree-placement, pastoral styling, composition, aliveness, and target-machine performance answers.
