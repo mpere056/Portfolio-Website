@@ -28,15 +28,15 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 
 ## Resume Packet
 
-- Current implementation baseline: working tree after `cbe0e34`; deployment commit pending.
+- Current implementation baseline: commit `fa1e85c` on `main`, live through Git-connected Production.
 - Current implementation: canonical Home renders the farther-right `Dusk Refrain` independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano; a compact temporary presentation doorway links to `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 41-route production build, built presentation browser review, and built Home response-marker/link checks pass.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index temporary presentation staging route; Projects unchanged.
-- Deployment: pending Git-connected Production after the promotion commit is pushed.
+- Deployment: canonical `/`, rollback `/home-world-proof`, and staging `/presentation` return `200`; the expected dusk, doorway, and temporary-stage markers are live.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: deploy and verify `/`, `/home-world-proof`, and `/presentation`, then collect direct visual/performance review before beginning Checkpoint `C`.
+- Next exact action: collect Mark's presentation brief and canonical Home visual/performance review. Do not treat provisional exposure as Checkpoint `B` acceptance.
 
 ## Ordered Checkpoints
 

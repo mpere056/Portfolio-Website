@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-28
-Implementation commit baseline: working tree after `cbe0e34`; Mark requested provisional canonical Home promotion of the in-review `Dusk Refrain` valley plus a temporary `/presentation` doorway; Production deployment pending
+Implementation commit baseline: `fa1e85c`; the in-review `Dusk Refrain` valley is provisionally live on canonical Home with a temporary `/presentation` doorway; all canonical, rollback, and staging routes return `200`
 
 ## Plan Metadata
 
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review / provisional public | `ART-16B` | Canonical `/`, rollback `/home-world-proof`, and temporary `/presentation` pass 240 tests, content validation, TypeScript/lint, built-route checks, and the 41-route build | Deploy, verify all three public routes, then collect visual/performance review | 2026-07-28 |
+| Now | `WI-ART-16-01` | in-review / provisional public | `ART-16B` | Commit `fa1e85c` is live; canonical `/`, rollback `/home-world-proof`, and temporary `/presentation` return `200`; 240 tests and the 41-route build pass | Collect canonical Home visual/performance review, then brief the temporary presentation | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 

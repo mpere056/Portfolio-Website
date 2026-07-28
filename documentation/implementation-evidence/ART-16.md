@@ -12,7 +12,7 @@ Last updated: 2026-07-28
 | Work item | `WI-ART-16-01` checkpoint `B` |
 | Implementation | `Dusk Refrain` independent-blade valley with geometry-grounded pearl piano, canonical Home doorway, and temporary presentation staging route |
 | Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` staging route |
-| Deployment | Pending Git-connected deployment of the canonical Home promotion |
+| Deployment | Commit `fa1e85c` live through Git-connected Production |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -225,7 +225,7 @@ Last updated: 2026-07-28
 | Runtime policy | The valley canvas, scene budgets, animation ownership, and hidden/reduced-motion behavior are unchanged. The doorway and staging room are CSS/DOM only, introduce no canvas or runtime dependency, and respect reduced-motion preferences. |
 | Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 41-route Production build pass. Focused route tests bind canonical Home to the clearing, preserve the proof route, require the presentation doorway, and require no-index staging metadata. |
 | Browser evidence | The built `/presentation` route renders at one viewport with no overflow, exposes `data-presentation-stage="temporary"`, and returns to `/`. The built `/` response returns `200` with the `dusk-refrain` marker and `/presentation` link; heavyweight WebGL browser automation still exceeds the capture deadline. |
-| Production evidence | Pending Git-connected deployment after this record is pushed. |
+| Production evidence | Commit `fa1e85c` is pushed to `main` and live through Git-connected Production. `/` returns `200` with the `dusk-refrain` marker and `/presentation` doorway; `/home-world-proof` returns `200` with the dusk marker; `/presentation` returns `200` with the temporary-stage marker. |
 | Visual evidence | Mark explicitly requested provisional Home promotion while noting the valley is not perfect; Checkpoint `B` therefore remains in review rather than accepted. |
 
 ## Named Gaps
