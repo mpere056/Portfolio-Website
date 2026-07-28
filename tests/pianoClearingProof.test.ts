@@ -95,10 +95,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain("useGLTF('/models/grand_piano/grand_piano_(GLB).gltf')");
     expect(component).toContain('<ParticlePiano reducedMotion={reducedMotion} />');
     expect(component).toContain('<Suspense fallback={null}>');
-    expect(component).toContain('opacity: 0.18');
+    expect(component).toContain('opacity: 0.3');
     expect(component).toContain('new THREE.Box3().setFromObject(scene)');
     expect(component).toContain('GROUND_Y + pianoClearingTerrainHeight(PIANO_X, PIANO_Z) + 0.035');
-    expect(component).toContain('vec3 pearl = vec3(1.0, 0.97, 0.88)');
+    expect(component).toContain('vec3 pearl = vec3(1.0, 0.84, 0.94)');
     expect(component).toContain('blending: THREE.NormalBlending');
     expect(component).not.toContain('vec3 blue = vec3(0.16, 0.46, 0.72)');
     expect(component).toContain('<Stream reducedMotion={reducedMotion} />');
@@ -108,7 +108,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
     expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
-    expect(component).toContain('vec3 tipColor = vec3(0.806, 0.824, 0.382)');
+    expect(component).toContain('vec3 tipColor = vec3(0.87, 0.52, 0.7)');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.52 }');
     expect(component).toContain('uniform vec2 uCursor');
@@ -120,6 +120,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('data-grass-wind="0.52"');
     expect(component).toContain('data-grass-cursor="terrain-local-3.2"');
     expect(component).toContain('data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}');
+    expect(component).toContain('data-color-script="dusk-refrain"');
+    expect(component).toContain('Dusk Refrain');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain('const z = 24 - random() * 61');
     expect(component).toContain("geometry.setAttribute('iRoot'");
@@ -132,7 +134,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('1.0 - smoothstep(0.72, 0.94, vUv.y)');
     expect(component).toContain('const span = 160');
     expect(component).not.toContain('<PianoShadow />');
-    expect(component).toContain('vec3 sunlitColor = vec3(0.9, 0.79, 0.25)');
+    expect(component).toContain('vec3 sunlitColor = vec3(0.77, 0.4, 0.65)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');
     expect(component).toContain('<StoneViaduct />');

@@ -151,7 +151,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       uCursor: { value: new THREE.Vector2(1000, 1000) },
       uCursorDirection: { value: new THREE.Vector2(1, 0) },
       uCursorInfluence: { value: 0 },
-      uFogColor: { value: new THREE.Color('#c5c7ad') },
+      uFogColor: { value: new THREE.Color('#9584c7') },
     },
     vertexShader: `
       uniform float uTime;
@@ -239,14 +239,14 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vBend;
       varying float vVariation;
       void main() {
-        vec3 baseColor = vec3(0.205, 0.365, 0.318);
-        vec3 lowColor = vec3(0.292, 0.463, 0.324);
-        vec3 middleColor = vec3(0.424, 0.604, 0.278);
-        vec3 upperColor = vec3(0.576, 0.722, 0.306);
-        vec3 tipColor = vec3(0.806, 0.824, 0.382);
-        vec3 dryColor = vec3(0.884, 0.746, 0.405);
-        vec3 sheenColor = vec3(0.929, 0.941, 0.784);
-        vec3 sunlitColor = vec3(0.9, 0.79, 0.25);
+        vec3 baseColor = vec3(0.105, 0.125, 0.34);
+        vec3 lowColor = vec3(0.18, 0.19, 0.47);
+        vec3 middleColor = vec3(0.33, 0.25, 0.56);
+        vec3 upperColor = vec3(0.57, 0.35, 0.62);
+        vec3 tipColor = vec3(0.87, 0.52, 0.7);
+        vec3 dryColor = vec3(0.76, 0.4, 0.64);
+        vec3 sheenColor = vec3(0.9, 0.72, 0.92);
+        vec3 sunlitColor = vec3(0.77, 0.4, 0.65);
         vec3 color = mix(baseColor, lowColor, smoothstep(0.0, 0.26, vUv.y));
         color = mix(color, middleColor, smoothstep(0.2, 0.62, vUv.y));
         color = mix(color, upperColor, smoothstep(0.56, 0.84, vUv.y));
@@ -408,10 +408,10 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
           varying float vDepth;
           varying vec3 vWorld;
           void main() {
-            vec3 ravine = vec3(0.07, 0.19, 0.22);
-            vec3 shadedGrass = vec3(0.208, 0.337, 0.31);
-            vec3 field = vec3(0.416, 0.573, 0.31);
-            vec3 sunField = vec3(0.79, 0.71, 0.26);
+            vec3 ravine = vec3(0.045, 0.06, 0.24);
+            vec3 shadedGrass = vec3(0.12, 0.13, 0.38);
+            vec3 field = vec3(0.27, 0.2, 0.5);
+            vec3 sunField = vec3(0.52, 0.28, 0.58);
             float elevation = smoothstep(-4.9, 1.25, vHeight);
             vec3 color = mix(ravine, shadedGrass, elevation);
             color = mix(color, field, smoothstep(-0.3, 2.2, vHeight));
@@ -424,18 +424,18 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
             brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.018;
             float meadow = sin(vWorld.x * 1.73 + sin(vWorld.z * 0.37) * 2.1);
             meadow *= sin(vWorld.z * 2.16 - vWorld.x * 0.28);
-            color += smoothstep(0.63, 0.96, meadow) * vec3(0.045, 0.06, 0.018) * elevation;
+            color += smoothstep(0.63, 0.96, meadow) * vec3(0.055, 0.025, 0.08) * elevation;
             float swardA = sin(vWorld.x * 6.9 + vWorld.z * 1.6);
             float swardB = sin(vWorld.x * 18.7 + vWorld.z * 3.1 + sin(vWorld.z * 0.9));
             float sward = swardA * 0.5 + swardB * 0.5;
-            color = mix(color, color * 1.18 + vec3(0.055, 0.075, 0.018), smoothstep(0.2, 0.94, sward) * elevation * 0.28);
+            color = mix(color, color * 1.17 + vec3(0.075, 0.035, 0.095), smoothstep(0.2, 0.94, sward) * elevation * 0.28);
             float windBand = sin(vWorld.x * 0.22 + vWorld.z * 0.47 - uTime * 0.72 * uMotion);
             windBand += sin(vWorld.x * 0.58 - vWorld.z * 0.16 - uTime * 1.08 * uMotion) * 0.42;
             float sheen = smoothstep(0.68, 1.18, windBand) * elevation;
-            color = mix(color, vec3(0.78, 0.82, 0.53), sheen * 0.18);
+            color = mix(color, vec3(0.82, 0.61, 0.88), sheen * 0.2);
             color += brush * (0.4 + elevation * 0.6);
             float fog = smoothstep(31.0, 78.0, vDepth);
-            color = mix(color, vec3(0.78, 0.75, 0.58), fog * 0.76);
+            color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
           }
         `,
@@ -523,10 +523,10 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
         float depth = 1.0 - abs(vUv.x * 2.0 - 1.0);
         float plateA = smoothstep(0.14, 0.34, depth + broad * 0.05);
         float plateB = smoothstep(0.48, 0.74, depth + middle * 0.025);
-        vec3 shallow = vec3(0.46, 0.66, 0.64);
-        vec3 middleBlue = vec3(0.23, 0.49, 0.53);
-        vec3 deep = vec3(0.08, 0.28, 0.36);
-        vec3 sun = vec3(0.79, 0.78, 0.65);
+        vec3 shallow = vec3(0.31, 0.4, 0.7);
+        vec3 middleBlue = vec3(0.15, 0.2, 0.52);
+        vec3 deep = vec3(0.035, 0.045, 0.2);
+        vec3 sun = vec3(0.76, 0.54, 0.82);
         float light = max(0.0, broad) * 0.22 + max(0.0, middle) * 0.1;
         light += max(0.0, fine) * 0.045 + travellingPool * 0.18;
         vec3 color = mix(shallow, middleBlue, plateA);
@@ -601,13 +601,13 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
     clone.traverse((child) => {
       if (!(child instanceof THREE.Mesh)) return;
       child.material = new THREE.MeshStandardMaterial({
-        color: '#273746',
-        emissive: '#142331',
-        emissiveIntensity: 0.24,
+        color: '#171830',
+        emissive: '#33285f',
+        emissiveIntensity: 0.32,
         metalness: 0.3,
         roughness: 0.58,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.3,
         depthWrite: false,
         side: THREE.DoubleSide,
       });
@@ -649,8 +649,8 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
         float radius = length(centered);
         float core = 1.0 - smoothstep(0.1, 0.3, radius);
         float halo = 1.0 - smoothstep(0.2, 0.5, radius);
-        vec3 pearl = vec3(1.0, 0.97, 0.88);
-        vec3 coolLight = vec3(0.74, 0.88, 0.92);
+        vec3 pearl = vec3(1.0, 0.84, 0.94);
+        vec3 coolLight = vec3(0.67, 0.78, 1.0);
         vec3 color = mix(pearl, coolLight, smoothstep(0.72, 0.98, vSeed) * 0.38);
         float light = 0.78 + (vPulse * 0.5 + 0.5) * 0.16;
         float alpha = core * 0.5 + halo * 0.14;
@@ -747,35 +747,35 @@ function DistantLandscape() {
       <RidgeBand
         z={-66}
         baseY={-4.5}
-        color="#a7ad93"
+        color="#9188c8"
         opacity={0.72}
         heights={[3.3, 4.5, 4, 5.1, 4.15, 4.7, 3.6]}
       />
       <RidgeBand
         z={-55}
         baseY={-4.3}
-        color="#899b78"
+        color="#756fb3"
         opacity={0.78}
         heights={[2.4, 3.4, 2.8, 4, 3.15, 3.75, 2.55]}
       />
       <RidgeBand
         z={-45}
         baseY={-4.1}
-        color="#718866"
+        color="#5d5ca2"
         opacity={0.84}
         heights={[1.45, 2.4, 1.85, 2.9, 2.1, 2.5, 1.6]}
       />
       <instancedMesh ref={trunks} args={[undefined, undefined, trees.length]}>
         <cylinderGeometry args={[0.5, 0.62, 1.6, 5]} />
-        <meshToonMaterial color="#596346" />
+        <meshToonMaterial color="#3a356c" />
       </instancedMesh>
       <instancedMesh ref={crowns} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#526f50" />
+        <meshToonMaterial color="#514482" />
       </instancedMesh>
       <instancedMesh ref={crownHighlights} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#87975f" />
+        <meshToonMaterial color="#7b629d" />
       </instancedMesh>
     </>
   );
@@ -836,8 +836,8 @@ function RidgeBand({
 function StoneViaduct() {
   const archSpacing = BRIDGE_LENGTH / PIANO_CLEARING_PERFORMANCE.bridgeArches;
   const leftEdge = -BRIDGE_LENGTH / 2;
-  const stone = '#36434b';
-  const sunStone = '#48535a';
+  const stone = '#24264f';
+  const sunStone = '#353866';
 
   return (
     <group position={[BRIDGE_X, 0, BRIDGE_Z]}>
@@ -852,16 +852,16 @@ function StoneViaduct() {
           scale={[2.45, 0.055, 0.018]}
         >
           <boxGeometry args={[1, 1, 1]} />
-          <meshBasicMaterial color="#738087" transparent opacity={0.62} fog={false} />
+          <meshBasicMaterial color="#7779a5" transparent opacity={0.62} fog={false} />
         </mesh>
       ))}
       <mesh position={[0, BRIDGE_DECK_Y + 0.39, -0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color="#626d72" fog={false} />
+        <meshToonMaterial color="#4c4f83" fog={false} />
       </mesh>
       <mesh position={[0, BRIDGE_DECK_Y + 0.39, 0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color="#313c44" fog={false} />
+        <meshToonMaterial color="#1c2049" fog={false} />
       </mesh>
       {Array.from({ length: PIANO_CLEARING_PERFORMANCE.bridgeArches + 1 }, (_, index) => {
         if (index === 0 || index === PIANO_CLEARING_PERFORMANCE.bridgeArches) return null;
@@ -871,7 +871,7 @@ function StoneViaduct() {
         return (
           <mesh key={`pier-${index}`} position={[x, bankY + height / 2, 0]} scale={[0.62, height, 1.05]}>
             <boxGeometry args={[1, 1, 1]} />
-            <meshToonMaterial color={index % 2 ? stone : '#3e4950'} fog={false} />
+            <meshToonMaterial color={index % 2 ? stone : '#2e315d'} fog={false} />
           </mesh>
         );
       })}
@@ -882,11 +882,11 @@ function StoneViaduct() {
           <group key={`arch-${index}`} position={[x, BRIDGE_DECK_Y - radius - 0.23, 0]}>
             <mesh position={[0, 0, -0.53]}>
               <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
-              <meshToonMaterial color="#566167" fog={false} />
+              <meshToonMaterial color="#414474" fog={false} />
             </mesh>
             <mesh position={[0, 0, 0.53]}>
               <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
-              <meshToonMaterial color="#303b43" fog={false} />
+              <meshToonMaterial color="#1b1f48" fog={false} />
             </mesh>
           </group>
         );
@@ -932,7 +932,7 @@ function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
           <mesh key={index} position={[x, y, z]} scale={scale}>
             <icosahedronGeometry args={[1, 1]} />
             <meshBasicMaterial
-              color={index % 2 ? '#b497a7' : '#c4a8b1'}
+              color={index % 2 ? '#b380c1' : '#cf9bcf'}
               transparent
               opacity={0.12}
               depthWrite={false}
@@ -945,7 +945,7 @@ function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
           <mesh key={index} position={[x, y, z]} scale={scale}>
             <icosahedronGeometry args={[1, 1]} />
             <meshBasicMaterial
-              color={index % 2 ? '#517c55' : '#70955f'}
+              color={index % 2 ? '#54569b' : '#6c65ad'}
               transparent
               opacity={0.22}
               depthWrite={false}
@@ -962,8 +962,8 @@ function ValleyDetails() {
     const random = seededRandom(5401);
     const positions = new Float32Array(PIANO_CLEARING_PERFORMANCE.wildflowers * 3);
     const colors = new Float32Array(PIANO_CLEARING_PERFORMANCE.wildflowers * 3);
-    const ivory = new THREE.Color('#fff3c8');
-    const blue = new THREE.Color('#b7d7ef');
+    const ivory = new THREE.Color('#ffd7ee');
+    const blue = new THREE.Color('#b8c7ff');
 
     for (let index = 0; index < PIANO_CLEARING_PERFORMANCE.wildflowers; index += 1) {
       let x = -17 + random() * 34;
@@ -1000,11 +1000,11 @@ function ValleyDetails() {
 
 function RavineAccents() {
   const rocks = [
-    { x: -12.7, z: -7.2, scale: 1.45, color: '#314b43' },
-    { x: -11.1, z: -7.8, scale: 1.12, color: '#3c5748' },
-    { x: -13.4, z: -8.6, scale: 0.94, color: '#263f3d' },
-    { x: -9.8, z: -8.5, scale: 0.72, color: '#49604d' },
-    { x: -12.1, z: -9.2, scale: 0.62, color: '#2b4540' },
+    { x: -12.7, z: -7.2, scale: 1.45, color: '#252852' },
+    { x: -11.1, z: -7.8, scale: 1.12, color: '#343768' },
+    { x: -13.4, z: -8.6, scale: 0.94, color: '#1b1d43' },
+    { x: -9.8, z: -8.5, scale: 0.72, color: '#454479' },
+    { x: -12.1, z: -9.2, scale: 0.62, color: '#20234d' },
   ];
 
   return (
@@ -1046,17 +1046,17 @@ function SkyDome() {
           varying vec3 vWorld;
           void main() {
             float height = smoothstep(-0.12, 0.78, vWorld.y);
-            vec3 horizon = vec3(0.94, 0.86, 0.70);
-            vec3 upper = vec3(0.80, 0.80, 0.74);
-            vec3 zenith = vec3(0.66, 0.72, 0.75);
+            vec3 horizon = vec3(0.97, 0.63, 0.77);
+            vec3 upper = vec3(0.59, 0.68, 0.93);
+            vec3 zenith = vec3(0.25, 0.48, 0.88);
             vec3 color = mix(horizon, zenith, height);
             color = mix(color, upper, smoothstep(0.14, 0.58, height) * 0.38);
             vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
             float sunFacing = max(dot(vWorld, sunDirection), 0.0);
             float halo = pow(sunFacing, 11.0);
             float disk = smoothstep(0.997, 0.999, sunFacing);
-            color += vec3(1.0, 0.77, 0.46) * halo * 0.34;
-            color += vec3(1.0, 0.97, 0.82) * disk * 1.08;
+            color += vec3(1.0, 0.53, 0.73) * halo * 0.28;
+            color += vec3(1.0, 0.86, 0.94) * disk * 0.78;
             gl_FragColor = vec4(color, 1.0);
           }
         `}
@@ -1112,7 +1112,7 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
             <mesh key={index} position={[x, y, z]} scale={[scale * 1.35, scale * 0.58, scale * 0.66]}>
               <sphereGeometry args={[1, 10, 7]} />
               <meshBasicMaterial
-                color={index === 5 ? '#a994b8' : index % 3 === 0 ? '#e6bfa4' : '#ffe8bd'}
+                color={index === 5 ? '#756bb1' : index % 3 === 0 ? '#c891c5' : '#e6a9d1'}
                 transparent
                 opacity={index === 5 ? 0.3 : 0.5}
                 depthWrite={false}
@@ -1186,7 +1186,7 @@ function DistantBirds({ reducedMotion }: { reducedMotion: boolean }) {
       frustumCulled={false}
     >
       <meshBasicMaterial
-        color="#4c514c"
+        color="#34345f"
         transparent
         opacity={0.68}
         depthWrite={false}
@@ -1223,8 +1223,8 @@ function AtmosphericMotes({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vSeed;
       void main() {
         float circle = 1.0 - smoothstep(0.2, 0.5, length(gl_PointCoord - 0.5));
-        vec3 ivory = vec3(1.0, 0.92, 0.69);
-        vec3 blue = vec3(0.61, 0.81, 0.82);
+        vec3 ivory = vec3(1.0, 0.71, 0.87);
+        vec3 blue = vec3(0.57, 0.7, 1.0);
         gl_FragColor = vec4(mix(ivory, blue, step(0.72, vSeed)), circle * (0.28 + vSeed * 0.36));
       }
     `,
@@ -1277,11 +1277,11 @@ function DistantSkyForms({ reducedMotion }: { reducedMotion: boolean }) {
         <group key={index} position={[x, y, z]} scale={scale}>
           <mesh scale={[1.35, 0.72, 0.9]}>
             <dodecahedronGeometry args={[1, 0]} />
-            <meshBasicMaterial color="#8d8d73" transparent opacity={0.19} depthWrite={false} />
+            <meshBasicMaterial color="#746da9" transparent opacity={0.19} depthWrite={false} />
           </mesh>
           <mesh position={[0, -0.82, 0]} scale={[0.48, 0.64, 0.48]}>
             <coneGeometry args={[1, 1.8, 5]} />
-            <meshBasicMaterial color="#817f68" transparent opacity={0.16} depthWrite={false} />
+            <meshBasicMaterial color="#655f9b" transparent opacity={0.16} depthWrite={false} />
           </mesh>
         </group>
       ))}
@@ -1325,9 +1325,9 @@ const PianoClearingScene = memo(function PianoClearingScene({
   return (
     <>
       <SkyDome />
-      <fogExp2 attach="fog" args={['#c7bea3', 0.017]} />
-      <hemisphereLight args={['#fff0c8', '#475746', 2.18]} />
-      <directionalLight position={[-9, 10, 4]} color="#ffd08a" intensity={2.65} />
+      <fogExp2 attach="fog" args={['#8f7fc5', 0.017]} />
+      <hemisphereLight args={['#b9d0ff', '#33275f', 2.12]} />
+      <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.45} />
       <DistantLandscape />
       <Ground reducedMotion={reducedMotion} />
       <Stream reducedMotion={reducedMotion} />
@@ -1374,6 +1374,7 @@ export default function PianoClearingProof() {
       data-grass-wind="0.52"
       data-grass-cursor="terrain-local-3.2"
       data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}
+      data-color-script="dusk-refrain"
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
       <Canvas
@@ -1398,8 +1399,8 @@ export default function PianoClearingProof() {
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
       <p className={styles.proofLabel}>
-        Environmental proof 04
-        <strong>The valley piano</strong>
+        Environmental proof 84
+        <strong>Dusk Refrain</strong>
       </p>
     </main>
   );
