@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-28
-Implementation commit baseline: `4eb4266`; the grounded meadow-piano valley now uses the supplied `Dusk Refrain` blue-hour color script, is live at `/home-world-proof`, and awaits Mark review; public route structure unchanged
+Implementation commit baseline: working tree after `cbe0e34`; Mark requested provisional canonical Home promotion of the in-review `Dusk Refrain` valley plus a temporary `/presentation` doorway; Production deployment pending
 
 ## Plan Metadata
 
@@ -15,9 +15,9 @@ Implementation commit baseline: `4eb4266`; the grounded meadow-piano valley now 
 
 ## Current Program State
 
-**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its grounded lower-center `Dusk Refrain` revision is technically verified and awaits Mark review.**
+**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its grounded lower-center `Dusk Refrain` revision is provisionally promoted to canonical Home by explicit request while visual review remains open.**
 
-Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The new direction uses one fixed pastoral river valley, the particle grand piano, a future pianist/About entry, and four future category screens. Hover will later introduce one translucent category influence; selection will later transform the clearing into that category environment. Public `/` and `/projects` remain unchanged until additive visual, project, navigation, performance, and rollback gates pass.
+Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The new direction uses one fixed pastoral river valley, the particle grand piano, a future pianist/About entry, and four future category screens. Hover will later introduce one translucent category influence; selection will later transform the clearing into that category environment. Canonical `/` now adopts the valley provisionally; `/projects` remains unchanged, and `/home-world-proof` remains the no-index rollback/review route.
 
 This distinction prevents two errors:
 
@@ -29,7 +29,7 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | dusk meadow-piano valley in review | on-track | `Dusk Refrain` preserves the farther-right particle-piano viaduct vista and passes scene-budget, 240 tests, TypeScript, and build gates | Mark creative/performance acceptance | Review `/home-world-proof` |
+| `O-01` Persistent exploratory world | dusk meadow-piano valley provisionally on Home | on-track | Canonical `/` renders `Dusk Refrain`; `/home-world-proof` remains rollback evidence; scene-budget, 240 tests, TypeScript, and build gates pass | Mark creative/performance acceptance | Review canonical `/` |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
 | `O-04` Home work world | dusk-piano Checkpoint `B` revision | on-track | Farther-right eye frames a river-safe lower-center pearl piano while the full scene adopts the supplied blue/pink/violet dusk hierarchy | Mark accepts the world before pianist or screens | Review `ART-16B` |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `4eb4266` is live at `/home-world-proof` with the dusk marker; 240 tests, content validation, TypeScript/lint, and 40-route build pass | Collect dusk-palette, piano/structure readability, motion, and smoothness review | 2026-07-28 |
+| Now | `WI-ART-16-01` | in-review / provisional public | `ART-16B` | Canonical `/`, rollback `/home-world-proof`, and temporary `/presentation` pass 240 tests, content validation, TypeScript/lint, built-route checks, and the 41-route build | Deploy, verify all three public routes, then collect visual/performance review | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 
@@ -200,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
-| Candidate | 13 | Includes the pushed `ART-16` geometry-grounded piano valley and its technically verified `Dusk Refrain` color-script revision; no candidate is being treated as final creative acceptance |
+| Candidate | 14 | Includes the provisional canonical Home promotion and temporary presentation doorway; no candidate is being treated as final creative acceptance |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |

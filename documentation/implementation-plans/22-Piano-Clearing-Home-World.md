@@ -1,18 +1,18 @@
 # Piano Clearing Home World Plan
 
-Last updated: 2026-07-27
+Last updated: 2026-07-28
 
 ## Metadata
 
 | Field | Value |
 | --- | --- |
 | Plan ID | `PIANO-CLEARING-HOME` |
-| Status | Active; first environmental proof in review |
+| Status | Active; first environmental proof provisionally promoted and still in review |
 | Decision | [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Supersedes | [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) |
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
-| Review route | `/home-world-proof` |
-| Public exposure | None; canonical `/` and `/projects` remain unchanged |
+| Review route | Canonical `/`; `/home-world-proof` retained for rollback/review |
+| Public exposure | Provisional canonical Home by explicit request; `/projects` unchanged |
 
 ## Objective
 

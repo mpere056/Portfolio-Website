@@ -152,14 +152,20 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('shadowMap');
   });
 
-  it('keeps the proof private and leaves canonical Home unchanged', async () => {
-    const [proofPage, homePage] = await Promise.all([
+  it('promotes the clearing to canonical Home while retaining the review route', async () => {
+    const [proofPage, homePage, presentationPage] = await Promise.all([
       readFile(path.join(root, 'src/app/home-world-proof/page.tsx'), 'utf8'),
       readFile(path.join(root, 'src/app/page.tsx'), 'utf8'),
+      readFile(path.join(root, 'src/app/presentation/page.tsx'), 'utf8'),
     ]);
 
     expect(proofPage).toContain('robots: { index: false, follow: false }');
     expect(proofPage).toContain('<PianoClearingProof />');
-    expect(homePage).not.toContain('PianoClearingProof');
+    expect(homePage).toContain('<PianoClearingProof />');
+    expect(homePage).toContain('href="/presentation"');
+    expect(homePage).toContain('Tomorrow&apos;s presentation');
+    expect(presentationPage).toContain('data-presentation-stage="temporary"');
+    expect(presentationPage).toContain('robots: { index: false, follow: false }');
+    expect(presentationPage).toContain('href="/"');
   });
 });

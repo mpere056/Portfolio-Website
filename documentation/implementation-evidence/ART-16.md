@@ -7,12 +7,12 @@ Last updated: 2026-07-28
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; grounded meadow-piano revision pushed and in review |
+| Lifecycle | in-progress; dusk meadow-piano valley provisionally promoted to canonical Home and still in visual review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Independent-blade valley with geometry-grounded pearl piano and artifact-cleaned leftward composition through `5718cd8` |
-| Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Git-connected Production for `5718cd8` |
+| Implementation | `Dusk Refrain` independent-blade valley with geometry-grounded pearl piano, canonical Home doorway, and temporary presentation staging route |
+| Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` staging route |
+| Deployment | Pending Git-connected deployment of the canonical Home promotion |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -213,6 +213,20 @@ Last updated: 2026-07-28
 | Browser evidence | The local route loads the complete scene and exposes the dusk marker and title. Automated WebGL screenshot capture timed out on the GPU-heavy page, so final color balance remains a direct-browser review gate rather than a claimed visual acceptance. |
 | Production evidence | Commit `4eb4266` is pushed to `main` and live through Git-connected Production at `/home-world-proof`; the public proof reports `data-color-script="dusk-refrain"` and the title `Dusk Refrain`. |
 | Visual evidence | Awaiting Mark review against the supplied blue-sky, pink-horizon, violet-meadow reference. |
+
+## EV-ART-16-16: Provisional Home Promotion And Presentation Doorway
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / release-decision |
+| Claim | The in-review dusk valley can become canonical Home provisionally without erasing its rollback route or falsely closing visual acceptance, while a bounded temporary presentation doorway can be added without changing the scene runtime. |
+| Scope | Canonical `/` now renders the existing `PianoClearingProof` and a keyboard-accessible `/presentation` doorway. `/home-world-proof` remains available and no-index for rollback/review. `/presentation` is a no-index, one-screen staging room with a return path; presentation content remains deliberately unimplemented until Mark supplies its direction. |
+| Runtime policy | The valley canvas, scene budgets, animation ownership, and hidden/reduced-motion behavior are unchanged. The doorway and staging room are CSS/DOM only, introduce no canvas or runtime dependency, and respect reduced-motion preferences. |
+| Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 41-route Production build pass. Focused route tests bind canonical Home to the clearing, preserve the proof route, require the presentation doorway, and require no-index staging metadata. |
+| Browser evidence | The built `/presentation` route renders at one viewport with no overflow, exposes `data-presentation-stage="temporary"`, and returns to `/`. The built `/` response returns `200` with the `dusk-refrain` marker and `/presentation` link; heavyweight WebGL browser automation still exceeds the capture deadline. |
+| Production evidence | Pending Git-connected deployment after this record is pushed. |
+| Visual evidence | Mark explicitly requested provisional Home promotion while noting the valley is not perfect; Checkpoint `B` therefore remains in review rather than accepted. |
 
 ## Named Gaps
 
