@@ -16,7 +16,7 @@ Last updated: 2026-07-26
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. There is no bridge, train, walking, or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded viaduct and continuously visible three-car train are retained as source-derived middle-distance depth cues; there is no walking or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
 
 ## Scene Grammar
 
@@ -64,7 +64,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - one React Three Fiber canvas;
 - one 78 by 68 unit displaced terrain patch authored as a high right foreground field, asymmetric dark ravine, path-carved river bed, and opposite rise;
 - the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
-- 11,000 instanced three-blade grass clumps in one draw, excluded from water and steep banks;
+- 32,000 instanced seven-blade grass clumps in one draw, using short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep banks;
 - 58 miniature low-poly horizon trees in two instanced draws;
 - five fixed ravine rocks, 160 point-rendered wildflowers, and 180 atmospheric motes;
 - three smoothed layered ridge silhouettes;
@@ -132,5 +132,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Production deployment `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe` is Ready.
 - Mark found that source-guided revision better, but requested river-safe tree placement and a warmer hand-painted pastoral animation treatment.
 - Commit `98a1dca` derives distant-tree eligibility from the river/ravine terrain model, adds one low-cost canopy-highlight instance layer, and refines grass, cloud, fog, lighting, and final color separation.
-- Focused lint, TypeScript, all 57 test files / 238 tests, the 40-route production build, and local one-screen visual review pass. Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready.
-- Exact next action: collect only Checkpoint `B` tree-placement, pastoral styling, composition, aliveness, and target-machine performance answers.
+- Mark found the river-safe composition improved but rejected the sparse, tall grass treatment as unlike the supplied source.
+- Commit `d5b9c4e` rebuilds the meadow as 32,000 seven-blade clumps with shorter hair-fine geometry, source-derived teal/green/yellow/straw color bands, synchronized ground-and-blade gusts, a straw-gold near bank, stronger distance haze, and restrained final softening.
+- Focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local one-screen visual review pass. Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready.
+- Exact next action: collect only Checkpoint `B` meadow density, blade scale, source likeness, wind read, composition, and target-machine performance answers.

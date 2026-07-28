@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`98a1dca` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the river-safe, warmer particle-piano viaduct valley for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
+`d5b9c4e` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the source-derived dense-meadow particle-piano viaduct valley for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: `98a1dca`, Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw`, 238 tests, build, and local visual checks pass | Collect tree-placement, pastoral styling, and target-machine smoothness review | 2026-07-27 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: `d5b9c4e`, Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW`, 238 tests, build, and local visual checks pass | Collect meadow source-likeness, wind-read, and target-machine smoothness review | 2026-07-27 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-27 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-27 |
 

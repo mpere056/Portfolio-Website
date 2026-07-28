@@ -120,7 +120,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | Tree placement can derive from the same river and ravine model as grass, while warmer field variation, clustered two-tone canopies, fuller clouds, and recovered saturation improve the pastoral animation read without adding expensive scene systems. |
 | Scope | Distant trees now require stable terrain beyond a widened river/ravine exclusion; the right foreground receives shader-authored sunlit grass variation; each tree gains one instanced canopy highlight; cloud warmth, fog separation, scene lighting, and final color grading are refined. Bridge, train, downstream river, particle piano, camera, route exposure, and later checkpoints are unchanged. |
@@ -128,15 +128,29 @@ Last updated: 2026-07-27
 | Automated evidence | Focused lint and TypeScript pass; all 57 test files / 238 tests pass; the clean 40-route production build passes. Tests bind representative river and ravine tree exclusions. |
 | Browser evidence | Local `1280 x 720` review confirms a clear river corridor through the bridge and distant valley, bank-owned tree clusters, warmer foreground grass, cooler ravine depth, and one-screen rendering. |
 | Production evidence | Commit `98a1dca`; Git-connected Production deployment `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` is Ready and aliased to `www.marknperera.ca` and the canonical project domains. |
-| Visual evidence | Pending Mark review of the corrected tree placement, warmer color/light treatment, and target-machine smoothness. |
+| Visual evidence | Mark confirmed tree placement improved, but found the meadow grass completely unlike the supplied source: blades remained sparse, coarse, tall, and visually separated instead of forming the source's dense soft sward. |
+
+## EV-ART-16-10: Source-Derived Dense Meadow Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / production / browser-flow / visual-review |
+| Claim | The supplied source's grass language can be translated into a bounded single-draw meadow by increasing local blade density, shortening and narrowing each blade, reusing the source palette, and blending geometry into a shader-authored distant sward. |
+| Scope | The meadow now uses 32,000 instanced clumps with seven hair-fine blades per clump; blades receive source-derived teal-root, green-middle, yellow-tip, dry-straw, and wind-sheen colors; the sun-facing right bank transitions to straw-gold; ground and grass share travelling gust bands; distance fog and a restrained final softening pass reduce isolated-spike contrast. River, bridge, train, piano, trees, camera, route exposure, and later checkpoints are unchanged. |
+| Runtime policy | One canvas; DPR capped at `1.25`; 32,000 seven-blade clumps in one instanced draw; shader-only wind and ground sheen; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
+| Automated evidence | Focused and aggregate checks pass: 57 test files / 238 tests, TypeScript, focused ESLint, and the clean 40-route production build. Tests bind the grass-instance cap, seven-blade geometry, source-derived palette, shared gust field, and no-post/no-shadow policy. |
+| Browser evidence | Local `1280 x 720` review confirms a continuous short-blade meadow at foreground, middle, and far-field depths; the right bank is straw-gold while the opposite field stays cooler green; one-screen rendering and the shared downstream river remain intact. |
+| Production evidence | Commit `d5b9c4e`; Git-connected Production deployment `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the canonical project subdomains. |
+| Visual evidence | Pending Mark review of meadow density, blade scale, source likeness, wind read, and target-machine smoothness. |
 
 ## Named Gaps
 
-- The river-safe pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
-- The supplied HTML is now the visual-logic reference; literal parity is not claimed because the fixed homepage proof deliberately excludes the source's million-blade grass, reflections, shadow maps, and post-processing.
+- The dense-meadow pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
+- The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the river-safe pastoral valley composition and target-machine smoothness. No later checkpoint begins until that environment is accepted.
+The next action is to review only the dense meadow's source likeness, wind behavior, composition, and target-machine smoothness. No later checkpoint begins until that environment is accepted.
