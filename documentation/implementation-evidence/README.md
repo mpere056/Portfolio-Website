@@ -56,7 +56,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-07` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-08` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-09` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-10` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-10` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-11` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -99,7 +100,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-07` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-08` | `ART-16` | revision-requested | `ART-16.md` |
 | `EV-ART-16-09` | `ART-16` | revision-requested | `ART-16.md` |
-| `EV-ART-16-10` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-10` | `ART-16` | revision-requested | `ART-16.md` |
+| `EV-ART-16-11` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -252,7 +254,8 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-16-07` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | revision-requested | Commit `31a2ad8`, Production `dpl_2ghDZVTNW5C88BYcsuKudfgqNoFA`: shared river-path geometry corrected the current and ravine, but Mark supplied the original HTML and requested closer source parity, allowing the bridge and train | 2026-07-27 | `ART-16.md` |
 | `EV-ART-16-08` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | revision-requested | Commit `d6e9a26`, Production `dpl_HKewBJwbWmHgkLJky4bGJHUFVUxe`: technical gates passed, but Mark found trees appearing in the river and requested a stronger warm hand-painted pastoral animation language | 2026-07-27 | `ART-16.md` |
 | `EV-ART-16-09` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | revision-requested | Commit `98a1dca`, Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw`: river-safe placement passed technical gates, but Mark found the grass sparse, coarse, tall, and unlike the source's dense soft sward | 2026-07-27 | `ART-16.md` |
-| `EV-ART-16-10` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | candidate | Commit `d5b9c4e`, Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW`: 32,000 seven-blade instanced clumps, source-derived meadow palette, shared gust sheen, straw-gold near bank, and distance softening pass 238 tests, TypeScript, lint, 40-route build, and local visual review | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-10` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | revision-requested | Commit `d5b9c4e`, Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW`: denser source-derived grass improved the field, but Mark found visible clumping, incomplete source likeness, and a large unexplained grassless piano patch | 2026-07-27 | `ART-16.md` |
+| `EV-ART-16-11` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / production / browser-flow / visual-review | candidate | Commits `bd037b7`, `cfbfee2`, and `c819200`, Production `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd`: 220,000 independent blades preserve the prior vertex budget while removing clump repetition; complete piano-field coverage and shader-only grounding remove the bare patch; 238 tests, TypeScript, lint, 40-route build, and Production one-screen review pass | 2026-07-27 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

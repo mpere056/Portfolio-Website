@@ -134,7 +134,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | The supplied source's grass language can be translated into a bounded single-draw meadow by increasing local blade density, shortening and narrowing each blade, reusing the source palette, and blending geometry into a shader-authored distant sward. |
 | Scope | The meadow now uses 32,000 instanced clumps with seven hair-fine blades per clump; blades receive source-derived teal-root, green-middle, yellow-tip, dry-straw, and wind-sheen colors; the sun-facing right bank transitions to straw-gold; ground and grass share travelling gust bands; distance fog and a restrained final softening pass reduce isolated-spike contrast. River, bridge, train, piano, trees, camera, route exposure, and later checkpoints are unchanged. |
@@ -142,15 +142,29 @@ Last updated: 2026-07-27
 | Automated evidence | Focused and aggregate checks pass: 57 test files / 238 tests, TypeScript, focused ESLint, and the clean 40-route production build. Tests bind the grass-instance cap, seven-blade geometry, source-derived palette, shared gust field, and no-post/no-shadow policy. |
 | Browser evidence | Local `1280 x 720` review confirms a continuous short-blade meadow at foreground, middle, and far-field depths; the right bank is straw-gold while the opposite field stays cooler green; one-screen rendering and the shared downstream river remain intact. |
 | Production evidence | Commit `d5b9c4e`; Git-connected Production deployment `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the canonical project subdomains. |
-| Visual evidence | Pending Mark review of meadow density, blade scale, source likeness, wind read, and target-machine smoothness. |
+| Visual evidence | Mark found the grass closer to the source but still visibly clumped and unlike its continuous field. He also identified a large unexplained grassless patch beneath the piano. |
+
+## EV-ART-16-11: Independent-Blade Meadow And Full Piano Coverage
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / production / browser-flow / visual-review |
+| Claim | The source's continuous hair-fine meadow can be approximated without increasing the prior vertex workload by replacing seven-blade clump instances with independently distributed single-blade instances and allowing grass to cover the complete piano field. |
+| Scope | One custom `InstancedBufferGeometry` distributes 220,000 independent blades across the terrain; per-blade root, width, height, angle, and color variation remove visible clump repetition; short curved blade geometry, source-derived palette, travelling gusts, straw-gold field light, distance haze, and restrained canvas softening remain. The oversized piano clearance and contact-shadow mesh are removed; a subtle blade-color shade grounds the piano without hiding grass. River and ravine exclusions remain path-derived. |
+| Runtime policy | One canvas; DPR capped at `1.25`; 220,000 independent two-triangle blades in one instanced draw, approximately matching the preceding clump renderer's vertex workload; shader-only wind and piano shade; no post-processing, real-time shadows, physics, orbit controls, or per-blade JavaScript animation. |
+| Automated evidence | All 57 test files / 238 tests, TypeScript, focused ESLint, and the clean 40-route production build pass. Tests bind the instance cap, custom root/parameter attributes, river-only steep exclusion, absence of piano grass clearance/contact-shadow geometry, source palette, gust field, and no-post/no-shadow policy. |
+| Browser evidence | Production `1280 x 720` inspection confirms one canvas, exact one-screen geometry, `220000-grass/9000-piano-points/no-post`, continuous independently distributed grass through the piano field, no former oval or tan grassless patch, and intact river clearance. |
+| Production evidence | Commits `bd037b7`, `cfbfee2`, and `c819200`; Git-connected Production deployment `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the canonical project subdomains. |
+| Visual evidence | Pending Mark review of source likeness, meadow continuity, blade scale, color, wind read, and target-machine smoothness. |
 
 ## Named Gaps
 
-- The dense-meadow pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
+- The independent-blade pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
 - The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the dense meadow's source likeness, wind behavior, composition, and target-machine smoothness. No later checkpoint begins until that environment is accepted.
+The next action is to review only the independent meadow's source likeness, continuity, wind behavior, composition, and target-machine smoothness. No later checkpoint begins until that environment is accepted.

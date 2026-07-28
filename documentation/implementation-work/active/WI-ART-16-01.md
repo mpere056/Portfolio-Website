@@ -22,21 +22,21 @@ Mark reviewed the first Checkpoint `B` clearing and requested a more specific co
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-Mark found the river-safe pastoral candidate compositionally better but rejected its grass as sparse, coarse, tall, and unlike the supplied source. The current deployed Checkpoint `B` candidate therefore preserves the river, bridge, train, piano, tree exclusions, camera, and sky while replacing the meadow implementation. It uses 32,000 instanced clumps with seven short hair-fine blades each, source-derived teal-to-yellow and dry-straw color bands, a straw-gold sun-facing field, synchronized shader gusts in blades and ground, stronger distance haze, and restrained final softening. It retains one canvas, capped DPR, moving grass/water/clouds/motes/train, restrained camera breathing, and no post-processing, real-time shadows, orbit controls, or game-world navigation.
+Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The current deployed Checkpoint `B` candidate preserves the river, bridge, train, piano, tree exclusions, camera, and sky while replacing clumps with 220,000 independently distributed single blades. Custom per-blade root, width, height, angle, and variation attributes preserve approximately the same vertex workload while removing repeated tufts. The piano clearance and contact-shadow mesh are gone, so grass now covers the whole piano field; subtle blade-color shading grounds the piano without hiding grass. Source-derived color bands, the straw-gold sun-facing field, synchronized shader gusts, distance haze, and restrained final softening remain.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `d5b9c4e` on `main`; creative and target-machine performance review remain.
-- Current implementation: source-derived dense-meadow viaduct Checkpoint `B` replacement is deployed and fully verified technically.
+- Known-good deployed commit: `c819200` on `main`; creative and target-machine performance review remain.
+- Current implementation: independent-blade, fully covered meadow viaduct Checkpoint `B` replacement is deployed and fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local browser inspection pass; the Git-connected Production deployment is Ready.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 32,000 seven-blade grass clumps in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready.
+- Deployment: `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: collect only meadow density, blade scale, source likeness, wind read, and target-machine smoothness review.
+- Next exact action: collect only meadow continuity, blade scale, source likeness, wind read, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -106,6 +106,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Commit `d5b9c4e` replaces 11,000 coarse three-blade clumps with 32,000 short seven-blade clumps, adapts the source grass palette, synchronizes ground/blade gusts, warms the near bank, and softens distance contrast.
 - Focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local `1280 x 720` visual review pass.
 - Production deployment `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready. Checkpoint `B` remains in review.
+
+### 2026-07-27 Independent-Blade Meadow Revision
+
+- Mark found the clumped meadow closer but still unlike the source and identified a large grassless patch beneath the piano.
+- Commits `bd037b7`, `cfbfee2`, and `c819200` replace clumps with 220,000 independently distributed blades, remove the piano clearance/contact-shadow mesh, and retain only subtle shader-based blade shading beneath the piano.
+- All 57 test files / 238 tests, TypeScript, focused lint, the clean 40-route production build, and Production `1280 x 720` one-screen review pass.
+- Production deployment `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready. Checkpoint `B` remains in review.
 
 ### 2026-07-26
 

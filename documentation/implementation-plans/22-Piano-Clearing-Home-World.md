@@ -64,7 +64,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - one React Three Fiber canvas;
 - one 78 by 68 unit displaced terrain patch authored as a high right foreground field, asymmetric dark ravine, path-carved river bed, and opposite rise;
 - the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
-- 32,000 instanced seven-blade grass clumps in one draw, using short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep banks;
+- 220,000 independently distributed two-triangle grass blades in one instanced draw, using custom root/width/height/angle/variation attributes, short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep ravine edges;
 - 58 miniature low-poly horizon trees in two instanced draws;
 - five fixed ravine rocks, 160 point-rendered wildflowers, and 180 atmospheric motes;
 - three smoothed layered ridge silhouettes;
@@ -134,5 +134,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Commit `98a1dca` derives distant-tree eligibility from the river/ravine terrain model, adds one low-cost canopy-highlight instance layer, and refines grass, cloud, fog, lighting, and final color separation.
 - Mark found the river-safe composition improved but rejected the sparse, tall grass treatment as unlike the supplied source.
 - Commit `d5b9c4e` rebuilds the meadow as 32,000 seven-blade clumps with shorter hair-fine geometry, source-derived teal/green/yellow/straw color bands, synchronized ground-and-blade gusts, a straw-gold near bank, stronger distance haze, and restrained final softening.
-- Focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local one-screen visual review pass. Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW` is Ready.
-- Exact next action: collect only Checkpoint `B` meadow density, blade scale, source likeness, wind read, composition, and target-machine performance answers.
+- Mark found that clumped revision closer but still unlike the source and identified a large grassless patch beneath the piano.
+- Commits `bd037b7`, `cfbfee2`, and `c819200` replace the clumps with 220,000 independent single-blade instances, remove the piano clearance/contact-shadow geometry, and retain a subtle blade-color shade for contact. Approximate vertex workload remains comparable to the prior renderer.
+- Focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and Production one-screen visual review pass. Production `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready.
+- Exact next action: collect only Checkpoint `B` meadow continuity, blade scale, source likeness, wind read, composition, and target-machine performance answers.
