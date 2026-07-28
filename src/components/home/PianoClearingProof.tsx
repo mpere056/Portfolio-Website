@@ -133,16 +133,30 @@ function createGrassGeometry() {
 
 function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
+  const cursorPlane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y));
+  const cursorPoint = useRef(new THREE.Vector3());
+  const previousCursorPoint = useRef(new THREE.Vector3());
+  const previousPointer = useRef(new THREE.Vector2());
+  const cursorDirection = useRef(new THREE.Vector2(1, 0));
+  const cursorDirectionTarget = useRef(new THREE.Vector2(1, 0));
+  const cursorInfluence = useRef(0);
+  const cursorReady = useRef(false);
   const material = useMemo(() => new THREE.ShaderMaterial({
     side: THREE.DoubleSide,
     uniforms: {
       uTime: { value: 0 },
-      uWind: { value: reducedMotion ? 0 : 1 },
+      uWind: { value: reducedMotion ? 0 : 0.68 },
+      uCursor: { value: new THREE.Vector2(1000, 1000) },
+      uCursorDirection: { value: new THREE.Vector2(1, 0) },
+      uCursorInfluence: { value: 0 },
       uFogColor: { value: new THREE.Color('#c5c7ad') },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uWind;
+      uniform vec2 uCursor;
+      uniform vec2 uCursorDirection;
+      uniform float uCursorInfluence;
       attribute vec3 iRoot;
       attribute vec4 iParams;
       varying vec2 vUv;
@@ -189,7 +203,25 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           + gust * 0.052
           + (randomValue - 0.5) * 0.035
         ) * uv.y * uWind;
-        vBend = clamp(abs(breeze) * 4.4 + gust * 0.38, 0.0, 1.0);
+        float cursorDistance = distance(root.xz, uCursor);
+        float cursorFalloff = 1.0 - smoothstep(0.35, 3.6, cursorDistance);
+        float cursorBend = cursorFalloff * uCursorInfluence;
+        float cursorLift = sin(cursorDistance * 2.8 - uTime * 4.2) * cursorBend;
+        oriented.x += (
+          uCursorDirection.x * 0.24
+          + cursorLift * 0.045
+        ) * uv.y * uv.y * cursorBend;
+        oriented.z += (
+          uCursorDirection.y * 0.24
+          + cursorLift * 0.045
+        ) * uv.y * uv.y * cursorBend;
+        vBend = clamp(
+          abs(breeze) * 4.4 * uWind
+          + gust * 0.38 * uWind
+          + cursorBend * 0.72,
+          0.0,
+          1.0
+        );
         vVariation = variation;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
@@ -229,9 +261,70 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     `,
   }), [reducedMotion]);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uWind.value = reducedMotion ? 0 : 1;
+    material.uniforms.uWind.value = reducedMotion ? 0 : 0.68;
+
+    raycaster.setFromCamera(pointer, camera);
+    cursorPlane.current.constant = -GROUND_Y;
+    const hit = raycaster.ray.intersectPlane(cursorPlane.current, cursorPoint.current);
+
+    if (hit) {
+      // Refine the horizontal-plane hit against the authored terrain height.
+      for (let pass = 0; pass < 2; pass += 1) {
+        cursorPlane.current.constant = -(
+          GROUND_Y + pianoClearingTerrainHeight(hit.x, hit.z)
+        );
+        raycaster.ray.intersectPlane(cursorPlane.current, cursorPoint.current);
+      }
+
+      if (!cursorReady.current) {
+        previousCursorPoint.current.copy(hit);
+        previousPointer.current.copy(pointer);
+        cursorReady.current = true;
+      }
+
+      const pointerDelta = previousPointer.current.distanceTo(pointer);
+      const worldDeltaX = hit.x - previousCursorPoint.current.x;
+      const worldDeltaZ = hit.z - previousCursorPoint.current.z;
+      const worldDeltaLength = Math.hypot(worldDeltaX, worldDeltaZ);
+
+      if (worldDeltaLength > 0.001) {
+        cursorDirectionTarget.current.set(
+          worldDeltaX / worldDeltaLength,
+          worldDeltaZ / worldDeltaLength,
+        );
+        cursorDirection.current.lerp(
+          cursorDirectionTarget.current,
+          0.36,
+        ).normalize();
+      }
+
+      const targetInfluence = reducedMotion
+        ? 0
+        : THREE.MathUtils.clamp(pointerDelta * 46, 0, 1);
+      const response = targetInfluence > cursorInfluence.current ? 18 : 4.8;
+      cursorInfluence.current = THREE.MathUtils.damp(
+        cursorInfluence.current,
+        targetInfluence,
+        response,
+        delta,
+      );
+
+      material.uniforms.uCursor.value.set(hit.x, hit.z);
+      material.uniforms.uCursorDirection.value.copy(cursorDirection.current);
+      material.uniforms.uCursorInfluence.value = cursorInfluence.current;
+      previousCursorPoint.current.copy(hit);
+      previousPointer.current.copy(pointer);
+    } else {
+      cursorInfluence.current = THREE.MathUtils.damp(
+        cursorInfluence.current,
+        0,
+        4.8,
+        delta,
+      );
+      material.uniforms.uCursorInfluence.value = cursorInfluence.current;
+    }
   });
 
   return (
@@ -1215,6 +1308,8 @@ export default function PianoClearingProof() {
       className={styles.world}
       data-piano-clearing-proof=""
       data-river-flow="far-to-foreground"
+      data-grass-wind="0.68"
+      data-grass-cursor="terrain-local"
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
       <Canvas

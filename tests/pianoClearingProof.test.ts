@@ -109,6 +109,13 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
     expect(component).toContain('vec3 tipColor = vec3(0.806, 0.824, 0.382)');
     expect(component).toContain('float windBand = sin');
+    expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.68 }');
+    expect(component).toContain('uniform vec2 uCursor');
+    expect(component).toContain('float cursorFalloff = 1.0 - smoothstep(0.35, 3.6, cursorDistance)');
+    expect(component).toContain('const pointerDelta = previousPointer.current.distanceTo(pointer)');
+    expect(component).toContain('THREE.MathUtils.clamp(pointerDelta * 46, 0, 1)');
+    expect(component).toContain('data-grass-wind="0.68"');
+    expect(component).toContain('data-grass-cursor="terrain-local"');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain('const z = 24 - random() * 61');
     expect(component).toContain("geometry.setAttribute('iRoot'");
