@@ -24,7 +24,7 @@ describe('piano clearing Home proof', () => {
     expect(PIANO_CLEARING_PERFORMANCE.wildflowers).toBeLessThanOrEqual(160);
     expect(PIANO_CLEARING_PERFORMANCE.atmosphericMotes).toBeLessThanOrEqual(200);
     expect(PIANO_CLEARING_PERFORMANCE.bridgeArches).toBe(5);
-    expect(PIANO_CLEARING_PERFORMANCE.trainCars).toBeLessThanOrEqual(3);
+    expect(PIANO_CLEARING_PERFORMANCE.distantBirds).toBe(7);
     expect(PIANO_CLEARING_PERFORMANCE.realtimeShadows).toBe(false);
     expect(PIANO_CLEARING_PERFORMANCE.postProcessing).toBe(false);
   });
@@ -112,13 +112,14 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.52 }');
     expect(component).toContain('uniform vec2 uCursor');
-    expect(component).toContain('float cursorFalloff = 1.0 - smoothstep(0.15, 4.2, cursorDistance)');
+    expect(component).toContain('float cursorFalloff = 1.0 - smoothstep(0.15, 3.2, cursorDistance)');
     expect(component).toContain('const pointerDelta = previousPointer.current.distanceTo(pointer)');
     expect(component).toContain('THREE.MathUtils.clamp(pointerDelta * 34, 0, 1)');
     expect(component).toContain('smoothedCursorPoint.current.x = THREE.MathUtils.damp');
     expect(component).toContain('cursorImpulse.current = Math.max(cursorImpulse.current, movementEnergy)');
     expect(component).toContain('data-grass-wind="0.52"');
-    expect(component).toContain('data-grass-cursor="terrain-local"');
+    expect(component).toContain('data-grass-cursor="terrain-local-3.2"');
+    expect(component).toContain('data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain('const z = 24 - random() * 61');
     expect(component).toContain("geometry.setAttribute('iRoot'");
@@ -135,7 +136,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');
     expect(component).toContain('<StoneViaduct />');
-    expect(component).toContain('<PassingTrain reducedMotion={reducedMotion} />');
+    expect(component).not.toContain('function PassingTrain');
+    expect(component).not.toContain('<PassingTrain');
+    expect(component).toContain('<DistantBirds reducedMotion={reducedMotion} />');
+    expect(component).toContain('<instancedMesh');
     expect(component).toContain('<CameraRig reducedMotion={reducedMotion} />');
     expect(component).toContain('pianoClearingCameraFov(size.width / Math.max(size.height, 1))');
     expect(component).not.toContain('<primitive object={piano}');

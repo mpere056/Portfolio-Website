@@ -206,7 +206,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           + (randomValue - 0.5) * 0.035
         ) * uv.y * uWind;
         float cursorDistance = distance(root.xz, uCursor);
-        float cursorFalloff = 1.0 - smoothstep(0.15, 4.2, cursorDistance);
+        float cursorFalloff = 1.0 - smoothstep(0.15, 3.2, cursorDistance);
         float cursorBend = cursorFalloff * uCursorInfluence;
         float cursorLift = sin(cursorDistance * 2.8 - uTime * 4.2) * cursorBend;
         oriented.x += (
@@ -895,55 +895,6 @@ function StoneViaduct() {
   );
 }
 
-function PassingTrain({ reducedMotion }: { reducedMotion: boolean }) {
-  const train = useRef<THREE.Group>(null);
-
-  useFrame(({ clock }) => {
-    if (!train.current) return;
-    train.current.position.x = reducedMotion
-      ? -5.4
-      : -5.4 + Math.sin(clock.elapsedTime * 0.075) * 4.2;
-  });
-
-  return (
-    <group
-      ref={train}
-      position={[0, BRIDGE_DECK_Y + 0.72, BRIDGE_Z]}
-      rotation={[0, 0, 0]}
-      scale={0.72}
-    >
-      <group position={[-2.45, 0, 0]}>
-        <mesh position={[0, 0.22, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.46, 0.46, 1.65, 10]} />
-          <meshToonMaterial color="#29272e" />
-        </mesh>
-        <mesh position={[0.7, 0.18, 0]} scale={[0.78, 0.9, 0.8]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshToonMaterial color="#3c3133" />
-        </mesh>
-        <mesh position={[-0.45, 0.83, 0]}>
-          <cylinderGeometry args={[0.13, 0.25, 0.58, 8]} />
-          <meshToonMaterial color="#24232a" />
-        </mesh>
-      </group>
-      {Array.from({ length: PIANO_CLEARING_PERFORMANCE.trainCars }, (_, index) => (
-        <group key={index} position={[index * 1.7, 0.1, 0]}>
-          <mesh scale={[1.45, 0.76, 0.86]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshToonMaterial color={index % 2 ? '#594044' : '#65464a'} />
-          </mesh>
-          {[-0.42, 0, 0.42].map((x) => (
-            <mesh key={x} position={[x, 0.08, 0.44]} scale={[0.2, 0.22, 0.02]}>
-              <planeGeometry args={[1, 1]} />
-              <meshBasicMaterial color="#f1c878" toneMapped={false} />
-            </mesh>
-          ))}
-        </group>
-      ))}
-    </group>
-  );
-}
-
 function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
   const left = useRef<THREE.Group>(null);
   const right = useRef<THREE.Group>(null);
@@ -1174,6 +1125,77 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
+function DistantBirds({ reducedMotion }: { reducedMotion: boolean }) {
+  const birds = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const birdData = useMemo(() => {
+    const random = seededRandom(9184);
+    return Array.from(
+      { length: PIANO_CLEARING_PERFORMANCE.distantBirds },
+      (_, index) => ({
+        x: -3.5 + index * 3.3 + (random() - 0.5) * 1.2,
+        y: 8.2 + random() * 2.8,
+        z: -22 - random() * 11,
+        phase: random() * Math.PI * 2,
+        scale: 0.58 + random() * 0.24,
+        travel: 1.6 + random() * 2,
+      }),
+    );
+  }, []);
+  const geometry = useMemo(() => {
+    const bird = new THREE.BufferGeometry();
+    bird.setAttribute('position', new THREE.Float32BufferAttribute([
+      -0.62, 0.02, 0,
+      -0.08, 0, 0,
+      -0.34, 0.22, 0,
+      0.08, 0, 0,
+      0.62, 0.02, 0,
+      0.34, 0.22, 0,
+    ], 3));
+    bird.computeVertexNormals();
+    return bird;
+  }, []);
+
+  useFrame(({ clock }) => {
+    if (!birds.current) return;
+    const time = reducedMotion ? 0 : clock.elapsedTime;
+
+    birdData.forEach((bird, index) => {
+      const glide = Math.sin(time * 0.075 + bird.phase);
+      const lift = Math.sin(time * 0.16 + bird.phase * 1.7);
+      const flap = reducedMotion
+        ? 0.72
+        : 0.7 + Math.sin(time * (1.4 + index * 0.06) + bird.phase) * 0.24;
+      dummy.position.set(
+        bird.x + glide * bird.travel,
+        bird.y + lift * 0.18,
+        bird.z,
+      );
+      dummy.rotation.set(0, 0, glide * 0.055);
+      dummy.scale.set(bird.scale, bird.scale * flap, bird.scale);
+      dummy.updateMatrix();
+      birds.current?.setMatrixAt(index, dummy.matrix);
+    });
+    birds.current.instanceMatrix.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh
+      ref={birds}
+      args={[geometry, undefined, PIANO_CLEARING_PERFORMANCE.distantBirds]}
+      frustumCulled={false}
+    >
+      <meshBasicMaterial
+        color="#4c514c"
+        transparent
+        opacity={0.68}
+        depthWrite={false}
+        side={THREE.DoubleSide}
+      />
+    </instancedMesh>
+  );
+}
+
 function AtmosphericMotes({ reducedMotion }: { reducedMotion: boolean }) {
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
@@ -1310,7 +1332,6 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <Ground reducedMotion={reducedMotion} />
       <Stream reducedMotion={reducedMotion} />
       <StoneViaduct />
-      <PassingTrain reducedMotion={reducedMotion} />
       <GrassField reducedMotion={reducedMotion} />
       <ValleyDetails />
       <RavineAccents />
@@ -1318,6 +1339,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
         <ParticlePiano reducedMotion={reducedMotion} />
       </Suspense>
       <Clouds reducedMotion={reducedMotion} />
+      <DistantBirds reducedMotion={reducedMotion} />
       <DistantSkyForms reducedMotion={reducedMotion} />
       <AtmosphericMotes reducedMotion={reducedMotion} />
       <ForegroundFraming reducedMotion={reducedMotion} />
@@ -1350,7 +1372,8 @@ export default function PianoClearingProof() {
       data-piano-clearing-proof=""
       data-river-flow="far-to-foreground"
       data-grass-wind="0.52"
-      data-grass-cursor="terrain-local"
+      data-grass-cursor="terrain-local-3.2"
+      data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
       <Canvas

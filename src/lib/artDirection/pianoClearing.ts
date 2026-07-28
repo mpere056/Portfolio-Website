@@ -10,7 +10,7 @@ export const PIANO_CLEARING_PERFORMANCE = {
   atmosphericMotes: 180,
   cloudGroups: 5,
   bridgeArches: 5,
-  trainCars: 3,
+  distantBirds: 7,
   realtimeShadows: false,
   postProcessing: false,
 } as const;
