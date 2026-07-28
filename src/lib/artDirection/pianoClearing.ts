@@ -16,12 +16,17 @@ export const PIANO_CLEARING_PERFORMANCE = {
 } as const;
 
 export const PIANO_CLEARING_CAMERA = {
-  position: [9.5, 7.2, 17] as const,
-  target: [-2.1, 1.1, -17.2] as const,
+  position: [18, 8, 22] as const,
+  target: [10.5, 7.1, -8] as const,
   fov: 46,
   referenceAspect: 16 / 9,
   maxVerticalFov: 49,
   maxPointerTravel: 0.08,
+} as const;
+
+export const PIANO_CLEARING_PIANO = {
+  x: 15,
+  z: 9,
 } as const;
 
 export function pianoClearingCameraFov(aspect: number): number {
@@ -69,7 +74,10 @@ export function pianoClearingTerrainHeight(x: number, z: number): number {
   const leftBank = clamp01((riverCenter - riverWidth - x) / 13);
   const foregroundLift = nearField * (rightBank * 2.45 + leftBank * 0.7);
   const farTerrace = clamp01((-z - 21) / 14) * 0.45;
-  const pianoShelf = Math.exp(-(((x - 5.2) ** 2) / 28 + ((z - 4.2) ** 2) / 12)) * 0.09;
+  const pianoShelf = Math.exp(-(
+    ((x - PIANO_CLEARING_PIANO.x) ** 2) / 28
+    + ((z - PIANO_CLEARING_PIANO.z) ** 2) / 12
+  )) * 0.09;
   return 2.45 + broad + foregroundLift + farTerrace - ravine - riverBed - pianoShelf;
 }
 

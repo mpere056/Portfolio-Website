@@ -13,6 +13,7 @@ import {
 } from 'react';
 import {
   PIANO_CLEARING_CAMERA,
+  PIANO_CLEARING_PIANO,
   PIANO_CLEARING_PERFORMANCE,
   pianoClearingCameraFov,
   pianoClearingRiverCenterX,
@@ -23,11 +24,11 @@ import {
 import styles from './PianoClearingProof.module.css';
 
 const GROUND_Y = -1.45;
-const PIANO_X = 5.2;
-const PIANO_Z = 4.15;
+const PIANO_X = PIANO_CLEARING_PIANO.x;
+const PIANO_Z = PIANO_CLEARING_PIANO.z;
 const PIANO_POSITION = new THREE.Vector3(
   PIANO_X,
-  GROUND_Y + pianoClearingTerrainHeight(PIANO_X, PIANO_Z) + 1.12,
+  GROUND_Y + pianoClearingTerrainHeight(PIANO_X, PIANO_Z) + 0.035,
   PIANO_Z,
 );
 const BRIDGE_Z = -17.2;
@@ -419,7 +420,7 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
   return <mesh geometry={geometry} material={material} renderOrder={1} />;
 }
 
-function samplePianoGeometry(scene: THREE.Group) {
+function samplePianoGeometry(scene: THREE.Group, modelOffset: THREE.Vector3) {
   scene.updateMatrixWorld(true);
   const vertices: THREE.Vector3[] = [];
   const point = new THREE.Vector3();
@@ -429,7 +430,10 @@ function samplePianoGeometry(scene: THREE.Group) {
     const attribute = child.geometry.getAttribute('position');
     if (!attribute) return;
     for (let index = 0; index < attribute.count; index += 1) {
-      point.fromBufferAttribute(attribute, index).applyMatrix4(child.matrixWorld);
+      point
+        .fromBufferAttribute(attribute, index)
+        .applyMatrix4(child.matrixWorld)
+        .add(modelOffset);
       vertices.push(point.clone());
     }
   });
@@ -455,7 +459,16 @@ function samplePianoGeometry(scene: THREE.Group) {
 
 function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
   const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
-  const geometry = useMemo(() => samplePianoGeometry(scene), [scene]);
+  const modelOffset = useMemo(() => {
+    scene.updateMatrixWorld(true);
+    const bounds = new THREE.Box3().setFromObject(scene);
+    const center = bounds.getCenter(new THREE.Vector3());
+    return new THREE.Vector3(-center.x, -bounds.min.y, -center.z);
+  }, [scene]);
+  const geometry = useMemo(
+    () => samplePianoGeometry(scene, modelOffset),
+    [modelOffset, scene],
+  );
   const ghost = useMemo(() => {
     const clone = scene.clone(true);
     clone.traverse((child) => {
@@ -497,7 +510,7 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
         transformed += normalize(position + vec3(0.001)) * pulse * 0.008 * uMotion;
         vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         vPulse = pulse;
-        gl_PointSize = (1.7 + aSeed * 1.55 + pulse * 0.18 * uMotion) * uDpr * (19.0 / max(2.0, -viewPosition.z));
+        gl_PointSize = (1.15 + aSeed * 0.95 + pulse * 0.12 * uMotion) * uDpr * (19.0 / max(2.0, -viewPosition.z));
         gl_Position = projectionMatrix * viewPosition;
       }
     `,
@@ -506,12 +519,15 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vPulse;
       void main() {
         vec2 centered = gl_PointCoord - 0.5;
-        float circle = 1.0 - smoothstep(0.32, 0.5, length(centered));
-        vec3 blue = vec3(0.16, 0.46, 0.72);
-        vec3 ivory = vec3(0.94, 0.72, 0.29);
-        vec3 color = mix(blue, ivory, smoothstep(0.42, 0.95, vSeed));
-        float light = 0.62 + (vPulse * 0.5 + 0.5) * 0.24;
-        gl_FragColor = vec4(color * light, circle * (0.52 + vSeed * 0.28));
+        float radius = length(centered);
+        float core = 1.0 - smoothstep(0.1, 0.3, radius);
+        float halo = 1.0 - smoothstep(0.2, 0.5, radius);
+        vec3 pearl = vec3(1.0, 0.97, 0.88);
+        vec3 coolLight = vec3(0.74, 0.88, 0.92);
+        vec3 color = mix(pearl, coolLight, smoothstep(0.72, 0.98, vSeed) * 0.38);
+        float light = 0.78 + (vPulse * 0.5 + 0.5) * 0.16;
+        float alpha = core * 0.5 + halo * 0.14;
+        gl_FragColor = vec4(color * light, alpha * (0.4 + vSeed * 0.16));
       }
     `,
   }), [reducedMotion]);
@@ -529,7 +545,7 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       rotation={[0, -0.42, 0]}
       scale={1.42}
     >
-      <primitive object={ghost} renderOrder={-1} />
+      <primitive object={ghost} position={modelOffset} renderOrder={-1} />
       <points geometry={geometry} material={material} frustumCulled={false} />
     </group>
   );

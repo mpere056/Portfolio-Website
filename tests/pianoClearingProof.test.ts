@@ -3,6 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   PIANO_CLEARING_CAMERA,
+  PIANO_CLEARING_PIANO,
   PIANO_CLEARING_PERFORMANCE,
   pianoClearingCameraFov,
   pianoClearingRiverCenterX,
@@ -29,17 +30,28 @@ describe('piano clearing Home proof', () => {
   });
 
   it('uses a restrained oblique overlook from the sunlit right meadow', () => {
-    expect(PIANO_CLEARING_CAMERA.position[0]).toBeGreaterThan(8);
-    expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThan(14);
-    expect(PIANO_CLEARING_CAMERA.target[0]).toBeLessThan(0);
+    expect(PIANO_CLEARING_CAMERA.position[0]).toBeGreaterThanOrEqual(18);
+    expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThanOrEqual(22);
+    expect(PIANO_CLEARING_CAMERA.target[0]).toBeGreaterThan(9);
     expect(PIANO_CLEARING_CAMERA.position[1] - PIANO_CLEARING_CAMERA.target[1])
-      .toBeGreaterThan(5.5);
-    expect(PIANO_CLEARING_CAMERA.target[2]).toBeLessThan(-14);
+      .toBeGreaterThan(0.5);
+    expect(PIANO_CLEARING_CAMERA.target[2]).toBeLessThan(-6);
     expect(pianoClearingCameraFov(16 / 9)).toBe(PIANO_CLEARING_CAMERA.fov);
     expect(pianoClearingCameraFov(1.22)).toBeGreaterThan(PIANO_CLEARING_CAMERA.fov);
     expect(pianoClearingCameraFov(1.22)).toBeLessThanOrEqual(
       PIANO_CLEARING_CAMERA.maxVerticalFov,
     );
+  });
+
+  it('places the piano on the near right meadow, safely outside the ravine', () => {
+    const riverCenter = pianoClearingRiverCenterX(PIANO_CLEARING_PIANO.z);
+    const riverClearance = pianoClearingRiverWidth(PIANO_CLEARING_PIANO.z);
+
+    expect(PIANO_CLEARING_PIANO.x - riverCenter).toBeGreaterThan(riverClearance + 12);
+    expect(pianoClearingTerrainHeight(
+      PIANO_CLEARING_PIANO.x,
+      PIANO_CLEARING_PIANO.z,
+    )).toBeGreaterThan(4.5);
   });
 
   it('separates the piano plateau, steep descent, river floor, and opposite hillside', () => {
@@ -83,6 +95,11 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<ParticlePiano reducedMotion={reducedMotion} />');
     expect(component).toContain('<Suspense fallback={null}>');
     expect(component).toContain('opacity: 0.18');
+    expect(component).toContain('new THREE.Box3().setFromObject(scene)');
+    expect(component).toContain('GROUND_Y + pianoClearingTerrainHeight(PIANO_X, PIANO_Z) + 0.035');
+    expect(component).toContain('vec3 pearl = vec3(1.0, 0.97, 0.88)');
+    expect(component).toContain('blending: THREE.NormalBlending');
+    expect(component).not.toContain('vec3 blue = vec3(0.16, 0.46, 0.72)');
     expect(component).toContain('<Stream reducedMotion={reducedMotion} />');
     expect(component).toContain('data-river-flow="far-to-foreground"');
     expect(component).toContain('vUv.y * 46.0 + time * 2.3');
