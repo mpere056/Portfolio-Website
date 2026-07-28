@@ -15,7 +15,7 @@ export default function GuidedTour({ enabled }: { enabled: boolean }) {
   const { store, state, ready } = useExplorationWorld();
   const [choosingRole, setChoosingRole] = useState(false);
 
-  if (!enabled || !ready || pathname === '/chat') return null;
+  if (!enabled || !ready || pathname === '/chat' || pathname === '/presentation') return null;
   const canOffer = state.discovery.firstNoteCompleted || pathname !== '/';
   if (!canOffer) return null;
 

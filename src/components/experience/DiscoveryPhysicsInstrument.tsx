@@ -43,7 +43,7 @@ export default function DiscoveryPhysicsInstrument({
     return () => query.removeEventListener('change', update);
   }, [store]);
 
-  if (!ready || !signal || pathname === '/chat') return null;
+  if (!ready || !signal || pathname === '/chat' || pathname === '/presentation') return null;
   if (pathname === '/' && !world.discovery.firstNoteCompleted) return null;
 
   const handlePanelPointerMove = (event: PointerEvent<HTMLElement>) => {

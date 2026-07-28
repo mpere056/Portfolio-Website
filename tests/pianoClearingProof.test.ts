@@ -164,8 +164,7 @@ describe('piano clearing Home proof', () => {
     expect(homePage).toContain('<PianoClearingProof />');
     expect(homePage).toContain('href="/presentation"');
     expect(homePage).toContain('Tomorrow&apos;s presentation');
-    expect(presentationPage).toContain('data-presentation-stage="temporary"');
+    expect(presentationPage).toContain('<AboutPresentation />');
     expect(presentationPage).toContain('robots: { index: false, follow: false }');
-    expect(presentationPage).toContain('href="/"');
   });
 });

@@ -18,7 +18,7 @@ export default function HiddenDiscoveries({ enabled }: { enabled: boolean }) {
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const available = getAvailableMeaningfulDiscoveries(state.discovery, pathname)[0];
 
-  if (!enabled || !ready || pathname === '/chat') return null;
+  if (!enabled || !ready || pathname === '/chat' || pathname === '/presentation') return null;
   if (pathname === '/' && !state.discovery.firstNoteCompleted) return null;
 
   const discover = (definition: MeaningfulDiscoveryDefinition) => {

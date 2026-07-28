@@ -60,7 +60,7 @@ export default function GlobalAIPresence() {
     activity: ai.presentation.activity,
     contextAvailable: ai.shell.contextAvailable,
   });
-  if (!ai.enabled || ai.context.route === '/chat') return null;
+  if (!ai.enabled || ai.context.route === '/chat' || ai.context.route === '/presentation') return null;
   if (!ai.shell.open && ai.context.route === '/') return null;
 
   if (!ai.shell.open) {
