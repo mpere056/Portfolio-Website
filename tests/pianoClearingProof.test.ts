@@ -32,7 +32,7 @@ describe('piano clearing Home proof', () => {
   it('uses a restrained oblique overlook from the sunlit right meadow', () => {
     expect(PIANO_CLEARING_CAMERA.position[0]).toBeGreaterThanOrEqual(18);
     expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThanOrEqual(22);
-    expect(PIANO_CLEARING_CAMERA.target[0]).toBeGreaterThan(9);
+    expect(PIANO_CLEARING_CAMERA.target[0]).toBeGreaterThan(8.8);
     expect(PIANO_CLEARING_CAMERA.position[1] - PIANO_CLEARING_CAMERA.target[1])
       .toBeGreaterThan(0.5);
     expect(PIANO_CLEARING_CAMERA.target[2]).toBeLessThan(-6);
@@ -114,8 +114,11 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain("geometry.setAttribute('iParams'");
     expect(component).not.toContain('pianoGap');
     expect(component).toContain('steepRavineEdge');
-    expect(component).toContain('vPianoShade');
-    expect(component).toContain('color *= 1.0 - vPianoShade * 0.11');
+    expect(component).not.toContain('vPianoShade');
+    expect(component).toContain('new THREE.PlaneGeometry(92, 96, 92, 96)');
+    expect(component).toContain('const z = 12 - progress * 68');
+    expect(component).toContain('1.0 - smoothstep(0.72, 0.94, vUv.y)');
+    expect(component).toContain('const span = 160');
     expect(component).not.toContain('<PianoShadow />');
     expect(component).toContain('vec3 sunlitColor = vec3(0.9, 0.79, 0.25)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');

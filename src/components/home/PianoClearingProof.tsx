@@ -50,7 +50,7 @@ function seededRandom(seed: number) {
 }
 
 function createGroundGeometry() {
-  const geometry = new THREE.PlaneGeometry(78, 68, 72, 64);
+  const geometry = new THREE.PlaneGeometry(92, 96, 92, 96);
   const positions = geometry.attributes.position;
 
   for (let index = 0; index < positions.count; index += 1) {
@@ -150,7 +150,6 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
-      varying float vPianoShade;
       void main() {
         vUv = uv;
         vec3 blade = position;
@@ -192,11 +191,6 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         ) * uv.y * uWind;
         vBend = clamp(abs(breeze) * 4.4 + gust * 0.38, 0.0, 1.0);
         vVariation = variation;
-        vPianoShade = 1.0 - smoothstep(
-          0.55,
-          2.05,
-          distance(root.xz, vec2(${PIANO_X.toFixed(2)}, ${PIANO_Z.toFixed(2)}))
-        );
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -210,7 +204,6 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
-      varying float vPianoShade;
       void main() {
         vec3 baseColor = vec3(0.205, 0.365, 0.318);
         vec3 lowColor = vec3(0.292, 0.463, 0.324);
@@ -230,7 +223,6 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
-        color *= 1.0 - vPianoShade * 0.11;
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
       }
@@ -335,11 +327,11 @@ function createStreamGeometry() {
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
-  const segments = 72;
+  const segments = 96;
 
   for (let index = 0; index <= segments; index += 1) {
     const progress = index / segments;
-    const z = 10 - progress * 47;
+    const z = 12 - progress * 68;
     const centerX = pianoClearingRiverCenterX(z);
     const width = pianoClearingRiverWidth(z);
     const y = GROUND_Y + pianoClearingTerrainHeight(centerX, z) + 0.42;
@@ -406,7 +398,8 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
         vec3 color = mix(shallow, middleBlue, plateA);
         color = mix(color, deep, plateB);
         color = mix(color, sun, light * 0.58 + bankFoam * 0.045);
-        float alpha = (0.9 + travellingPool * 0.08) * bank;
+        float farFade = 1.0 - smoothstep(0.72, 0.94, vUv.y);
+        float alpha = (0.9 + travellingPool * 0.08) * bank * farFade;
         gl_FragColor = vec4(color, alpha);
       }
     `,
@@ -670,8 +663,8 @@ function RidgeBand({
   const geometry = useMemo(() => {
     const positions: number[] = [];
     const indices: number[] = [];
-    const span = 84;
-    const subdivisions = 36;
+    const span = 160;
+    const subdivisions = 72;
 
     for (let index = 0; index <= subdivisions; index += 1) {
       const progress = index / subdivisions;
