@@ -24,19 +24,19 @@ Mark found the deployed five-band candidate better but still unlike the supplied
 
 Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
-Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. A temporary no-index `/presentation` staging route and Home doorway exist for Mark's next-day presentation, but presentation content awaits his brief. The pianist, practice screens, environment preview, selected states, and project reveal do not exist.
+Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway now opens a no-index, 10-slide About presentation built from the reviewed About timeline; it uses sparse speaker-led copy, route-specific animated diagrams, direct progress controls, swipe, keyboard navigation, fullscreen support, and a distraction-free presentation mode. The pianist, practice screens, environment preview, selected states, and project reveal do not exist.
 
 ## Resume Packet
 
-- Current implementation baseline: commit `fa1e85c` on `main`, live through Git-connected Production.
-- Current implementation: canonical Home renders the farther-right `Dusk Refrain` independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano; a compact temporary presentation doorway links to `/presentation`.
+- Current implementation baseline: commit `6477e5c` on `main`, pending Git-connected Production.
+- Current implementation: canonical Home renders the farther-right `Dusk Refrain` independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano; its doorway links to a complete 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 41-route production build, built presentation browser review, and built Home response-marker/link checks pass.
+- Verification: focused lint, TypeScript, 58 test files / 243 tests across the aggregate and isolated timeout rerun, content validation, the clean 41-route production build, and built browser review of slides `1`, `4`, `6`, `8`, `9`, and `10` pass.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
-- Safe exposure: provisional canonical Home; no-index proof rollback route; no-index temporary presentation staging route; Projects unchanged.
-- Deployment: canonical `/`, rollback `/home-world-proof`, and staging `/presentation` return `200`; the expected dusk, doorway, and temporary-stage markers are live.
+- Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
+- Deployment: commit `6477e5c` awaits Git push and Git-connected Production verification.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: collect Mark's presentation brief and canonical Home visual/performance review. Do not treat provisional exposure as Checkpoint `B` acceptance.
+- Next exact action: publish `6477e5c`, collect Mark's deck rehearsal feedback, and continue the separate canonical Home visual/performance review. Do not treat provisional exposure as Checkpoint `B` acceptance.
 
 ## Ordered Checkpoints
 
@@ -85,6 +85,14 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 - Generic anchors, proof-derived landmarks, and then complete proximity-weighted proof worlds were tried on the private route.
 - `EV-ART-16-01` records the rejected landmark candidate.
 - `EV-ART-16-02` records the rejected full-world compositor candidate deployed in `dpl_CLa1FpfccCtbQcNMKMYHHYahxQib`.
+
+### 2026-07-28 About Presentation
+
+- Commit `6477e5c` replaces the empty presentation staging room with a no-index, 10-slide About deck based on the reviewed timeline.
+- The deck covers piano discipline, systems curiosity, community leadership, the 2019 break, academic rebuilding, AI leverage, Dreamlife, four current practices, and the recurring systems thread.
+- Every slide has a distinct lightweight CSS/SVG visual instrument; the route supports buttons, direct slide markers, keyboard navigation, swipe, fullscreen, and reduced motion.
+- Global tour, discovery, semantic-signal, archive-AI, and audio chrome remain available elsewhere but are suppressed on `/presentation`.
+- Focused tests, TypeScript, focused lint, content validation, the 41-route production build, and built one-screen browser review pass. Two resource-heavy project tests exceeded their five-second limit during the concurrent aggregate run and passed immediately in isolation.
 
 ### 2026-07-27 Source-Guided Revision
 

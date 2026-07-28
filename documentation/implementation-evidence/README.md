@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-24
+Last updated: 2026-07-28
 
 ## Purpose
 
@@ -63,6 +63,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-14` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-15` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-17` | `ART-16` | candidate | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -112,6 +113,7 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-14` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-15` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | candidate | `ART-16.md` |
+| `EV-ART-16-17` | `ART-16` | candidate | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -271,6 +273,7 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-16-14` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build / production / browser-flow / visual-review | candidate | Commits through `a2eaaff`: farther-right camera with `0.18` bounded pointer travel, GLTF-grounded pearl piano, continuous foreground grass, `0.52` wind, damped `3.2`-unit terrain-local wake, empty viaduct, and seven distant birds in one instanced draw; 240 tests, TypeScript, lint, content validation, local `1080 x 894` review, and the 40-route build pass | 2026-07-28 | `ART-16.md` |
 | `EV-ART-16-15` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build / browser-flow / visual-review | candidate | Commit `4eb4266` is live at `/home-world-proof` with the `dusk-refrain` marker; every scene layer uses the supplied blue-hour hierarchy without changing geometry or runtime budgets; 240 tests, TypeScript, lint, content validation, and the 40-route build pass; direct visual acceptance remains | 2026-07-28 | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build / production / browser-flow / release-decision | candidate | Commit `fa1e85c` provisionally promotes the unchanged dusk valley to canonical `/` with a temporary `/presentation` doorway; canonical, rollback, and staging routes return `200`, proof/staging routes remain no-index, and 240 tests plus the 41-route build pass | 2026-07-28 | `ART-16.md` |
+| `EV-ART-16-17` | `ART-16` | `CAP-ART-017` | implementation-test / build / browser-flow / visual-review | candidate | Commit `6477e5c` replaces the staging room with a no-index 10-slide About deck, route-specific animated diagrams, direct/keyboard/swipe navigation, fullscreen, reduced motion, and presentation-only chrome suppression; 243 assertions pass across aggregate and isolated reruns, and six representative slides pass built-browser review | 2026-07-28 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

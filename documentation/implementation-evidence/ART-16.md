@@ -228,12 +228,26 @@ Last updated: 2026-07-28
 | Production evidence | Commit `fa1e85c` is pushed to `main` and live through Git-connected Production. `/` returns `200` with the `dusk-refrain` marker and `/presentation` doorway; `/home-world-proof` returns `200` with the dusk marker; `/presentation` returns `200` with the temporary-stage marker. |
 | Visual evidence | Mark explicitly requested provisional Home promotion while noting the valley is not perfect; Checkpoint `B` therefore remains in review rather than accepted. |
 
+## EV-ART-16-17: About Presentation Deck
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | The Home doorway can open a concise, presenter-led account of Mark's story without copying the supplied reference deck or inheriting the portfolio's exploratory chrome. |
+| Scope | Commit `6477e5c` replaces the empty staging room with 10 authored slides grounded in the reviewed About timeline. The deck uses sparse copy, distinct CSS/SVG visual instruments, direct progress controls, previous/next controls, keyboard navigation, swipe, fullscreen support, reduced motion, and a Home return. It suppresses the global tour, discovery prompt, semantic signal, archive AI, and site audio only on `/presentation`. |
+| Runtime policy | CSS and inline SVG only; no image-generation asset, WebGL canvas, post-processing, or new runtime dependency. One slide is mounted at a time, and reduced-motion preferences collapse authored animation durations. |
+| Automated evidence | Focused presentation tests, TypeScript, focused ESLint, content validation, and the clean 41-route Production build pass. The complete suite covers 58 files / 243 tests; two unrelated heavy project tests timed out only during the concurrent aggregate run and all five assertions passed in an isolated rerun. |
+| Browser evidence | The built route renders as one viewport with no global portfolio overlays. Slides `1`, `4`, `6`, `8`, `9`, and `10` were visually reviewed at `1280 x 720`; direct marker navigation and disabled boundary controls work, and every reviewed slide preserves readable speaker-led hierarchy. |
+| Production evidence | Pending Git push and Git-connected Production verification. |
+| Visual evidence | Candidate for Mark's rehearsal review; factual emphasis, ordering, and visual pacing remain adjustable without changing the presentation shell. |
+
 ## Named Gaps
 
 - The independent-blade pastoral viaduct valley and grounded pearl piano have not received visual or target-machine performance acceptance from Mark.
 - The `Dusk Refrain` color script is technically verified but still needs Mark's direct visual acceptance and any final palette tuning.
 - The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
-- The pianist/About entry is not built.
+- The Home-world pianist/About entry is not built; the separate About presentation does not satisfy that future checkpoint.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.

@@ -200,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
-| Candidate | 14 | Includes the provisional canonical Home promotion and temporary presentation doorway; no candidate is being treated as final creative acceptance |
+| Candidate | 15 | Includes the provisional canonical Home promotion and the complete About presentation candidate; neither is being treated as final creative acceptance |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |
