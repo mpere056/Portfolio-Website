@@ -79,7 +79,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain("geometry.setAttribute('iRoot'");
     expect(component).toContain("geometry.setAttribute('iParams'");
-    expect(component).toContain('pianoGap < 1.05');
+    expect(component).not.toContain('pianoGap');
     expect(component).toContain('steepRavineEdge');
     expect(component).toContain('vPianoShade');
     expect(component).toContain('color *= 1.0 - vPianoShade * 0.11');

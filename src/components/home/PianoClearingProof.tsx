@@ -90,7 +90,6 @@ function createGrassGeometry() {
     const riverCenter = pianoClearingRiverCenterX(z);
     const riverWidth = pianoClearingRiverWidth(z);
     const streamGap = Math.abs(x - riverCenter);
-    const pianoGap = Math.hypot((x - PIANO_POSITION.x) * 0.9, z - PIANO_POSITION.z);
     const height = pianoClearingTerrainHeight(x, z);
     const slopeX = Math.abs(
       pianoClearingTerrainHeight(x + 0.35, z)
@@ -103,7 +102,6 @@ function createGrassGeometry() {
     const steepRavineEdge = streamGap < riverWidth + 4.8 && slopeX + slopeZ > 0.92;
     if (
       streamGap < riverWidth + 1.08
-      || pianoGap < 1.05
       || steepRavineEdge
       || height < -1.8
     ) continue;
