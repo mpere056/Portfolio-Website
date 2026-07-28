@@ -22,21 +22,21 @@ Mark reviewed the first Checkpoint `B` clearing and requested a more specific co
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. The current candidate moves to an elevated right-meadow overlook, looks modestly across and down into the valley, restrains the tall-window lens, and keeps the bridge broad with river below, golden foreground, and open sky.
+Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate and replaces saturated blue/gold piano points with pearl/cool-white light.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `de4596d` on `main`; creative review and target-machine performance review remain.
-- Current implementation: restrained oblique right-meadow independent-blade viaduct Checkpoint `B` candidate is deployed and fully verified technically.
+- Current implementation commit: `48ef8ba` on `main`; creative review and target-machine performance review remain.
+- Current implementation: farther-right independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano is fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 239 tests, the clean 40-route production build, and Production browser inspection pass; the Git-connected deployment is live.
+- Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route production build, and local `1080 x 894` browser inspection pass.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: Git-connected Production for `de4596d` is live.
+- Deployment: Git-connected Production for `48ef8ba`.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: collect only camera angle/position, source composition/styling, piano readability, and target-machine smoothness review.
+- Next exact action: collect only farther-right camera placement, piano terrain contact/lower-center framing, pale particle readability, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -127,6 +127,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Commit `de4596d` moves the eye to an elevated right-meadow position, aims across and down into the valley, restrains the lens to `46-49` degrees, and moves oversized translucent foliage back to the frame edges.
 - All 57 test files / 239 tests, TypeScript, focused lint, content validation, the clean 40-route Production build, and local/Production `1080 x 894` browser review pass.
 - Git-connected Production for `de4596d` is live. Checkpoint `B` remains in review.
+
+### 2026-07-28 Grounded Meadow-Piano Revision
+
+- Mark requested farther-right camera travel, a lower-center piano firmly on the grass, and removal of the saturated blue/gold dots.
+- Commit `48ef8ba` moves the camera and piano farther into the right meadow, derives the model's terrain contact from its true GLTF bounds, and replaces the saturated point palette with fine pearl/cool-white light.
+- All 57 test files / 240 tests, TypeScript, focused lint, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
+- Checkpoint `B` remains in review; no pianist or practice-screen work begins before acceptance.
 
 ### 2026-07-26
 

@@ -72,7 +72,10 @@ The current Checkpoint `B` implementation intentionally contains:
 - one path-aligned shader-driven water ribbon with painted depth plates and downstream travel;
 - one dark five-arch viaduct and bounded three-car train used as middle-distance depth cues from the supplied source;
 - one sky shader, hemisphere light, directional light, fog, and shader-only piano grounding;
-- elevated fixed right-meadow overlook with modest off-axis valley angle, at most `0.08` world units of pointer travel, and restrained `46-49` degree aspect-aware field-of-view fitting;
+- fixed farther-right meadow overlook with modest off-axis valley angle, at most `0.08` world units of pointer travel, and restrained `46-49` degree aspect-aware field-of-view fitting;
+- river-safe foreground piano coordinate projected near horizontal center and roughly one quarter viewport height above the bottom;
+- geometry-aware piano normalization that recenters the sampled GLTF and aligns its true lowest vertex to the local terrain rather than using a guessed vertical offset;
+- pearl and cool-white light particles over a restrained translucent silhouette, without saturated blue/gold point-cloud coloring;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -143,4 +146,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Mark clarified that this still did not match: the camera needed to change angle modestly and move physically back along the grass field rather than widen a centered ravine view.
 - Commit `de4596d` moves the eye to an elevated right-meadow overlook, keeps the viaduct broad and approximately horizontal, places the river below it, retains golden foreground and open sky, and moves translucent edge foliage out of the center.
 - Focused lint, TypeScript, all 57 test files / 239 tests, content validation, the clean 40-route Production build, and local/Production `1080 x 894` browser review pass. Git-connected Production for `de4596d` is live.
-- Exact next action: collect only Checkpoint `B` camera angle/position, source composition/styling, piano readability, and target-machine performance answers.
+- Mark requested farther-right camera travel, a lower-center piano physically resting on the meadow, and pale light particles instead of saturated blue/gold dots.
+- Commit `48ef8ba` moves the eye and piano farther into the right meadow, projects the piano into the lower-center foreground, grounds its true GLTF bottom to sampled terrain, and replaces the saturated point palette with pearl/cool-white light.
+- Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
+- Exact next action: collect only Checkpoint `B` farther-right camera, terrain contact, lower-center piano readability, particle restraint, and target-machine performance answers.

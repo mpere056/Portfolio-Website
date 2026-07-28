@@ -1,18 +1,18 @@
 # ART-16 Evidence
 
-Last updated: 2026-07-27
+Last updated: 2026-07-28
 
 ## Package Snapshot
 
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; oblique meadow-overlook revision deployed and in review |
+| Lifecycle | in-progress; grounded meadow-piano revision pushed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Independent-blade valley with restrained oblique meadow-overlook camera deployed through `de4596d` |
+| Implementation | Independent-blade valley with right-meadow camera and geometry-grounded pearl particle piano through `48ef8ba` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Git-connected Production for `de4596d` is live |
+| Deployment | Git-connected Production for `48ef8ba` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -176,7 +176,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / browser-flow / visual-review |
 | Claim | Moving the camera physically onto the right meadow, elevating it above the foreground slope, and using a restrained off-axis lens produces the source's compositional grammar more faithfully than widening a centered ravine view. |
 | Scope | The camera moves laterally and upward on the right field, looks modestly across and down into the valley, and uses a `46` degree base lens with a tightly bounded `49` degree tall-window fit. The viaduct stays broad and approximately horizontal, the river sits beneath it, the golden field occupies the near-right foreground, and the sky remains open. Oversized translucent foliage moves back to the frame edges with lower opacity. Terrain, meadow, water, viaduct/train, particle piano, and runtime budget remain unchanged. |
@@ -184,15 +184,29 @@ Last updated: 2026-07-27
 | Automated evidence | All 57 test files / 239 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the lateral meadow position, elevated valley-facing pitch, restrained base/tall-window lens, and existing bounded renderer policy. |
 | Browser evidence | Local and Production `1080 x 894` review, matching Mark's latest tall viewport, confirms a broad horizontal bridge, river below it, golden foreground slope, open pale sky, modest off-axis perspective, and edge foliage no longer dominating the center. |
 | Production evidence | Commit `de4596d` is pushed to `main` and live through Git-connected Production at `/home-world-proof`. |
-| Visual evidence | Awaiting Mark review of the new physical camera position and source-composition likeness. |
+| Visual evidence | Mark requested the camera continue farther right, the piano move to the lower center and sit physically on the meadow, and the saturated blue/gold piano points return to a pale light-particle language. |
+
+## EV-ART-16-14: Grounded Meadow-Piano Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | A farther-right meadow camera plus geometry-aware model normalization can place the piano unmistakably on the foreground grass at the lower center without visual overlap with the ravine, while a pearl/cool-white particle palette preserves the earlier luminous piano language. |
+| Scope | Camera advances farther right along the near meadow and aims across the valley from a restrained low-grazing angle. The piano moves to a high, river-safe right-bank coordinate and projects near horizontal center at roughly one quarter of the viewport above the bottom. Its sampled GLTF bounds now recenter the model and align its true lowest vertex to the terrain sample, replacing the former guessed vertical offset. Saturated blue/gold points are replaced by smaller pearl and cool-white particles over the existing translucent silhouette. |
+| Runtime policy | One existing canvas; unchanged `9,000`-point piano and `220,000`-blade meadow budgets; DPR capped at `1.25`; one cached model-bounds calculation; no new draw systems, post-processing, shadows, or physics. |
+| Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the farther-right camera, river-safe high-meadow piano coordinate, geometry-aware grounding, and non-saturated particle treatment. |
+| Browser evidence | Local `1080 x 894` review confirms the piano is lower-center on visible foreground grass, the bridge remains a separate middle-distance cue, and the former blue/gold dots are replaced by fine pale light particles. |
+| Production evidence | Commit `48ef8ba` is pushed to `main` for Git-connected Production at `/home-world-proof`. |
+| Visual evidence | Awaiting Mark review of camera placement, terrain contact, piano readability, and particle restraint. |
 
 ## Named Gaps
 
-- The independent-blade pastoral viaduct valley has not received visual or target-machine performance acceptance from Mark.
+- The independent-blade pastoral viaduct valley and grounded pearl piano have not received visual or target-machine performance acceptance from Mark.
 - The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.
 - Hover environmental preview and selected environment replacement are not built.
 - Project reveal, history, restore, route migration, and public release are not built.
 
-The next action is to review only the independent meadow's source likeness, continuity, wind behavior, composition, and target-machine smoothness. No later checkpoint begins until that environment is accepted.
+The next action is to review only the right-meadow camera, piano terrain contact, lower-center composition, pale particle treatment, and target-machine smoothness. No later checkpoint begins until that environment is accepted.

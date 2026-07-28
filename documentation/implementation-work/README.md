@@ -10,7 +10,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`de4596d` is the current deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the restrained oblique right-meadow particle-piano viaduct valley for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
+`48ef8ba` is the current implementation baseline and the public route structure is unchanged. `WI-ART-16-01` now exposes the farther-right meadow view with a geometry-grounded lower-center pearl particle piano for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
