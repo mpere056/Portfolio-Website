@@ -97,7 +97,7 @@ The current Checkpoint `B` implementation intentionally contains:
 
 Mark reviews only a short list:
 
-1. Does this feel like the right warm, hand-painted pastoral world?
+1. Does `Dusk Refrain` match the supplied blue-hour hierarchy: blue upper sky, pink horizon, violet depth, rose grass, and dark indigo structures?
 2. Is the particle piano the right size, position, angle, density, and visual focus?
 3. Does the piano unmistakably sit above a valley-floor river, with a visible descent, distant landscape, open sky, and a few clouds without suggesting a full explorable map?
 4. Do water, grass, particles, clouds, and light make the scene alive enough while remaining calm?
@@ -152,5 +152,6 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Commit `223d226` extends the existing independent-blade distribution through the camera-facing terrain edge, eliminating the final bare foreground strip without increasing the 220,000-blade budget or draw count.
 - Commit `406634a` quiets idle blade wind to `0.52`, smooths both the terrain hit and movement-energy envelope so nearby grass wakes without snapping, and increases bounded camera pointer travel from `0.08` to `0.18`; the response remains shader-only and disabled by reduced-motion.
 - Commit `a2eaaff` removes the train while retaining the viaduct, contracts the cursor wake from `4.2` to `3.2` world units, and adds seven independently phased distant birds in one instanced draw.
+- Commit `b85ed5e` preserves that geometry, camera, interaction, and animation state while translating sky, fog, lights, landscape, vegetation, water, bridge, piano, particles, and page atmosphere into the supplied dusk palette.
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
-- Exact next action: collect only Checkpoint `B` farther-right camera, terrain contact, lower-center piano readability, particle restraint, and target-machine performance answers.
+- Exact next action: collect only Checkpoint `B` dusk-palette, piano/structure readability, terrain contact, motion, and target-machine performance answers.

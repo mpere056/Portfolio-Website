@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-27
-Implementation commit baseline: `5718cd8`; artifact-cleaned farther-right meadow and geometry-grounded pearl piano pushed and awaiting Mark review; public route structure unchanged
+Last reconciled: 2026-07-28
+Implementation commit baseline: `b85ed5e`; the grounded meadow-piano valley now uses the supplied `Dusk Refrain` blue-hour color script and awaits Mark review; public route structure unchanged
 
 ## Plan Metadata
 
@@ -15,7 +15,7 @@ Implementation commit baseline: `5718cd8`; artifact-cleaned farther-right meadow
 
 ## Current Program State
 
-**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its grounded lower-center meadow-piano revision is pushed and awaits Mark review.**
+**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its grounded lower-center `Dusk Refrain` revision is technically verified and awaits Mark review.**
 
 Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The new direction uses one fixed pastoral river valley, the particle grand piano, a future pianist/About entry, and four future category screens. Hover will later introduce one translucent category influence; selection will later transform the clearing into that category environment. Public `/` and `/projects` remain unchanged until additive visual, project, navigation, performance, and rollback gates pass.
 
@@ -29,10 +29,10 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | grounded meadow-piano valley in review | on-track | Farther-right particle-piano viaduct vista passes scene-budget, 240 tests, TypeScript, build, and local tall-viewport gates | Mark creative/performance acceptance | Review `/home-world-proof` |
+| `O-01` Persistent exploratory world | dusk meadow-piano valley in review | on-track | `Dusk Refrain` preserves the farther-right particle-piano viaduct vista and passes scene-budget, 240 tests, TypeScript, and build gates | Mark creative/performance acceptance | Review `/home-world-proof` |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | grounded-piano Checkpoint `B` revision | on-track | Farther-right eye frames a river-safe, geometry-grounded lower-center pearl piano on the meadow with the viaduct retained behind it | Mark accepts the world before pianist or screens | Review `ART-16B` |
+| `O-04` Home work world | dusk-piano Checkpoint `B` revision | on-track | Farther-right eye frames a river-safe lower-center pearl piano while the full scene adopts the supplied blue/pink/violet dusk hierarchy | Mark accepts the world before pianist or screens | Review `ART-16B` |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `de4596d`, Git-connected Production, 239 tests, 40-route build, and local/Production `1080 x 894` visual pass | Collect camera-angle, source-composition, piano-readability, and smoothness review | 2026-07-28 |
+| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `b85ed5e`, 240 tests, content validation, TypeScript/lint, and 40-route build; deployment pending | Collect dusk-palette, piano/structure readability, motion, and smoothness review | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 
@@ -200,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
-| Candidate | 12 | Includes the pushed `ART-16` geometry-grounded lower-center pearl particle-piano viaduct valley; no candidate is being treated as final creative acceptance |
+| Candidate | 13 | Includes the pushed `ART-16` geometry-grounded piano valley and its technically verified `Dusk Refrain` color-script revision; no candidate is being treated as final creative acceptance |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |
@@ -212,6 +212,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
 | 2026-07-28 | Cleared the viaduct and animated the distant sky | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-14` | Commit `a2eaaff` removes the train, retains the five-arch viaduct, adds seven independently gliding/flapping birds in one instanced draw, and contracts the smooth cursor wake from `4.2` to `3.2` world units. Local `1080 x 894` review confirms an empty viaduct and restrained readable flock; 240 tests, TypeScript, focused lint, content validation, and the 40-route build pass. |
+| 2026-07-28 | Translated the complete valley into Dusk Refrain | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-15` | Commit `b85ed5e` preserves composition, motion, and runtime budgets while retuning every scene layer into the supplied blue-sky, pink-horizon, violet-depth, rose-meadow, and indigo-structure hierarchy. All 240 tests, TypeScript, focused lint, content validation, and the 40-route build pass; direct visual acceptance remains. |
 | 2026-07-28 | Smoothed meadow attention and widened camera breathing | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-14` | Commit `406634a` reduces ambient blade sway to `0.52`, damps the terrain hit and cursor-energy envelope, softens the local wake across a `4.2`-unit falloff, and raises bounded camera pointer travel from `0.08` to `0.18`. The shader-only change preserves the 220,000-blade and single-draw budgets; TypeScript, focused lint, 240 tests, content validation, and the clean 40-route build pass. |
 | 2026-07-28 | Closed the final foreground grass boundary | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-14` | Mark confirmed the earlier valley artifacts were fixed but found one bare strip at the camera-facing edge. Commit `223d226` extends the existing 220,000-blade distribution from world `z=11` to `z=24` with no additional draw call or blade budget. TypeScript, focused lint, 240 tests, content validation, clean 40-route build, and local `1080 x 894` visual review pass. |
 | 2026-07-28 | Removed final valley framing artifacts | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-14` | Mark found the grounded-piano candidate almost usable but identified an artificial grass patch, jagged distant ridge edges, a bright valley wedge, and a need for slight leftward camera rotation. Commit `5718cd8` removes piano-local grass shading, extends/smooths the valley and water, fades the stream before its endpoint, widens ridge meshes beyond the frustum, and yaws the camera slightly left. TypeScript, focused lint, 240 tests, content validation, clean build, and local `1080 x 894` review pass. |

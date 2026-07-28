@@ -200,9 +200,24 @@ Last updated: 2026-07-28
 | Production evidence | Commits through `a2eaaff` are pushed to `main` and live through Git-connected Production at `/home-world-proof`; the public marker reports `data-distant-birds="7"` and `data-grass-cursor="terrain-local-3.2"`. |
 | Visual evidence | Awaiting Mark review of camera placement, terrain contact, piano readability, and particle restraint. |
 
+## EV-ART-16-15: Dusk Refrain Color-Script Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | The accepted valley composition can adopt the supplied blue-hour reference without flattening the scene into a page tint by translating color at every material and atmosphere layer. |
+| Scope | Commit `b85ed5e` preserves camera, terrain, river path, bridge, grass motion, cursor wake, birds, and piano placement while retuning the sky shader, horizon bloom, fog, lights, clouds, hills, trees, grass, ground, water, viaduct, rocks, flowers, particles, piano shell, and CSS atmosphere into a blue/pink/violet dusk hierarchy. The proof is named `Dusk Refrain` and exposes `data-color-script="dusk-refrain"`. |
+| Runtime policy | No new geometry, draw calls, post-processing, shadows, textures, or animation systems. The existing 220,000-blade meadow, 9,000-point piano, instanced birds, capped DPR, hidden-tab policy, and reduced-motion behavior are unchanged. |
+| Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the dusk marker, label, piano opacity, particle palette, and grass palette. |
+| Browser evidence | The local route loads the complete scene and exposes the dusk marker and title. Automated WebGL screenshot capture timed out on the GPU-heavy page, so final color balance remains a direct-browser review gate rather than a claimed visual acceptance. |
+| Production evidence | Pending Git-connected deployment after this record is pushed. |
+| Visual evidence | Awaiting Mark review against the supplied blue-sky, pink-horizon, violet-meadow reference. |
+
 ## Named Gaps
 
 - The independent-blade pastoral viaduct valley and grounded pearl piano have not received visual or target-machine performance acceptance from Mark.
+- The `Dusk Refrain` color script is technically verified but still needs Mark's direct visual acceptance and any final palette tuning.
 - The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
 - The pianist/About entry is not built.
 - The four category screens are not designed or built.

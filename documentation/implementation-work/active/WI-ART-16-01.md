@@ -140,6 +140,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Commit `a2eaaff` contracts the cursor wake from `4.2` to `3.2` world units, removes the train without changing the viaduct, and adds seven independently phased distant birds in one instanced draw.
 - Checkpoint `B` remains in review; no pianist or practice-screen work begins before acceptance.
 
+### 2026-07-28 Dusk Refrain Color-Script Revision
+
+- Mark supplied a blue-hour target and requested that the existing valley retain its composition while adopting the target's blue sky, pink horizon, violet depth, rose meadow, and dark indigo structures.
+- Commit `b85ed5e` retunes every visible scene layer rather than applying one global tint; topology, motion, interaction, camera, and performance budgets remain unchanged.
+- All 57 test files / 240 tests, TypeScript, focused lint, content validation, and the clean 40-route build pass.
+- Exact resume point: deploy and collect a direct visual review of sky/horizon separation, meadow saturation, piano readability, and structure contrast. Do not begin Checkpoint `C` before Checkpoint `B` is accepted.
+
 ### 2026-07-26
 
 - Mark rejected the full-world compositor and selected a single outdoor piano clearing as the new Home foundation.
