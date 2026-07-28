@@ -81,8 +81,9 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain("geometry.setAttribute('iParams'");
     expect(component).toContain('pianoGap < 1.05');
     expect(component).toContain('steepRavineEdge');
-    expect(component).toContain('scale={[1.7, 0.9, 1]}');
-    expect(component).toContain('opacity={0.12}');
+    expect(component).toContain('vPianoShade');
+    expect(component).toContain('color *= 1.0 - vPianoShade * 0.11');
+    expect(component).not.toContain('<PianoShadow />');
     expect(component).toContain('vec3 sunlitColor = vec3(0.84, 0.78, 0.3)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');

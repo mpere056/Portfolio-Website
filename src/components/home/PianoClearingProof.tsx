@@ -150,6 +150,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
+      varying float vPianoShade;
       void main() {
         vUv = uv;
         vec3 blade = position;
@@ -191,6 +192,11 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         ) * uv.y * uWind;
         vBend = clamp(abs(breeze) * 4.4 + gust * 0.38, 0.0, 1.0);
         vVariation = variation;
+        vPianoShade = 1.0 - smoothstep(
+          0.55,
+          2.05,
+          distance(root.xz, vec2(${PIANO_X.toFixed(2)}, ${PIANO_Z.toFixed(2)}))
+        );
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -204,6 +210,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
+      varying float vPianoShade;
       void main() {
         vec3 baseColor = vec3(0.205, 0.365, 0.318);
         vec3 lowColor = vec3(0.292, 0.463, 0.324);
@@ -223,6 +230,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
+        color *= 1.0 - vPianoShade * 0.11;
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
       }
@@ -525,26 +533,6 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       <primitive object={ghost} renderOrder={-1} />
       <points geometry={geometry} material={material} frustumCulled={false} />
     </group>
-  );
-}
-
-function PianoShadow() {
-  const y = GROUND_Y + pianoClearingTerrainHeight(PIANO_POSITION.x, PIANO_POSITION.z) + 0.055;
-  return (
-    <mesh
-      position={[PIANO_POSITION.x + 0.18, y, PIANO_POSITION.z + 0.14]}
-      rotation={[-Math.PI / 2, 0, -0.18]}
-      scale={[1.7, 0.9, 1]}
-    >
-      <circleGeometry args={[1, 44]} />
-      <meshBasicMaterial
-        color="#53612f"
-        transparent
-        opacity={0.12}
-        depthWrite={false}
-        depthTest
-      />
-    </mesh>
   );
 }
 
@@ -1177,7 +1165,6 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <GrassField reducedMotion={reducedMotion} />
       <ValleyDetails />
       <RavineAccents />
-      <PianoShadow />
       <Suspense fallback={null}>
         <ParticlePiano reducedMotion={reducedMotion} />
       </Suspense>
