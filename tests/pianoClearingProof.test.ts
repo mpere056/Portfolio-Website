@@ -110,6 +110,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vec3 tipColor = vec3(0.806, 0.824, 0.382)');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
+    expect(component).toContain('const z = 24 - random() * 61');
     expect(component).toContain("geometry.setAttribute('iRoot'");
     expect(component).toContain("geometry.setAttribute('iParams'");
     expect(component).not.toContain('pianoGap');

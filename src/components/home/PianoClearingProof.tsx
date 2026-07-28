@@ -88,7 +88,7 @@ function createGrassGeometry() {
 
   while (accepted < bladeCount) {
     const x = (random() - 0.5) * 58;
-    const z = 11 - random() * 48;
+    const z = 24 - random() * 61;
     const riverCenter = pianoClearingRiverCenterX(z);
     const riverWidth = pianoClearingRiverWidth(z);
     const streamGap = Math.abs(x - riverCenter);
