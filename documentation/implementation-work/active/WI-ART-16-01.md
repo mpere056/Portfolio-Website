@@ -22,13 +22,13 @@ Mark reviewed the first Checkpoint `B` clearing and requested a more specific co
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate and replaces saturated blue/gold piano points with pearl/cool-white light.
+Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Current implementation commit: `5718cd8` on `main`; creative review and target-machine performance review remain.
+- Current implementation commit: `223d226` on `main`; creative review and target-machine performance review remain.
 - Current implementation: farther-right independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano is fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route production build, and local `1080 x 894` browser inspection pass.
@@ -135,6 +135,7 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - All 57 test files / 240 tests, TypeScript, focused lint, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
 - Mark found the result almost usable and identified a remaining artificial grass patch, visible distant ridge edges, a bright valley-throat wedge, and a need for slightly more leftward camera rotation.
 - Commit `5718cd8` removes piano-local grass darkening, extends and smooths the ground/water through the valley, fog-tapers the river before its endpoint, widens/refines ridge bands beyond the oblique frustum, and yaws the camera slightly left without moving the piano from its lower-center meadow position.
+- Commit `223d226` fixes the final bare foreground strip by extending the same 220,000-blade distribution from world `z=11` to `z=24`; it adds no blades, draw calls, or new runtime system. Local `1080 x 894` review confirms continuous grass through the bottom edge.
 - Checkpoint `B` remains in review; no pianist or practice-screen work begins before acceptance.
 
 ### 2026-07-26

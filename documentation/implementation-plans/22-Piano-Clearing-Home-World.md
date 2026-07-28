@@ -149,5 +149,6 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Mark requested farther-right camera travel, a lower-center piano physically resting on the meadow, and pale light particles instead of saturated blue/gold dots.
 - Commit `48ef8ba` moves the eye and piano farther into the right meadow, projects the piano into the lower-center foreground, grounds its true GLTF bottom to sampled terrain, and replaces the saturated point palette with pearl/cool-white light.
 - Commit `5718cd8` removes the artificial piano grass patch, extends/smooths terrain and water through the valley throat, fades the stream before its mesh endpoint, pushes widened ridge edges beyond the oblique frustum, and adds the requested slight leftward camera yaw.
+- Commit `223d226` extends the existing independent-blade distribution through the camera-facing terrain edge, eliminating the final bare foreground strip without increasing the 220,000-blade budget or draw count.
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
 - Exact next action: collect only Checkpoint `B` farther-right camera, terrain contact, lower-center piano readability, particle restraint, and target-machine performance answers.
