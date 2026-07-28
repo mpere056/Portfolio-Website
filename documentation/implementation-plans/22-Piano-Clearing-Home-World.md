@@ -16,7 +16,7 @@ Last updated: 2026-07-27
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded viaduct and continuously visible three-car train are retained as source-derived middle-distance depth cues; there is no walking or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
 
 ## Scene Grammar
 
@@ -70,7 +70,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - three smoothed layered ridge silhouettes;
 - five slow cloud groups, distant floating forms, and oversized translucent near foliage framing the left and upper-right edges;
 - one path-aligned shader-driven water ribbon with painted depth plates and downstream travel;
-- one dark five-arch viaduct and bounded three-car train used as middle-distance depth cues from the supplied source;
+- one dark empty five-arch viaduct as a middle-distance depth cue, plus seven restrained distant birds in one instanced draw;
 - one sky shader, hemisphere light, directional light, fog, and shader-only piano grounding;
 - fixed farther-right meadow overlook with modest off-axis valley angle, at most `0.08` world units of pointer travel, and restrained `46-49` degree aspect-aware field-of-view fitting;
 - river-safe foreground piano coordinate projected near horizontal center and roughly one quarter viewport height above the bottom;
@@ -150,6 +150,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Commit `48ef8ba` moves the eye and piano farther into the right meadow, projects the piano into the lower-center foreground, grounds its true GLTF bottom to sampled terrain, and replaces the saturated point palette with pearl/cool-white light.
 - Commit `5718cd8` removes the artificial piano grass patch, extends/smooths terrain and water through the valley throat, fades the stream before its mesh endpoint, pushes widened ridge edges beyond the oblique frustum, and adds the requested slight leftward camera yaw.
 - Commit `223d226` extends the existing independent-blade distribution through the camera-facing terrain edge, eliminating the final bare foreground strip without increasing the 220,000-blade budget or draw count.
-- Commit `406634a` quiets idle blade wind to `0.52`, smooths both the terrain hit and movement-energy envelope so nearby grass wakes without snapping, uses a softer `4.2`-unit falloff, and increases bounded camera pointer travel from `0.08` to `0.18`; the response remains shader-only and disabled by reduced-motion.
+- Commit `406634a` quiets idle blade wind to `0.52`, smooths both the terrain hit and movement-energy envelope so nearby grass wakes without snapping, and increases bounded camera pointer travel from `0.08` to `0.18`; the response remains shader-only and disabled by reduced-motion.
+- Commit `a2eaaff` removes the train while retaining the viaduct, contracts the cursor wake from `4.2` to `3.2` world units, and adds seven independently phased distant birds in one instanced draw.
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
 - Exact next action: collect only Checkpoint `B` farther-right camera, terrain contact, lower-center piano readability, particle restraint, and target-machine performance answers.
