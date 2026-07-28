@@ -28,7 +28,7 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 
 ## Resume Packet
 
-- Current implementation commit: `f008907` on `main`; creative review and target-machine performance review remain.
+- Current implementation commit: `406634a` on `main`; creative review and target-machine performance review remain.
 - Current implementation: farther-right independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano is fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route production build, and local `1080 x 894` browser inspection pass.
@@ -136,7 +136,7 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Mark found the result almost usable and identified a remaining artificial grass patch, visible distant ridge edges, a bright valley-throat wedge, and a need for slightly more leftward camera rotation.
 - Commit `5718cd8` removes piano-local grass darkening, extends and smooths the ground/water through the valley, fog-tapers the river before its endpoint, widens/refines ridge bands beyond the oblique frustum, and yaws the camera slightly left without moving the piano from its lower-center meadow position.
 - Commit `223d226` fixes the final bare foreground strip by extending the same 220,000-blade distribution from world `z=11` to `z=24`; it adds no blades, draw calls, or new runtime system. Local `1080 x 894` review confirms continuous grass through the bottom edge.
-- Commit `f008907` reduces ambient grass sway to `0.68` and adds a terrain-projected, velocity-driven local cursor bend with a `3.6`-unit falloff and damped release. It reuses the existing blade shader and adds no geometry or draw calls.
+- Commit `406634a` reduces ambient grass sway to `0.52`, smooths the terrain-projected cursor position and movement-energy envelope, broadens the wake into a softer `4.2`-unit falloff, and increases bounded camera pointer travel from `0.08` to `0.18`. It reuses the existing blade shader and adds no geometry or draw calls.
 - Checkpoint `B` remains in review; no pianist or practice-screen work begins before acceptance.
 
 ### 2026-07-26
