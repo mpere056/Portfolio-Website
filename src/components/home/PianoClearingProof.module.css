@@ -12,7 +12,7 @@
 .canvas {
   position: absolute !important;
   inset: 0;
-  filter: saturate(1.02) contrast(0.95) brightness(1.04) blur(0.22px);
+  filter: saturate(1.01) contrast(0.94) brightness(1.045) blur(0.36px);
   transform: scale(1.001);
 }
 

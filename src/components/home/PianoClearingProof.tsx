@@ -63,44 +63,75 @@ function createGroundGeometry() {
 }
 
 function createGrassGeometry() {
-  const geometry = new THREE.BufferGeometry();
-  const positions: number[] = [];
-  const uvs: number[] = [];
-  const indices: number[] = [];
+  const geometry = new THREE.InstancedBufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute([
+    -0.5, 0, 0,
+    0.5, 0, 0,
+    0.1, 0.72, 0,
+    0, 1, 0,
+  ], 3));
+  geometry.setAttribute('uv', new THREE.Float32BufferAttribute([
+    0, 0,
+    1, 0,
+    0.72, 0.72,
+    0.5, 1,
+  ], 2));
+  geometry.setIndex([0, 1, 2, 0, 2, 3]);
 
-  for (let blade = 0; blade < 7; blade += 1) {
-    const angle = (blade / 7) * Math.PI + blade * 0.37;
-    const tangentX = Math.cos(angle);
-    const tangentZ = Math.sin(angle);
-    const halfWidth = 0.0055 + blade * 0.0005;
-    const height = 0.34 + (blade % 3) * 0.06;
-    const radialOffset = 0.018 + (blade % 2) * 0.024;
-    const centerX = Math.sin(angle * 2.3) * radialOffset;
-    const centerZ = Math.cos(angle * 1.7) * radialOffset;
-    const leanX = Math.sin(angle + 0.8) * (0.075 + blade * 0.006);
-    const leanZ = Math.cos(angle + 0.8) * (0.075 + blade * 0.006);
-    const offset = blade * 4;
+  const bladeCount = PIANO_CLEARING_PERFORMANCE.grassInstances;
+  const roots = new Float32Array(bladeCount * 3);
+  const parameters = new Float32Array(bladeCount * 4);
+  const random = seededRandom(801);
+  let accepted = 0;
 
-    positions.push(
-      centerX - tangentX * halfWidth, 0, centerZ - tangentZ * halfWidth,
-      centerX + tangentX * halfWidth, 0, centerZ + tangentZ * halfWidth,
-      centerX + tangentX * halfWidth * 0.2 + leanX, height * 0.72,
-      centerZ + tangentZ * halfWidth * 0.2 + leanZ,
-      centerX + leanX, height, centerZ + leanZ,
+  while (accepted < bladeCount) {
+    const x = (random() - 0.5) * 58;
+    const z = 11 - random() * 48;
+    const riverCenter = pianoClearingRiverCenterX(z);
+    const riverWidth = pianoClearingRiverWidth(z);
+    const streamGap = Math.abs(x - riverCenter);
+    const pianoGap = Math.hypot((x - PIANO_POSITION.x) * 0.9, z - PIANO_POSITION.z);
+    const height = pianoClearingTerrainHeight(x, z);
+    const slopeX = Math.abs(
+      pianoClearingTerrainHeight(x + 0.35, z)
+      - pianoClearingTerrainHeight(x - 0.35, z),
     );
-    uvs.push(0, 0, 1, 0, 0.72, 0.76, 0.5, 1);
-    indices.push(offset, offset + 1, offset + 2, offset, offset + 2, offset + 3);
+    const slopeZ = Math.abs(
+      pianoClearingTerrainHeight(x, z + 0.35)
+      - pianoClearingTerrainHeight(x, z - 0.35),
+    );
+    const steepRavineEdge = streamGap < riverWidth + 4.8 && slopeX + slopeZ > 0.92;
+    if (
+      streamGap < riverWidth + 1.08
+      || pianoGap < 1.05
+      || steepRavineEdge
+      || height < -1.8
+    ) continue;
+
+    const rootOffset = accepted * 3;
+    roots[rootOffset] = x;
+    roots[rootOffset + 1] = GROUND_Y + height;
+    roots[rootOffset + 2] = z;
+
+    const nearWeight = THREE.MathUtils.clamp((z + 35) / 45, 0, 1);
+    const parameterOffset = accepted * 4;
+    parameters[parameterOffset] = 0.009 + random() * 0.007;
+    parameters[parameterOffset + 1] = (
+      (0.26 + random() * 0.2)
+      * THREE.MathUtils.lerp(1.03, 0.84, nearWeight)
+    );
+    parameters[parameterOffset + 2] = random() * Math.PI;
+    parameters[parameterOffset + 3] = random();
+    accepted += 1;
   }
 
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
-  geometry.setIndex(indices);
-  geometry.computeVertexNormals();
+  geometry.setAttribute('iRoot', new THREE.InstancedBufferAttribute(roots, 3));
+  geometry.setAttribute('iParams', new THREE.InstancedBufferAttribute(parameters, 4));
+  geometry.instanceCount = bladeCount;
   return geometry;
 }
 
 function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
-  const meshRef = useRef<THREE.InstancedMesh>(null);
   const geometry = useMemo(() => createGrassGeometry(), []);
   const material = useMemo(() => new THREE.ShaderMaterial({
     side: THREE.DoubleSide,
@@ -112,6 +143,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     vertexShader: `
       uniform float uTime;
       uniform float uWind;
+      attribute vec3 iRoot;
+      attribute vec4 iParams;
       varying vec2 vUv;
       varying float vFog;
       varying float vWarm;
@@ -120,25 +153,45 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       void main() {
         vUv = uv;
         vec3 blade = position;
-        vec3 root = instanceMatrix[3].xyz;
+        vec3 root = iRoot;
+        float bladeWidth = iParams.x;
+        float bladeHeight = iParams.y;
+        float bladeAngle = iParams.z;
+        float randomValue = iParams.w;
         float rightField = smoothstep(0.5, 12.0, root.x);
         float nearField = smoothstep(-12.0, 8.0, root.z);
         vWarm = rightField * nearField * 0.9;
         float phase = root.x * 0.41 + root.z * 0.29;
         float clump = sin(root.x * 0.73 + sin(root.z * 0.41) * 1.7) * 0.5 + 0.5;
-        float variation = sin(root.x * 2.17 + root.z * 1.31) * 0.5 + 0.5;
+        float variation = mix(
+          sin(root.x * 2.17 + root.z * 1.31) * 0.5 + 0.5,
+          randomValue,
+          0.58
+        );
         float broadFront = sin(root.x * 0.22 + root.z * 0.47 - uTime * 0.72);
         float fineFront = sin(root.x * 0.58 - root.z * 0.16 - uTime * 1.08 + phase);
         float gust = smoothstep(0.28, 0.96, broadFront * 0.68 + fineFront * 0.32);
         float breeze = sin(uTime * 0.52 + phase) * 0.055;
         breeze += sin(uTime * 0.24 + phase * 1.7) * 0.028;
         breeze += gust * 0.115;
-        blade.y *= 0.82 + clump * 0.34 + variation * 0.1;
-        blade.x += breeze * uv.y * uv.y * uWind;
-        blade.z += (cos(uTime * 0.39 + phase) * 0.028 + gust * 0.052) * uv.y * uWind;
+        blade.x *= bladeWidth;
+        blade.y *= bladeHeight * (0.84 + clump * 0.24 + variation * 0.08);
+        float angleCos = cos(bladeAngle);
+        float angleSin = sin(bladeAngle);
+        vec3 oriented = vec3(
+          blade.x * angleCos,
+          blade.y,
+          blade.x * angleSin
+        );
+        oriented.x += breeze * uv.y * uv.y * uWind;
+        oriented.z += (
+          cos(uTime * 0.39 + phase) * 0.028
+          + gust * 0.052
+          + (randomValue - 0.5) * 0.035
+        ) * uv.y * uWind;
         vBend = clamp(abs(breeze) * 4.4 + gust * 0.38, 0.0, 1.0);
         vVariation = variation;
-        vec4 worldPosition = modelMatrix * instanceMatrix * vec4(blade, 1.0);
+        vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
         gl_Position = projectionMatrix * viewPosition;
@@ -166,7 +219,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color = mix(color, tipColor, smoothstep(0.8, 1.0, vUv.y));
         float dry = smoothstep(0.68, 0.98, vVariation) * smoothstep(0.44, 1.0, vUv.y);
         color = mix(color, dryColor, dry * (0.28 + vWarm * 0.3));
-        color = mix(color, sunlitColor, vWarm * smoothstep(0.08, 0.88, vUv.y) * 0.68);
+        color = mix(color, sunlitColor, vWarm * smoothstep(0.0, 0.72, vUv.y) * 0.78);
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
@@ -176,64 +229,15 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     `,
   }), [reducedMotion]);
 
-  const transforms = useMemo(() => {
-    const random = seededRandom(801);
-    const dummy = new THREE.Object3D();
-    const matrices: THREE.Matrix4[] = [];
-
-    while (matrices.length < PIANO_CLEARING_PERFORMANCE.grassInstances) {
-      const x = (random() - 0.5) * 58;
-      const z = 11 - random() * 48;
-      const riverCenter = pianoClearingRiverCenterX(z);
-      const streamGap = Math.abs(x - riverCenter);
-      const pianoGap = Math.hypot((x - PIANO_POSITION.x) * 0.9, z - PIANO_POSITION.z);
-      const height = pianoClearingTerrainHeight(x, z);
-      const slopeX = Math.abs(
-        pianoClearingTerrainHeight(x + 0.35, z) - pianoClearingTerrainHeight(x - 0.35, z),
-      );
-      const slopeZ = Math.abs(
-        pianoClearingTerrainHeight(x, z + 0.35) - pianoClearingTerrainHeight(x, z - 0.35),
-      );
-      const steepBank = slopeX + slopeZ > 0.88;
-      if (
-        streamGap < pianoClearingRiverWidth(z) + 1.25
-        || pianoGap < 3.15
-        || steepBank
-        || height < -1.8
-      ) continue;
-
-      dummy.position.set(x, GROUND_Y + height, z);
-      dummy.rotation.set(
-        (random() - 0.5) * 0.06,
-        random() * Math.PI,
-        (random() - 0.5) * 0.06,
-      );
-      const nearWeight = THREE.MathUtils.clamp((z + 35) / 45, 0, 1);
-      const scale = (0.72 + random() * 0.32) * THREE.MathUtils.lerp(0.92, 1.02, nearWeight);
-      dummy.scale.set(0.9 + random() * 0.25, scale, 0.9 + random() * 0.25);
-      dummy.updateMatrix();
-      matrices.push(dummy.matrix.clone());
-    }
-
-    return matrices;
-  }, []);
-
-  useEffect(() => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
-    transforms.forEach((matrix, index) => mesh.setMatrixAt(index, matrix));
-    mesh.instanceMatrix.needsUpdate = true;
-  }, [transforms]);
-
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uWind.value = reducedMotion ? 0 : 1;
   });
 
   return (
-    <instancedMesh
-      ref={meshRef}
-      args={[geometry, material, transforms.length]}
+    <mesh
+      geometry={geometry}
+      material={material}
       frustumCulled={false}
     />
   );
@@ -280,7 +284,7 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
             float riverCenter = 0.7 - clamp((vWorld.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
             float nearField = smoothstep(-9.0, 7.0, vWorld.z);
             float rightField = smoothstep(riverCenter + 2.8, riverCenter + 13.0, vWorld.x) * nearField;
-            color = mix(color, sunField, rightField * 0.72);
+            color = mix(color, sunField, rightField * 0.9);
             color *= 1.0 - vSlope * 0.58;
             float brush = sin(vWorld.x * 0.42 + sin(vWorld.z * 0.21) * 2.0) * 0.024;
             brush += sin(vWorld.z * 0.58 + vWorld.x * 0.17) * 0.018;
@@ -528,12 +532,18 @@ function PianoShadow() {
   const y = GROUND_Y + pianoClearingTerrainHeight(PIANO_POSITION.x, PIANO_POSITION.z) + 0.055;
   return (
     <mesh
-      position={[PIANO_POSITION.x + 0.3, y, PIANO_POSITION.z + 0.22]}
+      position={[PIANO_POSITION.x + 0.18, y, PIANO_POSITION.z + 0.14]}
       rotation={[-Math.PI / 2, 0, -0.18]}
-      scale={[2.7, 1.65, 1]}
+      scale={[1.7, 0.9, 1]}
     >
       <circleGeometry args={[1, 44]} />
-      <meshBasicMaterial color="#334224" transparent opacity={0.34} depthWrite={false} />
+      <meshBasicMaterial
+        color="#53612f"
+        transparent
+        opacity={0.12}
+        depthWrite={false}
+        depthTest
+      />
     </mesh>
   );
 }
