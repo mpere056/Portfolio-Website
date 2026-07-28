@@ -135,17 +135,19 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
   const cursorPlane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y));
   const cursorPoint = useRef(new THREE.Vector3());
+  const smoothedCursorPoint = useRef(new THREE.Vector3());
   const previousCursorPoint = useRef(new THREE.Vector3());
   const previousPointer = useRef(new THREE.Vector2());
   const cursorDirection = useRef(new THREE.Vector2(1, 0));
   const cursorDirectionTarget = useRef(new THREE.Vector2(1, 0));
+  const cursorImpulse = useRef(0);
   const cursorInfluence = useRef(0);
   const cursorReady = useRef(false);
   const material = useMemo(() => new THREE.ShaderMaterial({
     side: THREE.DoubleSide,
     uniforms: {
       uTime: { value: 0 },
-      uWind: { value: reducedMotion ? 0 : 0.68 },
+      uWind: { value: reducedMotion ? 0 : 0.52 },
       uCursor: { value: new THREE.Vector2(1000, 1000) },
       uCursorDirection: { value: new THREE.Vector2(1, 0) },
       uCursorInfluence: { value: 0 },
@@ -204,7 +206,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           + (randomValue - 0.5) * 0.035
         ) * uv.y * uWind;
         float cursorDistance = distance(root.xz, uCursor);
-        float cursorFalloff = 1.0 - smoothstep(0.35, 3.6, cursorDistance);
+        float cursorFalloff = 1.0 - smoothstep(0.15, 4.2, cursorDistance);
         float cursorBend = cursorFalloff * uCursorInfluence;
         float cursorLift = sin(cursorDistance * 2.8 - uTime * 4.2) * cursorBend;
         oriented.x += (
@@ -263,7 +265,13 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uWind.value = reducedMotion ? 0 : 0.68;
+    material.uniforms.uWind.value = reducedMotion ? 0 : 0.52;
+    if (reducedMotion) {
+      cursorImpulse.current = 0;
+      cursorInfluence.current = 0;
+      material.uniforms.uCursorInfluence.value = 0;
+      return;
+    }
 
     raycaster.setFromCamera(pointer, camera);
     cursorPlane.current.constant = -GROUND_Y;
@@ -279,10 +287,30 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       }
 
       if (!cursorReady.current) {
+        smoothedCursorPoint.current.copy(hit);
         previousCursorPoint.current.copy(hit);
         previousPointer.current.copy(pointer);
         cursorReady.current = true;
       }
+
+      smoothedCursorPoint.current.x = THREE.MathUtils.damp(
+        smoothedCursorPoint.current.x,
+        hit.x,
+        8.5,
+        delta,
+      );
+      smoothedCursorPoint.current.y = THREE.MathUtils.damp(
+        smoothedCursorPoint.current.y,
+        hit.y,
+        8.5,
+        delta,
+      );
+      smoothedCursorPoint.current.z = THREE.MathUtils.damp(
+        smoothedCursorPoint.current.z,
+        hit.z,
+        8.5,
+        delta,
+      );
 
       const pointerDelta = previousPointer.current.distanceTo(pointer);
       const worldDeltaX = hit.x - previousCursorPoint.current.x;
@@ -296,31 +324,44 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         );
         cursorDirection.current.lerp(
           cursorDirectionTarget.current,
-          0.36,
+          0.18,
         ).normalize();
       }
 
-      const targetInfluence = reducedMotion
-        ? 0
-        : THREE.MathUtils.clamp(pointerDelta * 46, 0, 1);
-      const response = targetInfluence > cursorInfluence.current ? 18 : 4.8;
+      const movementEnergy = THREE.MathUtils.clamp(pointerDelta * 34, 0, 1);
+      cursorImpulse.current = Math.max(cursorImpulse.current, movementEnergy);
+      cursorImpulse.current = THREE.MathUtils.damp(
+        cursorImpulse.current,
+        0,
+        2.7,
+        delta,
+      );
       cursorInfluence.current = THREE.MathUtils.damp(
         cursorInfluence.current,
-        targetInfluence,
-        response,
+        cursorImpulse.current,
+        7.5,
         delta,
       );
 
-      material.uniforms.uCursor.value.set(hit.x, hit.z);
+      material.uniforms.uCursor.value.set(
+        smoothedCursorPoint.current.x,
+        smoothedCursorPoint.current.z,
+      );
       material.uniforms.uCursorDirection.value.copy(cursorDirection.current);
       material.uniforms.uCursorInfluence.value = cursorInfluence.current;
       previousCursorPoint.current.copy(hit);
       previousPointer.current.copy(pointer);
     } else {
+      cursorImpulse.current = THREE.MathUtils.damp(
+        cursorImpulse.current,
+        0,
+        2.7,
+        delta,
+      );
       cursorInfluence.current = THREE.MathUtils.damp(
         cursorInfluence.current,
-        0,
-        4.8,
+        cursorImpulse.current,
+        7.5,
         delta,
       );
       material.uniforms.uCursorInfluence.value = cursorInfluence.current;
@@ -1308,7 +1349,7 @@ export default function PianoClearingProof() {
       className={styles.world}
       data-piano-clearing-proof=""
       data-river-flow="far-to-foreground"
-      data-grass-wind="0.68"
+      data-grass-wind="0.52"
       data-grass-cursor="terrain-local"
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >

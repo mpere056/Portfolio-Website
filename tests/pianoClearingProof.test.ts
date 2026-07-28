@@ -41,6 +41,7 @@ describe('piano clearing Home proof', () => {
     expect(pianoClearingCameraFov(1.22)).toBeLessThanOrEqual(
       PIANO_CLEARING_CAMERA.maxVerticalFov,
     );
+    expect(PIANO_CLEARING_CAMERA.maxPointerTravel).toBe(0.18);
   });
 
   it('places the piano on the near right meadow, safely outside the ravine', () => {
@@ -109,12 +110,14 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
     expect(component).toContain('vec3 tipColor = vec3(0.806, 0.824, 0.382)');
     expect(component).toContain('float windBand = sin');
-    expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.68 }');
+    expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.52 }');
     expect(component).toContain('uniform vec2 uCursor');
-    expect(component).toContain('float cursorFalloff = 1.0 - smoothstep(0.35, 3.6, cursorDistance)');
+    expect(component).toContain('float cursorFalloff = 1.0 - smoothstep(0.15, 4.2, cursorDistance)');
     expect(component).toContain('const pointerDelta = previousPointer.current.distanceTo(pointer)');
-    expect(component).toContain('THREE.MathUtils.clamp(pointerDelta * 46, 0, 1)');
-    expect(component).toContain('data-grass-wind="0.68"');
+    expect(component).toContain('THREE.MathUtils.clamp(pointerDelta * 34, 0, 1)');
+    expect(component).toContain('smoothedCursorPoint.current.x = THREE.MathUtils.damp');
+    expect(component).toContain('cursorImpulse.current = Math.max(cursorImpulse.current, movementEnergy)');
+    expect(component).toContain('data-grass-wind="0.52"');
     expect(component).toContain('data-grass-cursor="terrain-local"');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain('const z = 24 - random() * 61');

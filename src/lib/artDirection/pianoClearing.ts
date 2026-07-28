@@ -21,7 +21,7 @@ export const PIANO_CLEARING_CAMERA = {
   fov: 46,
   referenceAspect: 16 / 9,
   maxVerticalFov: 49,
-  maxPointerTravel: 0.08,
+  maxPointerTravel: 0.18,
 } as const;
 
 export const PIANO_CLEARING_PIANO = {
