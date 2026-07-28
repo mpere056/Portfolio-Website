@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`6477e5c` is the current implementation baseline. `WI-ART-16-01` provisionally exposes the dusk piano valley on canonical Home and retains `/home-world-proof` for rollback/review. The Home doorway now opens a complete no-index, 10-slide About presentation. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No Home-world pianist, category screen, environment transition, or `/projects` redirect has begun.
+`78c19ee` is the current tracked implementation baseline, with presentation implementation `6477e5c` live through Git-connected Production. `WI-ART-16-01` provisionally exposes the dusk piano valley on canonical Home and retains `/home-world-proof` for rollback/review. The Home doorway now opens a complete no-index, 10-slide About presentation. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No Home-world pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B` remains open; `6477e5c` adds the complete presentation sidecar with 243 passing assertions across aggregate/isolated runs, build, and six-slide browser review | Publish the deck, collect rehearsal feedback, and separately collect Home camera/piano/performance review | 2026-07-28 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B` remains open; `6477e5c` adds the live presentation sidecar with 243 passing assertions across aggregate/isolated runs, build, and local/live browser review | Collect rehearsal feedback and separately collect Home camera/piano/performance review | 2026-07-28 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-27 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-27 |
 

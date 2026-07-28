@@ -239,7 +239,7 @@ Last updated: 2026-07-28
 | Runtime policy | CSS and inline SVG only; no image-generation asset, WebGL canvas, post-processing, or new runtime dependency. One slide is mounted at a time, and reduced-motion preferences collapse authored animation durations. |
 | Automated evidence | Focused presentation tests, TypeScript, focused ESLint, content validation, and the clean 41-route Production build pass. The complete suite covers 58 files / 243 tests; two unrelated heavy project tests timed out only during the concurrent aggregate run and all five assertions passed in an isolated rerun. |
 | Browser evidence | The built route renders as one viewport with no global portfolio overlays. Slides `1`, `4`, `6`, `8`, `9`, and `10` were visually reviewed at `1280 x 720`; direct marker navigation and disabled boundary controls work, and every reviewed slide preserves readable speaker-led hierarchy. |
-| Production evidence | Pending Git push and Git-connected Production verification. |
+| Production evidence | Commits `6477e5c` and `78c19ee` are pushed to `main` and live through Git-connected Production. Public `/presentation` exposes slide `1` of `10` with the `about-mark` deck content and no portfolio overlays; canonical Home exposes the dusk world and presentation doorway. |
 | Visual evidence | Candidate for Mark's rehearsal review; factual emphasis, ordering, and visual pacing remain adjustable without changing the presentation shell. |
 
 ## Named Gaps

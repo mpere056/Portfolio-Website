@@ -28,15 +28,15 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 
 ## Resume Packet
 
-- Current implementation baseline: commit `6477e5c` on `main`, pending Git-connected Production.
+- Current implementation baseline: commits `6477e5c` and `78c19ee` on `main`, live through Git-connected Production.
 - Current implementation: canonical Home renders the farther-right `Dusk Refrain` independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano; its doorway links to a complete 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, 58 test files / 243 tests across the aggregate and isolated timeout rerun, content validation, the clean 41-route production build, and built browser review of slides `1`, `4`, `6`, `8`, `9`, and `10` pass.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
-- Deployment: commit `6477e5c` awaits Git push and Git-connected Production verification.
+- Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: publish `6477e5c`, collect Mark's deck rehearsal feedback, and continue the separate canonical Home visual/performance review. Do not treat provisional exposure as Checkpoint `B` acceptance.
+- Next exact action: collect Mark's deck rehearsal feedback and continue the separate canonical Home visual/performance review. Do not treat provisional exposure as Checkpoint `B` acceptance.
 
 ## Ordered Checkpoints
 
