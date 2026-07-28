@@ -85,7 +85,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
     expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
-    expect(component).toContain('vec3 tipColor = vec3(0.776, 0.831, 0.420)');
+    expect(component).toContain('vec3 tipColor = vec3(0.806, 0.824, 0.382)');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
     expect(component).toContain("geometry.setAttribute('iRoot'");
@@ -95,7 +95,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vPianoShade');
     expect(component).toContain('color *= 1.0 - vPianoShade * 0.11');
     expect(component).not.toContain('<PianoShadow />');
-    expect(component).toContain('vec3 sunlitColor = vec3(0.84, 0.78, 0.3)');
+    expect(component).toContain('vec3 sunlitColor = vec3(0.9, 0.79, 0.25)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');
     expect(component).toContain('<StoneViaduct />');
