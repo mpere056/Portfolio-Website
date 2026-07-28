@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-28
-Implementation commit baseline: `b85ed5e`; the grounded meadow-piano valley now uses the supplied `Dusk Refrain` blue-hour color script and awaits Mark review; public route structure unchanged
+Implementation commit baseline: `4eb4266`; the grounded meadow-piano valley now uses the supplied `Dusk Refrain` blue-hour color script, is live at `/home-world-proof`, and awaits Mark review; public route structure unchanged
 
 ## Plan Metadata
 
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `b85ed5e`, 240 tests, content validation, TypeScript/lint, and 40-route build; deployment pending | Collect dusk-palette, piano/structure readability, motion, and smoothness review | 2026-07-28 |
+| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `4eb4266` is live at `/home-world-proof` with the dusk marker; 240 tests, content validation, TypeScript/lint, and 40-route build pass | Collect dusk-palette, piano/structure readability, motion, and smoothness review | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 

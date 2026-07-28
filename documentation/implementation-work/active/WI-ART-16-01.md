@@ -145,7 +145,8 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Mark supplied a blue-hour target and requested that the existing valley retain its composition while adopting the target's blue sky, pink horizon, violet depth, rose meadow, and dark indigo structures.
 - Commit `b85ed5e` retunes every visible scene layer rather than applying one global tint; topology, motion, interaction, camera, and performance budgets remain unchanged.
 - All 57 test files / 240 tests, TypeScript, focused lint, content validation, and the clean 40-route build pass.
-- Exact resume point: deploy and collect a direct visual review of sky/horizon separation, meadow saturation, piano readability, and structure contrast. Do not begin Checkpoint `C` before Checkpoint `B` is accepted.
+- Commit `4eb4266` is pushed to `main` and live at `/home-world-proof`; Production exposes the `dusk-refrain` marker and `Dusk Refrain` title.
+- Exact resume point: collect a direct visual review of sky/horizon separation, meadow saturation, piano readability, structure contrast, motion, and smoothness. Do not begin Checkpoint `C` before Checkpoint `B` is accepted.
 
 ### 2026-07-26
 

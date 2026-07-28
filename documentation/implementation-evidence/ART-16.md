@@ -211,7 +211,7 @@ Last updated: 2026-07-28
 | Runtime policy | No new geometry, draw calls, post-processing, shadows, textures, or animation systems. The existing 220,000-blade meadow, 9,000-point piano, instanced birds, capped DPR, hidden-tab policy, and reduced-motion behavior are unchanged. |
 | Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the dusk marker, label, piano opacity, particle palette, and grass palette. |
 | Browser evidence | The local route loads the complete scene and exposes the dusk marker and title. Automated WebGL screenshot capture timed out on the GPU-heavy page, so final color balance remains a direct-browser review gate rather than a claimed visual acceptance. |
-| Production evidence | Pending Git-connected deployment after this record is pushed. |
+| Production evidence | Commit `4eb4266` is pushed to `main` and live through Git-connected Production at `/home-world-proof`; the public proof reports `data-color-script="dusk-refrain"` and the title `Dusk Refrain`. |
 | Visual evidence | Awaiting Mark review against the supplied blue-sky, pink-horizon, violet-meadow reference. |
 
 ## Named Gaps
