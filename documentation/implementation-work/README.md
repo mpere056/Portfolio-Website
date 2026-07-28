@@ -10,11 +10,11 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`c819200` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the independent-blade, fully covered particle-piano viaduct valley for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
+`c539899` is the known-good deployed implementation and the public route structure is unchanged. `WI-ART-16-01` now exposes the farther, aspect-safe independent-blade particle-piano viaduct valley for private review. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No pianist, category screen, environment transition, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: `c819200`, Production `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd`, 238 tests, build, and Production visual checks pass | Collect meadow continuity, source-likeness, wind-read, and target-machine smoothness review | 2026-07-27 |
+| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B`: `c539899`, Git-connected Production, 239 tests, build, and Production visual checks pass | Collect camera-distance, source-composition, piano-readability, meadow, and target-machine review | 2026-07-27 |
 | Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-27 |
 | Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-27 |
 

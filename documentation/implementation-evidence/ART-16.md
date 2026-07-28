@@ -7,12 +7,12 @@ Last updated: 2026-07-27
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; river-safe pastoral valley revision deployed and in review |
+| Lifecycle | in-progress; aspect-safe source-framing revision deployed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | River-safe tree placement and warmer hand-painted pastoral treatment deployed in `98a1dca` |
+| Implementation | Independent-blade valley with aspect-aware overlook camera and warm source palette deployed through `c539899` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Production `dpl_4EQ9StMdGVpuuJ9LxgjdnMypLvxw` |
+| Deployment | Git-connected Production for `c539899` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -148,7 +148,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | The source's continuous hair-fine meadow can be approximated without increasing the prior vertex workload by replacing seven-blade clump instances with independently distributed single-blade instances and allowing grass to cover the complete piano field. |
 | Scope | One custom `InstancedBufferGeometry` distributes 220,000 independent blades across the terrain; per-blade root, width, height, angle, and color variation remove visible clump repetition; short curved blade geometry, source-derived palette, travelling gusts, straw-gold field light, distance haze, and restrained canvas softening remain. The oversized piano clearance and contact-shadow mesh are removed; a subtle blade-color shade grounds the piano without hiding grass. River and ravine exclusions remain path-derived. |
@@ -156,7 +156,21 @@ Last updated: 2026-07-27
 | Automated evidence | All 57 test files / 238 tests, TypeScript, focused ESLint, and the clean 40-route production build pass. Tests bind the instance cap, custom root/parameter attributes, river-only steep exclusion, absence of piano grass clearance/contact-shadow geometry, source palette, gust field, and no-post/no-shadow policy. |
 | Browser evidence | Production `1280 x 720` inspection confirms one canvas, exact one-screen geometry, `220000-grass/9000-piano-points/no-post`, continuous independently distributed grass through the piano field, no former oval or tan grassless patch, and intact river clearance. |
 | Production evidence | Commits `bd037b7`, `cfbfee2`, and `c819200`; Git-connected Production deployment `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready and aliased to `www.marknperera.ca`, `marknperera.ca`, and the canonical project subdomains. |
-| Visual evidence | Pending Mark review of source likeness, meadow continuity, blade scale, color, wind read, and target-machine smoothness. |
+| Visual evidence | Mark found the independent grass improved, then requested that the camera move farther back and that framing and styling more closely match the supplied original. |
+
+## EV-ART-16-12: Aspect-Safe Source-Framing Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / production / browser-flow / visual-review |
+| Claim | A farther fixed overlook plus aspect-aware vertical field of view can preserve the source's broad composition on both wide and tall browser windows, while a warmer low-contrast atmosphere and localized golden-meadow palette restore its pastoral color hierarchy. |
+| Scope | Camera moves back and targets the middle-distance valley; the base `49` degree lens preserves widescreen intent while a bounded aspect fit widens only on taller windows. Sky, fog, lights, CSS atmosphere, sun wash, right-meadow grass, and ground palette are warmed and softened. Terrain, independent blades, river, bridge, train, particle piano, vegetation exclusions, route exposure, and runtime budget remain unchanged. |
+| Runtime policy | One canvas; DPR capped at `1.25`; 220,000 independent blades in one instanced draw; one camera calculation inside the existing scene loop; no post-processing, real-time shadows, physics, orbit controls, or added scene systems. |
+| Automated evidence | All 57 test files / 239 tests, TypeScript, focused ESLint, and the clean 40-route Production build pass. Tests bind the farther base camera, reference-aspect lens, tall-window widening, maximum vertical field of view, and existing bounded renderer policy. |
+| Browser evidence | Production `1280 x 720` review confirms the complete viaduct and both banks remain in frame, the horizon retains open sky, the near-right meadow reads gold against the cooler left bank, and the cream/lilac haze is visible without post-processing. |
+| Production evidence | Commits `c5f1fa4` and `c539899` are pushed to `main` and live through the Git-connected Production deployment at `/home-world-proof`. |
+| Visual evidence | Awaiting Mark review of camera distance, source composition, pastoral finish, piano readability, and target-machine smoothness. |
 
 ## Named Gaps
 

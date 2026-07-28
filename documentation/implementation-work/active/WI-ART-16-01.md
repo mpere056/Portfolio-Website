@@ -22,21 +22,21 @@ Mark reviewed the first Checkpoint `B` clearing and requested a more specific co
 
 Mark found the deployed five-band candidate better but still unlike the supplied reference. In particular, its grass remained sparse/coarse and the river read as a horizontal strip with an unrealistic left-to-right current. That deployment is now revision-requested.
 
-Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The current deployed Checkpoint `B` candidate preserves the river, bridge, train, piano, tree exclusions, camera, and sky while replacing clumps with 220,000 independently distributed single blades. Custom per-blade root, width, height, angle, and variation attributes preserve approximately the same vertex workload while removing repeated tufts. The piano clearance and contact-shadow mesh are gone, so grass now covers the whole piano field; subtle blade-color shading grounds the piano without hiding grass. Source-derived color bands, the straw-gold sun-facing field, synchronized shader gusts, distance haze, and restrained final softening remain.
+Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The current candidate keeps that continuous fully covered meadow, moves the fixed overlook back, fits its vertical field of view to preserve the broad source composition on taller windows, and strengthens the cream/lilac haze plus golden-right/cool-left field hierarchy without adding post-processing.
 
 Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, environment preview, selected states, project reveal, and navigation migration do not exist.
 
 ## Resume Packet
 
-- Known-good deployed commit: `c819200` on `main`; creative and target-machine performance review remain.
-- Current implementation: independent-blade, fully covered meadow viaduct Checkpoint `B` replacement is deployed and fully verified technically.
+- Known-good deployed commit: `c539899` on `main`; creative and target-machine performance review remain.
+- Current implementation: aspect-safe, farther-framed independent-blade viaduct Checkpoint `B` candidate is deployed and fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused lint, TypeScript, all 57 test files / 238 tests, the clean 40-route production build, and local browser inspection pass; the Git-connected Production deployment is Ready.
+- Verification: focused lint, TypeScript, all 57 test files / 239 tests, the clean 40-route production build, and Production browser inspection pass; the Git-connected deployment is live.
 - Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 220,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, three train cars, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states.
 - Safe exposure: no-index proof only; canonical Home and Projects remain unchanged.
-- Deployment: `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready.
+- Deployment: Git-connected Production for `c539899` is live.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: collect only meadow continuity, blade scale, source likeness, wind read, and target-machine smoothness review.
+- Next exact action: collect only camera distance, source composition/styling, piano readability, meadow continuity, and target-machine smoothness review.
 
 ## Ordered Checkpoints
 
@@ -113,6 +113,13 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Commits `bd037b7`, `cfbfee2`, and `c819200` replace clumps with 220,000 independently distributed blades, remove the piano clearance/contact-shadow mesh, and retain only subtle shader-based blade shading beneath the piano.
 - All 57 test files / 238 tests, TypeScript, focused lint, the clean 40-route production build, and Production `1280 x 720` one-screen review pass.
 - Production deployment `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd` is Ready. Checkpoint `B` remains in review.
+
+### 2026-07-27 Aspect-Safe Source-Framing Revision
+
+- Mark found the independent grass better, then requested a farther camera and closer parity with the original composition and styling.
+- Commits `c5f1fa4` and `c539899` move the overlook back, preserve the source's wide horizontal field through bounded aspect-aware lens fitting, warm and soften the sky/fog/final treatment, and strengthen the golden-right/cool-left meadow split.
+- All 57 test files / 239 tests, TypeScript, focused lint, the clean 40-route Production build, and live `1280 x 720` browser review pass.
+- Git-connected Production for `c539899` is live. Checkpoint `B` remains in review.
 
 ### 2026-07-26
 
