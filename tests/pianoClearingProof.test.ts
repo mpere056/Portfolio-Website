@@ -28,10 +28,15 @@ describe('piano clearing Home proof', () => {
     expect(PIANO_CLEARING_PERFORMANCE.postProcessing).toBe(false);
   });
 
-  it('preserves the wide overlook framing on tall browser windows', () => {
-    expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThan(20);
+  it('uses a restrained oblique overlook from the sunlit right meadow', () => {
+    expect(PIANO_CLEARING_CAMERA.position[0]).toBeGreaterThan(8);
+    expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThan(14);
+    expect(PIANO_CLEARING_CAMERA.target[0]).toBeLessThan(0);
+    expect(PIANO_CLEARING_CAMERA.position[1] - PIANO_CLEARING_CAMERA.target[1])
+      .toBeGreaterThan(5.5);
+    expect(PIANO_CLEARING_CAMERA.target[2]).toBeLessThan(-14);
     expect(pianoClearingCameraFov(16 / 9)).toBe(PIANO_CLEARING_CAMERA.fov);
-    expect(pianoClearingCameraFov(1.22)).toBeGreaterThan(60);
+    expect(pianoClearingCameraFov(1.22)).toBeGreaterThan(PIANO_CLEARING_CAMERA.fov);
     expect(pianoClearingCameraFov(1.22)).toBeLessThanOrEqual(
       PIANO_CLEARING_CAMERA.maxVerticalFov,
     );

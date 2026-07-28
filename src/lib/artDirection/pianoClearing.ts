@@ -16,11 +16,11 @@ export const PIANO_CLEARING_PERFORMANCE = {
 } as const;
 
 export const PIANO_CLEARING_CAMERA = {
-  position: [0.8, 4.55, 22.4] as const,
-  target: [-1.45, 0.95, -26.5] as const,
-  fov: 49,
+  position: [9.5, 7.2, 17] as const,
+  target: [-2.1, 1.1, -17.2] as const,
+  fov: 46,
   referenceAspect: 16 / 9,
-  maxVerticalFov: 67,
+  maxVerticalFov: 49,
   maxPointerTravel: 0.08,
 } as const;
 

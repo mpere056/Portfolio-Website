@@ -810,11 +810,11 @@ function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
     const time = clock.elapsedTime;
     if (left.current) {
       left.current.rotation.z = Math.sin(time * 0.11) * 0.018;
-      left.current.position.x = -11.2 + Math.sin(time * 0.07) * 0.09;
+      left.current.position.x = -15.5 + Math.sin(time * 0.07) * 0.09;
     }
     if (right.current) {
       right.current.rotation.z = Math.sin(time * 0.085 + 1.2) * 0.012;
-      right.current.position.x = 10.8 + Math.sin(time * 0.055) * 0.07;
+      right.current.position.x = 23.5 + Math.sin(time * 0.055) * 0.07;
     }
   });
 
@@ -833,27 +833,27 @@ function ForegroundFraming({ reducedMotion }: { reducedMotion: boolean }) {
 
   return (
     <>
-      <group ref={left} position={[-11.2, 5.2, 2.2]} scale={[1.55, 1.7, 1]}>
+      <group ref={left} position={[-15.5, 5.2, 2.2]} scale={[1.38, 1.52, 1]}>
         {leftClusters.map(([x, y, z, scale], index) => (
           <mesh key={index} position={[x, y, z]} scale={scale}>
             <icosahedronGeometry args={[1, 1]} />
             <meshBasicMaterial
               color={index % 2 ? '#b497a7' : '#c4a8b1'}
               transparent
-              opacity={0.17}
+              opacity={0.12}
               depthWrite={false}
             />
           </mesh>
         ))}
       </group>
-      <group ref={right} position={[10.8, 8.9, 2.1]} scale={[1.8, 1.4, 1]}>
+      <group ref={right} position={[23.5, 9.8, 3.8]} scale={[1.42, 1.18, 1]}>
         {rightClusters.map(([x, y, z, scale], index) => (
           <mesh key={index} position={[x, y, z]} scale={scale}>
             <icosahedronGeometry args={[1, 1]} />
             <meshBasicMaterial
               color={index % 2 ? '#517c55' : '#70955f'}
               transparent
-              opacity={0.34}
+              opacity={0.22}
               depthWrite={false}
             />
           </mesh>
