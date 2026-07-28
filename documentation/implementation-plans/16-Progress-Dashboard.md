@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-27
-Implementation commit baseline: `48ef8ba`; farther-right meadow, geometry-grounded pearl particle-piano viaduct valley pushed and awaiting Mark review; public route structure unchanged
+Implementation commit baseline: `5718cd8`; artifact-cleaned farther-right meadow and geometry-grounded pearl piano pushed and awaiting Mark review; public route structure unchanged
 
 ## Plan Metadata
 
@@ -108,7 +108,7 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 52 | `ART-16A` | Piano-clearing direction reset | accepted | 2026-07-26 decision, Plan `22`, packages, capabilities, and work item align | Preserve during implementation |
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
-| 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` pushed revision and in-review | `48ef8ba`: 220,000 independent blades, farther-right camera, river-safe foreground piano coordinate, GLTF-bounds grounding, pearl/cool-white points, downstream river, viaduct/train, capped DPR, no post/shadows; 240 tests/build/local visual pass | Collect Checkpoint `B` review |
+| 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` pushed revision and in-review | `5718cd8`: 220,000 independent blades, farther-right/slightly left-facing camera, river-safe GLTF-grounded pearl piano, continuous grass, extended/tapered water, frustum-safe ridges, viaduct/train, capped DPR, no post/shadows; 240 tests/build/local visual pass | Collect Checkpoint `B` review |
 | 56 | `ART-16C/D` | Pianist/About entry and four practice instruments | pending | Clearing accepted | Integrate one feedback-gated layer at a time |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
@@ -211,6 +211,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-28 | Removed final valley framing artifacts | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-14` | Mark found the grounded-piano candidate almost usable but identified an artificial grass patch, jagged distant ridge edges, a bright valley wedge, and a need for slight leftward camera rotation. Commit `5718cd8` removes piano-local grass shading, extends/smooths the valley and water, fades the stream before its endpoint, widens ridge meshes beyond the frustum, and yaws the camera slightly left. TypeScript, focused lint, 240 tests, content validation, clean build, and local `1080 x 894` review pass. |
 | 2026-07-28 | Grounded and reframed the piano on the right meadow | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-13/14` | Mark requested farther-right camera travel, a lower-center piano physically on the grass, and pale light particles instead of blue/gold dots. Commit `48ef8ba` moves the camera and piano farther into the right meadow, derives terrain contact from the GLTF's true bounds, and uses pearl/cool-white particles over the translucent silhouette. TypeScript, focused lint, 240 tests, content validation, clean 40-route build, and local `1080 x 894` review pass; Mark and target-machine review remain. |
 | 2026-07-28 | Reframed the valley from an elevated right-meadow overlook | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-12/13` | Mark clarified that moving back meant a physical move along the grass field plus a modest angle change, not widening a centered ravine view. Commit `de4596d` introduces the restrained off-axis overlook, broad bridge/river hierarchy, golden foreground, open sky, and softened edge foliage. TypeScript, focused lint, 239 tests, content validation, clean 40-route build, and local/Production `1080 x 894` review pass; Mark review remains. |
 | 2026-07-27 | Moved the valley camera back and restored source atmosphere across aspect ratios | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-11/12` | Mark found the independent grass improved, then requested a farther camera and closer source styling. Commits `c5f1fa4` and `c539899` add bounded aspect-aware lens fitting, move the overlook back, warm/soften the sky and fog, and strengthen the golden-right/cool-left meadow hierarchy. TypeScript, focused lint, 239 tests, clean 40-route build, and Production `1280 x 720` review pass; Mark and target-machine review remain. |

@@ -10,9 +10,9 @@ Last updated: 2026-07-28
 | Lifecycle | in-progress; grounded meadow-piano revision pushed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Independent-blade valley with right-meadow camera and geometry-grounded pearl particle piano through `48ef8ba` |
+| Implementation | Independent-blade valley with geometry-grounded pearl piano and artifact-cleaned leftward composition through `5718cd8` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Git-connected Production for `48ef8ba` |
+| Deployment | Git-connected Production for `5718cd8` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -193,11 +193,11 @@ Last updated: 2026-07-28
 | Status | candidate |
 | Type | implementation-test / build / browser-flow / visual-review |
 | Claim | A farther-right meadow camera plus geometry-aware model normalization can place the piano unmistakably on the foreground grass at the lower center without visual overlap with the ravine, while a pearl/cool-white particle palette preserves the earlier luminous piano language. |
-| Scope | Camera advances farther right along the near meadow and aims across the valley from a restrained low-grazing angle. The piano moves to a high, river-safe right-bank coordinate and projects near horizontal center at roughly one quarter of the viewport above the bottom. Its sampled GLTF bounds now recenter the model and align its true lowest vertex to the terrain sample, replacing the former guessed vertical offset. Saturated blue/gold points are replaced by smaller pearl and cool-white particles over the existing translucent silhouette. |
+| Scope | Camera advances farther right along the near meadow and aims across the valley from a restrained low-grazing angle, with a final slight left yaw toward the opposite grass hill. The piano moves to a high, river-safe right-bank coordinate and projects near horizontal center at roughly one quarter of the viewport above the bottom. Its sampled GLTF bounds now recenter the model and align its true lowest vertex to the terrain sample, replacing the former guessed vertical offset. Saturated blue/gold points are replaced by smaller pearl and cool-white particles over the existing translucent silhouette. The artificial piano grass-darkening patch is removed; ground and river meshes extend through the distant valley; the river fades before its terminal edge; and wider, denser ridge bands keep oblique side edges outside the frustum. |
 | Runtime policy | One existing canvas; unchanged `9,000`-point piano and `220,000`-blade meadow budgets; DPR capped at `1.25`; one cached model-bounds calculation; no new draw systems, post-processing, shadows, or physics. |
-| Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the farther-right camera, river-safe high-meadow piano coordinate, geometry-aware grounding, and non-saturated particle treatment. |
-| Browser evidence | Local `1080 x 894` review confirms the piano is lower-center on visible foreground grass, the bridge remains a separate middle-distance cue, and the former blue/gold dots are replaced by fine pale light particles. |
-| Production evidence | Commit `48ef8ba` is pushed to `main` for Git-connected Production at `/home-world-proof`. |
+| Automated evidence | All 57 test files / 240 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the farther-right camera, river-safe high-meadow piano coordinate, geometry-aware grounding, non-saturated particle treatment, continuous valley geometry, hidden ridge edges, and tapered river endpoint. |
+| Browser evidence | Local `1080 x 894` review confirms the piano is lower-center on continuous foreground grass, the bridge remains a separate middle-distance cue, distant ridge edges and the bright valley wedge are absent, and the former blue/gold dots are replaced by fine pale light particles. |
+| Production evidence | Commits `48ef8ba` and `5718cd8` are pushed to `main` for Git-connected Production at `/home-world-proof`. |
 | Visual evidence | Awaiting Mark review of camera placement, terrain contact, piano readability, and particle restraint. |
 
 ## Named Gaps

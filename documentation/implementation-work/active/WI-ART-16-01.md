@@ -28,7 +28,7 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 
 ## Resume Packet
 
-- Current implementation commit: `48ef8ba` on `main`; creative review and target-machine performance review remain.
+- Current implementation commit: `5718cd8` on `main`; creative review and target-machine performance review remain.
 - Current implementation: farther-right independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano is fully verified technically.
 - Review route: `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route production build, and local `1080 x 894` browser inspection pass.
@@ -133,6 +133,8 @@ Canonical `/` and `/projects` remain unchanged. The pianist, practice screens, e
 - Mark requested farther-right camera travel, a lower-center piano firmly on the grass, and removal of the saturated blue/gold dots.
 - Commit `48ef8ba` moves the camera and piano farther into the right meadow, derives the model's terrain contact from its true GLTF bounds, and replaces the saturated point palette with fine pearl/cool-white light.
 - All 57 test files / 240 tests, TypeScript, focused lint, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
+- Mark found the result almost usable and identified a remaining artificial grass patch, visible distant ridge edges, a bright valley-throat wedge, and a need for slightly more leftward camera rotation.
+- Commit `5718cd8` removes piano-local grass darkening, extends and smooths the ground/water through the valley, fog-tapers the river before its endpoint, widens/refines ridge bands beyond the oblique frustum, and yaws the camera slightly left without moving the piano from its lower-center meadow position.
 - Checkpoint `B` remains in review; no pianist or practice-screen work begins before acceptance.
 
 ### 2026-07-26
