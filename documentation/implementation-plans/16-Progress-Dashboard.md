@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-27
-Implementation commit baseline: `c539899`; farther aspect-safe, independent-blade particle-piano viaduct valley deployed and awaiting Mark review; public route structure unchanged
+Implementation commit baseline: `de4596d`; oblique right-meadow, independent-blade particle-piano viaduct valley deployed and awaiting Mark review; public route structure unchanged
 
 ## Plan Metadata
 
@@ -15,7 +15,7 @@ Implementation commit baseline: `c539899`; farther aspect-safe, independent-blad
 
 ## Current Program State
 
-**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its farther aspect-safe source-framing revision is deployed and awaits Mark review.**
+**The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its oblique meadow-overlook revision is deployed and awaits Mark review.**
 
 Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The new direction uses one fixed pastoral river valley, the particle grand piano, a future pianist/About entry, and four future category screens. Hover will later introduce one translucent category influence; selection will later transform the clearing into that category environment. Public `/` and `/projects` remain unchanged until additive visual, project, navigation, performance, and rollback gates pass.
 
@@ -29,10 +29,10 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | aspect-safe pastoral valley in review | on-track | Deployed particle-piano viaduct vista passes scene-budget, 239 tests, TypeScript, build, and Production-browser gates | Mark creative/performance acceptance | Review `/home-world-proof` |
+| `O-01` Persistent exploratory world | oblique meadow-overlook valley in review | on-track | Deployed particle-piano viaduct vista passes scene-budget, 239 tests, TypeScript, build, and local/Production tall-viewport gates | Mark creative/performance acceptance | Review `/home-world-proof` |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | aspect-safe Checkpoint `B` revision | on-track | Particle piano overlooks a moving downstream river, dark viaduct/train, layered hills, 220,000-blade meadow, and a farther source-framed atmosphere | Mark accepts the world before pianist or screens | Review `ART-16B` |
+| `O-04` Home work world | oblique-overlook Checkpoint `B` revision | on-track | Elevated right-meadow eye looks modestly across a broad viaduct with river below, golden foreground, layered hills, and open sky | Mark accepts the world before pianist or screens | Review `ART-16B` |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -108,7 +108,7 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 52 | `ART-16A` | Piano-clearing direction reset | accepted | 2026-07-26 decision, Plan `22`, packages, capabilities, and work item align | Preserve during implementation |
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
-| 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` deployed revision and in-review | `c539899`: 220,000 independent blades, complete piano-field coverage, farther aspect-safe camera, warm source palette, river-safe trees, downstream river, viaduct/train, capped DPR, no post/shadows; 239 tests/build/Production visual pass | Collect Checkpoint `B` review |
+| 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` deployed revision and in-review | `de4596d`: 220,000 independent blades, complete piano-field coverage, elevated right-meadow camera, restrained off-axis lens, warm source palette, river-safe trees, downstream river, viaduct/train, capped DPR, no post/shadows; 239 tests/build/local and Production visual pass | Collect Checkpoint `B` review |
 | 56 | `ART-16C/D` | Pianist/About entry and four practice instruments | pending | Clearing accepted | Integrate one feedback-gated layer at a time |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
@@ -124,7 +124,7 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `c539899`, Git-connected Production, 239 tests, 40-route build, and Production visual pass | Collect camera-distance, source-composition, piano-readability, meadow, and smoothness review | 2026-07-27 |
+| Now | `WI-ART-16-01` | in-review | `ART-16B` | Commit `de4596d`, Git-connected Production, 239 tests, 40-route build, and local/Production `1080 x 894` visual pass | Collect camera-angle, source-composition, piano-readability, and smoothness review | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
 | Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
 
@@ -200,8 +200,8 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
-| Candidate | 12 | Includes the deployed `ART-16` aspect-safe particle-piano viaduct valley; no candidate is being treated as final creative acceptance |
-| Revision-requested | 9 | Nine earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
+| Candidate | 12 | Includes the deployed `ART-16` oblique meadow-overlook particle-piano viaduct valley; no candidate is being treated as final creative acceptance |
+| Revision-requested | 10 | Ten earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |
 
@@ -211,6 +211,7 @@ The evidence registry lives in `documentation/implementation-evidence/README.md`
 
 | Date | Change | Affected controls | Result |
 | --- | --- | --- | --- |
+| 2026-07-28 | Reframed the valley from an elevated right-meadow overlook | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-12/13` | Mark clarified that moving back meant a physical move along the grass field plus a modest angle change, not widening a centered ravine view. Commit `de4596d` introduces the restrained off-axis overlook, broad bridge/river hierarchy, golden foreground, open sky, and softened edge foliage. TypeScript, focused lint, 239 tests, content validation, clean 40-route build, and local/Production `1080 x 894` review pass; Mark review remains. |
 | 2026-07-27 | Moved the valley camera back and restored source atmosphere across aspect ratios | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-11/12` | Mark found the independent grass improved, then requested a farther camera and closer source styling. Commits `c5f1fa4` and `c539899` add bounded aspect-aware lens fitting, move the overlook back, warm/soften the sky and fog, and strengthen the golden-right/cool-left meadow hierarchy. TypeScript, focused lint, 239 tests, clean 40-route build, and Production `1280 x 720` review pass; Mark and target-machine review remain. |
 | 2026-07-27 | Replaced clumped grass and removed the piano-field coverage hole | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-10/11` | Mark found `d5b9c4e` closer but still unlike the source and identified a large grassless patch. Commits `bd037b7`, `cfbfee2`, and `c819200`, Ready in Production `dpl_GDFwxrnJHvGsLRvKJqLDzCc4xiKd`, replace clumps with 220,000 independent blades at comparable vertex cost, remove both piano clearance and contact-shadow geometry, and ground the piano through blade color only. TypeScript, focused lint, 238 tests, clean 40-route build, and Production `1280 x 720` one-screen review pass; Mark review remains. |
 | 2026-07-27 | Rebuilt the meadow from the supplied source's grass logic | `ART-16B`, `CAP-ART-017/019`, `EV-ART-16-09/10` | Mark found the river-safe composition improved but rejected its sparse, coarse, tall grass. Commit `d5b9c4e`, Ready in Production `dpl_HFTY1xG4qMWH47EeqBzyyA9xr1vW`, replaces 11,000 three-blade clumps with 32,000 short seven-blade clumps in one draw, adapts the source palette, synchronizes blade/ground gusts, warms the near bank, and softens distance contrast. Focused lint, TypeScript, 238 tests, clean 40-route build, and local `1280 x 720` review pass; Mark source-likeness and target-machine review remain. |

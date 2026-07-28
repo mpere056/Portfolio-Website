@@ -72,7 +72,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - one path-aligned shader-driven water ribbon with painted depth plates and downstream travel;
 - one dark five-arch viaduct and bounded three-car train used as middle-distance depth cues from the supplied source;
 - one sky shader, hemisphere light, directional light, fog, and shader-only piano grounding;
-- farther fixed scenic-overlook camera with at most `0.08` world units of pointer travel and bounded aspect-aware vertical field-of-view fitting that preserves the broad source composition on taller windows;
+- elevated fixed right-meadow overlook with modest off-axis valley angle, at most `0.08` world units of pointer travel, and restrained `46-49` degree aspect-aware field-of-view fitting;
 - DPR capped at `1.25`;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
@@ -140,4 +140,7 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Mark found the independent grass better, then requested a farther camera and closer source composition/styling.
 - Commits `c5f1fa4` and `c539899` move the overlook back; preserve the wide source frame on tall browser windows through bounded lens fitting; warm and soften the sky, fog, and final atmosphere; and strengthen the golden-right/cool-left meadow hierarchy.
 - Focused lint, TypeScript, all 57 test files / 239 tests, the clean 40-route Production build, and live one-screen browser review pass. Git-connected Production for `c539899` is live.
-- Exact next action: collect only Checkpoint `B` camera distance, source composition/styling, piano readability, meadow continuity, and target-machine performance answers.
+- Mark clarified that this still did not match: the camera needed to change angle modestly and move physically back along the grass field rather than widen a centered ravine view.
+- Commit `de4596d` moves the eye to an elevated right-meadow overlook, keeps the viaduct broad and approximately horizontal, places the river below it, retains golden foreground and open sky, and moves translucent edge foliage out of the center.
+- Focused lint, TypeScript, all 57 test files / 239 tests, content validation, the clean 40-route Production build, and local/Production `1080 x 894` browser review pass. Git-connected Production for `de4596d` is live.
+- Exact next action: collect only Checkpoint `B` camera angle/position, source composition/styling, piano readability, and target-machine performance answers.

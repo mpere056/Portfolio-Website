@@ -7,12 +7,12 @@ Last updated: 2026-07-27
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; aspect-safe source-framing revision deployed and in review |
+| Lifecycle | in-progress; oblique meadow-overlook revision deployed and in review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
 | Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | Independent-blade valley with aspect-aware overlook camera and warm source palette deployed through `c539899` |
+| Implementation | Independent-blade valley with restrained oblique meadow-overlook camera deployed through `de4596d` |
 | Exposure | No-index `/home-world-proof`; canonical `/` and `/projects` unchanged |
-| Deployment | Git-connected Production for `c539899` |
+| Deployment | Git-connected Production for `de4596d` is live |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -162,7 +162,7 @@ Last updated: 2026-07-27
 
 | Field | Value |
 | --- | --- |
-| Status | candidate |
+| Status | revision-requested |
 | Type | implementation-test / build / production / browser-flow / visual-review |
 | Claim | A farther fixed overlook plus aspect-aware vertical field of view can preserve the source's broad composition on both wide and tall browser windows, while a warmer low-contrast atmosphere and localized golden-meadow palette restore its pastoral color hierarchy. |
 | Scope | Camera moves back and targets the middle-distance valley; the base `49` degree lens preserves widescreen intent while a bounded aspect fit widens only on taller windows. Sky, fog, lights, CSS atmosphere, sun wash, right-meadow grass, and ground palette are warmed and softened. Terrain, independent blades, river, bridge, train, particle piano, vegetation exclusions, route exposure, and runtime budget remain unchanged. |
@@ -170,7 +170,21 @@ Last updated: 2026-07-27
 | Automated evidence | All 57 test files / 239 tests, TypeScript, focused ESLint, and the clean 40-route Production build pass. Tests bind the farther base camera, reference-aspect lens, tall-window widening, maximum vertical field of view, and existing bounded renderer policy. |
 | Browser evidence | Production `1280 x 720` review confirms the complete viaduct and both banks remain in frame, the horizon retains open sky, the near-right meadow reads gold against the cooler left bank, and the cream/lilac haze is visible without post-processing. |
 | Production evidence | Commits `c5f1fa4` and `c539899` are pushed to `main` and live through the Git-connected Production deployment at `/home-world-proof`. |
-| Visual evidence | Awaiting Mark review of camera distance, source composition, pastoral finish, piano readability, and target-machine smoothness. |
+| Visual evidence | Mark found that the camera still did not match the source: widening a centered ravine view made the bridge and landscape smaller instead of moving the eye back along the grass field and changing its angle. |
+
+## EV-ART-16-13: Oblique Meadow-Overlook Revision
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | Moving the camera physically onto the right meadow, elevating it above the foreground slope, and using a restrained off-axis lens produces the source's compositional grammar more faithfully than widening a centered ravine view. |
+| Scope | The camera moves laterally and upward on the right field, looks modestly across and down into the valley, and uses a `46` degree base lens with a tightly bounded `49` degree tall-window fit. The viaduct stays broad and approximately horizontal, the river sits beneath it, the golden field occupies the near-right foreground, and the sky remains open. Oversized translucent foliage moves back to the frame edges with lower opacity. Terrain, meadow, water, viaduct/train, particle piano, and runtime budget remain unchanged. |
+| Runtime policy | One canvas; DPR capped at `1.25`; unchanged scene counts; one bounded camera calculation in the existing scene loop; no post-processing, real-time shadows, physics, or added scene systems. |
+| Automated evidence | All 57 test files / 239 tests, TypeScript, focused ESLint, content validation, and the clean 40-route Production build pass. Tests bind the lateral meadow position, elevated valley-facing pitch, restrained base/tall-window lens, and existing bounded renderer policy. |
+| Browser evidence | Local and Production `1080 x 894` review, matching Mark's latest tall viewport, confirms a broad horizontal bridge, river below it, golden foreground slope, open pale sky, modest off-axis perspective, and edge foliage no longer dominating the center. |
+| Production evidence | Commit `de4596d` is pushed to `main` and live through Git-connected Production at `/home-world-proof`. |
+| Visual evidence | Awaiting Mark review of the new physical camera position and source-composition likeness. |
 
 ## Named Gaps
 
