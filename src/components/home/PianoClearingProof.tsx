@@ -14,6 +14,7 @@ import {
 import {
   PIANO_CLEARING_CAMERA,
   PIANO_CLEARING_PERFORMANCE,
+  pianoClearingCameraFov,
   pianoClearingRiverCenterX,
   pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
@@ -951,17 +952,17 @@ function SkyDome() {
           varying vec3 vWorld;
           void main() {
             float height = smoothstep(-0.12, 0.78, vWorld.y);
-            vec3 horizon = vec3(0.89, 0.84, 0.76);
-            vec3 upper = vec3(0.66, 0.76, 0.82);
-            vec3 zenith = vec3(0.43, 0.61, 0.75);
+            vec3 horizon = vec3(0.94, 0.86, 0.70);
+            vec3 upper = vec3(0.80, 0.80, 0.74);
+            vec3 zenith = vec3(0.66, 0.72, 0.75);
             vec3 color = mix(horizon, zenith, height);
-            color = mix(color, upper, smoothstep(0.18, 0.54, height) * 0.32);
+            color = mix(color, upper, smoothstep(0.14, 0.58, height) * 0.38);
             vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
             float sunFacing = max(dot(vWorld, sunDirection), 0.0);
             float halo = pow(sunFacing, 11.0);
             float disk = smoothstep(0.997, 0.999, sunFacing);
-            color += vec3(1.0, 0.76, 0.48) * halo * 0.26;
-            color += vec3(1.0, 0.96, 0.8) * disk * 0.96;
+            color += vec3(1.0, 0.77, 0.46) * halo * 0.34;
+            color += vec3(1.0, 0.97, 0.82) * disk * 1.08;
             gl_FragColor = vec4(color, 1.0);
           }
         `}
@@ -1124,7 +1125,7 @@ function DistantSkyForms({ reducedMotion }: { reducedMotion: boolean }) {
 }
 
 function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
-  const { camera, pointer } = useThree();
+  const { camera, pointer, size } = useThree();
   const target = useMemo(() => new THREE.Vector3(...PIANO_CLEARING_CAMERA.target), []);
   const base = useMemo(() => new THREE.Vector3(...PIANO_CLEARING_CAMERA.position), []);
 
@@ -1138,6 +1139,13 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
       2,
       delta,
     );
+    if (camera instanceof THREE.PerspectiveCamera) {
+      const fittedFov = pianoClearingCameraFov(size.width / Math.max(size.height, 1));
+      if (Math.abs(camera.fov - fittedFov) > 0.01) {
+        camera.fov = fittedFov;
+        camera.updateProjectionMatrix();
+      }
+    }
     camera.lookAt(target);
   });
 
@@ -1152,9 +1160,9 @@ const PianoClearingScene = memo(function PianoClearingScene({
   return (
     <>
       <SkyDome />
-      <fogExp2 attach="fog" args={['#bcc6a4', 0.0185]} />
-      <hemisphereLight args={['#fff0c2', '#405849', 2.1]} />
-      <directionalLight position={[-9, 10, 4]} color="#ffc979" intensity={2.55} />
+      <fogExp2 attach="fog" args={['#c7bea3', 0.017]} />
+      <hemisphereLight args={['#fff0c8', '#475746', 2.18]} />
+      <directionalLight position={[-9, 10, 4]} color="#ffd08a" intensity={2.65} />
       <DistantLandscape />
       <Ground reducedMotion={reducedMotion} />
       <Stream reducedMotion={reducedMotion} />

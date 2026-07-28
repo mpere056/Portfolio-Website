@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 export const PIANO_CLEARING_PERFORMANCE = {
   maxDpr: 1.25,
   grassInstances: 220000,
@@ -14,11 +16,29 @@ export const PIANO_CLEARING_PERFORMANCE = {
 } as const;
 
 export const PIANO_CLEARING_CAMERA = {
-  position: [0.8, 4.8, 18.2] as const,
-  target: [-1.8, 1.15, -28] as const,
-  fov: 46,
+  position: [0.8, 4.55, 22.4] as const,
+  target: [-1.45, 0.95, -26.5] as const,
+  fov: 49,
+  referenceAspect: 16 / 9,
+  maxVerticalFov: 67,
   maxPointerTravel: 0.08,
 } as const;
+
+export function pianoClearingCameraFov(aspect: number): number {
+  const safeAspect = Math.max(aspect, 0.75);
+  const baseRadians = THREE.MathUtils.degToRad(PIANO_CLEARING_CAMERA.fov);
+  const referenceHorizontalFov = 2 * Math.atan(
+    Math.tan(baseRadians / 2) * PIANO_CLEARING_CAMERA.referenceAspect,
+  );
+  const fittedVerticalFov = THREE.MathUtils.radToDeg(
+    2 * Math.atan(Math.tan(referenceHorizontalFov / 2) / safeAspect),
+  );
+
+  return Math.min(
+    PIANO_CLEARING_CAMERA.maxVerticalFov,
+    Math.max(PIANO_CLEARING_CAMERA.fov, fittedVerticalFov),
+  );
+}
 
 function clamp01(value: number): number {
   return Math.max(0, Math.min(1, value));

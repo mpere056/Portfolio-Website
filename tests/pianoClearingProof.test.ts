@@ -2,7 +2,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  PIANO_CLEARING_CAMERA,
   PIANO_CLEARING_PERFORMANCE,
+  pianoClearingCameraFov,
   pianoClearingRiverCenterX,
   pianoClearingRiverWidth,
   pianoClearingTerrainHeight,
@@ -24,6 +26,15 @@ describe('piano clearing Home proof', () => {
     expect(PIANO_CLEARING_PERFORMANCE.trainCars).toBeLessThanOrEqual(3);
     expect(PIANO_CLEARING_PERFORMANCE.realtimeShadows).toBe(false);
     expect(PIANO_CLEARING_PERFORMANCE.postProcessing).toBe(false);
+  });
+
+  it('preserves the wide overlook framing on tall browser windows', () => {
+    expect(PIANO_CLEARING_CAMERA.position[2]).toBeGreaterThan(20);
+    expect(pianoClearingCameraFov(16 / 9)).toBe(PIANO_CLEARING_CAMERA.fov);
+    expect(pianoClearingCameraFov(1.22)).toBeGreaterThan(60);
+    expect(pianoClearingCameraFov(1.22)).toBeLessThanOrEqual(
+      PIANO_CLEARING_CAMERA.maxVerticalFov,
+    );
   });
 
   it('separates the piano plateau, steep descent, river floor, and opposite hillside', () => {
@@ -90,6 +101,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<StoneViaduct />');
     expect(component).toContain('<PassingTrain reducedMotion={reducedMotion} />');
     expect(component).toContain('<CameraRig reducedMotion={reducedMotion} />');
+    expect(component).toContain('pianoClearingCameraFov(size.width / Math.max(size.height, 1))');
     expect(component).not.toContain('<primitive object={piano}');
     expect(component).not.toContain('OrbitControls');
     expect(component).not.toContain('EffectComposer');
