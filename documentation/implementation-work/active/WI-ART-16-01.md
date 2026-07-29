@@ -28,7 +28,7 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 
 ## Resume Packet
 
-- Current implementation baseline: commits `6477e5c` and `78c19ee` on `main`, live through Git-connected Production.
+- Current implementation baseline: commit `024365e` on `main`, live through Git-connected Production.
 - Current implementation: canonical Home renders the farther-right `Dusk Refrain` independent-blade viaduct view with a geometry-grounded lower-center pearl particle piano; its doorway links to a complete 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
 - Verification: focused lint, TypeScript, 58 test files / 243 tests across the aggregate and isolated timeout rerun, content validation, the clean 41-route production build, and built browser review of slides `1`, `4`, `6`, `8`, `9`, and `10` pass.
@@ -94,6 +94,7 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 - Every slide has a distinct lightweight CSS/SVG visual instrument; the route supports buttons, direct slide markers, keyboard navigation, swipe, fullscreen, and reduced motion.
 - Global tour, discovery, semantic-signal, archive-AI, and audio chrome remain available elsewhere but are suppressed on `/presentation`.
 - Focused presentation/Home tests, focused lint, the 41-route production build, and built `1280 x 720` browser review of the title, C++, CRA, and closing slides pass.
+- Commit `024365e` is pushed to `main`; live browser navigation confirms the revised title, all 10 slide controls, the FirePower closing slide, and the AI-in-business handoff in Production.
 
 ### 2026-07-27 Source-Guided Revision
 
