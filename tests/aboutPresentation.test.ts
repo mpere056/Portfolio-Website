@@ -5,20 +5,23 @@ import { describe, expect, it } from 'vitest';
 const root = process.cwd();
 
 describe('about presentation', () => {
-  it('uses a concise, source-grounded ten-slide arc', async () => {
+  it('uses a concise, source-grounded programming and career arc', async () => {
     const component = await readFile(
       path.join(root, 'src/components/presentation/AboutPresentation.tsx'),
       'utf8',
     );
 
     expect(component).toContain('data-presentation-stage="about-mark"');
-    expect(component).toContain('Before code, there was piano.');
-    expect(component).toContain('10 people became 26,000.');
-    expect(component).toContain('Rebuilding was my hardest system.');
-    expect(component).toContain('AI turned curiosity into momentum.');
+    expect(component).toContain('LittleBigPlanet 2');
+    expect(component).toContain('Modern Warfare 2');
+    expect(component).toContain('KAMEHAMEHA');
+    expect(component).toContain('multiplayer engineering');
+    expect(component).toContain('26K');
+    expect(component).toContain('CRA');
+    expect(component).toContain('AirOps');
     expect(component).toContain('$100K');
-    expect(component).toContain('I build in four directions.');
-    expect(component).toContain('I turn complexity into systems people can explore.');
+    expect(component).toContain('FirePower Capital');
+    expect(component).toContain('Next: AI in business');
     expect(component.match(/chapter: '/g)).toHaveLength(10);
   });
 

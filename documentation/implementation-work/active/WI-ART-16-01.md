@@ -24,7 +24,7 @@ Mark found the deployed five-band candidate better but still unlike the supplied
 
 Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
-Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway now opens a no-index, 10-slide About presentation built from the reviewed About timeline; it uses sparse speaker-led copy, route-specific animated diagrams, direct progress controls, swipe, keyboard navigation, fullscreen support, and a distraction-free presentation mode. The pianist, practice screens, environment preview, selected states, and project reveal do not exist.
+Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway now opens a no-index, 10-slide programming-and-career presentation for a college business audience interested in AI. It moves from LittleBigPlanet 2 logic through MW2 lobby operation, C++, AoTTG modding, Discord scale, CRA, degree completion, AirOps, Dreamlife, and Mark's current software role before handing off to AI in business. It uses sparse speaker-led copy, route-specific animated diagrams, direct progress controls, swipe, keyboard navigation, fullscreen support, and a distraction-free presentation mode. The pianist, practice screens, environment preview, selected states, and project reveal do not exist.
 
 ## Resume Packet
 
@@ -89,10 +89,11 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 ### 2026-07-28 About Presentation
 
 - Commit `6477e5c` replaces the empty presentation staging room with a no-index, 10-slide About deck based on the reviewed timeline.
-- The deck covers piano discipline, systems curiosity, community leadership, the 2019 break, academic rebuilding, AI leverage, Dreamlife, four current practices, and the recurring systems thread.
+- The first candidate covered broad personal themes. Mark then narrowed the deck to a programming-and-career introduction for college business students interested in AI.
+- The current revision follows LittleBigPlanet 2 logic, MW2 lobby operation, C++, AoTTG modding, Discord scale, CRA, degree completion, the first professional AI/software role at AirOps, Dreamlife, and the current FirePower Capital role before a direct AI-in-business handoff.
 - Every slide has a distinct lightweight CSS/SVG visual instrument; the route supports buttons, direct slide markers, keyboard navigation, swipe, fullscreen, and reduced motion.
 - Global tour, discovery, semantic-signal, archive-AI, and audio chrome remain available elsewhere but are suppressed on `/presentation`.
-- Focused tests, TypeScript, focused lint, content validation, the 41-route production build, and built one-screen browser review pass. Two resource-heavy project tests exceeded their five-second limit during the concurrent aggregate run and passed immediately in isolation.
+- Focused presentation/Home tests, focused lint, the 41-route production build, and built `1280 x 720` browser review of the title, C++, CRA, and closing slides pass.
 
 ### 2026-07-27 Source-Guided Revision
 

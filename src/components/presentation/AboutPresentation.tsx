@@ -13,14 +13,14 @@ import styles from '@/app/presentation/presentation.module.css';
 
 type Motif =
   | 'origin'
-  | 'resonance'
   | 'play'
+  | 'lobby'
+  | 'console'
+  | 'network'
   | 'community'
   | 'fracture'
   | 'rebuild'
-  | 'signal'
   | 'dream'
-  | 'practices'
   | 'continuum';
 
 interface Slide {
@@ -36,50 +36,76 @@ interface Slide {
 const slides: Slide[] = [
   {
     chapter: 'Mark Perera',
-    title: 'I build worlds people can move through.',
-    statement: 'Software. AI. Music. Communities.',
+    title: 'I learned to program',
+    accent: 'by trying to change the game.',
+    statement: 'This is the short version of how play became a career.',
     motif: 'origin',
   },
   {
-    chapter: '01 / Discipline',
-    title: 'Before code, there was piano.',
-    statement: 'Depth is built one deliberate repetition at a time.',
+    chapter: '01 / LittleBigPlanet 2',
+    title: 'My first logic gates',
+    accent: 'were made of cardboard.',
+    statement: 'At 14, I built locks and sequences without realizing I was learning programming.',
     metrics: [
-      { value: '4', label: 'First lesson' },
-      { value: '12', label: 'Practical exams complete' },
-      { value: '5h', label: 'Peak daily practice' },
+      { value: 'AND', label: 'All inputs' },
+      { value: 'OR', label: 'Any input' },
+      { value: 'XOR', label: 'One input' },
     ],
-    motif: 'resonance',
-  },
-  {
-    chapter: '02 / Curiosity',
-    title: 'I stopped only playing games.',
-    accent: 'I started opening them.',
-    tags: ['Logic gates', 'C++', 'Unity modding', 'Multiplayer RPC'],
     motif: 'play',
   },
   {
-    chapter: '03 / Community',
-    title: '10 people became 26,000.',
-    statement: 'The code mattered. The culture mattered more.',
+    chapter: '02 / Modern Warfare 2',
+    title: 'Then I learned systems',
+    accent: 'could be bent.',
+    statement: 'I flashed firmware, loaded patched files, and hosted unusual lobbies for hundreds of players.',
+    tags: ['Reverse the rules', 'Operate the system', 'Create an experience'],
+    motif: 'lobby',
+  },
+  {
+    chapter: '03 / C++',
+    title: 'Then code gave',
+    accent: 'the hidden rules names.',
+    statement: 'Tic-Tac-Toe became a command-line platformer with jumping, shooting, and a Kamehameha beam.',
+    tags: ['Input', 'Condition', 'Loop', 'State'],
+    motif: 'console',
+  },
+  {
+    chapter: '04 / AoTTG modding',
+    title: 'Modding became',
+    accent: 'multiplayer engineering.',
+    statement: 'I edited Unity assemblies, shared DLLs, and learned how networked actions stay in sync.',
+    tags: ['DNSpy', '.NET', 'RPC calls', 'Network sync'],
+    motif: 'network',
+  },
+  {
+    chapter: '05 / Discord',
+    title: 'Code became',
+    accent: 'community infrastructure.',
+    statement: 'A small group around those mods became a system operating at real scale.',
     metrics: [
+      { value: '26K', label: 'Community members' },
       { value: '25K', label: 'Messages each day' },
       { value: '50', label: 'Person moderator team' },
-      { value: '24/7', label: 'Community coverage' },
     ],
     motif: 'community',
   },
   {
-    chapter: '04 / The break',
-    title: 'Then I lost the plot.',
-    statement: '2019 forced an honest reset.',
-    tags: ['Stopped university', 'Isolation', 'Long walks', 'Start again'],
+    chapter: '06 / CRA',
+    title: 'My first career',
+    accent: 'looked right on paper.',
+    statement: 'It was stable and useful work. It also made one thing clear: I wanted to build.',
+    metrics: [
+      { value: '1st', label: 'Full-time role' },
+      { value: '1000+', label: 'People supported' },
+      { value: '≠', label: 'The right direction' },
+    ],
     motif: 'fracture',
   },
   {
-    chapter: '05 / Return',
-    title: 'Rebuilding was my hardest system.',
-    statement: 'Not a comeback story. A sequence of stubborn next steps.',
+    chapter: '07 / Return',
+    title: 'So I finished',
+    accent: 'what I had started.',
+    statement: 'In my final semester, I joined AirOps and began building AI workflows professionally.',
     metrics: [
       { value: '8', label: 'Courses to re-enter' },
       { value: '4', label: 'Universities coordinated' },
@@ -88,58 +114,26 @@ const slides: Slide[] = [
     motif: 'rebuild',
   },
   {
-    chapter: '06 / Leverage',
-    title: 'AI turned curiosity into momentum.',
-    statement: 'Experiment, measure, learn, repeat.',
-    metrics: [
-      { value: '1M', label: 'Monthly Pinterest views' },
-      { value: '5mo', label: 'Time to reach them' },
-      { value: 'AirOps', label: 'AI workflow engineering' },
-    ],
-    motif: 'signal',
-  },
-  {
-    chapter: '07 / Dreamlife',
-    title: 'What if we could prototype a life',
-    accent: 'before committing to it?',
-    statement: 'AI-generated futures became a working mobile product.',
+    chapter: '08 / Building products',
+    title: 'Then I built',
+    accent: 'a possible future of my own.',
+    statement: 'A small story app evolved into Dreamlife: an AI mobile product for exploring possible lives.',
     metrics: [
       { value: '$100K', label: 'Development offer' },
     ],
     motif: 'dream',
   },
   {
-    chapter: '08 / Now',
-    title: 'I build in four directions.',
-    tags: [
-      'AI + possible futures',
-      'Life systems + tools',
-      'Play + community',
-      'Music + performance',
-    ],
-    motif: 'practices',
-  },
-  {
-    chapter: '09 / The thread',
-    title: 'The work changes.',
-    accent: 'The pattern does not.',
-    statement: 'I turn complexity into systems people can explore.',
+    chapter: '09 / Today',
+    title: 'Today, I build software.',
+    accent: 'The pattern is still the same.',
+    statement: 'At FirePower Capital, I keep opening systems, understanding their rules, and making them useful. AI is the newest one.',
+    tags: ['Software Developer', 'Next: AI in business'],
     motif: 'continuum',
   },
 ];
 
 function Visual({ motif }: { motif: Motif }) {
-  if (motif === 'resonance') {
-    return (
-      <div className={`${styles.visual} ${styles.resonance}`} aria-hidden="true">
-        <div className={styles.pianoArc}>
-          {Array.from({ length: 15 }, (_, index) => <span key={index} />)}
-        </div>
-        <i /><i /><i /><i />
-      </div>
-    );
-  }
-
   if (motif === 'play') {
     return (
       <div className={`${styles.visual} ${styles.logicField}`} aria-hidden="true">
@@ -150,6 +144,68 @@ function Visual({ motif }: { motif: Motif }) {
             <g key={x} className={styles.logicNode} style={{ '--node-delay': `${index * -1.1}s` } as CSSProperties}>
               <circle cx={x} cy={[310, 128, 354, 206][index]} r="18" />
               <circle cx={x} cy={[310, 128, 354, 206][index]} r="5" />
+            </g>
+          ))}
+        </svg>
+      </div>
+    );
+  }
+
+  if (motif === 'lobby') {
+    return (
+      <div className={`${styles.visual} ${styles.lobbyField}`} aria-hidden="true">
+        <div className={styles.lobbyCore}>HOST</div>
+        {Array.from({ length: 18 }, (_, index) => (
+          <span
+            key={index}
+            style={{
+              '--angle': `${index * 20}deg`,
+              '--radius': `${118 + (index % 3) * 58}px`,
+              '--delay': `${index * -0.24}s`,
+            } as CSSProperties}
+          >
+            {String(index + 1).padStart(2, '0')}
+          </span>
+        ))}
+      </div>
+    );
+  }
+
+  if (motif === 'console') {
+    return (
+      <div className={`${styles.visual} ${styles.consoleField}`} aria-hidden="true">
+        <div className={styles.consoleWindow}>
+          <div className={styles.consoleBar}><i /><i /><i /></div>
+          <code>
+            <span>&gt; world.load()</span>
+            <span>&gt; player.jump()</span>
+            <span>&gt; if (input === &quot;=&quot;)</span>
+            <strong>████████ KAMEHAMEHA</strong>
+            <span className={styles.consoleCursor}>&gt; _</span>
+          </code>
+        </div>
+      </div>
+    );
+  }
+
+  if (motif === 'network') {
+    return (
+      <div className={`${styles.visual} ${styles.networkField}`} aria-hidden="true">
+        <svg viewBox="0 0 720 520" role="presentation">
+          {[
+            [360, 255, 112, 106],
+            [360, 255, 600, 122],
+            [360, 255, 130, 388],
+            [360, 255, 594, 390],
+            [360, 255, 360, 70],
+          ].map(([x1, y1, x2, y2], index) => (
+            <line key={index} x1={x1} y1={y1} x2={x2} y2={y2} />
+          ))}
+          <g className={styles.networkCore}><circle cx="360" cy="255" r="62" /><text x="360" y="262">RPC</text></g>
+          {[[112, 106], [600, 122], [130, 388], [594, 390], [360, 70]].map(([x, y], index) => (
+            <g key={index} className={styles.networkNode} style={{ '--node-delay': `${index * -0.7}s` } as CSSProperties}>
+              <circle cx={x} cy={y} r="24" />
+              <circle cx={x} cy={y} r="5" />
             </g>
           ))}
         </svg>
@@ -195,24 +251,6 @@ function Visual({ motif }: { motif: Motif }) {
     );
   }
 
-  if (motif === 'signal') {
-    return (
-      <div className={`${styles.visual} ${styles.signalField}`} aria-hidden="true">
-        {Array.from({ length: 34 }, (_, index) => (
-          <span
-            key={index}
-            style={{
-              '--x': `${(index * 37) % 100}%`,
-              '--y': `${(index * 61) % 100}%`,
-              '--delay': `${index * -0.13}s`,
-            } as CSSProperties}
-          />
-        ))}
-        <div className={styles.signalWave} />
-      </div>
-    );
-  }
-
   if (motif === 'dream') {
     return (
       <div className={`${styles.visual} ${styles.dreamField}`} aria-hidden="true">
@@ -222,20 +260,6 @@ function Visual({ motif }: { motif: Motif }) {
           <span>Wild card</span>
         </div>
         <i /><i /><i />
-      </div>
-    );
-  }
-
-  if (motif === 'practices') {
-    const practiceLabels = ['AI', 'Life', 'Play', 'Music'];
-    return (
-      <div className={`${styles.visual} ${styles.practiceField}`} aria-hidden="true">
-        {practiceLabels.map((label, index) => (
-          <span key={label} style={{ '--practice': index } as CSSProperties}>
-            {label}
-          </span>
-        ))}
-        <div className={styles.practiceCore}>M</div>
       </div>
     );
   }
@@ -342,7 +366,7 @@ export default function AboutPresentation() {
       <div className={styles.grain} aria-hidden="true" />
       <header className={styles.hud}>
         <Link href="/" className={styles.homeLink}>Mark Perera</Link>
-        <span className={styles.hudTitle}>A life in systems</span>
+        <span className={styles.hudTitle}>From play to programming</span>
         <button
           className={styles.fullscreenButton}
           type="button"
