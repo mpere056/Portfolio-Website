@@ -163,7 +163,7 @@ describe('piano clearing Home proof', () => {
     expect(proofPage).toContain('<PianoClearingProof />');
     expect(homePage).toContain('<PianoClearingProof />');
     expect(homePage).toContain('href="/presentation"');
-    expect(homePage).toContain('Tomorrow&apos;s presentation');
+    expect(homePage).toContain('Today&apos;s presentation');
     expect(presentationPage).toContain('<AboutPresentation />');
     expect(presentationPage).toContain('robots: { index: false, follow: false }');
   });

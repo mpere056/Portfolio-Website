@@ -15,12 +15,12 @@ export default function HomePage() {
       <Link
         className={styles.presentationDoorway}
         href="/presentation"
-        aria-label="Open tomorrow's presentation"
+        aria-label="Open today's presentation"
       >
         <span className={styles.signal} aria-hidden="true" />
         <span className={styles.copy}>
           <span className={styles.eyebrow}>Temporary doorway</span>
-          <strong>Tomorrow&apos;s presentation</strong>
+          <strong>Today&apos;s presentation</strong>
         </span>
         <span className={styles.arrow} aria-hidden="true">↗</span>
       </Link>
