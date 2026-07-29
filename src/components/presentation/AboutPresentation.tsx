@@ -36,15 +36,15 @@ interface Slide {
 const slides: Slide[] = [
   {
     chapter: 'Mark Perera',
-    title: 'I learned to program',
-    accent: 'by trying to change the game.',
-    statement: 'This is the short version of how play became a career.',
+    title: 'Mark Perera',
+    accent: 'Learning through play',
+    statement: '',
     motif: 'origin',
   },
   {
     chapter: '01 / LittleBigPlanet 2',
-    title: 'My first logic gates',
-    accent: 'were made of cardboard.',
+    title: 'My first',
+    accent: 'logic gates',
     statement: 'At 14, I built locks and sequences without realizing I was learning programming.',
     metrics: [
       { value: 'AND', label: 'All inputs' },
@@ -63,8 +63,8 @@ const slides: Slide[] = [
   },
   {
     chapter: '03 / C++',
-    title: 'Then code gave',
-    accent: 'the hidden rules names.',
+    title: 'Then code allowed me',
+    accent: 'to take things further.',
     statement: 'Tic-Tac-Toe became a command-line platformer with jumping, shooting, and a Kamehameha beam.',
     tags: ['Input', 'Condition', 'Loop', 'State'],
     motif: 'console',
@@ -81,7 +81,7 @@ const slides: Slide[] = [
     chapter: '05 / Discord',
     title: 'Code became',
     accent: 'community infrastructure.',
-    statement: 'A small group around those mods became a system operating at real scale.',
+    statement: 'Discord bots and a system operating at real scale.',
     metrics: [
       { value: '26K', label: 'Community members' },
       { value: '25K', label: 'Messages each day' },
@@ -93,7 +93,7 @@ const slides: Slide[] = [
     chapter: '06 / CRA',
     title: 'My first career',
     accent: 'looked right on paper.',
-    statement: 'It was stable and useful work. It also made one thing clear: I wanted to build.',
+    statement: 'It was stable work.',
     metrics: [
       { value: '1st', label: 'Full-time role' },
       { value: '1000+', label: 'People supported' },
@@ -107,8 +107,6 @@ const slides: Slide[] = [
     accent: 'what I had started.',
     statement: 'In my final semester, I joined AirOps and began building AI workflows professionally.',
     metrics: [
-      { value: '8', label: 'Courses to re-enter' },
-      { value: '4', label: 'Universities coordinated' },
       { value: '2024', label: 'CS degree complete' },
     ],
     motif: 'rebuild',
