@@ -37,7 +37,7 @@ const slides: Slide[] = [
   {
     chapter: 'Mark Perera',
     title: 'Mark Perera',
-    accent: 'Learning through play',
+    accent: 'Software developer',
     statement: '',
     motif: 'origin',
   },
