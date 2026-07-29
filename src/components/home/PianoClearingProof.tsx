@@ -147,7 +147,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     side: THREE.DoubleSide,
     uniforms: {
       uTime: { value: 0 },
-      uWind: { value: reducedMotion ? 0 : 0.52 },
+      uWind: { value: reducedMotion ? 0 : 0.34 },
       uCursor: { value: new THREE.Vector2(1000, 1000) },
       uCursorDirection: { value: new THREE.Vector2(1, 0) },
       uCursorInfluence: { value: 0 },
@@ -265,7 +265,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uWind.value = reducedMotion ? 0 : 0.52;
+    material.uniforms.uWind.value = reducedMotion ? 0 : 0.34;
     if (reducedMotion) {
       cursorImpulse.current = 0;
       cursorInfluence.current = 0;
@@ -488,6 +488,7 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
+    depthTest: true,
     side: THREE.DoubleSide,
     uniforms: {
       uTime: { value: 0 },
@@ -1027,40 +1028,73 @@ function RavineAccents() {
   );
 }
 
-function SkyDome() {
+function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    side: THREE.BackSide,
+    depthWrite: false,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      varying vec3 vWorld;
+      void main() {
+        vec4 world = modelMatrix * vec4(position, 1.0);
+        vWorld = normalize(world.xyz);
+        gl_Position = projectionMatrix * viewMatrix * world;
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec3 vWorld;
+
+      float cloudWisp(float x, float y, float center, float width, float phase) {
+        float drift = uTime * 0.006 * uMotion;
+        float bend = sin((x + phase + drift) * 8.0) * 0.018
+          + sin((x * 17.0) - drift * 0.7 + phase) * 0.006;
+        float band = 1.0 - smoothstep(width * 0.16, width, abs(y - center - bend));
+        float broken = 0.58 + 0.42 * sin((x + phase + drift) * 15.0);
+        return band * broken;
+      }
+
+      void main() {
+        float height = smoothstep(-0.12, 0.78, vWorld.y);
+        vec3 horizon = vec3(0.97, 0.63, 0.77);
+        vec3 upper = vec3(0.59, 0.68, 0.93);
+        vec3 zenith = vec3(0.25, 0.48, 0.88);
+        vec3 color = mix(horizon, zenith, height);
+        color = mix(color, upper, smoothstep(0.14, 0.58, height) * 0.38);
+
+        float x = atan(vWorld.x, -vWorld.z) / 3.14159265;
+        float y = vWorld.y;
+        float wisps = 0.0;
+        wisps += cloudWisp(x, y, 0.29, 0.045, 0.12) * 0.46;
+        wisps += cloudWisp(x, y, 0.36, 0.034, 0.52) * 0.34;
+        wisps += cloudWisp(x, y, 0.43, 0.025, 0.91) * 0.24;
+        float skyWindow = smoothstep(-0.72, -0.36, x) * (1.0 - smoothstep(0.48, 0.78, x));
+        vec3 wispColor = mix(vec3(0.93, 0.67, 0.84), vec3(0.64, 0.62, 0.91), height);
+        color = mix(color, wispColor, wisps * skyWindow * 0.28);
+
+        vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
+        float sunFacing = max(dot(vWorld, sunDirection), 0.0);
+        float halo = pow(sunFacing, 11.0);
+        float disk = smoothstep(0.997, 0.999, sunFacing);
+        color += vec3(1.0, 0.53, 0.73) * halo * 0.28;
+        color += vec3(1.0, 0.86, 0.94) * disk * 0.78;
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `,
+  }), [reducedMotion]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
   return (
-    <mesh scale={72}>
+    <mesh scale={72} material={material}>
       <sphereGeometry args={[1, 28, 16]} />
-      <shaderMaterial
-        side={THREE.BackSide}
-        depthWrite={false}
-        vertexShader={`
-          varying vec3 vWorld;
-          void main() {
-            vec4 world = modelMatrix * vec4(position, 1.0);
-            vWorld = normalize(world.xyz);
-            gl_Position = projectionMatrix * viewMatrix * world;
-          }
-        `}
-        fragmentShader={`
-          varying vec3 vWorld;
-          void main() {
-            float height = smoothstep(-0.12, 0.78, vWorld.y);
-            vec3 horizon = vec3(0.97, 0.63, 0.77);
-            vec3 upper = vec3(0.59, 0.68, 0.93);
-            vec3 zenith = vec3(0.25, 0.48, 0.88);
-            vec3 color = mix(horizon, zenith, height);
-            color = mix(color, upper, smoothstep(0.14, 0.58, height) * 0.38);
-            vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
-            float sunFacing = max(dot(vWorld, sunDirection), 0.0);
-            float halo = pow(sunFacing, 11.0);
-            float disk = smoothstep(0.997, 0.999, sunFacing);
-            color += vec3(1.0, 0.53, 0.73) * halo * 0.28;
-            color += vec3(1.0, 0.86, 0.94) * disk * 0.78;
-            gl_FragColor = vec4(color, 1.0);
-          }
-        `}
-      />
     </mesh>
   );
 }
@@ -1109,7 +1143,12 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
             [1.7, -0.08, 0.08, 1.05],
             [-0.15, -0.23, 0.11, 1.55],
           ].map(([x, y, z, scale], index) => (
-            <mesh key={index} position={[x, y, z]} scale={[scale * 1.35, scale * 0.58, scale * 0.66]}>
+            <mesh
+              key={index}
+              position={[x, y, z]}
+              scale={[scale * 1.35, scale * 0.58, scale * 0.66]}
+              renderOrder={2}
+            >
               <sphereGeometry args={[1, 10, 7]} />
               <meshBasicMaterial
                 color={index === 5 ? '#756bb1' : index % 3 === 0 ? '#c891c5' : '#e6a9d1'}
@@ -1324,7 +1363,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
 }) {
   return (
     <>
-      <SkyDome />
+      <SkyDome reducedMotion={reducedMotion} />
       <fogExp2 attach="fog" args={['#8f7fc5', 0.017]} />
       <hemisphereLight args={['#b9d0ff', '#33275f', 2.12]} />
       <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.45} />
@@ -1371,7 +1410,8 @@ export default function PianoClearingProof() {
       className={styles.world}
       data-piano-clearing-proof=""
       data-river-flow="far-to-foreground"
-      data-grass-wind="0.52"
+      data-grass-wind="0.34"
+      data-cloud-streaks="procedural-wisps"
       data-grass-cursor="terrain-local-3.2"
       data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}
       data-color-script="dusk-refrain"
@@ -1395,6 +1435,7 @@ export default function PianoClearingProof() {
       >
         <PianoClearingScene reducedMotion={reducedMotion} />
       </Canvas>
+      <div aria-hidden="true" className={styles.cloudStreaks} />
       <div aria-hidden="true" className={styles.atmosphere} />
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
