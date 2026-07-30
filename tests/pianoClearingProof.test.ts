@@ -163,7 +163,11 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('category-screen');
     expect(component).toContain('<PianistAndBench reducedMotion={reducedMotion} />');
     expect(component).toContain("userData={{ role: 'piano-player' }}");
-    expect(component).toContain('const rightPhrase = Math.sin');
+    expect(component).toContain('function layeredPlayingMotion');
+    expect(component).toContain('const leftTravel = layeredPlayingMotion');
+    expect(component).toContain('const rightTravel = layeredPlayingMotion');
+    expect(component).toContain('joints.leftElbow.x = -0.3 + leftTravel * 0.42');
+    expect(component).toContain('joints.rightWrist.x = 0.27 + rightTravel');
     expect(component).toContain('placeLimb(leftForearm.current');
     expect(component).toContain('<capsuleGeometry');
     expect(component).toContain('player.current.position.y = -0.105');

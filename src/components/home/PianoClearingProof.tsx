@@ -741,6 +741,14 @@ function placeLimb(
   );
 }
 
+function layeredPlayingMotion(time: number, seed: number) {
+  return (
+    Math.sin(time * 0.37 + seed) * 0.52
+    + Math.sin(time * 0.71 + seed * 1.73) * 0.3
+    + Math.sin(time * 0.19 + seed * 2.41) * 0.18
+  );
+}
+
 function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
   const player = useRef<THREE.Group>(null);
   const head = useRef<THREE.Group>(null);
@@ -762,27 +770,36 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame(({ clock }) => {
     const time = reducedMotion ? 0 : clock.elapsedTime;
-    const phrase = Math.sin(time * 1.48);
-    const leftPhrase = Math.sin(time * 3.7) * 0.018 + Math.sin(time * 1.13) * 0.01;
-    const rightPhrase = Math.sin(time * 4.15 + 1.7) * 0.022
-      + Math.sin(time * 1.31 + 0.8) * 0.009;
-    const breath = Math.sin(time * 0.72) * 0.012;
+    const phrase = layeredPlayingMotion(time, 0.8);
+    const leftTravel = layeredPlayingMotion(time, 2.15) * 0.105;
+    const rightTravel = layeredPlayingMotion(time, 5.4) * 0.11;
+    const leftPress = (
+      Math.sin(time * 2.64 + Math.sin(time * 0.43) * 1.35) * 0.006
+      + Math.sin(time * 1.31 + 2.2) * 0.0035
+    );
+    const rightPress = (
+      Math.sin(time * 2.87 + 1.4 + Math.sin(time * 0.39 + 0.7) * 1.5) * 0.0065
+      + Math.sin(time * 1.47 + 0.4) * 0.0035
+    );
+    const breath = Math.sin(time * 0.58) * 0.007;
 
     if (player.current) {
-      player.current.rotation.x = -0.055 + phrase * 0.012;
-      player.current.position.y = -0.105 + breath * 0.18;
+      player.current.rotation.x = -0.055 + phrase * 0.005;
+      player.current.position.y = -0.105 + breath * 0.12;
     }
     if (head.current) {
-      head.current.rotation.x = 0.12 + Math.sin(time * 0.61 + 0.4) * 0.035;
-      head.current.rotation.y = Math.sin(time * 0.39) * 0.035;
+      head.current.rotation.x = 0.12 + layeredPlayingMotion(time, 1.2) * 0.014;
+      head.current.rotation.y = layeredPlayingMotion(time, 4.3) * 0.016;
     }
 
-    joints.leftElbow.y = 0.86 + leftPhrase * 0.55;
-    joints.leftWrist.y = 0.79 + leftPhrase;
-    joints.leftWrist.x = -0.27 + Math.sin(time * 0.94) * 0.022;
-    joints.rightElbow.y = 0.86 + rightPhrase * 0.5;
-    joints.rightWrist.y = 0.79 + rightPhrase;
-    joints.rightWrist.x = 0.27 + Math.sin(time * 1.07 + 1.2) * 0.024;
+    joints.leftElbow.x = -0.3 + leftTravel * 0.42;
+    joints.leftElbow.y = 0.86 + leftPress * 0.42;
+    joints.leftWrist.x = -0.27 + leftTravel;
+    joints.leftWrist.y = 0.79 + leftPress;
+    joints.rightElbow.x = 0.3 + rightTravel * 0.42;
+    joints.rightElbow.y = 0.86 + rightPress * 0.4;
+    joints.rightWrist.x = 0.27 + rightTravel;
+    joints.rightWrist.y = 0.79 + rightPress;
 
     placeLimb(leftUpperArm.current, joints.leftShoulder, joints.leftElbow);
     placeLimb(leftForearm.current, joints.leftElbow, joints.leftWrist);
