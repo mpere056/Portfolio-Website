@@ -82,15 +82,24 @@ function createGrassGeometry() {
   ], 2));
   geometry.setIndex([0, 1, 2, 0, 2, 3]);
 
-  const bladeCount = PIANO_CLEARING_PERFORMANCE.grassInstances;
+  const fieldBladeCount = PIANO_CLEARING_PERFORMANCE.grassInstances;
+  const foregroundBladeCount = PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances;
+  const bladeCount = fieldBladeCount + foregroundBladeCount;
   const roots = new Float32Array(bladeCount * 3);
   const parameters = new Float32Array(bladeCount * 4);
   const random = seededRandom(801);
   let accepted = 0;
 
   while (accepted < bladeCount) {
-    const x = (random() - 0.5) * 58;
-    const z = 24 - random() * 61;
+    const isForegroundBlade = accepted >= fieldBladeCount;
+    const foregroundAngle = random() * Math.PI * 2;
+    const foregroundRadius = Math.pow(random(), 0.72);
+    const x = isForegroundBlade
+      ? PIANO_X + Math.cos(foregroundAngle) * foregroundRadius * 13.5
+      : (random() - 0.5) * 58;
+    const z = isForegroundBlade
+      ? PIANO_Z + Math.sin(foregroundAngle) * foregroundRadius * 9.5
+      : 24 - random() * 61;
     const riverCenter = pianoClearingRiverCenterX(z);
     const riverWidth = pianoClearingRiverWidth(z);
     const streamGap = Math.abs(x - riverCenter);
@@ -1461,7 +1470,7 @@ export default function PianoClearingProof() {
       data-grass-cursor="terrain-local-3.2"
       data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}
       data-color-script="dusk-refrain"
-      data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
+      data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}+${PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
       <Canvas
         className={styles.canvas}

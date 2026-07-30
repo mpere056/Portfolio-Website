@@ -2,7 +2,8 @@ import * as THREE from 'three';
 
 export const PIANO_CLEARING_PERFORMANCE = {
   maxDpr: 1.25,
-  grassInstances: 220000,
+  grassInstances: 200000,
+  foregroundGrassInstances: 60000,
   pianoParticles: 9000,
   horizonTrees: 58,
   valleyRocks: 5,

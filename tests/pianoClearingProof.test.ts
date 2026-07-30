@@ -17,6 +17,7 @@ const root = process.cwd();
 describe('piano clearing Home proof', () => {
   it('keeps the first environmental proof deliberately bounded', () => {
     expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(220000);
+    expect(PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances).toBeLessThanOrEqual(60000);
     expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
     expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
     expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(60);
@@ -133,7 +134,9 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('data-color-script="dusk-refrain"');
     expect(component).toContain('Dusk Refrain');
     expect(component).toContain('new THREE.InstancedBufferGeometry()');
-    expect(component).toContain('const z = 24 - random() * 61');
+    expect(component).toContain('const isForegroundBlade = accepted >= fieldBladeCount');
+    expect(component).toContain('PIANO_X + Math.cos(foregroundAngle)');
+    expect(component).toContain(': 24 - random() * 61');
     expect(component).toContain("geometry.setAttribute('iRoot'");
     expect(component).toContain("geometry.setAttribute('iParams'");
     expect(component).not.toContain('pianoGap');
