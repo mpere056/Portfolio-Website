@@ -26,17 +26,19 @@
   height: clamp(64px, 8.5vw, 138px);
   transform: rotate(10deg);
   transform-origin: 0 50%;
+  border-radius: 50%;
   background: radial-gradient(
-    ellipse at 3% 50%,
-    rgba(7, 5, 22, 0.54) 0%,
-    rgba(13, 8, 37, 0.44) 18%,
-    rgba(24, 13, 54, 0.28) 46%,
-    rgba(31, 19, 69, 0.09) 68%,
-    transparent 82%
+    ellipse at 12% 50%,
+    rgba(7, 5, 22, 0.46) 0%,
+    rgba(13, 8, 37, 0.36) 20%,
+    rgba(24, 13, 54, 0.2) 48%,
+    rgba(31, 19, 69, 0.06) 70%,
+    transparent 88%
   );
-  filter: blur(9px);
+  filter: blur(16px);
+  mask-image: radial-gradient(ellipse at 12% 50%, #000 0 38%, rgba(0, 0, 0, 0.72) 58%, transparent 88%);
   mix-blend-mode: normal;
-  opacity: 0.76;
+  opacity: 0.56;
 }
 
 .cloudStreaks {
