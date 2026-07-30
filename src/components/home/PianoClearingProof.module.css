@@ -19,24 +19,24 @@
 .pianoCastShadow {
   pointer-events: none;
   position: absolute;
-  left: 55.5%;
-  top: 72.5%;
+  left: 56.5%;
+  top: 79%;
   z-index: 2;
-  width: clamp(260px, 38vw, 620px);
-  height: clamp(78px, 11vw, 180px);
-  transform: rotate(13deg);
+  width: clamp(230px, 32vw, 520px);
+  height: clamp(64px, 8.5vw, 138px);
+  transform: rotate(10deg);
   transform-origin: 0 50%;
   background: radial-gradient(
     ellipse at 3% 50%,
-    rgba(7, 5, 22, 0.76) 0%,
-    rgba(13, 8, 37, 0.6) 18%,
-    rgba(24, 13, 54, 0.36) 46%,
-    rgba(31, 19, 69, 0.12) 68%,
+    rgba(7, 5, 22, 0.54) 0%,
+    rgba(13, 8, 37, 0.44) 18%,
+    rgba(24, 13, 54, 0.28) 46%,
+    rgba(31, 19, 69, 0.09) 68%,
     transparent 82%
   );
-  filter: blur(7px);
-  mix-blend-mode: multiply;
-  opacity: 0.88;
+  filter: blur(9px);
+  mix-blend-mode: normal;
+  opacity: 0.76;
 }
 
 .cloudStreaks {
@@ -133,10 +133,10 @@
 
 @media (max-width: 720px) {
   .pianoCastShadow {
-    left: 53%;
-    top: 71%;
-    width: 48vw;
-    height: 16vw;
+    left: 55%;
+    top: 78%;
+    width: 42vw;
+    height: 12vw;
   }
 
   .proofLabel {

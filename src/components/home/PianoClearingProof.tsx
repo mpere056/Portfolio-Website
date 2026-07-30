@@ -148,7 +148,7 @@ function createPianoShadowGeometry() {
     positions.setXYZ(
       index,
       x,
-      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.5,
+      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.14,
       z,
     );
   }
@@ -165,7 +165,7 @@ function PianoHillShadow() {
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    depthTest: false,
+    depthTest: true,
     side: THREE.DoubleSide,
     polygonOffset: true,
     polygonOffsetFactor: -2,
@@ -200,7 +200,7 @@ function PianoHillShadow() {
     <mesh
       geometry={geometry}
       material={material}
-      renderOrder={12}
+      renderOrder={1}
       frustumCulled={false}
     />
   );
