@@ -147,7 +147,7 @@ function createPianoShadowGeometry() {
     positions.setXYZ(
       index,
       x,
-      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.028,
+      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.14,
       z,
     );
   }
@@ -187,7 +187,7 @@ function PianoHillShadow() {
           (vUv.y - 0.5) / 0.72
         )));
         float trailingBreakup = 0.82 + sin(vUv.x * 34.0 + vUv.y * 9.0) * 0.08;
-        float alpha = (softBody * 0.44 + contact * 0.38) * trailingBreakup;
+        float alpha = (softBody * 0.56 + contact * 0.52) * trailingBreakup;
         gl_FragColor = vec4(uShadowColor, alpha);
       }
     `,
@@ -1442,8 +1442,15 @@ const PianoClearingScene = memo(function PianoClearingScene({
     <>
       <SkyDome reducedMotion={reducedMotion} />
       <fogExp2 attach="fog" args={['#8f7fc5', 0.017]} />
-      <hemisphereLight args={['#b9d0ff', '#33275f', 2.12]} />
-      <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.45} />
+      <hemisphereLight args={['#b9d0ff', '#2a2158', 1.88]} />
+      <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.7} />
+      <pointLight
+        position={[10.5, 8.8, -1.5]}
+        color="#f7a8d5"
+        intensity={1.35}
+        distance={28}
+        decay={1.7}
+      />
       <DistantLandscape />
       <Ground reducedMotion={reducedMotion} />
       <PianoHillShadow />
