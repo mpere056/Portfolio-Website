@@ -61,6 +61,8 @@ function createGroundGeometry() {
 
   positions.needsUpdate = true;
   geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
   return geometry;
 }
 
@@ -132,28 +134,29 @@ function createGrassGeometry() {
 }
 
 function createPianoShadowGeometry() {
-  const geometry = new THREE.PlaneGeometry(9.5, 4.6, 28, 14);
+  const geometry = new THREE.PlaneGeometry(6.2, 3.8, 24, 14);
   const positions = geometry.attributes.position;
-  const direction = new THREE.Vector2(0.12, 1).normalize();
+  const direction = new THREE.Vector2(0.5, 1).normalize();
   const cross = new THREE.Vector2(-direction.y, direction.x);
-  const centerX = PIANO_X + direction.x * 2.7;
-  const centerZ = PIANO_Z + direction.y * 2.7;
 
   for (let index = 0; index < positions.count; index += 1) {
-    const along = positions.getX(index);
+    // Begin just beyond the piano and project toward the foreground.
+    const along = positions.getX(index) + 3.45;
     const across = positions.getY(index);
-    const x = centerX + direction.x * along + cross.x * across;
-    const z = centerZ + direction.y * along + cross.y * across;
+    const x = PIANO_X + direction.x * along + cross.x * across;
+    const z = PIANO_Z + direction.y * along + cross.y * across;
     positions.setXYZ(
       index,
       x,
-      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.14,
+      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.5,
       z,
     );
   }
 
   positions.needsUpdate = true;
   geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  geometry.computeBoundingSphere();
   return geometry;
 }
 
@@ -162,11 +165,13 @@ function PianoHillShadow() {
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
+    depthTest: false,
+    side: THREE.DoubleSide,
     polygonOffset: true,
     polygonOffsetFactor: -2,
     polygonOffsetUnits: -2,
     uniforms: {
-      uShadowColor: { value: new THREE.Color('#171335') },
+      uShadowColor: { value: new THREE.Color('#080616') },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -179,21 +184,26 @@ function PianoHillShadow() {
       uniform vec3 uShadowColor;
       varying vec2 vUv;
       void main() {
-        vec2 centered = vUv - vec2(0.43, 0.5);
-        float ellipse = length(vec2(centered.x / 0.54, centered.y / 0.42));
-        float softBody = 1.0 - smoothstep(0.28, 1.0, ellipse);
-        float contact = 1.0 - smoothstep(0.02, 0.34, length(vec2(
-          (vUv.x - 0.17) / 0.3,
-          (vUv.y - 0.5) / 0.72
-        )));
-        float trailingBreakup = 0.82 + sin(vUv.x * 34.0 + vUv.y * 9.0) * 0.08;
-        float alpha = (softBody * 0.56 + contact * 0.52) * trailingBreakup;
+        vec2 centered = vUv - vec2(0.31, 0.5);
+        float ellipse = length(vec2(centered.x / 0.64, centered.y / 0.46));
+        float softBody = 1.0 - smoothstep(0.2, 1.0, ellipse);
+        float contact = (1.0 - smoothstep(0.0, 0.24, vUv.x))
+          * (1.0 - smoothstep(0.16, 0.48, abs(vUv.y - 0.5)));
+        float trailingBreakup = 0.9 + sin(vUv.x * 29.0 + vUv.y * 8.0) * 0.06;
+        float alpha = (softBody * 0.76 + contact * 0.68) * trailingBreakup;
         gl_FragColor = vec4(uShadowColor, alpha);
       }
     `,
   }), []);
 
-  return <mesh geometry={geometry} material={material} renderOrder={2} />;
+  return (
+    <mesh
+      geometry={geometry}
+      material={material}
+      renderOrder={12}
+      frustumCulled={false}
+    />
+  );
 }
 
 function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
@@ -291,14 +301,14 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           1.0
         );
         vVariation = variation;
-        vec2 shadowDirection = normalize(vec2(0.12, 1.0));
+        vec2 shadowDirection = normalize(vec2(0.5, 1.0));
         vec2 shadowCross = vec2(-shadowDirection.y, shadowDirection.x);
         vec2 fromPiano = root.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
         float shadowAlong = dot(fromPiano, shadowDirection);
         float shadowAcross = abs(dot(fromPiano, shadowCross));
-        float shadowLength = smoothstep(-0.2, 0.8, shadowAlong)
-          * (1.0 - smoothstep(7.2, 10.2, shadowAlong));
-        float shadowWidth = 1.0 - smoothstep(0.38, 2.65 + shadowAlong * 0.13, shadowAcross);
+        float shadowLength = smoothstep(-0.1, 0.45, shadowAlong)
+          * (1.0 - smoothstep(4.6, 6.2, shadowAlong));
+        float shadowWidth = 1.0 - smoothstep(0.3, 1.85 + shadowAlong * 0.1, shadowAcross);
         vPianoShadow = shadowLength * shadowWidth;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
@@ -1521,6 +1531,7 @@ export default function PianoClearingProof() {
       >
         <PianoClearingScene reducedMotion={reducedMotion} />
       </Canvas>
+      <div aria-hidden="true" className={styles.pianoCastShadow} />
       <div aria-hidden="true" className={styles.cloudStreaks} />
       <div aria-hidden="true" className={styles.atmosphere} />
       <div aria-hidden="true" className={styles.sunWash} />
