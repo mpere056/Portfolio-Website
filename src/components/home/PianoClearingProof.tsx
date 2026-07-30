@@ -770,7 +770,7 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
 
     if (player.current) {
       player.current.rotation.x = -0.055 + phrase * 0.012;
-      player.current.position.y = breath * 0.18;
+      player.current.position.y = -0.105 + breath * 0.18;
     }
     if (head.current) {
       head.current.rotation.x = 0.12 + Math.sin(time * 0.61 + 0.4) * 0.035;
@@ -799,13 +799,13 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
       scale={1.42}
       userData={{ role: 'piano-player' }}
     >
-      <group position={[0, 0, 1.3]}>
+      <group position={[0, 0, 1.27]}>
         <mesh position={[0, 0.39, 0]} castShadow={false}>
           <boxGeometry args={[0.78, 0.12, 0.34]} />
           <meshStandardMaterial
-            color="#17152c"
-            emissive="#31244d"
-            emissiveIntensity={0.2}
+            color="#111020"
+            emissive="#322346"
+            emissiveIntensity={0.16}
             roughness={0.72}
           />
         </mesh>
@@ -821,57 +821,101 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
         <mesh position={[0, 0.82, 1.25]} rotation={[-0.08, 0, 0]}>
           <capsuleGeometry args={[0.13, 0.38, 4, 8]} />
           <meshStandardMaterial
-            color="#242245"
-            emissive="#453867"
-            emissiveIntensity={0.18}
+            color="#151225"
+            emissive="#4d3158"
+            emissiveIntensity={0.22}
             roughness={0.82}
             flatShading
           />
         </mesh>
         <mesh position={[0, 0.6, 1.25]} scale={[1.12, 0.72, 0.9]}>
           <sphereGeometry args={[0.16, 8, 6]} />
-          <meshStandardMaterial color="#1b1936" roughness={0.86} flatShading />
+          <meshStandardMaterial
+            color="#121020"
+            emissive="#3b2847"
+            emissiveIntensity={0.18}
+            roughness={0.86}
+            flatShading
+          />
         </mesh>
         <group ref={head} position={[0, 1.28, 1.2]}>
           <mesh>
-            <sphereGeometry args={[0.17, 10, 7]} />
-            <meshStandardMaterial
-              color="#c89491"
-              emissive="#5b354d"
-              emissiveIntensity={0.13}
-              roughness={0.9}
-              flatShading
+            <sphereGeometry args={[0.17, 9, 7]} />
+            <meshBasicMaterial
+              color="#171222"
             />
           </mesh>
-          <mesh position={[0, 0.075, 0.012]} scale={[1.04, 0.72, 1.02]}>
-            <sphereGeometry args={[0.175, 9, 6, 0, Math.PI * 2, 0, Math.PI * 0.62]} />
-            <meshStandardMaterial color="#151426" roughness={0.92} flatShading />
+          <mesh scale={1.075}>
+            <sphereGeometry args={[0.17, 9, 7]} />
+            <meshBasicMaterial
+              color="#ba78b2"
+              transparent
+              opacity={0.2}
+              side={THREE.BackSide}
+              depthWrite={false}
+            />
           </mesh>
         </group>
 
         <mesh ref={leftUpperArm}>
           <cylinderGeometry args={[0.052, 0.058, 1, 7]} />
-          <meshStandardMaterial color="#29264a" roughness={0.84} flatShading />
+          <meshStandardMaterial
+            color="#171326"
+            emissive="#50305a"
+            emissiveIntensity={0.2}
+            roughness={0.84}
+            flatShading
+          />
         </mesh>
         <mesh ref={rightUpperArm}>
           <cylinderGeometry args={[0.052, 0.058, 1, 7]} />
-          <meshStandardMaterial color="#29264a" roughness={0.84} flatShading />
+          <meshStandardMaterial
+            color="#171326"
+            emissive="#50305a"
+            emissiveIntensity={0.2}
+            roughness={0.84}
+            flatShading
+          />
         </mesh>
         <mesh ref={leftForearm}>
           <cylinderGeometry args={[0.038, 0.05, 1, 7]} />
-          <meshStandardMaterial color="#bd8587" roughness={0.9} flatShading />
+          <meshStandardMaterial
+            color="#1b1528"
+            emissive="#67405f"
+            emissiveIntensity={0.2}
+            roughness={0.9}
+            flatShading
+          />
         </mesh>
         <mesh ref={rightForearm}>
           <cylinderGeometry args={[0.038, 0.05, 1, 7]} />
-          <meshStandardMaterial color="#bd8587" roughness={0.9} flatShading />
+          <meshStandardMaterial
+            color="#1b1528"
+            emissive="#67405f"
+            emissiveIntensity={0.2}
+            roughness={0.9}
+            flatShading
+          />
         </mesh>
         <mesh ref={leftHand} scale={[1.3, 0.55, 1.55]}>
           <sphereGeometry args={[0.055, 7, 5]} />
-          <meshStandardMaterial color="#d2a09a" roughness={0.92} flatShading />
+          <meshStandardMaterial
+            color="#37233b"
+            emissive="#a76083"
+            emissiveIntensity={0.32}
+            roughness={0.92}
+            flatShading
+          />
         </mesh>
         <mesh ref={rightHand} scale={[1.3, 0.55, 1.55]}>
           <sphereGeometry args={[0.055, 7, 5]} />
-          <meshStandardMaterial color="#d2a09a" roughness={0.92} flatShading />
+          <meshStandardMaterial
+            color="#37233b"
+            emissive="#a76083"
+            emissiveIntensity={0.32}
+            roughness={0.92}
+            flatShading
+          />
         </mesh>
 
         {[-0.13, 0.13].map((x) => (
@@ -881,11 +925,23 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
               rotation={[Math.PI / 2.7, 0, x * 0.3]}
             >
               <capsuleGeometry args={[0.065, 0.28, 3, 7]} />
-              <meshStandardMaterial color="#18172f" roughness={0.88} flatShading />
+              <meshStandardMaterial
+                color="#121020"
+                emissive="#35243f"
+                emissiveIntensity={0.16}
+                roughness={0.88}
+                flatShading
+              />
             </mesh>
             <mesh position={[x, 0.25, 0.88]} rotation={[0.08, 0, x * 0.24]}>
               <capsuleGeometry args={[0.052, 0.3, 3, 7]} />
-              <meshStandardMaterial color="#15142b" roughness={0.9} flatShading />
+              <meshStandardMaterial
+                color="#100f1d"
+                emissive="#302039"
+                emissiveIntensity={0.14}
+                roughness={0.9}
+                flatShading
+              />
             </mesh>
             <mesh position={[x, 0.075, 0.7]} scale={[0.85, 0.55, 1.5]}>
               <sphereGeometry args={[0.085, 7, 5]} />

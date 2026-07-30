@@ -166,6 +166,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('const rightPhrase = Math.sin');
     expect(component).toContain('placeLimb(leftForearm.current');
     expect(component).toContain('<capsuleGeometry');
+    expect(component).toContain('player.current.position.y = -0.105');
+    expect(component).toContain('side={THREE.BackSide}');
+    expect(component).toContain('<meshBasicMaterial');
+    expect(component).not.toContain('color="#c89491"');
     expect(component).not.toContain('shadowMap');
   });
 
