@@ -75,29 +75,6 @@
   mix-blend-mode: soft-light;
 }
 
-.pianoContactShadow {
-  pointer-events: none;
-  position: absolute;
-  left: 49.5%;
-  top: 76%;
-  z-index: 3;
-  width: clamp(145px, 17vw, 250px);
-  height: clamp(30px, 4.4vw, 64px);
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 28% 43%,
-    rgba(12, 9, 35, 0.4) 0%,
-    rgba(12, 9, 35, 0.21) 35%,
-    rgba(12, 9, 35, 0.07) 65%,
-    transparent 82%
-  );
-  filter: blur(8px);
-  mix-blend-mode: multiply;
-  opacity: 0.82;
-  transform: rotate(8deg) skewX(-12deg);
-  transform-origin: 20% 50%;
-}
-
 .sunWash {
   pointer-events: none;
   position: absolute;
