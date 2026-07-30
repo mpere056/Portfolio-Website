@@ -161,7 +161,11 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('OrbitControls');
     expect(component).not.toContain('EffectComposer');
     expect(component).not.toContain('category-screen');
-    expect(component).not.toContain('piano-player');
+    expect(component).toContain('<PianistAndBench reducedMotion={reducedMotion} />');
+    expect(component).toContain("userData={{ role: 'piano-player' }}");
+    expect(component).toContain('const rightPhrase = Math.sin');
+    expect(component).toContain('placeLimb(leftForearm.current');
+    expect(component).toContain('<capsuleGeometry');
     expect(component).not.toContain('shadowMap');
   });
 

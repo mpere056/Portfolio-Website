@@ -726,6 +726,178 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
+function placeLimb(
+  mesh: THREE.Mesh | null,
+  start: THREE.Vector3,
+  end: THREE.Vector3,
+) {
+  if (!mesh) return;
+  const direction = end.clone().sub(start);
+  mesh.position.copy(start).addScaledVector(direction, 0.5);
+  mesh.scale.y = direction.length();
+  mesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    direction.normalize(),
+  );
+}
+
+function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
+  const player = useRef<THREE.Group>(null);
+  const head = useRef<THREE.Group>(null);
+  const leftUpperArm = useRef<THREE.Mesh>(null);
+  const leftForearm = useRef<THREE.Mesh>(null);
+  const rightUpperArm = useRef<THREE.Mesh>(null);
+  const rightForearm = useRef<THREE.Mesh>(null);
+  const leftHand = useRef<THREE.Mesh>(null);
+  const rightHand = useRef<THREE.Mesh>(null);
+
+  const joints = useMemo(() => ({
+    leftShoulder: new THREE.Vector3(-0.19, 1.04, 1.2),
+    rightShoulder: new THREE.Vector3(0.19, 1.04, 1.2),
+    leftElbow: new THREE.Vector3(-0.3, 0.86, 0.93),
+    rightElbow: new THREE.Vector3(0.3, 0.86, 0.93),
+    leftWrist: new THREE.Vector3(-0.27, 0.79, 0.7),
+    rightWrist: new THREE.Vector3(0.27, 0.79, 0.7),
+  }), []);
+
+  useFrame(({ clock }) => {
+    const time = reducedMotion ? 0 : clock.elapsedTime;
+    const phrase = Math.sin(time * 1.48);
+    const leftPhrase = Math.sin(time * 3.7) * 0.018 + Math.sin(time * 1.13) * 0.01;
+    const rightPhrase = Math.sin(time * 4.15 + 1.7) * 0.022
+      + Math.sin(time * 1.31 + 0.8) * 0.009;
+    const breath = Math.sin(time * 0.72) * 0.012;
+
+    if (player.current) {
+      player.current.rotation.x = -0.055 + phrase * 0.012;
+      player.current.position.y = breath * 0.18;
+    }
+    if (head.current) {
+      head.current.rotation.x = 0.12 + Math.sin(time * 0.61 + 0.4) * 0.035;
+      head.current.rotation.y = Math.sin(time * 0.39) * 0.035;
+    }
+
+    joints.leftElbow.y = 0.86 + leftPhrase * 0.55;
+    joints.leftWrist.y = 0.79 + leftPhrase;
+    joints.leftWrist.x = -0.27 + Math.sin(time * 0.94) * 0.022;
+    joints.rightElbow.y = 0.86 + rightPhrase * 0.5;
+    joints.rightWrist.y = 0.79 + rightPhrase;
+    joints.rightWrist.x = 0.27 + Math.sin(time * 1.07 + 1.2) * 0.024;
+
+    placeLimb(leftUpperArm.current, joints.leftShoulder, joints.leftElbow);
+    placeLimb(leftForearm.current, joints.leftElbow, joints.leftWrist);
+    placeLimb(rightUpperArm.current, joints.rightShoulder, joints.rightElbow);
+    placeLimb(rightForearm.current, joints.rightElbow, joints.rightWrist);
+    leftHand.current?.position.copy(joints.leftWrist);
+    rightHand.current?.position.copy(joints.rightWrist);
+  });
+
+  return (
+    <group
+      position={PIANO_POSITION}
+      rotation={[0, -0.42, 0]}
+      scale={1.42}
+      userData={{ role: 'piano-player' }}
+    >
+      <group position={[0, 0, 1.3]}>
+        <mesh position={[0, 0.39, 0]} castShadow={false}>
+          <boxGeometry args={[0.78, 0.12, 0.34]} />
+          <meshStandardMaterial
+            color="#17152c"
+            emissive="#31244d"
+            emissiveIntensity={0.2}
+            roughness={0.72}
+          />
+        </mesh>
+        {[-0.29, 0.29].flatMap((x) => [-0.1, 0.1].map((z) => (
+          <mesh key={`${x}-${z}`} position={[x, 0.19, z]} rotation={[0, 0, x * 0.08]}>
+            <cylinderGeometry args={[0.035, 0.045, 0.4, 6]} />
+            <meshStandardMaterial color="#121126" roughness={0.8} />
+          </mesh>
+        )))}
+      </group>
+
+      <group ref={player}>
+        <mesh position={[0, 0.82, 1.25]} rotation={[-0.08, 0, 0]}>
+          <capsuleGeometry args={[0.13, 0.38, 4, 8]} />
+          <meshStandardMaterial
+            color="#242245"
+            emissive="#453867"
+            emissiveIntensity={0.18}
+            roughness={0.82}
+            flatShading
+          />
+        </mesh>
+        <mesh position={[0, 0.6, 1.25]} scale={[1.12, 0.72, 0.9]}>
+          <sphereGeometry args={[0.16, 8, 6]} />
+          <meshStandardMaterial color="#1b1936" roughness={0.86} flatShading />
+        </mesh>
+        <group ref={head} position={[0, 1.28, 1.2]}>
+          <mesh>
+            <sphereGeometry args={[0.17, 10, 7]} />
+            <meshStandardMaterial
+              color="#c89491"
+              emissive="#5b354d"
+              emissiveIntensity={0.13}
+              roughness={0.9}
+              flatShading
+            />
+          </mesh>
+          <mesh position={[0, 0.075, 0.012]} scale={[1.04, 0.72, 1.02]}>
+            <sphereGeometry args={[0.175, 9, 6, 0, Math.PI * 2, 0, Math.PI * 0.62]} />
+            <meshStandardMaterial color="#151426" roughness={0.92} flatShading />
+          </mesh>
+        </group>
+
+        <mesh ref={leftUpperArm}>
+          <cylinderGeometry args={[0.052, 0.058, 1, 7]} />
+          <meshStandardMaterial color="#29264a" roughness={0.84} flatShading />
+        </mesh>
+        <mesh ref={rightUpperArm}>
+          <cylinderGeometry args={[0.052, 0.058, 1, 7]} />
+          <meshStandardMaterial color="#29264a" roughness={0.84} flatShading />
+        </mesh>
+        <mesh ref={leftForearm}>
+          <cylinderGeometry args={[0.038, 0.05, 1, 7]} />
+          <meshStandardMaterial color="#bd8587" roughness={0.9} flatShading />
+        </mesh>
+        <mesh ref={rightForearm}>
+          <cylinderGeometry args={[0.038, 0.05, 1, 7]} />
+          <meshStandardMaterial color="#bd8587" roughness={0.9} flatShading />
+        </mesh>
+        <mesh ref={leftHand} scale={[1.3, 0.55, 1.55]}>
+          <sphereGeometry args={[0.055, 7, 5]} />
+          <meshStandardMaterial color="#d2a09a" roughness={0.92} flatShading />
+        </mesh>
+        <mesh ref={rightHand} scale={[1.3, 0.55, 1.55]}>
+          <sphereGeometry args={[0.055, 7, 5]} />
+          <meshStandardMaterial color="#d2a09a" roughness={0.92} flatShading />
+        </mesh>
+
+        {[-0.13, 0.13].map((x) => (
+          <group key={x}>
+            <mesh
+              position={[x, 0.52, 1.08]}
+              rotation={[Math.PI / 2.7, 0, x * 0.3]}
+            >
+              <capsuleGeometry args={[0.065, 0.28, 3, 7]} />
+              <meshStandardMaterial color="#18172f" roughness={0.88} flatShading />
+            </mesh>
+            <mesh position={[x, 0.25, 0.88]} rotation={[0.08, 0, x * 0.24]}>
+              <capsuleGeometry args={[0.052, 0.3, 3, 7]} />
+              <meshStandardMaterial color="#15142b" roughness={0.9} flatShading />
+            </mesh>
+            <mesh position={[x, 0.075, 0.7]} scale={[0.85, 0.55, 1.5]}>
+              <sphereGeometry args={[0.085, 7, 5]} />
+              <meshStandardMaterial color="#111024" roughness={0.9} flatShading />
+            </mesh>
+          </group>
+        ))}
+      </group>
+    </group>
+  );
+}
+
 function DistantLandscape() {
   const trees = useMemo(() => {
     const random = seededRandom(1827);
@@ -1431,6 +1603,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <Suspense fallback={null}>
         <ParticlePiano reducedMotion={reducedMotion} />
       </Suspense>
+      <PianistAndBench reducedMotion={reducedMotion} />
       <Clouds reducedMotion={reducedMotion} />
       <DistantBirds reducedMotion={reducedMotion} />
       <DistantSkyForms reducedMotion={reducedMotion} />
