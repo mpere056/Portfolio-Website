@@ -121,6 +121,9 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('data-cloud-streaks="procedural-wisps"');
     expect(component).toContain('<SkyDome reducedMotion={reducedMotion} />');
     expect(component).toContain('className={styles.cloudStreaks}');
+    expect(component).toContain('<PianoHillShadow />');
+    expect(component).toContain('data-piano-shadow="terrain-authored-dusk"');
+    expect(component).toContain('varying float vPianoShadow');
     expect(component).toContain('data-grass-cursor="terrain-local-3.2"');
     expect(component).toContain('data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}');
     expect(component).toContain('data-color-script="dusk-refrain"');

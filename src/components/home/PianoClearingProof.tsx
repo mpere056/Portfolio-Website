@@ -131,6 +131,71 @@ function createGrassGeometry() {
   return geometry;
 }
 
+function createPianoShadowGeometry() {
+  const geometry = new THREE.PlaneGeometry(9.5, 4.6, 28, 14);
+  const positions = geometry.attributes.position;
+  const direction = new THREE.Vector2(0.12, 1).normalize();
+  const cross = new THREE.Vector2(-direction.y, direction.x);
+  const centerX = PIANO_X + direction.x * 2.7;
+  const centerZ = PIANO_Z + direction.y * 2.7;
+
+  for (let index = 0; index < positions.count; index += 1) {
+    const along = positions.getX(index);
+    const across = positions.getY(index);
+    const x = centerX + direction.x * along + cross.x * across;
+    const z = centerZ + direction.y * along + cross.y * across;
+    positions.setXYZ(
+      index,
+      x,
+      GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.028,
+      z,
+    );
+  }
+
+  positions.needsUpdate = true;
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
+function PianoHillShadow() {
+  const geometry = useMemo(() => createPianoShadowGeometry(), []);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    polygonOffset: true,
+    polygonOffsetFactor: -2,
+    polygonOffsetUnits: -2,
+    uniforms: {
+      uShadowColor: { value: new THREE.Color('#171335') },
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uShadowColor;
+      varying vec2 vUv;
+      void main() {
+        vec2 centered = vUv - vec2(0.43, 0.5);
+        float ellipse = length(vec2(centered.x / 0.54, centered.y / 0.42));
+        float softBody = 1.0 - smoothstep(0.28, 1.0, ellipse);
+        float contact = 1.0 - smoothstep(0.02, 0.34, length(vec2(
+          (vUv.x - 0.17) / 0.3,
+          (vUv.y - 0.5) / 0.72
+        )));
+        float trailingBreakup = 0.82 + sin(vUv.x * 34.0 + vUv.y * 9.0) * 0.08;
+        float alpha = (softBody * 0.44 + contact * 0.38) * trailingBreakup;
+        gl_FragColor = vec4(uShadowColor, alpha);
+      }
+    `,
+  }), []);
+
+  return <mesh geometry={geometry} material={material} renderOrder={2} />;
+}
+
 function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
   const cursorPlane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y));
@@ -166,6 +231,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
+      varying float vPianoShadow;
       void main() {
         vUv = uv;
         vec3 blade = position;
@@ -225,6 +291,15 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           1.0
         );
         vVariation = variation;
+        vec2 shadowDirection = normalize(vec2(0.12, 1.0));
+        vec2 shadowCross = vec2(-shadowDirection.y, shadowDirection.x);
+        vec2 fromPiano = root.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
+        float shadowAlong = dot(fromPiano, shadowDirection);
+        float shadowAcross = abs(dot(fromPiano, shadowCross));
+        float shadowLength = smoothstep(-0.2, 0.8, shadowAlong)
+          * (1.0 - smoothstep(7.2, 10.2, shadowAlong));
+        float shadowWidth = 1.0 - smoothstep(0.38, 2.65 + shadowAlong * 0.13, shadowAcross);
+        vPianoShadow = shadowLength * shadowWidth;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -238,6 +313,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vWarm;
       varying float vBend;
       varying float vVariation;
+      varying float vPianoShadow;
       void main() {
         vec3 baseColor = vec3(0.105, 0.125, 0.34);
         vec3 lowColor = vec3(0.18, 0.19, 0.47);
@@ -256,6 +332,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color = mix(color, sunlitColor, vWarm * smoothstep(0.0, 0.72, vUv.y) * 0.9);
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
+        color = mix(color, vec3(0.06, 0.05, 0.17), vPianoShadow * 0.72);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
@@ -1369,6 +1446,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.45} />
       <DistantLandscape />
       <Ground reducedMotion={reducedMotion} />
+      <PianoHillShadow />
       <Stream reducedMotion={reducedMotion} />
       <StoneViaduct />
       <GrassField reducedMotion={reducedMotion} />
@@ -1412,6 +1490,7 @@ export default function PianoClearingProof() {
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
       data-cloud-streaks="procedural-wisps"
+      data-piano-shadow="terrain-authored-dusk"
       data-grass-cursor="terrain-local-3.2"
       data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}
       data-color-script="dusk-refrain"
