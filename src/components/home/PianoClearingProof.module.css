@@ -16,31 +16,6 @@
   transform: scale(1.001);
 }
 
-.pianoCastShadow {
-  pointer-events: none;
-  position: absolute;
-  left: 56.5%;
-  top: 79%;
-  z-index: 2;
-  width: clamp(230px, 32vw, 520px);
-  height: clamp(64px, 8.5vw, 138px);
-  transform: rotate(10deg);
-  transform-origin: 0 50%;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at 12% 50%,
-    rgba(7, 5, 22, 0.46) 0%,
-    rgba(13, 8, 37, 0.36) 20%,
-    rgba(24, 13, 54, 0.2) 48%,
-    rgba(31, 19, 69, 0.06) 70%,
-    transparent 88%
-  );
-  filter: blur(16px);
-  mask-image: radial-gradient(ellipse at 12% 50%, #000 0 38%, rgba(0, 0, 0, 0.72) 58%, transparent 88%);
-  mix-blend-mode: normal;
-  opacity: 0.56;
-}
-
 .cloudStreaks {
   pointer-events: none;
   position: absolute;
@@ -77,6 +52,50 @@
     linear-gradient(180deg, rgba(108, 158, 248, 0.16) 0%, rgba(255, 179, 211, 0.17) 49%, rgba(34, 31, 96, 0.23) 100%),
     radial-gradient(ellipse at 50% 70%, transparent 16%, rgba(73, 55, 139, 0.055) 57%, rgba(24, 22, 73, 0.2) 116%);
   mix-blend-mode: soft-light;
+}
+
+.dramaticLight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(
+      ellipse 32% 25% at 61% 69%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.07) 42%,
+      transparent 76%
+    ),
+    linear-gradient(
+      116deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.08) 31%,
+      transparent 51%
+    );
+  mix-blend-mode: soft-light;
+}
+
+.pianoContactShadow {
+  pointer-events: none;
+  position: absolute;
+  left: 49.5%;
+  top: 76%;
+  z-index: 3;
+  width: clamp(145px, 17vw, 250px);
+  height: clamp(30px, 4.4vw, 64px);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 28% 43%,
+    rgba(12, 9, 35, 0.4) 0%,
+    rgba(12, 9, 35, 0.21) 35%,
+    rgba(12, 9, 35, 0.07) 65%,
+    transparent 82%
+  );
+  filter: blur(8px);
+  mix-blend-mode: multiply;
+  opacity: 0.82;
+  transform: rotate(8deg) skewX(-12deg);
+  transform-origin: 20% 50%;
 }
 
 .sunWash {
@@ -134,13 +153,6 @@
 }
 
 @media (max-width: 720px) {
-  .pianoCastShadow {
-    left: 55%;
-    top: 78%;
-    width: 42vw;
-    height: 12vw;
-  }
-
   .proofLabel {
     top: 18px;
     left: 18px;

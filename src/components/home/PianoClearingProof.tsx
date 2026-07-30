@@ -1531,9 +1531,10 @@ export default function PianoClearingProof() {
       >
         <PianoClearingScene reducedMotion={reducedMotion} />
       </Canvas>
-      <div aria-hidden="true" className={styles.pianoCastShadow} />
       <div aria-hidden="true" className={styles.cloudStreaks} />
       <div aria-hidden="true" className={styles.atmosphere} />
+      <div aria-hidden="true" className={styles.dramaticLight} />
+      <div aria-hidden="true" className={styles.pianoContactShadow} />
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
       <p className={styles.proofLabel}>
