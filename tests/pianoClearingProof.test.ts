@@ -160,7 +160,12 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('<primitive object={piano}');
     expect(component).not.toContain('OrbitControls');
     expect(component).not.toContain('EffectComposer');
-    expect(component).not.toContain('category-screen');
+    expect(component).toContain('<PracticeInstruments />');
+    expect(component).toContain('data-category-screens="four-practice-instruments"');
+    expect(component).toContain('PRACTICE_IDS.map');
+    expect(component).toContain('data-practice-screen={practice}');
+    expect(component).toContain('aria-pressed={heldPractice === practice}');
+    expect(component).toContain('<PracticeGlyph practice={practice} />');
     expect(component).toContain('<PianistAndBench reducedMotion={reducedMotion} />');
     expect(component).toContain("userData={{ role: 'piano-player' }}");
     expect(component).toContain('function layeredPlayingMotion');

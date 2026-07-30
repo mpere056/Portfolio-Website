@@ -1,6 +1,6 @@
 # Piano Clearing Home World Plan
 
-Last updated: 2026-07-28
+Last updated: 2026-07-30
 
 ## Metadata
 
@@ -16,7 +16,7 @@ Last updated: 2026-07-28
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. Establish this place first. Add the pianist, category instruments, environmental preview, selected category states, and project depth only through later accepted checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist and four practice instruments. Environmental preview, selected category states, and project depth remain later checkpoints.
 
 ## Scene Grammar
 
@@ -33,11 +33,11 @@ The permanent layer makes every later state feel like the same place:
 
 ### Later Figure Layer
 
-A deliberately simple pianist gives the piano purpose and provides the About entry. The figure should communicate posture, timing, and presence with very few bones or shapes. It is not built until the empty clearing is accepted.
+A deliberately simple pianist gives the piano purpose and will provide the About entry. The current candidate uses a seated dark silhouette with restrained, independently varied horizontal and vertical playing motion. The About handoff remains part of navigation depth rather than this visual checkpoint.
 
-### Later Practice Instruments
+### Practice Instruments
 
-Four screens are spatial instruments, not overlay cards. Their exact form, position, material, and legibility are feedback-gated. They must:
+Four screens are spatial instruments, not overlay cards. The current candidate uses four asymmetric translucent signal surfaces in a suspended arc above the piano. Their final form, position, material, and legibility remain feedback-gated. They must:
 
 - remain readable without dominating the piano;
 - establish one stable spatial position per practice;
@@ -64,7 +64,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - one React Three Fiber canvas;
 - one 78 by 68 unit displaced terrain patch authored as a high right foreground field, asymmetric dark ravine, path-carved river bed, and opposite rise;
 - the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
-- 220,000 independently distributed two-triangle grass blades in one instanced draw, using custom root/width/height/angle/variation attributes, short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep ravine edges;
+- 260,000 independently distributed two-triangle grass blades in one instanced draw, including a denser foreground allocation around the piano, using custom root/width/height/angle/variation attributes, short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep ravine edges;
 - 58 miniature low-poly horizon trees in two instanced draws;
 - five fixed ravine rocks, 160 point-rendered wildflowers, and 180 atmospheric motes;
 - three smoothed layered ridge silhouettes;
@@ -84,9 +84,9 @@ The current Checkpoint `B` implementation intentionally contains:
 | Checkpoint | State | Deliverable | Gate |
 | --- | --- | --- | --- |
 | `A` Direction reset | accepted | Decision, supersession, scene boundary, and later interaction contract | Plans and tracking agree |
-| `B` Empty clearing | in-review | Piano, terrain, grass, horizon, sky, light, wind, and fixed camera | Mark accepts composition, style, visibility, atmosphere, and smoothness |
-| `C` Pianist | not-started | Minimal seated figure and restrained playing loop | Figure reads clearly, fits the style, and links to About without stealing focus |
-| `D` Practice instruments | not-started | Four screen forms and spatial arrangement | One-screen readability, keyboard semantics, and piano hierarchy pass |
+| `B` Empty clearing | accepted-for-sequencing | Piano, terrain, grass, horizon, sky, light, wind, and fixed camera | Mark accepted the scene as sufficiently usable to proceed; later polish remains possible |
+| `C` Pianist | in-review | Minimal seated figure and restrained playing loop | Figure reads clearly, fits the style, and later links to About without stealing focus |
+| `D` Practice instruments | in-review | Four screen forms and spatial arrangement | One-screen readability, keyboard semantics, and piano hierarchy pass |
 | `E` One preview state | not-started | One practice influences the clearing translucently on local attention | Reversible, local, tasteful, and smooth |
 | `F` One selected state | not-started | The same practice becomes the primary environment on selection | Continuity, lifecycle, URL intent, and performance pass |
 | `G` Four practices | not-started | Remaining three preview/selected environments | Distinct but cohesive; one active runtime |
@@ -103,7 +103,7 @@ Mark reviews only a short list:
 4. Do water, grass, particles, clouds, and light make the scene alive enough while remaining calm?
 5. Does it remain smooth on the computers that struggled with earlier proofs?
 
-Checkpoint `B` is not accepted merely because it builds or performs well. Visual acceptance is required before the pianist or screens begin.
+Checkpoint `B` advanced only after direct visual iteration. Checkpoints `C` and `D` are now implemented candidates, not final aesthetic acceptance.
 
 ## Performance Evidence
 
@@ -154,4 +154,6 @@ If performance degrades, reduce world detail before adding adaptive complexity. 
 - Commit `a2eaaff` removes the train while retaining the viaduct, contracts the cursor wake from `4.2` to `3.2` world units, and adds seven independently phased distant birds in one instanced draw.
 - Commit `b85ed5e` preserves that geometry, camera, interaction, and animation state while translating sky, fog, lights, landscape, vegetation, water, bridge, piano, particles, and page atmosphere into the supplied dusk palette.
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
-- Exact next action: collect only Checkpoint `B` dusk-palette, piano/structure readability, terrain contact, motion, and target-machine performance answers.
+- Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench and seated silhouette pianist, refine its scene fit, and give its hands restrained independently varied horizontal and vertical playing motion.
+- The current Checkpoint `D` candidate adds four semantic practice buttons as translucent spatial instruments in an asymmetric arc above the piano. Hover and keyboard focus expose local attention; click/Enter holds one signal. No environmental takeover or route change is introduced before Checkpoints `E` and `F`.
+- Exact next action: collect a short visual review of the four instrument forms, placement, hierarchy, and legibility, then revise or accept Checkpoint `D` before beginning one environmental preview.

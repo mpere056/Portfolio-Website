@@ -21,6 +21,11 @@ import {
   pianoClearingTerrainHeight,
   pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
+import {
+  PRACTICE_DEFINITIONS,
+  PRACTICE_IDS,
+  type PracticeId,
+} from '@/lib/practices';
 import styles from './PianoClearingProof.module.css';
 
 const GROUND_Y = -1.45;
@@ -1687,6 +1692,110 @@ const PianoClearingScene = memo(function PianoClearingScene({
   );
 });
 
+function PracticeGlyph({ practice }: { practice: PracticeId }) {
+  if (practice === 'music-performance') {
+    return (
+      <svg viewBox="0 0 96 38" role="presentation">
+        <path d="M2 23 C13 8 20 34 32 19 S51 8 62 21 S80 31 94 13" />
+        <path d="M2 29 C16 19 25 33 38 24 S61 15 73 25 S87 25 94 21" />
+        <circle cx="32" cy="19" r="2.4" />
+        <circle cx="62" cy="21" r="2.4" />
+      </svg>
+    );
+  }
+
+  if (practice === 'ai-possible-futures') {
+    return (
+      <svg viewBox="0 0 96 38" role="presentation">
+        <ellipse cx="48" cy="19" rx="35" ry="9" />
+        <ellipse cx="48" cy="19" rx="24" ry="15" transform="rotate(-24 48 19)" />
+        <path d="M18 30 Q48 1 79 27" />
+        <circle cx="48" cy="19" r="3.2" />
+        <circle cx="76" cy="12" r="2.2" />
+        <circle cx="28" cy="27" r="1.8" />
+      </svg>
+    );
+  }
+
+  if (practice === 'life-systems-tools') {
+    return (
+      <svg viewBox="0 0 96 38" role="presentation">
+        <path d="M9 27 H30 L39 18 H58 L67 10 H88" />
+        <path d="M9 12 H24 L34 22 H53 L63 29 H88" />
+        <rect x="5" y="23" width="8" height="8" rx="1" />
+        <rect x="44" y="14" width="8" height="8" rx="1" />
+        <rect x="83" y="6" width="8" height="8" rx="1" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 96 38" role="presentation">
+      <path d="M19 9 L38 19 L19 29 M77 9 L58 19 L77 29 M38 19 H58" />
+      <circle cx="18" cy="9" r="4" />
+      <circle cx="18" cy="29" r="4" />
+      <circle cx="78" cy="9" r="4" />
+      <circle cx="78" cy="29" r="4" />
+      <circle cx="48" cy="19" r="4.5" />
+    </svg>
+  );
+}
+
+function PracticeInstruments() {
+  const [hoveredPractice, setHoveredPractice] = useState<PracticeId | null>(null);
+  const [heldPractice, setHeldPractice] = useState<PracticeId | null>(null);
+  const activePractice = hoveredPractice ?? heldPractice;
+
+  return (
+    <nav
+      className={styles.practiceField}
+      aria-label="Project practices"
+      data-category-screens="four-practice-instruments"
+      data-active-practice={activePractice ?? 'neutral'}
+    >
+      {PRACTICE_IDS.map((practice, index) => {
+        const definition = PRACTICE_DEFINITIONS[practice];
+        const active = activePractice === practice;
+        return (
+          <div
+            className={styles.instrumentSlot}
+            data-practice-position={practice}
+            key={practice}
+          >
+            <button
+              className={styles.practiceInstrument}
+              type="button"
+              aria-label={`${definition.title}. ${definition.summary}`}
+              aria-pressed={heldPractice === practice}
+              data-practice-screen={practice}
+              data-active={active ? 'true' : 'false'}
+              onClick={() => {
+                setHeldPractice(current => (
+                  current === practice ? null : practice
+                ));
+              }}
+              onFocus={() => setHoveredPractice(practice)}
+              onBlur={() => setHoveredPractice(null)}
+              onPointerEnter={() => setHoveredPractice(practice)}
+              onPointerLeave={() => setHoveredPractice(null)}
+            >
+              <span className={styles.instrumentTopline}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span>{active ? 'signal held' : 'practice signal'}</span>
+              </span>
+              <span className={styles.instrumentGlyph} aria-hidden="true">
+                <PracticeGlyph practice={practice} />
+              </span>
+              <strong>{definition.title}</strong>
+              <span className={styles.instrumentPulse} aria-hidden="true" />
+            </button>
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+
 export default function PianoClearingProof() {
   const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -1741,6 +1850,7 @@ export default function PianoClearingProof() {
       <div aria-hidden="true" className={styles.dramaticLight} />
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
+      <PracticeInstruments />
       <p className={styles.proofLabel}>
         Environmental proof 84
         <strong>Dusk Refrain</strong>
