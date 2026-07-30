@@ -123,6 +123,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('className={styles.cloudStreaks}');
     expect(component).toContain('className={styles.dramaticLight}');
     expect(component).toContain('float contactDistance');
+    expect(component).toContain('float tailLength');
+    expect(component).toContain('float pianoShadow');
     expect(component).not.toContain('<PianoHillShadow />');
     expect(component).toContain('varying float vPianoShadow');
     expect(component).toContain('color="#f7a8d5"');

@@ -229,8 +229,21 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         );
         vVariation = variation;
         vec2 fromPiano = root.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
-        float contactDistance = length(vec2(fromPiano.x / 2.15, fromPiano.y / 1.35));
-        vPianoShadow = 1.0 - smoothstep(0.22, 1.0, contactDistance);
+        vec2 shadowDirection = normalize(vec2(1.0, 0.32));
+        vec2 shadowCross = vec2(-shadowDirection.y, shadowDirection.x);
+        float shadowAlong = dot(fromPiano, shadowDirection);
+        float shadowAcross = abs(dot(fromPiano, shadowCross));
+        float contactDistance = length(vec2(fromPiano.x / 2.05, fromPiano.y / 1.18));
+        float contactShadow = 1.0 - smoothstep(0.24, 1.0, contactDistance);
+        float tailLength = smoothstep(-0.18, 0.28, shadowAlong)
+          * (1.0 - smoothstep(3.4, 5.8, shadowAlong));
+        float tailWidth = 1.0 - smoothstep(0.42, 1.42 + shadowAlong * 0.13, shadowAcross);
+        float grassBreakup = 0.82 + variation * 0.18;
+        vPianoShadow = clamp(
+          contactShadow * 0.72 + tailLength * tailWidth * 0.7,
+          0.0,
+          1.0
+        ) * grassBreakup;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -263,7 +276,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color = mix(color, sunlitColor, vWarm * smoothstep(0.0, 0.72, vUv.y) * 0.9);
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
-        color = mix(color, vec3(0.08, 0.07, 0.2), vPianoShadow * 0.42);
+        color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
@@ -442,6 +455,23 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
             float sheen = smoothstep(0.68, 1.18, windBand) * elevation;
             color = mix(color, vec3(0.82, 0.61, 0.88), sheen * 0.2);
             color += brush * (0.4 + elevation * 0.6);
+            vec2 fromPiano = vWorld.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
+            vec2 shadowDirection = normalize(vec2(1.0, 0.32));
+            vec2 shadowCross = vec2(-shadowDirection.y, shadowDirection.x);
+            float shadowAlong = dot(fromPiano, shadowDirection);
+            float shadowAcross = abs(dot(fromPiano, shadowCross));
+            float contactDistance = length(vec2(fromPiano.x / 2.05, fromPiano.y / 1.18));
+            float contactShadow = 1.0 - smoothstep(0.22, 1.0, contactDistance);
+            float tailLength = smoothstep(-0.18, 0.28, shadowAlong)
+              * (1.0 - smoothstep(3.4, 5.8, shadowAlong));
+            float tailWidth = 1.0 - smoothstep(0.42, 1.42 + shadowAlong * 0.13, shadowAcross);
+            float breakup = 0.9 + sin(vWorld.x * 3.7 + vWorld.z * 2.4) * 0.1;
+            float pianoShadow = clamp(
+              contactShadow * 0.68 + tailLength * tailWidth * 0.64,
+              0.0,
+              1.0
+            ) * breakup;
+            color = mix(color, vec3(0.04, 0.035, 0.13), pianoShadow * 0.68);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
