@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
 Last reconciled: 2026-07-31
-Implementation commit baseline: `8738900`; the three-practice `Dusk Refrain` valley is live on canonical Home with a temporary `/presentation` doorway; the no-detail-removal optimization candidate passes all local release gates
+Implementation commit baseline: `5313e93`; the three-practice `Dusk Refrain` valley is live on canonical Home with a temporary `/presentation` doorway; the no-detail-removal optimization passes all local release gates and Vercel Production
 
 ## Plan Metadata
 

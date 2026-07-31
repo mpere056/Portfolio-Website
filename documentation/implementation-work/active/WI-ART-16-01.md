@@ -84,7 +84,7 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 - Preserves all 260,000 blades and every existing object, particle, atmosphere, interaction, and visual layer.
 - Moves invariant blade clumping, variation, orientation, and piano-shadow calculations from the per-frame vertex shader into one-time geometry authorship and packs them into normalized 16-bit attributes.
 - Stops terrain raycasts after the cursor wake settles, disables the unused stencil buffer, and adds a slow-recovery DPR governor for sustained low frame rates.
-- All 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page Production build, local one-screen visual review, and a zero-warning browser console pass. Commit and Production verification remain before this pass becomes the known-good release point.
+- Commit `5313e93` passes all 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page Production build, local one-screen visual review, a zero-warning browser console, Vercel success status, and public Home `200` verification. Slower-device observation is the remaining performance acceptance step.
 
 ### 2026-07-30 Pianist And Practice Instruments
 
