@@ -3,7 +3,9 @@
 Date: 2026-07-26
 Status: approved direction; first environmental proof in review
 Supersedes: [2026-07-24 Homepage Practice World And Routing Decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md) for Home composition and attention behavior
-Retains: four project practices, separate `/about`, additive proof/release gates, and `/projects` rollback compatibility
+Retains at the time of decision: four project practices, separate `/about`, additive proof/release gates, and `/projects` rollback compatibility
+
+> Superseded in part on 2026-07-30: Home now has three project practices. AI is cross-cutting rather than a fourth destination. See [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md).
 Packages: `ART-16`, `KG-07`, `PRJ-09`, `ARC-06`, `EXP-08`, `QA-07`
 
 ## Decision

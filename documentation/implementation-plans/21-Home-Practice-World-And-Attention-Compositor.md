@@ -1,5 +1,7 @@
 # Home Practice World And Attention Compositor Plan
 
+> Historical, rejected compositor plan. Its four-practice taxonomy was superseded on 2026-07-30 by [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md). Do not resume this plan; use Plan `22`.
+
 Last updated: 2026-07-24
 
 ## Plan Metadata

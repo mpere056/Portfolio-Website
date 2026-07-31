@@ -21,7 +21,7 @@ describe('Home territory attention model', () => {
     expect(state.dominantId).toBeNull();
     expect(targetTotal(state)).toBeCloseTo(1);
     expect(HOME_TERRITORY_IDS.map(id => state.territories[id].targetWeight))
-      .toEqual(HOME_TERRITORY_IDS.map(() => 0.2));
+      .toEqual(HOME_TERRITORY_IDS.map(() => 0.25));
   });
 
   it('turns a local proximity sample into one dominant territory', () => {
@@ -45,15 +45,15 @@ describe('Home territory attention model', () => {
     });
     const nearTie = reduceHomeAttention(playDominant, {
       type: 'sample-proximity',
-      proximities: { play: 0.75, 'ai-futures': 0.82 },
+      proximities: { play: 0.75, 'life-systems': 0.82 },
     });
     const clearSwitch = reduceHomeAttention(nearTie, {
       type: 'sample-proximity',
-      proximities: { play: 0.1, 'ai-futures': 1 },
+      proximities: { play: 0.1, 'life-systems': 1 },
     });
 
     expect(nearTie.dominantId).toBe('play');
-    expect(clearSwitch.dominantId).toBe('ai-futures');
+    expect(clearSwitch.dominantId).toBe('life-systems');
     expect(clearSwitch.previousDominantId).toBe('play');
   });
 
@@ -91,14 +91,14 @@ describe('Home territory attention model', () => {
   it('persists semantic selection, restores entered state, and not raw weights', () => {
     const entered = reduceHomeAttention(createHomeWorldState(), {
       type: 'enter',
-      id: 'ai-futures',
+      id: 'life-systems',
     });
     const animated = reduceHomeAttention(entered, { type: 'settle', deltaMs: 80 });
     const restored = createHomeWorldState(persistedHomeAttention(animated));
 
     expect(restored.mode).toBe('entered');
-    expect(restored.dominantId).toBe('ai-futures');
-    expect(restored.territories['ai-futures'].settledWeight).toBe(0.2);
+    expect(restored.dominantId).toBe('life-systems');
+    expect(restored.territories['life-systems'].settledWeight).toBe(0.25);
   });
 
   it('retreats from entered to selected to neutral predictably', () => {

@@ -36,13 +36,6 @@ export const HOME_TERRITORY_ANCHORS: readonly HomeTerritoryAnchor[] = [
     practiceId: 'play-community',
   },
   {
-    id: 'ai-futures',
-    label: PRACTICE_DEFINITIONS['ai-possible-futures'].title,
-    signal: 'Possible-futures observatory',
-    position: { x: 88, y: 46 },
-    practiceId: 'ai-possible-futures',
-  },
-  {
     id: 'life-systems',
     label: PRACTICE_DEFINITIONS['life-systems-tools'].title,
     signal: 'Living systems archive',

@@ -2,7 +2,6 @@ import type { NodeId } from './portfolioContracts';
 
 export const PRACTICE_IDS = [
   'music-performance',
-  'ai-possible-futures',
   'life-systems-tools',
   'play-community',
 ] as const;
@@ -13,7 +12,7 @@ export type PracticeNodeId = `practice:${PracticeId}`;
 export interface PracticeDefinition {
   id: PracticeId;
   nodeId: PracticeNodeId;
-  territoryId: 'music' | 'ai-futures' | 'life-systems' | 'play';
+  territoryId: 'music' | 'life-systems' | 'play';
   title: string;
   summary: string;
 }
@@ -25,13 +24,6 @@ export const PRACTICE_DEFINITIONS: Readonly<Record<PracticeId, PracticeDefinitio
     territoryId: 'music',
     title: 'Music & Performance',
     summary: 'Arrangements, performances, teaching, sound, and musical tools.',
-  },
-  'ai-possible-futures': {
-    id: 'ai-possible-futures',
-    nodeId: 'practice:ai-possible-futures',
-    territoryId: 'ai-futures',
-    title: 'AI & Possible Futures',
-    summary: 'AI products and experiments that help people imagine, interpret, and shape what comes next.',
   },
   'life-systems-tools': {
     id: 'life-systems-tools',

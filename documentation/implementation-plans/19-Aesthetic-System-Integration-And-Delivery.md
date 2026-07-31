@@ -158,7 +158,7 @@ Back, refresh, deep links, and cross-subdomain return must restore a composed sa
 
 | Surface | Observatory role | Required packet or gate | Planned package |
 | --- | --- | --- | --- |
-| `/` Home practice world (piano clearing) | One outdoor clearing, piano, future pianist, and four practice instruments | Clearing, pianist, screens, one preview, one selected environment, then remaining practice packets | `ART-16` |
+| `/` Home practice world (piano clearing) | One outdoor clearing, piano, pianist, and three practice instruments | Clearing, pianist, screens, one preview, one selected environment, then remaining two practice packets | `ART-16` |
 | `/work/[practice]` | Durable selected-practice state derived from the same clearing | Selected environment plus project instrument reveal | `ART-16`, `PRJ-09` |
 | `/projects` compatibility | Existing Museum during additive migration | Preserve as rollback; no new canonical art dependency | `ARC-06`, `QA-07` |
 | LifeInbox museum depth and subdomain | Trusted receiving instrument and trace through system boundaries | Handle and Understand packets using one persistent specimen | `ART-01`, `ART-03` |
@@ -271,7 +271,7 @@ Earlier assignments remain the source of silhouette, composition, content, and i
 
 - Accept one finite outdoor clearing around the existing piano before adding interface layers.
 - Add the simple pianist/About entry only after the empty clearing passes review.
-- Design four practice screens as instruments inside the world, not cards.
+- Design three practice screens as instruments inside the world, not cards.
 - Prove one local translucent preview and one selected environment before expanding to all practices.
 - Keep one scene owner and at most one primary category environment.
 - Add project reveal and migrate destinations only after visual/runtime acceptance.

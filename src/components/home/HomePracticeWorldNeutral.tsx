@@ -21,15 +21,10 @@ import {
   sampleHomeWorldProximities,
 } from '@/lib/experience/homePracticeWorld';
 import { MUSEUM_AMBIENT_PROOF_ASSETS } from '@/lib/museum/ambientProof';
-import { MUSEUM_OBSERVATORY_PROOF_ASSETS } from '@/lib/museum/observatoryProof';
 import styles from './HomePracticeWorldNeutral.module.css';
 
 const AmbientProof = dynamic(
   () => import('@/components/museum/MuseumAmbientProof'),
-  { ssr: false },
-);
-const ObservatoryProof = dynamic(
-  () => import('@/components/museum/MuseumObservatoryProof'),
   { ssr: false },
 );
 const ArchiveProof = dynamic(
@@ -39,12 +34,11 @@ const ArchiveProof = dynamic(
 
 type ProofTerritoryId = Extract<
   HomeTerritoryId,
-  'play' | 'ai-futures' | 'life-systems'
+  'play' | 'life-systems'
 >;
 
 const PROOF_TERRITORIES: readonly ProofTerritoryId[] = [
   'play',
-  'ai-futures',
   'life-systems',
 ];
 
@@ -52,7 +46,6 @@ const ACCENTS: Readonly<Record<HomeTerritoryId, string>> = {
   about: '#d9c8a5',
   music: '#aeb9ff',
   play: '#65d9cf',
-  'ai-futures': '#f0c778',
   'life-systems': '#d98c6c',
 };
 
@@ -110,47 +103,6 @@ function PlayInstrument() {
   );
 }
 
-function AiInstrument() {
-  return (
-    <span
-      className={`${styles.instrument} ${styles.proofInstrument} ${styles.aiInstrument}`}
-      data-territory-visual="east-observatory"
-      aria-hidden="true"
-    >
-      <span className={`${styles.proofPlate} ${styles.portalPlate}`}>
-        <Image
-          src={MUSEUM_OBSERVATORY_PROOF_ASSETS.portal}
-          alt=""
-          fill
-          sizes="24vw"
-        />
-      </span>
-      <span className={`${styles.proofPlate} ${styles.observatoryPlate}`}>
-        <Image
-          src={MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory}
-          alt=""
-          fill
-          sizes="24vw"
-        />
-      </span>
-      <span className={`${styles.proofPlate} ${styles.cityPlate}`}>
-        <Image
-          src={MUSEUM_OBSERVATORY_PROOF_ASSETS.city}
-          alt=""
-          fill
-          sizes="24vw"
-        />
-      </span>
-      <span className={`${styles.signalCurrent} ${styles.signalCurrentCyan}`} />
-      <span className={`${styles.signalCurrent} ${styles.signalCurrentGold}`} />
-      <span className={styles.observatoryLight} />
-      <span className={styles.observatoryMotes}>
-        <i /><i /><i /><i />
-      </span>
-    </span>
-  );
-}
-
 function LifeInstrument() {
   return (
     <span
@@ -180,7 +132,6 @@ function LifeInstrument() {
 
 function TerritoryInstrument({ id }: { id: HomeTerritoryId }) {
   if (id === 'play') return <PlayInstrument />;
-  if (id === 'ai-futures') return <AiInstrument />;
   if (id === 'life-systems') return <LifeInstrument />;
   return <OrbitInstrument kind={id} />;
 }
@@ -203,7 +154,6 @@ function ProofWorld({
   active: boolean;
 }) {
   if (id === 'play') return <AmbientProof embedded active={active} />;
-  if (id === 'ai-futures') return <ObservatoryProof embedded active={active} />;
   return <ArchiveProof embedded active={active} />;
 }
 

@@ -2,7 +2,6 @@ export const HOME_TERRITORY_IDS = [
   'about',
   'music',
   'play',
-  'ai-futures',
   'life-systems',
 ] as const;
 
@@ -121,13 +120,15 @@ function recalculate(
   requestedMode?: HomeWorldMode,
 ): HomeWorldState {
   const weights = normalizedScores(state.territories);
-  const dominantId = chooseDominant(state, weights);
   const selectedId = HOME_TERRITORY_IDS.find(id => state.territories[id].selected);
   const hasTransientAttention = HOME_TERRITORY_IDS.some(id => (
     state.territories[id].focused || state.territories[id].proximity > 0.05
   ));
   const mode = requestedMode
     ?? (selectedId ? 'selected' : hasTransientAttention ? 'attending' : 'neutral');
+  const dominantId = mode === 'neutral' && !hasTransientAttention
+    ? null
+    : chooseDominant(state, weights);
   return {
     ...state,
     mode,

@@ -137,7 +137,6 @@
 }
 
 .play .instrument,
-.ai-futures .instrument,
 .life-systems .instrument {
   opacity: calc(1 - var(--territory-proximity) * 0.92);
   filter: blur(calc(var(--territory-proximity) * 2px));
@@ -600,16 +599,6 @@
   transform: rotate(23deg);
 }
 
-.ai-futures .outerOrbit {
-  border-radius: 40% 60% 46% 54%;
-  transform: rotate(18deg);
-}
-
-.ai-futures .innerOrbit {
-  border-style: solid;
-  transform: rotate(-28deg) scaleY(0.42);
-}
-
 .life-systems .outerOrbit {
   border-radius: 46% 54% 12% 12%;
   transform: scaleX(1.16) scaleY(0.7);
@@ -629,14 +618,6 @@
     brightness(calc(0.72 + var(--territory-weight) * 0.94));
 }
 
-.ai-futures:hover .proofInstrument,
-.ai-futures:focus-visible .proofInstrument {
-  filter:
-    drop-shadow(0 1.5rem 2.8rem rgb(0 0 0 / 82%))
-    drop-shadow(0 0 1.5rem rgb(240 199 120 / 18%))
-    brightness(calc(0.7 + var(--territory-weight) * 0.92));
-}
-
 .life-systems:hover .bookLeaf,
 .life-systems:focus-visible .bookLeaf {
   animation-duration: 4.2s;
@@ -645,11 +626,6 @@
 .play:hover .coralPlate,
 .play:focus-visible .coralPlate {
   animation-duration: 4.8s;
-}
-
-.ai-futures:hover .signalCurrent,
-.ai-futures:focus-visible .signalCurrent {
-  animation-duration: 3.2s;
 }
 
 .status {
@@ -782,7 +758,6 @@
 
 @media (max-width: 760px) {
   .play { --anchor-x: 16% !important; }
-  .ai-futures { --anchor-x: 84% !important; }
   .anchor { width: 7rem; }
   .proofInstrument { width: 12rem; }
   .bookInstrument { width: 10rem; }

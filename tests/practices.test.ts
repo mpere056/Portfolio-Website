@@ -15,15 +15,13 @@ describe('portfolio practice taxonomy', () => {
   it('exposes bounded deterministic project membership through the graph', async () => {
     const queries = await loadKnowledgeGraphQueries();
 
-    expect(queries.projectsForPractice('ai-possible-futures').map(node => node.id)).toEqual([
-      'project:dreamlife',
-      'project:story-app',
-    ]);
     expect(queries.projectsForPractice('life-systems-tools').map(node => node.id)).toEqual([
+      'project:dreamlife',
       'project:group-finder',
       'project:lifeinbox',
     ]);
-    expect(queries.projectsForPractice('play-community', { limit: 2 })).toHaveLength(2);
+    expect(queries.projectsForPractice('play-community').map(node => node.id))
+      .toContain('project:story-app');
     expect(queries.projectsForPractice('music-performance')).toEqual([]);
   });
 
@@ -31,7 +29,9 @@ describe('portfolio practice taxonomy', () => {
     const queries = await loadKnowledgeGraphQueries();
 
     expect(queries.practiceForProject('project:dreamlife')?.id)
-      .toBe('practice:ai-possible-futures');
+      .toBe('practice:life-systems-tools');
+    expect(queries.practiceForProject('project:story-app')?.id)
+      .toBe('practice:play-community');
     expect(queries.getPractice('music-performance')?.title)
       .toBe('Music & Performance');
   });

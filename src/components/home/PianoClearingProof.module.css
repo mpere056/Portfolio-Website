@@ -120,34 +120,25 @@
 
 .instrumentSlot[data-practice-position='music-performance'] {
   top: 40%;
-  left: 23%;
+  left: 24%;
   --instrument-angle: -4deg;
   --instrument-depth: -3deg;
   --instrument-accent: 255, 181, 224;
   --instrument-delay: -1.7s;
 }
 
-.instrumentSlot[data-practice-position='ai-possible-futures'] {
-  top: 29%;
-  left: 42%;
+.instrumentSlot[data-practice-position='life-systems-tools'] {
+  top: 28%;
+  left: 46%;
   --instrument-angle: -1deg;
   --instrument-depth: 2deg;
-  --instrument-accent: 166, 214, 255;
-  --instrument-delay: -4.1s;
-}
-
-.instrumentSlot[data-practice-position='life-systems-tools'] {
-  top: 34%;
-  right: 19%;
-  --instrument-angle: 3deg;
-  --instrument-depth: -2deg;
   --instrument-accent: 197, 190, 255;
   --instrument-delay: -2.8s;
 }
 
 .instrumentSlot[data-practice-position='play-community'] {
-  top: 46%;
-  right: 7.5%;
+  top: 40%;
+  right: 13%;
   --instrument-angle: 5deg;
   --instrument-depth: 3deg;
   --instrument-accent: 255, 194, 166;
@@ -176,7 +167,7 @@
   pointer-events: auto;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 58px;
+  grid-template-columns: 58px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   gap: 8px 10px;
   width: 100%;
@@ -269,7 +260,7 @@
   position: relative;
   z-index: 1;
   align-self: end;
-  max-width: 120px;
+  min-width: 0;
   font-family: var(--font-serif, serif);
   font-size: clamp(14px, 1.32vw, 18px);
   font-weight: 400;
@@ -395,6 +386,11 @@
 
   .instrumentSlot::after {
     display: none;
+  }
+
+  .instrumentSlot:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   .practiceInstrument {

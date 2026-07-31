@@ -161,7 +161,7 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('OrbitControls');
     expect(component).not.toContain('EffectComposer');
     expect(component).toContain('<PracticeInstruments />');
-    expect(component).toContain('data-category-screens="four-practice-instruments"');
+    expect(component).toContain('data-category-screens="three-practice-instruments"');
     expect(component).toContain('PRACTICE_IDS.map');
     expect(component).toContain('data-practice-screen={practice}');
     expect(component).toContain('aria-pressed={heldPractice === practice}');

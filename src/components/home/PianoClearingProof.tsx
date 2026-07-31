@@ -1704,19 +1704,6 @@ function PracticeGlyph({ practice }: { practice: PracticeId }) {
     );
   }
 
-  if (practice === 'ai-possible-futures') {
-    return (
-      <svg viewBox="0 0 96 38" role="presentation">
-        <ellipse cx="48" cy="19" rx="35" ry="9" />
-        <ellipse cx="48" cy="19" rx="24" ry="15" transform="rotate(-24 48 19)" />
-        <path d="M18 30 Q48 1 79 27" />
-        <circle cx="48" cy="19" r="3.2" />
-        <circle cx="76" cy="12" r="2.2" />
-        <circle cx="28" cy="27" r="1.8" />
-      </svg>
-    );
-  }
-
   if (practice === 'life-systems-tools') {
     return (
       <svg viewBox="0 0 96 38" role="presentation">
@@ -1750,7 +1737,7 @@ function PracticeInstruments() {
     <nav
       className={styles.practiceField}
       aria-label="Project practices"
-      data-category-screens="four-practice-instruments"
+      data-category-screens="three-practice-instruments"
       data-active-practice={activePractice ?? 'neutral'}
     >
       {PRACTICE_IDS.map((practice, index) => {

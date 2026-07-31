@@ -334,7 +334,7 @@ These are manual, repeatable prompts rather than numeric scores:
 11. `ART-11`: review temporal restraint, renderer loading, calm/failure states, route distinction, and whole-portfolio dynamic maturity.
 12. `ART-12`: retain the accepted bounded coral, observatory, archive, and music proofs as material and behavior evidence; Museum-only integration is superseded.
 13. `ART-13`: repeat the route-local pipeline for LifeInbox, then Dreamlife, then Sudoku. Do not produce the next route's assets before the current route reaches a known-good gate.
-14. `ART-16`: accept the empty piano clearing first, then the pianist/About entry, four practice instruments, one preview, one selected environment, remaining practices, project reveal, and release in that order.
+14. `ART-16`: accept the empty piano clearing first, then the pianist/About entry, three practice instruments, one preview, one selected environment, remaining practices, project reveal, and release in that order.
 15. Run `QA-04`, then `ART-15`: close motion coverage, capability, fatigue, performance, and Production/Mark acceptance across the desktop route matrix.
 
 Lifecycle review `LPS-02` can remain in human review during `ART-01` and `ART-02`. `ART-04` cannot use current-state cues for Dreamlife or Sudoku until the relevant `LPS-03` records are reviewed. Shared primitives are extracted only after two accepted scenes prove the same semantic role; they are not a prerequisite for keyframing.

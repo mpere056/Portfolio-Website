@@ -109,7 +109,7 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
 | 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` pushed revision and in-review | `5718cd8`: 220,000 independent blades, farther-right/slightly left-facing camera, river-safe GLTF-grounded pearl piano, continuous grass, extended/tapered water, frustum-safe ridges, viaduct/train, capped DPR, no post/shadows; 240 tests/build/local visual pass | Collect Checkpoint `B` review |
-| 56 | `ART-16C/D` | Pianist/About entry and four practice instruments | pending | Clearing accepted | Integrate one feedback-gated layer at a time |
+| 56 | `ART-16C/D` | Pianist/About entry and three practice instruments | in-review | Clearing accepted | Verify the revised three-instrument arc before environmental preview |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
 | 59 | `ART-13` through `ART-15` | Route ambient continuation | resequenced | `ART-16` establishes valid shared runtime seams | Resume route-specific work without blocking Home |
@@ -126,7 +126,7 @@ The operational source is `documentation/implementation-work/README.md`.
 | --- | --- | --- | --- | --- | --- | --- |
 | Now | `WI-ART-16-01` | in-review / provisional public | `ART-16B` | Commit `fa1e85c` is live; canonical `/`, rollback `/home-world-proof`, and temporary `/presentation` return `200`; 240 tests and the 41-route build pass | Collect canonical Home visual/performance review, then brief the temporary presentation | 2026-07-28 |
 | Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
-| Later | same work item | not-started checkpoints | `ART-16D-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | Screens, one preview, one selected environment, four practices, depth, navigation, and release | 2026-07-26 |
+| Later | same work item | not-started checkpoints | `ART-16E-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | One preview, one selected environment, all three practices, depth, navigation, and release | 2026-07-30 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
@@ -164,7 +164,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | --- | --- | --- | --- |
 | Runtime and framework compatibility | Baseline and future deployments | resolved | No action; `BAS-06` and `BAS-07` are accepted |
 | Firestore service-account data access | `BAS-08`, `ARC-01` | resolved | `Cloud Datastore User` verified; index and canonical corpus ready |
-| Information architecture and routing | `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09` | resolved direction; implementation pending | Piano-clearing Home, pianist/About handoff, four practice screens, selected-practice routes, and additive `/projects` migration approved |
+| Information architecture and routing | `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09` | resolved direction; implementation pending | Piano-clearing Home, pianist/About handoff, three practice screens, selected-practice routes, and additive `/projects` migration approved |
 | Shared graph/discovery vocabulary | `ARC-02`, `ARC-03` | resolved | Accepted graph identities, discovery vocabulary, destination registry, and resolver are available to `ARC-04` |
 | Typed cross-system actions | `ARC-04`, `ARC-05` | resolved | Seven ID-first action semantics and exhaustive handling are accepted |
 | Runtime trust and state compatibility | `ARC-05`, `EXP-01` | resolved | Structured action validation and current/v0/corrupt/unknown state behavior are accepted for store adoption |

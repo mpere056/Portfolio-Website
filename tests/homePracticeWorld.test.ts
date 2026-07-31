@@ -10,17 +10,16 @@ import {
 const root = process.cwd();
 
 describe('neutral Home practice world', () => {
-  it('defines five stable, bounded, non-overlapping semantic anchors', () => {
+  it('defines four stable, bounded, non-overlapping semantic anchors', () => {
     expect(HOME_TERRITORY_ANCHORS.map(anchor => anchor.id)).toEqual([
       'about',
       'music',
       'play',
-      'ai-futures',
       'life-systems',
     ]);
     expect(new Set(HOME_TERRITORY_ANCHORS.map(anchor => (
       `${anchor.position.x}:${anchor.position.y}`
-    ))).size).toBe(5);
+    ))).size).toBe(4);
     expect(HOME_TERRITORY_ANCHORS.every(anchor => (
       anchor.position.x >= 8
       && anchor.position.x <= 92
@@ -58,14 +57,11 @@ describe('neutral Home practice world', () => {
     expect(component).toContain('<HeroCube variant="practice-neutral" />');
     expect(component).toContain('MUSEUM_AMBIENT_PROOF_ASSETS.coral');
     expect(component).toContain('MUSEUM_AMBIENT_PROOF_ASSETS.organism');
-    expect(component).toContain('MUSEUM_OBSERVATORY_PROOF_ASSETS.observatory');
-    expect(component).toContain('MUSEUM_OBSERVATORY_PROOF_ASSETS.city');
     expect(component).toContain('data-territory-visual="archive-book"');
     expect(component).toContain("'piano-resonance'");
     expect(component).toContain('HOME_TERRITORY_ANCHORS.map');
     expect(component).toContain('sampleHomeWorldProximities');
     expect(component).toContain('<AmbientProof embedded active={active} />');
-    expect(component).toContain('<ObservatoryProof embedded active={active} />');
     expect(component).toContain('<ArchiveProof embedded active={active} />');
     expect(component).toContain('--proof-strength');
     expect(component).toContain('proofLayers.map');

@@ -11,12 +11,12 @@
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` |
 | Created | 2026-07-24 |
 | Last update | 2026-07-30 |
-| Decision | [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
+| Decision | [Three-Practice Taxonomy](../../implementation-plans/2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) |
 
 ## Current Truth
 
-Mark rejected the full proof-world compositor in `EV-ART-16-02` and requested a drastic reset. Home now targets one bounded outdoor clearing centered on the grand piano. The four project practices remain valid taxonomy, but they will later appear as four diegetic screens. About will later be represented by a simple pianist rather than a fifth territory.
+Mark rejected the full proof-world compositor in `EV-ART-16-02` and requested a drastic reset. Home now targets one bounded outdoor clearing centered on the grand piano. The current taxonomy has three project practices, represented by three diegetic instruments. AI remains a cross-cutting capability rather than a fourth destination. About will later be represented by a simple pianist rather than a separate project territory.
 
 Mark reviewed the first Checkpoint `B` clearing and requested a more specific composition: restore the original particle-built piano; look outward across a grassy overlook toward a visible stream, distant landscape, open sky, and a few clouds; and use a warm hand-painted pastoral animation language. He later supplied the original HTML and explicitly allowed the bridge and train when they improved source parity.
 
@@ -24,19 +24,19 @@ Mark found the deployed five-band candidate better but still unlike the supplied
 
 Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
-Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene now also includes a seated silhouette pianist with restrained irregular playing motion and four translucent practice instruments arranged asymmetrically above the piano. The instrument controls support pointer and keyboard focus plus click/Enter-to-hold state. Environment preview, selected states, project reveal, and the pianist's About handoff do not yet exist.
+Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene now also includes a seated silhouette pianist with restrained irregular playing motion and three translucent practice instruments arranged asymmetrically above the piano. The instrument controls support pointer and keyboard focus plus click/Enter-to-hold state. Environment preview, selected states, project reveal, and the pianist's About handoff do not yet exist.
 
 ## Resume Packet
 
 - Current implementation baseline: `main`, live through Git-connected Production; this file is updated with the current Checkpoint `D` candidate before its release commit.
-- Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and four suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
+- Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and three suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
-- Verification: focused Checkpoint `D` tests and lint pass; the complete production build and live exact-viewport review are the remaining release checks.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. The four practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
+- Verification: all 58 test files / 243 tests, TypeScript, focused lint, 61-node / 28-relationship content validation, the 41-page production build, and local production-render desktop review pass for the three-practice revision. Production verification remains for release.
+- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: release and collect a short visual review of the four practice instruments. Do not begin environmental takeover; Checkpoint `E` starts with one local translucent preview only after the instrument arrangement is accepted.
+- Next exact action: release and collect a short visual review of the three practice instruments. Do not begin environmental takeover; Checkpoint `E` starts with one local translucent preview only after the instrument arrangement is accepted.
 
 ## Ordered Checkpoints
 
@@ -45,10 +45,10 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 | `A` Direction reset | accepted | New decision, single-clearing architecture, supersession, and future contracts are recorded |
 | `B` Empty clearing | accepted-for-sequencing | Piano, grass, terrain, horizon, sky, light, calm life, and performance were accepted as sufficiently usable to proceed |
 | `C` Pianist | in-review | Simple seated player fits the scene; About handoff remains later |
-| `D` Practice instruments | in-review | Four screens fit around the piano and remain accessible without becoming cards |
+| `D` Practice instruments | in-review | Three screens fit around the piano and remain accessible without becoming cards |
 | `E` One environmental preview | not-started | One local hover/focus influence melds translucently into the clearing |
 | `F` One selected environment | not-started | Selection transforms the environment with continuity and bounded lifecycle |
-| `G` Four practices | not-started | All four categories have distinct, cohesive preview and selected states |
+| `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
 | `I` Release | not-started | Performance, rollback, Production, and Mark acceptance pass |
 
@@ -58,7 +58,7 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 - [x] The piano remains the permanent anchor.
 - [x] Open-world styling does not imply walking or an explorable map.
 - [x] About moves to the future pianist instead of a fifth screen.
-- [x] Four project practices remain the later category structure.
+- [x] Three project practices form the category structure; AI is cross-cutting.
 - [x] Checkpoint `B` has an explicit performance budget.
 - [ ] Clearing composition and aesthetics are accepted.
 - [ ] Piano framing and visibility are accepted.
@@ -82,7 +82,8 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 ### 2026-07-30 Pianist And Practice Instruments
 
 - Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench, refine the figure into a properly seated dark silhouette, and give its hands restrained independently varied horizontal and vertical playing motion.
-- The Checkpoint `D` candidate adds four semantic practice buttons as distinct translucent signal instruments in an asymmetric arc above the piano: Music & Performance, AI & Possible Futures, Life Systems & Tools, and Play & Community.
+- The first Checkpoint `D` candidate used four practices. Mark chose three: Music & Performance, Life Systems & Tools, and Play & Community. Dreamlife now belongs to Life Systems & Tools; Interactive Story Generator belongs to Play & Community; AI remains cross-cutting.
+- The three-instrument revision removes the obsolete AI glyph and graph territory, balances the remaining instruments around the piano, fixes title clipping, and centers the third item in the compact grid.
 - Pointer hover and keyboard focus expose local attention; click or Enter holds one signal. This checkpoint deliberately does not load an environment, navigate, or begin project depth.
 - Exact `1080 x 900` and compact `500 x 844` production-build captures preserve one-screen composition, piano hierarchy, legible labels, and responsive two-column controls. Focused tests, lint, content validation, TypeScript, and the 41-route production build pass.
 - Next checkpoint remains one local translucent environmental preview for one practice after Mark reviews the instrument arrangement.
