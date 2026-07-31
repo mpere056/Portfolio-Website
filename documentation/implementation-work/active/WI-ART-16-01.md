@@ -24,21 +24,21 @@ Mark found the deployed five-band candidate better but still unlike the supplied
 
 Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
-Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene includes a seated silhouette pianist with restrained irregular playing motion and three translucent practice instruments arranged asymmetrically above the piano. The instrument controls support pointer and keyboard focus plus click/Enter-to-hold state. The instruments are accepted for sequencing into transition work; later visual polish remains possible. Environment preview, selected states, project reveal, and the pianist's About handoff do not yet exist.
+Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene includes a seated silhouette pianist with restrained irregular playing motion and three translucent practice instruments arranged asymmetrically above the piano. The controls now feed a semantic one-owner preview/selection/retreat controller. The lazy world registry intentionally remains empty, so environment previews, selected states, project reveal, and the pianist's About handoff do not yet exist and neutral Home carries no hidden practice runtime.
 
 The next architecture treats the clearing as one persistent substrate rather than a backdrop. Music, Life Systems, and Play preserve the camera, terrain silhouette, river corridor, piano coordinate, pianist, and instrument anchors while transforming materials, ecology, architecture, lighting, atmosphere, and later project landmarks. Historical proof worlds supply techniques only; their complete compositions are not mounted on Home.
 
 ## Resume Packet
 
-- Current implementation baseline: `5313e93`, tracked by `8a4e3c2`, live through Git-connected Production.
+- Current visual baseline: `5313e93`; current transition-foundation checkpoint: `b0018cb`.
 - Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and three suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
-- Verification: all 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page production build, local render review, Vercel success, and public Home `200` pass.
+- Verification: all 59 test files / 251 tests, TypeScript, targeted lifecycle/Home lint with no errors, 61-node / 28-relationship content validation, and the clean 41-page production build. The accepted `5313e93` neutral visual baseline is unchanged because no world module is registered or mounted.
 - Performance boundary: one canvas, DPR at most `1.25` with sustained-pressure tiers down to `0.75`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. Static blade shape/variation/shadow work is packed into normalized 16-bit attributes; idle cursor raycasts stop after the response settles; stencil is disabled. No scene count is reduced. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: implement Plan `23` checkpoint `E0`: semantic attention controller, lazy world contract, development lifecycle diagnostics, and neutral visual parity. Then prepare the Music preview art packet. Do not implement the Music selected world, Life world, Play world, or project landmarks yet.
+- Next exact action: prepare the Plan `23` Music preview packet and review it before registering a Music module. After acceptance, implement only the preview contact/path/horizon behavior. Do not implement the Music selected world, Life world, Play world, or project landmarks yet.
 
 ## Ordered Checkpoints
 
@@ -48,8 +48,8 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `B` Empty clearing | accepted-for-sequencing | Piano, grass, terrain, horizon, sky, light, calm life, and performance were accepted as sufficiently usable to proceed |
 | `C` Pianist | accepted-for-sequencing | Simple seated player fits the scene; About handoff and later polish remain |
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
-| `E0` Transition foundation | next | One dominant owner, lazy world contract, diagnostics, deterministic retreat, and unchanged neutral rendering |
-| `E1` Music preview | not-started | Contact, travelled response, and horizon consequence meld locally into the clearing |
+| `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
+| `E1` Music preview | next | Packet first; then contact, travelled response, and horizon consequence meld locally into the clearing |
 | `F` Music selected environment | not-started | Resonant Meadow transforms the same world with continuity and bounded lifecycle |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
@@ -76,7 +76,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 1. Read this file plus Plans `22` and `23`; do not resume Plan `21`.
 2. Inspect repository status and preserve unrelated user changes.
 3. Review only the current checkpoint.
-4. Build `E0` before any practice-specific visual runtime; then review the Music preview packet before `E1` implementation.
+4. Preserve verified `E0`; review the Music preview packet before registering or implementing the `E1` runtime.
 5. Run focused tests, TypeScript, lint, content validation, then the aggregate suite/build when behavior changes.
 6. Update Current Truth, the checkpoint table, known-good point, and next exact action before ending.
 
@@ -88,7 +88,8 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Music becomes the first transition proof because it preserves the accepted piano composition. Life Systems later translates archive/observatory techniques into a Living Systems Garden; Play later translates coral/ecology techniques into a Lantern Ecology.
 - Historical proof compositions remain rejected as complete Home worlds. They may contribute motion, material, lighting, and interaction techniques only after revalidation inside the clearing.
 - Music currently has no classified project nodes. `F2` must decide between first-class music content nodes and a curated non-project depth surface before project landmarks are implemented.
-- Exact next step is `E0`, not a complete category world.
+- Commit `b0018cb` completes `E0`: semantic one-owner attention, bounded selection and retreat, a lazy module/registry contract, deterministic runtime disposal, draft practice URLs, and opt-in lifecycle diagnostics are covered by focused and aggregate tests.
+- The production registry remains empty by design. Exact next step is the Music preview packet, not a complete category world.
 
 ### 2026-07-31 No-Detail-Removal Performance Pass
 

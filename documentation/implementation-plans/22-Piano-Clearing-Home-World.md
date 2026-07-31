@@ -7,7 +7,7 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Plan ID | `PIANO-CLEARING-HOME` |
-| Status | Active; clearing, pianist, and three instruments implemented; transition foundation is next |
+| Status | Active; clearing, pianist, three instruments, and transition foundation verified; Music preview packet is next |
 | Decision | [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Supersedes | [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) |
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
@@ -17,7 +17,7 @@ Last updated: 2026-07-31
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist and three practice instruments. The next sequence builds a tested transition foundation, then one Music preview, one Music selected world, the remaining two practice worlds, and project depth. Detailed world briefs, runtime boundaries, and restart state live in Plan `23`.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist, three practice instruments, and a tested one-owner transition foundation without changing neutral visuals. The next sequence reviews one Music preview packet, implements that bounded preview, then proceeds separately to the Music selected world, the remaining two practice worlds, and project depth. Detailed world briefs, runtime boundaries, and restart state live in Plan `23`.
 
 ## Scene Grammar
 
@@ -92,8 +92,8 @@ The current Checkpoint `B` implementation intentionally contains:
 | `B` Empty clearing | accepted-for-sequencing | Piano, terrain, grass, horizon, sky, light, wind, and fixed camera | Mark accepted the scene as sufficiently usable to proceed; later polish remains possible |
 | `C` Pianist | accepted-for-sequencing | Minimal seated figure and restrained playing loop | Figure remains a later polish surface; About handoff is deferred to `H` |
 | `D` Practice instruments | accepted-for-sequencing | Three screen forms and spatial arrangement | Three-practice taxonomy and semantic controls are stable enough to build transition behavior |
-| `E0` Transition foundation | next | Semantic attention controller, lazy world contract, lifecycle diagnostics, and neutral parity | One dominant owner, no hidden worlds, deterministic retreat, and unchanged neutral Home |
-| `E1` Music preview state | not-started | Music influences the clearing through local contact, travelled response, and one horizon consequence | Reversible, causal, local, tasteful, and smooth |
+| `E0` Transition foundation | verified | Semantic attention controller, lazy world contract, lifecycle diagnostics, and neutral parity | One dominant owner, no hidden worlds, deterministic retreat/disposal, and unchanged neutral Home pass at `b0018cb` |
+| `E1` Music preview state | next | Music influences the clearing through local contact, travelled response, and one horizon consequence | Packet reviewed first; runtime remains reversible, causal, local, tasteful, and smooth |
 | `F` Music selected state | not-started | Resonant Meadow becomes the primary environment using the same world module | Continuity, lifecycle, URL intent, content decision, and performance pass |
 | `G` Three practices | not-started | Remaining two preview/selected environments | Distinct but cohesive; one active runtime |
 | `H` Project and navigation depth | not-started | Project reveal, About handoff, AI/tour context, history, restore, and `/projects` compatibility | Deep links, Back, refresh, and exact return pass |
@@ -168,4 +168,5 @@ The accepted optimization order for this composition is now: remove repeated inv
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
 - Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench and seated silhouette pianist, refine its scene fit, and give its hands restrained independently varied horizontal and vertical playing motion.
 - The original Checkpoint `D` candidate exposed four practices. The 2026-07-30 taxonomy decision removes AI as a peer destination, reclassifies Dreamlife and Interactive Story Generator, and reduces Home to three practice instruments. Hover and keyboard focus expose local attention; click/Enter holds one signal. No environmental takeover or route change is introduced before Checkpoints `E` and `F`.
-- Exact next action: implement only Plan `23` checkpoint `E0`, preserving pixel-equivalent neutral Home. Then produce the Music preview art packet before implementing `E1`. Do not build a complete selected world or start Life/Play runtime work yet.
+- Commit `b0018cb` replaces presentational hover ownership with a tested semantic preview/selection/retreat controller, defines the lazy module and performance contract, guarantees singular runtime ownership and deterministic disposal, and adds opt-in local diagnostics. The production registry remains empty, so neutral Home mounts no additional runtime or visual layer.
+- Exact next action: produce and review the Plan `23` Music preview packet, then implement only the accepted contact/path/horizon preview. Do not build a complete selected world or start Life/Play runtime work yet.

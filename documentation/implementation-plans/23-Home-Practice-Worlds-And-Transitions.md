@@ -12,8 +12,8 @@ Last updated: 2026-07-31
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
 | Packages | `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-018`, `CAP-ART-019`, `CAP-PRJ-009` |
-| Current release | `5313e93` visual/runtime implementation; `8a4e3c2` tracking checkpoint |
-| Exact next gate | One transition-foundation harness and one Music preview packet; no selected world yet |
+| Current release | `5313e93` accepted visual baseline; `b0018cb` verified transition foundation |
+| Exact next gate | Produce and review one Music preview packet; no selected world yet |
 
 ## Purpose
 
@@ -277,8 +277,8 @@ Required behavior:
 
 | Step | State | Deliverable | Completion signal |
 | --- | --- | --- | --- |
-| `E0` Transition foundation | next | practice-world contract, dominant-world lifecycle, semantic controls, URL draft, and diagnostic overlay behind development flag | tests prove one owner, predictable retreat, no hidden runtimes, and neutral visual parity |
-| `E1` Music preview packet | not-started | keyframe, layer inventory, motion jobs, contact/path/horizon preview, fallback, and budget | Mark accepts the local translucent influence before full selection work |
+| `E0` Transition foundation | verified | practice-world contract, dominant-world lifecycle, semantic controls, URL draft, and diagnostic overlay behind development flag | 15 focused and 251 aggregate tests prove one owner, predictable retreat/disposal, no hidden runtimes, and unchanged neutral composition |
+| `E1` Music preview packet | next | keyframe, layer inventory, motion jobs, contact/path/horizon preview, fallback, and budget | Mark accepts the local translucent influence before full selection work |
 | `F1` Music selected world | not-started | complete Resonant Meadow selected state using the same preview module | continuity, Back/refresh, calm, failure, performance, and Mark review pass |
 | `F2` Music content decision | waiting-for-feedback | first-class music content nodes or curated non-project depth decision | no empty or misleading project landmark surface |
 | `G1` Life packet | not-started | Living Systems Garden preview and selected state | archive/observatory techniques feel native to the valley and three truthful landmark hosts exist |
@@ -295,8 +295,8 @@ Use named states only: `not-started`, `designing`, `prototype`, `in-review`, `re
 | Surface | Neutral | Preview | Selected | Calm/failure | Performance | Creative review | Resume note |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Shared clearing | verified | n/a | n/a | implemented | verified | accepted-for-sequencing | preserve `5313e93` visual parity |
-| Transition foundation | n/a | not-started | not-started | not-started | not-started | n/a | begin `E0` contract and diagnostics |
-| Music | verified piano anchor | not-started | not-started | not-started | not-started | not-started | produce preview packet before code-rich selected state |
+| Transition foundation | verified | verified controller | verified controller | verified disposal contract | verified zero added runtime | n/a | `b0018cb`; keep registry empty until an accepted packet has a module |
+| Music | verified piano anchor | designing | not-started | not-started | budget pending | not-started | produce preview packet before implementing the bounded preview runtime |
 | Life Systems | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | reuse proof techniques only after Music validates runtime |
 | Play & Community | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | rebuild ecology as native 3D, not a coral plate |
 | Project landmarks | compatibility routes only | n/a | blocked | not-started | not-started | not-started | resolve Music content model and accept three worlds first |
@@ -351,7 +351,7 @@ Before a practice moves from `prototype` to `in-review`, record:
 
 ## Decisions Still Requiring Mark
 
-These are feedback gates, not blockers for `E0`:
+These are feedback gates for `E1` and later work:
 
 - final Music content model: project nodes versus curated music depth;
 - first Music preview keyframe and dominant gesture;
@@ -361,10 +361,10 @@ These are feedback gates, not blockers for `E0`:
 
 ## Exact Resume Point
 
-Start `E0`. Do not build a complete practice world yet.
+Checkpoint `E0` is verified at `b0018cb`. Do not build a complete practice world yet.
 
-1. Extract the current practice attention from presentational hover state into a tested semantic controller.
-2. Define the lazy practice-world module interface and one development-only lifecycle diagnostic.
-3. Preserve pixel-equivalent neutral Home when all world weights are idle.
-4. Create the Music preview art packet: one keyframe, one layer/motion inventory, one fallback, and one budget.
-5. Implement only the Music contact/path/horizon preview after that packet is reviewed.
+1. Preserve the empty production registry and exact neutral Home while preparing `E1`.
+2. Create one Music preview keyframe showing local contact at the piano, a travelled response through grass/river, and one restrained horizon consequence.
+3. Record the layer/motion inventory, ownership, renderer, fallback, reduced-motion behavior, and explicit performance budget.
+4. Review that two-page-at-most packet with Mark and revise it before runtime work.
+5. Only after acceptance, register one lazy Music module and implement preview behavior; do not implement the selected Resonant Meadow in the same checkpoint.

@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current implementation checkpoint: `5313e93` is the optimized visual/runtime baseline and `8a4e3c2` records its Production checkpoint. The clearing, seated pianist, and three practice instruments are live; `/projects` remains unchanged until the additive migration passes. `ART-16E0` is the active integration step.
+Current implementation checkpoint: `5313e93` is the optimized visual baseline and `b0018cb` verifies the one-owner transition foundation without mounting a practice world. The clearing, seated pianist, and three practice instruments remain visually unchanged; `/projects` remains unchanged until the additive migration passes. `ART-16E1` Music preview packet is the active design step.
 
 ## Dependency Order
 
@@ -114,8 +114,8 @@ The earlier `ART-12G/H` whole-`/projects` integration sequence is superseded by 
 | 2 | `KG-07` practice taxonomy | Every current project has one validated primary practice |
 | 3 | `ARC-06` / `EXP-08` attention and route contracts | Pure tests pass without changing public route output |
 | 4 | `ART-16D` neutral clearing, pianist, and three instruments | implemented and accepted for sequencing; one viewport and semantic inputs pass |
-| 5 | `ART-16E0` transition foundation | One dominant owner, lazy world contract, diagnostics, deterministic retreat, and unchanged neutral rendering |
-| 6 | `ART-16E1/F` Music preview and selected Resonant Meadow | Contact/path/horizon preview accepted before selected-world implementation; routing and performance pass |
+| 5 | `ART-16E0` transition foundation | verified at `b0018cb`: one dominant owner, lazy world contract, diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
+| 6 | `ART-16E1/F` Music preview and selected Resonant Meadow | next: contact/path/horizon packet and preview acceptance; selected-world implementation remains a separate later gate |
 | 7 | `ART-16F2` Music content decision | First-class music nodes or curated non-project depth selected before landmarks |
 | 8 | `ART-16G` Life Systems then Play worlds | One complete practice accepted before the next begins; old proofs contribute techniques only |
 | 9 | `PRJ-09` practice project reveal | Correct projects, lifecycle depth, music content handling, and subdomain handoff |
