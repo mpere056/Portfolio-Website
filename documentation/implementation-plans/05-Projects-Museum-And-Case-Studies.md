@@ -1,6 +1,6 @@
 # Practice Territories, Project Depth, And Case Studies Plan
 
-Last updated: 2026-07-19
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -16,7 +16,7 @@ Last updated: 2026-07-19
 
 ## Scope
 
-Present projects as inspectable systems with increasing depth, focused product demonstrations, and project-specific exploded case studies. The project framework remains valid, but its primary spatial overview moves from a separate Museum lobby into four Home practice territories under the [2026-07-24 decision](2026-07-24-Homepage-Practice-World-And-Routing-Decision.md).
+Present projects as inspectable systems with increasing depth, focused product demonstrations, and project-specific exploded case studies. The project framework remains valid, but its primary spatial overview moves from a separate Museum lobby into the three Home practices confirmed by the [three-practice taxonomy decision](2026-07-30-Three-Practice-Taxonomy-Decision.md). The earlier four-practice decision remains historical context only.
 
 Art-direction correction: the 2026-07-18 live audit found that the accepted functional shell is too dependent on a uniform rounded-card grid and that the first LifeInbox depth layer reads like a conventional dark application panel. These are working implementation foundations, not the final aesthetic target. All Phase 4 visual work follows `18-Art-Direction-And-Aesthetic-Quality.md`.
 
@@ -380,7 +380,8 @@ The visual implementation can differ per project. Shared code manages ordering, 
 `PRJ-09` adapts the completed project framework to the Home world:
 
 - Query projects by validated primary practice.
-- Render native practice instruments rather than a generic card grid.
+- Populate reserved landmark positions inside an already accepted selected-practice world; project data must not invent or resize the world.
+- Render native world landmarks and interactions rather than a generic card grid or floating set of equal panels.
 - Preserve stable exhibit and project IDs.
 - Support the same depth grammar and lifecycle truth.
 - Keep reviewed cross-practice relationships secondary and explainable.
@@ -389,10 +390,15 @@ The visual implementation can differ per project. Shared code manages ordering, 
 - Use canonical metadata to avoid duplicate search indexing if the same content appears in multiple routes.
 - AI destinations must support both main-domain and subdomain contexts.
 
+Current corpus truth is intentionally explicit: Life Systems & Tools has three classified project nodes, Play & Community has six, and Music & Performance has none. Before Music receives landmarks, `ART-16F2` must choose either first-class public music nodes such as performances, arrangements, lessons, resources, and musical tools, or an authored non-project depth surface. An attractive but empty Music project destination does not pass this package.
+
+Implementation order is selected world first, project population second. Each accepted practice world supplies stable landmark slots, occlusion expectations, reveal timing, and a return anchor. `PRJ-09` then binds validated graph results to those slots, tests direct entry and exact return, and keeps `/projects` as compatibility and rollback until parity passes.
+
 Responsibility split:
 
 - `PRJ-04` proves one selected museum-to-canonical-subdomain transition and exact return using existing destinations.
 - `PRJ-08` implements the generalized `/projects/[slug]` family, all-project canonical metadata, compatibility redirects, reusable history rules, and cross-origin handoff validation.
+- `ART-16` owns the selected-practice environment and empty landmark contract; `PRJ-09` owns content binding, reveal behavior, project handoff, and exact return.
 - Existing `/projects#slug` URLs remain compatibility inputs until `PRJ-08` Preview evidence accepts redirects and browser Back behavior.
 
 ## Asset Plan

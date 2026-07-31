@@ -1,6 +1,6 @@
 # Portfolio Implementation Plans
 
-Last updated: 2026-07-26
+Last updated: 2026-07-31
 
 ## Purpose
 
@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. A new private candidate builds one bounded outdoor clearing around the existing grand piano with instanced shader-driven grass and explicit performance limits. Public routes remain unchanged while Mark reviews the empty clearing.
+Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. Canonical Home now uses one optimized outdoor piano clearing with a seated pianist and three practice instruments. The next checkpoint builds a non-visual transition foundation before one Music preview.
 
-Current delivery order: accept or revise the clearing only, then separately prototype the pianist/About entry, four category instruments, one translucent environmental preview, and one selected category environment. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the active execution plan; [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
+Current delivery order: preserve the accepted clearing, implement one dominant-world lifecycle with neutral parity, review one Music preview packet, build its preview and selected world, then build Life Systems and Play sequentially before project reveal. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the parent execution plan, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) is the detailed next-step plan, and [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
 
 ## Document Authority
 
@@ -77,6 +77,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `20-Dynamic-Scene-Composition-And-Layered-Materials.md` | Layered material packs, route-owned scene logic, renderer decisions, causal motion, performance, and resumable delivery | Active dynamic-scene control |
 | `21-Home-Practice-World-And-Attention-Compositor.md` | Rejected five-territory and full proof-world compositor history | Superseded by Plan `22` |
 | `22-Piano-Clearing-Home-World.md` | Single outdoor clearing, piano anchor, future pianist/screens/environment states, and staged acceptance | Active current execution plan |
+| `23-Home-Practice-Worlds-And-Transitions.md` | Persistent clearing substrate, transition grammar, three 3D world briefs, runtime lifecycle, content gates, and exact sequence | Active companion and next-step plan |
 | `2026-07-26-Piano-Clearing-Home-Reset-Decision.md` | Single-clearing composition, later interaction model, continuity, and performance boundaries | Approved decision |
 | `2026-07-24-Homepage-Practice-World-And-Routing-Decision.md` | Historical five-territory Home decision; four-practice taxonomy retained | Superseded in part |
 | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and proof sequence | Retained proof foundation; Museum-only integration superseded by `ART-16` |
@@ -103,7 +104,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 | Question | Read first | Then read |
 | --- | --- | --- |
-| What should we build next? | `22-Piano-Clearing-Home-World.md` | `../implementation-work/active/WI-ART-16-01.md` |
+| What should we build next? | `23-Home-Practice-Worlds-And-Transitions.md` | `22-Piano-Clearing-Home-World.md` and `../implementation-work/active/WI-ART-16-01.md` |
 | Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
 | How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |

@@ -1,6 +1,6 @@
 # Aesthetic System Integration And Delivery Plan
 
-Last updated: 2026-07-24
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -158,7 +158,7 @@ Back, refresh, deep links, and cross-subdomain return must restore a composed sa
 
 | Surface | Observatory role | Required packet or gate | Planned package |
 | --- | --- | --- | --- |
-| `/` Home practice world (piano clearing) | One outdoor clearing, piano, pianist, and three practice instruments | Clearing, pianist, screens, one preview, one selected environment, then remaining two practice packets | `ART-16` |
+| `/` Home practice world (piano clearing) | One outdoor clearing, piano, pianist, and three practice instruments | `E0` lifecycle foundation, Music preview, Music selected environment, then Life and Play packets | `ART-16` |
 | `/work/[practice]` | Durable selected-practice state derived from the same clearing | Selected environment plus project instrument reveal | `ART-16`, `PRJ-09` |
 | `/projects` compatibility | Existing Museum during additive migration | Preserve as rollback; no new canonical art dependency | `ARC-06`, `QA-07` |
 | LifeInbox museum depth and subdomain | Trusted receiving instrument and trace through system boundaries | Handle and Understand packets using one persistent specimen | `ART-01`, `ART-03` |
@@ -269,10 +269,9 @@ Earlier assignments remain the source of silhouette, composition, content, and i
 
 ### `ART-16`: Piano Clearing Home World
 
-- Accept one finite outdoor clearing around the existing piano before adding interface layers.
-- Add the simple pianist/About entry only after the empty clearing passes review.
-- Design three practice screens as instruments inside the world, not cards.
-- Prove one local translucent preview and one selected environment before expanding to all practices.
+- Preserve the implemented finite clearing, seated pianist, and three diegetic practice instruments as the accepted-for-sequencing substrate.
+- Build the non-visual `E0` transition owner and lifecycle diagnostics without changing neutral output.
+- Prove one causal Music preview and one selected environment before expanding to Life and Play.
 - Keep one scene owner and at most one primary category environment.
 - Add project reveal and migrate destinations only after visual/runtime acceptance.
 
@@ -310,9 +309,9 @@ Earlier assignments remain the source of silhouette, composition, content, and i
 11. Run `ART-11` only after each representative route class has its own known-good dynamic checkpoint.
 12. Begin `ART-12` with baseline reconciliation, the Museum source-region atlas, and motion coverage ledger, not asset generation or renderer code.
 13. Write approved asset briefs before generating one representative transparent/mask/map stack; approve that contact sheet before compositor selection.
-14. Begin `ART-16` with the finite piano clearing; do not resume the rejected proof-world compositor.
-15. Accept the clearing before the pianist or practice screens.
-16. Accept one preview and selected environment before producing the remaining practice environments; deeper `/about` consequence work still waits on `ABT-01`.
+14. Resume `ART-16` at `E0`; do not resume the rejected proof-world compositor or remount complete proof scenes.
+15. Preserve exact neutral parity while adding one-owner attention, lazy world contracts, diagnostics, and deterministic retreat.
+16. Accept the Music preview and selected environment before producing Life or Play; resolve Music content before project landmarks; deeper `/about` consequence work still waits on `ABT-01`.
 17. Do not resume broad `ART-13` through `ART-15` expansion until `ART-16` establishes the shared Home lifecycle and exposes any real reusable seams.
 18. Run `QA-07` before changing `/projects` from rollback surface to compatibility redirect.
 

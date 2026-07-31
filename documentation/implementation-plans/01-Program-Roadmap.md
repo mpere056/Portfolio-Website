@@ -1,6 +1,6 @@
 # Program Roadmap
 
-Last updated: 2026-07-20
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current implementation checkpoint: `30e6c88` preserves the production foundation. On 2026-07-26 Mark rejected the five-territory compositor and reset `/` toward one bounded outdoor piano clearing. `/projects` remains unchanged until the additive migration passes. `ART-16` is the active integration package.
+Current implementation checkpoint: `5313e93` is the optimized visual/runtime baseline and `8a4e3c2` records its Production checkpoint. The clearing, seated pianist, and three practice instruments are live; `/projects` remains unchanged until the additive migration passes. `ART-16E0` is the active integration step.
 
 ## Dependency Order
 
@@ -113,14 +113,16 @@ The earlier `ART-12G/H` whole-`/projects` integration sequence is superseded by 
 | 1 | `ART-16A` planning reconciliation | Canonical decision, plan, package, capabilities, and work item agree |
 | 2 | `KG-07` practice taxonomy | Every current project has one validated primary practice |
 | 3 | `ARC-06` / `EXP-08` attention and route contracts | Pure tests pass without changing public route output |
-| 4 | `ART-16D` neutral five-anchor shell | One viewport, recognizable Home identity, semantic input paths |
-| 5 | `ART-16E` Music and Play transition proof | Fixed anchors, atmospheric melding, local attention, performance gate |
-| 6 | `ART-16F` AI, Life Systems, and About integration | One territory accepted before the next begins |
-| 7 | `PRJ-09` practice project reveal | Correct projects, depth, and subdomain handoff |
-| 8 | `ARC-06` / `EXP-08` navigation migration | Tour, AI, restore, Back, metadata, and aliases pass |
-| 9 | `QA-07` release | Preview, rollback, capability, performance, Production, and Mark acceptance |
+| 4 | `ART-16D` neutral clearing, pianist, and three instruments | implemented and accepted for sequencing; one viewport and semantic inputs pass |
+| 5 | `ART-16E0` transition foundation | One dominant owner, lazy world contract, diagnostics, deterministic retreat, and unchanged neutral rendering |
+| 6 | `ART-16E1/F` Music preview and selected Resonant Meadow | Contact/path/horizon preview accepted before selected-world implementation; routing and performance pass |
+| 7 | `ART-16F2` Music content decision | First-class music nodes or curated non-project depth selected before landmarks |
+| 8 | `ART-16G` Life Systems then Play worlds | One complete practice accepted before the next begins; old proofs contribute techniques only |
+| 9 | `PRJ-09` practice project reveal | Correct projects, lifecycle depth, music content handling, and subdomain handoff |
+| 10 | `ARC-06` / `EXP-08` navigation migration | Tour, AI, restore, Back, metadata, and aliases pass |
+| 11 | `QA-07` release | Preview, rollback, capability, performance, Production, and Mark acceptance |
 
-The detailed order and checkpoint fields live in [Home Practice World](21-Home-Practice-World-And-Attention-Compositor.md).
+The detailed order and checkpoint fields live in [Piano Clearing Home](22-Piano-Clearing-Home-World.md) and [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md). Plan `21` is historical only.
 
 ### Superseded Museum-Only Sequence
 

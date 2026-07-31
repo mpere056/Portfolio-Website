@@ -1,6 +1,6 @@
 # Vision Traceability And Dependency Matrix
 
-Last updated: 2026-07-24
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -54,8 +54,8 @@ Connect product decisions to architecture, work packages, and acceptance evidenc
 | `V-32` | Route-owned dynamic scenes built from independently responsive authored layers | `20`, `18`, `19`, `00`, `02`, `05`, `08` | `ART-07` through `ART-15` | Each route owns material layers, temporal mapping, stable/calm/failure states, measured renderer behavior, and creative acceptance without a universal composition engine |
 | `V-33` | Pervasive temporal participation across dominant visual regions | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan`, `20`, `18`, `19`, `00`, `02`, `05`, `06`, `08` | `ART-12` through `ART-15` | Standard-stimulation no-input captures show credible ambient life across every dominant region; fixed anchors participate through atmosphere, illumination, reflection, shadow, or occlusion; no poster-dominant dead zones remain |
 | `V-34` | Home is one spatial index for About and three project practices | `22`, `00`, `02`, `05`, three-practice decision | `ARC-06`, `KG-07`, `ART-16`, `PRJ-09` | Home exposes three semantic practice instruments; every project is reachable through one primary practice; About remains separate through the pianist |
-| `V-35` | One territory dominates on a continuous attention spectrum | `21`, `02`, `20` | `EXP-08`, `ART-16` | Deterministic attention tests and interaction recordings prove neutral state, hysteresis, input precedence, one stable dominant target, and local response |
-| `V-36` | Territories meld atmospherically while anchors stay fixed | `21`, `18`, `19`, `20` | `ART-16`, `QA-07` | Music and Play transition proofs show broad overlapping fields without panel resizing; remaining territories pass the same creative and runtime gate |
+| `V-35` | One practice dominates on a continuous attention spectrum | `23`, `22`, `02`, `20` | `EXP-08`, `ART-16` | Deterministic tests and recordings prove neutral state, hysteresis, input precedence, one semantic owner, bounded local intensity, keyboard parity, and deterministic retreat |
+| `V-36` | Practice worlds meld causally while the clearing remains spatially continuous | `23`, `22`, `18`, `19`, `20`, `00` | `ART-16`, `QA-07` | Each practice proves contact, travelled path, and horizon consequence; camera, terrain/river silhouette, piano, pianist, and instrument coordinates remain stable; only one practice runtime mounts and disposes cleanly |
 
 ## Requirement To Capability Control
 
@@ -95,7 +95,7 @@ Legend: `R` means row requires column. `P` means partial or prototype dependency
 | Phase 2 Exploration shell | `QA-01`, `EXP-02` to `EXP-06`, `AI-02`, `AI-03`, `KG-05`, `KG-06` | Complete with aggregate, Preview, production-safe, route, and live AI evidence; final disturbances remain with `EXP-07`/`LPS-04` in Phase 6 |
 | Phase 3 First flagship | complete: `PRJ-01` through `PRJ-04`, `LPS-06`, `AI-04`, `QA-02` | LifeInbox full vertical slice passes product, route, state, AI, fallback, performance, creative, and corrected Preview acceptance |
 | Phase 4 Remaining flagships | functional, lifecycle, routing, AI, and interaction work is live through `fce50af`; earlier art packages are retained implemented foundations | Three distinct flagship experiences, lifecycle-driven historical depth, canonical routes, connected state, AI migration, keyframes, original matter, and supporting-route interaction pass public verification |
-| Phase 4F piano-clearing Home | `KG-07`, `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`; retains `ART-12` as historical material evidence | Clearing, pianist/About, screens, one preview, one selected environment, remaining practices, project reveal, route migration, Production, and Mark gates pass in order |
+| Phase 4F piano-clearing Home | `KG-07`, `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09`, `QA-07`; retains `ART-12` as historical technique evidence | `E0` lifecycle foundation, Music preview, Music selected world, Music content decision, Life, Play, project reveal, route migration, Production, and Mark gates pass in order |
 | Later route ambient continuation | `ART-13` through `ART-15`, `QA-04`; resequenced after `ART-16` | Route-local work resumes only from real shared seams established by the Home-world compositor |
 | Phase 5 About content and depth | `ABT-01` through `ABT-04`; top Home portal may precede deeper consequence work | About portal remains separate from the chronology; five events become inspectable and the memory prototype is decided |
 | Phase 6 Living operations | `LPS-04`, `LPS-05`, `EXP-07`, `QA-03` | Versioned project states, AI precedence, editorial workflow, and disturbances are reliable |

@@ -1,6 +1,6 @@
 # Dynamic Scene Composition And Layered Materials
 
-Last updated: 2026-07-20
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -297,16 +297,15 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 
 ### `ART-16`: Home Practice World Integration
 
-- Reconcile plans and retain accepted proof outputs.
-- Practice taxonomy and pure attention contracts accepted on 2026-07-24.
-- Neutral five-anchor shell implemented as a private Stage `D` review candidate at `557c7fb`; canonical routes remain unchanged.
-- Accept or revise the neutral composition before beginning atmospheric transition work.
-- Prove neutral-to-Music and neutral-to-Play melding.
-- Integrate AI, Life Systems, and About sequentially.
-- Add project reveal and route migration only after visual/runtime gates.
+- Retain the rejected five-anchor and complete proof-world candidates as historical evidence, not reusable compositions.
+- Preserve the deployed one-clearing substrate, seated pianist, and three-practice taxonomy.
+- Implement `E0` semantic ownership, lazy adapters, diagnostics, disposal, and exact neutral parity before atmospheric work.
+- Prove contact-path-horizon melding for Music, then its selected Resonant Meadow using the same camera and coordinates.
+- Resolve Music's empty project corpus before landmarks, then integrate Life Systems and Play sequentially from their own reviewed packets.
+- Add native project landmarks and route migration only after all three worlds pass visual/runtime gates.
 - Run renderer-lifecycle, calm/failure, navigation, Production, and Mark review.
 
-The detailed stage ledger is [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md).
+The active detailed stage ledger is [Plan 23](23-Home-Practice-Worlds-And-Transitions.md); [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
 
 ### `ART-07`: Scene Contracts And Museum Proof
 

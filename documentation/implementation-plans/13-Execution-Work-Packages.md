@@ -1,6 +1,6 @@
 # Execution Work Packages
 
-Last updated: 2026-07-24
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -123,7 +123,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `ART-13` | Flagship ambient worlds | `ART-12`, `PRJ-05`, `PRJ-06` | Sequential LifeInbox, Dreamlife, and Sudoku route-local `Map -> Brief -> Produce -> Approve -> Select -> Integrate -> Accept` pipelines | Each flagship passes its idle-life and product-interaction matrix before production assets begin for the next; Production and Mark review pass | pending |
 | `ART-14` | Supporting-route ambient worlds | `ART-12`, `ART-13`, `ART-10`, `ABT-01`, `AI-05` | Sequential Home, About, AI, and reading route-local pipelines with restrained temporal density and reading-safe behavior | Representative no-input, reading, context, calm, fallback, and route-distinction reviews pass | pending |
 | `ART-15` | Pervasive motion maturation | `ART-12`, `ART-13`, `ART-14`, `QA-04` | Cross-route dead-zone closure, temporal desynchronization, material-credibility correction, asset/performance budgets, fatigue review, and Production evidence | Motion coverage ledgers contain no unexplained dominant dead zones; capability matrix, sustained observation, Production, and Mark acceptance pass | pending |
-| `ART-16` | Piano clearing Home world | `ART-12`, `KG-07`, `ARC-06`, `EXP-08` | One bounded outdoor clearing, piano anchor, pianist/About entry, three practice instruments, environmental preview/selection, project depth, calm/failure, and performance boundaries | Stage `A-I` gates in Plan `22`; clearing, hierarchy, one-screen, renderer-budget, navigation, Production, and Mark review | in-progress; clearing accepted for sequencing, instruments in-review |
+| `ART-16` | Piano clearing Home world and three practice transformations | `ART-12`, `KG-07`, `ARC-06`, `EXP-08` | One persistent clearing substrate, piano/pianist anchors, three instruments, one-owner transition lifecycle, Music/Life/Play preview and selected worlds, calm/failure, and performance boundaries | Stage `A-I` gates in Plans `22/23`; neutral parity, one world at a time, causal preview, selected continuity, disposal, navigation, Production, and Mark review | in-progress; `A-D` integrated, `E0` next |
 
 ## Project Depth And Practice-Reveal Packages
 
@@ -137,7 +137,7 @@ Capability dimension states, lifecycle, health, and confidence live in `15-Capab
 | `PRJ-06` | Remaining non-Dreamlife flagship | `PRJ-04` framework, `ART-04`, `LPS-03` | Valid Sudoku board, labeled computer participant, architecture trace, and lattice dialect | Product, architecture, deterministic interaction, and browser QA | complete |
 | `PRJ-07` | Smaller projects and hidden depth | `PRJ-04`, `EXP-06`, `ART-04`, `LPS-02` | Complete/archive lifecycle tiers, distinct signal silhouettes, reviewed state depth, retained discoveries | Every project classified; lifecycle-specific rendering and silhouette review | complete |
 | `PRJ-08` | Generalized direct routes and subdomain integration | `PRJ-04`, `ARC-03` | Static `/projects/[slug]`, canonical metadata, old-hash compatibility, reusable stage/history rules, corrected subdomain links | Route tests, refresh/depth browser QA, static production build | complete |
-| `PRJ-09` | Practice-territory project reveal | `PRJ-08`, `KG-07`, `ART-16` | Project instruments grouped by primary practice, depth handoff, cross-practice relationships, exact returns | Every project reachable; practice grouping, lifecycle, depth, subdomain, fallback, and browser QA | pending |
+| `PRJ-09` | Practice-world project reveal | `PRJ-08`, `KG-07`, accepted `ART-16` worlds | Native project landmarks grouped by primary practice, music-content handling, lifecycle depth, handoff, relationships, and exact returns | Every project reachable; no empty Music destination; grouping, lifecycle, depth, subdomain, fallback, and browser QA | pending; Music content decision required before landmarks |
 
 ## About Packages
 

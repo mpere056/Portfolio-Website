@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| State | in-review |
+| State | in-progress |
 | Priority | high |
 | Package | `ART-16` |
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
@@ -12,7 +12,7 @@
 | Created | 2026-07-24 |
 | Last update | 2026-07-31 |
 | Decision | [Three-Practice Taxonomy](../../implementation-plans/2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
-| Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) |
+| Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) and [Home Practice Worlds And Transitions](../../implementation-plans/23-Home-Practice-Worlds-And-Transitions.md) |
 
 ## Current Truth
 
@@ -24,19 +24,21 @@ Mark found the deployed five-band candidate better but still unlike the supplied
 
 Mark found the 32,000-clump meadow closer to the source but still visibly clumped and unlike its continuous grass field; he also identified a large grassless piano patch. The next deployed revision replaced clumps with 220,000 independent blades and removed the piano clearance/contact-shadow geometry. Mark then requested a farther camera and closer source framing/styling. The first response widened a centered ravine view, which Mark rejected because the requested move was physical: change the angle modestly and move the eye back along the grass field. After the elevated right-meadow revision, Mark requested still farther-right travel and a lower-center piano that visibly rests on grass instead of overlapping the ravine. The current candidate uses GLTF-bounds grounding at a river-safe foreground meadow coordinate, replaces saturated blue/gold piano points with pearl/cool-white light, and extends the existing blade distribution through the bottom viewport edge.
 
-Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene now also includes a seated silhouette pianist with restrained irregular playing motion and three translucent practice instruments arranged asymmetrically above the piano. The instrument controls support pointer and keyboard focus plus click/Enter-to-hold state. Environment preview, selected states, project reveal, and the pianist's About handoff do not yet exist.
+Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candidate replace canonical Home now. Canonical `/` therefore renders the same bounded valley provisionally, while `/home-world-proof` remains available as a no-index rollback/review route. `/projects` remains unchanged. The Home doorway opens a no-index, 10-slide programming-and-career presentation. The Home scene includes a seated silhouette pianist with restrained irregular playing motion and three translucent practice instruments arranged asymmetrically above the piano. The instrument controls support pointer and keyboard focus plus click/Enter-to-hold state. The instruments are accepted for sequencing into transition work; later visual polish remains possible. Environment preview, selected states, project reveal, and the pianist's About handoff do not yet exist.
+
+The next architecture treats the clearing as one persistent substrate rather than a backdrop. Music, Life Systems, and Play preserve the camera, terrain silhouette, river corridor, piano coordinate, pianist, and instrument anchors while transforming materials, ecology, architecture, lighting, atmosphere, and later project landmarks. Historical proof worlds supply techniques only; their complete compositions are not mounted on Home.
 
 ## Resume Packet
 
-- Current implementation baseline: `main`, live through Git-connected Production; this file is updated with the current Checkpoint `D` candidate before its release commit.
+- Current implementation baseline: `5313e93`, tracked by `8a4e3c2`, live through Git-connected Production.
 - Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and three suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
-- Verification: all 58 test files / 243 tests, TypeScript, focused lint, 61-node / 28-relationship content validation, the 41-page production build, and local production-render desktop review pass for the three-practice revision. Production verification remains for release.
+- Verification: all 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page production build, local render review, Vercel success, and public Home `200` pass.
 - Performance boundary: one canvas, DPR at most `1.25` with sustained-pressure tiers down to `0.75`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. Static blade shape/variation/shadow work is packed into normalized 16-bit attributes; idle cursor raycasts stop after the response settles; stencil is disabled. No scene count is reduced. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: release and collect a short visual review of the three practice instruments. Do not begin environmental takeover; Checkpoint `E` starts with one local translucent preview only after the instrument arrangement is accepted.
+- Next exact action: implement Plan `23` checkpoint `E0`: semantic attention controller, lazy world contract, development lifecycle diagnostics, and neutral visual parity. Then prepare the Music preview art packet. Do not implement the Music selected world, Life world, Play world, or project landmarks yet.
 
 ## Ordered Checkpoints
 
@@ -44,10 +46,11 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 | --- | --- | --- |
 | `A` Direction reset | accepted | New decision, single-clearing architecture, supersession, and future contracts are recorded |
 | `B` Empty clearing | accepted-for-sequencing | Piano, grass, terrain, horizon, sky, light, calm life, and performance were accepted as sufficiently usable to proceed |
-| `C` Pianist | in-review | Simple seated player fits the scene; About handoff remains later |
-| `D` Practice instruments | in-review | Three screens fit around the piano and remain accessible without becoming cards |
-| `E` One environmental preview | not-started | One local hover/focus influence melds translucently into the clearing |
-| `F` One selected environment | not-started | Selection transforms the environment with continuity and bounded lifecycle |
+| `C` Pianist | accepted-for-sequencing | Simple seated player fits the scene; About handoff and later polish remain |
+| `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
+| `E0` Transition foundation | next | One dominant owner, lazy world contract, diagnostics, deterministic retreat, and unchanged neutral rendering |
+| `E1` Music preview | not-started | Contact, travelled response, and horizon consequence meld locally into the clearing |
+| `F` Music selected environment | not-started | Resonant Meadow transforms the same world with continuity and bounded lifecycle |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
 | `I` Release | not-started | Performance, rollback, Production, and Mark acceptance pass |
@@ -70,14 +73,22 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 
 ## Restart Procedure
 
-1. Read this file and Plan `22`; do not resume Plan `21`.
+1. Read this file plus Plans `22` and `23`; do not resume Plan `21`.
 2. Inspect repository status and preserve unrelated user changes.
 3. Review only the current checkpoint.
-4. Do not begin environmental preview before the Checkpoint `D` arrangement is reviewed.
+4. Build `E0` before any practice-specific visual runtime; then review the Music preview packet before `E1` implementation.
 5. Run focused tests, TypeScript, lint, content validation, then the aggregate suite/build when behavior changes.
 6. Update Current Truth, the checkpoint table, known-good point, and next exact action before ending.
 
 ## Chronological Updates
+
+### 2026-07-31 Practice-World Architecture
+
+- Plan `23` defines one persistent clearing substrate, one dominant practice runtime, approach/preview/selected/retreat states, causal spatial melding, lazy mount/disposal, routing/restoration, and named-state tracking.
+- Music becomes the first transition proof because it preserves the accepted piano composition. Life Systems later translates archive/observatory techniques into a Living Systems Garden; Play later translates coral/ecology techniques into a Lantern Ecology.
+- Historical proof compositions remain rejected as complete Home worlds. They may contribute motion, material, lighting, and interaction techniques only after revalidation inside the clearing.
+- Music currently has no classified project nodes. `F2` must decide between first-class music content nodes and a curated non-project depth surface before project landmarks are implemented.
+- Exact next step is `E0`, not a complete category world.
 
 ### 2026-07-31 No-Detail-Removal Performance Pass
 

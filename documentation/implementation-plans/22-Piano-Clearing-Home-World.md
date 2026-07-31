@@ -7,16 +7,17 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Plan ID | `PIANO-CLEARING-HOME` |
-| Status | Active; first environmental proof provisionally promoted and still in review |
+| Status | Active; clearing, pianist, and three instruments implemented; transition foundation is next |
 | Decision | [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Supersedes | [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) |
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
+| Practice-world companion | [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) |
 | Review route | Canonical `/`; `/home-world-proof` retained for rollback/review |
 | Public exposure | Provisional canonical Home by explicit request; `/projects` unchanged |
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist and three practice instruments. Environmental preview, selected category states, and project depth remain later checkpoints.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist and three practice instruments. The next sequence builds a tested transition foundation, then one Music preview, one Music selected world, the remaining two practice worlds, and project depth. Detailed world briefs, runtime boundaries, and restart state live in Plan `23`.
 
 ## Scene Grammar
 
@@ -55,7 +56,9 @@ Each practice owns three levels:
 | preview | proximity, hover, or focus | translucent local influence enters the clearing |
 | selected | click, Enter, or restored URL state | practice environment becomes the primary world and reveals project depth |
 
-Preview should modify atmosphere rather than scale the screen dramatically. Selected state may be visually extensive but still uses one runtime and preserves a coherent transition from the clearing.
+Preview should modify atmosphere rather than scale the screen dramatically. Selected state may be visually extensive but still uses one runtime and preserves a coherent transition from the clearing. The terrain silhouette, river corridor, camera family, piano coordinate, pianist, and practice anchors remain stable; worlds transform materials, ecology, architecture, light, atmosphere, and later project landmarks.
+
+Historical coral, observatory, archive, and music proofs are technique libraries only. Their motion systems, material relationships, and interaction lessons may be translated into native 3D layers, but their full compositions and flat plates may not be mounted as practice environments.
 
 ## First Proof Implementation
 
@@ -87,10 +90,11 @@ The current Checkpoint `B` implementation intentionally contains:
 | --- | --- | --- | --- |
 | `A` Direction reset | accepted | Decision, supersession, scene boundary, and later interaction contract | Plans and tracking agree |
 | `B` Empty clearing | accepted-for-sequencing | Piano, terrain, grass, horizon, sky, light, wind, and fixed camera | Mark accepted the scene as sufficiently usable to proceed; later polish remains possible |
-| `C` Pianist | in-review | Minimal seated figure and restrained playing loop | Figure reads clearly, fits the style, and later links to About without stealing focus |
-| `D` Practice instruments | in-review | Three screen forms and spatial arrangement | One-screen readability, keyboard semantics, and piano hierarchy pass |
-| `E` One preview state | not-started | One practice influences the clearing translucently on local attention | Reversible, local, tasteful, and smooth |
-| `F` One selected state | not-started | The same practice becomes the primary environment on selection | Continuity, lifecycle, URL intent, and performance pass |
+| `C` Pianist | accepted-for-sequencing | Minimal seated figure and restrained playing loop | Figure remains a later polish surface; About handoff is deferred to `H` |
+| `D` Practice instruments | accepted-for-sequencing | Three screen forms and spatial arrangement | Three-practice taxonomy and semantic controls are stable enough to build transition behavior |
+| `E0` Transition foundation | next | Semantic attention controller, lazy world contract, lifecycle diagnostics, and neutral parity | One dominant owner, no hidden worlds, deterministic retreat, and unchanged neutral Home |
+| `E1` Music preview state | not-started | Music influences the clearing through local contact, travelled response, and one horizon consequence | Reversible, causal, local, tasteful, and smooth |
+| `F` Music selected state | not-started | Resonant Meadow becomes the primary environment using the same world module | Continuity, lifecycle, URL intent, content decision, and performance pass |
 | `G` Three practices | not-started | Remaining two preview/selected environments | Distinct but cohesive; one active runtime |
 | `H` Project and navigation depth | not-started | Project reveal, About handoff, AI/tour context, history, restore, and `/projects` compatibility | Deep links, Back, refresh, and exact return pass |
 | `I` Release | not-started | Preview, performance, rollback, Production, and Mark acceptance | Public Home replacement is separately approved |
@@ -164,4 +168,4 @@ The accepted optimization order for this composition is now: remove repeated inv
 - Focused lint, TypeScript, all 57 test files / 240 tests, content validation, the clean 40-route Production build, and local `1080 x 894` browser review pass.
 - Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench and seated silhouette pianist, refine its scene fit, and give its hands restrained independently varied horizontal and vertical playing motion.
 - The original Checkpoint `D` candidate exposed four practices. The 2026-07-30 taxonomy decision removes AI as a peer destination, reclassifies Dreamlife and Interactive Story Generator, and reduces Home to three practice instruments. Hover and keyboard focus expose local attention; click/Enter holds one signal. No environmental takeover or route change is introduced before Checkpoints `E` and `F`.
-- Exact next action: collect a short visual review of the three instrument forms, placement, hierarchy, and legibility, then revise or accept Checkpoint `D` before beginning one environmental preview.
+- Exact next action: implement only Plan `23` checkpoint `E0`, preserving pixel-equivalent neutral Home. Then produce the Music preview art packet before implementing `E1`. Do not build a complete selected world or start Life/Play runtime work yet.

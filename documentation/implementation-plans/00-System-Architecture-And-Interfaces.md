@@ -1,6 +1,6 @@
 # System Architecture And Interface Contracts
 
-Last updated: 2026-07-24
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -37,7 +37,7 @@ The destination resolver maps IDs to routes, selected areas, safe state, fallbac
 
 Browser Back closes the current meaningful depth state before leaving the durable route. Direct links restore at a safe checkpoint and never launch an unskippable animation.
 
-See [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) for the active Home structure and `2026-07-16-Information-Architecture-And-Routing-Decision.md` for the retained route/state foundation.
+See [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) for the active Home structure, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) for the active world lifecycle, and `2026-07-16-Information-Architecture-And-Routing-Decision.md` for the retained route/state foundation.
 
 ## Home World Ownership
 
@@ -51,9 +51,11 @@ The piano-clearing Home adds three distinct state layers:
 
 `/` remains the intended canonical spatial work index. `destination:practice-*` may identify durable selected-practice states later, while transient screen focus and preview influence stay local. `destination:projects` remains a stable compatibility alias during migration.
 
-One clearing runtime owns camera, scene clock, visibility, capability, calm state, and stable frames. Later practice implementations own one screen instrument, preview influence, selected environment, project metaphor, and selected-state choreography.
+One clearing runtime owns camera, terrain and river coordinates, piano/pianist anchors, scene clock, visibility, capability, calm state, and stable frames. Practice implementations own one instrument, one lightweight preview adapter, one selected-world adapter, reserved project-landmark positions, and selected-state choreography. They may transform the clearing, but they may not replace its spatial coordinate system.
 
-At most one practice environment is primary at a stable moment. Hover preview is lightweight and reversible; selected environments are lazy and lifecycle bounded. No contract may require mounting every category world simultaneously.
+At most one practice environment is primary at a stable moment. Neutral mounts no practice runtime. Approach may prefetch a manifest or shader without making it visible. Preview mounts only the dominant practice's bounded adapter. Selection promotes that same owner into one full runtime; retreat reverses its visual state, disposes practice-owned GPU/DOM resources, and returns exact neutral parity. No contract may require mounting every category world simultaneously or creating a second full-screen canvas.
+
+The transition is spatially causal rather than a global crossfade: the approached instrument emits a local signal, nearby meadow material responds at contact, a visible path carries influence across the clearing, and only then does the horizon participate. This contact-path-horizon order is a shared behavioral contract; each practice authors its own material and motion language within it.
 
 ## System Map
 

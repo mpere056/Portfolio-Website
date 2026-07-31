@@ -32,7 +32,7 @@ This distinction prevents two errors:
 | `O-01` Persistent exploratory world | optimized dusk meadow-piano valley on Home | on-track | Canonical `/` retains all 260,000 blades while packed invariant attributes, idle-raycast suspension, and adaptive DPR pass 243 tests and build | Production performance observation | Review canonical `/` on slower hardware |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | Checkpoints `A-D` integrated; optimization release candidate | on-track | Farther-right eye frames the river-safe pearl piano, seated pianist, three practice instruments, and accepted blue/pink/violet dusk hierarchy | Production performance observation | Continue practice-environment preview after the optimization release |
+| `O-04` Home work world | Checkpoints `A-D` integrated; `E0` next | on-track | River-safe pearl piano, seated pianist, three instruments, and no-detail optimization are live | One-owner transition foundation and slower-device observation | Preserve neutral parity while implementing `E0`, then review Music preview packet |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -41,10 +41,10 @@ This distinction prevents two errors:
 | Package group | State | Current truth |
 | --- | --- | --- |
 | `ART-12` | implemented; integration superseded | Accepted proof inputs retained; no whole-`/projects` integration remains |
-| `KG-07` | complete | Four practice nodes, nine primary classifications, validators, and bounded queries pass |
+| `KG-07` | complete | Three practice nodes, nine primary classifications, validators, and bounded queries pass |
 | `ARC-06` / `EXP-08` | destination work pending / pure contract accepted | Reducer and semantic retreat/restore are verified; browser history, tour, AI, and routes remain later adoption |
-| `ART-16` | `A-D` integrated; performance pass release candidate | Deployed particle-piano valley, seated pianist, and three practice instruments exist; category environments, depth, navigation, and final release remain |
-| `PRJ-09` | pending | Waits on taxonomy and accepted territory composition |
+| `ART-16` | `A-D` integrated; `E0` next | Deployed clearing, pianist, and three instruments exist; transition foundation precedes Music preview/selected state, then Life and Play |
+| `PRJ-09` | pending | Waits on accepted worlds and a Music content-model decision; Life has three and Play has six classified projects, while Music currently has none |
 | `QA-07` | pending | Owns integrated creative/runtime/migration/production acceptance |
 | `ART-13` through `ART-15` | planned, resequenced | Resume only after `ART-16` reveals valid shared seams |
 
@@ -124,15 +124,15 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review / provisional public | `ART-16B` | Commit `fa1e85c` is live; canonical `/`, rollback `/home-world-proof`, and temporary `/presentation` return `200`; 240 tests and the 41-route build pass | Collect canonical Home visual/performance review, then brief the temporary presentation | 2026-07-28 |
-| Next | same work item | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-26 |
-| Later | same work item | not-started checkpoints | `ART-16E-I`, `PRJ-09`, `QA-07` | Waits on each preceding accepted gate | One preview, one selected environment, all three practices, depth, navigation, and release | 2026-07-30 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | `E0`: `5313e93` / `8a4e3c2` are live; clearing, pianist, instruments, optimization, tests, build, and Production pass | Build semantic attention ownership, lazy world contract, diagnostics, and neutral parity | 2026-07-31 |
+| Next | same work item | not-started | `ART-16` | `E1` waits on `E0` | Produce and review the Music preview packet, then implement contact/path/horizon only | 2026-07-31 |
+| Later | same work item | not-started checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Checkpoints `F-I` wait on each preceding accepted gate | Music selected world/content decision, Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
 
 ## Awaiting Review
 
-Stage `D` neutral composition is awaiting Mark review. Stage `E` does not begin until this gate is accepted or revised.
+No blocking review is active. Checkpoints `C/D` are accepted for sequencing with later polish still possible. `E0` may begin, but no Music visual runtime begins until its preview packet is reviewed.
 
 ## Blocked Or Paused
 
@@ -152,9 +152,9 @@ No Phase 2 or Phase 3 functional package is partial. The Home-world architecture
 | `CAP-ART-002/004/005/006` | paused `WI-ART-01-02`, `03-01` through `06-01` | Keyframes, art packets, route dialects, registry, optimized assets, calm paths, and public compositions exist | Their final route-level creative criterion is superseded by pervasive ambient acceptance | Preserve source packets and Production `fce50af`; reopen only a named mismatch | No standalone action; active route packets consume these inputs | Candidate packet evidence remains retained |
 | `CAP-ART-007` through `012` | paused `WI-ART-07-01` through `11-01` | Route-owned interaction, semantic drivers, fallback, lifecycle policy, and one-viewport geometry exist | No standalone action; Home integration may reveal a named reusable-seam regression | Preserve behavior and current rollback routes | Reopen only a named regression from `ART-16` | Retained candidate and rollout evidence |
 | `CAP-ART-013/014` | superseded `WI-ART-12-01` | Decomposition pipeline plus coral, observatory, archive, and music proof dialects are accepted | No whole-Museum integration remains | Preserve proof routes and records through `68e0897` | Supply bounded inputs to `ART-16` | Tests, deployments, and Mark reviews retained |
-| `CAP-KG-008`, `CAP-ART-017`, `CAP-ART-019` | `WI-ART-16-01` | Four-practice taxonomy remains; river-safe pastoral particle-piano viaduct valley is deployed and technically verified | Mark creative and target-machine performance review remain | No-index proof only; public routes unchanged | Review Checkpoint `B`; do not begin pianist yet | `EV-ART-16-03` through `09`; lint, TypeScript, 238 tests, local browser, 40-page build |
-| `CAP-ART-018` | `WI-ART-16-01` later checkpoint | Preview/selected-state contract is documented | Screens and every category environment remain unbuilt | One active environment later; no simultaneous full worlds | Wait on Checkpoints `B-D` | No implementation evidence |
-| `CAP-PRJ-009` | `WI-ART-16-01` later checkpoint | Taxonomy and individual project framework exist | Practice instruments, reveal, exact handoff, and return remain | Do not redirect `/projects` | Wait on accepted clearing, pianist, screens, and first environment | No integrated evidence yet |
+| `CAP-KG-008`, `CAP-ART-017`, `CAP-ART-019` | `WI-ART-16-01` | Three-practice taxonomy, deployed clearing, pianist, instruments, and optimized runtime are verified | Slower-device observation and selected-world lifecycle remain | Canonical Home with rollback route | Implement `E0` without changing neutral output | `5313e93`, `8a4e3c2`; 243 tests, build, Vercel, public `200` |
+| `CAP-ART-018` | `WI-ART-16-01` current checkpoint | Detailed state grammar, three world briefs, mount policy, and proof-reuse boundary are documented | Transition owner and every preview/selected runtime remain unbuilt | One active environment; no simultaneous worlds | Implement `E0`, then review Music packet | Plan `23`; no runtime evidence yet |
+| `CAP-PRJ-009` | `WI-ART-16-01` later checkpoint | Three instruments, taxonomy, graph queries, and individual project framework exist | Native landmarks, exact handoff/return, and Music content model remain | Do not redirect `/projects` | Accept three worlds and resolve Music content before landmarks | No integrated evidence yet |
 
 This section is intentionally selective. The capability ledger remains the complete granular source.
 
@@ -164,7 +164,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | --- | --- | --- | --- |
 | Runtime and framework compatibility | Baseline and future deployments | resolved | No action; `BAS-06` and `BAS-07` are accepted |
 | Firestore service-account data access | `BAS-08`, `ARC-01` | resolved | `Cloud Datastore User` verified; index and canonical corpus ready |
-| Information architecture and routing | `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09` | resolved direction; implementation pending | Piano-clearing Home, pianist/About handoff, three practice screens, selected-practice routes, and additive `/projects` migration approved |
+| Information architecture and routing | `ARC-06`, `EXP-08`, `ART-16`, `PRJ-09` | resolved direction; neutral foundation implemented | Piano-clearing Home, pianist, and three practice instruments are live; About handoff, selected-practice routes, and additive `/projects` migration remain |
 | Shared graph/discovery vocabulary | `ARC-02`, `ARC-03` | resolved | Accepted graph identities, discovery vocabulary, destination registry, and resolver are available to `ARC-04` |
 | Typed cross-system actions | `ARC-04`, `ARC-05` | resolved | Seven ID-first action semantics and exhaustive handling are accepted |
 | Runtime trust and state compatibility | `ARC-05`, `EXP-01` | resolved | Structured action validation and current/v0/corrupt/unknown state behavior are accepted for store adoption |

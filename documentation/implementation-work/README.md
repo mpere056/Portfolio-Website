@@ -1,6 +1,6 @@
 # Implementation Work Registry
 
-Last reconciled: 2026-07-28
+Last reconciled: 2026-07-31
 
 ## Purpose
 
@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`78c19ee` is the current tracked implementation baseline, with presentation implementation `6477e5c` live through Git-connected Production. `WI-ART-16-01` provisionally exposes the dusk piano valley on canonical Home and retains `/home-world-proof` for rollback/review. The Home doorway now opens a complete no-index, 10-slide About presentation. Earlier clearing variants remain revision-requested evidence, while the landmark and full proof-world compositors remain failed evidence. No Home-world pianist, category screen, environment transition, or `/projects` redirect has begun.
+`5313e93` is the current visual/runtime baseline, with tracking checkpoint `8a4e3c2` live through Git-connected Production. `WI-ART-16-01` exposes the optimized dusk piano valley, seated pianist, and three practice instruments on canonical Home while retaining `/home-world-proof` for rollback/review. Earlier landmark and full proof-world compositors remain failed evidence. No practice environment, selected world, project reveal, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-review | `ART-16` | Checkpoint `B` remains open; `6477e5c` adds the live presentation sidecar with 243 passing assertions across aggregate/isolated runs, build, and local/live browser review | Collect rehearsal feedback and separately collect Home camera/piano/performance review | 2026-07-28 |
-| Next | `WI-ART-16-01` | ready after review | `ART-16C` | Waits on clearing acceptance | Brief and prototype the pianist/About entry | 2026-07-27 |
-| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16D-I` | Each stage waits on the preceding accepted gate | Screens, one preview, one selected environment, remaining practices, depth, and release | 2026-07-27 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | `E0`: clearing, pianist, three instruments, and no-detail optimization are implemented and deployed | Build semantic attention ownership, lazy world contract, diagnostics, and neutral parity | 2026-07-31 |
+| Next | `WI-ART-16-01` | not-started | `ART-16` | `E1` waits on `E0` | Produce and review one Music preview packet, then implement contact/path/horizon only | 2026-07-31 |
+| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Checkpoints `F-I` wait on each preceding accepted gate | Music selected world, content decision, Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 ## Active And Unfinished Items
 
@@ -32,7 +32,7 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 | `WI-ART-09-01` | Compose Dreamlife and Sudoku dynamically | paused | high | `ART-09` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-09-01.md` | 2026-07-20 |
 | `WI-ART-10-01` | Compose supporting routes dynamically | paused | high | `ART-10` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-10-01.md` | 2026-07-20 |
 | `WI-ART-11-01` | Mature the dynamic scene system | paused | high | `ART-11` | `CAP-ART-008`, `CAP-ART-011`, `CAP-ART-012` | `active/WI-ART-11-01.md` | 2026-07-20 |
-| `WI-ART-16-01` | Build the piano clearing Home world | in-review | high | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` | `active/WI-ART-16-01.md` | 2026-07-28 |
+| `WI-ART-16-01` | Build the piano clearing Home world | in-progress | high | `ART-16` | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` | `active/WI-ART-16-01.md` | 2026-07-31 |
 
 Include `ready`, `in-progress`, `in-review`, `blocked`, and `paused` items. The item file is the source of current truth.
 

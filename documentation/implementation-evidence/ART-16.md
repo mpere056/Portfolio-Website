@@ -1,18 +1,18 @@
 # ART-16 Evidence
 
-Last updated: 2026-07-28
+Last updated: 2026-07-31
 
 ## Package Snapshot
 
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; dusk meadow-piano valley provisionally promoted to canonical Home and still in visual review |
+| Lifecycle | in-progress; checkpoints `A-D` implemented and accepted for sequencing, transition foundation `E0` next |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
-| Work item | `WI-ART-16-01` checkpoint `B` |
-| Implementation | `Dusk Refrain` independent-blade valley with geometry-grounded pearl piano, canonical Home doorway, and temporary presentation staging route |
-| Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` staging route |
-| Deployment | Commit `fa1e85c` live through Git-connected Production |
+| Work item | `WI-ART-16-01` checkpoint `E0` |
+| Implementation | Optimized `Dusk Refrain` clearing with geometry-grounded pearl piano, seated silhouette pianist, three diegetic practice instruments, canonical Home doorway, and About presentation route |
+| Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` About deck |
+| Deployment | Runtime baseline `5313e93`, tracking checkpoint `8a4e3c2`, live through Git-connected Production |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -244,12 +244,11 @@ Last updated: 2026-07-28
 
 ## Named Gaps
 
-- The independent-blade pastoral viaduct valley and grounded pearl piano have not received visual or target-machine performance acceptance from Mark.
-- The `Dusk Refrain` color script is technically verified but still needs Mark's direct visual acceptance and any final palette tuning.
-- The supplied HTML is the visual-logic reference; the bounded proof now translates its blade geometry, palette, sward continuity, and gust behavior while deliberately excluding million-blade density, reflections, shadow maps, and post-processing.
-- The Home-world pianist/About entry is not built; the separate About presentation does not satisfy that future checkpoint.
-- The four category screens are not designed or built.
-- Hover environmental preview and selected environment replacement are not built.
-- Project reveal, history, restore, route migration, and public release are not built.
+- The clearing, pianist, and three practice instruments are accepted for sequencing, but slower-device observation and optional later visual polish remain open.
+- The pianist is present but does not yet provide the About handoff.
+- The semantic transition owner, preview adapters, selected practice worlds, lifecycle diagnostics, and disposal/retreat behavior are not built.
+- Music & Performance has no classified project nodes; its content model must be decided before project landmarks are authored.
+- Project reveal, exact history/restore, `/projects` migration, and final release acceptance are not built.
+- Historical evidence below intentionally retains rejected four-practice, whole-proof, and intermediate valley candidates; those entries are not current restart instructions.
 
-The next action is to review only the right-meadow camera, piano terrain contact, lower-center composition, pale particle treatment, and target-machine smoothness. No later checkpoint begins until that environment is accepted.
+The next exact action is Plan `23` checkpoint `E0`: implement semantic attention ownership, the lazy practice-world contract, development lifecycle diagnostics, deterministic disposal/retreat, and neutral visual parity. After `E0` passes, prepare and review only the Music preview packet before implementing any selected world.

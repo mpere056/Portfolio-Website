@@ -1,6 +1,6 @@
 # Capability Coverage Ledger
 
-Last updated: 2026-07-20
+Last updated: 2026-07-31
 
 ## Plan Metadata
 
@@ -503,9 +503,9 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-014` | Decomposed material production pipeline and bounded Museum dialect proofs | `ART-12` | `V-14`, `V-31`, `V-32`, `V-33` | `O-04` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified proof foundation |
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
-| `CAP-ART-017` | Shared piano-clearing Home composition and semantic navigation frame | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-03`) |
-| `CAP-ART-018` | Practice-screen environmental preview and selected-state transformation | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned after clearing and screens |
-| `CAP-ART-019` | Home-world runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: in-review; R: not-started` | in-review (`EV-ART-16-03`) |
+| `CAP-ART-017` | Shared piano-clearing Home composition and semantic navigation frame | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: accepted-for-sequencing; R: deployed` | clearing, pianist, and three instruments live (`5313e93`) |
+| `CAP-ART-018` | Practice-screen environmental preview and selected-state transformation | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: designing; A: documented; I: not-started; T: not-started; Q: not-started; R: not-started` | Plan `23`; transition foundation `E0` next |
+| `CAP-ART-019` | Home-world runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: partial; T: implemented; Q: accepted-for-sequencing; R: deployed` | neutral runtime optimized; selected-world lifecycle remains `E0` |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
 
@@ -622,16 +622,16 @@ Until a capability receives its own detail record, these defaults apply:
 ### CAP-ART-013 Through CAP-ART-019: Ambient Proofs And Piano-Clearing Home
 
 - Owner: Codex with Mark creative review
-- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017/019` have a bounded clearing candidate in review; `CAP-ART-018` waits on clearing and screen acceptance
+- Lifecycle: `CAP-ART-013/014` verified proof foundations; `CAP-ART-015/016` remain planned route-maturation work; `CAP-ART-017` and the neutral portion of `019` are deployed; `CAP-ART-018` is designing at transition foundation `E0`
 - Health: on-track
-- Confidence: high in the bounded first-proof implementation; visual acceptance, target-machine performance, and all later interaction layers remain open
-- Works now: Public `/` and `/projects` remain unchanged. Four controlled practices, nine project classifications, and bounded graph queries remain valid. The private `/home-world-proof` now contains one finite outdoor clearing with the existing grand piano, displaced terrain, shader-driven instanced grass, low-poly horizon, sky, clouds, restrained camera breathing, capped DPR, and no post-processing or real-time shadows.
-- Named gaps: Mark has not accepted the clearing. The pianist/About entry, four practice screens, environmental preview, selected category states, project reveal, history/restore, route migration, production performance evidence, and release acceptance do not exist.
-- Safe exposure: only the no-index proof route contains the integrated shell; canonical routes and rollback surfaces are unchanged.
-- Evidence: `EV-ART-16-01` and `EV-ART-16-02` retain rejected Home candidates. `EV-ART-16-03` records the bounded clearing implementation, focused lint/TypeScript/tests/content, and the 40-route build.
-- Work item: `WI-ART-16-01` is in review at Checkpoint `B`; later checkpoints are not started. `WI-ART-12-01` remains superseded after preserving its accepted proof results.
-- Next checkpoint: deploy and collect clearing-only visual and performance review; do not begin the pianist or screens before acceptance.
-- Last assessed: 2026-07-26, local candidate pending commit.
+- Confidence: high in the deployed neutral runtime and documented lifecycle; slower-device acceptance and all practice-world interaction layers remain open
+- Works now: Canonical `/` and the no-index rollback route expose one optimized `Dusk Refrain` clearing with the pearl piano, seated silhouette pianist, and three diegetic practice instruments. Three controlled practices, nine project classifications, and bounded graph queries are valid. The runtime retains one canvas, capped/adaptive DPR, instanced grass and scenery, calm/hidden behavior, and no post-processing or real-time shadows.
+- Named gaps: The pianist does not yet open About. `E0` attention ownership, preview adapters, selected practice worlds, Music content handling, project landmarks, exact history/restore, `/projects` migration, slower-device acceptance, and final release acceptance do not exist.
+- Safe exposure: canonical Home contains the accepted-for-sequencing neutral shell; `/home-world-proof` remains a no-index rollback/review route and `/projects` remains unchanged.
+- Evidence: `EV-ART-16-01` and `EV-ART-16-02` retain rejected Home candidates. Later `ART-16` evidence records the accepted-for-sequencing clearing, pianist, instruments, no-detail optimization, tests/build, and Production checks.
+- Work item: `WI-ART-16-01` is in progress at `E0`; Plan `23` is the detailed restart surface. `WI-ART-12-01` remains superseded after preserving techniques and proof results.
+- Next checkpoint: implement `E0` semantic attention ownership, lazy world contract, lifecycle diagnostics, deterministic disposal/retreat, and exact neutral visual parity; then prepare the Music preview packet.
+- Last assessed: 2026-07-31 at implementation baseline `5313e93` and tracking checkpoint `8a4e3c2`.
 
 ## Project Depth And Practice-Reveal System
 
@@ -645,7 +645,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-PRJ-006` | Exploded system layers connected to behavior and evidence | `PRJ-04` | `V-15` | `O-03` | 5 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified-first-slice |
 | `CAP-PRJ-007` | Smaller-project exhibit tiers and hidden depth | `PRJ-07` | `V-08`, `V-14`, `V-20` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: not-applicable` | verified (`EV-PRJ-07-01`) |
 | `CAP-PRJ-008` | Generalized project routes, URL/history state, metadata, and subdomain transitions | `PRJ-08` | `V-10`, `V-14` | `O-04` | 3 | `S: accepted; C: accepted; A: accepted; I: accepted; T: accepted; Q: accepted; R: accepted` | verified (`EV-PRJ-08-01`) |
-| `CAP-PRJ-009` | Practice-territory project grouping, reveal, and exact return | `PRJ-09` | `V-03`, `V-14`, `V-34` | `O-04` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
+| `CAP-PRJ-009` | Practice-world project grouping, native landmark reveal, and exact return | `PRJ-09` | `V-03`, `V-14`, `V-34` | `O-04` | 5 | `S: accepted; C: waiting-for-feedback; A: partial; I: not-started; T: not-started; Q: not-started; R: not-started` | Music has no classified project nodes; resolve content model after Music world review |
 
 ### CAP-PRJ-001: Typed Exhibit Registry, Loader, And Fallback Shell
 
