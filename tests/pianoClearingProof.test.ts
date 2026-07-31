@@ -170,7 +170,15 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('data-category-screens="three-practice-instruments"');
     expect(component).toContain('PRACTICE_IDS.map');
     expect(component).toContain('data-practice-screen={practice}');
-    expect(component).toContain('aria-pressed={heldPractice === practice}');
+    expect(component).toContain('aria-pressed={selected}');
+    expect(component).toContain('useReducer(');
+    expect(component).toContain('reducePracticeWorld');
+    expect(component).toContain('data-world-phase={worldState.phase}');
+    expect(component).toContain('data-world-owner={worldState.owner');
+    expect(component).toContain('data-world-runtime-count="0"');
+    expect(component).toContain("event.key !== 'Escape'");
+    expect(component).toContain('practiceWorldDiagnosticsEnabled(');
+    expect(component).toContain('data-world-diagnostics=""');
     expect(component).toContain('<PracticeGlyph practice={practice} />');
     expect(component).toContain('<PianistAndBench reducedMotion={reducedMotion} />');
     expect(component).toContain("userData={{ role: 'piano-player' }}");

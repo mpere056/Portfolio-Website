@@ -8,6 +8,7 @@ import {
   Suspense,
   useEffect,
   useMemo,
+  useReducer,
   useRef,
   useState,
 } from 'react';
@@ -26,6 +27,13 @@ import {
   PRACTICE_IDS,
   type PracticeId,
 } from '@/lib/practices';
+import {
+  createPracticeWorldState,
+  practiceWorldDiagnosticsEnabled,
+  practiceWorldRegistry,
+  reducePracticeWorld,
+  type PracticeWorldLoadStatus,
+} from '@/lib/experience/practiceWorldLifecycle';
 import styles from './PianoClearingProof.module.css';
 
 const GROUND_Y = -1.45;
@@ -1825,57 +1833,141 @@ function PracticeGlyph({ practice }: { practice: PracticeId }) {
 }
 
 function PracticeInstruments() {
-  const [hoveredPractice, setHoveredPractice] = useState<PracticeId | null>(null);
-  const [heldPractice, setHeldPractice] = useState<PracticeId | null>(null);
-  const activePractice = hoveredPractice ?? heldPractice;
+  const [worldState, dispatchWorld] = useReducer(
+    reducePracticeWorld,
+    undefined,
+    createPracticeWorldState,
+  );
+  const [moduleStatus, setModuleStatus] = useState<PracticeWorldLoadStatus>('unavailable');
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
+  const activePractice = worldState.owner;
+
+  useEffect(() => {
+    const localDevelopmentHost = window.location.hostname === 'localhost'
+      || window.location.hostname === '127.0.0.1';
+    setShowDiagnostics(practiceWorldDiagnosticsEnabled(
+      localDevelopmentHost ? 'development' : process.env.NODE_ENV,
+      window.location.search,
+    ));
+  }, []);
+
+  useEffect(() => {
+    if (worldState.phase !== 'retreat') return;
+    const frame = window.requestAnimationFrame(() => {
+      dispatchWorld({ type: 'retreat-complete' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [worldState.phase, worldState.transition]);
+
+  useEffect(() => {
+    const owner = worldState.owner;
+    if (!owner || worldState.phase === 'neutral' || worldState.phase === 'retreat') {
+      setModuleStatus(owner ? practiceWorldRegistry.status(owner) : 'unavailable');
+      return;
+    }
+    if (!practiceWorldRegistry.has(owner)) {
+      setModuleStatus('unavailable');
+      return;
+    }
+
+    let active = true;
+    setModuleStatus('loading');
+    practiceWorldRegistry.load(owner)
+      .then(() => {
+        if (active) setModuleStatus(practiceWorldRegistry.status(owner));
+      })
+      .catch(() => {
+        if (active) setModuleStatus('error');
+      });
+    return () => {
+      active = false;
+    };
+  }, [worldState.owner, worldState.phase]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape' || worldState.phase === 'neutral') return;
+      event.preventDefault();
+      dispatchWorld({ type: 'retreat' });
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [worldState.phase]);
 
   return (
-    <nav
-      className={styles.practiceField}
-      aria-label="Project practices"
-      data-category-screens="three-practice-instruments"
-      data-active-practice={activePractice ?? 'neutral'}
-    >
-      {PRACTICE_IDS.map((practice, index) => {
-        const definition = PRACTICE_DEFINITIONS[practice];
-        const active = activePractice === practice;
-        return (
-          <div
-            className={styles.instrumentSlot}
-            data-practice-position={practice}
-            key={practice}
-          >
-            <button
-              className={styles.practiceInstrument}
-              type="button"
-              aria-label={`${definition.title}. ${definition.summary}`}
-              aria-pressed={heldPractice === practice}
-              data-practice-screen={practice}
-              data-active={active ? 'true' : 'false'}
-              onClick={() => {
-                setHeldPractice(current => (
-                  current === practice ? null : practice
-                ));
-              }}
-              onFocus={() => setHoveredPractice(practice)}
-              onBlur={() => setHoveredPractice(null)}
-              onPointerEnter={() => setHoveredPractice(practice)}
-              onPointerLeave={() => setHoveredPractice(null)}
+    <>
+      <nav
+        className={styles.practiceField}
+        aria-label="Project practices"
+        data-category-screens="three-practice-instruments"
+        data-active-practice={activePractice ?? 'neutral'}
+        data-world-phase={worldState.phase}
+        data-world-owner={worldState.owner ?? 'none'}
+        data-world-runtime-count="0"
+      >
+        {PRACTICE_IDS.map((practice, index) => {
+          const definition = PRACTICE_DEFINITIONS[practice];
+          const active = activePractice === practice;
+          const selected = worldState.phase === 'selected'
+            && worldState.owner === practice;
+          return (
+            <div
+              className={styles.instrumentSlot}
+              data-practice-position={practice}
+              key={practice}
             >
-              <span className={styles.instrumentTopline}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <span>{active ? 'signal held' : 'practice signal'}</span>
-              </span>
-              <span className={styles.instrumentGlyph} aria-hidden="true">
-                <PracticeGlyph practice={practice} />
-              </span>
-              <strong>{definition.title}</strong>
-              <span className={styles.instrumentPulse} aria-hidden="true" />
-            </button>
-          </div>
-        );
-      })}
-    </nav>
+              <button
+                className={styles.practiceInstrument}
+                type="button"
+                aria-label={`${definition.title}. ${definition.summary}`}
+                aria-pressed={selected}
+                data-practice-screen={practice}
+                data-active={active ? 'true' : 'false'}
+                onClick={() => dispatchWorld({ type: 'select', id: practice })}
+                onFocus={() => dispatchWorld({
+                  type: 'attend',
+                  id: practice,
+                  source: 'focus',
+                })}
+                onBlur={() => dispatchWorld({
+                  type: 'release',
+                  id: practice,
+                  source: 'focus',
+                })}
+                onPointerEnter={() => dispatchWorld({
+                  type: 'attend',
+                  id: practice,
+                  source: 'pointer',
+                })}
+                onPointerLeave={() => dispatchWorld({
+                  type: 'release',
+                  id: practice,
+                  source: 'pointer',
+                })}
+              >
+                <span className={styles.instrumentTopline}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span>{active ? 'signal held' : 'practice signal'}</span>
+                </span>
+                <span className={styles.instrumentGlyph} aria-hidden="true">
+                  <PracticeGlyph practice={practice} />
+                </span>
+                <strong>{definition.title}</strong>
+                <span className={styles.instrumentPulse} aria-hidden="true" />
+              </button>
+            </div>
+          );
+        })}
+      </nav>
+      {showDiagnostics ? (
+        <output className={styles.worldDiagnostics} data-world-diagnostics="">
+          <span>world {worldState.phase}</span>
+          <span>owner {worldState.owner ?? 'none'}</span>
+          <span>module {moduleStatus}</span>
+          <span>runtimes 0</span>
+        </output>
+      ) : null}
+    </>
   );
 }
 
