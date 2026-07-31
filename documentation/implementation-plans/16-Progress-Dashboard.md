@@ -1,7 +1,7 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-28
-Implementation commit baseline: `fa1e85c`; the in-review `Dusk Refrain` valley is provisionally live on canonical Home with a temporary `/presentation` doorway; all canonical, rollback, and staging routes return `200`
+Last reconciled: 2026-07-31
+Implementation commit baseline: `8738900`; the three-practice `Dusk Refrain` valley is live on canonical Home with a temporary `/presentation` doorway; the no-detail-removal optimization candidate passes all local release gates
 
 ## Plan Metadata
 
@@ -17,7 +17,7 @@ Implementation commit baseline: `fa1e85c`; the in-review `Dusk Refrain` valley i
 
 **The five-anchor and full proof-world Home candidates are rejected. `ART-16` now targets one bounded particle-piano viaduct valley; its grounded lower-center `Dusk Refrain` revision is provisionally promoted to canonical Home by explicit request while visual review remains open.**
 
-Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The new direction uses one fixed pastoral river valley, the particle grand piano, a future pianist/About entry, and four future category screens. Hover will later introduce one translucent category influence; selection will later transform the clearing into that category environment. Canonical `/` now adopts the valley provisionally; `/projects` remains unchanged, and `/home-world-proof` remains the no-index rollback/review route.
+Earlier coral, observatory, archive, and shared-home music proofs remain historical project-dialect evidence, but they are no longer combined on Home. The current direction uses one fixed pastoral river valley, the particle grand piano, a seated pianist/About entry, and three suspended practice instruments. Hover will later introduce one translucent practice influence; selection will later transform the clearing into that practice environment. Canonical `/` adopts the valley; `/projects` remains unchanged, and `/home-world-proof` remains the no-index rollback/review route.
 
 This distinction prevents two errors:
 
@@ -29,10 +29,10 @@ This distinction prevents two errors:
 | Outcome | Current stage | Health | Last coherent checkpoint | Critical gate | Next proof point |
 | --- | --- | --- | --- | --- | --- |
 | `O-00` Measured foundation | Phase 1 complete | on-track | Contracts, flags, content, graph, state, context, harness, and planning-integrity controls accepted | Preserve boundaries and tracking integrity during integrated adoption | Keep `tests/planningIntegrity.test.ts` in every structural planning gate |
-| `O-01` Persistent exploratory world | dusk meadow-piano valley provisionally on Home | on-track | Canonical `/` renders `Dusk Refrain`; `/home-world-proof` remains rollback evidence; scene-budget, 240 tests, TypeScript, and build gates pass | Mark creative/performance acceptance | Review canonical `/` |
+| `O-01` Persistent exploratory world | optimized dusk meadow-piano valley on Home | on-track | Canonical `/` retains all 260,000 blades while packed invariant attributes, idle-raycast suspension, and adaptive DPR pass 243 tests and build | Production performance observation | Review canonical `/` on slower hardware |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | dusk-piano Checkpoint `B` revision | on-track | Farther-right eye frames a river-safe lower-center pearl piano while the full scene adopts the supplied blue/pink/violet dusk hierarchy | Mark accepts the world before pianist or screens | Review `ART-16B` |
+| `O-04` Home work world | Checkpoints `A-D` integrated; optimization release candidate | on-track | Farther-right eye frames the river-safe pearl piano, seated pianist, three practice instruments, and accepted blue/pink/violet dusk hierarchy | Production performance observation | Continue practice-environment preview after the optimization release |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -43,7 +43,7 @@ This distinction prevents two errors:
 | `ART-12` | implemented; integration superseded | Accepted proof inputs retained; no whole-`/projects` integration remains |
 | `KG-07` | complete | Four practice nodes, nine primary classifications, validators, and bounded queries pass |
 | `ARC-06` / `EXP-08` | destination work pending / pure contract accepted | Reducer and semantic retreat/restore are verified; browser history, tour, AI, and routes remain later adoption |
-| `ART-16` | reset in-progress; `A` accepted, `B` revision in-review | Deployed reference-matched particle-piano valley exists; pianist, screens, category environments, depth, navigation, and release remain |
+| `ART-16` | `A-D` integrated; performance pass release candidate | Deployed particle-piano valley, seated pianist, and three practice instruments exist; category environments, depth, navigation, and final release remain |
 | `PRJ-09` | pending | Waits on taxonomy and accepted territory composition |
 | `QA-07` | pending | Owns integrated creative/runtime/migration/production acceptance |
 | `ART-13` through `ART-15` | planned, resequenced | Resume only after `ART-16` reveals valid shared seams |
@@ -108,8 +108,8 @@ Named package states, gaps, known-good points, and next actions are authoritativ
 | 52 | `ART-16A` | Piano-clearing direction reset | accepted | 2026-07-26 decision, Plan `22`, packages, capabilities, and work item align | Preserve during implementation |
 | 53 | `KG-07` | Practice taxonomy | complete | Four controlled practice IDs, nine classifications, validators, and bounded queries pass | Feed grouping into Stage `D/G` |
 | 54 | `EXP-08` foundation | Pure attention contract | accepted foundation | Neutral, locality, hysteresis, precedence, restore, Back, calm, and reduced motion pass | Adopt in Stage `D`; leave route/tour/AI migration for `H` |
-| 55 | `ART-16A/B` | Direction reset and riverside piano world | `A` accepted; `B` pushed revision and in-review | `5718cd8`: 220,000 independent blades, farther-right/slightly left-facing camera, river-safe GLTF-grounded pearl piano, continuous grass, extended/tapered water, frustum-safe ridges, viaduct/train, capped DPR, no post/shadows; 240 tests/build/local visual pass | Collect Checkpoint `B` review |
-| 56 | `ART-16C/D` | Pianist/About entry and three practice instruments | in-review | Clearing accepted | Verify the revised three-instrument arc before environmental preview |
+| 55 | `ART-16A/B` | Direction reset and riverside piano world | accepted and optimized | 260,000 independent blades, river-safe GLTF-grounded pearl piano, continuous grass, water, ridges, and viaduct retained; invariant shader work packed once and adaptive DPR added without removing detail | Observe Production performance on slower hardware |
+| 56 | `ART-16C/D` | Pianist/About entry and three practice instruments | integrated | Seated silhouette pianist and revised three-instrument arc are live on canonical Home | Begin one bounded practice-environment preview after performance acceptance |
 | 57 | `PRJ-09` | Practice project reveal | pending | Territory composition and taxonomy accepted | Verify every project, depth, fallback, and exact return |
 | 58 | `QA-04`, `QA-07` | Capability, integration, migration, and release | pending | Integrated Home candidate exists | Pass Preview, rollback, performance, Production, and Mark review |
 | 59 | `ART-13` through `ART-15` | Route ambient continuation | resequenced | `ART-16` establishes valid shared runtime seams | Resume route-specific work without blocking Home |

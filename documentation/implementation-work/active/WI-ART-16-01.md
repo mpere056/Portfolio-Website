@@ -10,7 +10,7 @@
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` |
 | Created | 2026-07-24 |
-| Last update | 2026-07-30 |
+| Last update | 2026-07-31 |
 | Decision | [Three-Practice Taxonomy](../../implementation-plans/2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) |
 
@@ -32,7 +32,7 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 - Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and three suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
 - Verification: all 58 test files / 243 tests, TypeScript, focused lint, 61-node / 28-relationship content validation, the 41-page production build, and local production-render desktop review pass for the three-practice revision. Production verification remains for release.
-- Performance boundary: one canvas, DPR at most `1.25`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
+- Performance boundary: one canvas, DPR at most `1.25` with sustained-pressure tiers down to `0.75`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. Static blade shape/variation/shadow work is packed into normalized 16-bit attributes; idle cursor raycasts stop after the response settles; stencil is disabled. No scene count is reduced. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
@@ -78,6 +78,13 @@ Mark explicitly requested that the improved-but-not-perfect `Dusk Refrain` candi
 6. Update Current Truth, the checkpoint table, known-good point, and next exact action before ending.
 
 ## Chronological Updates
+
+### 2026-07-31 No-Detail-Removal Performance Pass
+
+- Preserves all 260,000 blades and every existing object, particle, atmosphere, interaction, and visual layer.
+- Moves invariant blade clumping, variation, orientation, and piano-shadow calculations from the per-frame vertex shader into one-time geometry authorship and packs them into normalized 16-bit attributes.
+- Stops terrain raycasts after the cursor wake settles, disables the unused stencil buffer, and adds a slow-recovery DPR governor for sustained low frame rates.
+- All 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page Production build, local one-screen visual review, and a zero-warning browser console pass. Commit and Production verification remain before this pass becomes the known-good release point.
 
 ### 2026-07-30 Pianist And Practice Instruments
 

@@ -137,8 +137,14 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('const isForegroundBlade = accepted >= fieldBladeCount');
     expect(component).toContain('PIANO_X + Math.cos(foregroundAngle)');
     expect(component).toContain(': 24 - random() * 61');
-    expect(component).toContain("geometry.setAttribute('iRoot'");
-    expect(component).toContain("geometry.setAttribute('iParams'");
+    expect(component).toContain("'iRoot',");
+    expect(component).toContain("'iParams',");
+    expect(component).toContain("'iStatic'");
+    expect(component).toContain('new Uint16Array(bladeCount * 4)');
+    expect(component).toContain('vPianoShadow = iStatic.w');
+    expect(component).toContain('<AdaptivePixelRatio />');
+    expect(component).toContain('fps < 47');
+    expect(component).toContain('stencil: false');
     expect(component).not.toContain('pianoGap');
     expect(component).toContain('steepRavineEdge');
     expect(component).not.toContain('vPianoShade');

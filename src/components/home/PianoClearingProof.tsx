@@ -54,6 +54,10 @@ function seededRandom(seed: number) {
   };
 }
 
+function toUnorm16(value: number): number {
+  return Math.round(THREE.MathUtils.clamp(value, 0, 1) * 65535);
+}
+
 function createGroundGeometry() {
   const geometry = new THREE.PlaneGeometry(92, 96, 92, 96);
   const positions = geometry.attributes.position;
@@ -91,8 +95,11 @@ function createGrassGeometry() {
   const foregroundBladeCount = PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances;
   const bladeCount = fieldBladeCount + foregroundBladeCount;
   const roots = new Float32Array(bladeCount * 3);
-  const parameters = new Float32Array(bladeCount * 4);
+  const parameters = new Uint16Array(bladeCount * 4);
+  const staticValues = new Uint16Array(bladeCount * 4);
   const random = seededRandom(801);
+  const shadowDirection = new THREE.Vector2(1, 0.32).normalize();
+  const shadowCross = new THREE.Vector2(-shadowDirection.y, shadowDirection.x);
   let accepted = 0;
 
   while (accepted < bladeCount) {
@@ -131,18 +138,65 @@ function createGrassGeometry() {
 
     const nearWeight = THREE.MathUtils.clamp((z + 35) / 45, 0, 1);
     const parameterOffset = accepted * 4;
-    parameters[parameterOffset] = 0.009 + random() * 0.007;
-    parameters[parameterOffset + 1] = (
+    const bladeWidth = 0.009 + random() * 0.007;
+    const bladeHeight = (
       (0.26 + random() * 0.2)
       * THREE.MathUtils.lerp(1.03, 0.84, nearWeight)
     );
-    parameters[parameterOffset + 2] = random() * Math.PI;
-    parameters[parameterOffset + 3] = random();
+    const bladeAngle = random() * Math.PI;
+    const randomValue = random();
+    const clump = Math.sin(x * 0.73 + Math.sin(z * 0.41) * 1.7) * 0.5 + 0.5;
+    const variation = THREE.MathUtils.lerp(
+      Math.sin(x * 2.17 + z * 1.31) * 0.5 + 0.5,
+      randomValue,
+      0.58,
+    );
+    const fromPianoX = x - PIANO_X;
+    const fromPianoZ = z - PIANO_Z;
+    const shadowAlong = fromPianoX * shadowDirection.x + fromPianoZ * shadowDirection.y;
+    const shadowAcross = Math.abs(
+      fromPianoX * shadowCross.x + fromPianoZ * shadowCross.y,
+    );
+    const contactDistance = Math.hypot(fromPianoX / 2.05, fromPianoZ / 1.18);
+    const contactShadow = 1 - THREE.MathUtils.smoothstep(contactDistance, 0.24, 1);
+    const tailLength = THREE.MathUtils.smoothstep(shadowAlong, -0.18, 0.28)
+      * (1 - THREE.MathUtils.smoothstep(shadowAlong, 3.4, 5.8));
+    const tailWidth = 1 - THREE.MathUtils.smoothstep(
+      shadowAcross,
+      0.42,
+      1.42 + shadowAlong * 0.13,
+    );
+    const pianoShadow = THREE.MathUtils.clamp(
+      contactShadow * 0.72 + tailLength * tailWidth * 0.7,
+      0,
+      1,
+    ) * (0.82 + variation * 0.18);
+
+    // These values never change after authorship. Packing and precomputing them
+    // removes repeated trigonometry and shadow-distance work from every vertex.
+    parameters[parameterOffset] = toUnorm16((bladeWidth - 0.009) / 0.007);
+    parameters[parameterOffset + 1] = toUnorm16((bladeHeight - 0.21) / 0.27);
+    parameters[parameterOffset + 2] = toUnorm16((Math.cos(bladeAngle) + 1) * 0.5);
+    parameters[parameterOffset + 3] = toUnorm16(Math.sin(bladeAngle));
+    staticValues[parameterOffset] = toUnorm16(clump);
+    staticValues[parameterOffset + 1] = toUnorm16(variation);
+    staticValues[parameterOffset + 2] = toUnorm16(randomValue);
+    staticValues[parameterOffset + 3] = toUnorm16(pianoShadow);
     accepted += 1;
   }
 
-  geometry.setAttribute('iRoot', new THREE.InstancedBufferAttribute(roots, 3));
-  geometry.setAttribute('iParams', new THREE.InstancedBufferAttribute(parameters, 4));
+  geometry.setAttribute(
+    'iRoot',
+    new THREE.InstancedBufferAttribute(roots, 3).setUsage(THREE.StaticDrawUsage),
+  );
+  geometry.setAttribute(
+    'iParams',
+    new THREE.InstancedBufferAttribute(parameters, 4, true).setUsage(THREE.StaticDrawUsage),
+  );
+  geometry.setAttribute(
+    'iStatic',
+    new THREE.InstancedBufferAttribute(staticValues, 4, true).setUsage(THREE.StaticDrawUsage),
+  );
   geometry.instanceCount = bladeCount;
   return geometry;
 }
@@ -177,6 +231,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       uniform float uCursorInfluence;
       attribute vec3 iRoot;
       attribute vec4 iParams;
+      attribute vec4 iStatic;
       varying vec2 vUv;
       varying float vFog;
       varying float vWarm;
@@ -187,20 +242,17 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         vUv = uv;
         vec3 blade = position;
         vec3 root = iRoot;
-        float bladeWidth = iParams.x;
-        float bladeHeight = iParams.y;
-        float bladeAngle = iParams.z;
-        float randomValue = iParams.w;
+        float bladeWidth = mix(0.009, 0.016, iParams.x);
+        float bladeHeight = mix(0.21, 0.48, iParams.y);
+        float angleCos = iParams.z * 2.0 - 1.0;
+        float angleSin = iParams.w;
+        float clump = iStatic.x;
+        float variation = iStatic.y;
+        float randomValue = iStatic.z;
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
         float phase = root.x * 0.41 + root.z * 0.29;
-        float clump = sin(root.x * 0.73 + sin(root.z * 0.41) * 1.7) * 0.5 + 0.5;
-        float variation = mix(
-          sin(root.x * 2.17 + root.z * 1.31) * 0.5 + 0.5,
-          randomValue,
-          0.58
-        );
         float broadFront = sin(root.x * 0.22 + root.z * 0.47 - uTime * 0.72);
         float fineFront = sin(root.x * 0.58 - root.z * 0.16 - uTime * 1.08 + phase);
         float gust = smoothstep(0.28, 0.96, broadFront * 0.68 + fineFront * 0.32);
@@ -209,8 +261,6 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         breeze += gust * 0.115;
         blade.x *= bladeWidth;
         blade.y *= bladeHeight * (0.84 + clump * 0.24 + variation * 0.08);
-        float angleCos = cos(bladeAngle);
-        float angleSin = sin(bladeAngle);
         vec3 oriented = vec3(
           blade.x * angleCos,
           blade.y,
@@ -242,22 +292,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           1.0
         );
         vVariation = variation;
-        vec2 fromPiano = root.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
-        vec2 shadowDirection = normalize(vec2(1.0, 0.32));
-        vec2 shadowCross = vec2(-shadowDirection.y, shadowDirection.x);
-        float shadowAlong = dot(fromPiano, shadowDirection);
-        float shadowAcross = abs(dot(fromPiano, shadowCross));
-        float contactDistance = length(vec2(fromPiano.x / 2.05, fromPiano.y / 1.18));
-        float contactShadow = 1.0 - smoothstep(0.24, 1.0, contactDistance);
-        float tailLength = smoothstep(-0.18, 0.28, shadowAlong)
-          * (1.0 - smoothstep(3.4, 5.8, shadowAlong));
-        float tailWidth = 1.0 - smoothstep(0.42, 1.42 + shadowAlong * 0.13, shadowAcross);
-        float grassBreakup = 0.82 + variation * 0.18;
-        vPianoShadow = clamp(
-          contactShadow * 0.72 + tailLength * tailWidth * 0.7,
-          0.0,
-          1.0
-        ) * grassBreakup;
+        vPianoShadow = iStatic.w;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -304,6 +339,15 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
     if (reducedMotion) {
       cursorImpulse.current = 0;
       cursorInfluence.current = 0;
+      material.uniforms.uCursorInfluence.value = 0;
+      return;
+    }
+
+    const pointerIsIdle = cursorReady.current
+      && previousPointer.current.distanceToSquared(pointer) < 0.00000001
+      && cursorImpulse.current < 0.001
+      && cursorInfluence.current < 0.001;
+    if (pointerIsIdle) {
       material.uniforms.uCursorInfluence.value = 0;
       return;
     }
@@ -1653,6 +1697,57 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   return null;
 }
 
+function AdaptivePixelRatio() {
+  const { setDpr } = useThree();
+  const tier = useRef(0);
+  const elapsed = useRef(0);
+  const frames = useRef(0);
+  const recoveryWindows = useRef(0);
+  const dprTiers = useMemo(() => {
+    const nativeDpr = Math.min(
+      typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1,
+      PIANO_CLEARING_PERFORMANCE.maxDpr,
+    );
+    return [nativeDpr, Math.min(nativeDpr, 1), 0.88, 0.75]
+      .filter((value, index, values) => (
+        value <= nativeDpr && values.indexOf(value) === index
+      ));
+  }, []);
+
+  useFrame((_state, delta) => {
+    // Ignore long pauses caused by tab switches and devtools breakpoints.
+    if (delta > 0.2) return;
+    elapsed.current += delta;
+    frames.current += 1;
+    if (elapsed.current < 2) return;
+
+    const fps = frames.current / elapsed.current;
+    elapsed.current = 0;
+    frames.current = 0;
+
+    if (fps < 47 && tier.current < dprTiers.length - 1) {
+      tier.current += 1;
+      recoveryWindows.current = 0;
+      setDpr(dprTiers[tier.current]);
+      return;
+    }
+
+    if (fps > 57 && tier.current > 0) {
+      recoveryWindows.current += 1;
+      if (recoveryWindows.current >= 4) {
+        tier.current -= 1;
+        recoveryWindows.current = 0;
+        setDpr(dprTiers[tier.current]);
+      }
+      return;
+    }
+
+    recoveryWindows.current = 0;
+  });
+
+  return null;
+}
+
 const PianoClearingScene = memo(function PianoClearingScene({
   reducedMotion,
 }: {
@@ -1688,6 +1783,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <AtmosphericMotes reducedMotion={reducedMotion} />
       <ForegroundFraming reducedMotion={reducedMotion} />
       <CameraRig reducedMotion={reducedMotion} />
+      <AdaptivePixelRatio />
     </>
   );
 });
@@ -1821,6 +1917,7 @@ export default function PianoClearingProof() {
         gl={{
           antialias: false,
           alpha: false,
+          stencil: false,
           powerPreference: 'high-performance',
         }}
         camera={{

@@ -1,6 +1,6 @@
 # Piano Clearing Home World Plan
 
-Last updated: 2026-07-30
+Last updated: 2026-07-31
 
 ## Metadata
 
@@ -65,6 +65,7 @@ The current Checkpoint `B` implementation intentionally contains:
 - one 78 by 68 unit displaced terrain patch authored as a high right foreground field, asymmetric dark ravine, path-carved river bed, and opposite rise;
 - the existing grand piano sampled into at most 9,000 GPU points in one draw, with an `18%` translucent silhouette beneath it for readability;
 - 260,000 independently distributed two-triangle grass blades in one instanced draw, including a denser foreground allocation around the piano, using custom root/width/height/angle/variation attributes, short hair-fine geometry, source-derived color bands, and shared shader gusts while remaining excluded from water and steep ravine edges;
+- static blade shape, variation, and piano-shadow values authored once on the CPU and packed into normalized 16-bit instance attributes, so the GPU does not repeat invariant trigonometry and shadow-distance work for every blade vertex on every frame;
 - 58 miniature low-poly horizon trees in two instanced draws;
 - five fixed ravine rocks, 160 point-rendered wildflowers, and 180 atmospheric motes;
 - three smoothed layered ridge silhouettes;
@@ -76,7 +77,8 @@ The current Checkpoint `B` implementation intentionally contains:
 - river-safe foreground piano coordinate projected near horizontal center and roughly one quarter viewport height above the bottom;
 - geometry-aware piano normalization that recenters the sampled GLTF and aligns its true lowest vertex to the local terrain rather than using a guessed vertical offset;
 - pearl and cool-white light particles over a restrained translucent silhouette, without saturated blue/gold point-cloud coloring;
-- DPR capped at `1.25`;
+- DPR capped at `1.25`, with a sustained-frame-pressure governor that steps through `1.0`, `0.88`, and `0.75` only when needed and recovers slowly after stable rendering;
+- cursor-to-terrain raycasting suspended while the pointer response is fully idle, an unused stencil buffer disabled, and no reduction to grass, piano-particle, tree, flower, mote, cloud, or bird counts;
 - no orbit controls, post-processing, real-time shadows, physics, or per-blade JavaScript animation.
 
 ## Ordered Checkpoints
@@ -118,8 +120,11 @@ For every checkpoint record:
 
 If performance degrades, reduce world detail before adding adaptive complexity. This Home should feel authored because of composition, light, timing, and material relationships, not because it contains many objects.
 
+The accepted optimization order for this composition is now: remove repeated invariant work, suspend idle CPU work, reduce unused framebuffer cost, then adapt raster density under sustained pressure. Geometry or grass density may not be reduced merely to satisfy a faster machine profile because foreground continuity is part of the accepted composition.
+
 ## Resume Point
 
+- On 2026-07-31 the no-detail-removal optimization pass retained all 260,000 grass blades and every other scene count. It precomputes and packs invariant grass shape/variation/shadow data, avoids idle cursor raycasts, disables stencil, and introduces a hysteretic DPR governor for slower devices. All 58 test files / 243 tests, TypeScript, whole-project lint with no errors, 61-node / 28-relationship content validation, the 41-page Production build, local browser rendering, and a zero-warning console pass. Commit, Production deployment, and slower-device observation remain.
 - On 2026-07-30 Mark reduced the project taxonomy to three practices. Dreamlife moved to Life Systems & Tools, Interactive Story Generator moved to Play & Community, and AI became a cross-cutting capability. The public graph now contains 61 nodes and 28 relationships.
 - The Home candidate now renders three fully legible instruments in a balanced arc: Music & Performance at left, Life Systems & Tools centered above, and Play & Community at right. The compact grid centers its third instrument.
 - Focused tests, all 58 test files / 243 tests, TypeScript, focused lint, content validation, the 41-page production build, and local production-render visual review pass.
