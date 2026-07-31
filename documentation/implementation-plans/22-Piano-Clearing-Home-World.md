@@ -7,7 +7,7 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Plan ID | `PIANO-CLEARING-HOME` |
-| Status | Active; clearing, pianist, three instruments, and transition foundation verified; Music preview packet is next |
+| Status | Active; clearing, pianist, three instruments, and transition foundation verified; Music preview packet is in review |
 | Decision | [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Supersedes | [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) |
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
@@ -93,7 +93,7 @@ The current Checkpoint `B` implementation intentionally contains:
 | `C` Pianist | accepted-for-sequencing | Minimal seated figure and restrained playing loop | Figure remains a later polish surface; About handoff is deferred to `H` |
 | `D` Practice instruments | accepted-for-sequencing | Three screen forms and spatial arrangement | Three-practice taxonomy and semantic controls are stable enough to build transition behavior |
 | `E0` Transition foundation | verified | Semantic attention controller, lazy world contract, lifecycle diagnostics, and neutral parity | One dominant owner, no hidden worlds, deterministic retreat/disposal, and unchanged neutral Home pass at `b0018cb` |
-| `E1` Music preview state | next | Music influences the clearing through local contact, travelled response, and one horizon consequence | Packet reviewed first; runtime remains reversible, causal, local, tasteful, and smooth |
+| `E1` Music preview state | in-review | Music influences the clearing through local contact, travelled response, and one horizon consequence | Quiet Phrase Fields packet receives `A/B/C` decision before runtime work |
 | `F` Music selected state | not-started | Resonant Meadow becomes the primary environment using the same world module | Continuity, lifecycle, URL intent, content decision, and performance pass |
 | `G` Three practices | not-started | Remaining two preview/selected environments | Distinct but cohesive; one active runtime |
 | `H` Project and navigation depth | not-started | Project reveal, About handoff, AI/tour context, history, restore, and `/projects` compatibility | Deep links, Back, refresh, and exact return pass |
@@ -169,4 +169,5 @@ The accepted optimization order for this composition is now: remove repeated inv
 - Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench and seated silhouette pianist, refine its scene fit, and give its hands restrained independently varied horizontal and vertical playing motion.
 - The original Checkpoint `D` candidate exposed four practices. The 2026-07-30 taxonomy decision removes AI as a peer destination, reclassifies Dreamlife and Interactive Story Generator, and reduces Home to three practice instruments. Hover and keyboard focus expose local attention; click/Enter holds one signal. No environmental takeover or route change is introduced before Checkpoints `E` and `F`.
 - Commit `b0018cb` replaces presentational hover ownership with a tested semantic preview/selection/retreat controller, defines the lazy module and performance contract, guarantees singular runtime ownership and deterministic disposal, and adds opt-in local diagnostics. The production registry remains empty, so neutral Home mounts no additional runtime or visual layer.
-- Exact next action: produce and review the Plan `23` Music preview packet, then implement only the accepted contact/path/horizon preview. Do not build a complete selected world or start Life/Play runtime work yet.
+- The [Quiet Phrase Fields packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) isolates one causal preview direction, implementation ownership, fallback behavior, and a `+1` draw-call / zero-pass / zero-texture budget.
+- Exact next action: collect Mark's `A/B/C` packet decision, revise if needed, then implement only the accepted contact/path/horizon preview. Do not build a complete selected world or start Life/Play runtime work yet.

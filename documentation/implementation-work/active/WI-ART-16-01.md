@@ -38,7 +38,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
-- Next exact action: prepare the Plan `23` Music preview packet and review it before registering a Music module. After acceptance, implement only the preview contact/path/horizon behavior. Do not implement the Music selected world, Life world, Play world, or project landmarks yet.
+- Next exact action: collect Mark's `A/B/C` decision on the [Quiet Phrase Fields packet](../../art-direction/2026-07-31-music-preview-packet/REVIEW.md). Revise the packet if requested; only after acceptance may one lazy Music preview module be registered.
 
 ## Ordered Checkpoints
 
@@ -49,7 +49,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `C` Pianist | accepted-for-sequencing | Simple seated player fits the scene; About handoff and later polish remain |
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
 | `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
-| `E1` Music preview | next | Packet first; then contact, travelled response, and horizon consequence meld locally into the clearing |
+| `E1` Music preview | in-review | Quiet Phrase Fields keyframe, causal timing, layer ownership, fallback, and hard preview budget await Mark's `A/B/C` decision |
 | `F` Music selected environment | not-started | Resonant Meadow transforms the same world with continuity and bounded lifecycle |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
@@ -90,6 +90,8 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Music currently has no classified project nodes. `F2` must decide between first-class music content nodes and a curated non-project depth surface before project landmarks are implemented.
 - Commit `b0018cb` completes `E0`: semantic one-owner attention, bounded selection and retreat, a lazy module/registry contract, deterministic runtime disposal, draft practice URLs, and opt-in lifecycle diagnostics are covered by focused and aggregate tests.
 - The production registry remains empty by design. Exact next step is the Music preview packet, not a complete category world.
+- The [Quiet Phrase Fields packet](../../art-direction/2026-07-31-music-preview-packet/REVIEW.md) now proposes piano coherence, two embedded grass phrases, one delayed river reply, and one restrained horizon aperture. It adds no runtime code and caps the eventual preview at one draw call, no textures, no full-screen pass, and no extra scheduler.
+- Exact resume point is Mark's `A/B/C` packet review, not Music runtime implementation without review.
 
 ### 2026-07-31 No-Detail-Removal Performance Pass
 

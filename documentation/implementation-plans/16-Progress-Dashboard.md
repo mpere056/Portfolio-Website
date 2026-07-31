@@ -201,6 +201,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | --- | ---: | --- |
 | Accepted | 97 | Functional evidence now includes the practice taxonomy and pure Home attention contract; final integrated creative acceptance remains open |
 | Candidate | 15 | Includes the provisional canonical Home promotion and the complete About presentation candidate; neither is being treated as final creative acceptance |
+| In-review | 1 | The bounded Quiet Phrase Fields Music preview packet awaits Mark's A/B/C direction before runtime work begins |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 0 | Preserve historical evidence when contracts or behavior change |
 | Failed | 9 | Retained infrastructure and creative failures include both rejected `ART-16` compositor candidates |

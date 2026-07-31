@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current implementation checkpoint: `5313e93` is the optimized visual baseline and `b0018cb` verifies the one-owner transition foundation without mounting a practice world. The clearing, seated pianist, and three practice instruments remain visually unchanged; `/projects` remains unchanged until the additive migration passes. `ART-16E1` Music preview packet is the active design step.
+Current implementation checkpoint: `5313e93` is the optimized visual baseline and `b0018cb` verifies the one-owner transition foundation without mounting a practice world. The clearing, seated pianist, and three practice instruments remain visually unchanged; `/projects` remains unchanged until the additive migration passes. The `ART-16E1` Quiet Phrase Fields Music preview packet is in creative review.
 
 ## Dependency Order
 

@@ -13,7 +13,7 @@ Last updated: 2026-07-31
 | Packages | `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-018`, `CAP-ART-019`, `CAP-PRJ-009` |
 | Current release | `5313e93` accepted visual baseline; `b0018cb` verified transition foundation |
-| Exact next gate | Produce and review one Music preview packet; no selected world yet |
+| Exact next gate | Review the Quiet Phrase Fields Music preview packet; no runtime or selected world yet |
 
 ## Purpose
 
@@ -278,7 +278,7 @@ Required behavior:
 | Step | State | Deliverable | Completion signal |
 | --- | --- | --- | --- |
 | `E0` Transition foundation | verified | practice-world contract, dominant-world lifecycle, semantic controls, URL draft, and diagnostic overlay behind development flag | 15 focused and 251 aggregate tests prove one owner, predictable retreat/disposal, no hidden runtimes, and unchanged neutral composition |
-| `E1` Music preview packet | next | keyframe, layer inventory, motion jobs, contact/path/horizon preview, fallback, and budget | Mark accepts the local translucent influence before full selection work |
+| `E1` Music preview packet | in-review | [Quiet Phrase Fields](../art-direction/2026-07-31-music-preview-packet/REVIEW.md): keyframe, causal timing, layer ownership, fallback, and hard preview budget | Mark chooses `A`, `B`, or `C` before preview runtime work |
 | `F1` Music selected world | not-started | complete Resonant Meadow selected state using the same preview module | continuity, Back/refresh, calm, failure, performance, and Mark review pass |
 | `F2` Music content decision | waiting-for-feedback | first-class music content nodes or curated non-project depth decision | no empty or misleading project landmark surface |
 | `G1` Life packet | not-started | Living Systems Garden preview and selected state | archive/observatory techniques feel native to the valley and three truthful landmark hosts exist |
@@ -296,7 +296,7 @@ Use named states only: `not-started`, `designing`, `prototype`, `in-review`, `re
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Shared clearing | verified | n/a | n/a | implemented | verified | accepted-for-sequencing | preserve `5313e93` visual parity |
 | Transition foundation | verified | verified controller | verified controller | verified disposal contract | verified zero added runtime | n/a | `b0018cb`; keep registry empty until an accepted packet has a module |
-| Music | verified piano anchor | designing | not-started | not-started | budget pending | not-started | produce preview packet before implementing the bounded preview runtime |
+| Music | verified piano anchor | packet in-review | not-started | specified in packet | preview budget specified | in-review | collect `A/B/C`, revise if needed, then implement only the accepted preview |
 | Life Systems | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | reuse proof techniques only after Music validates runtime |
 | Play & Community | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | rebuild ecology as native 3D, not a coral plate |
 | Project landmarks | compatibility routes only | n/a | blocked | not-started | not-started | not-started | resolve Music content model and accept three worlds first |
@@ -361,10 +361,10 @@ These are feedback gates for `E1` and later work:
 
 ## Exact Resume Point
 
-Checkpoint `E0` is verified at `b0018cb`. Do not build a complete practice world yet.
+Checkpoint `E0` is verified at `b0018cb`. The [Quiet Phrase Fields packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) is the active `E1` review surface. Do not build a complete practice world yet.
 
-1. Preserve the empty production registry and exact neutral Home while preparing `E1`.
-2. Create one Music preview keyframe showing local contact at the piano, a travelled response through grass/river, and one restrained horizon consequence.
-3. Record the layer/motion inventory, ownership, renderer, fallback, reduced-motion behavior, and explicit performance budget.
-4. Review that two-page-at-most packet with Mark and revise it before runtime work.
-5. Only after acceptance, register one lazy Music module and implement preview behavior; do not implement the selected Resonant Meadow in the same checkpoint.
+1. Collect Mark's `A`, `B`, or `C` review decision on the keyframe and causal sequence.
+2. If requested, revise only that packet until the Music preview direction is accepted.
+3. Preserve the empty production registry and exact neutral Home during review.
+4. After acceptance, register one lazy Music module and implement piano contact, grass travel, river reply, and the approved horizon behavior within the packet budget.
+5. Stop for visual/performance review before any selected Resonant Meadow work.

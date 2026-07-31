@@ -504,7 +504,7 @@ Until a capability receives its own detail record, these defaults apply:
 | `CAP-ART-015` | Route-specific flagship and supporting ambient worlds | `ART-13`, `ART-14` | `V-01`, `V-04`, `V-09`, `V-13`, `V-16`, `V-17`, `V-18`, `V-31`, `V-33` | `O-01`, `O-02`, `O-03`, `O-04`, `O-05` | 8 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-016` | Pervasive ambient quality, performance, and production maturity | `ART-15` | `V-22`, `V-25`, `V-31`, `V-33` | `O-01`, `O-03`, `O-04`, `O-05` | 5 | `S: accepted; C: not-started; A: not-started; I: not-started; T: not-started; Q: not-started; R: not-started` | planned |
 | `CAP-ART-017` | Shared piano-clearing Home composition and semantic navigation frame | `ART-16` | `V-31`, `V-32`, `V-34`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: implemented; T: implemented; Q: accepted-for-sequencing; R: deployed` | clearing, pianist, and three instruments live (`5313e93`) |
-| `CAP-ART-018` | Practice-screen environmental preview and selected-state transformation | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: designing; A: documented; I: partial; T: implemented; Q: transition-foundation-verified; R: not-started` | `E0` controller verified at `b0018cb`; Music packet/preview next |
+| `CAP-ART-018` | Practice-screen environmental preview and selected-state transformation | `ART-16` | `V-31`, `V-33`, `V-35`, `V-36` | `O-01`, `O-04` | 5 | `S: accepted; C: packet-in-review; A: documented; I: partial; T: implemented; Q: transition-foundation-verified; R: not-started` | `E0` verified; Quiet Phrase Fields Music packet awaits `A/B/C` review |
 | `CAP-ART-019` | Home-world runtime lifecycle, calm/failure, and performance budget | `ART-16`, `QA-07` | `V-22`, `V-25`, `V-32`, `V-34` | `O-01`, `O-04` | 5 | `S: accepted; C: implemented; A: implemented; I: partial; T: implemented; Q: transition-foundation-verified; R: neutral-only` | singular host/disposal contract verified; practice-specific runtime/budget remains open |
 
 ### CAP-ART-001: Selected Portfolio Art Direction
@@ -630,7 +630,7 @@ Until a capability receives its own detail record, these defaults apply:
 - Safe exposure: canonical Home contains the accepted-for-sequencing neutral shell; `/home-world-proof` remains a no-index rollback/review route and `/projects` remains unchanged.
 - Evidence: `EV-ART-16-01` and `EV-ART-16-02` retain rejected Home candidates. Later `ART-16` evidence records the accepted-for-sequencing clearing, pianist, instruments, no-detail optimization, tests/build, and Production checks.
 - Work item: `WI-ART-16-01` is in progress after verified `E0`; Plan `23` is the detailed restart surface. `WI-ART-12-01` remains superseded after preserving techniques and proof results.
-- Next checkpoint: prepare and review the Music preview packet, then register one lazy Music module and implement only the accepted preview behavior.
+- Next checkpoint: collect `A/B/C` review on Quiet Phrase Fields; then register one lazy Music module and implement only the accepted preview behavior.
 - Last assessed: 2026-07-31 at visual baseline `5313e93` and transition-foundation checkpoint `b0018cb`.
 
 ## Project Depth And Practice-Reveal System

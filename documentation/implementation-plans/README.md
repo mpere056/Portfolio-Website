@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. Canonical Home now uses one optimized outdoor piano clearing with a seated pianist and three practice instruments. The next checkpoint builds a non-visual transition foundation before one Music preview.
+Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. Canonical Home uses one optimized outdoor piano clearing with a seated pianist and three practice instruments. The non-visual transition foundation is verified, and the Quiet Phrase Fields Music preview packet is in creative review.
 
-Current delivery order: preserve the accepted clearing, implement one dominant-world lifecycle with neutral parity, review one Music preview packet, build its preview and selected world, then build Life Systems and Play sequentially before project reveal. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the parent execution plan, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) is the detailed next-step plan, and [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
+Current delivery order: preserve the accepted clearing, retain the verified dominant-world lifecycle, review [Quiet Phrase Fields](../art-direction/2026-07-31-music-preview-packet/REVIEW.md), build its preview and selected world as separate checkpoints, then build Life Systems and Play sequentially before project reveal. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the parent execution plan, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) is the detailed next-step plan, and [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
 
 ## Document Authority
 

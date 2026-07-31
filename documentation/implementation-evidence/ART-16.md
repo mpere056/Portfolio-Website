@@ -7,12 +7,12 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; checkpoints `A-D` implemented and accepted for sequencing, transition foundation `E0` next |
+| Lifecycle | in-progress; checkpoints `A-D` accepted for sequencing, `E0` verified, `E1` packet in-review |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
-| Work item | `WI-ART-16-01` checkpoint `E0` |
-| Implementation | Optimized `Dusk Refrain` clearing with geometry-grounded pearl piano, seated silhouette pianist, three diegetic practice instruments, canonical Home doorway, and About presentation route |
+| Work item | `WI-ART-16-01` checkpoint `E1` |
+| Implementation | Optimized `Dusk Refrain` clearing plus verified semantic one-owner transition controller, lazy module/runtime contract, deterministic disposal, diagnostics, canonical Home doorway, and About presentation route |
 | Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` About deck |
-| Deployment | Runtime baseline `5313e93`, tracking checkpoint `8a4e3c2`, live through Git-connected Production |
+| Deployment | Visual baseline `5313e93`; transition foundation `b0018cb` and tracking `d53a5cd` pushed to `main` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
 
@@ -246,9 +246,20 @@ Last updated: 2026-07-31
 
 - The clearing, pianist, and three practice instruments are accepted for sequencing, but slower-device observation and optional later visual polish remain open.
 - The pianist is present but does not yet provide the About handoff.
-- The semantic transition owner, preview adapters, selected practice worlds, lifecycle diagnostics, and disposal/retreat behavior are not built.
+- The semantic transition owner, lifecycle diagnostics, and deterministic disposal contract are verified. No practice-specific preview adapter or selected world is registered yet.
 - Music & Performance has no classified project nodes; its content model must be decided before project landmarks are authored.
 - Project reveal, exact history/restore, `/projects` migration, and final release acceptance are not built.
 - Historical evidence below intentionally retains rejected four-practice, whole-proof, and intermediate valley candidates; those entries are not current restart instructions.
 
-The next exact action is Plan `23` checkpoint `E0`: implement semantic attention ownership, the lazy practice-world contract, development lifecycle diagnostics, deterministic disposal/retreat, and neutral visual parity. After `E0` passes, prepare and review only the Music preview packet before implementing any selected world.
+## EV-ART-16-18: Quiet Phrase Fields Music Preview Packet
+
+| Field | Value |
+| --- | --- |
+| Status | in-review |
+| Type | creative-review / runtime-brief |
+| Claim | A Music preview can read causally through piano coherence, embedded grass phrases, a delayed river reply, and one restrained horizon aperture without becoming a waveform overlay or selected world. |
+| Artifact | [Keyframe and two-page-at-most review packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) |
+| Runtime boundary | Existing piano, grass, and water shaders plus at most one aperture draw; no textures, full-screen passes, added scheduler, duplicated geometry, or second canvas. |
+| Review gate | Mark chooses `A`, `B`, or `C`; runtime implementation is blocked until the packet is accepted. |
+
+The next exact action is Mark's `A/B/C` review of EV-ART-16-18. After acceptance, implement only the bounded Music preview and stop before the selected Resonant Meadow.
