@@ -96,11 +96,11 @@ These clocks must be phase-offset and locally scoped. Optional future audio maps
 | --- | --- | --- | --- |
 | `ML0` Baseline capture | partial | Preserve canonical neutral Home and record source/runtime boundaries; formal renderer counts and sustained frame intervals still need capture on the proof and one slower device | Baseline is reproducible before performance acceptance |
 | `ML1` Mask diagnostic | implemented; visual acceptance open | One private analytic territory exposes deterministic boundary, pressure body, and recovery tail through shared shader helpers; no separate false-color UI was added | Mask remains world-bound, deterministic, and absent from canonical Home |
-| `ML2` Grass metamorphosis | candidate | Existing blades compress into the traveling territory, adopt nacre color, and recover behind it without CPU blade updates | Mark reviews continuity, boundary softness, and whether the change reads as material rather than a bald patch |
-| `ML3` Liquid material | candidate | Existing ground plus one terrain-hugging transparent mesh share the same traveling pressure field, recovery memory, caustics, and restrained ripples | Mark reviews the strengthened material read; renderer metrics remain open |
-| `ML4` Local response | not-started | Add autonomous idle score, local pointer intensification, piano reflection, and delayed river reply | Idle is alive; pointer affects only the nearest territory; no global pulse |
-| `ML5` Performance and calm | not-started | Add adaptive tiers, hidden-tab pause, reduced motion, failure fallback, cleanup, and sustained observation | Balanced tier meets the performance envelope and preserves neutral Home |
-| `ML6` Creative review | blocked by `ML5` | Present one short idle capture, one attention capture, and one fallback still | Mark chooses expand, revise, or abandon before full-world work |
+| `ML2` Grass metamorphosis | accepted-for-sequencing | Existing blades compress into the traveling territory, adopt nacre color, and recover behind it without CPU blade updates | Mark confirmed the bounded liquid region looks nice and asked implementation to continue; this is not full-world acceptance |
+| `ML3` Liquid material | accepted-for-sequencing | Existing ground plus one terrain-hugging transparent mesh share the same traveling pressure field, recovery memory, caustics, and restrained ripples | Mark accepted the material read for continued implementation; renderer metrics remain open |
+| `ML4` Local response | candidate | Autonomous idle motion now gains territory-local pointer intensification, a restrained nacre piano reply, and a slower downstream river reply through shared mutable uniforms | Local browser QA shows no global pulse or runtime errors; Mark review remains |
+| `ML5` Performance and calm | candidate; observation open | Existing DPR adaptation now also steps liquid motion through Full, Balanced, and Calm tiers; hidden tabs pause, reduced motion holds an authored stable boundary, and WebGL loss removes only the liquid territory. Grass count and scene composition remain unchanged | Sustained proof/neutral metrics and one slower-device observation remain before acceptance |
+| `ML6` Creative review | blocked by measured `ML5` | Present one short idle capture, one attention capture, and one reduced/failure still | Mark chooses expand, revise, or abandon before full-world work |
 | `MW1` Selected-world expansion | blocked by `ML6` | Expand to at most three territories and compose the full Music hierarchy | Selected world passes continuity, lifecycle, performance, and visual review |
 | `MW2` Hover derivation | blocked by `MW1` | Derive the partial hover state from the accepted module and uniforms | Hover continues into selection without a visual restart |
 
@@ -169,10 +169,10 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `ML3` candidate; `ML4` next after visual tuning |
+| Current gate | `ML4` candidate; `ML5` implementation candidate with measured observation still open |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` opts into one territory; Music registry remains empty |
-| Next exact action | Review `/music-liquid-proof`, tune only the one-territory material if needed, capture baseline/proof renderer metrics, then implement `ML4` local pointer response, piano reflection, and delayed river reply |
+| Next exact action | Capture comparable neutral/proof renderer metrics and one slower-device observation, then prepare the three-capture `ML6` review |
 | Do not begin | Multiple territories, selected-world expansion, hover derivation, other worlds, or project landmarks |
 | Review packet | Three captures maximum: idle metamorphosis, local pointer response, reduced/failure state |
 

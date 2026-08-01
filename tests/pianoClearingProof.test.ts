@@ -94,7 +94,7 @@ describe('piano clearing Home proof', () => {
     );
 
     expect(component).toContain("useGLTF('/models/grand_piano/grand_piano_(GLB).gltf')");
-    expect(component).toContain('<ParticlePiano reducedMotion={reducedMotion} />');
+    expect(component).toContain('<ParticlePiano');
     expect(component).toContain('<Suspense fallback={null}>');
     expect(component).toContain('opacity: 0.3');
     expect(component).toContain('new THREE.Box3().setFromObject(scene)');
@@ -102,13 +102,13 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vec3 pearl = vec3(1.0, 0.84, 0.94)');
     expect(component).toContain('blending: THREE.NormalBlending');
     expect(component).not.toContain('vec3 blue = vec3(0.16, 0.46, 0.72)');
-    expect(component).toContain('<Stream reducedMotion={reducedMotion} />');
+    expect(component).toContain('<Stream');
     expect(component).toContain('data-river-flow="far-to-foreground"');
     expect(component).toContain('vUv.y * 46.0 + time * 2.3');
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
-    expect(component).toContain('<GrassField reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />');
-    expect(component).toContain('<Ground reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />');
+    expect(component).toContain('<GrassField');
+    expect(component).toContain('<Ground');
     expect(component).toContain('vec3 tipColor = vec3(0.87, 0.52, 0.7)');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.34 }');
@@ -142,7 +142,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain("'iStatic'");
     expect(component).toContain('new Uint16Array(bladeCount * 4)');
     expect(component).toContain('vPianoShadow = iStatic.w');
-    expect(component).toContain('<AdaptivePixelRatio />');
+    expect(component).toContain('<AdaptivePixelRatio');
+    expect(component).toContain('onQualityChange={onLiquidQualityChange}');
     expect(component).toContain('fps < 47');
     expect(component).toContain('stencil: false');
     expect(component).not.toContain('pianoGap');

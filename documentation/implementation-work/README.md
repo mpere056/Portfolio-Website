@@ -10,12 +10,12 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`5313e93` is the current visual/runtime baseline, and `b0018cb` verifies the transition foundation without mounting a production practice world. `WI-ART-16-01` exposes the optimized dusk piano valley, seated pianist, and three practice instruments on canonical Home while retaining `/home-world-proof` for rollback/review. Private `/music-liquid-proof` now contains one `ML2/ML3` candidate; no selected world, project reveal, or `/projects` redirect has begun.
+`5313e93` is the current visual/runtime baseline, and `b0018cb` verifies the transition foundation without mounting a production practice world. `WI-ART-16-01` exposes the optimized dusk piano valley, seated pianist, and three practice instruments on canonical Home while retaining `/home-world-proof` for rollback/review. Private `/music-liquid-proof` now contains accepted-for-sequencing `ML2/ML3` material plus local-response and adaptive calm/failure candidates through `ML5`; no selected world, project reveal, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-progress | `ART-16` | Neutral Home remains safe; private `ML2/ML3` candidate implemented | Review/tune one territory and capture renderer metrics | 2026-07-31 |
-| Next | `WI-ART-16-01` | not-started | `ART-16` | Shared field, grass/ground metamorphosis, and one surface mesh are implemented | Complete `ML4-ML6`, measure Balanced tier, and stop for Mark review | 2026-07-31 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | Neutral Home remains safe; private `ML4/ML5` interaction and adaptive-tier candidates implemented | Capture comparable renderer metrics and slower-device evidence | 2026-07-31 |
+| Next | `WI-ART-16-01` | not-started | `ART-16` | One territory has material, local response, adaptive calm/reduced behavior, and a neutral failure fallback | Prepare `ML6` and stop for Mark review | 2026-07-31 |
 | Later | `WI-ART-16-01` | blocked checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Full Music world waits on `ML6`; hover waits on selected-world acceptance | Expand Music, derive hover, decide Music content, then build Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 ## Active And Unfinished Items

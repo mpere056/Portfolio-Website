@@ -8,6 +8,10 @@ export const MUSIC_LIQUID_PROOF = {
   travelSpeed: 0.42,
   pressureWidth: 0.22,
   recoveryTail: 0.34,
+  attentionRadius: 0.42,
+  attentionDamping: 5.2,
+  pianoReflectionScale: 0.48,
+  riverResponseDamping: 0.52,
   maxAddedDrawCalls: 4,
   preferredAddedDrawCalls: 3,
   maxLookupTextureSize: 256,
@@ -17,6 +21,35 @@ export const MUSIC_LIQUID_PROOF = {
 } as const;
 
 export type MusicLiquidQuality = 'full' | 'balanced' | 'calm' | 'reduced' | 'failure';
+
+export type MusicLiquidCapability = {
+  reducedMotion: boolean;
+  webglAvailable: boolean;
+  hardwareConcurrency?: number;
+  deviceMemory?: number;
+};
+
+export function musicLiquidInitialQuality({
+  reducedMotion,
+  webglAvailable,
+  hardwareConcurrency,
+  deviceMemory,
+}: MusicLiquidCapability): MusicLiquidQuality {
+  if (!webglAvailable) return 'failure';
+  if (reducedMotion) return 'reduced';
+  if (
+    (typeof hardwareConcurrency === 'number' && hardwareConcurrency <= 4)
+    || (typeof deviceMemory === 'number' && deviceMemory <= 4)
+  ) return 'balanced';
+  return 'full';
+}
+
+export function musicLiquidMotionScale(quality: MusicLiquidQuality): number {
+  if (quality === 'failure' || quality === 'reduced') return 0;
+  if (quality === 'calm') return 0.2;
+  if (quality === 'balanced') return 0.68;
+  return 1;
+}
 
 export function musicLiquidTerritoryCoordinates(x: number, z: number) {
   const dx = x - MUSIC_LIQUID_PROOF.center[0];
@@ -51,4 +84,23 @@ export function musicLiquidQualityWeight(quality: MusicLiquidQuality): number {
   if (quality === 'calm') return 0.68;
   if (quality === 'balanced') return 0.84;
   return 1;
+}
+
+export function musicLiquidLocalAttention(
+  pointerX: number,
+  pointerY: number,
+  sampleX: number,
+  sampleY: number,
+  attention: number,
+): number {
+  const distance = Math.hypot(pointerX - sampleX, pointerY - sampleY);
+  return THREE.MathUtils.clamp(
+    attention * (1 - THREE.MathUtils.smoothstep(
+      distance,
+      MUSIC_LIQUID_PROOF.attentionRadius * 0.12,
+      MUSIC_LIQUID_PROOF.attentionRadius,
+    )),
+    0,
+    1,
+  );
 }

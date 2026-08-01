@@ -13,7 +13,7 @@ Last updated: 2026-07-31
 | Packages | `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-018`, `CAP-ART-019`, `CAP-PRJ-009` |
 | Current release | `5313e93` accepted visual baseline; `b0018cb` verified transition foundation |
-| Exact next gate | Review the private `ML2/ML3` Liquid Landscape candidate, capture metrics, and complete `ML4-ML6`; expand the selected world only after its creative and performance gate |
+| Exact next gate | Measure the private `ML4/ML5` Liquid Landscape candidate and prepare `ML6`; expand the selected world only after its creative and performance gate |
 
 ## Purpose
 
@@ -274,7 +274,7 @@ Required behavior:
 | --- | --- | --- | --- |
 | `E0` Transition foundation | verified | practice-world contract, dominant-world lifecycle, semantic controls, URL draft, and diagnostic overlay behind development flag | 15 focused and 251 aggregate tests prove one owner, predictable retreat/disposal, no hidden runtimes, and unchanged neutral composition |
 | `E1` Music liquid-material plan | accepted-for-prototype | [Liquid Landscape proof plan](24-Music-Liquid-Landscape-Proof.md): local metamorphosis grammar, runtime ownership, silent score, quality tiers, test evidence, and hard budget | Prototype scope is fixed; no full-world expansion yet |
-| `E2` Music bounded material proof | in-progress | One private territory implements the shared mask plus candidate grass/ground/surface metamorphosis; `ML4-ML6` remain | Creative read and Balanced-tier performance pass on a previously laggy computer |
+| `E2` Music bounded material proof | in-progress | One private territory implements shared material, local response, adaptive Full/Balanced/Calm behavior, reduced motion, and neutral failure fallback; measured `ML5` observation and `ML6` remain | Creative read and Balanced-tier performance pass on a previously laggy computer |
 | `E3` Music selected-world runtime | blocked by accepted `E2` | expand the proven system to at most three unequal territories on the shared clearing substrate | continuity, Back/refresh, calm, failure, performance, and Mark review pass |
 | `E4` Music hover derivation | blocked by accepted `E3` | weighted middle state extracted from the accepted selected world using the same module, geometry, and uniforms | proximity reads as a partial arrival of Liquid Landscape and selection continues without a visual restart |
 | `F2` Music content decision | waiting-for-feedback | first-class music content nodes or curated non-project depth decision | no empty or misleading project landmark surface |
@@ -293,7 +293,7 @@ Use named states only: `not-started`, `designing`, `prototype`, `in-review`, `re
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Shared clearing | verified | n/a | n/a | implemented | verified | accepted-for-sequencing | preserve `5313e93` visual parity |
 | Transition foundation | verified | verified controller | verified controller | verified disposal contract | verified zero added runtime | n/a | `b0018cb`; keep registry empty until an accepted packet has a module |
-| Music | verified piano anchor | blocked by selected endpoint | private one-territory `ML2/ML3` candidate; production runtime not registered | tiers and failure path specified in Plan `24` | focused implementation evidence captured; renderer metrics and slower-device evidence open | prototype approved | review/tune one territory, complete `ML4-ML6`, then expand selected state and derive hover |
+| Music | verified piano anchor | blocked by selected endpoint | private one-territory `ML4/ML5` candidate; production runtime not registered | adaptive tiers, reduced motion, hidden pause, and neutral failure fallback implemented | focused implementation and local browser evidence captured; renderer metrics and slower-device evidence open | prototype approved | measure `ML5`, review `ML6`, then expand selected state and derive hover |
 | Life Systems | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | reuse proof techniques only after Music validates runtime |
 | Play & Community | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | rebuild ecology as native 3D, not a coral plate |
 | Project landmarks | compatibility routes only | n/a | blocked | not-started | not-started | not-started | resolve Music content model and accept three worlds first |

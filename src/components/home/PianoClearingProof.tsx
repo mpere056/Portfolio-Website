@@ -6,6 +6,7 @@ import { useGLTF } from '@react-three/drei';
 import {
   memo,
   Suspense,
+  useCallback,
   useEffect,
   useMemo,
   useReducer,
@@ -22,7 +23,15 @@ import {
   pianoClearingTerrainHeight,
   pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
-import { MUSIC_LIQUID_PROOF } from '@/lib/artDirection/musicLiquidLandscape';
+import {
+  MUSIC_LIQUID_PROOF,
+  musicLiquidInitialQuality,
+  musicLiquidMotionScale,
+  musicLiquidQualityWeight,
+  musicLiquidTerritoryCoordinates,
+  musicLiquidTerritoryMask,
+  type MusicLiquidQuality,
+} from '@/lib/artDirection/musicLiquidLandscape';
 import {
   PRACTICE_DEFINITIONS,
   PRACTICE_IDS,
@@ -54,6 +63,82 @@ const BRIDGE_WATER_Y = (
 );
 const BRIDGE_DECK_Y = BRIDGE_WATER_Y + 4.65;
 const BRIDGE_LENGTH = 37.5;
+
+type MusicLiquidRuntime = {
+  pointerLocal: THREE.Vector2;
+  attention: number;
+  pianoReply: number;
+  riverReply: number;
+  qualityWeight: number;
+  motionScale: number;
+};
+
+function createMusicLiquidRuntime(): MusicLiquidRuntime {
+  return {
+    pointerLocal: new THREE.Vector2(99, 99),
+    attention: 0,
+    pianoReply: 0,
+    riverReply: 0,
+    qualityWeight: 1,
+    motionScale: 1,
+  };
+}
+
+function MusicLiquidInteractionController({
+  runtime,
+  reducedMotion,
+}: {
+  runtime: MusicLiquidRuntime;
+  reducedMotion: boolean;
+}) {
+  const pointerPlane = useMemo(() => {
+    const height = (
+      GROUND_Y
+      + pianoClearingTerrainHeight(
+        MUSIC_LIQUID_PROOF.center[0],
+        MUSIC_LIQUID_PROOF.center[1],
+      )
+      + 0.06
+    );
+    return new THREE.Plane(new THREE.Vector3(0, 1, 0), -height);
+  }, []);
+  const pointerPoint = useRef(new THREE.Vector3());
+
+  useFrame(({ camera, pointer, raycaster }, delta) => {
+    raycaster.setFromCamera(pointer, camera);
+    const hit = raycaster.ray.intersectPlane(pointerPlane, pointerPoint.current);
+    let target = 0;
+
+    if (hit) {
+      const local = musicLiquidTerritoryCoordinates(hit.x, hit.z);
+      runtime.pointerLocal.set(local.x, local.y);
+      target = reducedMotion ? 0 : musicLiquidTerritoryMask(hit.x, hit.z);
+    } else {
+      runtime.pointerLocal.set(99, 99);
+    }
+
+    runtime.attention = THREE.MathUtils.damp(
+      runtime.attention,
+      target,
+      MUSIC_LIQUID_PROOF.attentionDamping,
+      delta,
+    );
+    runtime.pianoReply = THREE.MathUtils.damp(
+      runtime.pianoReply,
+      reducedMotion ? 0.1 : 0.12 + runtime.attention * MUSIC_LIQUID_PROOF.pianoReflectionScale,
+      2.1,
+      delta,
+    );
+    runtime.riverReply = THREE.MathUtils.damp(
+      runtime.riverReply,
+      reducedMotion ? 0 : runtime.attention,
+      MUSIC_LIQUID_PROOF.riverResponseDamping,
+      delta,
+    );
+  });
+
+  return null;
+}
 
 function seededRandom(seed: number) {
   let state = seed >>> 0;
@@ -213,9 +298,11 @@ function createGrassGeometry() {
 function GrassField({
   reducedMotion,
   musicLiquidProof,
+  liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
   const cursorPlane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y));
@@ -239,6 +326,8 @@ function GrassField({
       uFogColor: { value: new THREE.Color('#9584c7') },
       uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
       uLiquidMotion: { value: reducedMotion ? 0 : 1 },
+      uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
+      uLiquidAttention: { value: 0 },
     },
     vertexShader: `
       uniform float uTime;
@@ -248,6 +337,8 @@ function GrassField({
       uniform float uCursorInfluence;
       uniform float uLiquidWeight;
       uniform float uLiquidMotion;
+      uniform vec2 uLiquidPointer;
+      uniform float uLiquidAttention;
       attribute vec3 iRoot;
       attribute vec4 iParams;
       attribute vec4 iStatic;
@@ -281,7 +372,13 @@ function GrassField({
         float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uLiquidMotion);
         float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
         float trailingMemory = pow(max(0.0, sin(fract(pressurePhase + 0.18) * 3.14159265)), 5.0);
-        float liquidState = territory * clamp(0.72 + pressureBody * 0.28 + trailingMemory * 0.12, 0.0, 1.0);
+        float localAttention = uLiquidAttention
+          * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
+        float liquidState = territory * clamp(
+          0.72 + pressureBody * 0.28 + trailingMemory * 0.12 + localAttention * 0.16,
+          0.0,
+          1.0
+        );
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
@@ -365,19 +462,23 @@ function GrassField({
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
-        color = mix(color, vec3(0.44, 0.65, 0.82), vLiquid * 0.48);
+        color = mix(color, vec3(0.44, 0.65, 0.82), vLiquid * 0.52);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uWind.value = reducedMotion ? 0 : 0.34;
     material.uniforms.uLiquidWeight.value = musicLiquidProof ? 1 : 0;
-    material.uniforms.uLiquidMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uLiquidMotion.value = reducedMotion ? 0 : liquidRuntime.motionScale;
+    material.uniforms.uLiquidPointer.value.copy(liquidRuntime.pointerLocal);
+    material.uniforms.uLiquidAttention.value = (
+      liquidRuntime.attention * liquidRuntime.qualityWeight
+    );
     if (reducedMotion) {
       cursorImpulse.current = 0;
       cursorInfluence.current = 0;
@@ -501,9 +602,11 @@ function GrassField({
 function Ground({
   reducedMotion,
   musicLiquidProof,
+  liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGroundGeometry(), []);
   const material = useMemo(() => new THREE.ShaderMaterial({
@@ -511,6 +614,8 @@ function Ground({
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
       uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
+      uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
+      uLiquidAttention: { value: 0 },
     },
     vertexShader: `
           varying float vHeight;
@@ -532,6 +637,8 @@ function Ground({
           uniform float uTime;
           uniform float uMotion;
           uniform float uLiquidWeight;
+          uniform vec2 uLiquidPointer;
+          uniform float uLiquidAttention;
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
@@ -590,25 +697,35 @@ function Ground({
             float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal))) * uLiquidWeight;
             float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uMotion);
             float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
-            float liquidState = territory * (0.7 + pressureBody * 0.3);
+            float localAttention = uLiquidAttention
+              * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
+            float liquidState = territory * clamp(0.7 + pressureBody * 0.3 + localAttention * 0.18, 0.0, 1.0);
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
             float liquidVein = sin(territoryLocal.y * 13.0 - pressurePhase * 9.0 + sin(territoryLocal.x * 5.0));
             vec3 liquidColor = mix(liquidDeep, liquidNacre, pressureBody * 0.84);
-            liquidColor = mix(liquidColor, liquidPearl, smoothstep(0.64, 0.98, liquidVein) * pressureBody * 0.52);
+            liquidColor = mix(
+              liquidColor,
+              liquidPearl,
+              smoothstep(0.64, 0.98, liquidVein) * pressureBody * 0.52 + localAttention * 0.24
+            );
             color = mix(color, liquidColor, liquidState * 0.94);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
           }
         `,
-  }), [musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : liquidRuntime.motionScale;
     material.uniforms.uLiquidWeight.value = musicLiquidProof ? 1 : 0;
+    material.uniforms.uLiquidPointer.value.copy(liquidRuntime.pointerLocal);
+    material.uniforms.uLiquidAttention.value = (
+      liquidRuntime.attention * liquidRuntime.qualityWeight
+    );
   });
 
   return (
@@ -678,7 +795,13 @@ function createLiquidTerritoryGeometry() {
   return geometry;
 }
 
-function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
+function LiquidTerritorySurface({
+  reducedMotion,
+  liquidRuntime,
+}: {
+  reducedMotion: boolean;
+  liquidRuntime: MusicLiquidRuntime;
+}) {
   const geometry = useMemo(() => createLiquidTerritoryGeometry(), []);
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
@@ -689,10 +812,14 @@ function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uPointer: { value: liquidRuntime.pointerLocal.clone() },
+      uAttention: { value: 0 },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform vec2 uPointer;
+      uniform float uAttention;
       attribute vec2 aTerritory;
       varying vec2 vTerritory;
       varying float vRipple;
@@ -702,8 +829,10 @@ function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
         float travel = aTerritory.x * 7.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 2.4} * uMotion;
         float ripple = sin(travel + sin(aTerritory.y * 8.0) * 0.8);
         ripple += sin(travel * 1.73 - aTerritory.y * 10.0) * 0.36;
+        float localAttention = uAttention
+          * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(aTerritory, uPointer)));
         float edge = 1.0 - smoothstep(0.7, 1.0, length(aTerritory));
-        transformed.y += ripple * 0.055 * edge;
+        transformed.y += ripple * (0.055 + localAttention * 0.095) * edge;
         vRipple = ripple;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
@@ -711,6 +840,8 @@ function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
     fragmentShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform vec2 uPointer;
+      uniform float uAttention;
       varying vec2 vTerritory;
       varying float vRipple;
       void main() {
@@ -721,23 +852,36 @@ function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
         float recovery = pow(max(0.0, sin(fract(phase + ${MUSIC_LIQUID_PROOF.recoveryTail}) * 3.14159265)), 7.0);
         float vein = sin(vTerritory.y * 16.0 - phase * 12.0 + sin(vTerritory.x * 7.0));
         float caustic = smoothstep(0.48, 0.98, vein) * pressure;
+        float localAttention = uAttention
+          * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(vTerritory, uPointer)));
+        float attentionVein = smoothstep(0.38, 0.98, sin(
+          vTerritory.y * 22.0 - phase * 15.0 + vTerritory.x * 5.0
+        )) * localAttention;
         vec3 deep = vec3(0.08, 0.15, 0.38);
         vec3 nacre = vec3(0.32, 0.72, 0.84);
         vec3 pearl = vec3(0.94, 0.68, 0.9);
         vec3 color = mix(deep, nacre, pressure * 0.88);
-        color = mix(color, pearl, caustic * 0.7 + max(vRipple, 0.0) * 0.08);
+        color = mix(
+          color,
+          pearl,
+          caustic * 0.7 + max(vRipple, 0.0) * 0.08 + attentionVein * 0.46
+        );
         float boundary = smoothstep(0.78, 0.9, distanceFromCenter)
           * (1.0 - smoothstep(0.9, 1.0, distanceFromCenter));
         color = mix(color, pearl, boundary * 0.3);
-        float alpha = edge * (0.3 + pressure * 0.58 + recovery * 0.16);
+        float alpha = edge * (0.3 + pressure * 0.58 + recovery * 0.16 + localAttention * 0.2);
         gl_FragColor = vec4(color, alpha);
       }
     `,
-  }), [reducedMotion]);
+  }), [liquidRuntime, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : liquidRuntime.motionScale;
+    material.uniforms.uPointer.value.copy(liquidRuntime.pointerLocal);
+    material.uniforms.uAttention.value = (
+      liquidRuntime.attention * liquidRuntime.qualityWeight
+    );
   });
 
   return <mesh geometry={geometry} material={material} renderOrder={2} />;
@@ -770,7 +914,15 @@ function createStreamGeometry() {
   return geometry;
 }
 
-function Stream({ reducedMotion }: { reducedMotion: boolean }) {
+function Stream({
+  reducedMotion,
+  liquidRuntime,
+  musicLiquidProof,
+}: {
+  reducedMotion: boolean;
+  liquidRuntime: MusicLiquidRuntime;
+  musicLiquidProof: boolean;
+}) {
   const geometry = useMemo(() => createStreamGeometry(), []);
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
@@ -780,10 +932,12 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uLiquidReply: { value: 0 },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform float uLiquidReply;
       varying vec2 vUv;
       void main() {
         vUv = uv;
@@ -797,6 +951,7 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
     fragmentShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform float uLiquidReply;
       varying vec2 vUv;
       void main() {
         float time = uTime * uMotion;
@@ -806,6 +961,8 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
         float middle = sin(vUv.y * 93.0 + time * 3.5 + vUv.x * 8.0);
         float fine = sin(vUv.y * 181.0 + time * 5.1 - vUv.x * 11.0);
         float travellingPool = pow(max(0.0, sin(vUv.y * 18.0 + time * 1.75)), 4.0);
+        float liquidReply = pow(max(0.0, sin(vUv.y * 16.0 + time * 1.2 - 1.8)), 8.0)
+          * uLiquidReply;
         float bank = smoothstep(0.0, 0.12, vUv.x) * smoothstep(1.0, 0.88, vUv.x);
         float bankFoam = pow(1.0 - abs(vUv.x * 2.0 - 1.0), 7.0);
         float depth = 1.0 - abs(vUv.x * 2.0 - 1.0);
@@ -820,6 +977,7 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
         vec3 color = mix(shallow, middleBlue, plateA);
         color = mix(color, deep, plateB);
         color = mix(color, sun, light * 0.58 + bankFoam * 0.045);
+        color = mix(color, vec3(0.46, 0.78, 0.9), liquidReply * 0.62);
         float farFade = 1.0 - smoothstep(0.72, 0.94, vUv.y);
         float alpha = (0.9 + travellingPool * 0.08) * bank * farFade;
         gl_FragColor = vec4(color, alpha);
@@ -830,6 +988,9 @@ function Stream({ reducedMotion }: { reducedMotion: boolean }) {
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uLiquidReply.value = musicLiquidProof
+      ? liquidRuntime.riverReply * liquidRuntime.qualityWeight
+      : 0;
   });
 
   return <mesh geometry={geometry} material={material} renderOrder={1} />;
@@ -872,7 +1033,15 @@ function samplePianoGeometry(scene: THREE.Group, modelOffset: THREE.Vector3) {
   return geometry;
 }
 
-function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
+function ParticlePiano({
+  reducedMotion,
+  musicLiquidProof,
+  liquidRuntime,
+}: {
+  reducedMotion: boolean;
+  musicLiquidProof: boolean;
+  liquidRuntime: MusicLiquidRuntime;
+}) {
   const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
   const modelOffset = useMemo(() => {
     scene.updateMatrixWorld(true);
@@ -910,6 +1079,7 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
       uDpr: { value: 1 },
+      uLiquidReflection: { value: 0 },
     },
     vertexShader: `
       attribute float aSeed;
@@ -930,6 +1100,7 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
       }
     `,
     fragmentShader: `
+      uniform float uLiquidReflection;
       varying float vSeed;
       varying float vPulse;
       void main() {
@@ -940,8 +1111,11 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
         vec3 pearl = vec3(1.0, 0.84, 0.94);
         vec3 coolLight = vec3(0.67, 0.78, 1.0);
         vec3 color = mix(pearl, coolLight, smoothstep(0.72, 0.98, vSeed) * 0.38);
-        float light = 0.78 + (vPulse * 0.5 + 0.5) * 0.16;
-        float alpha = core * 0.5 + halo * 0.14;
+        float liquidGrain = smoothstep(0.42, 0.98, sin(vSeed * 71.0 + vPulse * 1.7) * 0.5 + 0.5);
+        vec3 liquidNacre = mix(vec3(0.34, 0.8, 0.92), vec3(0.98, 0.67, 0.9), liquidGrain);
+        color = mix(color, liquidNacre, uLiquidReflection * (0.2 + liquidGrain * 0.28));
+        float light = 0.78 + (vPulse * 0.5 + 0.5) * 0.16 + uLiquidReflection * liquidGrain * 0.24;
+        float alpha = core * 0.5 + halo * (0.14 + uLiquidReflection * 0.045);
         gl_FragColor = vec4(color * light, alpha * (0.4 + vSeed * 0.16));
       }
     `,
@@ -952,6 +1126,9 @@ function ParticlePiano({ reducedMotion }: { reducedMotion: boolean }) {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     material.uniforms.uDpr.value = Math.min(gl.getPixelRatio(), 1.25);
+    material.uniforms.uLiquidReflection.value = musicLiquidProof
+      ? liquidRuntime.pianoReply * liquidRuntime.qualityWeight
+      : 0;
   });
 
   return (
@@ -1888,7 +2065,39 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   return null;
 }
 
-function AdaptivePixelRatio() {
+function CanvasLifecycle({
+  onContextLost,
+  onContextRestored,
+}: {
+  onContextLost: () => void;
+  onContextRestored: () => void;
+}) {
+  const { gl } = useThree();
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const handleLost = (event: Event) => {
+      event.preventDefault();
+      onContextLost();
+    };
+    canvas.addEventListener('webglcontextlost', handleLost);
+    canvas.addEventListener('webglcontextrestored', onContextRestored);
+    return () => {
+      canvas.removeEventListener('webglcontextlost', handleLost);
+      canvas.removeEventListener('webglcontextrestored', onContextRestored);
+    };
+  }, [gl, onContextLost, onContextRestored]);
+
+  return null;
+}
+
+function AdaptivePixelRatio({
+  enabled,
+  onQualityChange,
+}: {
+  enabled: boolean;
+  onQualityChange: (quality: MusicLiquidQuality) => void;
+}) {
   const { setDpr } = useThree();
   const tier = useRef(0);
   const elapsed = useRef(0);
@@ -1906,6 +2115,7 @@ function AdaptivePixelRatio() {
   }, []);
 
   useFrame((_state, delta) => {
+    if (!enabled) return;
     // Ignore long pauses caused by tab switches and devtools breakpoints.
     if (delta > 0.2) return;
     elapsed.current += delta;
@@ -1920,6 +2130,7 @@ function AdaptivePixelRatio() {
       tier.current += 1;
       recoveryWindows.current = 0;
       setDpr(dprTiers[tier.current]);
+      onQualityChange(tier.current >= 2 ? 'calm' : 'balanced');
       return;
     }
 
@@ -1929,6 +2140,7 @@ function AdaptivePixelRatio() {
         tier.current -= 1;
         recoveryWindows.current = 0;
         setDpr(dprTiers[tier.current]);
+        onQualityChange(tier.current === 0 ? 'full' : 'balanced');
       }
       return;
     }
@@ -1942,12 +2154,43 @@ function AdaptivePixelRatio() {
 const PianoClearingScene = memo(function PianoClearingScene({
   reducedMotion,
   musicLiquidProof,
+  liquidQuality,
+  onLiquidQualityChange,
+  onContextLost,
+  onContextRestored,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  liquidQuality: MusicLiquidQuality;
+  onLiquidQualityChange: (quality: MusicLiquidQuality) => void;
+  onContextLost: () => void;
+  onContextRestored: () => void;
 }) {
+  const liquidRuntime = useMemo(() => createMusicLiquidRuntime(), []);
+  const liquidEnabled = musicLiquidProof && liquidQuality !== 'failure';
+
+  useEffect(() => {
+    liquidRuntime.qualityWeight = musicLiquidQualityWeight(liquidQuality);
+    liquidRuntime.motionScale = musicLiquidMotionScale(liquidQuality);
+    if (!liquidEnabled) {
+      liquidRuntime.attention = 0;
+      liquidRuntime.pianoReply = 0;
+      liquidRuntime.riverReply = 0;
+    }
+  }, [liquidEnabled, liquidQuality, liquidRuntime]);
+
   return (
     <>
+      <CanvasLifecycle
+        onContextLost={onContextLost}
+        onContextRestored={onContextRestored}
+      />
+      {liquidEnabled ? (
+        <MusicLiquidInteractionController
+          runtime={liquidRuntime}
+          reducedMotion={reducedMotion}
+        />
+      ) : null}
       <SkyDome reducedMotion={reducedMotion} />
       <fogExp2 attach="fog" args={['#8f7fc5', 0.017]} />
       <hemisphereLight args={['#b9d0ff', '#2a2158', 1.88]} />
@@ -1960,15 +2203,36 @@ const PianoClearingScene = memo(function PianoClearingScene({
         decay={1.7}
       />
       <DistantLandscape />
-      <Ground reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />
-      {musicLiquidProof ? <LiquidTerritorySurface reducedMotion={reducedMotion} /> : null}
-      <Stream reducedMotion={reducedMotion} />
+      <Ground
+        reducedMotion={reducedMotion}
+        musicLiquidProof={liquidEnabled}
+        liquidRuntime={liquidRuntime}
+      />
+      {liquidEnabled ? (
+        <LiquidTerritorySurface
+          reducedMotion={reducedMotion}
+          liquidRuntime={liquidRuntime}
+        />
+      ) : null}
+      <Stream
+        reducedMotion={reducedMotion}
+        liquidRuntime={liquidRuntime}
+        musicLiquidProof={liquidEnabled}
+      />
       <StoneViaduct />
-      <GrassField reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />
+      <GrassField
+        reducedMotion={reducedMotion}
+        musicLiquidProof={liquidEnabled}
+        liquidRuntime={liquidRuntime}
+      />
       <ValleyDetails />
       <RavineAccents />
       <Suspense fallback={null}>
-        <ParticlePiano reducedMotion={reducedMotion} />
+        <ParticlePiano
+          reducedMotion={reducedMotion}
+          musicLiquidProof={liquidEnabled}
+          liquidRuntime={liquidRuntime}
+        />
       </Suspense>
       <PianistAndBench reducedMotion={reducedMotion} />
       <Clouds reducedMotion={reducedMotion} />
@@ -1977,7 +2241,10 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <AtmosphericMotes reducedMotion={reducedMotion} />
       <ForegroundFraming reducedMotion={reducedMotion} />
       <CameraRig reducedMotion={reducedMotion} />
-      <AdaptivePixelRatio />
+      <AdaptivePixelRatio
+        enabled={!reducedMotion}
+        onQualityChange={onLiquidQualityChange}
+      />
     </>
   );
 });
@@ -2164,10 +2431,32 @@ export default function PianoClearingProof({
 }) {
   const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [liquidQuality, setLiquidQuality] = useState<MusicLiquidQuality>('full');
+
+  const handleContextLost = useCallback(() => setLiquidQuality('failure'), []);
+  // Keep the expensive optional territory disabled after a context recovery.
+  // A refresh can opt back in after the browser has returned to a stable state.
+  const handleContextRestored = useCallback(() => setLiquidQuality('failure'), []);
+  const handleLiquidQualityChange = useCallback((quality: MusicLiquidQuality) => {
+    setLiquidQuality(current => current === 'failure' ? current : quality);
+  }, []);
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateMotion = () => setReducedMotion(motion.matches);
+    const updateMotion = () => {
+      setReducedMotion(motion.matches);
+      if (!motion.matches) {
+        const deviceMemory = (
+          navigator as Navigator & { deviceMemory?: number }
+        ).deviceMemory;
+        setLiquidQuality(current => current === 'failure' ? current : musicLiquidInitialQuality({
+          reducedMotion: false,
+          webglAvailable: true,
+          hardwareConcurrency: navigator.hardwareConcurrency,
+          deviceMemory,
+        }));
+      }
+    };
     const updateVisibility = () => setPageVisible(document.visibilityState !== 'hidden');
     updateMotion();
     updateVisibility();
@@ -2179,11 +2468,16 @@ export default function PianoClearingProof({
     };
   }, []);
 
+  const effectiveLiquidQuality: MusicLiquidQuality = reducedMotion
+    ? 'reduced'
+    : liquidQuality;
+
   return (
     <main
       className={styles.world}
       data-piano-clearing-proof=""
       data-music-liquid-proof={musicLiquidProof ? 'one-territory' : 'off'}
+      data-music-liquid-quality={musicLiquidProof ? effectiveLiquidQuality : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
       data-cloud-streaks="procedural-wisps"
@@ -2213,6 +2507,10 @@ export default function PianoClearingProof({
         <PianoClearingScene
           reducedMotion={reducedMotion}
           musicLiquidProof={musicLiquidProof}
+          liquidQuality={effectiveLiquidQuality}
+          onLiquidQualityChange={handleLiquidQualityChange}
+          onContextLost={handleContextLost}
+          onContextRestored={handleContextRestored}
         />
       </Canvas>
       <div aria-hidden="true" className={styles.cloudStreaks} />
@@ -2222,7 +2520,7 @@ export default function PianoClearingProof({
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Material proof ML2-ML3' : 'Environmental proof 84'}
+        {musicLiquidProof ? 'Material proof ML2-ML5' : 'Environmental proof 84'}
         <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
       </p>
     </main>

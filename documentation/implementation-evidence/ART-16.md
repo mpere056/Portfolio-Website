@@ -289,3 +289,32 @@ Last updated: 2026-07-31
 | Acceptance boundary | `ML1` is implemented; `ML2/ML3` remain candidates. Local pointer response, piano/river reply, measured slower-device performance, fallback review, and selected-world expansion are not accepted or complete. |
 
 The next exact action is direct review of `/music-liquid-proof`, then renderer-metric capture and `ML4` local response. Full selected-world expansion and hover derivation remain blocked until `ML6` passes.
+
+## EV-ART-16-21: Local Liquid Response Candidate
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / local-browser / interaction-review |
+| Claim | The bounded Liquid Landscape can respond locally to visitor attention and echo into the piano and valley stream without a global synchronized pulse or additional post-processing. |
+| Scope | Private no-index `/music-liquid-proof` only. A shared mutable runtime projects the cursor onto the existing terrain coordinate system, damps territory attention, adds local grass/ground/surface energy, gives the existing piano points a restrained nacre response, and sends a slower reply through the existing stream shader. |
+| Runtime boundary | No new canvas, render target, EffectComposer, CPU grass loop, runtime geometry rebuild, or added reflection mesh. The implementation reuses existing shader draws and uniforms; canonical Home remains opt-out. |
+| Automated evidence | 3 focused files / 20 tests pass, including local-attention bounds and delayed-response contracts. TypeScript passes and focused ESLint reports no errors. |
+| Browser evidence | Local `1280 x 720` inspection confirms the complete scene, bounded pointer response, calm surrounding meadow, retained piano legibility, and zero browser warnings/errors. |
+| Acceptance boundary | Mark accepted the preceding small liquid region for continued implementation. `ML4` itself remains a candidate until direct review; measured `ML5`, fallback capture, and `ML6` creative review remain open. |
+
+The next exact action is `ML5`: capture comparable neutral/proof renderer metrics, verify hidden/reduced/failure behavior, and tune Balanced/Calm behavior without removing grass. Multiple territories, selected-world expansion, and hover derivation remain blocked by `ML6`.
+
+## EV-ART-16-22: Adaptive Liquid Runtime Candidate
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / performance-boundary / resilience |
+| Claim | Liquid Landscape can degrade temporal complexity before visual identity, preserve all grass, settle under reduced motion, and fail back to the neutral meadow without adding a second performance system. |
+| Scope | Private `/music-liquid-proof`. The existing sustained-FPS DPR governor now also selects Full, Balanced, or Calm liquid motion. Device capability chooses the initial tier, reduced motion holds a stable authored boundary, hidden tabs pause the canvas, and WebGL context loss disables only the liquid territory. |
+| Runtime boundary | No grass removal, full-screen pass, second canvas, new scheduler, render target, or runtime geometry rebuilding. The quality ladder changes existing uniforms only. |
+| Automated evidence | 3 focused files / 21 tests pass, including deterministic capability, motion-scale, lifecycle, and source-isolation contracts. TypeScript, focused ESLint, and the 42-route production build pass. |
+| Acceptance boundary | `ML5` implementation is a candidate. Comparable renderer metrics, sustained observation, and one slower-device review remain required before the `ML6` review packet. |
+
+The next exact action is measured `ML5` observation followed by the three-capture `ML6` review. Multiple territories and hover derivation remain blocked.
