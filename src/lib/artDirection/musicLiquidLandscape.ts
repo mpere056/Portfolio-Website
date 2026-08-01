@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 
 export const MUSIC_LIQUID_PROOF = {
-  center: [10.6, 6.1] as const,
-  axes: [5.6, 3.05] as const,
-  rotation: -0.24,
-  edgeSoftness: 0.18,
-  travelSpeed: 0.42,
+  center: [10.8, 6.4] as const,
+  axes: [15.5, 7.2] as const,
+  rotation: -0.18,
+  edgeSoftness: 0.24,
+  travelSpeed: 0.55,
   pressureWidth: 0.22,
   recoveryTail: 0.34,
-  attentionRadius: 0.42,
+  attentionRadius: 0.32,
   attentionDamping: 5.2,
   pianoReflectionScale: 0.48,
   riverResponseDamping: 0.52,

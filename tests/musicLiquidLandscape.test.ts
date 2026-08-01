@@ -14,9 +14,9 @@ import {
 const root = process.cwd();
 
 describe('Music Liquid Landscape proof contract', () => {
-  it('keeps the first territory and renderer additions bounded', () => {
-    expect(MUSIC_LIQUID_PROOF.axes[0]).toBeLessThanOrEqual(6);
-    expect(MUSIC_LIQUID_PROOF.axes[1]).toBeLessThanOrEqual(3.5);
+  it('keeps the expanded review territory and renderer additions bounded', () => {
+    expect(MUSIC_LIQUID_PROOF.axes[0]).toBeLessThanOrEqual(16);
+    expect(MUSIC_LIQUID_PROOF.axes[1]).toBeLessThanOrEqual(7.5);
     expect(MUSIC_LIQUID_PROOF.preferredAddedDrawCalls).toBeLessThanOrEqual(3);
     expect(MUSIC_LIQUID_PROOF.maxAddedDrawCalls).toBeLessThanOrEqual(4);
     expect(MUSIC_LIQUID_PROOF.fullScreenPasses).toBe(0);

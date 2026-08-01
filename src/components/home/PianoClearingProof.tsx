@@ -369,13 +369,19 @@ function GrassField({
         );
         float territoryDistance = length(territoryLocal);
         float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance)) * uLiquidWeight;
-        float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uLiquidMotion);
-        float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
-        float trailingMemory = pow(max(0.0, sin(fract(pressurePhase + 0.18) * 3.14159265)), 5.0);
+        float pressurePhase = fract(territoryLocal.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uLiquidMotion);
+        float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 2.4);
+        float crossPressure = pow(max(0.0, sin(fract(
+          territoryLocal.y * 0.36 + territoryLocal.x * 0.12
+          - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uLiquidMotion
+          + 0.38
+        ) * 3.14159265)), 3.2);
+        float trailingMemory = pow(max(0.0, sin(fract(pressurePhase + 0.2) * 3.14159265)), 4.0);
         float localAttention = uLiquidAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
         float liquidState = territory * clamp(
-          0.72 + pressureBody * 0.28 + trailingMemory * 0.12 + localAttention * 0.16,
+          0.78 + pressureBody * 0.2 + crossPressure * 0.12
+          + trailingMemory * 0.1 + localAttention * 0.16,
           0.0,
           1.0
         );
@@ -462,7 +468,7 @@ function GrassField({
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
-        color = mix(color, vec3(0.44, 0.65, 0.82), vLiquid * 0.52);
+        color = mix(color, vec3(0.4, 0.68, 0.86), vLiquid * 0.7);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
@@ -695,20 +701,38 @@ function Ground({
               (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
             );
             float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal))) * uLiquidWeight;
-            float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uMotion);
-            float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
+            float pressurePhase = fract(territoryLocal.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uMotion);
+            float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 2.4);
+            float crossPressure = pow(max(0.0, sin(fract(
+              territoryLocal.y * 0.36 + territoryLocal.x * 0.12
+              - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uMotion
+              + 0.38
+            ) * 3.14159265)), 3.2);
             float localAttention = uLiquidAttention
               * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
-            float liquidState = territory * clamp(0.7 + pressureBody * 0.3 + localAttention * 0.18, 0.0, 1.0);
+            float liquidState = territory * clamp(
+              0.78 + pressureBody * 0.2 + crossPressure * 0.12 + localAttention * 0.18,
+              0.0,
+              1.0
+            );
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
-            float liquidVein = sin(territoryLocal.y * 13.0 - pressurePhase * 9.0 + sin(territoryLocal.x * 5.0));
-            vec3 liquidColor = mix(liquidDeep, liquidNacre, pressureBody * 0.84);
+            float liquidVein = sin(
+              territoryLocal.y * 17.0 - pressurePhase * 12.0
+              + sin(territoryLocal.x * 7.0 + uTime * 0.18 * uMotion)
+            );
+            vec3 liquidColor = mix(
+              liquidDeep,
+              liquidNacre,
+              pressureBody * 0.7 + crossPressure * 0.34
+            );
             liquidColor = mix(
               liquidColor,
               liquidPearl,
-              smoothstep(0.64, 0.98, liquidVein) * pressureBody * 0.52 + localAttention * 0.24
+              smoothstep(0.54, 0.98, liquidVein)
+                * (pressureBody * 0.48 + crossPressure * 0.3)
+                + localAttention * 0.26
             );
             color = mix(color, liquidColor, liquidState * 0.94);
             float fog = smoothstep(31.0, 78.0, vDepth);
@@ -826,13 +850,20 @@ function LiquidTerritorySurface({
       void main() {
         vTerritory = aTerritory;
         vec3 transformed = position;
-        float travel = aTerritory.x * 7.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 2.4} * uMotion;
+        float travel = aTerritory.x * 8.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 3.2} * uMotion;
         float ripple = sin(travel + sin(aTerritory.y * 8.0) * 0.8);
         ripple += sin(travel * 1.73 - aTerritory.y * 10.0) * 0.36;
         float localAttention = uAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(aTerritory, uPointer)));
         float edge = 1.0 - smoothstep(0.7, 1.0, length(aTerritory));
-        transformed.y += ripple * (0.055 + localAttention * 0.095) * edge;
+        float slowSwell = sin(
+          aTerritory.y * 4.2 + aTerritory.x * 2.0
+          - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 1.1} * uMotion
+        );
+        transformed.y += (
+          ripple * (0.075 + localAttention * 0.1)
+          + slowSwell * 0.045
+        ) * edge;
         vRipple = ripple;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
@@ -847,11 +878,21 @@ function LiquidTerritorySurface({
       void main() {
         float distanceFromCenter = length(vTerritory);
         float edge = 1.0 - smoothstep(0.76, 1.0, distanceFromCenter);
-        float phase = fract(vTerritory.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uMotion);
-        float pressure = pow(max(0.0, sin(phase * 3.14159265)), 3.4);
-        float recovery = pow(max(0.0, sin(fract(phase + ${MUSIC_LIQUID_PROOF.recoveryTail}) * 3.14159265)), 7.0);
-        float vein = sin(vTerritory.y * 16.0 - phase * 12.0 + sin(vTerritory.x * 7.0));
-        float caustic = smoothstep(0.48, 0.98, vein) * pressure;
+        float phase = fract(vTerritory.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uMotion);
+        float pressure = pow(max(0.0, sin(phase * 3.14159265)), 2.4);
+        float crossPhase = fract(
+          vTerritory.y * 0.36 + vTerritory.x * 0.12
+          - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uMotion
+          + 0.38
+        );
+        float crossPressure = pow(max(0.0, sin(crossPhase * 3.14159265)), 3.2);
+        float recovery = pow(max(0.0, sin(fract(phase + ${MUSIC_LIQUID_PROOF.recoveryTail}) * 3.14159265)), 5.0);
+        float vein = sin(
+          vTerritory.y * 19.0 - phase * 14.0
+          + sin(vTerritory.x * 8.0 + uTime * 0.22 * uMotion)
+        );
+        float caustic = smoothstep(0.4, 0.98, vein)
+          * (pressure * 0.72 + crossPressure * 0.42);
         float localAttention = uAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(vTerritory, uPointer)));
         float attentionVein = smoothstep(0.38, 0.98, sin(
@@ -860,7 +901,7 @@ function LiquidTerritorySurface({
         vec3 deep = vec3(0.08, 0.15, 0.38);
         vec3 nacre = vec3(0.32, 0.72, 0.84);
         vec3 pearl = vec3(0.94, 0.68, 0.9);
-        vec3 color = mix(deep, nacre, pressure * 0.88);
+        vec3 color = mix(deep, nacre, pressure * 0.72 + crossPressure * 0.38);
         color = mix(
           color,
           pearl,
@@ -869,7 +910,10 @@ function LiquidTerritorySurface({
         float boundary = smoothstep(0.78, 0.9, distanceFromCenter)
           * (1.0 - smoothstep(0.9, 1.0, distanceFromCenter));
         color = mix(color, pearl, boundary * 0.3);
-        float alpha = edge * (0.3 + pressure * 0.58 + recovery * 0.16 + localAttention * 0.2);
+        float alpha = edge * (
+          0.42 + pressure * 0.4 + crossPressure * 0.22
+          + recovery * 0.12 + localAttention * 0.2
+        );
         gl_FragColor = vec4(color, alpha);
       }
     `,
@@ -2476,7 +2520,7 @@ export default function PianoClearingProof({
     <main
       className={styles.world}
       data-piano-clearing-proof=""
-      data-music-liquid-proof={musicLiquidProof ? 'one-territory' : 'off'}
+      data-music-liquid-proof={musicLiquidProof ? 'expanded-territory' : 'off'}
       data-music-liquid-quality={musicLiquidProof ? effectiveLiquidQuality : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
@@ -2520,7 +2564,7 @@ export default function PianoClearingProof({
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Material proof ML2-ML5' : 'Environmental proof 84'}
+        {musicLiquidProof ? 'Material proof ML6-R1' : 'Environmental proof 84'}
         <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
       </p>
     </main>

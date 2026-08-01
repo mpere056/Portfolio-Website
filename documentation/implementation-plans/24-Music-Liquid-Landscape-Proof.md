@@ -100,7 +100,8 @@ These clocks must be phase-offset and locally scoped. Optional future audio maps
 | `ML3` Liquid material | accepted-for-sequencing | Existing ground plus one terrain-hugging transparent mesh share the same traveling pressure field, recovery memory, caustics, and restrained ripples | Mark accepted the material read for continued implementation; renderer metrics remain open |
 | `ML4` Local response | candidate | Autonomous idle motion now gains territory-local pointer intensification, a restrained nacre piano reply, and a slower downstream river reply through shared mutable uniforms | Local browser QA shows no global pulse or runtime errors; Mark review remains |
 | `ML5` Performance and calm | candidate; observation open | Existing DPR adaptation now also steps liquid motion through Full, Balanced, and Calm tiers; hidden tabs pause, reduced motion holds an authored stable boundary, and WebGL loss removes only the liquid territory. Grass count and scene composition remain unchanged | Sustained proof/neutral metrics and one slower-device observation remain before acceptance |
-| `ML6` Creative review | blocked by measured `ML5` | Present one short idle capture, one attention capture, and one reduced/failure still | Mark chooses expand, revise, or abandon before full-world work |
+| `ML6` Creative review | revise | The first deployed review was materially too similar to `ML2/ML3`: its local response and calm-tier work were not a useful visible milestone. Mark requested a genuinely visible continuation rather than another infrastructure-only review | Revise the same one-draw territory into a broad foreground material state before asking for review again |
+| `ML6-R1` Expanded material read | candidate; review open | One aligned grass/ground/surface territory now spans the foreground hill, uses crossing pressure bodies, stronger moving nacre veins, and a more legible attention state without another render pass or reduced grass | Mark can identify the transformed region immediately at rest and distinguish the local attention state without being told where to look |
 | `MW1` Selected-world expansion | blocked by `ML6` | Expand to at most three territories and compose the full Music hierarchy | Selected world passes continuity, lifecycle, performance, and visual review |
 | `MW2` Hover derivation | blocked by `MW1` | Derive the partial hover state from the accepted module and uniforms | Hover continues into selection without a visual restart |
 
@@ -169,11 +170,11 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `ML4` candidate; `ML5` implementation candidate with measured observation still open |
+| Current gate | `ML6-R1` expanded-material revision candidate; visual review open |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` opts into one territory; Music registry remains empty |
-| Next exact action | Capture comparable neutral/proof renderer metrics and one slower-device observation, then prepare the three-capture `ML6` review |
-| Do not begin | Multiple territories, selected-world expansion, hover derivation, other worlds, or project landmarks |
+| Next exact action | Review the deployed expanded foreground at rest and under local attention; if its world-scale read passes, capture comparable neutral/proof renderer metrics and one slower-device observation before selected-world expansion |
+| Do not begin | Multiple independent territories, production selected-world registration, hover derivation, other worlds, or project landmarks |
 | Review packet | Three captures maximum: idle metamorphosis, local pointer response, reduced/failure state |
 
 Update this ledger, `WI-ART-16-01`, Plans `22/23`, capability `CAP-ART-018/019`, dashboard, and `ART-16` evidence whenever a gate changes state.

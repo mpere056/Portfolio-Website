@@ -318,3 +318,15 @@ The next exact action is `ML5`: capture comparable neutral/proof renderer metric
 | Acceptance boundary | `ML5` implementation is a candidate. Comparable renderer metrics, sustained observation, and one slower-device review remain required before the `ML6` review packet. |
 
 The next exact action is measured `ML5` observation followed by the three-capture `ML6` review. Multiple territories and hover derivation remain blocked.
+
+## EV-ART-16-23: Expanded Liquid Landscape Review Revision
+
+| Field | Value |
+| --- | --- |
+| Claim | The first deployed `ML6` presentation was not visibly different enough to review; the material needed a world-scale foreground read rather than additional invisible lifecycle refinement. |
+| Scope | Private `/music-liquid-proof` only. The existing aligned grass, ground, and one surface draw now share a substantially broader analytic territory, two crossing pressure clocks, stronger moving nacre veins, and a more legible local attention state. Neutral Home remains unchanged, all grass remains, and no full-screen pass was added. |
+| Automated evidence | `tests/musicLiquidLandscape.test.ts` and `tests/pianoClearingProof.test.ts`: 13 tests pass. TypeScript passes. |
+| Browser evidence | Local `1281 x 720` Balanced-tier review shows an immediately visible liquid foreground at rest and a brighter local attention state with zero warnings/errors. |
+| Acceptance boundary | `ML6-R1` is a revision candidate, not an accepted selected Music world. Mark review and slower-device evidence remain open. |
+
+The next exact action is direct review of the expanded foreground. If accepted, measure the Balanced tier before any multi-territory selected-world expansion or hover derivation.

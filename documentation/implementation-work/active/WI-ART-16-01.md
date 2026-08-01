@@ -39,8 +39,10 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
 - Music direction: Mark preferred Liquid Landscape over the other drastic concepts and approved a performance-first attempt. After reviewing the bounded result, he confirmed it looks nice and asked implementation to continue. `ML2/ML3` are accepted for sequencing, not as a complete selected world. The private `/music-liquid-proof` route now adds `ML4` territory-local pointer energy, restrained piano nacre reflection, and a slower downstream river reply through shared shader uniforms while canonical Home stays unchanged.
-- `ML5` implementation candidate: Full/Balanced/Calm liquid tiers now follow the existing sustained-FPS DPR governor, reduced motion holds a stable authored boundary, hidden tabs pause the canvas, and WebGL loss falls back to the neutral meadow. No grass was removed and no new render pass was added.
-- Next exact action: capture comparable neutral/proof renderer metrics and one slower-device observation, then prepare the bounded `ML6` review. Do not add more territories or derive hover yet.
+- `ML5` implementation candidate: Full/Balanced/Calm liquid tiers follow the existing sustained-FPS DPR governor, reduced motion holds a stable authored boundary, hidden tabs pause the canvas, and WebGL loss falls back to the neutral meadow. No grass was removed and no new render pass was added.
+- `ML6` review outcome: revise. The deployed local-response/adaptive work looked effectively unchanged at normal viewing distance and was not a useful visual review milestone.
+- `ML6-R1` candidate: the same aligned grass/ground/surface territory now spans the foreground hill and adds crossing pressure bodies, stronger moving nacre veins, and an unmistakable local attention state while retaining one surface draw and all existing grass.
+- Next exact action: Mark reviews `ML6-R1` at rest and with the cursor over the foreground. If the material reads as a meaningful world-scale transformation, capture comparable renderer metrics and one slower-device observation before any multi-territory or hover work.
 
 ## Ordered Checkpoints
 
@@ -52,7 +54,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
 | `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
 | `E1` Music material direction | accepted-for-prototype | Liquid Landscape and its simulation-free, one-territory proof sequence are documented in Plan `24` |
-| `E2` Music bounded material proof | in-progress | `ML1` is implemented, `ML2/ML3` are accepted-for-sequencing, and `ML4/ML5` are locally verified candidates on `/music-liquid-proof`; measured observation and `ML6` review remain |
+| `E2` Music bounded material proof | in-progress | `ML1` is implemented, `ML2/ML3` are accepted-for-sequencing, `ML4/ML5` remain technical candidates, and expanded `ML6-R1` is the active visible-review build on `/music-liquid-proof` |
 | `F` Music selected environment | blocked by accepted `E2` | The proven module expands to at most three unequal territories with continuity and bounded lifecycle |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
