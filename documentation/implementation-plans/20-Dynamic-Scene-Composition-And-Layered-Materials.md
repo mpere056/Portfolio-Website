@@ -300,7 +300,7 @@ Do not label a route dynamic because its matte drifts, and do not label the rout
 - Retain the rejected five-anchor and complete proof-world candidates as historical evidence, not reusable compositions.
 - Preserve the deployed one-clearing substrate, seated pianist, and three-practice taxonomy.
 - Implement `E0` semantic ownership, lazy adapters, diagnostics, disposal, and exact neutral parity before atmospheric work.
-- Prove contact-path-horizon melding for Music, then its selected Resonant Meadow using the same camera and coordinates.
+- Prove one bounded Liquid Landscape grass-to-liquid territory for Music, measure its performance, expand the selected world only after acceptance, and derive hover from the same camera, coordinates, module, and uniforms.
 - Resolve Music's empty project corpus before landmarks, then integrate Life Systems and Play sequentially from their own reviewed packets.
 - Add native project landmarks and route migration only after all three worlds pass visual/runtime gates.
 - Run renderer-lifecycle, calm/failure, navigation, Production, and Mark review.

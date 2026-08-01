@@ -107,8 +107,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vUv.y * 46.0 + time * 2.3');
     expect(component).toContain('<ValleyDetails />');
     expect(component).toContain('new THREE.ShaderMaterial');
-    expect(component).toContain('<GrassField reducedMotion={reducedMotion} />');
-    expect(component).toContain('<Ground reducedMotion={reducedMotion} />');
+    expect(component).toContain('<GrassField reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />');
+    expect(component).toContain('<Ground reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />');
     expect(component).toContain('vec3 tipColor = vec3(0.87, 0.52, 0.7)');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.34 }');
@@ -194,6 +194,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('<meshBasicMaterial');
     expect(component).not.toContain('color="#c89491"');
     expect(component).not.toContain('shadowMap');
+    expect(component).toContain('musicLiquidProof = false');
+    expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'one-territory' : 'off'}");
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {
@@ -206,6 +208,7 @@ describe('piano clearing Home proof', () => {
     expect(proofPage).toContain('robots: { index: false, follow: false }');
     expect(proofPage).toContain('<PianoClearingProof />');
     expect(homePage).toContain('<PianoClearingProof />');
+    expect(homePage).not.toContain('musicLiquidProof');
     expect(homePage).toContain('href="/presentation"');
     expect(homePage).toContain('Today&apos;s presentation');
     expect(presentationPage).toContain('<AboutPresentation />');

@@ -10,13 +10,13 @@ Read `../implementation-plans/17-Work-Items-And-Resume-Protocol.md` before creat
 
 ## Current Focus
 
-`5313e93` is the current visual/runtime baseline, with tracking checkpoint `8a4e3c2` live through Git-connected Production. `WI-ART-16-01` exposes the optimized dusk piano valley, seated pianist, and three practice instruments on canonical Home while retaining `/home-world-proof` for rollback/review. Earlier landmark and full proof-world compositors remain failed evidence. No practice environment, selected world, project reveal, or `/projects` redirect has begun.
+`5313e93` is the current visual/runtime baseline, and `b0018cb` verifies the transition foundation without mounting a production practice world. `WI-ART-16-01` exposes the optimized dusk piano valley, seated pianist, and three practice instruments on canonical Home while retaining `/home-world-proof` for rollback/review. Private `/music-liquid-proof` now contains one `ML2/ML3` candidate; no selected world, project reveal, or `/projects` redirect has begun.
 
 | Slot | Work item | State | Package | Milestone | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-progress | `ART-16` | `E0`: clearing, pianist, three instruments, and no-detail optimization are implemented and deployed | Build semantic attention ownership, lazy world contract, diagnostics, and neutral parity | 2026-07-31 |
-| Next | `WI-ART-16-01` | not-started | `ART-16` | `E1` waits on `E0` | Produce and review one Music preview packet, then implement contact/path/horizon only | 2026-07-31 |
-| Later | `WI-ART-16-01` | not-started checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Checkpoints `F-I` wait on each preceding accepted gate | Music selected world, content decision, Life, Play, project depth, navigation, and release | 2026-07-31 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | Neutral Home remains safe; private `ML2/ML3` candidate implemented | Review/tune one territory and capture renderer metrics | 2026-07-31 |
+| Next | `WI-ART-16-01` | not-started | `ART-16` | Shared field, grass/ground metamorphosis, and one surface mesh are implemented | Complete `ML4-ML6`, measure Balanced tier, and stop for Mark review | 2026-07-31 |
+| Later | `WI-ART-16-01` | blocked checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Full Music world waits on `ML6`; hover waits on selected-world acceptance | Expand Music, derive hover, decide Music content, then build Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 ## Active And Unfinished Items
 

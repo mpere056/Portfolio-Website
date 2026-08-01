@@ -7,7 +7,7 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Plan ID | `PIANO-CLEARING-HOME` |
-| Status | Active; clearing, pianist, three instruments, and transition foundation verified; Music preview packet is in review |
+| Status | Active; clearing, pianist, three instruments, and transition foundation verified; Music liquid-material proof is planned |
 | Decision | [Three-Practice Taxonomy](2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Supersedes | [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) |
 | Work item | [WI-ART-16-01](../implementation-work/active/WI-ART-16-01.md) |
@@ -17,7 +17,7 @@ Last updated: 2026-07-31
 
 ## Objective
 
-Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist, three practice instruments, and a tested one-owner transition foundation without changing neutral visuals. The next sequence reviews one Music preview packet, implements that bounded preview, then proceeds separately to the Music selected world, the remaining two practice worlds, and project depth. Detailed world briefs, runtime boundaries, and restart state live in Plan `23`.
+Build a highly optimized, cinematic outdoor Home world centered on the particle grand piano. The accepted direction is a hand-painted pastoral overlook: the piano sits on a high foreground grass plateau, a steep slope falls into a valley, the river occupies the valley floor, and the opposite hillside and distant landscape remain low enough to preserve open sky and clouds. A bounded empty viaduct remains as a middle-distance depth cue, while a small moving bird flock gives the sky authored life; there is no walking or explorable map. The current sequence has added the restrained pianist, three practice instruments, and a tested one-owner transition foundation without changing neutral visuals. The next sequence proves the selected Music world's Liquid Landscape grammar in one bounded grass-to-liquid territory, measures it against the current Home baseline, expands only after that gate passes, and derives the hover overlay from the accepted runtime afterward. Detailed world briefs, runtime boundaries, and restart state live in Plans `23` and `24`.
 
 ## Scene Grammar
 
@@ -93,8 +93,10 @@ The current Checkpoint `B` implementation intentionally contains:
 | `C` Pianist | accepted-for-sequencing | Minimal seated figure and restrained playing loop | Figure remains a later polish surface; About handoff is deferred to `H` |
 | `D` Practice instruments | accepted-for-sequencing | Three screen forms and spatial arrangement | Three-practice taxonomy and semantic controls are stable enough to build transition behavior |
 | `E0` Transition foundation | verified | Semantic attention controller, lazy world contract, lifecycle diagnostics, and neutral parity | One dominant owner, no hidden worlds, deterministic retreat/disposal, and unchanged neutral Home pass at `b0018cb` |
-| `E1` Music preview state | in-review | Music influences the clearing through local contact, travelled response, and one horizon consequence | Quiet Phrase Fields packet receives `A/B/C` decision before runtime work |
-| `F` Music selected state | not-started | Resonant Meadow becomes the primary environment using the same world module | Continuity, lifecycle, URL intent, content decision, and performance pass |
+| `E1` Music material direction | accepted-for-prototype | Liquid Landscape uses local grass-to-liquid metamorphosis, autonomous silent motion, and future audio-compatible controls without fluid simulation | Scope and performance-first sequence are documented in Plan `24` |
+| `E2` Music bounded material proof | in-progress | One private territory beside the piano has implemented the shared mask and candidate grass/liquid material; local response, fallback, measured cost, and review remain | `ML0-ML6` pass before any full selected-world expansion |
+| `E3` Music selected state | blocked by `E2` | At most three unequal territories form the complete selected Music world using one lazy module | Continuity, lifecycle, URL intent, calm/failure, performance, and Mark review pass |
+| `E4` Music hover state | blocked by `E3` | Music hover becomes a partial arrival of the accepted world using the same uniforms and geometry | Proximity-to-selection transition has no visual restart or duplicate composition |
 | `G` Three practices | not-started | Remaining two preview/selected environments | Distinct but cohesive; one active runtime |
 | `H` Project and navigation depth | not-started | Project reveal, About handoff, AI/tour context, history, restore, and `/projects` compatibility | Deep links, Back, refresh, and exact return pass |
 | `I` Release | not-started | Preview, performance, rollback, Production, and Mark acceptance | Public Home replacement is separately approved |
@@ -169,5 +171,6 @@ The accepted optimization order for this composition is now: remove repeated inv
 - Commits `16d9331`, `2cbbda9`, and `b03334f` add the bench and seated silhouette pianist, refine its scene fit, and give its hands restrained independently varied horizontal and vertical playing motion.
 - The original Checkpoint `D` candidate exposed four practices. The 2026-07-30 taxonomy decision removes AI as a peer destination, reclassifies Dreamlife and Interactive Story Generator, and reduces Home to three practice instruments. Hover and keyboard focus expose local attention; click/Enter holds one signal. No environmental takeover or route change is introduced before Checkpoints `E` and `F`.
 - Commit `b0018cb` replaces presentational hover ownership with a tested semantic preview/selection/retreat controller, defines the lazy module and performance contract, guarantees singular runtime ownership and deterministic disposal, and adds opt-in local diagnostics. The production registry remains empty, so neutral Home mounts no additional runtime or visual layer.
-- The [Quiet Phrase Fields packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) isolates one causal preview direction, implementation ownership, fallback behavior, and a `+1` draw-call / zero-pass / zero-texture budget.
-- Exact next action: collect Mark's `A/B/C` packet decision, revise if needed, then implement only the accepted contact/path/horizon preview. Do not build a complete selected world or start Life/Play runtime work yet.
+- [Plan 24](24-Music-Liquid-Landscape-Proof.md) defines the accepted-for-prototype Liquid Landscape direction, one-territory proof, shader ownership, silent world score, quality tiers, hard budget, test matrix, and stop/go gate.
+- The earlier [Quiet Phrase Fields packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) remains useful visual input but its hover-first sequencing is superseded. The crystal-organism Resonant Meadow draft is rejected as the active endpoint; it may supply only minor material references if they survive later review.
+- Exact next action: review Plan `24` `ML2/ML3` on `/music-liquid-proof`, capture renderer metrics, then implement `ML4` locally. Stop at `ML6` before selected-world expansion; do not start hover, Life, or Play runtime work yet.

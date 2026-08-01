@@ -1,6 +1,6 @@
 # Implementation Evidence Registry
 
-Last updated: 2026-07-28
+Last updated: 2026-07-31
 
 ## Purpose
 
@@ -64,7 +64,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-15` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-17` | `ART-16` | candidate | `ART-16.md` |
-| `EV-ART-16-18` | `ART-16` | in-review | `ART-16.md` |
+| `EV-ART-16-18` | `ART-16` | superseded | `ART-16.md` |
+| `EV-ART-16-19` | `ART-16` | accepted | `ART-16.md` |
 
 ## Phase 3 First Flagship
 
@@ -115,7 +116,8 @@ Aggregate local, protected Preview, and production-safe deployment records are c
 | `EV-ART-16-15` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | candidate | `ART-16.md` |
 | `EV-ART-16-17` | `ART-16` | candidate | `ART-16.md` |
-| `EV-ART-16-18` | `ART-16` | in-review | `ART-16.md` |
+| `EV-ART-16-18` | `ART-16` | superseded | `ART-16.md` |
+| `EV-ART-16-19` | `ART-16` | accepted | `ART-16.md` |
 
 Sequence numbers are two digits and are never reused. An evidence item may support several capabilities, but it belongs to the package that produced it.
 
@@ -277,7 +279,9 @@ Never silently replace failed or superseded evidence. Add a new evidence ID and 
 | `EV-ART-16-15` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build / browser-flow / visual-review | candidate | Commit `4eb4266` is live at `/home-world-proof` with the `dusk-refrain` marker; every scene layer uses the supplied blue-hour hierarchy without changing geometry or runtime budgets; 240 tests, TypeScript, lint, content validation, and the 40-route build pass; direct visual acceptance remains | 2026-07-28 | `ART-16.md` |
 | `EV-ART-16-16` | `ART-16` | `CAP-ART-017`, `CAP-ART-019` | implementation-test / build / production / browser-flow / release-decision | candidate | Commit `fa1e85c` provisionally promotes the unchanged dusk valley to canonical `/` with a temporary `/presentation` doorway; canonical, rollback, and staging routes return `200`, proof/staging routes remain no-index, and 240 tests plus the 41-route build pass | 2026-07-28 | `ART-16.md` |
 | `EV-ART-16-17` | `ART-16` | `CAP-ART-017` | implementation-test / build / production / browser-flow / visual-review | candidate | Commit `024365e` deploys the no-index 10-slide programming/career arc from game systems through modding, community scale, CRA, degree completion, professional software, Dreamlife, and FirePower Capital before an AI-in-business handoff; route-specific visuals, navigation, fullscreen, reduced motion, chrome suppression, focused tests, the 41-route build, and live representative browser review pass | 2026-07-28 | `ART-16.md` |
-| `EV-ART-16-18` | `ART-16` | `CAP-ART-018`, `CAP-ART-019` | creative-review / runtime-brief | in-review | Quiet Phrase Fields keyframe and bounded Music preview packet define piano contact, embedded grass phrases, delayed river reply, one restrained horizon aperture, reduced-motion behavior, and a one-draw / zero-pass / zero-texture budget; runtime remains blocked pending Mark's A/B/C review | 2026-07-31 | `ART-16.md` |
+| `EV-ART-16-18` | `ART-16` | `CAP-ART-018`, `CAP-ART-019` | creative-review / runtime-brief | superseded | Quiet Phrase Fields remains a useful restrained-hover reference, but its hover-first sequence was superseded when Mark chose to establish and performance-test the drastic selected-world endpoint first | 2026-07-31 | `ART-16.md` |
+| `EV-ART-16-19` | `ART-16` | `CAP-ART-018`, `CAP-ART-019` | direction-decision / implementation-plan / performance-boundary | accepted | Mark chose Liquid Landscape for a bounded attempt; Plan `24` specifies one analytic grass-to-liquid territory, autonomous silent score, no fluid simulation, strict runtime tiers and budget, measured slower-device evidence, and a stop/go gate before full-world or hover work | 2026-07-31 | `ART-16.md` |
+| `EV-ART-16-20` | `ART-16` | `CAP-ART-018`, `CAP-ART-019` | implementation-test / build / browser-flow / visual-review | candidate | Private `/music-liquid-proof` implements one analytic territory across existing grass/ground plus one surface draw, with neutral Home isolated; 19 focused tests, TypeScript, lint, content validation, and initial zero-error browser render pass, while strengthened visual review and measured performance remain open | 2026-07-31 | `ART-16.md` |
 | `EV-AI-05-01` | `AI-05` | `CAP-AI-008` | integration-test | accepted | global archive links, bounded prompt, legacy redirect, build | 2026-07-18 | `AI-05.md` |
 | `EV-LPS-02-01` | `LPS-02` | `CAP-LPS-002` | decision | accepted | nine lifecycle classifications with correction paths | 2026-07-18 | `LPS-02.md` |
 | `EV-LPS-03-01` | `LPS-03` | `CAP-LPS-003` | content-review | accepted | nine records, lifecycle rendering, 58 nodes and 28 relationships | 2026-07-18 | `LPS-03.md` |

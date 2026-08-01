@@ -1,6 +1,6 @@
 # Active Work Items
 
-Current `Now`: [WI-ART-16-01](WI-ART-16-01.md), in progress at transition-foundation checkpoint `E0`; Plans `22` and `23` are the restart surfaces.
+Current `Now`: [WI-ART-16-01](WI-ART-16-01.md), in progress after verified transition foundation `E0`; Plan `24` `ML2/ML3` is a private one-territory candidate awaiting review and metrics, with `ML4` as the next implementation gate.
 
 Paused historical art items remain here only as retained foundations with named restart conditions. The superseded Museum-only integration item is preserved under `../canceled/`.
 

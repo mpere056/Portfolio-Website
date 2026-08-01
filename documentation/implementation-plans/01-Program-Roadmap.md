@@ -38,7 +38,7 @@ The program should extend these foundations rather than replace the entire appli
 
 Phase 3 implementation checkpoint: the complete first LifeInbox vertical slice remains accepted. The project registry, depth journey, global archive card, direct project routes, and all three flagship subdomains remain valid foundations.
 
-Current implementation checkpoint: `5313e93` is the optimized visual baseline and `b0018cb` verifies the one-owner transition foundation without mounting a practice world. The clearing, seated pianist, and three practice instruments remain visually unchanged; `/projects` remains unchanged until the additive migration passes. The `ART-16E1` Quiet Phrase Fields Music preview packet is in creative review.
+Current implementation checkpoint: `5313e93` is the optimized visual baseline and `b0018cb` verifies the one-owner transition foundation without mounting a practice world. The clearing, seated pianist, and three practice instruments remain visually unchanged; `/projects` remains unchanged until the additive migration passes. Private `/music-liquid-proof` now carries one isolated `ML2/ML3` Liquid Landscape candidate; renderer metrics, local response, performance acceptance, and runtime registration remain open.
 
 ## Dependency Order
 
@@ -115,12 +115,13 @@ The earlier `ART-12G/H` whole-`/projects` integration sequence is superseded by 
 | 3 | `ARC-06` / `EXP-08` attention and route contracts | Pure tests pass without changing public route output |
 | 4 | `ART-16D` neutral clearing, pianist, and three instruments | implemented and accepted for sequencing; one viewport and semantic inputs pass |
 | 5 | `ART-16E0` transition foundation | verified at `b0018cb`: one dominant owner, lazy world contract, diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
-| 6 | `ART-16E1/F` Music preview and selected Resonant Meadow | next: contact/path/horizon packet and preview acceptance; selected-world implementation remains a separate later gate |
-| 7 | `ART-16F2` Music content decision | First-class music nodes or curated non-project depth selected before landmarks |
-| 8 | `ART-16G` Life Systems then Play worlds | One complete practice accepted before the next begins; old proofs contribute techniques only |
-| 9 | `PRJ-09` practice project reveal | Correct projects, lifecycle depth, music content handling, and subdomain handoff |
-| 10 | `ARC-06` / `EXP-08` navigation migration | Tour, AI, restore, Back, metadata, and aliases pass |
-| 11 | `QA-07` release | Preview, rollback, capability, performance, Production, and Mark acceptance |
+| 6 | `ART-16E1/E2` Music Liquid Landscape proof | in progress: review `ML2/ML3`, capture metrics, then complete `ML4-ML6` local response, fallback, and slower-device performance gate |
+| 7 | `ART-16E3/E4` Music selected world and hover derivation | expand only the proven material system; derive hover from the accepted selected runtime |
+| 8 | `ART-16F2` Music content decision | First-class music nodes or curated non-project depth selected before landmarks |
+| 9 | `ART-16G` Life Systems then Play worlds | One complete practice accepted before the next begins; old proofs contribute techniques only |
+| 10 | `PRJ-09` practice project reveal | Correct projects, lifecycle depth, music content handling, and subdomain handoff |
+| 11 | `ARC-06` / `EXP-08` navigation migration | Tour, AI, restore, Back, metadata, and aliases pass |
+| 12 | `QA-07` release | Preview, rollback, capability, performance, Production, and Mark acceptance |
 
 The detailed order and checkpoint fields live in [Piano Clearing Home](22-Piano-Clearing-Home-World.md) and [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md). Plan `21` is historical only.
 

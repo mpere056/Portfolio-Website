@@ -22,6 +22,7 @@ import {
   pianoClearingTerrainHeight,
   pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
+import { MUSIC_LIQUID_PROOF } from '@/lib/artDirection/musicLiquidLandscape';
 import {
   PRACTICE_DEFINITIONS,
   PRACTICE_IDS,
@@ -209,7 +210,13 @@ function createGrassGeometry() {
   return geometry;
 }
 
-function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
+function GrassField({
+  reducedMotion,
+  musicLiquidProof,
+}: {
+  reducedMotion: boolean;
+  musicLiquidProof: boolean;
+}) {
   const geometry = useMemo(() => createGrassGeometry(), []);
   const cursorPlane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), -GROUND_Y));
   const cursorPoint = useRef(new THREE.Vector3());
@@ -230,6 +237,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       uCursorDirection: { value: new THREE.Vector2(1, 0) },
       uCursorInfluence: { value: 0 },
       uFogColor: { value: new THREE.Color('#9584c7') },
+      uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
+      uLiquidMotion: { value: reducedMotion ? 0 : 1 },
     },
     vertexShader: `
       uniform float uTime;
@@ -237,6 +246,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       uniform vec2 uCursor;
       uniform vec2 uCursorDirection;
       uniform float uCursorInfluence;
+      uniform float uLiquidWeight;
+      uniform float uLiquidMotion;
       attribute vec3 iRoot;
       attribute vec4 iParams;
       attribute vec4 iStatic;
@@ -246,6 +257,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vBend;
       varying float vVariation;
       varying float vPianoShadow;
+      varying float vLiquid;
       void main() {
         vUv = uv;
         vec3 blade = position;
@@ -257,6 +269,19 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         float clump = iStatic.x;
         float variation = iStatic.y;
         float randomValue = iStatic.z;
+        vec2 territoryOffset = root.xz - vec2(${MUSIC_LIQUID_PROOF.center[0]}, ${MUSIC_LIQUID_PROOF.center[1]});
+        float territoryCos = ${Math.cos(MUSIC_LIQUID_PROOF.rotation).toFixed(6)};
+        float territorySin = ${Math.sin(MUSIC_LIQUID_PROOF.rotation).toFixed(6)};
+        vec2 territoryLocal = vec2(
+          (territoryOffset.x * territoryCos - territoryOffset.y * territorySin) / ${MUSIC_LIQUID_PROOF.axes[0]},
+          (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
+        );
+        float territoryDistance = length(territoryLocal);
+        float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance)) * uLiquidWeight;
+        float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uLiquidMotion);
+        float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
+        float trailingMemory = pow(max(0.0, sin(fract(pressurePhase + 0.18) * 3.14159265)), 5.0);
+        float liquidState = territory * clamp(0.72 + pressureBody * 0.28 + trailingMemory * 0.12, 0.0, 1.0);
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
@@ -268,7 +293,9 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         breeze += sin(uTime * 0.24 + phase * 1.7) * 0.028;
         breeze += gust * 0.115;
         blade.x *= bladeWidth;
-        blade.y *= bladeHeight * (0.84 + clump * 0.24 + variation * 0.08);
+        blade.y *= bladeHeight
+          * (0.84 + clump * 0.24 + variation * 0.08)
+          * mix(1.0, 0.045, liquidState);
         vec3 oriented = vec3(
           blade.x * angleCos,
           blade.y,
@@ -280,6 +307,8 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
           + gust * 0.052
           + (randomValue - 0.5) * 0.035
         ) * uv.y * uWind;
+        oriented.x += territoryLocal.x * liquidState * uv.y * 0.055;
+        oriented.z += territoryLocal.y * liquidState * uv.y * 0.045;
         float cursorDistance = distance(root.xz, uCursor);
         float cursorFalloff = 1.0 - smoothstep(0.15, 3.2, cursorDistance);
         float cursorBend = cursorFalloff * uCursorInfluence;
@@ -301,6 +330,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         );
         vVariation = variation;
         vPianoShadow = iStatic.w;
+        vLiquid = liquidState;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -315,6 +345,7 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
       varying float vBend;
       varying float vVariation;
       varying float vPianoShadow;
+      varying float vLiquid;
       void main() {
         vec3 baseColor = vec3(0.105, 0.125, 0.34);
         vec3 lowColor = vec3(0.18, 0.19, 0.47);
@@ -334,16 +365,19 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
         color *= 0.88 + vVariation * 0.22;
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
+        color = mix(color, vec3(0.44, 0.65, 0.82), vLiquid * 0.48);
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [reducedMotion]);
+  }), [musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uWind.value = reducedMotion ? 0 : 0.34;
+    material.uniforms.uLiquidWeight.value = musicLiquidProof ? 1 : 0;
+    material.uniforms.uLiquidMotion.value = reducedMotion ? 0 : 1;
     if (reducedMotion) {
       cursorImpulse.current = 0;
       cursorInfluence.current = 0;
@@ -464,12 +498,19 @@ function GrassField({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function Ground({ reducedMotion }: { reducedMotion: boolean }) {
+function Ground({
+  reducedMotion,
+  musicLiquidProof,
+}: {
+  reducedMotion: boolean;
+  musicLiquidProof: boolean;
+}) {
   const geometry = useMemo(() => createGroundGeometry(), []);
   const material = useMemo(() => new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
     },
     vertexShader: `
           varying float vHeight;
@@ -490,6 +531,7 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
     fragmentShader: `
           uniform float uTime;
           uniform float uMotion;
+          uniform float uLiquidWeight;
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
@@ -538,16 +580,35 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
               1.0
             ) * breakup;
             color = mix(color, vec3(0.04, 0.035, 0.13), pianoShadow * 0.68);
+            vec2 territoryOffset = vWorld.xz - vec2(${MUSIC_LIQUID_PROOF.center[0]}, ${MUSIC_LIQUID_PROOF.center[1]});
+            float territoryCos = ${Math.cos(MUSIC_LIQUID_PROOF.rotation).toFixed(6)};
+            float territorySin = ${Math.sin(MUSIC_LIQUID_PROOF.rotation).toFixed(6)};
+            vec2 territoryLocal = vec2(
+              (territoryOffset.x * territoryCos - territoryOffset.y * territorySin) / ${MUSIC_LIQUID_PROOF.axes[0]},
+              (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
+            );
+            float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal))) * uLiquidWeight;
+            float pressurePhase = fract(territoryLocal.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uMotion);
+            float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 3.4);
+            float liquidState = territory * (0.7 + pressureBody * 0.3);
+            vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
+            vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
+            vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
+            float liquidVein = sin(territoryLocal.y * 13.0 - pressurePhase * 9.0 + sin(territoryLocal.x * 5.0));
+            vec3 liquidColor = mix(liquidDeep, liquidNacre, pressureBody * 0.84);
+            liquidColor = mix(liquidColor, liquidPearl, smoothstep(0.64, 0.98, liquidVein) * pressureBody * 0.52);
+            color = mix(color, liquidColor, liquidState * 0.94);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
           }
         `,
-  }), [reducedMotion]);
+  }), [musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uLiquidWeight.value = musicLiquidProof ? 1 : 0;
   });
 
   return (
@@ -558,6 +619,128 @@ function Ground({ reducedMotion }: { reducedMotion: boolean }) {
       rotation={[-Math.PI / 2, 0, 0]}
     />
   );
+}
+
+function createLiquidTerritoryGeometry() {
+  const geometry = new THREE.BufferGeometry();
+  const positions: number[] = [];
+  const localCoordinates: number[] = [];
+  const indices: number[] = [];
+  const rings = 18;
+  const segments = 72;
+  const cosine = Math.cos(MUSIC_LIQUID_PROOF.rotation);
+  const sine = Math.sin(MUSIC_LIQUID_PROOF.rotation);
+
+  for (let ring = 0; ring <= rings; ring += 1) {
+    const radius = ring / rings;
+    const count = ring === 0 ? 1 : segments;
+    for (let segment = 0; segment < count; segment += 1) {
+      const angle = ring === 0 ? 0 : (segment / segments) * Math.PI * 2;
+      const localX = Math.cos(angle) * radius;
+      const localY = Math.sin(angle) * radius;
+      const dx = localX * MUSIC_LIQUID_PROOF.axes[0] * cosine
+        + localY * MUSIC_LIQUID_PROOF.axes[1] * sine;
+      const dz = -localX * MUSIC_LIQUID_PROOF.axes[0] * sine
+        + localY * MUSIC_LIQUID_PROOF.axes[1] * cosine;
+      const x = MUSIC_LIQUID_PROOF.center[0] + dx;
+      const z = MUSIC_LIQUID_PROOF.center[1] + dz;
+      const y = GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.06;
+      positions.push(x, y, z);
+      localCoordinates.push(localX, localY);
+    }
+  }
+
+  const ringStart = (ring: number) => 1 + (ring - 1) * segments;
+  for (let segment = 0; segment < segments; segment += 1) {
+    indices.push(0, ringStart(1) + segment, ringStart(1) + ((segment + 1) % segments));
+  }
+  for (let ring = 1; ring < rings; ring += 1) {
+    const inner = ringStart(ring);
+    const outer = ringStart(ring + 1);
+    for (let segment = 0; segment < segments; segment += 1) {
+      const next = (segment + 1) % segments;
+      indices.push(
+        inner + segment,
+        outer + segment,
+        outer + next,
+        inner + segment,
+        outer + next,
+        inner + next,
+      );
+    }
+  }
+
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('aTerritory', new THREE.Float32BufferAttribute(localCoordinates, 2));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  geometry.computeBoundingSphere();
+  return geometry;
+}
+
+function LiquidTerritorySurface({ reducedMotion }: { reducedMotion: boolean }) {
+  const geometry = useMemo(() => createLiquidTerritoryGeometry(), []);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    depthTest: true,
+    side: THREE.DoubleSide,
+    blending: THREE.NormalBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      attribute vec2 aTerritory;
+      varying vec2 vTerritory;
+      varying float vRipple;
+      void main() {
+        vTerritory = aTerritory;
+        vec3 transformed = position;
+        float travel = aTerritory.x * 7.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 2.4} * uMotion;
+        float ripple = sin(travel + sin(aTerritory.y * 8.0) * 0.8);
+        ripple += sin(travel * 1.73 - aTerritory.y * 10.0) * 0.36;
+        float edge = 1.0 - smoothstep(0.7, 1.0, length(aTerritory));
+        transformed.y += ripple * 0.055 * edge;
+        vRipple = ripple;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec2 vTerritory;
+      varying float vRipple;
+      void main() {
+        float distanceFromCenter = length(vTerritory);
+        float edge = 1.0 - smoothstep(0.76, 1.0, distanceFromCenter);
+        float phase = fract(vTerritory.x * 0.24 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.16} * uMotion);
+        float pressure = pow(max(0.0, sin(phase * 3.14159265)), 3.4);
+        float recovery = pow(max(0.0, sin(fract(phase + ${MUSIC_LIQUID_PROOF.recoveryTail}) * 3.14159265)), 7.0);
+        float vein = sin(vTerritory.y * 16.0 - phase * 12.0 + sin(vTerritory.x * 7.0));
+        float caustic = smoothstep(0.48, 0.98, vein) * pressure;
+        vec3 deep = vec3(0.08, 0.15, 0.38);
+        vec3 nacre = vec3(0.32, 0.72, 0.84);
+        vec3 pearl = vec3(0.94, 0.68, 0.9);
+        vec3 color = mix(deep, nacre, pressure * 0.88);
+        color = mix(color, pearl, caustic * 0.7 + max(vRipple, 0.0) * 0.08);
+        float boundary = smoothstep(0.78, 0.9, distanceFromCenter)
+          * (1.0 - smoothstep(0.9, 1.0, distanceFromCenter));
+        color = mix(color, pearl, boundary * 0.3);
+        float alpha = edge * (0.3 + pressure * 0.58 + recovery * 0.16);
+        gl_FragColor = vec4(color, alpha);
+      }
+    `,
+  }), [reducedMotion]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
+  return <mesh geometry={geometry} material={material} renderOrder={2} />;
 }
 
 function createStreamGeometry() {
@@ -1758,8 +1941,10 @@ function AdaptivePixelRatio() {
 
 const PianoClearingScene = memo(function PianoClearingScene({
   reducedMotion,
+  musicLiquidProof,
 }: {
   reducedMotion: boolean;
+  musicLiquidProof: boolean;
 }) {
   return (
     <>
@@ -1775,10 +1960,11 @@ const PianoClearingScene = memo(function PianoClearingScene({
         decay={1.7}
       />
       <DistantLandscape />
-      <Ground reducedMotion={reducedMotion} />
+      <Ground reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />
+      {musicLiquidProof ? <LiquidTerritorySurface reducedMotion={reducedMotion} /> : null}
       <Stream reducedMotion={reducedMotion} />
       <StoneViaduct />
-      <GrassField reducedMotion={reducedMotion} />
+      <GrassField reducedMotion={reducedMotion} musicLiquidProof={musicLiquidProof} />
       <ValleyDetails />
       <RavineAccents />
       <Suspense fallback={null}>
@@ -1971,7 +2157,11 @@ function PracticeInstruments() {
   );
 }
 
-export default function PianoClearingProof() {
+export default function PianoClearingProof({
+  musicLiquidProof = false,
+}: {
+  musicLiquidProof?: boolean;
+}) {
   const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -1993,6 +2183,7 @@ export default function PianoClearingProof() {
     <main
       className={styles.world}
       data-piano-clearing-proof=""
+      data-music-liquid-proof={musicLiquidProof ? 'one-territory' : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
       data-cloud-streaks="procedural-wisps"
@@ -2019,7 +2210,10 @@ export default function PianoClearingProof() {
           far: 145,
         }}
       >
-        <PianoClearingScene reducedMotion={reducedMotion} />
+        <PianoClearingScene
+          reducedMotion={reducedMotion}
+          musicLiquidProof={musicLiquidProof}
+        />
       </Canvas>
       <div aria-hidden="true" className={styles.cloudStreaks} />
       <div aria-hidden="true" className={styles.atmosphere} />
@@ -2028,8 +2222,8 @@ export default function PianoClearingProof() {
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
       <p className={styles.proofLabel}>
-        Environmental proof 84
-        <strong>Dusk Refrain</strong>
+        {musicLiquidProof ? 'Material proof ML2-ML3' : 'Environmental proof 84'}
+        <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
       </p>
     </main>
   );

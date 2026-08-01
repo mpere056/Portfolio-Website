@@ -7,11 +7,11 @@ Last updated: 2026-07-31
 | Field | Value |
 | --- | --- |
 | Package | `ART-16` Piano clearing Home world |
-| Lifecycle | in-progress; checkpoints `A-D` accepted for sequencing, `E0` verified, `E1` packet in-review |
+| Lifecycle | in-progress; checkpoints `A-D` accepted for sequencing, `E0` verified, Liquid Landscape `ML1` implemented and `ML2/ML3` candidate |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, supporting `CAP-KG-008` |
-| Work item | `WI-ART-16-01` checkpoint `E1` |
+| Work item | `WI-ART-16-01` checkpoint `E2/ML3` |
 | Implementation | Optimized `Dusk Refrain` clearing plus verified semantic one-owner transition controller, lazy module/runtime contract, deterministic disposal, diagnostics, canonical Home doorway, and About presentation route |
-| Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` About deck |
+| Exposure | Canonical `/`; no-index `/home-world-proof` rollback/review route; no-index `/presentation` About deck; private no-index `/music-liquid-proof` candidate |
 | Deployment | Visual baseline `5313e93`; transition foundation `b0018cb` and tracking `d53a5cd` pushed to `main` |
 
 ## EV-ART-16-01: Proof-Derived Landmark Candidate
@@ -255,11 +255,37 @@ Last updated: 2026-07-31
 
 | Field | Value |
 | --- | --- |
-| Status | in-review |
+| Status | superseded |
 | Type | creative-review / runtime-brief |
 | Claim | A Music preview can read causally through piano coherence, embedded grass phrases, a delayed river reply, and one restrained horizon aperture without becoming a waveform overlay or selected world. |
 | Artifact | [Keyframe and two-page-at-most review packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) |
 | Runtime boundary | Existing piano, grass, and water shaders plus at most one aperture draw; no textures, full-screen passes, added scheduler, duplicated geometry, or second canvas. |
-| Review gate | Mark chooses `A`, `B`, or `C`; runtime implementation is blocked until the packet is accepted. |
+| Review gate | Superseded after Mark chose to establish the drastic selected-world endpoint before deriving hover. The packet remains useful as a restrained hover reference only. |
 
-The next exact action is Mark's `A/B/C` review of EV-ART-16-18. After acceptance, implement only the bounded Music preview and stop before the selected Resonant Meadow.
+## EV-ART-16-19: Liquid Landscape Performance-First Prototype Plan
+
+| Field | Value |
+| --- | --- |
+| Status | accepted |
+| Type | direction-decision / implementation-plan / performance-boundary |
+| Claim | The drastic Liquid Landscape direction is worth testing if the first implementation uses an analytic, bounded illusion rather than fluid simulation and stops before full-world expansion. |
+| Artifact | [Music Liquid Landscape Proof Plan](../implementation-plans/24-Music-Liquid-Landscape-Proof.md) |
+| Scope | One private territory beside the piano; existing grass, terrain, river, piano, camera, canvas, scheduler, and DPR systems; autonomous silent motion; future audio-compatible parameters. |
+| Runtime boundary | No fluid simulation, duplicate scene, full-screen pass, CPU per-blade loop, or neutral-Home cost. First proof prefers `+3` and permits at most `+4` draw calls, one small lookup texture, and less than `1 MB` compressed prototype assets. |
+| Acceptance | Mark selected Liquid Landscape as the preferred drastic concept and approved trying the performance-first approach. This accepts prototype work only, not the full selected Music world. |
+| Next gate | Capture `ML0`, build the false-color territory diagnostic, complete `ML1-ML6`, and stop for creative plus slower-device review. |
+
+## EV-ART-16-20: One-Territory Liquid Landscape Candidate
+
+| Field | Value |
+| --- | --- |
+| Status | candidate |
+| Type | implementation-test / build / browser-flow / visual-review |
+| Claim | One bounded meadow territory can read as autonomous grass-to-liquid metamorphosis without fluid simulation, a second canvas, a full-screen pass, or neutral-Home cost. |
+| Scope | Private no-index `/music-liquid-proof` opts the existing clearing into one analytic ellipse. Existing grass and ground shaders plus one terrain-hugging surface mesh share one traveling pressure, recovery, caustic, and restrained-ripple field. Canonical `/` and `/home-world-proof` remain opt-out by default. |
+| Runtime boundary | One added surface draw call, no render target, no EffectComposer, no CPU per-blade updates, no runtime geometry rebuilding, and reduced motion freezes material travel. Existing adaptive DPR and hidden-tab behavior remain inherited. |
+| Automated evidence | Pure territory/budget tests, route/source isolation, lifecycle, and planning integrity pass: 4 focused files / 26 tests. TypeScript, focused ESLint, 61-node / 28-relationship content validation, and the clean 42-page Next.js production build pass; `/music-liquid-proof` is statically generated. |
+| Browser evidence | The first local route render showed the complete scene with zero console errors. Its material read was too subtle, so the persistent liquid base and moving pressure/recovery contrast were strengthened. The strengthened pass still requires direct visual review. |
+| Acceptance boundary | `ML1` is implemented; `ML2/ML3` remain candidates. Local pointer response, piano/river reply, measured slower-device performance, fallback review, and selected-world expansion are not accepted or complete. |
+
+The next exact action is direct review of `/music-liquid-proof`, then renderer-metric capture and `ML4` local response. Full selected-world expansion and hover derivation remain blocked until `ML6` passes.

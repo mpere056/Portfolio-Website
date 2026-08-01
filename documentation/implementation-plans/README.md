@@ -8,9 +8,9 @@ This folder turns `documentation/Comprehensive-Website-Vision.md` into coordinat
 
 The comprehensive vision remains the product and design source of truth. These documents describe sequencing, architecture, work breakdown, dependencies, validation, and decision gates.
 
-Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. Canonical Home uses one optimized outdoor piano clearing with a seated pianist and three practice instruments. The non-visual transition foundation is verified, and the Quiet Phrase Fields Music preview packet is in creative review.
+Current checkpoint: the five-anchor and complete proof-world compositor directions are rejected. Canonical Home uses one optimized outdoor piano clearing with a seated pianist and three practice instruments. The non-visual transition foundation is verified. A private no-index Liquid Landscape route now contains one bounded `ML2/ML3` candidate; canonical Home remains unchanged and no production Music runtime is registered.
 
-Current delivery order: preserve the accepted clearing, retain the verified dominant-world lifecycle, review [Quiet Phrase Fields](../art-direction/2026-07-31-music-preview-packet/REVIEW.md), build its preview and selected world as separate checkpoints, then build Life Systems and Play sequentially before project reveal. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the parent execution plan, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) is the detailed next-step plan, and [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
+Current delivery order: preserve the accepted clearing and verified dominant-world lifecycle; execute the [Liquid Landscape proof](24-Music-Liquid-Landscape-Proof.md) from one private territory through a measured slower-device gate; expand the selected Music world only if that proof passes; derive hover from the accepted runtime; then build Life Systems and Play sequentially before project reveal. [Piano Clearing Home](22-Piano-Clearing-Home-World.md) is the parent plan, [Home Practice Worlds And Transitions](23-Home-Practice-Worlds-And-Transitions.md) owns cross-world sequencing, and [Plan 21](21-Home-Practice-World-And-Attention-Compositor.md) is historical.
 
 ## Document Authority
 
@@ -78,6 +78,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 | `21-Home-Practice-World-And-Attention-Compositor.md` | Rejected five-territory and full proof-world compositor history | Superseded by Plan `22` |
 | `22-Piano-Clearing-Home-World.md` | Single outdoor clearing, piano anchor, future pianist/screens/environment states, and staged acceptance | Active current execution plan |
 | `23-Home-Practice-Worlds-And-Transitions.md` | Persistent clearing substrate, transition grammar, three 3D world briefs, runtime lifecycle, content gates, and exact sequence | Active companion and next-step plan |
+| `24-Music-Liquid-Landscape-Proof.md` | Simulation-free grass-to-liquid metamorphosis proof, silent score, shader ownership, quality tiers, budgets, tests, and stop/go gate | Active exact restart plan |
 | `2026-07-26-Piano-Clearing-Home-Reset-Decision.md` | Single-clearing composition, later interaction model, continuity, and performance boundaries | Approved decision |
 | `2026-07-24-Homepage-Practice-World-And-Routing-Decision.md` | Historical five-territory Home decision; four-practice taxonomy retained | Superseded in part |
 | `2026-07-20-Pervasive-Ambient-Worlds-Implementation-Plan.md` | Ambient participation contract, decomposed asset production, coordinated scene clock, route briefs, diagnostics, and proof sequence | Retained proof foundation; Museum-only integration superseded by `ART-16` |
@@ -104,7 +105,7 @@ An idea to revisit later. It is recorded without detailed implementation plannin
 
 | Question | Read first | Then read |
 | --- | --- | --- |
-| What should we build next? | `23-Home-Practice-Worlds-And-Transitions.md` | `22-Piano-Clearing-Home-World.md` and `../implementation-work/active/WI-ART-16-01.md` |
+| What should we build next? | `24-Music-Liquid-Landscape-Proof.md` | `23-Home-Practice-Worlds-And-Transitions.md`, `22-Piano-Clearing-Home-World.md`, and `../implementation-work/active/WI-ART-16-01.md` |
 | Why are we building it? | `12-Traceability-Matrix.md` | Comprehensive Website Vision |
 | How do systems exchange data and state? | `00-System-Architecture-And-Interfaces.md` | Owning workstream plan |
 | What decisions are unresolved? | `11-Decision-Register.md` | Relevant gated plan |

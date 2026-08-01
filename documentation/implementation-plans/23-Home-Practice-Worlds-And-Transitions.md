@@ -13,7 +13,7 @@ Last updated: 2026-07-31
 | Packages | `EXP-08`, `ART-16`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-018`, `CAP-ART-019`, `CAP-PRJ-009` |
 | Current release | `5313e93` accepted visual baseline; `b0018cb` verified transition foundation |
-| Exact next gate | Review the Quiet Phrase Fields Music preview packet; no runtime or selected world yet |
+| Exact next gate | Review the private `ML2/ML3` Liquid Landscape candidate, capture metrics, and complete `ML4-ML6`; expand the selected world only after its creative and performance gate |
 
 ## Purpose
 
@@ -156,28 +156,23 @@ Old proof assets may enter a contact sheet or material experiment. They are not 
 
 ## Practice World Briefs
 
-### Music & Performance: Resonant Meadow
+### Music & Performance: Liquid Landscape
 
-**Thesis:** Performance changes the environment by transmitting felt structure through it.
+**Thesis:** Performance changes the state of matter. Unequal meadow territories become shallow moving material, carry pressure and light, remember their former grass, and reform without requiring audible music.
 
 **Permanent continuity:** The piano, pianist, foreground grass, river, bridge, valley, and open sky remain immediately recognizable.
 
-**Preview sequence:**
-
-- nearby piano particles become more coherent without simply becoming brighter;
-- a restrained response travels through the closest grass in phrases rather than a circular cursor shockwave;
-- river highlights repeat the phrase later, creating call and response;
-- one distant acoustic form or light aperture becomes visible on the horizon.
+**Preview sequence:** Defined only after the selected runtime passes `ML6`. It will expose a partial arrival of the same nearest territory, not a separate waveform or overlay composition.
 
 **Selected world:**
 
-- the meadow becomes an outdoor resonant landscape rather than a conventional concert stage;
-- grass, river, clouds, and distant forms each carry a different musical timescale;
-- translucent acoustic shells, suspended strings, or resonant apertures create depth without filling the view with notation;
+- one to three unequal territories transform existing grass into moving nacre-like liquid and reform it behind a travelling pressure body;
+- grass, territory pressure, river, clouds, piano response, and distant light each keep independent timescales driven by an authored silent score;
+- material boundaries exchange color, reflectance, thickness, and memory without becoming a full-screen fluid simulation;
 - the pianist remains the emotional anchor and About entry;
 - performances, arrangements, lessons, compositions, sound resources, and musical tools later occupy distinct landmarks.
 
-**Avoid:** giant music notes, equalizer bars across the whole landscape, a nightclub palette, literal DAW chrome, or every object pulsing to one beat.
+**Avoid:** giant music notes, equalizer bars, a nightclub palette, literal DAW chrome, global recoloring, UV-scrolling liquid plates, full fluid simulation, or every object pulsing to one beat.
 
 **Why first:** It changes the fewest structural assumptions, tests continuity around the accepted piano, and can validate the complete transition runtime before more geometrically ambitious worlds.
 
@@ -278,8 +273,10 @@ Required behavior:
 | Step | State | Deliverable | Completion signal |
 | --- | --- | --- | --- |
 | `E0` Transition foundation | verified | practice-world contract, dominant-world lifecycle, semantic controls, URL draft, and diagnostic overlay behind development flag | 15 focused and 251 aggregate tests prove one owner, predictable retreat/disposal, no hidden runtimes, and unchanged neutral composition |
-| `E1` Music preview packet | in-review | [Quiet Phrase Fields](../art-direction/2026-07-31-music-preview-packet/REVIEW.md): keyframe, causal timing, layer ownership, fallback, and hard preview budget | Mark chooses `A`, `B`, or `C` before preview runtime work |
-| `F1` Music selected world | not-started | complete Resonant Meadow selected state using the same preview module | continuity, Back/refresh, calm, failure, performance, and Mark review pass |
+| `E1` Music liquid-material plan | accepted-for-prototype | [Liquid Landscape proof plan](24-Music-Liquid-Landscape-Proof.md): local metamorphosis grammar, runtime ownership, silent score, quality tiers, test evidence, and hard budget | Prototype scope is fixed; no full-world expansion yet |
+| `E2` Music bounded material proof | in-progress | One private territory implements the shared mask plus candidate grass/ground/surface metamorphosis; `ML4-ML6` remain | Creative read and Balanced-tier performance pass on a previously laggy computer |
+| `E3` Music selected-world runtime | blocked by accepted `E2` | expand the proven system to at most three unequal territories on the shared clearing substrate | continuity, Back/refresh, calm, failure, performance, and Mark review pass |
+| `E4` Music hover derivation | blocked by accepted `E3` | weighted middle state extracted from the accepted selected world using the same module, geometry, and uniforms | proximity reads as a partial arrival of Liquid Landscape and selection continues without a visual restart |
 | `F2` Music content decision | waiting-for-feedback | first-class music content nodes or curated non-project depth decision | no empty or misleading project landmark surface |
 | `G1` Life packet | not-started | Living Systems Garden preview and selected state | archive/observatory techniques feel native to the valley and three truthful landmark hosts exist |
 | `G2` Play packet | not-started | Lantern Ecology preview and selected state | coral/ecology techniques feel native to the valley and project-family landmark hosts exist |
@@ -296,7 +293,7 @@ Use named states only: `not-started`, `designing`, `prototype`, `in-review`, `re
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Shared clearing | verified | n/a | n/a | implemented | verified | accepted-for-sequencing | preserve `5313e93` visual parity |
 | Transition foundation | verified | verified controller | verified controller | verified disposal contract | verified zero added runtime | n/a | `b0018cb`; keep registry empty until an accepted packet has a module |
-| Music | verified piano anchor | packet in-review | not-started | specified in packet | preview budget specified | in-review | collect `A/B/C`, revise if needed, then implement only the accepted preview |
+| Music | verified piano anchor | blocked by selected endpoint | private one-territory `ML2/ML3` candidate; production runtime not registered | tiers and failure path specified in Plan `24` | focused implementation evidence captured; renderer metrics and slower-device evidence open | prototype approved | review/tune one territory, complete `ML4-ML6`, then expand selected state and derive hover |
 | Life Systems | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | reuse proof techniques only after Music validates runtime |
 | Play & Community | verified instrument anchor | not-started | not-started | not-started | not-started | not-started | rebuild ecology as native 3D, not a coral plate |
 | Project landmarks | compatibility routes only | n/a | blocked | not-started | not-started | not-started | resolve Music content model and accept three worlds first |
@@ -351,20 +348,21 @@ Before a practice moves from `prototype` to `in-review`, record:
 
 ## Decisions Still Requiring Mark
 
-These are feedback gates for `E1` and later work:
+These are feedback gates after the bounded `E2/ML6` proof and during later work:
 
 - final Music content model: project nodes versus curated music depth;
-- first Music preview keyframe and dominant gesture;
+- Liquid Landscape's complete territory count, coverage, and intensity after the one-territory `ML6` proof;
+- final hover midpoint only after the selected endpoint is accepted and implemented;
 - whether selected practice canonical URLs ship first as `/work/[practice]` or a temporary query-backed state;
 - final visual packets for Life Systems and Play after the Music runtime proves the grammar;
 - eventual `/projects` compatibility or redirect behavior after all project paths pass.
 
 ## Exact Resume Point
 
-Checkpoint `E0` is verified at `b0018cb`. The [Quiet Phrase Fields packet](../art-direction/2026-07-31-music-preview-packet/REVIEW.md) is the active `E1` review surface. Do not build a complete practice world yet.
+Checkpoint `E0` is verified at `b0018cb`. Mark selected Liquid Landscape as the most promising drastic Music direction and approved a performance-first attempt. [Plan 24](24-Music-Liquid-Landscape-Proof.md) is the active `E1/E2` restart surface. Quiet Phrase Fields is retained as a superseded sequencing study, and the crystal-organism Resonant Meadow draft is not an accepted endpoint.
 
-1. Collect Mark's `A`, `B`, or `C` review decision on the keyframe and causal sequence.
-2. If requested, revise only that packet until the Music preview direction is accepted.
-3. Preserve the empty production registry and exact neutral Home during review.
-4. After acceptance, register one lazy Music module and implement piano contact, grass travel, river reply, and the approved horizon behavior within the packet budget.
-5. Stop for visual/performance review before any selected Resonant Meadow work.
+1. Preserve the empty production registry and exact neutral Home while capturing the `ML0` baseline.
+2. Inspect existing grass, terrain, river, piano, scheduler, and DPR seams before editing runtime code.
+3. Implement only the development false-color territory diagnostic, then one bounded grass-to-liquid territory.
+4. Stop at `ML6` for visual and slower-device review; do not disguise failure by removing grass or shrinking the accepted Home composition.
+5. If accepted, expand the same module to the complete selected state, then derive hover as a weighted middle state rather than building a separate composition.
