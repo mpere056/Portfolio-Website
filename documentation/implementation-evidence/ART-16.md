@@ -330,3 +330,15 @@ The next exact action is measured `ML5` observation followed by the three-captur
 | Acceptance boundary | `ML6-R1` is a revision candidate, not an accepted selected Music world. Mark review and slower-device evidence remain open. |
 
 The next exact action is direct review of the expanded foreground. If accepted, measure the Balanced tier before any multi-territory selected-world expansion or hover derivation.
+
+## EV-ART-16-24: Organic Liquid Current Revision
+
+| Field | Value |
+| --- | --- |
+| Claim | The broad `ML6-R1` territory solved visibility, but its single periodic pressure phase produced uniformly spaced bright stripes that did not read as liquid. |
+| Scope | Private `/music-liquid-proof` only. `ML6-R2` preserves the broad territory, all grass, and the existing draw budget while replacing the periodic phase across grass, ground, and surface with one coherent field of warped broad bodies, crossing currents, and sparse irregular nacre ridges. |
+| Automated evidence | `tests/musicLiquidLandscape.test.ts` and `tests/pianoClearingProof.test.ts`: 13 tests pass. TypeScript, focused ESLint, content validation (61 nodes / 28 relationships), and the 42-route production build pass. |
+| Visual evidence | The first local `ML6-R2` capture still exposed curved but overly continuous lanes, so it was rejected before deployment and the field was revised again to domain-warped fluid cells. Final direct visual acceptance remains open because the local browser became unavailable before the second capture. The review must include multiple moments and the brightest phase. |
+| Acceptance boundary | `ML6-R2` remains a revision candidate. It is not an accepted Music world until Mark confirms the field remains organic throughout its cycle and slower-device evidence passes. |
+
+The next exact action is local multi-moment visual QA, followed by deployment for direct review if the striped state no longer appears.

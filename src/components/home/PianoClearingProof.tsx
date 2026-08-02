@@ -369,14 +369,17 @@ function GrassField({
         );
         float territoryDistance = length(territoryLocal);
         float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance)) * uLiquidWeight;
-        float pressurePhase = fract(territoryLocal.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uLiquidMotion);
-        float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 2.4);
-        float crossPressure = pow(max(0.0, sin(fract(
-          territoryLocal.y * 0.36 + territoryLocal.x * 0.12
-          - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uLiquidMotion
-          + 0.38
-        ) * 3.14159265)), 3.2);
-        float trailingMemory = pow(max(0.0, sin(fract(pressurePhase + 0.2) * 3.14159265)), 4.0);
+        float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
+        vec2 pressureUv = territoryLocal;
+        pressureUv.x -= liquidTime * 0.11;
+        pressureUv.y += sin(territoryLocal.x * 5.1 + liquidTime * 0.19) * 0.17;
+        pressureUv.x += sin(territoryLocal.y * 6.7 - liquidTime * 0.13) * 0.09;
+        float pressureField = sin(pressureUv.x * 4.3 + sin(pressureUv.y * 5.7) * 1.15) * 0.5;
+        pressureField += sin(pressureUv.y * 7.1 - pressureUv.x * 2.4 + liquidTime * 0.17) * 0.3;
+        pressureField += sin((pressureUv.x + pressureUv.y) * 10.9 - liquidTime * 0.09) * 0.2;
+        float pressureBody = smoothstep(0.08, 0.72, pressureField);
+        float crossPressure = smoothstep(0.16, 0.76, -pressureField + sin(pressureUv.x * 3.2) * 0.22);
+        float trailingMemory = smoothstep(0.48, 0.86, abs(pressureField));
         float localAttention = uLiquidAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
         float liquidState = territory * clamp(
@@ -628,6 +631,29 @@ function Ground({
           varying float vSlope;
           varying float vDepth;
           varying vec3 vWorld;
+          float liquidHash(vec2 point) {
+            return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
+          }
+          float liquidNoise(vec2 point) {
+            vec2 cell = floor(point);
+            vec2 local = fract(point);
+            vec2 curve = local * local * (3.0 - 2.0 * local);
+            return mix(
+              mix(liquidHash(cell), liquidHash(cell + vec2(1.0, 0.0)), curve.x),
+              mix(liquidHash(cell + vec2(0.0, 1.0)), liquidHash(cell + vec2(1.0)), curve.x),
+              curve.y
+            );
+          }
+          float liquidFbm(vec2 point) {
+            float value = 0.0;
+            float amplitude = 0.56;
+            for (int octave = 0; octave < 3; octave++) {
+              value += liquidNoise(point) * amplitude;
+              point = mat2(1.6, 1.2, -1.2, 1.6) * point + vec2(1.7, 3.1);
+              amplitude *= 0.48;
+            }
+            return value;
+          }
           void main() {
             vec4 worldPosition = modelMatrix * vec4(position, 1.0);
             vec4 viewPosition = viewMatrix * worldPosition;
@@ -701,13 +727,18 @@ function Ground({
               (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
             );
             float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal))) * uLiquidWeight;
-            float pressurePhase = fract(territoryLocal.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uMotion);
-            float pressureBody = pow(max(0.0, sin(pressurePhase * 3.14159265)), 2.4);
-            float crossPressure = pow(max(0.0, sin(fract(
-              territoryLocal.y * 0.36 + territoryLocal.x * 0.12
-              - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uMotion
-              + 0.38
-            ) * 3.14159265)), 3.2);
+            float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
+            vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
+            pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
+            vec2 warp = vec2(
+              liquidFbm(pressureUv * 0.72 + vec2(0.0, liquidTime * 0.06)),
+              liquidFbm(pressureUv * 0.72 + vec2(4.6, -liquidTime * 0.045))
+            ) - 0.5;
+            vec2 organicUv = pressureUv + warp * 1.05;
+            float pressureField = liquidFbm(organicUv);
+            float detailField = liquidFbm(organicUv * 1.9 + vec2(-liquidTime * 0.08, 7.3));
+            float pressureBody = smoothstep(0.43, 0.77, pressureField * 0.76 + detailField * 0.24);
+            float crossPressure = smoothstep(0.52, 0.82, liquidFbm(organicUv * 1.27 + vec2(8.1, -3.4)));
             float localAttention = uLiquidAttention
               * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
             float liquidState = territory * clamp(
@@ -718,9 +749,8 @@ function Ground({
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
-            float liquidVein = sin(
-              territoryLocal.y * 17.0 - pressurePhase * 12.0
-              + sin(territoryLocal.x * 7.0 + uTime * 0.18 * uMotion)
+            float liquidVein = 1.0 - abs(
+              liquidFbm(organicUv * 2.35 + vec2(liquidTime * 0.06, -liquidTime * 0.1)) * 2.0 - 1.0
             );
             vec3 liquidColor = mix(
               liquidDeep,
@@ -730,8 +760,8 @@ function Ground({
             liquidColor = mix(
               liquidColor,
               liquidPearl,
-              smoothstep(0.54, 0.98, liquidVein)
-                * (pressureBody * 0.48 + crossPressure * 0.3)
+              smoothstep(0.78, 0.98, liquidVein)
+                * (pressureBody * 0.34 + crossPressure * 0.2)
                 + localAttention * 0.26
             );
             color = mix(color, liquidColor, liquidState * 0.94);
@@ -875,28 +905,54 @@ function LiquidTerritorySurface({
       uniform float uAttention;
       varying vec2 vTerritory;
       varying float vRipple;
+      float liquidHash(vec2 point) {
+        return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
+      }
+      float liquidNoise(vec2 point) {
+        vec2 cell = floor(point);
+        vec2 local = fract(point);
+        vec2 curve = local * local * (3.0 - 2.0 * local);
+        return mix(
+          mix(liquidHash(cell), liquidHash(cell + vec2(1.0, 0.0)), curve.x),
+          mix(liquidHash(cell + vec2(0.0, 1.0)), liquidHash(cell + vec2(1.0)), curve.x),
+          curve.y
+        );
+      }
+      float liquidFbm(vec2 point) {
+        float value = 0.0;
+        float amplitude = 0.56;
+        for (int octave = 0; octave < 3; octave++) {
+          value += liquidNoise(point) * amplitude;
+          point = mat2(1.6, 1.2, -1.2, 1.6) * point + vec2(1.7, 3.1);
+          amplitude *= 0.48;
+        }
+        return value;
+      }
       void main() {
         float distanceFromCenter = length(vTerritory);
         float edge = 1.0 - smoothstep(0.76, 1.0, distanceFromCenter);
-        float phase = fract(vTerritory.x * 0.42 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.24} * uMotion);
-        float pressure = pow(max(0.0, sin(phase * 3.14159265)), 2.4);
-        float crossPhase = fract(
-          vTerritory.y * 0.36 + vTerritory.x * 0.12
-          - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 0.13} * uMotion
-          + 0.38
+        float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
+        vec2 pressureUv = vTerritory * vec2(2.15, 2.65);
+        pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
+        vec2 warp = vec2(
+          liquidFbm(pressureUv * 0.72 + vec2(0.0, liquidTime * 0.06)),
+          liquidFbm(pressureUv * 0.72 + vec2(4.6, -liquidTime * 0.045))
+        ) - 0.5;
+        vec2 organicUv = pressureUv + warp * 1.05;
+        float pressureField = liquidFbm(organicUv);
+        float detailField = liquidFbm(organicUv * 1.9 + vec2(-liquidTime * 0.08, 7.3));
+        float pressure = smoothstep(0.43, 0.77, pressureField * 0.76 + detailField * 0.24);
+        float crossPressure = smoothstep(0.52, 0.82, liquidFbm(organicUv * 1.27 + vec2(8.1, -3.4)));
+        float recovery = smoothstep(0.6, 0.86, detailField);
+        float vein = 1.0 - abs(
+          liquidFbm(organicUv * 2.35 + vec2(liquidTime * 0.06, -liquidTime * 0.1)) * 2.0 - 1.0
         );
-        float crossPressure = pow(max(0.0, sin(crossPhase * 3.14159265)), 3.2);
-        float recovery = pow(max(0.0, sin(fract(phase + ${MUSIC_LIQUID_PROOF.recoveryTail}) * 3.14159265)), 5.0);
-        float vein = sin(
-          vTerritory.y * 19.0 - phase * 14.0
-          + sin(vTerritory.x * 8.0 + uTime * 0.22 * uMotion)
-        );
-        float caustic = smoothstep(0.4, 0.98, vein)
-          * (pressure * 0.72 + crossPressure * 0.42);
+        float caustic = smoothstep(0.78, 0.98, vein)
+          * (pressure * 0.46 + crossPressure * 0.26);
         float localAttention = uAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(vTerritory, uPointer)));
         float attentionVein = smoothstep(0.38, 0.98, sin(
-          vTerritory.y * 22.0 - phase * 15.0 + vTerritory.x * 5.0
+          organicUv.y * 8.0 + organicUv.x * 5.0 - liquidTime * 0.38
         )) * localAttention;
         vec3 deep = vec3(0.08, 0.15, 0.38);
         vec3 nacre = vec3(0.32, 0.72, 0.84);
@@ -2520,7 +2576,7 @@ export default function PianoClearingProof({
     <main
       className={styles.world}
       data-piano-clearing-proof=""
-      data-music-liquid-proof={musicLiquidProof ? 'expanded-territory' : 'off'}
+      data-music-liquid-proof={musicLiquidProof ? 'organic-currents' : 'off'}
       data-music-liquid-quality={musicLiquidProof ? effectiveLiquidQuality : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
@@ -2564,7 +2620,7 @@ export default function PianoClearingProof({
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Material proof ML6-R1' : 'Environmental proof 84'}
+        {musicLiquidProof ? 'Material proof ML6-R2' : 'Environmental proof 84'}
         <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
       </p>
     </main>

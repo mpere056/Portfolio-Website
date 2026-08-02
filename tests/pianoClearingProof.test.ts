@@ -196,7 +196,7 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('color="#c89491"');
     expect(component).not.toContain('shadowMap');
     expect(component).toContain('musicLiquidProof = false');
-    expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'expanded-territory' : 'off'}");
+    expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'organic-currents' : 'off'}");
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {
