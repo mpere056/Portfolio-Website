@@ -106,6 +106,9 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain('float liquidFbm(vec2 point)');
     expect(component).toContain('vec2 organicUv = pressureUv + warp * 1.05');
     expect(component).toContain('float liquidVein = 1.0 - abs(');
+    expect(component).toContain('attribute float aMeadowMask');
+    expect(component).toContain('float elevatedMeadow = smoothstep');
+    expect(component).toContain('vec3 terrainLitLiquid = color * 0.34 + liquidColor * 0.76');
     expect(component).not.toContain('float pressurePhase = fract');
     expect(component).toContain('runtime.riverReply = THREE.MathUtils.damp');
     expect(component).toContain('data-music-liquid-quality');

@@ -42,8 +42,9 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `ML5` implementation candidate: Full/Balanced/Calm liquid tiers follow the existing sustained-FPS DPR governor, reduced motion holds a stable authored boundary, hidden tabs pause the canvas, and WebGL loss falls back to the neutral meadow. No grass was removed and no new render pass was added.
 - `ML6` review outcome: revise. The deployed local-response/adaptive work looked effectively unchanged at normal viewing distance and was not a useful visual review milestone.
 - `ML6-R1` review: revise. The expanded territory is visible and its calmer granular state is promising, but its bright periodic phase becomes uniformly striped.
-- `ML6-R2` candidate: the same grass/ground/surface territory now uses warped multi-axis currents and sparse irregular nacre ridges rather than a single periodic pressure phase. It retains one surface draw and all existing grass.
-- Next exact action: Mark reviews `ML6-R2` across several moments at rest and with local pointer attention. If it remains liquid-like without resolving into parallel lanes, capture comparable renderer metrics and one slower-device observation before any multi-territory or hover work.
+- `ML6-R2` review: revise. Organic currents removed the uniform lanes, but the broad liquid mask crossed the ravine, suppressed bridge-adjacent grass, and flattened the hill's material depth.
+- `ML6-R3` candidate: grass compression, ground material, surface displacement, and surface alpha now share one elevated-near-meadow mask. The ravine and bridge corridor keep their original world material, while liquid color inherits terrain lighting.
+- Next exact action: Mark reviews `ML6-R3` for hill contour, ravine depth, bridge separation, and organic motion across several moments before renderer metrics or any multi-territory work.
 
 ## Ordered Checkpoints
 
@@ -55,7 +56,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
 | `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
 | `E1` Music material direction | accepted-for-prototype | Liquid Landscape and its simulation-free, one-territory proof sequence are documented in Plan `24` |
-| `E2` Music bounded material proof | in-progress | `ML1` is implemented, `ML2/ML3` are accepted-for-sequencing, `ML4/ML5` remain technical candidates, `ML6-R1` was rejected for uniform striping, and organic-current `ML6-R2` is the active visible-review build on `/music-liquid-proof` |
+| `E2` Music bounded material proof | in-progress | `ML1` is implemented, `ML2/ML3` are accepted-for-sequencing, `ML4/ML5` remain technical candidates, `ML6-R1` was rejected for striping, `ML6-R2` for flattening the world, and terrain-conforming `ML6-R3` is active on `/music-liquid-proof` |
 | `F` Music selected environment | blocked by accepted `E2` | The proven module expands to at most three unequal territories with continuity and bounded lifecycle |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |

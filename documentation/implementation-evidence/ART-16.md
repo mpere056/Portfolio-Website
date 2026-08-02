@@ -342,3 +342,15 @@ The next exact action is direct review of the expanded foreground. If accepted, 
 | Acceptance boundary | `ML6-R2` remains a revision candidate. It is not an accepted Music world until Mark confirms the field remains organic throughout its cycle and slower-device evidence passes. |
 
 The next exact action is local multi-moment visual QA, followed by deployment for direct review if the striped state no longer appears.
+
+## EV-ART-16-25: Terrain-Conforming Liquid Boundary
+
+| Field | Value |
+| --- | --- |
+| Claim | `ML6-R2` removed periodic stripes but damaged the base world's spatial read by allowing the liquid territory to cross the ravine, suppress bridge-adjacent grass, and overwrite terrain shading. |
+| Scope | Private `/music-liquid-proof` only. `ML6-R3` adds one shared elevated-near-meadow mask to grass compression, ground material, liquid displacement, and surface alpha. The ravine and bridge corridor retain the neutral world, and liquid color blends with underlying terrain light rather than replacing it. |
+| Automated evidence | All 13 focused scene/material tests, TypeScript, focused lint, 61-node/28-relationship content validation, and the 42-route production build pass. Browser console review also caught and corrected a fragment-stage noise-function regression before deployment. |
+| Visual evidence | Local in-app-browser captures at both the default viewport and the reported `1090 x 900` shape confirm the ravine is recessed, the bridge crosses open space rather than the hill, and liquid remains on the elevated foreground meadow. Direct user acceptance and longer multi-moment review remain open. |
+| Acceptance boundary | `ML6-R3` is a revision candidate, not an accepted Music world. Spatial continuity and slower-device evidence remain open. |
+
+The next exact action is production build and deployment for direct review, followed by multi-moment observation of the terrain-conforming boundary.

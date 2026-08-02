@@ -102,7 +102,8 @@ These clocks must be phase-offset and locally scoped. Optional future audio maps
 | `ML5` Performance and calm | candidate; observation open | Existing DPR adaptation now also steps liquid motion through Full, Balanced, and Calm tiers; hidden tabs pause, reduced motion holds an authored stable boundary, and WebGL loss removes only the liquid territory. Grass count and scene composition remain unchanged | Sustained proof/neutral metrics and one slower-device observation remain before acceptance |
 | `ML6` Creative review | revise | The first deployed review was materially too similar to `ML2/ML3`: its local response and calm-tier work were not a useful visible milestone. Mark requested a genuinely visible continuation rather than another infrastructure-only review | Revise the same one-draw territory into a broad foreground material state before asking for review again |
 | `ML6-R1` Expanded material read | revise | The world-scale territory is now clearly visible and some calmer frames read well, but the dominant periodic pressure phase resolves into uniform parallel stripes at its bright extreme | Preserve the broad territory while replacing periodic bands with irregular currents |
-| `ML6-R2` Organic current field | candidate; review open | Grass, ground, and the existing surface draw now share an advected multi-axis interference field with independently warped broad bodies, cross-currents, and sparse ridged nacre highlights | The liquid keeps visible variation without resolving into evenly spaced lanes at any point in its cycle |
+| `ML6-R2` Organic current field | revise | Domain-warped cells removed the uniform stripes, but the expanded territory crossed the ravine, suppressed bridge-adjacent grass, and overwrote too much terrain shading, flattening the hill and bridge separation | Preserve organic currents while restoring the original world silhouette and depth cues |
+| `ML6-R3` Terrain-conforming currents | candidate; review open | One shared elevated-near-meadow mask now clips grass compression, ground material, displacement, and surface alpha away from the ravine; liquid color inherits underlying terrain light instead of replacing it | Hill contour, ravine depth, and bridge separation remain legible throughout the liquid cycle |
 | `MW1` Selected-world expansion | blocked by `ML6` | Expand to at most three territories and compose the full Music hierarchy | Selected world passes continuity, lifecycle, performance, and visual review |
 | `MW2` Hover derivation | blocked by `MW1` | Derive the partial hover state from the accepted module and uniforms | Hover continues into selection without a visual restart |
 
@@ -171,10 +172,10 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `ML6-R2` organic-current revision candidate; visual review open |
+| Current gate | `ML6-R3` terrain-conforming revision candidate; visual review open |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` opts into one territory; Music registry remains empty |
-| Next exact action | Review the organic current field across multiple moments at rest and under local attention; if no uniform striped phase appears, capture comparable neutral/proof renderer metrics and one slower-device observation before selected-world expansion |
+| Next exact action | Review hill contour, ravine depth, and bridge separation across multiple liquid moments; if the original world remains legible and no uniform striped phase appears, capture comparable renderer metrics and one slower-device observation |
 | Do not begin | Multiple independent territories, production selected-world registration, hover derivation, other worlds, or project landmarks |
 | Review packet | Three captures maximum: idle metamorphosis, local pointer response, reduced/failure state |
 

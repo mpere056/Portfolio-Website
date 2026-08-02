@@ -368,7 +368,10 @@ function GrassField({
           (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
         );
         float territoryDistance = length(territoryLocal);
-        float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance)) * uLiquidWeight;
+        float liquidRiverCenter = 0.7 - clamp((root.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
+        float elevatedMeadow = smoothstep(liquidRiverCenter + 4.8, liquidRiverCenter + 8.6, root.x);
+        float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance))
+          * elevatedMeadow * uLiquidWeight;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
         vec2 pressureUv = territoryLocal;
         pressureUv.x -= liquidTime * 0.11;
@@ -675,6 +678,29 @@ function Ground({
           varying float vSlope;
           varying float vDepth;
           varying vec3 vWorld;
+          float liquidHash(vec2 point) {
+            return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
+          }
+          float liquidNoise(vec2 point) {
+            vec2 cell = floor(point);
+            vec2 local = fract(point);
+            vec2 curve = local * local * (3.0 - 2.0 * local);
+            return mix(
+              mix(liquidHash(cell), liquidHash(cell + vec2(1.0, 0.0)), curve.x),
+              mix(liquidHash(cell + vec2(0.0, 1.0)), liquidHash(cell + vec2(1.0)), curve.x),
+              curve.y
+            );
+          }
+          float liquidFbm(vec2 point) {
+            float value = 0.0;
+            float amplitude = 0.56;
+            for (int octave = 0; octave < 3; octave++) {
+              value += liquidNoise(point) * amplitude;
+              point = mat2(1.6, 1.2, -1.2, 1.6) * point + vec2(1.7, 3.1);
+              amplitude *= 0.48;
+            }
+            return value;
+          }
           void main() {
             vec3 ravine = vec3(0.045, 0.06, 0.24);
             vec3 shadedGrass = vec3(0.12, 0.13, 0.38);
@@ -726,7 +752,10 @@ function Ground({
               (territoryOffset.x * territoryCos - territoryOffset.y * territorySin) / ${MUSIC_LIQUID_PROOF.axes[0]},
               (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
             );
-            float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal))) * uLiquidWeight;
+            float elevatedMeadow = smoothstep(riverCenter + 4.8, riverCenter + 8.6, vWorld.x)
+              * smoothstep(-1.5, 1.2, vHeight);
+            float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal)))
+              * elevatedMeadow * uLiquidWeight;
             float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
             vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
             pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
@@ -764,7 +793,8 @@ function Ground({
                 * (pressureBody * 0.34 + crossPressure * 0.2)
                 + localAttention * 0.26
             );
-            color = mix(color, liquidColor, liquidState * 0.94);
+            vec3 terrainLitLiquid = color * 0.34 + liquidColor * 0.76;
+            color = mix(color, terrainLitLiquid, liquidState * 0.72);
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
@@ -796,6 +826,7 @@ function createLiquidTerritoryGeometry() {
   const geometry = new THREE.BufferGeometry();
   const positions: number[] = [];
   const localCoordinates: number[] = [];
+  const meadowMasks: number[] = [];
   const indices: number[] = [];
   const rings = 18;
   const segments = 72;
@@ -815,9 +846,15 @@ function createLiquidTerritoryGeometry() {
         + localY * MUSIC_LIQUID_PROOF.axes[1] * cosine;
       const x = MUSIC_LIQUID_PROOF.center[0] + dx;
       const z = MUSIC_LIQUID_PROOF.center[1] + dz;
-      const y = GROUND_Y + pianoClearingTerrainHeight(x, z) + 0.06;
+      const terrainHeight = pianoClearingTerrainHeight(x, z);
+      const riverEdge = pianoClearingRiverCenterX(z) + pianoClearingRiverWidth(z);
+      const meadowDistance = x - riverEdge;
+      const meadowMask = THREE.MathUtils.smoothstep(meadowDistance, 2.4, 7.2)
+        * THREE.MathUtils.smoothstep(terrainHeight, -1.5, 1.2);
+      const y = GROUND_Y + terrainHeight + 0.045;
       positions.push(x, y, z);
       localCoordinates.push(localX, localY);
+      meadowMasks.push(meadowMask);
     }
   }
 
@@ -843,6 +880,7 @@ function createLiquidTerritoryGeometry() {
 
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
   geometry.setAttribute('aTerritory', new THREE.Float32BufferAttribute(localCoordinates, 2));
+  geometry.setAttribute('aMeadowMask', new THREE.Float32BufferAttribute(meadowMasks, 1));
   geometry.setIndex(indices);
   geometry.computeVertexNormals();
   geometry.computeBoundingSphere();
@@ -875,10 +913,13 @@ function LiquidTerritorySurface({
       uniform vec2 uPointer;
       uniform float uAttention;
       attribute vec2 aTerritory;
+      attribute float aMeadowMask;
       varying vec2 vTerritory;
       varying float vRipple;
+      varying float vMeadowMask;
       void main() {
         vTerritory = aTerritory;
+        vMeadowMask = aMeadowMask;
         vec3 transformed = position;
         float travel = aTerritory.x * 8.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 3.2} * uMotion;
         float ripple = sin(travel + sin(aTerritory.y * 8.0) * 0.8);
@@ -893,7 +934,7 @@ function LiquidTerritorySurface({
         transformed.y += (
           ripple * (0.075 + localAttention * 0.1)
           + slowSwell * 0.045
-        ) * edge;
+        ) * edge * aMeadowMask;
         vRipple = ripple;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
@@ -905,6 +946,7 @@ function LiquidTerritorySurface({
       uniform float uAttention;
       varying vec2 vTerritory;
       varying float vRipple;
+      varying float vMeadowMask;
       float liquidHash(vec2 point) {
         return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
       }
@@ -930,7 +972,7 @@ function LiquidTerritorySurface({
       }
       void main() {
         float distanceFromCenter = length(vTerritory);
-        float edge = 1.0 - smoothstep(0.76, 1.0, distanceFromCenter);
+        float edge = (1.0 - smoothstep(0.76, 1.0, distanceFromCenter)) * vMeadowMask;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
         vec2 pressureUv = vTerritory * vec2(2.15, 2.65);
         pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
@@ -2576,7 +2618,7 @@ export default function PianoClearingProof({
     <main
       className={styles.world}
       data-piano-clearing-proof=""
-      data-music-liquid-proof={musicLiquidProof ? 'organic-currents' : 'off'}
+      data-music-liquid-proof={musicLiquidProof ? 'terrain-conforming-organic' : 'off'}
       data-music-liquid-quality={musicLiquidProof ? effectiveLiquidQuality : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
@@ -2620,7 +2662,7 @@ export default function PianoClearingProof({
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Material proof ML6-R2' : 'Environmental proof 84'}
+        {musicLiquidProof ? 'Material proof ML6-R3' : 'Environmental proof 84'}
         <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
       </p>
     </main>
