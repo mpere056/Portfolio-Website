@@ -90,6 +90,18 @@ The world animates from an authored silent score with independent clocks:
 
 These clocks must be phase-offset and locally scoped. Optional future audio maps beat, bass, melody, and harmonic density into these existing values; it never becomes a second animation system.
 
+### World-specific physical laws
+
+Gallery studies must not read as one liquid mask with recolored accents. Each selected study owns a distinct material rule while retaining the same optimized valley geometry and camera:
+
+| Study | Primary physical rule | Explicitly absent |
+| --- | --- | --- |
+| Nacre Terraces | grass behaves as a layered flame field; charred terrain carries ember veins and sparse rising embers | liquid meadow patch |
+| Glass Delta | reflective crystal routes and structures coexist with a spring meadow and drifting cherry petals | fire behavior and dune illumination |
+| Harmonic Dunes | curved, phase-offset musical light travels through intact grass beneath the existing wave sky | liquid hill patch and collapsed blades |
+
+Airborne ecology must remain GPU-authored and bounded to one draw call per selected world. Harmonic light belongs in the existing grass shader so it does not add a surface mesh or full-screen pass.
+
 ## Ordered Implementation
 
 | Gate | State | Work | Stop condition |

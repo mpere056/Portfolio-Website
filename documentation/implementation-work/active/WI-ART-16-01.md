@@ -204,6 +204,14 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Commit `4eb4266` is pushed to `main` and live at `/home-world-proof`; Production exposes the `dusk-refrain` marker and `Dusk Refrain` title.
 - Exact resume point: collect a direct visual review of sky/horizon separation, meadow saturation, piano readability, structure contrast, motion, and smoothness. Do not begin Checkpoint `C` before Checkpoint `B` is accepted.
 
+### 2026-08-03 Music World Physical-Dialect Revision
+
+- Mark accepted the gallery's stronger whole-world differentiation but requested three more decisive physical identities rather than further palette variants.
+- `Nacre Terraces` is now a living fire ecology: charred terrain, flame-driven grass motion and coloring, ember veins, heated terraces, and one GPU particle draw for rising embers. The shared liquid surface is intentionally absent.
+- `Glass Delta` is now a reflective spring ecology: rose/lilac meadow and atmosphere, cool reflective routes and crystal structures, plus one GPU particle draw for independently rotating cherry petals.
+- `Harmonic Dunes` keeps its accepted sky and world-scale wave forms but no longer mounts or collapses grass into the liquid territory. Multiple phase-offset score fields instead illuminate intact blades with moving violet, rose, and gold patterns.
+- The revision adds no full-screen post-processing and keeps airborne matter to one draw call per applicable world. Direct visual acceptance remains open.
+
 ### 2026-07-26
 
 - Mark rejected the full-world compositor and selected a single outdoor piano clearing as the new Home foundation.

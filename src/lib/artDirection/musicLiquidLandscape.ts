@@ -29,7 +29,7 @@ export const MUSIC_LIQUID_LANDSCAPES = [
   {
     id: 'nacre-terraces',
     title: 'Nacre Terraces',
-    note: 'Monumental pearlescent shelves replace the valley and its sky.',
+    note: 'A living fire ecology climbs through blackened terraces.',
   },
   {
     id: 'resonant-archipelago',
@@ -39,12 +39,12 @@ export const MUSIC_LIQUID_LANDSCAPES = [
   {
     id: 'glass-delta',
     title: 'Glass Delta',
-    note: 'Prismatic rivers divide the whole world into luminous deltas.',
+    note: 'Spring petals move among reflective crystal growths.',
   },
   {
     id: 'harmonic-dunes',
     title: 'Harmonic Dunes',
-    note: 'Vast wave-shaped landforms inhale beneath a ribboned sky.',
+    note: 'Musical light travels through intact grass beneath a ribboned sky.',
   },
 ] as const;
 
@@ -78,14 +78,14 @@ export const MUSIC_WORLD_PROFILES: Record<MusicLiquidLandscapeId, MusicWorldProf
   },
   'nacre-terraces': {
     id: 'nacre-terraces',
-    sky: ['#ffd3bb', '#d88ab8', '#65438f'],
-    fog: '#b47c9f',
-    ground: ['#2b102f', '#592445', '#a64d67', '#f1ae8d'],
-    grass: ['#321234', '#7c2f56', '#d06b79', '#ffd2a4'],
-    cloud: ['#ffd9c2', '#be729d'],
-    ridge: ['#d7a1aa', '#b36d8d', '#74466f'],
-    bridge: ['#3a203d', '#a45c73'],
-    keyLight: '#ffd0a8',
+    sky: ['#ff8a4c', '#6f2140', '#140f2b'],
+    fog: '#542238',
+    ground: ['#10090f', '#261016', '#51181b', '#b63c1e'],
+    grass: ['#1c0808', '#8f1e12', '#f05a1e', '#fff0a0'],
+    cloud: ['#ba4a32', '#32152a'],
+    ridge: ['#713027', '#471c22', '#24131d'],
+    bridge: ['#1a1117', '#66301f'],
+    keyLight: '#ff7a31',
     worldForm: 'terraces',
   },
   'resonant-archipelago': {
@@ -102,14 +102,14 @@ export const MUSIC_WORLD_PROFILES: Record<MusicLiquidLandscapeId, MusicWorldProf
   },
   'glass-delta': {
     id: 'glass-delta',
-    sky: ['#ffc078', '#477cca', '#101b4d'],
-    fog: '#466d91',
-    ground: ['#061a36', '#123d5c', '#167d8f', '#e37b55'],
-    grass: ['#071d3b', '#16496c', '#20a8b4', '#ff9f68'],
-    cloud: ['#ffd6a0', '#4d7ca9'],
-    ridge: ['#507fa4', '#285a83', '#18355e'],
-    bridge: ['#102746', '#2f7896'],
-    keyLight: '#ffaf67',
+    sky: ['#ffc5df', '#8ea8ee', '#303e92'],
+    fog: '#8b7bb5',
+    ground: ['#16163f', '#293263', '#405f72', '#b783b5'],
+    grass: ['#171944', '#3e497a', '#9c6da1', '#f4b7d2'],
+    cloud: ['#ffd6e9', '#8782c1'],
+    ridge: ['#9a91c8', '#716da9', '#4b518e'],
+    bridge: ['#252750', '#7777aa'],
+    keyLight: '#ffd0e6',
     worldForm: 'delta',
   },
   'harmonic-dunes': {

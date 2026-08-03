@@ -446,6 +446,7 @@ function GrassField({
       varying float vVariation;
       varying float vPianoShadow;
       varying float vLiquid;
+      varying vec2 vWorldRoot;
       ${MUSIC_LANDSCAPE_MASK_GLSL}
       void main() {
         vUv = uv;
@@ -482,12 +483,14 @@ function GrassField({
         float trailingMemory = smoothstep(0.48, 0.86, abs(pressureField));
         float localAttention = uLiquidAttention
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
+        float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+        float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
         float liquidState = territory * clamp(
           0.78 + pressureBody * 0.2 + crossPressure * 0.12
           + trailingMemory * 0.1 + localAttention * 0.16,
           0.0,
           1.0
-        );
+        ) * (1.0 - harmonicMode) * (1.0 - fireMode);
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
@@ -501,6 +504,7 @@ function GrassField({
         blade.x *= bladeWidth;
         blade.y *= bladeHeight
           * (0.84 + clump * 0.24 + variation * 0.08)
+          * mix(1.0, 1.18 + sin(uTime * 2.1 + phase * 2.4) * 0.16, fireMode)
           * mix(1.0, 0.045, liquidState);
         vec3 oriented = vec3(
           blade.x * angleCos,
@@ -508,6 +512,10 @@ function GrassField({
           blade.x * angleSin
         );
         oriented.x += breeze * uv.y * uv.y * uWind;
+        oriented.x += fireMode * sin(uTime * 2.8 + phase * 3.1 + uv.y * 5.0)
+          * 0.12 * uv.y * uv.y;
+        oriented.z += fireMode * cos(uTime * 2.15 + phase * 2.3 + randomValue * 6.0)
+          * 0.08 * uv.y * uv.y;
         oriented.z += (
           cos(uTime * 0.39 + phase) * 0.028
           + gust * 0.052
@@ -537,6 +545,7 @@ function GrassField({
         vVariation = variation;
         vPianoShadow = iStatic.w;
         vLiquid = liquidState;
+        vWorldRoot = root.xz;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         vFog = smoothstep(13.0, 46.0, -viewPosition.z);
@@ -556,6 +565,10 @@ function GrassField({
       varying float vVariation;
       varying float vPianoShadow;
       varying float vLiquid;
+      varying vec2 vWorldRoot;
+      uniform float uTime;
+      uniform float uLiquidMotion;
+      uniform float uLandscapeMode;
       void main() {
         vec3 baseColor = uGrassLow * 0.72;
         vec3 lowColor = uGrassLow;
@@ -576,6 +589,22 @@ function GrassField({
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
         color = mix(color, vec3(0.4, 0.68, 0.86), vLiquid * 0.7);
+        float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
+        float flamePulse = 0.5 + 0.5 * sin(
+          uTime * (2.1 + vVariation * 1.7) + vWorldRoot.x * 1.7 - vWorldRoot.y * 1.1
+        );
+        vec3 flameColor = mix(vec3(0.3, 0.015, 0.005), vec3(1.0, 0.16, 0.015), vUv.y);
+        flameColor = mix(flameColor, vec3(1.0, 0.9, 0.32), smoothstep(0.64, 1.0, vUv.y));
+        flameColor *= 0.78 + flamePulse * 0.52 * smoothstep(0.18, 1.0, vUv.y);
+        color = mix(color, flameColor, fireMode * 0.96);
+        float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+        float scoreA = sin(vWorldRoot.x * 0.72 + vWorldRoot.y * 0.17 - uTime * 1.25 * uLiquidMotion);
+        float scoreB = sin(vWorldRoot.x * 0.27 - vWorldRoot.y * 0.61 - uTime * 0.82 * uLiquidMotion + 1.8);
+        float scoreC = sin(length(vWorldRoot - vec2(7.0, 4.0)) * 1.18 - uTime * 1.48 * uLiquidMotion);
+        float scoreLight = smoothstep(0.78, 0.99, scoreA * 0.48 + scoreB * 0.28 + scoreC * 0.34);
+        vec3 scoreColor = mix(vec3(0.45, 0.28, 1.0), vec3(1.0, 0.62, 0.87), 0.5 + 0.5 * scoreB);
+        scoreColor = mix(scoreColor, vec3(1.0, 0.84, 0.48), smoothstep(0.9, 1.0, scoreC));
+        color = mix(color, scoreColor * 1.25, harmonicMode * scoreLight * (0.42 + vUv.y * 0.58));
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
@@ -889,11 +918,18 @@ function Ground({
             float crossPressure = smoothstep(0.52, 0.82, liquidFbm(organicUv * 1.27 + vec2(8.1, -3.4)));
             float localAttention = uLiquidAttention
               * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
+            float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+            float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
             float liquidState = territory * clamp(
               0.78 + pressureBody * 0.2 + crossPressure * 0.12 + localAttention * 0.18,
               0.0,
               1.0
-            );
+            ) * (1.0 - harmonicMode) * (1.0 - fireMode);
+            float emberVein = smoothstep(0.7, 0.96, liquidFbm(
+              vWorld.xz * 0.34 + vec2(-uTime * 0.08 * uMotion, uTime * 0.035 * uMotion)
+            ));
+            vec3 emberGround = mix(vec3(0.035, 0.008, 0.006), vec3(0.92, 0.12, 0.018), emberVein);
+            color = mix(color, emberGround, fireMode * (0.62 + emberVein * 0.3));
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
@@ -1210,6 +1246,113 @@ function landscapePoint(x: number, z: number, lift = 0.18): [number, number, num
   return [x, GROUND_Y + pianoClearingTerrainHeight(x, z) + lift, z];
 }
 
+function MusicWorldAirborneMatter({
+  landscape,
+  reducedMotion,
+}: {
+  landscape: MusicLiquidLandscapeId;
+  reducedMotion: boolean;
+}) {
+  const visible = landscape === 'nacre-terraces' || landscape === 'glass-delta';
+  const fire = landscape === 'nacre-terraces';
+  const count = fire ? 180 : 220;
+  const geometry = useMemo(() => {
+    const result = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const seeds = new Float32Array(count * 4);
+    for (let index = 0; index < count; index += 1) {
+      const seed = (index * 0.61803398875) % 1;
+      const crossSeed = (index * 0.41421356237 + 0.17) % 1;
+      const depthSeed = (index * 0.73205080756 + 0.31) % 1;
+      const x = -7 + seed * 39;
+      const z = -8 + depthSeed * 28;
+      positions.set([x, GROUND_Y + pianoClearingTerrainHeight(x, z), z], index * 3);
+      seeds.set([seed, crossSeed, depthSeed, (index * 0.27182818284) % 1], index * 4);
+    }
+    result.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    result.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 4));
+    return result;
+  }, [count]);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+      uFire: { value: fire ? 1 : 0 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      uniform float uFire;
+      attribute vec4 aSeed;
+      varying float vLife;
+      varying float vFire;
+      varying float vTurn;
+      void main() {
+        vec3 transformed = position;
+        float time = uTime * uMotion;
+        if (uFire > 0.5) {
+          float rise = fract(aSeed.w + time * mix(0.045, 0.11, aSeed.y));
+          transformed.y += 0.2 + rise * mix(2.0, 7.0, aSeed.z);
+          transformed.x += sin(time * 1.2 + aSeed.x * 31.0 + rise * 6.0) * (0.16 + rise * 0.55);
+          transformed.z += cos(time * 0.8 + aSeed.y * 27.0) * 0.2;
+          vLife = sin(rise * 3.14159265);
+        } else {
+          float drift = fract(aSeed.w + time * mix(0.018, 0.038, aSeed.y));
+          transformed.x += drift * 13.0 - 6.5;
+          transformed.y += 1.2 + sin(time * 0.34 + aSeed.x * 18.0) * 1.35 + aSeed.y * 5.0;
+          transformed.z += sin(time * 0.21 + aSeed.z * 22.0 + drift * 4.0) * 2.1;
+          vLife = smoothstep(0.0, 0.12, drift) * (1.0 - smoothstep(0.82, 1.0, drift));
+        }
+        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
+        gl_Position = projectionMatrix * viewPosition;
+        float projectedSize = mix(1.4, 4.2, aSeed.y) * (28.0 / max(4.0, -viewPosition.z));
+        gl_PointSize = min(mix(14.0, 10.0, uFire), projectedSize);
+        vFire = uFire;
+        vTurn = fract(aSeed.x + time * mix(0.18, 0.46, aSeed.z));
+      }
+    `,
+    fragmentShader: `
+      varying float vLife;
+      varying float vFire;
+      varying float vTurn;
+      void main() {
+        vec2 point = gl_PointCoord - 0.5;
+        float angle = vTurn * 6.2831853;
+        mat2 rotation = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+        vec2 turned = rotation * point;
+        float petal = 1.0 - smoothstep(0.16, 0.5, length(turned * vec2(0.72, 1.75)));
+        float ember = 1.0 - smoothstep(0.05, 0.48, length(point));
+        float shape = mix(petal, ember, vFire);
+        vec3 petalColor = mix(vec3(1.0, 0.55, 0.72), vec3(1.0, 0.9, 0.96), vTurn);
+        vec3 emberColor = mix(vec3(1.0, 0.08, 0.0), vec3(1.0, 0.82, 0.2), vTurn);
+        gl_FragColor = vec4(mix(petalColor, emberColor, vFire), shape * vLife * 0.76);
+      }
+    `,
+  }), [fire, reducedMotion]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uFire.value = fire ? 1 : 0;
+  });
+
+  if (!visible) return null;
+  return (
+    <points
+      geometry={geometry}
+      material={material}
+      frustumCulled={false}
+      renderOrder={6}
+      userData={{
+        worldEcology: fire ? 'fire-embers' : 'spring-cherry-petals',
+      }}
+    />
+  );
+}
+
 function MusicLandscapeAccents({
   landscape,
   reducedMotion,
@@ -1258,7 +1401,7 @@ function MusicLandscapeAccents({
           <mesh key={index} position={terrace.position} scale={terrace.scale} renderOrder={3}>
             <cylinderGeometry args={[1, 1.08, 1, 48, 1]} />
             <meshBasicMaterial
-              color={index === 1 ? '#f4a9ca' : '#ffd5a7'}
+              color={index === 1 ? '#ff3918' : '#ffb02e'}
               transparent
               opacity={0.24}
               depthWrite={false}
@@ -1312,7 +1455,7 @@ function MusicLandscapeAccents({
         {deltaCurves.map((geometry, index) => (
           <mesh key={index} geometry={geometry} renderOrder={4}>
             <meshBasicMaterial
-              color={index === 0 ? '#55eaff' : index === 1 ? '#ffc878' : '#a9f6ff'}
+              color={index === 0 ? '#c4e7ff' : index === 1 ? '#ffd0e7' : '#e2d5ff'}
               transparent
               opacity={index === 0 ? 0.58 : 0.38}
               depthWrite={false}
@@ -3033,11 +3176,13 @@ const PianoClearingScene = memo(function PianoClearingScene({
       />
       {liquidEnabled ? (
         <>
-          <LiquidTerritorySurface
-            reducedMotion={reducedMotion}
-            musicLandscapeIndex={landscapeIndex}
-            liquidRuntime={liquidRuntime}
-          />
+          {musicLandscape !== 'harmonic-dunes' && musicLandscape !== 'nacre-terraces' ? (
+            <LiquidTerritorySurface
+              reducedMotion={reducedMotion}
+              musicLandscapeIndex={landscapeIndex}
+              liquidRuntime={liquidRuntime}
+            />
+          ) : null}
           <MusicLandscapeAccents
             landscape={musicLandscape}
             reducedMotion={reducedMotion}
@@ -3045,6 +3190,10 @@ const PianoClearingScene = memo(function PianoClearingScene({
           <WorldScaleMusicForms
             landscape={musicLandscape}
             profile={worldProfile}
+            reducedMotion={reducedMotion}
+          />
+          <MusicWorldAirborneMatter
+            landscape={musicLandscape}
             reducedMotion={reducedMotion}
           />
         </>
