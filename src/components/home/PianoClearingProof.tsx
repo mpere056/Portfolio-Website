@@ -502,25 +502,47 @@ function GrassField({
         breeze += sin(uTime * 0.24 + phase * 1.7) * 0.028;
         breeze += gust * 0.115;
         blade.x *= bladeWidth;
+        float flameDomain = sin(
+          root.x * 1.73
+          + sin(root.z * 2.37 + uTime * 1.31) * 1.9
+          + randomValue * 17.0
+        );
+        flameDomain += sin(
+          root.z * 3.11
+          - root.x * 0.83
+          - uTime * 2.07
+          + variation * 23.0
+        ) * 0.55;
+        float flameLick = 0.5 + 0.5 * sin(
+          uTime * (3.2 + randomValue * 2.8)
+          + flameDomain * 2.6
+          + clump * 11.0
+        );
         blade.y *= bladeHeight
           * (0.84 + clump * 0.24 + variation * 0.08)
-          * mix(1.0, 1.18 + sin(uTime * 2.1 + phase * 2.4) * 0.16, fireMode)
+          * mix(1.0, 0.82 + flameLick * 0.94, fireMode)
           * mix(1.0, 0.045, liquidState);
         vec3 oriented = vec3(
           blade.x * angleCos,
           blade.y,
           blade.x * angleSin
         );
-        oriented.x += breeze * uv.y * uv.y * uWind;
-        oriented.x += fireMode * sin(uTime * 2.8 + phase * 3.1 + uv.y * 5.0)
-          * 0.12 * uv.y * uv.y;
-        oriented.z += fireMode * cos(uTime * 2.15 + phase * 2.3 + randomValue * 6.0)
-          * 0.08 * uv.y * uv.y;
+        oriented.x += breeze * uv.y * uv.y * uWind * (1.0 - fireMode);
+        float flameTip = pow(uv.y, 1.55);
+        oriented.y += fireMode * flameTip * (0.08 + flameLick * 0.23);
+        oriented.x += fireMode * (
+          sin(uTime * (3.4 + variation) + flameDomain * 1.8 + uv.y * 6.0)
+          + sin(uTime * 5.7 + randomValue * 31.0 + uv.y * 11.0) * 0.42
+        ) * 0.105 * flameTip;
+        oriented.z += fireMode * (
+          cos(uTime * (2.7 + clump) + flameDomain * 2.1 + randomValue * 19.0)
+          + sin(uTime * 4.3 + variation * 29.0 + uv.y * 8.0) * 0.36
+        ) * 0.08 * flameTip;
         oriented.z += (
           cos(uTime * 0.39 + phase) * 0.028
           + gust * 0.052
           + (randomValue - 0.5) * 0.035
-        ) * uv.y * uWind;
+        ) * uv.y * uWind * (1.0 - fireMode);
         oriented.x += territoryLocal.x * liquidState * uv.y * 0.055;
         oriented.z += territoryLocal.y * liquidState * uv.y * 0.045;
         float cursorDistance = distance(root.xz, uCursor);
@@ -596,15 +618,28 @@ function GrassField({
         vec3 flameColor = mix(vec3(0.3, 0.015, 0.005), vec3(1.0, 0.16, 0.015), vUv.y);
         flameColor = mix(flameColor, vec3(1.0, 0.9, 0.32), smoothstep(0.64, 1.0, vUv.y));
         flameColor *= 0.78 + flamePulse * 0.52 * smoothstep(0.18, 1.0, vUv.y);
+        float flameBreakup = 0.5 + 0.5 * sin(
+          vWorldRoot.x * 12.73
+          + vWorldRoot.y * 19.31
+          + floor(vUv.y * 9.0) * 7.17
+          - uTime * (4.2 + vVariation * 2.4)
+        );
+        float flameDissolve = smoothstep(0.68, 1.0, vUv.y) * (0.32 + flamePulse * 0.7);
+        if (fireMode > 0.5 && flameBreakup < flameDissolve * 0.72) discard;
         color = mix(color, flameColor, fireMode * 0.96);
         float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
-        float scoreA = sin(vWorldRoot.x * 0.72 + vWorldRoot.y * 0.17 - uTime * 1.25 * uLiquidMotion);
-        float scoreB = sin(vWorldRoot.x * 0.27 - vWorldRoot.y * 0.61 - uTime * 0.82 * uLiquidMotion + 1.8);
-        float scoreC = sin(length(vWorldRoot - vec2(7.0, 4.0)) * 1.18 - uTime * 1.48 * uLiquidMotion);
-        float scoreLight = smoothstep(0.78, 0.99, scoreA * 0.48 + scoreB * 0.28 + scoreC * 0.34);
-        vec3 scoreColor = mix(vec3(0.45, 0.28, 1.0), vec3(1.0, 0.62, 0.87), 0.5 + 0.5 * scoreB);
-        scoreColor = mix(scoreColor, vec3(1.0, 0.84, 0.48), smoothstep(0.9, 1.0, scoreC));
-        color = mix(color, scoreColor * 1.25, harmonicMode * scoreLight * (0.42 + vUv.y * 0.58));
+        vec2 fromInstrument = vWorldRoot - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
+        float scoreRadius = length(fromInstrument);
+        float scoreAngle = atan(fromInstrument.y, fromInstrument.x);
+        float outwardTime = uTime * 2.05 * uLiquidMotion;
+        float scoreA = pow(0.5 + 0.5 * cos(scoreRadius * 1.42 - outwardTime), 12.0);
+        float scoreB = pow(0.5 + 0.5 * cos(scoreRadius * 0.78 - outwardTime * 0.72 + scoreAngle * 3.0), 16.0);
+        float scoreC = pow(0.5 + 0.5 * cos(scoreRadius * 2.16 - outwardTime * 1.24 - scoreAngle * 2.0), 20.0);
+        float scoreReach = 1.0 - smoothstep(3.0, 31.0, scoreRadius);
+        float scoreLight = clamp(scoreA * 0.78 + scoreB * 0.56 + scoreC * 0.42, 0.0, 1.0) * scoreReach;
+        vec3 scoreColor = mix(vec3(0.38, 0.28, 1.0), vec3(1.0, 0.46, 0.9), scoreB);
+        scoreColor = mix(scoreColor, vec3(1.0, 0.82, 0.44), scoreC * 0.78);
+        color = mix(color, scoreColor * 1.48, harmonicMode * scoreLight * (0.58 + vUv.y * 0.42));
         color *= mix(0.72, 1.0, pow(vUv.y, 0.55));
         color = mix(color, uFogColor, vFog * 0.8);
         gl_FragColor = vec4(color, 1.0);
@@ -1353,6 +1388,99 @@ function MusicWorldAirborneMatter({
   );
 }
 
+function DistantFireSmoke({
+  visible,
+  reducedMotion,
+}: {
+  visible: boolean;
+  reducedMotion: boolean;
+}) {
+  const count = 64;
+  const geometry = useMemo(() => {
+    const result = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const seeds = new Float32Array(count * 4);
+    const sources = [
+      [-19, -38],
+      [2, -46],
+      [23, -42],
+      [33, -55],
+    ] as const;
+    for (let index = 0; index < count; index += 1) {
+      const source = sources[index % sources.length];
+      const seed = (index * 0.61803398875) % 1;
+      const crossSeed = (index * 0.41421356237 + 0.17) % 1;
+      const depthSeed = (index * 0.73205080756 + 0.31) % 1;
+      positions.set([
+        source[0] + (crossSeed - 0.5) * 5.5,
+        0.2 + depthSeed * 1.4,
+        source[1] + (seed - 0.5) * 4.2,
+      ], index * 3);
+      seeds.set([seed, crossSeed, depthSeed, (index * 0.27182818284) % 1], index * 4);
+    }
+    result.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    result.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 4));
+    return result;
+  }, []);
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.NormalBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      attribute vec4 aSeed;
+      varying float vLife;
+      varying float vShade;
+      void main() {
+        float time = uTime * uMotion;
+        float rise = fract(aSeed.w + time * mix(0.012, 0.025, aSeed.y));
+        vec3 transformed = position;
+        transformed.y += rise * mix(10.0, 19.0, aSeed.z);
+        transformed.x += sin(time * 0.17 + rise * 5.4 + aSeed.x * 19.0) * (0.5 + rise * 3.8);
+        transformed.z += cos(time * 0.11 + rise * 3.2 + aSeed.y * 17.0) * (0.2 + rise * 1.5);
+        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
+        gl_Position = projectionMatrix * viewPosition;
+        gl_PointSize = min(54.0, mix(18.0, 42.0, aSeed.x) * (34.0 / max(8.0, -viewPosition.z)));
+        vLife = sin(rise * 3.14159265) * (1.0 - smoothstep(0.68, 1.0, rise));
+        vShade = aSeed.z;
+      }
+    `,
+    fragmentShader: `
+      varying float vLife;
+      varying float vShade;
+      void main() {
+        vec2 point = gl_PointCoord - 0.5;
+        float radial = length(point * vec2(0.82, 1.0));
+        float body = 1.0 - smoothstep(0.12, 0.5, radial);
+        float softNoise = 0.78 + sin(point.x * 18.0 + point.y * 13.0 + vShade * 21.0) * 0.12;
+        vec3 smoke = mix(vec3(0.12, 0.07, 0.09), vec3(0.28, 0.16, 0.14), vShade);
+        gl_FragColor = vec4(smoke, body * softNoise * vLife * 0.34);
+      }
+    `,
+  }), [reducedMotion]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
+  if (!visible) return null;
+  return (
+    <points
+      geometry={geometry}
+      material={material}
+      frustumCulled={false}
+      renderOrder={2}
+      userData={{ worldEcology: 'distant-wildfire-smoke' }}
+    />
+  );
+}
+
 function MusicLandscapeAccents({
   landscape,
   reducedMotion,
@@ -1756,6 +1884,11 @@ function WorldScaleMusicForms({
       ['#ff8c65', '#b43b24'],
       ['#8aa8ff', '#176f9e'],
     ] as const;
+    const glassSculptures = [
+      { position: [17, 15, -39] as [number, number, number], scale: [5.8, 7.8, 5.8] as [number, number, number], rotation: [0.28, 0.18, -0.2] as [number, number, number] },
+      { position: [-20, 8.5, -31] as [number, number, number], scale: [4.4, 6.2, 4.4] as [number, number, number], rotation: [-0.2, 0.7, 0.38] as [number, number, number] },
+      { position: [33, 6.8, -27] as [number, number, number], scale: [3.7, 5.4, 3.7] as [number, number, number], rotation: [0.42, -0.38, 0.18] as [number, number, number] },
+    ];
     return (
       <group ref={group} userData={{ musicWorldForm: 'prismatic-glass-delta' }}>
         {deltaRoutes.map((geometry, index) => (
@@ -1768,6 +1901,67 @@ function WorldScaleMusicForms({
               depthWrite={false}
             />
           </mesh>
+        ))}
+        {glassSculptures.map((sculpture, index) => (
+          <group
+            key={`glass-sculpture-${index}`}
+            position={sculpture.position}
+            rotation={sculpture.rotation}
+            scale={sculpture.scale}
+            userData={{ musicWorldForm: 'reflective-glass-sculpture' }}
+          >
+            <mesh renderOrder={2}>
+              <torusKnotGeometry args={[1.05, 0.22, 96, 12, 2, 3]} />
+              <meshPhysicalMaterial
+                color={index === 1 ? '#ffd5ef' : '#c9d9ff'}
+                emissive={index === 2 ? '#c660b7' : '#6d72db'}
+                emissiveIntensity={0.2}
+                transmission={0.72}
+                thickness={1.5}
+                ior={1.46}
+                roughness={0.035}
+                metalness={0.03}
+                iridescence={0.72}
+                iridescenceIOR={1.58}
+                clearcoat={1}
+                clearcoatRoughness={0.04}
+                reflectivity={1}
+                envMapIntensity={2.1}
+                attenuationColor={index === 1 ? '#ffc9e8' : '#a8d7ff'}
+                attenuationDistance={3.4}
+                transparent
+                opacity={0.74}
+                depthWrite={false}
+              />
+            </mesh>
+            <mesh scale={1.035} renderOrder={4}>
+              <torusKnotGeometry args={[1.05, 0.22, 96, 12, 2, 3]} />
+              <meshBasicMaterial
+                color={index === 1 ? '#fff0fa' : '#e4e8ff'}
+                wireframe
+                transparent
+                opacity={0.065}
+                blending={THREE.AdditiveBlending}
+                depthWrite={false}
+              />
+            </mesh>
+            {[0.38, 0.68, 0.96].map((radius, ringIndex) => (
+              <mesh
+                key={radius}
+                rotation={[Math.PI / 2 + ringIndex * 0.31, ringIndex * 0.46, 0]}
+                renderOrder={4}
+              >
+                <torusGeometry args={[radius, 0.012, 5, 48]} />
+                <meshBasicMaterial
+                  color={ringIndex === 1 ? '#ffc9ec' : '#d9f5ff'}
+                  transparent
+                  opacity={0.46}
+                  blending={THREE.AdditiveBlending}
+                  depthWrite={false}
+                />
+              </mesh>
+            ))}
+          </group>
         ))}
         {spirePalette.map(([color, emissive], palette) => (
           <WorldInstances key={color} items={spireTransforms.filter(item => item.palette === palette)}>
@@ -2681,9 +2875,11 @@ function RavineAccents() {
 function SkyDome({
   reducedMotion,
   profile,
+  landscapeIndex,
 }: {
   reducedMotion: boolean;
   profile: MusicWorldProfile;
+  landscapeIndex: number;
 }) {
   const material = useMemo(() => new THREE.ShaderMaterial({
     side: THREE.BackSide,
@@ -2696,6 +2892,7 @@ function SkyDome({
       uZenith: { value: new THREE.Color(profile.sky[2]) },
       uWisp: { value: new THREE.Color(profile.cloud[0]) },
       uSun: { value: new THREE.Color(profile.keyLight) },
+      uLandscapeMode: { value: landscapeIndex },
     },
     vertexShader: `
       varying vec3 vWorld;
@@ -2713,6 +2910,7 @@ function SkyDome({
        uniform vec3 uZenith;
        uniform vec3 uWisp;
        uniform vec3 uSun;
+       uniform float uLandscapeMode;
       varying vec3 vWorld;
 
       float cloudWisp(float x, float y, float center, float width, float phase) {
@@ -2739,6 +2937,23 @@ function SkyDome({
         vec3 wispColor = mix(uWisp, uUpper, height);
         color = mix(color, wispColor, wisps * skyWindow * 0.28);
 
+        float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+        float auroraCenter = 0.43
+          + sin(x * 7.0 - uTime * 0.11 * uMotion) * 0.07
+          + sin(x * 15.0 + uTime * 0.07 * uMotion) * 0.025;
+        float auroraBand = exp(-pow((y - auroraCenter) * 7.6, 2.0));
+        float auroraCurtain = 0.46 + 0.54 * sin(
+          x * 29.0 + sin(x * 8.0 - uTime * 0.08 * uMotion) * 2.2
+        );
+        auroraCurtain = smoothstep(0.12, 0.94, auroraCurtain);
+        float auroraVeil = auroraBand * (0.38 + auroraCurtain * 0.62) * skyWindow;
+        vec3 auroraColor = mix(
+          vec3(0.16, 0.68, 0.9),
+          vec3(0.94, 0.28, 0.86),
+          0.5 + 0.5 * sin(x * 8.0 + uTime * 0.045 * uMotion)
+        );
+        color += auroraColor * auroraVeil * harmonicMode * 0.56;
+
         vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
         float sunFacing = max(dot(vWorld, sunDirection), 0.0);
         float halo = pow(sunFacing, 11.0);
@@ -2748,11 +2963,12 @@ function SkyDome({
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [profile, reducedMotion]);
+  }), [landscapeIndex, profile, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uLandscapeMode.value = landscapeIndex;
   });
 
   return (
@@ -3155,7 +3371,11 @@ const PianoClearingScene = memo(function PianoClearingScene({
           reducedMotion={reducedMotion}
         />
       ) : null}
-      <SkyDome reducedMotion={reducedMotion} profile={worldProfile} />
+      <SkyDome
+        reducedMotion={reducedMotion}
+        profile={worldProfile}
+        landscapeIndex={landscapeIndex}
+      />
       <fogExp2 attach="fog" args={[worldProfile.fog, 0.017]} />
       <hemisphereLight args={[worldProfile.sky[1], worldProfile.ground[0], 1.88]} />
       <directionalLight position={[-9, 10, 4]} color={worldProfile.keyLight} intensity={2.7} />
@@ -3194,6 +3414,10 @@ const PianoClearingScene = memo(function PianoClearingScene({
           />
           <MusicWorldAirborneMatter
             landscape={musicLandscape}
+            reducedMotion={reducedMotion}
+          />
+          <DistantFireSmoke
+            visible={musicLandscape === 'nacre-terraces'}
             reducedMotion={reducedMotion}
           />
         </>

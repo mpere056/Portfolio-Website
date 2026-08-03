@@ -141,8 +141,15 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain("fire-embers");
     expect(component).toContain("spring-cherry-petals");
     expect(component).toContain("musicLandscape !== 'harmonic-dunes'");
-    expect(component).toContain('float scoreLight = smoothstep');
+    expect(component).toContain('float scoreA = pow');
+    expect(component).toContain('float scoreC = pow');
     expect(component).toContain('vec3 flameColor = mix');
+    expect(component).toContain('float flameDissolve = smoothstep');
+    expect(component).toContain("worldEcology: 'distant-wildfire-smoke'");
+    expect(component).toContain("musicWorldForm: 'reflective-glass-sculpture'");
+    expect(component).toContain('transmission={0.72}');
+    expect(component).toContain('vec2 fromInstrument = vWorldRoot');
+    expect(component).toContain('float auroraVeil = auroraBand');
     expect(component).toContain('uLiquidMotion: { value: reducedMotion ? 0 : 1 }');
     expect(component).toContain('* uLiquidMotion');
     expect(component).toContain('<LiquidTerritorySurface');

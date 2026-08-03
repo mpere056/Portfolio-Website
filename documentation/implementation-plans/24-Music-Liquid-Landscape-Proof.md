@@ -96,11 +96,11 @@ Gallery studies must not read as one liquid mask with recolored accents. Each se
 
 | Study | Primary physical rule | Explicitly absent |
 | --- | --- | --- |
-| Nacre Terraces | grass behaves as a layered flame field; charred terrain carries ember veins and sparse rising embers | liquid meadow patch |
-| Glass Delta | reflective crystal routes and structures coexist with a spring meadow and drifting cherry petals | fire behavior and dune illumination |
-| Harmonic Dunes | curved, phase-offset musical light travels through intact grass beneath the existing wave sky | liquid hill patch and collapsed blades |
+| Nacre Terraces | independently timed blades rise, curl, and dissolve like flame; charred terrain carries ember veins while bounded distant smoke identifies a wider wildfire | synchronized meadow rows and liquid patch |
+| Glass Delta | world-scale transmissive sculptures and illuminated rings coexist with reflective routes, spring meadow, and drifting cherry petals | decorative spires as the only glass signal |
+| Harmonic Dunes | several curved musical-light fronts radiate from the piano through intact grass beneath a slowly warped aurora sky | off-center light patches, liquid hill patch, and collapsed blades |
 
-Airborne ecology must remain GPU-authored and bounded to one draw call per selected world. Harmonic light belongs in the existing grass shader so it does not add a surface mesh or full-screen pass.
+Airborne ecology must remain GPU-authored and bounded to one draw call per selected world. Harmonic grass light belongs in the existing grass shader and aurora belongs in the existing sky shader, so neither adds a surface mesh or full-screen pass. Refractive landmarks may add geometry, but must stay few, large, and silhouette-led rather than multiplying small decorative meshes.
 
 ## Ordered Implementation
 

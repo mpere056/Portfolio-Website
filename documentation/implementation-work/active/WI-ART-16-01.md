@@ -212,6 +212,14 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `Harmonic Dunes` keeps its accepted sky and world-scale wave forms but no longer mounts or collapses grass into the liquid territory. Multiple phase-offset score fields instead illuminate intact blades with moving violet, rose, and gold patterns.
 - The revision adds no full-screen post-processing and keeps airborne matter to one draw call per applicable world. Direct visual acceptance remains open.
 
+### 2026-08-03 Music World Simulation Refinement
+
+- `Nacre Terraces` now breaks the shared meadow cadence: each blade receives independent flame height, lateral turbulence, upward tip travel, and fragment-level tip dissolution. A separate bounded GPU point system adds four distant wildfire-smoke plumes without adding per-particle CPU work.
+- `Glass Delta` now includes three large transmissive, iridescent glass sculptures with illuminated structural rings. These are world-scale landmarks rather than the previous narrow colored spires; cherry-petal motion remains unchanged.
+- `Harmonic Dunes` now calculates its score field from the piano's actual world position, sends several phase-offset rings through the grass, and adds a slowly warped cyan/rose aurora to the existing sky shader.
+- Focused regression checks now name all five mechanisms. Visual acceptance remains open for flame chaos/readability, smoke restraint, sculpture silhouette and transparency, score-field origin, and aurora prominence.
+- Exact resume point: visually inspect all three studies on `/music-liquid-proof`, tune only failed readings, then build, commit, push, and deploy the accepted candidate.
+
 ### 2026-07-26
 
 - Mark rejected the full-world compositor and selected a single outdoor piano clearing as the new Home foundation.
