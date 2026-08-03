@@ -197,6 +197,9 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('shadowMap');
     expect(component).toContain('musicLiquidProof = false');
     expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'terrain-conforming-organic' : 'off'}");
+    expect(component).toContain('Music world gallery MW1-A');
+    expect(component).toContain('<MusicLandscapeReview active={musicLandscape}');
+    expect(component).toContain('aria-label="Music landscape review selector"');
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {

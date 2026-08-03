@@ -1,6 +1,6 @@
 # Implementation Continuation Dashboard
 
-Last reconciled: 2026-07-31
+Last reconciled: 2026-08-02
 Implementation commit baseline: `5313e93`; the three-practice `Dusk Refrain` valley is live on canonical Home with a temporary `/presentation` doorway; the no-detail-removal optimization passes all local release gates and Vercel Production
 
 ## Plan Metadata
@@ -32,7 +32,7 @@ This distinction prevents two errors:
 | `O-01` Persistent exploratory world | optimized dusk meadow-piano valley on Home | on-track | Canonical `/` retains all 260,000 blades while packed invariant attributes, idle-raycast suspension, and adaptive DPR pass 243 tests and build | Production performance observation | Review canonical `/` on slower hardware |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | `E0` verified; Liquid Landscape `ML6-R3` review candidate | attention | River-safe pearl piano, seated pianist, three instruments, one-owner lifecycle, adaptive behavior, and terrain-conforming organic currents are implemented | Mark review, renderer metrics, and slower-device observation | `ML6-R2` flattened the hill/ravine read; validate `ML6-R3` before selected-world or hover work |
+| `O-04` Home work world | `E0` verified; Music `MW1-A` comparison gallery | attention | River-safe pearl piano, seated pianist, three instruments, one-owner lifecycle, adaptive behavior, and five terrain-safe Music studies are implemented | Mark comparison review, renderer metrics, and slower-device observation | Classify five studies as keep, revise, combine, or reject before selected-world or hover work |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -124,8 +124,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-progress | `ART-16` | `E0` verified; `ML6-R1` was rejected for striping and `ML6-R2` for flattening the hill/ravine; terrain-conforming `ML6-R3` is isolated from neutral Home | Review hill contour, ravine depth, bridge separation, and organic motion | 2026-08-02 |
-| Next | same work item | not-started | `ART-16` | Broad aligned foreground material, local response, and adaptive Full/Balanced/Calm/reduced/failure behavior implemented | If visual review passes, measure the Balanced tier on a previously laggy computer before selected-world expansion | 2026-08-01 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | `MW1-A` compares five terrain-safe Music grammars through one active runtime on the private proof | Mark labels each study keep, revise, combine, or reject | 2026-08-02 |
+| Next | same work item | not-started | `ART-16` | Tidal, terraces, archipelago, delta, and dunes preserve the accepted valley substrate | Consolidate the strongest reviewed grammar, then measure Balanced on a previously laggy computer | 2026-08-02 |
 | Later | same work item | blocked checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Selected Music waits on `ML6`; hover waits on selected-world acceptance | Expand Music, derive hover, resolve Music content, then Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.
@@ -200,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 98 | Includes the Liquid Landscape prototype direction and hard performance boundary; full-world creative acceptance remains open |
-| Candidate | 21 | Includes the provisional canonical Home promotion, About presentation, earlier Liquid Landscape technical candidates, and terrain-conforming `ML6-R3`; none is final creative acceptance |
+| Candidate | 22 | Includes the provisional canonical Home promotion, About presentation, earlier Liquid Landscape technical candidates, terrain-conforming `ML6-R3`, and the `MW1-A` comparison gallery; none is final creative acceptance |
 | In-review | 0 | No packet currently awaits review; the next review occurs after the bounded `ML0-ML6` prototype |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 1 | Quiet Phrase Fields is retained as a superseded hover-first sequencing study |

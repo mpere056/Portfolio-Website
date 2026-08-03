@@ -20,6 +20,40 @@ export const MUSIC_LIQUID_PROOF = {
   cpuGrassUpdatesPerFrame: 0,
 } as const;
 
+export const MUSIC_LIQUID_LANDSCAPES = [
+  {
+    id: 'tidal-meadow',
+    title: 'Tidal Meadow',
+    note: 'A breathing basin of slow nacre currents.',
+  },
+  {
+    id: 'nacre-terraces',
+    title: 'Nacre Terraces',
+    note: 'Pearlescent shelves rise like remembered chords.',
+  },
+  {
+    id: 'resonant-archipelago',
+    title: 'Resonant Archipelago',
+    note: 'Separated liquid islands answer across open grass.',
+  },
+  {
+    id: 'glass-delta',
+    title: 'Glass Delta',
+    note: 'Branching currents route light through the clearing.',
+  },
+  {
+    id: 'harmonic-dunes',
+    title: 'Harmonic Dunes',
+    note: 'Soft fluid hills inhale and reform without sound.',
+  },
+] as const;
+
+export type MusicLiquidLandscapeId = typeof MUSIC_LIQUID_LANDSCAPES[number]['id'];
+
+export function musicLiquidLandscapeIndex(id: MusicLiquidLandscapeId): number {
+  return MUSIC_LIQUID_LANDSCAPES.findIndex(landscape => landscape.id === id);
+}
+
 export type MusicLiquidQuality = 'full' | 'balanced' | 'calm' | 'reduced' | 'failure';
 
 export type MusicLiquidCapability = {

@@ -379,10 +379,127 @@
   text-transform: none;
 }
 
+.landscapeReview {
+  position: absolute;
+  top: clamp(92px, 11vh, 126px);
+  left: clamp(18px, 2.5vw, 38px);
+  z-index: 8;
+  width: min(248px, 23vw);
+  padding: 14px;
+  border: 1px solid rgba(210, 232, 255, 0.2);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(31, 36, 88, 0.72), rgba(70, 42, 99, 0.48)),
+    rgba(16, 21, 60, 0.42);
+  box-shadow:
+    0 18px 48px rgba(18, 10, 56, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: rgba(244, 239, 255, 0.92);
+  backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.landscapeReview header {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 11px;
+  padding: 0 2px 10px;
+  border-bottom: 1px solid rgba(223, 229, 255, 0.13);
+}
+
+.landscapeReview header span,
+.landscapeReview header small,
+.landscapeChoices button span {
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.landscapeReview header span {
+  color: rgba(170, 221, 242, 0.7);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.landscapeReview header strong {
+  font-family: var(--font-serif, serif);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.landscapeReview header small {
+  min-height: 24px;
+  color: rgba(229, 223, 244, 0.58);
+  font-size: 7px;
+  line-height: 1.55;
+}
+
+.landscapeChoices {
+  display: grid;
+  gap: 4px;
+}
+
+.landscapeChoices button {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: rgba(238, 237, 255, 0.025);
+  color: rgba(234, 228, 248, 0.58);
+  font-family: var(--font-serif, serif);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.landscapeChoices button span {
+  color: rgba(121, 215, 233, 0.55);
+  font-size: 7px;
+}
+
+.landscapeChoices button:hover,
+.landscapeChoices button:focus-visible,
+.landscapeChoices button[data-active='true'] {
+  border-color: rgba(167, 230, 244, 0.28);
+  background: linear-gradient(90deg, rgba(77, 210, 226, 0.12), rgba(242, 148, 210, 0.08));
+  color: rgba(255, 248, 255, 0.98);
+  transform: translateX(3px);
+  outline: none;
+}
+
 @media (max-width: 720px) {
   .proofLabel {
     top: 18px;
     left: 18px;
+  }
+
+  .landscapeReview {
+    top: auto;
+    right: 12px;
+    bottom: 18px;
+    left: 12px;
+    width: auto;
+    padding: 10px;
+  }
+
+  .landscapeReview header {
+    display: none;
+  }
+
+  .landscapeChoices {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .landscapeChoices button {
+    flex: 0 0 auto;
   }
 
   .practiceField {

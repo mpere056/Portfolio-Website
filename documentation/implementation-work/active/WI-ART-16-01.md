@@ -89,6 +89,13 @@ The next architecture treats the clearing as one persistent substrate rather tha
 
 ## Chronological Updates
 
+### 2026-08-02 Five-Landscape Music Review Gallery
+
+- Mark requested a broader Music-world batch so the next review can compare substantially different landscape directions at once.
+- Private `/music-liquid-proof` now offers Tidal Meadow, Nacre Terraces, Resonant Archipelago, Glass Delta, and Harmonic Dunes through one shared scene with only one active study.
+- Each study changes territory silhouette, displacement, palette, and sparse 3D landmarks while preserving the accepted terrain, ravine, bridge, piano, camera, and all 260,000 grass blades.
+- Local browser review caught and fixed invalid R3F diagnostic attributes and terrain-projects Glass Delta tributaries. The exact resume point is user classification of each study as keep, revise, combine, or reject.
+
 ### 2026-07-31 Practice-World Architecture
 
 - Plan `23` defines one persistent clearing substrate, one dominant practice runtime, approach/preview/selected/retreat states, causal spatial melding, lazy mount/disposal, routing/restoration, and named-state tracking.

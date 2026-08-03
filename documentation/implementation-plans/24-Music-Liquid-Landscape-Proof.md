@@ -172,11 +172,25 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `ML6-R3` terrain-conforming revision candidate; visual review open |
+| Current gate | `MW1-A` five-landscape comparison gallery; creative review open |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
-| Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` opts into one territory; Music registry remains empty |
-| Next exact action | Review hill contour, ravine depth, and bridge separation across multiple liquid moments; if the original world remains legible and no uniform striped phase appears, capture comparable renderer metrics and one slower-device observation |
-| Do not begin | Multiple independent territories, production selected-world registration, hover derivation, other worlds, or project landmarks |
-| Review packet | Three captures maximum: idle metamorphosis, local pointer response, reduced/failure state |
+| Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` mounts one selected study at a time; Music registry remains empty |
+| Next exact action | Mark reviews Tidal Meadow, Nacre Terraces, Resonant Archipelago, Glass Delta, and Harmonic Dunes and labels each keep, revise, combine, or reject |
+| Do not begin | Production selected-world registration, hover derivation, other practice worlds, or project landmarks before the comparison outcome |
+| Review packet | One route with five compact selectors; no long document review required |
 
 Update this ledger, `WI-ART-16-01`, Plans `22/23`, capability `CAP-ART-018/019`, dashboard, and `ART-16` evidence whenever a gate changes state.
+
+## MW1-A Five-Landscape Review Gallery
+
+The user requested a larger creative batch rather than another single incremental liquid revision. The private proof therefore exposes five deliberately different territory grammars through one shared scene and one active runtime:
+
+| Study | Territory and motion grammar | Sparse landmark grammar |
+| --- | --- | --- |
+| Tidal Meadow | one broad breathing basin | nested tidal rings |
+| Nacre Terraces | unequal stepped shelves | translucent pearlescent plates |
+| Resonant Archipelago | separated answering pools | lifted islands and rings |
+| Glass Delta | branching directional channels | terrain-projected luminous tributaries |
+| Harmonic Dunes | overlapping fluid hills | slow translucent dune bodies |
+
+The gallery is a comparison instrument, not five production worlds. Only one study mounts at a time; all reuse the existing canvas, terrain, grass, piano, bridge, camera, and runtime clocks. Every mask is clipped to the elevated near meadow so the ravine and bridge remain readable. Creative review determines which grammar or combination advances to the selected Music world.

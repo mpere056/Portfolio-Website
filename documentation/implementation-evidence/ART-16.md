@@ -353,4 +353,16 @@ The next exact action is local multi-moment visual QA, followed by deployment fo
 | Visual evidence | Local in-app-browser captures at both the default viewport and the reported `1090 x 900` shape confirm the ravine is recessed, the bridge crosses open space rather than the hill, and liquid remains on the elevated foreground meadow. Direct user acceptance and longer multi-moment review remain open. |
 | Acceptance boundary | `ML6-R3` is a revision candidate, not an accepted Music world. Spatial continuity and slower-device evidence remain open. |
 
+## EV-ART-16-26: Five-Landscape Music Review Gallery
+
+| Field | Evidence |
+| --- | --- |
+| Status | candidate |
+| Scope | Private no-index `/music-liquid-proof` only. `MW1-A` adds five selectable Music studies through one shared canvas and one active runtime: Tidal Meadow, Nacre Terraces, Resonant Archipelago, Glass Delta, and Harmonic Dunes. |
+| Spatial evidence | Every study clips its grass transition, material, displacement, and alpha to the elevated near meadow. The hill, ravine, bridge, river, piano, and distant valley remain continuous. Glass Delta landmarks are projected to the authored terrain rather than placed at a flat world height. |
+| Runtime evidence | Switching replaces one study; it does not mount five canvases or five landscape runtimes. Existing grass count, camera, adaptive DPR, and no-post-processing constraints remain unchanged. |
+| Automated evidence | Fourteen focused Music/Home tests, TypeScript, and focused lint pass before release testing. |
+| Visual evidence | Local `1090 x 900` browser comparison covers all five selectors. Visual QA caught and fixed invalid 3D diagnostic attributes before deployment. |
+| Acceptance boundary | This is a comparison gallery, not an accepted Music world. Mark must classify each study as keep, revise, combine, or reject before consolidation. |
+
 The next exact action is production build and deployment for direct review, followed by multi-moment observation of the terrain-conforming boundary.

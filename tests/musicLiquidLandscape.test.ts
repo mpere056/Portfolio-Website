@@ -2,8 +2,10 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
+  MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
   musicLiquidInitialQuality,
+  musicLiquidLandscapeIndex,
   musicLiquidLocalAttention,
   musicLiquidMotionScale,
   musicLiquidPressurePhase,
@@ -14,6 +16,19 @@ import {
 const root = process.cwd();
 
 describe('Music Liquid Landscape proof contract', () => {
+  it('offers five ordered landscape grammars through one active review runtime', () => {
+    expect(MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id)).toEqual([
+      'tidal-meadow',
+      'nacre-terraces',
+      'resonant-archipelago',
+      'glass-delta',
+      'harmonic-dunes',
+    ]);
+    expect(new Set(MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id)).size).toBe(5);
+    expect(musicLiquidLandscapeIndex('tidal-meadow')).toBe(0);
+    expect(musicLiquidLandscapeIndex('harmonic-dunes')).toBe(4);
+  });
+
   it('keeps the expanded review territory and renderer additions bounded', () => {
     expect(MUSIC_LIQUID_PROOF.axes[0]).toBeLessThanOrEqual(16);
     expect(MUSIC_LIQUID_PROOF.axes[1]).toBeLessThanOrEqual(7.5);
@@ -96,6 +111,12 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(homePage).toContain('<PianoClearingProof />');
     expect(homePage).not.toContain('musicLiquidProof');
     expect(component).toContain('function LiquidTerritorySurface');
+    expect(component).toContain('function MusicLandscapeReview');
+    expect(component).toContain('data-music-landscape={musicLiquidProof ? musicLandscape : \'off\'}');
+    expect(component).toContain("musicLandscapeAccent: 'nacre-terraces'");
+    expect(component).toContain("musicLandscapeAccent: 'resonant-archipelago'");
+    expect(component).toContain("musicLandscapeAccent: 'glass-delta'");
+    expect(component).toContain("musicLandscapeAccent: 'harmonic-dunes'");
     expect(component).toContain('uLiquidMotion: { value: reducedMotion ? 0 : 1 }');
     expect(component).toContain('* uLiquidMotion');
     expect(component).toContain('<LiquidTerritorySurface');

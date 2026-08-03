@@ -24,13 +24,16 @@ import {
   pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
 import {
+  MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
+  musicLiquidLandscapeIndex,
   musicLiquidInitialQuality,
   musicLiquidMotionScale,
   musicLiquidQualityWeight,
   musicLiquidTerritoryCoordinates,
   musicLiquidTerritoryMask,
   type MusicLiquidQuality,
+  type MusicLiquidLandscapeId,
 } from '@/lib/artDirection/musicLiquidLandscape';
 import {
   PRACTICE_DEFINITIONS,
@@ -63,6 +66,62 @@ const BRIDGE_WATER_Y = (
 );
 const BRIDGE_DECK_Y = BRIDGE_WATER_Y + 4.65;
 const BRIDGE_LENGTH = 37.5;
+
+const MUSIC_LANDSCAPE_MASK_GLSL = `
+  float liquidBlob(vec2 point, vec2 center, vec2 scale, float softness) {
+    float distanceFromCenter = length((point - center) / scale);
+    return 1.0 - smoothstep(1.0 - softness, 1.0, distanceFromCenter);
+  }
+  float musicLandscapeMask(vec2 point, float mode) {
+    float tidal = 1.0 - smoothstep(0.76, 1.0, length(point));
+    float terraces = max(
+      liquidBlob(point, vec2(-0.34, 0.06), vec2(0.5, 0.34), 0.24),
+      max(
+        liquidBlob(point, vec2(0.12, -0.08), vec2(0.52, 0.42), 0.24),
+        liquidBlob(point, vec2(0.52, 0.12), vec2(0.31, 0.25), 0.24)
+      )
+    );
+    float archipelago = max(
+      liquidBlob(point, vec2(-0.5, 0.1), vec2(0.27, 0.24), 0.28),
+      max(
+        liquidBlob(point, vec2(-0.02, -0.22), vec2(0.32, 0.22), 0.28),
+        max(
+          liquidBlob(point, vec2(0.42, 0.18), vec2(0.25, 0.3), 0.28),
+          liquidBlob(point, vec2(0.68, -0.2), vec2(0.16, 0.15), 0.3)
+        )
+      )
+    );
+    float deltaMain = 1.0 - smoothstep(
+      0.075,
+      0.2,
+      abs(point.y - sin(point.x * 3.2 - 0.5) * 0.18)
+    );
+    float deltaUpper = 1.0 - smoothstep(
+      0.045,
+      0.14,
+      abs(point.y - 0.24 - sin(point.x * 4.1 + 1.3) * 0.1)
+    );
+    float deltaLower = 1.0 - smoothstep(
+      0.045,
+      0.14,
+      abs(point.y + 0.29 - sin(point.x * 3.6 - 0.7) * 0.09)
+    );
+    float delta = max(deltaMain, max(deltaUpper, deltaLower))
+      * (1.0 - smoothstep(0.62, 0.98, abs(point.x)));
+    float dunes = max(
+      liquidBlob(point, vec2(-0.42, 0.06), vec2(0.42, 0.52), 0.3),
+      max(
+        liquidBlob(point, vec2(0.08, -0.12), vec2(0.48, 0.45), 0.3),
+        liquidBlob(point, vec2(0.5, 0.16), vec2(0.36, 0.4), 0.3)
+      )
+    );
+    if (mode < 0.5) return tidal;
+    if (mode < 1.5) return terraces;
+    if (mode < 2.5) return archipelago;
+    if (mode < 3.5) return delta;
+    return dunes;
+  }
+`;
 
 type MusicLiquidRuntime = {
   pointerLocal: THREE.Vector2;
@@ -298,10 +357,12 @@ function createGrassGeometry() {
 function GrassField({
   reducedMotion,
   musicLiquidProof,
+  musicLandscapeIndex,
   liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  musicLandscapeIndex: number;
   liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
@@ -328,6 +389,7 @@ function GrassField({
       uLiquidMotion: { value: reducedMotion ? 0 : 1 },
       uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
       uLiquidAttention: { value: 0 },
+      uLandscapeMode: { value: musicLandscapeIndex },
     },
     vertexShader: `
       uniform float uTime;
@@ -339,6 +401,7 @@ function GrassField({
       uniform float uLiquidMotion;
       uniform vec2 uLiquidPointer;
       uniform float uLiquidAttention;
+      uniform float uLandscapeMode;
       attribute vec3 iRoot;
       attribute vec4 iParams;
       attribute vec4 iStatic;
@@ -349,6 +412,7 @@ function GrassField({
       varying float vVariation;
       varying float vPianoShadow;
       varying float vLiquid;
+      ${MUSIC_LANDSCAPE_MASK_GLSL}
       void main() {
         vUv = uv;
         vec3 blade = position;
@@ -367,10 +431,9 @@ function GrassField({
           (territoryOffset.x * territoryCos - territoryOffset.y * territorySin) / ${MUSIC_LIQUID_PROOF.axes[0]},
           (territoryOffset.x * territorySin + territoryOffset.y * territoryCos) / ${MUSIC_LIQUID_PROOF.axes[1]}
         );
-        float territoryDistance = length(territoryLocal);
         float liquidRiverCenter = 0.7 - clamp((root.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
         float elevatedMeadow = smoothstep(liquidRiverCenter + 4.8, liquidRiverCenter + 8.6, root.x);
-        float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, territoryDistance))
+        float territory = musicLandscapeMask(territoryLocal, uLandscapeMode)
           * elevatedMeadow * uLiquidWeight;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
         vec2 pressureUv = territoryLocal;
@@ -480,7 +543,7 @@ function GrassField({
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [liquidRuntime, musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -491,6 +554,7 @@ function GrassField({
     material.uniforms.uLiquidAttention.value = (
       liquidRuntime.attention * liquidRuntime.qualityWeight
     );
+    material.uniforms.uLandscapeMode.value = musicLandscapeIndex;
     if (reducedMotion) {
       cursorImpulse.current = 0;
       cursorInfluence.current = 0;
@@ -614,10 +678,12 @@ function GrassField({
 function Ground({
   reducedMotion,
   musicLiquidProof,
+  musicLandscapeIndex,
   liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  musicLandscapeIndex: number;
   liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGroundGeometry(), []);
@@ -628,6 +694,7 @@ function Ground({
       uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
       uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
       uLiquidAttention: { value: 0 },
+      uLandscapeMode: { value: musicLandscapeIndex },
     },
     vertexShader: `
           varying float vHeight;
@@ -674,6 +741,7 @@ function Ground({
           uniform float uLiquidWeight;
           uniform vec2 uLiquidPointer;
           uniform float uLiquidAttention;
+          uniform float uLandscapeMode;
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
@@ -701,6 +769,7 @@ function Ground({
             }
             return value;
           }
+          ${MUSIC_LANDSCAPE_MASK_GLSL}
           void main() {
             vec3 ravine = vec3(0.045, 0.06, 0.24);
             vec3 shadedGrass = vec3(0.12, 0.13, 0.38);
@@ -754,7 +823,7 @@ function Ground({
             );
             float elevatedMeadow = smoothstep(riverCenter + 4.8, riverCenter + 8.6, vWorld.x)
               * smoothstep(-1.5, 1.2, vHeight);
-            float territory = (1.0 - smoothstep(${1 - MUSIC_LIQUID_PROOF.edgeSoftness}, 1.0, length(territoryLocal)))
+            float territory = musicLandscapeMask(territoryLocal, uLandscapeMode)
               * elevatedMeadow * uLiquidWeight;
             float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
             vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
@@ -778,6 +847,23 @@ function Ground({
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
+            if (uLandscapeMode > 0.5 && uLandscapeMode < 1.5) {
+              liquidDeep = vec3(0.22, 0.12, 0.35);
+              liquidNacre = vec3(0.82, 0.58, 0.68);
+              liquidPearl = vec3(1.0, 0.84, 0.68);
+            } else if (uLandscapeMode > 1.5 && uLandscapeMode < 2.5) {
+              liquidDeep = vec3(0.07, 0.22, 0.34);
+              liquidNacre = vec3(0.28, 0.8, 0.75);
+              liquidPearl = vec3(0.78, 0.76, 1.0);
+            } else if (uLandscapeMode > 2.5 && uLandscapeMode < 3.5) {
+              liquidDeep = vec3(0.08, 0.2, 0.38);
+              liquidNacre = vec3(0.16, 0.78, 0.9);
+              liquidPearl = vec3(1.0, 0.66, 0.36);
+            } else if (uLandscapeMode > 3.5) {
+              liquidDeep = vec3(0.2, 0.08, 0.44);
+              liquidNacre = vec3(0.56, 0.34, 0.86);
+              liquidPearl = vec3(0.98, 0.62, 0.88);
+            }
             float liquidVein = 1.0 - abs(
               liquidFbm(organicUv * 2.35 + vec2(liquidTime * 0.06, -liquidTime * 0.1)) * 2.0 - 1.0
             );
@@ -800,7 +886,7 @@ function Ground({
             gl_FragColor = vec4(color, 1.0);
           }
         `,
-  }), [liquidRuntime, musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -810,6 +896,7 @@ function Ground({
     material.uniforms.uLiquidAttention.value = (
       liquidRuntime.attention * liquidRuntime.qualityWeight
     );
+    material.uniforms.uLandscapeMode.value = musicLandscapeIndex;
   });
 
   return (
@@ -889,9 +976,11 @@ function createLiquidTerritoryGeometry() {
 
 function LiquidTerritorySurface({
   reducedMotion,
+  musicLandscapeIndex,
   liquidRuntime,
 }: {
   reducedMotion: boolean;
+  musicLandscapeIndex: number;
   liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createLiquidTerritoryGeometry(), []);
@@ -906,20 +995,25 @@ function LiquidTerritorySurface({
       uMotion: { value: reducedMotion ? 0 : 1 },
       uPointer: { value: liquidRuntime.pointerLocal.clone() },
       uAttention: { value: 0 },
+      uLandscapeMode: { value: musicLandscapeIndex },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
       uniform vec2 uPointer;
       uniform float uAttention;
+      uniform float uLandscapeMode;
       attribute vec2 aTerritory;
       attribute float aMeadowMask;
       varying vec2 vTerritory;
       varying float vRipple;
       varying float vMeadowMask;
+      varying float vLandscapeMask;
+      ${MUSIC_LANDSCAPE_MASK_GLSL}
       void main() {
         vTerritory = aTerritory;
         vMeadowMask = aMeadowMask;
+        vLandscapeMask = musicLandscapeMask(aTerritory, uLandscapeMode);
         vec3 transformed = position;
         float travel = aTerritory.x * 8.0 - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 3.2} * uMotion;
         float ripple = sin(travel + sin(aTerritory.y * 8.0) * 0.8);
@@ -931,10 +1025,23 @@ function LiquidTerritorySurface({
           aTerritory.y * 4.2 + aTerritory.x * 2.0
           - uTime * ${MUSIC_LIQUID_PROOF.travelSpeed * 1.1} * uMotion
         );
+        float terraceLift = floor((1.0 - length(aTerritory)) * 4.0) * 0.038;
+        float islandLift = sin(aTerritory.x * 9.0) * sin(aTerritory.y * 8.0) * 0.055;
+        float deltaLift = sin(aTerritory.x * 12.0 - uTime * 0.42 * uMotion) * 0.026;
+        float duneLift = (
+          sin(aTerritory.x * 5.2 - uTime * 0.2 * uMotion)
+          + sin(aTerritory.y * 4.4 + uTime * 0.16 * uMotion)
+        ) * 0.11;
+        float authoredLift = 0.0;
+        if (uLandscapeMode > 0.5 && uLandscapeMode < 1.5) authoredLift = terraceLift;
+        else if (uLandscapeMode > 1.5 && uLandscapeMode < 2.5) authoredLift = islandLift;
+        else if (uLandscapeMode > 2.5 && uLandscapeMode < 3.5) authoredLift = deltaLift;
+        else if (uLandscapeMode > 3.5) authoredLift = duneLift;
         transformed.y += (
           ripple * (0.075 + localAttention * 0.1)
           + slowSwell * 0.045
-        ) * edge * aMeadowMask;
+          + authoredLift
+        ) * edge * aMeadowMask * vLandscapeMask;
         vRipple = ripple;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
@@ -944,9 +1051,11 @@ function LiquidTerritorySurface({
       uniform float uMotion;
       uniform vec2 uPointer;
       uniform float uAttention;
+      uniform float uLandscapeMode;
       varying vec2 vTerritory;
       varying float vRipple;
       varying float vMeadowMask;
+      varying float vLandscapeMask;
       float liquidHash(vec2 point) {
         return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
       }
@@ -972,7 +1081,7 @@ function LiquidTerritorySurface({
       }
       void main() {
         float distanceFromCenter = length(vTerritory);
-        float edge = (1.0 - smoothstep(0.76, 1.0, distanceFromCenter)) * vMeadowMask;
+        float edge = vLandscapeMask * vMeadowMask;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
         vec2 pressureUv = vTerritory * vec2(2.15, 2.65);
         pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
@@ -999,14 +1108,31 @@ function LiquidTerritorySurface({
         vec3 deep = vec3(0.08, 0.15, 0.38);
         vec3 nacre = vec3(0.32, 0.72, 0.84);
         vec3 pearl = vec3(0.94, 0.68, 0.9);
+        if (uLandscapeMode > 0.5 && uLandscapeMode < 1.5) {
+          deep = vec3(0.24, 0.1, 0.34);
+          nacre = vec3(0.84, 0.48, 0.64);
+          pearl = vec3(1.0, 0.86, 0.68);
+        } else if (uLandscapeMode > 1.5 && uLandscapeMode < 2.5) {
+          deep = vec3(0.04, 0.2, 0.31);
+          nacre = vec3(0.22, 0.78, 0.72);
+          pearl = vec3(0.76, 0.78, 1.0);
+        } else if (uLandscapeMode > 2.5 && uLandscapeMode < 3.5) {
+          deep = vec3(0.04, 0.18, 0.36);
+          nacre = vec3(0.12, 0.82, 0.92);
+          pearl = vec3(1.0, 0.62, 0.3);
+        } else if (uLandscapeMode > 3.5) {
+          deep = vec3(0.19, 0.06, 0.42);
+          nacre = vec3(0.57, 0.32, 0.9);
+          pearl = vec3(1.0, 0.6, 0.87);
+        }
         vec3 color = mix(deep, nacre, pressure * 0.72 + crossPressure * 0.38);
         color = mix(
           color,
           pearl,
           caustic * 0.7 + max(vRipple, 0.0) * 0.08 + attentionVein * 0.46
         );
-        float boundary = smoothstep(0.78, 0.9, distanceFromCenter)
-          * (1.0 - smoothstep(0.9, 1.0, distanceFromCenter));
+        float boundary = smoothstep(0.08, 0.3, edge)
+          * (1.0 - smoothstep(0.3, 0.58, edge));
         color = mix(color, pearl, boundary * 0.3);
         float alpha = edge * (
           0.42 + pressure * 0.4 + crossPressure * 0.22
@@ -1015,7 +1141,7 @@ function LiquidTerritorySurface({
         gl_FragColor = vec4(color, alpha);
       }
     `,
-  }), [liquidRuntime, reducedMotion]);
+  }), [liquidRuntime, musicLandscapeIndex, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -1024,9 +1150,176 @@ function LiquidTerritorySurface({
     material.uniforms.uAttention.value = (
       liquidRuntime.attention * liquidRuntime.qualityWeight
     );
+    material.uniforms.uLandscapeMode.value = musicLandscapeIndex;
   });
 
   return <mesh geometry={geometry} material={material} renderOrder={2} />;
+}
+
+function landscapePoint(x: number, z: number, lift = 0.18): [number, number, number] {
+  return [x, GROUND_Y + pianoClearingTerrainHeight(x, z) + lift, z];
+}
+
+function MusicLandscapeAccents({
+  landscape,
+  reducedMotion,
+}: {
+  landscape: MusicLiquidLandscapeId;
+  reducedMotion: boolean;
+}) {
+  const group = useRef<THREE.Group>(null);
+  const deltaCurves = useMemo(() => [
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
+      new THREE.Vector3(...landscapePoint(2.5, 4.2, 0.24)),
+      new THREE.Vector3(...landscapePoint(8.2, 5.4, 0.3)),
+      new THREE.Vector3(...landscapePoint(14.2, 6.7, 0.2)),
+      new THREE.Vector3(...landscapePoint(22.8, 8.3, 0.28)),
+    ]), 48, 0.065, 5, false),
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
+      new THREE.Vector3(...landscapePoint(5.2, 8.9, 0.21)),
+      new THREE.Vector3(...landscapePoint(10.8, 7.6, 0.28)),
+      new THREE.Vector3(...landscapePoint(15.4, 5.9, 0.22)),
+      new THREE.Vector3(...landscapePoint(21.4, 3.8, 0.26)),
+    ]), 48, 0.046, 5, false),
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
+      new THREE.Vector3(...landscapePoint(7.4, 1.8, 0.2)),
+      new THREE.Vector3(...landscapePoint(11.8, 3.2, 0.25)),
+      new THREE.Vector3(...landscapePoint(16.7, 4.6, 0.2)),
+      new THREE.Vector3(...landscapePoint(24.2, 4.1, 0.24)),
+    ]), 48, 0.038, 5, false),
+  ], []);
+
+  useFrame(({ clock }) => {
+    if (!group.current || reducedMotion) return;
+    const time = clock.elapsedTime;
+    group.current.position.y = Math.sin(time * 0.42) * 0.035;
+    group.current.rotation.y = Math.sin(time * 0.17) * 0.012;
+  });
+
+  if (landscape === 'nacre-terraces') {
+    const terraces = [
+      { position: landscapePoint(7.8, 6.2, 0.16), scale: [3.8, 0.08, 2.3] as const },
+      { position: landscapePoint(13.4, 5.2, 0.26), scale: [4.6, 0.1, 2.7] as const },
+      { position: landscapePoint(19.1, 7.3, 0.38), scale: [3.2, 0.12, 2.1] as const },
+    ];
+    return (
+      <group ref={group} userData={{ musicLandscapeAccent: 'nacre-terraces' }}>
+        {terraces.map((terrace, index) => (
+          <mesh key={index} position={terrace.position} scale={terrace.scale} renderOrder={3}>
+            <cylinderGeometry args={[1, 1.08, 1, 48, 1]} />
+            <meshBasicMaterial
+              color={index === 1 ? '#f4a9ca' : '#ffd5a7'}
+              transparent
+              opacity={0.24}
+              depthWrite={false}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  if (landscape === 'resonant-archipelago') {
+    const islands = [
+      [7.2, 5.6, 0.48, 0.74],
+      [10.8, 2.8, 0.72, 1.04],
+      [14.7, 7.4, 0.54, 0.82],
+      [18.4, 4.1, 0.9, 1.28],
+      [22.3, 7.9, 0.42, 0.64],
+      [15.6, 10.8, 0.36, 0.56],
+    ] as const;
+    return (
+      <group ref={group} userData={{ musicLandscapeAccent: 'resonant-archipelago' }}>
+        {islands.map(([x, z, radius, lift], index) => (
+          <group key={index} position={landscapePoint(x, z, lift)}>
+            <mesh scale={[1.5, 0.52, 1.1]} renderOrder={3}>
+              <sphereGeometry args={[radius, 24, 12]} />
+              <meshBasicMaterial
+                color={index % 2 === 0 ? '#73f4df' : '#bcb5ff'}
+                transparent
+                opacity={0.32}
+                depthWrite={false}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+            <mesh rotation={[Math.PI / 2, 0, 0]} renderOrder={4}>
+              <torusGeometry args={[radius * 1.2, 0.025, 6, 32]} />
+              <meshBasicMaterial color="#d8fff8" transparent opacity={0.42} depthWrite={false} />
+            </mesh>
+          </group>
+        ))}
+      </group>
+    );
+  }
+
+  if (landscape === 'glass-delta') {
+    return (
+      <group
+        ref={group}
+        userData={{ musicLandscapeAccent: 'glass-delta' }}
+      >
+        {deltaCurves.map((geometry, index) => (
+          <mesh key={index} geometry={geometry} renderOrder={4}>
+            <meshBasicMaterial
+              color={index === 0 ? '#55eaff' : index === 1 ? '#ffc878' : '#a9f6ff'}
+              transparent
+              opacity={index === 0 ? 0.58 : 0.38}
+              depthWrite={false}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  if (landscape === 'harmonic-dunes') {
+    const dunes = [
+      [6.8, 5.2, 2.8, 0.5],
+      [11.6, 7.8, 3.7, 0.68],
+      [16.2, 4.8, 3.2, 0.82],
+      [20.8, 8.2, 2.8, 0.6],
+    ] as const;
+    return (
+      <group ref={group} userData={{ musicLandscapeAccent: 'harmonic-dunes' }}>
+        {dunes.map(([x, z, width, height], index) => (
+          <mesh
+            key={index}
+            position={landscapePoint(x, z, height * 0.48)}
+            scale={[width, height, width * 0.72]}
+            renderOrder={3}
+          >
+            <sphereGeometry args={[1, 28, 14]} />
+            <meshBasicMaterial
+              color={index % 2 === 0 ? '#8d63e8' : '#f28fcb'}
+              transparent
+              opacity={0.19}
+              depthWrite={false}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+        ))}
+      </group>
+    );
+  }
+
+  return (
+    <group ref={group} userData={{ musicLandscapeAccent: 'tidal-meadow' }}>
+      {[0.74, 1.06, 1.38].map((radius, index) => (
+        <mesh
+          key={radius}
+          position={landscapePoint(14.8, 6.1, 0.2 + index * 0.02)}
+          rotation={[Math.PI / 2, 0, -0.18]}
+          scale={[7.4, 3.5, 1]}
+          renderOrder={3}
+        >
+          <torusGeometry args={[radius, 0.012, 5, 48]} />
+          <meshBasicMaterial color="#83e9ef" transparent opacity={0.2} depthWrite={false} />
+        </mesh>
+      ))}
+    </group>
+  );
 }
 
 function createStreamGeometry() {
@@ -2296,6 +2589,7 @@ function AdaptivePixelRatio({
 const PianoClearingScene = memo(function PianoClearingScene({
   reducedMotion,
   musicLiquidProof,
+  musicLandscape,
   liquidQuality,
   onLiquidQualityChange,
   onContextLost,
@@ -2303,6 +2597,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
+  musicLandscape: MusicLiquidLandscapeId;
   liquidQuality: MusicLiquidQuality;
   onLiquidQualityChange: (quality: MusicLiquidQuality) => void;
   onContextLost: () => void;
@@ -2310,6 +2605,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
 }) {
   const liquidRuntime = useMemo(() => createMusicLiquidRuntime(), []);
   const liquidEnabled = musicLiquidProof && liquidQuality !== 'failure';
+  const landscapeIndex = musicLiquidLandscapeIndex(musicLandscape);
 
   useEffect(() => {
     liquidRuntime.qualityWeight = musicLiquidQualityWeight(liquidQuality);
@@ -2348,13 +2644,21 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <Ground
         reducedMotion={reducedMotion}
         musicLiquidProof={liquidEnabled}
+        musicLandscapeIndex={landscapeIndex}
         liquidRuntime={liquidRuntime}
       />
       {liquidEnabled ? (
-        <LiquidTerritorySurface
-          reducedMotion={reducedMotion}
-          liquidRuntime={liquidRuntime}
-        />
+        <>
+          <LiquidTerritorySurface
+            reducedMotion={reducedMotion}
+            musicLandscapeIndex={landscapeIndex}
+            liquidRuntime={liquidRuntime}
+          />
+          <MusicLandscapeAccents
+            landscape={musicLandscape}
+            reducedMotion={reducedMotion}
+          />
+        </>
       ) : null}
       <Stream
         reducedMotion={reducedMotion}
@@ -2365,6 +2669,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
       <GrassField
         reducedMotion={reducedMotion}
         musicLiquidProof={liquidEnabled}
+        musicLandscapeIndex={landscapeIndex}
         liquidRuntime={liquidRuntime}
       />
       <ValleyDetails />
@@ -2566,6 +2871,42 @@ function PracticeInstruments() {
   );
 }
 
+function MusicLandscapeReview({
+  active,
+  onChange,
+}: {
+  active: MusicLiquidLandscapeId;
+  onChange: (landscape: MusicLiquidLandscapeId) => void;
+}) {
+  const activeLandscape = MUSIC_LIQUID_LANDSCAPES.find(landscape => landscape.id === active)
+    ?? MUSIC_LIQUID_LANDSCAPES[0];
+
+  return (
+    <section className={styles.landscapeReview} aria-label="Music landscape review selector">
+      <header>
+        <span>Music world studies</span>
+        <strong>{activeLandscape.title}</strong>
+        <small>{activeLandscape.note}</small>
+      </header>
+      <div className={styles.landscapeChoices}>
+        {MUSIC_LIQUID_LANDSCAPES.map((landscape, index) => (
+          <button
+            key={landscape.id}
+            type="button"
+            data-active={landscape.id === active}
+            onClick={() => onChange(landscape.id)}
+            aria-pressed={landscape.id === active}
+            aria-label={`Show ${landscape.title}`}
+          >
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            {landscape.title}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function PianoClearingProof({
   musicLiquidProof = false,
 }: {
@@ -2574,6 +2915,7 @@ export default function PianoClearingProof({
   const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [liquidQuality, setLiquidQuality] = useState<MusicLiquidQuality>('full');
+  const [musicLandscape, setMusicLandscape] = useState<MusicLiquidLandscapeId>('tidal-meadow');
 
   const handleContextLost = useCallback(() => setLiquidQuality('failure'), []);
   // Keep the expensive optional territory disabled after a context recovery.
@@ -2619,6 +2961,7 @@ export default function PianoClearingProof({
       className={styles.world}
       data-piano-clearing-proof=""
       data-music-liquid-proof={musicLiquidProof ? 'terrain-conforming-organic' : 'off'}
+      data-music-landscape={musicLiquidProof ? musicLandscape : 'off'}
       data-music-liquid-quality={musicLiquidProof ? effectiveLiquidQuality : 'off'}
       data-river-flow="far-to-foreground"
       data-grass-wind="0.34"
@@ -2649,6 +2992,7 @@ export default function PianoClearingProof({
         <PianoClearingScene
           reducedMotion={reducedMotion}
           musicLiquidProof={musicLiquidProof}
+          musicLandscape={musicLandscape}
           liquidQuality={effectiveLiquidQuality}
           onLiquidQualityChange={handleLiquidQualityChange}
           onContextLost={handleContextLost}
@@ -2661,9 +3005,16 @@ export default function PianoClearingProof({
       <div aria-hidden="true" className={styles.sunWash} />
       <div aria-hidden="true" className={styles.grain} />
       <PracticeInstruments />
+      {musicLiquidProof ? (
+        <MusicLandscapeReview active={musicLandscape} onChange={setMusicLandscape} />
+      ) : null}
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Material proof ML6-R3' : 'Environmental proof 84'}
-        <strong>{musicLiquidProof ? 'The liquid landscape' : 'Dusk Refrain'}</strong>
+        {musicLiquidProof ? 'Music world gallery MW1-A' : 'Environmental proof 84'}
+        <strong>
+          {musicLiquidProof
+            ? MUSIC_LIQUID_LANDSCAPES.find(landscape => landscape.id === musicLandscape)?.title
+            : 'Dusk Refrain'}
+        </strong>
       </p>
     </main>
   );
