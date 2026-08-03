@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import {
+  Component,
   memo,
   Suspense,
   useCallback,
@@ -12,6 +13,7 @@ import {
   useReducer,
   useRef,
   useState,
+  type ReactNode,
 } from 'react';
 import {
   PIANO_CLEARING_CAMERA,
@@ -26,6 +28,7 @@ import {
 import {
   MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
+  MUSIC_WORLD_PROFILES,
   musicLiquidLandscapeIndex,
   musicLiquidInitialQuality,
   musicLiquidMotionScale,
@@ -34,6 +37,7 @@ import {
   musicLiquidTerritoryMask,
   type MusicLiquidQuality,
   type MusicLiquidLandscapeId,
+  type MusicWorldProfile,
 } from '@/lib/artDirection/musicLiquidLandscape';
 import {
   PRACTICE_DEFINITIONS,
@@ -66,6 +70,30 @@ const BRIDGE_WATER_Y = (
 );
 const BRIDGE_DECK_Y = BRIDGE_WATER_Y + 4.65;
 const BRIDGE_LENGTH = 37.5;
+
+class SceneErrorBoundary extends Component<
+  { children: ReactNode },
+  { error: Error | null }
+> {
+  state: { error: Error | null } = { error: null };
+
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+
+  render() {
+    if (this.state.error) {
+      return (
+        <div className={styles.sceneError} role="status">
+          <strong>The landscape is regrouping.</strong>
+          <span>{this.state.error.message}</span>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const MUSIC_LANDSCAPE_MASK_GLSL = `
   float liquidBlob(vec2 point, vec2 center, vec2 scale, float softness) {
@@ -358,11 +386,13 @@ function GrassField({
   reducedMotion,
   musicLiquidProof,
   musicLandscapeIndex,
+  profile,
   liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
   musicLandscapeIndex: number;
+  profile: MusicWorldProfile;
   liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGrassGeometry(), []);
@@ -384,12 +414,16 @@ function GrassField({
       uCursor: { value: new THREE.Vector2(1000, 1000) },
       uCursorDirection: { value: new THREE.Vector2(1, 0) },
       uCursorInfluence: { value: 0 },
-      uFogColor: { value: new THREE.Color('#9584c7') },
+      uFogColor: { value: new THREE.Color(profile.fog) },
       uLiquidWeight: { value: musicLiquidProof ? 1 : 0 },
       uLiquidMotion: { value: reducedMotion ? 0 : 1 },
       uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
       uLiquidAttention: { value: 0 },
       uLandscapeMode: { value: musicLandscapeIndex },
+      uGrassLow: { value: new THREE.Color(profile.grass[0]) },
+      uGrassMid: { value: new THREE.Color(profile.grass[1]) },
+      uGrassHigh: { value: new THREE.Color(profile.grass[2]) },
+      uGrassTip: { value: new THREE.Color(profile.grass[3]) },
     },
     vertexShader: `
       uniform float uTime;
@@ -511,6 +545,10 @@ function GrassField({
     `,
     fragmentShader: `
       uniform vec3 uFogColor;
+      uniform vec3 uGrassLow;
+      uniform vec3 uGrassMid;
+      uniform vec3 uGrassHigh;
+      uniform vec3 uGrassTip;
       varying vec2 vUv;
       varying float vFog;
       varying float vWarm;
@@ -519,11 +557,11 @@ function GrassField({
       varying float vPianoShadow;
       varying float vLiquid;
       void main() {
-        vec3 baseColor = vec3(0.105, 0.125, 0.34);
-        vec3 lowColor = vec3(0.18, 0.19, 0.47);
-        vec3 middleColor = vec3(0.33, 0.25, 0.56);
-        vec3 upperColor = vec3(0.57, 0.35, 0.62);
-        vec3 tipColor = vec3(0.87, 0.52, 0.7);
+        vec3 baseColor = uGrassLow * 0.72;
+        vec3 lowColor = uGrassLow;
+        vec3 middleColor = uGrassMid;
+        vec3 upperColor = uGrassHigh;
+        vec3 tipColor = uGrassTip;
         vec3 dryColor = vec3(0.76, 0.4, 0.64);
         vec3 sheenColor = vec3(0.9, 0.72, 0.92);
         vec3 sunlitColor = vec3(0.77, 0.4, 0.65);
@@ -543,7 +581,7 @@ function GrassField({
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, profile, reducedMotion]);
 
   useFrame(({ clock, camera, pointer, raycaster }, delta) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -679,11 +717,13 @@ function Ground({
   reducedMotion,
   musicLiquidProof,
   musicLandscapeIndex,
+  profile,
   liquidRuntime,
 }: {
   reducedMotion: boolean;
   musicLiquidProof: boolean;
   musicLandscapeIndex: number;
+  profile: MusicWorldProfile;
   liquidRuntime: MusicLiquidRuntime;
 }) {
   const geometry = useMemo(() => createGroundGeometry(), []);
@@ -695,6 +735,11 @@ function Ground({
       uLiquidPointer: { value: liquidRuntime.pointerLocal.clone() },
       uLiquidAttention: { value: 0 },
       uLandscapeMode: { value: musicLandscapeIndex },
+      uGroundRavine: { value: new THREE.Color(profile.ground[0]) },
+      uGroundShade: { value: new THREE.Color(profile.ground[1]) },
+      uGroundField: { value: new THREE.Color(profile.ground[2]) },
+      uGroundSun: { value: new THREE.Color(profile.ground[3]) },
+      uWorldFog: { value: new THREE.Color(profile.fog) },
     },
     vertexShader: `
           varying float vHeight;
@@ -742,6 +787,11 @@ function Ground({
           uniform vec2 uLiquidPointer;
           uniform float uLiquidAttention;
           uniform float uLandscapeMode;
+          uniform vec3 uGroundRavine;
+          uniform vec3 uGroundShade;
+          uniform vec3 uGroundField;
+          uniform vec3 uGroundSun;
+          uniform vec3 uWorldFog;
           varying float vHeight;
           varying float vSlope;
           varying float vDepth;
@@ -771,10 +821,10 @@ function Ground({
           }
           ${MUSIC_LANDSCAPE_MASK_GLSL}
           void main() {
-            vec3 ravine = vec3(0.045, 0.06, 0.24);
-            vec3 shadedGrass = vec3(0.12, 0.13, 0.38);
-            vec3 field = vec3(0.27, 0.2, 0.5);
-            vec3 sunField = vec3(0.52, 0.28, 0.58);
+            vec3 ravine = uGroundRavine;
+            vec3 shadedGrass = uGroundShade;
+            vec3 field = uGroundField;
+            vec3 sunField = uGroundSun;
             float elevation = smoothstep(-4.9, 1.25, vHeight);
             vec3 color = mix(ravine, shadedGrass, elevation);
             color = mix(color, field, smoothstep(-0.3, 2.2, vHeight));
@@ -882,11 +932,11 @@ function Ground({
             vec3 terrainLitLiquid = color * 0.34 + liquidColor * 0.76;
             color = mix(color, terrainLitLiquid, liquidState * 0.72);
             float fog = smoothstep(31.0, 78.0, vDepth);
-            color = mix(color, vec3(0.53, 0.45, 0.71), fog * 0.78);
+            color = mix(color, uWorldFog, fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
           }
         `,
-  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, reducedMotion]);
+  }), [liquidRuntime, musicLandscapeIndex, musicLiquidProof, profile, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -1316,6 +1366,319 @@ function MusicLandscapeAccents({
         >
           <torusGeometry args={[radius, 0.012, 5, 48]} />
           <meshBasicMaterial color="#83e9ef" transparent opacity={0.2} depthWrite={false} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function musicWorldTube(
+  points: [number, number, number][],
+  radius: number,
+  closed = false,
+) {
+  return new THREE.TubeGeometry(
+    new THREE.CatmullRomCurve3(points.map(point => new THREE.Vector3(...point)), closed),
+    72,
+    radius,
+    6,
+    closed,
+  );
+}
+
+type WorldInstanceTransform = {
+  position: [number, number, number];
+  rotation?: [number, number, number];
+  scale: [number, number, number];
+};
+
+function WorldInstances({
+  items,
+  children,
+}: {
+  items: WorldInstanceTransform[];
+  children: ReactNode;
+}) {
+  const instances = useRef<THREE.InstancedMesh>(null);
+
+  useEffect(() => {
+    const dummy = new THREE.Object3D();
+    items.forEach((item, index) => {
+      dummy.position.set(...item.position);
+      dummy.rotation.set(...(item.rotation ?? [0, 0, 0]));
+      dummy.scale.set(...item.scale);
+      dummy.updateMatrix();
+      instances.current?.setMatrixAt(index, dummy.matrix);
+    });
+    if (instances.current) instances.current.instanceMatrix.needsUpdate = true;
+  }, [items]);
+
+  return (
+    <instancedMesh
+      ref={instances}
+      args={[undefined, undefined, items.length]}
+      frustumCulled={false}
+    >
+      {children}
+    </instancedMesh>
+  );
+}
+
+function WorldScaleMusicForms({
+  landscape,
+  profile,
+  reducedMotion,
+}: {
+  landscape: MusicLiquidLandscapeId;
+  profile: MusicWorldProfile;
+  reducedMotion: boolean;
+}) {
+  const group = useRef<THREE.Group>(null);
+  const deltaRoutes = useMemo(() => [
+    musicWorldTube([[-24, 0.4, -47], [-15, -0.4, -30], [-3, 0.2, -16], [9, 1.1, -2], [25, 0.4, 12]], 0.18),
+    musicWorldTube([[-16, 2.2, -43], [-7, 1.2, -27], [5, 0.7, -14], [16, 1.7, 1], [29, 1.1, 10]], 0.1),
+    musicWorldTube([[26, 1.4, -42], [15, 0.4, -26], [8, 1.5, -13], [-4, 0.2, 2], [-18, -0.2, 11]], 0.12),
+  ], []);
+  const skyWaves = useMemo(() => [
+    musicWorldTube([[-38, 14, -47], [-18, 18, -52], [2, 13, -48], [22, 19, -55], [42, 15, -50]], 0.22),
+    musicWorldTube([[-42, 10, -52], [-20, 13, -48], [0, 9, -54], [21, 14, -49], [45, 11, -55]], 0.12),
+  ], []);
+
+  useFrame(({ clock }) => {
+    if (!group.current || reducedMotion) return;
+    const time = clock.elapsedTime;
+    group.current.position.y = Math.sin(time * 0.16) * 0.11;
+    group.current.rotation.y = Math.sin(time * 0.075) * 0.012;
+  });
+
+  if (landscape === 'tidal-meadow') {
+    const blooms = Array.from({ length: 15 }, (_, index): WorldInstanceTransform & { palette: number } => {
+      const angle = (index / 15) * Math.PI * 2;
+      const radius = index < 8 ? 13 : 24;
+      return {
+        position: [
+          Math.cos(angle) * radius + (index % 3) * 2,
+          index < 8 ? 1.1 + (index % 2) * 0.7 : 4.2 + (index % 3),
+          Math.sin(angle) * radius - 14,
+        ],
+        scale: [index < 8 ? 4.8 : 7.2, 0.28, (index < 8 ? 4.8 : 7.2) * 0.56],
+        rotation: [0, angle, 0],
+        palette: index % 3,
+      };
+    });
+    const bloomPalette = [
+      ['#f49ac5', '#b83c78'],
+      ['#88d9dc', '#357ba1'],
+      ['#8a78dc', '#357ba1'],
+    ] as const;
+    return (
+      <group ref={group} userData={{ musicWorldForm: 'ocean-bloom' }}>
+        <mesh position={[0, -0.7, -20]} rotation={[-Math.PI / 2, 0, 0]} scale={[58, 62, 1]}>
+          <circleGeometry args={[1, 72]} />
+          <meshStandardMaterial
+            color="#315d9f"
+            emissive="#294f91"
+            emissiveIntensity={0.34}
+            transparent
+            opacity={0.32}
+            roughness={0.16}
+            metalness={0.08}
+            depthWrite={false}
+          />
+        </mesh>
+        {bloomPalette.map(([color, emissive], palette) => (
+          <WorldInstances key={color} items={blooms.filter(bloom => bloom.palette === palette)}>
+            <sphereGeometry args={[1, 20, 8]} />
+              <meshStandardMaterial
+                color={color}
+                emissive={emissive}
+                emissiveIntensity={0.32}
+                transparent
+                opacity={0.42}
+                roughness={0.34}
+                depthWrite={false}
+              />
+          </WorldInstances>
+        ))}
+      </group>
+    );
+  }
+
+  if (landscape === 'nacre-terraces') {
+    const shelves = [
+      [-22, 0.2, -35, 17, 1.1, 8], [-3, 2.2, -42, 18, 1.4, 10], [20, 5.4, -45, 15, 1.2, 9],
+      [-19, 7.7, -55, 13, 0.9, 8], [8, 10.4, -58, 16, 1.1, 9], [31, 13.2, -62, 12, 0.8, 7],
+      [13, -0.2, -12, 11, 0.82, 7],
+    ] as const;
+    const shelfTransforms = shelves.map(([x, y, z, width, height, depth], index) => ({
+      position: [x, y, z] as [number, number, number],
+      rotation: [0.03, index * 0.17, index % 2 ? -0.05 : 0.04] as [number, number, number],
+      scale: [width, height, depth] as [number, number, number],
+      palette: index % 2,
+    }));
+    const rootTransforms = shelves.map(([x, y, z, width, height, depth], index) => ({
+      position: [x, y - height * 1.4, z] as [number, number, number],
+      rotation: [0.03, index * 0.17, index % 2 ? -0.05 : 0.04] as [number, number, number],
+      scale: [width * 0.82, height * 3.2, depth * 0.76] as [number, number, number],
+      palette: index % 2,
+    }));
+    return (
+      <group ref={group} userData={{ musicWorldForm: 'monumental-nacre-terraces' }}>
+        {[0, 1].map(palette => (
+          <WorldInstances key={palette} items={shelfTransforms.filter(item => item.palette === palette)}>
+              <cylinderGeometry args={[1, 1.12, 1, 32, 1]} />
+              <meshStandardMaterial
+                color={palette ? '#ffb598' : '#e8a5c4'}
+                emissive={palette ? '#9d3f5c' : '#704074'}
+                emissiveIntensity={0.28}
+                roughness={0.28}
+                metalness={0.16}
+                transparent
+                opacity={0.88}
+              />
+          </WorldInstances>
+        ))}
+        {[0, 1].map(palette => (
+          <WorldInstances key={`root-${palette}`} items={rootTransforms.filter(item => item.palette === palette)}>
+              <coneGeometry args={[1, 1.8, 32, 1, true]} />
+              <meshBasicMaterial color="#7f3e68" transparent opacity={0.2} depthWrite={false} />
+          </WorldInstances>
+        ))}
+      </group>
+    );
+  }
+
+  if (landscape === 'resonant-archipelago') {
+    const islands = Array.from({ length: 14 }, (_, index) => {
+      const scale = 2.4 + (index % 4) * 0.75;
+      return {
+        position: [-31 + (index % 7) * 10.5 + (index % 2) * 2.2, 2.5 + Math.floor(index / 7) * 7 + (index % 3) * 1.4, -18 - Math.floor(index / 7) * 25 - (index % 4) * 3] as [number, number, number],
+        scale,
+        palette: index % 2,
+      };
+    });
+    const islandTops = islands.map(island => ({
+      position: island.position,
+      scale: [island.scale * 1.7, island.scale * 0.34, island.scale] as [number, number, number],
+      palette: island.palette,
+    }));
+    const islandRoots = islands.map(island => ({
+      position: [island.position[0], island.position[1] - island.scale * 0.8, island.position[2]] as [number, number, number],
+      scale: [island.scale, island.scale * 1.6, island.scale * 0.7] as [number, number, number],
+    }));
+    const islandRings = islands.map(island => ({
+      position: island.position,
+      rotation: [Math.PI / 2, 0, 0] as [number, number, number],
+      scale: [island.scale * 1.35, island.scale * 1.35, island.scale * 1.35] as [number, number, number],
+    }));
+    return (
+      <group ref={group} userData={{ musicWorldForm: 'suspended-archipelago' }}>
+        {[0, 1].map(palette => (
+          <WorldInstances key={palette} items={islandTops.filter(item => item.palette === palette)}>
+              <dodecahedronGeometry args={[1, 1]} />
+              <meshStandardMaterial
+                color={palette ? '#58c8b0' : '#82d8ce'}
+                emissive="#1b716f"
+                emissiveIntensity={0.3}
+                roughness={0.52}
+              />
+          </WorldInstances>
+        ))}
+        <WorldInstances items={islandRoots}>
+              <coneGeometry args={[1, 1.7, 7]} />
+              <meshToonMaterial color="#173d56" />
+        </WorldInstances>
+        <WorldInstances items={islandRings}>
+              <torusGeometry args={[1, 0.026, 5, 32]} />
+              <meshBasicMaterial color="#b9fff0" transparent opacity={0.62} depthWrite={false} />
+        </WorldInstances>
+      </group>
+    );
+  }
+
+  if (landscape === 'glass-delta') {
+    const spires = Array.from({ length: 20 }, (_, index) => ({
+      x: -32 + (index % 10) * 7.2,
+      y: -0.2 + (index % 3) * 0.7,
+      z: -14 - Math.floor(index / 10) * 27 - (index % 4) * 2,
+      height: 2.8 + (index % 5) * 1.7,
+    }));
+    const spireTransforms = spires.map((spire, index) => ({
+      position: [spire.x, spire.y + spire.height / 2, spire.z] as [number, number, number],
+      scale: [0.65, spire.height, 0.65] as [number, number, number],
+      palette: index % 3,
+    }));
+    const spirePalette = [
+      ['#5be9e5', '#176f9e'],
+      ['#ff8c65', '#b43b24'],
+      ['#8aa8ff', '#176f9e'],
+    ] as const;
+    return (
+      <group ref={group} userData={{ musicWorldForm: 'prismatic-glass-delta' }}>
+        {deltaRoutes.map((geometry, index) => (
+          <mesh key={index} geometry={geometry}>
+            <meshBasicMaterial
+              color={index === 0 ? '#53f5ff' : index === 1 ? '#ff9a62' : '#a8f8ff'}
+              transparent
+              opacity={0.72}
+              blending={THREE.AdditiveBlending}
+              depthWrite={false}
+            />
+          </mesh>
+        ))}
+        {spirePalette.map(([color, emissive], palette) => (
+          <WorldInstances key={color} items={spireTransforms.filter(item => item.palette === palette)}>
+            <octahedronGeometry args={[1, 0]} />
+            <meshStandardMaterial
+              color={color}
+              emissive={emissive}
+              emissiveIntensity={0.46}
+              transparent
+              opacity={0.68}
+              roughness={0.18}
+              metalness={0.22}
+              depthWrite={false}
+            />
+          </WorldInstances>
+        ))}
+      </group>
+    );
+  }
+
+  const dunes = [
+    [-26, 0.3, -23, 15, 3.4, 8], [-3, 1.8, -31, 20, 4.4, 10], [23, 3.4, -36, 17, 5.2, 9],
+    [-22, 7.8, -53, 18, 4, 9], [8, 10.2, -58, 22, 5.4, 10], [34, 8.6, -55, 15, 3.6, 8],
+  ] as const;
+  const duneTransforms = dunes.map(([x, y, z, width, height, depth], index) => ({
+    position: [x, y, z] as [number, number, number],
+    rotation: [0, index * 0.11, index % 2 ? 0.12 : -0.08] as [number, number, number],
+    scale: [width, height, depth] as [number, number, number],
+    palette: index % 2,
+  }));
+  return (
+    <group ref={group} userData={{ musicWorldForm: 'harmonic-wave-cathedral' }}>
+      {[0, 1].map(palette => (
+        <WorldInstances key={palette} items={duneTransforms.filter(item => item.palette === palette)}>
+          <sphereGeometry args={[1, 24, 10]} />
+          <meshStandardMaterial
+            color={palette ? '#ad45a7' : '#6339a2'}
+            emissive={palette ? '#7f1f79' : '#392276'}
+            emissiveIntensity={0.38}
+            roughness={0.36}
+            transparent
+            opacity={0.78}
+          />
+        </WorldInstances>
+      ))}
+      {skyWaves.map((geometry, index) => (
+        <mesh key={`sky-wave-${index}`} geometry={geometry}>
+          <meshBasicMaterial
+            color={index ? '#f98bc8' : '#9e74ff'}
+            transparent
+            opacity={0.42}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
         </mesh>
       ))}
     </group>
@@ -1823,7 +2186,7 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function DistantLandscape() {
+function DistantLandscape({ profile }: { profile: MusicWorldProfile }) {
   const trees = useMemo(() => {
     const random = seededRandom(1827);
     const accepted: {
@@ -1892,35 +2255,35 @@ function DistantLandscape() {
       <RidgeBand
         z={-66}
         baseY={-4.5}
-        color="#9188c8"
+        color={profile.ridge[0]}
         opacity={0.72}
         heights={[3.3, 4.5, 4, 5.1, 4.15, 4.7, 3.6]}
       />
       <RidgeBand
         z={-55}
         baseY={-4.3}
-        color="#756fb3"
+        color={profile.ridge[1]}
         opacity={0.78}
         heights={[2.4, 3.4, 2.8, 4, 3.15, 3.75, 2.55]}
       />
       <RidgeBand
         z={-45}
         baseY={-4.1}
-        color="#5d5ca2"
+        color={profile.ridge[2]}
         opacity={0.84}
         heights={[1.45, 2.4, 1.85, 2.9, 2.1, 2.5, 1.6]}
       />
       <instancedMesh ref={trunks} args={[undefined, undefined, trees.length]}>
         <cylinderGeometry args={[0.5, 0.62, 1.6, 5]} />
-        <meshToonMaterial color="#3a356c" />
+        <meshToonMaterial color={profile.bridge[0]} />
       </instancedMesh>
       <instancedMesh ref={crowns} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#514482" />
+        <meshToonMaterial color={profile.ridge[2]} />
       </instancedMesh>
       <instancedMesh ref={crownHighlights} args={[undefined, undefined, trees.length]}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshToonMaterial color="#7b629d" />
+        <meshToonMaterial color={profile.ridge[0]} />
       </instancedMesh>
     </>
   );
@@ -1978,11 +2341,11 @@ function RidgeBand({
   );
 }
 
-function StoneViaduct() {
+function StoneViaduct({ profile }: { profile: MusicWorldProfile }) {
   const archSpacing = BRIDGE_LENGTH / PIANO_CLEARING_PERFORMANCE.bridgeArches;
   const leftEdge = -BRIDGE_LENGTH / 2;
-  const stone = '#24264f';
-  const sunStone = '#353866';
+  const stone = profile.bridge[0];
+  const sunStone = profile.bridge[1];
 
   return (
     <group position={[BRIDGE_X, 0, BRIDGE_Z]}>
@@ -1997,16 +2360,16 @@ function StoneViaduct() {
           scale={[2.45, 0.055, 0.018]}
         >
           <boxGeometry args={[1, 1, 1]} />
-          <meshBasicMaterial color="#7779a5" transparent opacity={0.62} fog={false} />
+          <meshBasicMaterial color={profile.keyLight} transparent opacity={0.5} fog={false} />
         </mesh>
       ))}
       <mesh position={[0, BRIDGE_DECK_Y + 0.39, -0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color="#4c4f83" fog={false} />
+        <meshToonMaterial color={profile.bridge[1]} fog={false} />
       </mesh>
       <mesh position={[0, BRIDGE_DECK_Y + 0.39, 0.49]} scale={[BRIDGE_LENGTH, 0.23, 0.14]}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color="#1c2049" fog={false} />
+        <meshToonMaterial color={profile.bridge[0]} fog={false} />
       </mesh>
       {Array.from({ length: PIANO_CLEARING_PERFORMANCE.bridgeArches + 1 }, (_, index) => {
         if (index === 0 || index === PIANO_CLEARING_PERFORMANCE.bridgeArches) return null;
@@ -2016,7 +2379,7 @@ function StoneViaduct() {
         return (
           <mesh key={`pier-${index}`} position={[x, bankY + height / 2, 0]} scale={[0.62, height, 1.05]}>
             <boxGeometry args={[1, 1, 1]} />
-            <meshToonMaterial color={index % 2 ? stone : '#2e315d'} fog={false} />
+            <meshToonMaterial color={index % 2 ? stone : sunStone} fog={false} />
           </mesh>
         );
       })}
@@ -2027,11 +2390,11 @@ function StoneViaduct() {
           <group key={`arch-${index}`} position={[x, BRIDGE_DECK_Y - radius - 0.23, 0]}>
             <mesh position={[0, 0, -0.53]}>
               <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
-              <meshToonMaterial color="#414474" fog={false} />
+              <meshToonMaterial color={profile.bridge[1]} fog={false} />
             </mesh>
             <mesh position={[0, 0, 0.53]}>
               <torusGeometry args={[radius, 0.27, 5, 22, Math.PI]} />
-              <meshToonMaterial color="#1b1f48" fog={false} />
+              <meshToonMaterial color={profile.bridge[0]} fog={false} />
             </mesh>
           </group>
         );
@@ -2172,13 +2535,24 @@ function RavineAccents() {
   );
 }
 
-function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
+function SkyDome({
+  reducedMotion,
+  profile,
+}: {
+  reducedMotion: boolean;
+  profile: MusicWorldProfile;
+}) {
   const material = useMemo(() => new THREE.ShaderMaterial({
     side: THREE.BackSide,
     depthWrite: false,
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uHorizon: { value: new THREE.Color(profile.sky[0]) },
+      uUpper: { value: new THREE.Color(profile.sky[1]) },
+      uZenith: { value: new THREE.Color(profile.sky[2]) },
+      uWisp: { value: new THREE.Color(profile.cloud[0]) },
+      uSun: { value: new THREE.Color(profile.keyLight) },
     },
     vertexShader: `
       varying vec3 vWorld;
@@ -2189,8 +2563,13 @@ function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
       }
     `,
     fragmentShader: `
-      uniform float uTime;
-      uniform float uMotion;
+       uniform float uTime;
+       uniform float uMotion;
+       uniform vec3 uHorizon;
+       uniform vec3 uUpper;
+       uniform vec3 uZenith;
+       uniform vec3 uWisp;
+       uniform vec3 uSun;
       varying vec3 vWorld;
 
       float cloudWisp(float x, float y, float center, float width, float phase) {
@@ -2204,11 +2583,8 @@ function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
 
       void main() {
         float height = smoothstep(-0.12, 0.78, vWorld.y);
-        vec3 horizon = vec3(0.97, 0.63, 0.77);
-        vec3 upper = vec3(0.59, 0.68, 0.93);
-        vec3 zenith = vec3(0.25, 0.48, 0.88);
-        vec3 color = mix(horizon, zenith, height);
-        color = mix(color, upper, smoothstep(0.14, 0.58, height) * 0.38);
+        vec3 color = mix(uHorizon, uZenith, height);
+        color = mix(color, uUpper, smoothstep(0.14, 0.58, height) * 0.38);
 
         float x = atan(vWorld.x, -vWorld.z) / 3.14159265;
         float y = vWorld.y;
@@ -2217,19 +2593,19 @@ function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
         wisps += cloudWisp(x, y, 0.36, 0.034, 0.52) * 0.34;
         wisps += cloudWisp(x, y, 0.43, 0.025, 0.91) * 0.24;
         float skyWindow = smoothstep(-0.72, -0.36, x) * (1.0 - smoothstep(0.48, 0.78, x));
-        vec3 wispColor = mix(vec3(0.93, 0.67, 0.84), vec3(0.64, 0.62, 0.91), height);
+        vec3 wispColor = mix(uWisp, uUpper, height);
         color = mix(color, wispColor, wisps * skyWindow * 0.28);
 
         vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
         float sunFacing = max(dot(vWorld, sunDirection), 0.0);
         float halo = pow(sunFacing, 11.0);
         float disk = smoothstep(0.997, 0.999, sunFacing);
-        color += vec3(1.0, 0.53, 0.73) * halo * 0.28;
+        color += uSun * halo * 0.28;
         color += vec3(1.0, 0.86, 0.94) * disk * 0.78;
         gl_FragColor = vec4(color, 1.0);
       }
     `,
-  }), [reducedMotion]);
+  }), [profile, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -2243,7 +2619,13 @@ function SkyDome({ reducedMotion }: { reducedMotion: boolean }) {
   );
 }
 
-function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
+function Clouds({
+  reducedMotion,
+  profile,
+}: {
+  reducedMotion: boolean;
+  profile: MusicWorldProfile;
+}) {
   const groups = [
     useRef<THREE.Group>(null),
     useRef<THREE.Group>(null),
@@ -2277,7 +2659,7 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
           key={cloudIndex}
           ref={groups[cloudIndex]}
           position={[...cloud.position]}
-          scale={cloud.scale}
+          scale={cloud.scale * (profile.worldForm === 'terraces' ? 1.35 : profile.worldForm === 'islands' ? 0.76 : 1)}
         >
           {[
             [-1.5, -0.05, 0, 1.35],
@@ -2295,7 +2677,7 @@ function Clouds({ reducedMotion }: { reducedMotion: boolean }) {
             >
               <sphereGeometry args={[1, 10, 7]} />
               <meshBasicMaterial
-                color={index === 5 ? '#756bb1' : index % 3 === 0 ? '#c891c5' : '#e6a9d1'}
+                color={index === 5 ? profile.cloud[1] : profile.cloud[0]}
                 transparent
                 opacity={index === 5 ? 0.3 : 0.5}
                 depthWrite={false}
@@ -2606,6 +2988,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
   const liquidRuntime = useMemo(() => createMusicLiquidRuntime(), []);
   const liquidEnabled = musicLiquidProof && liquidQuality !== 'failure';
   const landscapeIndex = musicLiquidLandscapeIndex(musicLandscape);
+  const worldProfile = MUSIC_WORLD_PROFILES[musicLandscape];
 
   useEffect(() => {
     liquidRuntime.qualityWeight = musicLiquidQualityWeight(liquidQuality);
@@ -2629,22 +3012,23 @@ const PianoClearingScene = memo(function PianoClearingScene({
           reducedMotion={reducedMotion}
         />
       ) : null}
-      <SkyDome reducedMotion={reducedMotion} />
-      <fogExp2 attach="fog" args={['#8f7fc5', 0.017]} />
-      <hemisphereLight args={['#b9d0ff', '#2a2158', 1.88]} />
-      <directionalLight position={[-9, 10, 4]} color="#f0a9d4" intensity={2.7} />
+      <SkyDome reducedMotion={reducedMotion} profile={worldProfile} />
+      <fogExp2 attach="fog" args={[worldProfile.fog, 0.017]} />
+      <hemisphereLight args={[worldProfile.sky[1], worldProfile.ground[0], 1.88]} />
+      <directionalLight position={[-9, 10, 4]} color={worldProfile.keyLight} intensity={2.7} />
       <pointLight
         position={[10.5, 8.8, -1.5]}
-        color="#f7a8d5"
+        color={worldProfile.keyLight}
         intensity={1.35}
         distance={28}
         decay={1.7}
       />
-      <DistantLandscape />
+      <DistantLandscape profile={worldProfile} />
       <Ground
         reducedMotion={reducedMotion}
         musicLiquidProof={liquidEnabled}
         musicLandscapeIndex={landscapeIndex}
+        profile={worldProfile}
         liquidRuntime={liquidRuntime}
       />
       {liquidEnabled ? (
@@ -2658,6 +3042,11 @@ const PianoClearingScene = memo(function PianoClearingScene({
             landscape={musicLandscape}
             reducedMotion={reducedMotion}
           />
+          <WorldScaleMusicForms
+            landscape={musicLandscape}
+            profile={worldProfile}
+            reducedMotion={reducedMotion}
+          />
         </>
       ) : null}
       <Stream
@@ -2665,11 +3054,12 @@ const PianoClearingScene = memo(function PianoClearingScene({
         liquidRuntime={liquidRuntime}
         musicLiquidProof={liquidEnabled}
       />
-      <StoneViaduct />
+      <StoneViaduct profile={worldProfile} />
       <GrassField
         reducedMotion={reducedMotion}
         musicLiquidProof={liquidEnabled}
         musicLandscapeIndex={landscapeIndex}
+        profile={worldProfile}
         liquidRuntime={liquidRuntime}
       />
       <ValleyDetails />
@@ -2682,7 +3072,7 @@ const PianoClearingScene = memo(function PianoClearingScene({
         />
       </Suspense>
       <PianistAndBench reducedMotion={reducedMotion} />
-      <Clouds reducedMotion={reducedMotion} />
+      <Clouds reducedMotion={reducedMotion} profile={worldProfile} />
       <DistantBirds reducedMotion={reducedMotion} />
       <DistantSkyForms reducedMotion={reducedMotion} />
       <AtmosphericMotes reducedMotion={reducedMotion} />
@@ -2972,33 +3362,35 @@ export default function PianoClearingProof({
       data-color-script="dusk-refrain"
       data-scene-budget={`${PIANO_CLEARING_PERFORMANCE.grassInstances}+${PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances}-grass/${PIANO_CLEARING_PERFORMANCE.pianoParticles}-piano-points/no-post`}
     >
-      <Canvas
-        className={styles.canvas}
-        dpr={[0.75, PIANO_CLEARING_PERFORMANCE.maxDpr]}
-        frameloop={pageVisible && !reducedMotion ? 'always' : 'demand'}
-        gl={{
-          antialias: false,
-          alpha: false,
-          stencil: false,
-          powerPreference: 'high-performance',
-        }}
-        camera={{
-          position: [...PIANO_CLEARING_CAMERA.position],
-          fov: PIANO_CLEARING_CAMERA.fov,
-          near: 0.1,
-          far: 145,
-        }}
-      >
-        <PianoClearingScene
-          reducedMotion={reducedMotion}
-          musicLiquidProof={musicLiquidProof}
-          musicLandscape={musicLandscape}
-          liquidQuality={effectiveLiquidQuality}
-          onLiquidQualityChange={handleLiquidQualityChange}
-          onContextLost={handleContextLost}
-          onContextRestored={handleContextRestored}
-        />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas
+          className={styles.canvas}
+          dpr={[0.75, PIANO_CLEARING_PERFORMANCE.maxDpr]}
+          frameloop={pageVisible && !reducedMotion ? 'always' : 'demand'}
+          gl={{
+            antialias: false,
+            alpha: false,
+            stencil: false,
+            powerPreference: 'high-performance',
+          }}
+          camera={{
+            position: [...PIANO_CLEARING_CAMERA.position],
+            fov: PIANO_CLEARING_CAMERA.fov,
+            near: 0.1,
+            far: 145,
+          }}
+        >
+          <PianoClearingScene
+            reducedMotion={reducedMotion}
+            musicLiquidProof={musicLiquidProof}
+            musicLandscape={musicLandscape}
+            liquidQuality={effectiveLiquidQuality}
+            onLiquidQualityChange={handleLiquidQualityChange}
+            onContextLost={handleContextLost}
+            onContextRestored={handleContextRestored}
+          />
+        </Canvas>
+      </SceneErrorBoundary>
       <div aria-hidden="true" className={styles.cloudStreaks} />
       <div aria-hidden="true" className={styles.atmosphere} />
       <div aria-hidden="true" className={styles.dramaticLight} />

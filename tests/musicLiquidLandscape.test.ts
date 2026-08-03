@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import {
   MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
+  MUSIC_WORLD_PROFILES,
   musicLiquidInitialQuality,
   musicLiquidLandscapeIndex,
   musicLiquidLocalAttention,
@@ -27,6 +28,17 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(new Set(MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id)).size).toBe(5);
     expect(musicLiquidLandscapeIndex('tidal-meadow')).toBe(0);
     expect(musicLiquidLandscapeIndex('harmonic-dunes')).toBe(4);
+  });
+
+  it('assigns every study a unique full-world profile and world form', () => {
+    const ids = MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id);
+    const profiles = ids.map(id => MUSIC_WORLD_PROFILES[id]);
+
+    expect(profiles.map(profile => profile.id)).toEqual(ids);
+    expect(new Set(profiles.map(profile => profile.worldForm)).size).toBe(5);
+    expect(new Set(profiles.map(profile => profile.sky.join('|'))).size).toBe(5);
+    expect(new Set(profiles.map(profile => profile.ground.join('|'))).size).toBe(5);
+    expect(new Set(profiles.map(profile => profile.grass.join('|'))).size).toBe(5);
   });
 
   it('keeps the expanded review territory and renderer additions bounded', () => {
@@ -112,6 +124,14 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(homePage).not.toContain('musicLiquidProof');
     expect(component).toContain('function LiquidTerritorySurface');
     expect(component).toContain('function MusicLandscapeReview');
+    expect(component).toContain('function WorldScaleMusicForms');
+    expect(component).toContain("musicWorldForm: 'ocean-bloom'");
+    expect(component).toContain("musicWorldForm: 'monumental-nacre-terraces'");
+    expect(component).toContain("musicWorldForm: 'suspended-archipelago'");
+    expect(component).toContain("musicWorldForm: 'prismatic-glass-delta'");
+    expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
+    expect(component).toContain('<WorldScaleMusicForms');
+    expect(component).toContain('profile={worldProfile}');
     expect(component).toContain('data-music-landscape={musicLiquidProof ? musicLandscape : \'off\'}');
     expect(component).toContain("musicLandscapeAccent: 'nacre-terraces'");
     expect(component).toContain("musicLandscapeAccent: 'resonant-archipelago'");

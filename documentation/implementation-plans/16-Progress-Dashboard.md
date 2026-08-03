@@ -32,7 +32,7 @@ This distinction prevents two errors:
 | `O-01` Persistent exploratory world | optimized dusk meadow-piano valley on Home | on-track | Canonical `/` retains all 260,000 blades while packed invariant attributes, idle-raycast suspension, and adaptive DPR pass 243 tests and build | Production performance observation | Review canonical `/` on slower hardware |
 | `O-02` Quiet global AI | Phase 4 migration live | on-track | Site-wide archive owns conversation and legacy `/chat` preserves prompts through redirect | Preserve regression coverage | Keep the global instrument quiet and contextual |
 | `O-03` First flagship proof | accepted functional foundation | on-track | Direct-surface product interaction, evidence, and subdomain handoff are live | Preserve through Home practice reveal | Verify exact practice-to-project handoff in `PRJ-09` |
-| `O-04` Home work world | `E0` verified; Music `MW1-A` comparison gallery | attention | River-safe pearl piano, seated pianist, three instruments, one-owner lifecycle, adaptive behavior, and five terrain-safe Music studies are implemented | Mark comparison review, renderer metrics, and slower-device observation | Classify five studies as keep, revise, combine, or reject before selected-world or hover work |
+| `O-04` Home work world | `E0` verified; Music `MW1-B` full-world gallery | attention | One-owner lifecycle plus five profile-driven skies, horizons, terrain systems, and unique world-scale forms are implemented | Same-viewport visual distinctness, renderer metrics, and slower-device observation | Reject any pair that is not label-blind distinct, then classify the survivors before selected-world or hover work |
 | `O-05` About depth | not active | not-active | Target event-depth model documented | Reviewed event consequences | Five-event review plus one inspection flow |
 | `O-06` Living portfolio operations | Phase 4 records complete | on-track | Nine validated lifecycle records and nine reviewed graph links render lifecycle-specific depth | Preserve correction paths during future edits | Later add version disturbances through `LPS-04` |
 
@@ -124,8 +124,8 @@ The operational source is `documentation/implementation-work/README.md`.
 
 | Focus | Work item | State | Package | Last known-good point | Next exact action | Last update |
 | --- | --- | --- | --- | --- | --- | --- |
-| Now | `WI-ART-16-01` | in-progress | `ART-16` | `MW1-A` compares five terrain-safe Music grammars through one active runtime on the private proof | Mark labels each study keep, revise, combine, or reject | 2026-08-02 |
-| Next | same work item | not-started | `ART-16` | Tidal, terraces, archipelago, delta, and dunes preserve the accepted valley substrate | Consolidate the strongest reviewed grammar, then measure Balanced on a previously laggy computer | 2026-08-02 |
+| Now | `WI-ART-16-01` | in-progress | `ART-16` | `MW1-A` is rejected; `MW1-B` rebuilds every major world layer and assigns five unique large-scale topologies through one active runtime | Deploy and visually inspect all five at one viewport; no label may be needed to distinguish them | 2026-08-03 |
+| Next | same work item | not-started | `ART-16` | Focused tests, TypeScript, and lint pass for the full-world implementation | Mark labels each visually valid study keep, revise, combine, or reject; then measure the survivor on a previously laggy computer | 2026-08-03 |
 | Later | same work item | blocked checkpoints | `ART-16`, `PRJ-09`, `QA-07` | Selected Music waits on `ML6`; hover waits on selected-world acceptance | Expand Music, derive hover, resolve Music content, then Life, Play, project depth, navigation, and release | 2026-07-31 |
 
 Limit active implementation using the WIP rules in `17-Work-Items-And-Resume-Protocol.md`.

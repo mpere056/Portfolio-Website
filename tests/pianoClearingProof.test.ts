@@ -109,7 +109,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('new THREE.ShaderMaterial');
     expect(component).toContain('<GrassField');
     expect(component).toContain('<Ground');
-    expect(component).toContain('vec3 tipColor = vec3(0.87, 0.52, 0.7)');
+    expect(component).toContain('vec3 tipColor = uGrassTip');
     expect(component).toContain('float windBand = sin');
     expect(component).toContain('uWind: { value: reducedMotion ? 0 : 0.34 }');
     expect(component).toContain('uniform vec2 uCursor');
@@ -120,7 +120,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('cursorImpulse.current = Math.max(cursorImpulse.current, movementEnergy)');
     expect(component).toContain('data-grass-wind="0.34"');
     expect(component).toContain('data-cloud-streaks="procedural-wisps"');
-    expect(component).toContain('<SkyDome reducedMotion={reducedMotion} />');
+    expect(component).toContain('<SkyDome reducedMotion={reducedMotion} profile={worldProfile} />');
     expect(component).toContain('className={styles.cloudStreaks}');
     expect(component).toContain('className={styles.dramaticLight}');
     expect(component).toContain('float contactDistance');
@@ -128,7 +128,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('float pianoShadow');
     expect(component).not.toContain('<PianoHillShadow />');
     expect(component).toContain('varying float vPianoShadow');
-    expect(component).toContain('color="#f7a8d5"');
+    expect(component).toContain('color={worldProfile.keyLight}');
     expect(component).toContain('data-grass-cursor="terrain-local-3.2"');
     expect(component).toContain('data-distant-birds={PIANO_CLEARING_PERFORMANCE.distantBirds}');
     expect(component).toContain('data-color-script="dusk-refrain"');
@@ -157,7 +157,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vec3 sunlitColor = vec3(0.77, 0.4, 0.65)');
     expect(component).toContain('pianoClearingTreeAllowed(x, z)');
     expect(component).toContain('ref={crownHighlights}');
-    expect(component).toContain('<StoneViaduct />');
+    expect(component).toContain('<StoneViaduct profile={worldProfile} />');
     expect(component).not.toContain('function PassingTrain');
     expect(component).not.toContain('<PassingTrain');
     expect(component).toContain('<DistantBirds reducedMotion={reducedMotion} />');
@@ -198,8 +198,18 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('musicLiquidProof = false');
     expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'terrain-conforming-organic' : 'off'}");
     expect(component).toContain('Music world gallery MW1-A');
+    expect(component).toContain('MUSIC_WORLD_PROFILES[musicLandscape]');
+    expect(component).toContain('<DistantLandscape profile={worldProfile} />');
+    expect(component).toContain('profile={worldProfile}');
     expect(component).toContain('<MusicLandscapeReview active={musicLandscape}');
     expect(component).toContain('aria-label="Music landscape review selector"');
+    expect(component).toContain('function WorldInstances');
+    expect(component).toContain('<instancedMesh');
+    expect(component).toContain("musicWorldForm: 'ocean-bloom'");
+    expect(component).toContain("musicWorldForm: 'monumental-nacre-terraces'");
+    expect(component).toContain("musicWorldForm: 'suspended-archipelago'");
+    expect(component).toContain("musicWorldForm: 'prismatic-glass-delta'");
+    expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {

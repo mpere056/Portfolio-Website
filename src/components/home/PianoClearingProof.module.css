@@ -9,6 +9,28 @@
   isolation: isolate;
 }
 
+.sceneError {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  gap: 0.45rem;
+  padding: 2rem;
+  color: rgba(255, 245, 252, 0.92);
+  text-align: center;
+  background: radial-gradient(circle at 50% 45%, rgba(89, 68, 144, 0.55), rgba(23, 27, 78, 0.9));
+}
+
+.sceneError span {
+  max-width: 42rem;
+  color: rgba(255, 245, 252, 0.68);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .worldDiagnostics {
   position: fixed;
   z-index: 40;
@@ -107,6 +129,65 @@
     transparent 44%
   );
   mix-blend-mode: screen;
+}
+
+.world[data-music-landscape="tidal-meadow"] .atmosphere {
+  background:
+    radial-gradient(circle at 12% 68%, rgb(75 181 211 / 22%), transparent 32%),
+    radial-gradient(circle at 82% 31%, rgb(238 104 176 / 24%), transparent 35%),
+    linear-gradient(180deg, rgb(73 119 225 / 10%), rgb(214 89 172 / 18%));
+}
+
+.world[data-music-landscape="nacre-terraces"] .atmosphere {
+  background:
+    linear-gradient(108deg, rgb(75 23 73 / 24%) 0 24%, transparent 42%),
+    radial-gradient(ellipse at 70% 24%, rgb(255 199 151 / 34%), transparent 42%),
+    linear-gradient(180deg, rgb(125 57 125 / 18%), rgb(249 151 134 / 22%));
+  mix-blend-mode: screen;
+}
+
+.world[data-music-landscape="resonant-archipelago"] .atmosphere {
+  background:
+    radial-gradient(circle at 24% 24%, rgb(111 255 223 / 22%), transparent 28%),
+    radial-gradient(circle at 79% 70%, rgb(37 149 159 / 25%), transparent 38%),
+    linear-gradient(180deg, rgb(21 61 119 / 12%), rgb(26 122 119 / 23%));
+  mix-blend-mode: screen;
+}
+
+.world[data-music-landscape="glass-delta"] .atmosphere {
+  background:
+    linear-gradient(124deg, rgb(19 69 132 / 22%) 0 43%, transparent 58%),
+    radial-gradient(circle at 77% 22%, rgb(255 141 83 / 34%), transparent 34%),
+    linear-gradient(180deg, transparent 38%, rgb(19 177 194 / 18%));
+  mix-blend-mode: screen;
+}
+
+.world[data-music-landscape="harmonic-dunes"] .atmosphere {
+  background:
+    radial-gradient(ellipse at 22% 68%, rgb(177 50 164 / 27%), transparent 38%),
+    radial-gradient(ellipse at 78% 58%, rgb(95 65 204 / 31%), transparent 43%),
+    linear-gradient(180deg, rgb(31 28 114 / 12%), rgb(222 59 164 / 24%));
+  mix-blend-mode: screen;
+}
+
+.world[data-music-landscape="nacre-terraces"] .cloudStreaks {
+  transform: rotate(8deg) scaleY(1.8);
+  opacity: 0.65;
+}
+
+.world[data-music-landscape="resonant-archipelago"] .cloudStreaks {
+  transform: rotate(-12deg) scaleY(0.72);
+  opacity: 0.3;
+}
+
+.world[data-music-landscape="glass-delta"] .cloudStreaks {
+  transform: rotate(-17deg) scaleY(1.25);
+  opacity: 0.6;
+}
+
+.world[data-music-landscape="harmonic-dunes"] .cloudStreaks {
+  transform: rotate(3deg) scaleY(2.2);
+  opacity: 0.72;
 }
 
 @keyframes cloudStreakDrift {

@@ -1,6 +1,6 @@
 # Music Liquid Landscape Proof Plan
 
-Last updated: 2026-07-31
+Last updated: 2026-08-03
 
 ## Purpose
 
@@ -172,18 +172,18 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `MW1-A` five-landscape comparison gallery; creative review open |
+| Current gate | `MW1-B` full-world comparison gallery; implementation complete, visual/performance review open |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` mounts one selected study at a time; Music registry remains empty |
-| Next exact action | Mark reviews Tidal Meadow, Nacre Terraces, Resonant Archipelago, Glass Delta, and Harmonic Dunes and labels each keep, revise, combine, or reject |
+| Next exact action | Inspect all five `MW1-B` worlds at the same viewport and confirm that each remains recognizably distinct when labels are hidden; then Mark labels each keep, revise, combine, or reject |
 | Do not begin | Production selected-world registration, hover derivation, other practice worlds, or project landmarks before the comparison outcome |
-| Review packet | One route with five compact selectors; no long document review required |
+| Review packet | One route with five compact selectors and five whole-world states; no long document review required |
 
 Update this ledger, `WI-ART-16-01`, Plans `22/23`, capability `CAP-ART-018/019`, dashboard, and `ART-16` evidence whenever a gate changes state.
 
-## MW1-A Five-Landscape Review Gallery
+## MW1-A Five-Landscape Review Gallery (Rejected)
 
-The user requested a larger creative batch rather than another single incremental liquid revision. The private proof therefore exposes five deliberately different territory grammars through one shared scene and one active runtime:
+The user requested a larger creative batch rather than another single incremental liquid revision. The first gallery exposed five territory grammars through one shared scene and one active runtime:
 
 | Study | Territory and motion grammar | Sparse landmark grammar |
 | --- | --- | --- |
@@ -193,4 +193,18 @@ The user requested a larger creative batch rather than another single incrementa
 | Glass Delta | branching directional channels | terrain-projected luminous tributaries |
 | Harmonic Dunes | overlapping fluid hills | slow translucent dune bodies |
 
-The gallery is a comparison instrument, not five production worlds. Only one study mounts at a time; all reuse the existing canvas, terrain, grass, piano, bridge, camera, and runtime clocks. Every mask is clipped to the elevated near meadow so the ravine and bridge remain readable. Creative review determines which grammar or combination advances to the selected Music world.
+Mark rejected this comparison because all five studies changed roughly the same foreground patch while most of the sky, horizon, terrain, and world silhouette remained unchanged. Retain `MW1-A` as evidence of useful local material grammars, but do not present it as five world concepts.
+
+## MW1-B Full-World Review Gallery
+
+`MW1-B` keeps one canvas, camera, piano coordinate, and selector instrument while rebuilding the dominant world layers for every study. A valid study must change the sky/fog palette, ground and grass response, cloud treatment, distant ridge silhouette, bridge treatment, key light, and one unmistakable world-scale topology:
+
+| Study | Whole-world topology |
+| --- | --- |
+| Tidal Meadow | broad oceanic basin with giant breathing blooms |
+| Nacre Terraces | monumental stepped shelves spanning the valley |
+| Resonant Archipelago | suspended islands distributed through foreground, horizon, and sky |
+| Glass Delta | branching prismatic river paths and skyline spires |
+| Harmonic Dunes | large wave-cathedral dunes and sky ribbons |
+
+The shared valley is now continuity scaffolding, not the dominant read. The acceptance test is label-blind: screenshots of the five states must remain easy to identify by skyline, depth silhouette, terrain behavior, and atmosphere alone. `MW1-B` currently passes focused tests, TypeScript, and lint. Visual inspection on the deployed staging build and sustained performance on the target browser remain open.

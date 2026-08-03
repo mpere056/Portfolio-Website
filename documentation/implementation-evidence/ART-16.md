@@ -363,6 +363,18 @@ The next exact action is local multi-moment visual QA, followed by deployment fo
 | Runtime evidence | Switching replaces one study; it does not mount five canvases or five landscape runtimes. Existing grass count, camera, adaptive DPR, and no-post-processing constraints remain unchanged. |
 | Automated evidence | Fourteen focused Music/Home tests, TypeScript, and focused lint pass before release testing. |
 | Visual evidence | Local `1090 x 900` browser comparison covers all five selectors. Visual QA caught and fixed invalid 3D diagnostic attributes before deployment. |
+
+## EV-ART-16-27: Full-World Music Review Gallery
+
+| Field | Evidence |
+| --- | --- |
+| Status | candidate |
+| Review outcome carried forward | `MW1-A` failed creative review because its five selectors altered the same local foreground territory while most of the world remained unchanged. |
+| Scope | Private no-index `/music-liquid-proof` only. `MW1-B` gives every study a unique sky/fog, ground/grass response, cloud treatment, ridge silhouette, bridge treatment, key light, and world-scale topology while retaining one canvas and one active study. |
+| Distinctness contract | Tidal Meadow uses ocean blooms; Nacre Terraces uses monumental shelves; Resonant Archipelago uses suspended islands; Glass Delta uses prismatic rivers and spires; Harmonic Dunes uses wave-cathedral dunes and sky ribbons. Each must remain identifiable without its label. |
+| Runtime evidence | New large forms use standard rather than physical materials. The selected study alone mounts; the existing capability tiers, hidden-tab behavior, and reduced-motion boundary remain in place. |
+| Automated evidence | Fifteen focused Music/Home tests, TypeScript, and focused lint pass on 2026-08-03. |
+| Open evidence | Same-viewport screenshots for all five states, sustained target-browser responsiveness, and Mark's keep/revise/combine/reject classification remain open. |
 | Acceptance boundary | This is a comparison gallery, not an accepted Music world. Mark must classify each study as keep, revise, combine, or reject before consolidation. |
 
 The next exact action is production build and deployment for direct review, followed by multi-moment observation of the terrain-conforming boundary.

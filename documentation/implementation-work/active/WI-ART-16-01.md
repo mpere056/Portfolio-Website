@@ -10,7 +10,7 @@
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` |
 | Created | 2026-07-24 |
-| Last update | 2026-07-31 |
+| Last update | 2026-08-03 |
 | Decision | [Three-Practice Taxonomy](../../implementation-plans/2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) and [Home Practice Worlds And Transitions](../../implementation-plans/23-Home-Practice-Worlds-And-Transitions.md) |
 
@@ -43,8 +43,9 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `ML6` review outcome: revise. The deployed local-response/adaptive work looked effectively unchanged at normal viewing distance and was not a useful visual review milestone.
 - `ML6-R1` review: revise. The expanded territory is visible and its calmer granular state is promising, but its bright periodic phase becomes uniformly striped.
 - `ML6-R2` review: revise. Organic currents removed the uniform lanes, but the broad liquid mask crossed the ravine, suppressed bridge-adjacent grass, and flattened the hill's material depth.
-- `ML6-R3` candidate: grass compression, ground material, surface displacement, and surface alpha now share one elevated-near-meadow mask. The ravine and bridge corridor keep their original world material, while liquid color inherits terrain lighting.
-- Next exact action: Mark reviews `ML6-R3` for hill contour, ravine depth, bridge separation, and organic motion across several moments before renderer metrics or any multi-territory work.
+- `MW1-A` review: rejected. Five local material grammars were useful experiments, but they changed the same foreground territory and did not create five different worlds.
+- `MW1-B` candidate: each selector now owns a complete atmosphere profile plus a unique world-scale topology. The implementation uses one canvas and one active world, with lower-cost standard materials for the new large forms.
+- Next exact action: deploy the optimized `MW1-B` candidate to staging, inspect all five states at one viewport, and reject any pair that cannot be distinguished without reading its label.
 
 ## Ordered Checkpoints
 
@@ -56,8 +57,8 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
 | `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
 | `E1` Music material direction | accepted-for-prototype | Liquid Landscape and its simulation-free, one-territory proof sequence are documented in Plan `24` |
-| `E2` Music bounded material proof | in-progress | `ML1` is implemented, `ML2/ML3` are accepted-for-sequencing, `ML4/ML5` remain technical candidates, `ML6-R1` was rejected for striping, `ML6-R2` for flattening the world, and terrain-conforming `ML6-R3` is active on `/music-liquid-proof` |
-| `F` Music selected environment | blocked by accepted `E2` | The proven module expands to at most three unequal territories with continuity and bounded lifecycle |
+| `E2` Music material and world comparison | in-progress | Local material gates are retained; `MW1-A` was rejected for changing only one foreground patch; full-world `MW1-B` is implemented on `/music-liquid-proof` and awaits visual/performance review |
+| `F` Music selected environment | blocked by accepted `E2` | Consolidate one reviewed whole-world direction without regressing continuity or runtime bounds |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
 | `I` Release | not-started | Performance, rollback, Production, and Mark acceptance pass |
