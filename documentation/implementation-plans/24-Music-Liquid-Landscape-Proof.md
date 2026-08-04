@@ -125,7 +125,7 @@ Airborne ecology must remain GPU-authored and bounded to one draw call per selec
 | `ML6-R1` Expanded material read | revise | The world-scale territory is now clearly visible and some calmer frames read well, but the dominant periodic pressure phase resolves into uniform parallel stripes at its bright extreme | Preserve the broad territory while replacing periodic bands with irregular currents |
 | `ML6-R2` Organic current field | revise | Domain-warped cells removed the uniform stripes, but the expanded territory crossed the ravine, suppressed bridge-adjacent grass, and overwrote too much terrain shading, flattening the hill and bridge separation | Preserve organic currents while restoring the original world silhouette and depth cues |
 | `ML6-R3` Terrain-conforming currents | candidate; review open | One shared elevated-near-meadow mask now clips grass compression, ground material, displacement, and surface alpha away from the ravine; liquid color inherits underlying terrain light instead of replacing it | Hill contour, ravine depth, and bridge separation remain legible throughout the liquid cycle |
-| `MW1` Selected-world expansion | blocked by `ML6` | Expand to at most three territories and compose the full Music hierarchy | Selected world passes continuity, lifecycle, performance, and visual review |
+| `MW1` Selected-world composition | in-progress | Compose the accepted materials into one Music world without duplicating scene runtimes | Combined world passes continuity, lifecycle, performance, and visual review |
 | `MW2` Hover derivation | blocked by `MW1` | Derive the partial hover state from the accepted module and uniforms | Hover continues into selection without a visual restart |
 
 ## Performance Envelope
@@ -193,10 +193,10 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `MW1-B` full-world comparison gallery; implementation complete, visual/performance review open |
+| Current gate | `MW1-C` first combined Music-world candidate; implementation and visual review in progress |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` mounts one selected study at a time; Music registry remains empty |
-| Next exact action | Inspect all five `MW1-B` worlds at the same viewport and confirm that each remains recognizably distinct when labels are hidden; then Mark labels each keep, revise, combine, or reject |
+| Next exact action | Inspect `The Living Score` first, then use the four retained isolate controls only to diagnose liquid, fire, petal, or harmonic failures; tune spatial balance before deriving any hover state |
 | Do not begin | Production selected-world registration, hover derivation, other practice worlds, or project landmarks before the comparison outcome |
 | Review packet | One route with five compact selectors and five whole-world states; no long document review required |
 
@@ -229,3 +229,17 @@ Mark rejected this comparison because all five studies changed roughly the same 
 | Harmonic Dunes | large wave-cathedral dunes and sky ribbons |
 
 The shared valley is now continuity scaffolding, not the dominant read. The acceptance test is label-blind: screenshots of the five states must remain easy to identify by skyline, depth silhouette, terrain behavior, and atmosphere alone. `MW1-B` currently passes focused tests, TypeScript, and lint. Visual inspection on the deployed staging build and sustained performance on the target browser remain open.
+
+## MW1-C Combined Music World
+
+`The Living Score` is the first authored composition rather than another gallery variation. It uses one terrain, one grass draw, one mixed airborne draw, and the existing sky shader:
+
+| Material | Combined-world role |
+| --- | --- |
+| Tidal | Traveling pressure fields can convert every grass-bearing hill into painted liquid while the ravine remains legible |
+| Fire | Bounded distant and side ecologies interrupt the liquid field; embers and smoke share the same world rather than replacing it |
+| Petals | A sparse airborne season crosses material boundaries and provides softness without becoming another terrain state |
+| Harmonic | Piano-origin score light moves through intact grass; chromatic atmospheric lenses continue the same energy into the sky |
+| Teal reserve | Only the former Archipelago grass palette survives, appearing as a cool moving countercurrent; islands and archipelago topology are rejected |
+
+The four isolate controls remain diagnostic tools after the combined candidate. They are not alternate final Music worlds. Glass sculpture remains excluded from Music and reserved for later Play & Community consideration.

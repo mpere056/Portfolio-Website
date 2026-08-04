@@ -22,6 +22,11 @@ export const MUSIC_LIQUID_PROOF = {
 
 export const MUSIC_LIQUID_LANDSCAPES = [
   {
+    id: 'combined-world',
+    title: 'The Living Score',
+    note: 'One Music world where liquid hills, fire, petals, harmonic light, and cool teal currents coexist.',
+  },
+  {
     id: 'tidal-meadow',
     title: 'Tidal Meadow',
     note: 'An oceanic flower-world breathing from foreground to horizon.',
@@ -30,11 +35,6 @@ export const MUSIC_LIQUID_LANDSCAPES = [
     id: 'nacre-terraces',
     title: 'Nacre Terraces',
     note: 'A living fire ecology climbs through blackened terraces.',
-  },
-  {
-    id: 'resonant-archipelago',
-    title: 'Resonant Archipelago',
-    note: 'The ground breaks into a suspended choir of liquid islands.',
   },
   {
     id: 'glass-delta',
@@ -60,10 +60,28 @@ export type MusicWorldProfile = {
   ridge: [string, string, string];
   bridge: [string, string];
   keyLight: string;
-  worldForm: 'ocean' | 'terraces' | 'islands' | 'delta' | 'dunes';
+  worldForm: 'combined' | 'ocean' | 'terraces' | 'delta' | 'dunes';
 };
 
+// The rejected archipelago world is gone, but its cool grass color remains useful
+// as a countercurrent inside the combined Music composition.
+export const MUSIC_ARCHIPELAGO_GRASS_PALETTE = [
+  '#092637', '#145565', '#2e9a88', '#9bedd3',
+] as const;
+
 export const MUSIC_WORLD_PROFILES: Record<MusicLiquidLandscapeId, MusicWorldProfile> = {
+  'combined-world': {
+    id: 'combined-world',
+    sky: ['#f3a2cd', '#7769c5', '#24367f'],
+    fog: '#675991',
+    ground: ['#100d35', '#292052', '#4b356f', '#c35d91'],
+    grass: ['#11183f', '#343166', '#79518d', '#e69abf'],
+    cloud: ['#f2b9dc', '#7169ae'],
+    ridge: ['#867cc2', '#625aa0', '#454582'],
+    bridge: ['#20234a', '#515586'],
+    keyLight: '#f2a4d0',
+    worldForm: 'combined',
+  },
   'tidal-meadow': {
     id: 'tidal-meadow',
     sky: ['#faa0c8', '#9c8de4', '#315ac1'],
@@ -87,18 +105,6 @@ export const MUSIC_WORLD_PROFILES: Record<MusicLiquidLandscapeId, MusicWorldProf
     bridge: ['#1a1117', '#66301f'],
     keyLight: '#ff7a31',
     worldForm: 'terraces',
-  },
-  'resonant-archipelago': {
-    id: 'resonant-archipelago',
-    sky: ['#8ef0df', '#517fbd', '#172d69'],
-    fog: '#427a91',
-    ground: ['#071f38', '#0c4355', '#197c75', '#7be0bf'],
-    grass: ['#092637', '#145565', '#2e9a88', '#9bedd3'],
-    cloud: ['#a5f1dc', '#447da2'],
-    ridge: ['#5ca9a4', '#347b86', '#1f536d'],
-    bridge: ['#102d45', '#2e7182'],
-    keyLight: '#8ef7dc',
-    worldForm: 'islands',
   },
   'glass-delta': {
     id: 'glass-delta',
@@ -127,7 +133,13 @@ export const MUSIC_WORLD_PROFILES: Record<MusicLiquidLandscapeId, MusicWorldProf
 };
 
 export function musicLiquidLandscapeIndex(id: MusicLiquidLandscapeId): number {
-  return MUSIC_LIQUID_LANDSCAPES.findIndex(landscape => landscape.id === id);
+  return {
+    'tidal-meadow': 0,
+    'nacre-terraces': 1,
+    'glass-delta': 3,
+    'harmonic-dunes': 4,
+    'combined-world': 5,
+  }[id];
 }
 
 export type MusicLiquidQuality = 'full' | 'balanced' | 'calm' | 'reduced' | 'failure';

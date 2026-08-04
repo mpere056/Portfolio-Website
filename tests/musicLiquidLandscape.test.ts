@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import {
   MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
+  MUSIC_ARCHIPELAGO_GRASS_PALETTE,
   MUSIC_WORLD_PROFILES,
   musicLiquidInitialQuality,
   musicLiquidLandscapeIndex,
@@ -17,17 +18,18 @@ import {
 const root = process.cwd();
 
 describe('Music Liquid Landscape proof contract', () => {
-  it('offers five ordered landscape grammars through one active review runtime', () => {
+  it('offers one combined Music world followed by four diagnostic material studies', () => {
     expect(MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id)).toEqual([
+      'combined-world',
       'tidal-meadow',
       'nacre-terraces',
-      'resonant-archipelago',
       'glass-delta',
       'harmonic-dunes',
     ]);
     expect(new Set(MUSIC_LIQUID_LANDSCAPES.map(landscape => landscape.id)).size).toBe(5);
     expect(musicLiquidLandscapeIndex('tidal-meadow')).toBe(0);
     expect(musicLiquidLandscapeIndex('harmonic-dunes')).toBe(4);
+    expect(musicLiquidLandscapeIndex('combined-world')).toBe(5);
   });
 
   it('assigns every study a unique full-world profile and world form', () => {
@@ -39,6 +41,14 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(new Set(profiles.map(profile => profile.sky.join('|'))).size).toBe(5);
     expect(new Set(profiles.map(profile => profile.ground.join('|'))).size).toBe(5);
     expect(new Set(profiles.map(profile => profile.grass.join('|'))).size).toBe(5);
+  });
+
+  it('removes the rejected archipelago world while preserving only its teal palette', () => {
+    expect(MUSIC_LIQUID_LANDSCAPES.some(({ id }) => id === ('resonant-archipelago' as string)))
+      .toBe(false);
+    expect(MUSIC_ARCHIPELAGO_GRASS_PALETTE).toEqual([
+      '#092637', '#145565', '#2e9a88', '#9bedd3',
+    ]);
   });
 
   it('keeps the expanded review territory and renderer additions bounded', () => {
@@ -127,19 +137,20 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain('function WorldScaleMusicForms');
     expect(component).toContain("musicWorldForm: 'terrain-wide-tidal-material'");
     expect(component).toContain("musicWorldForm: 'monumental-nacre-terraces'");
-    expect(component).toContain("musicWorldForm: 'suspended-archipelago'");
+    expect(component).toContain("musicWorldForm: 'combined-living-score'");
     expect(component).toContain("musicWorldForm: 'spring-petal-field'");
     expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
     expect(component).toContain('<WorldScaleMusicForms');
     expect(component).toContain('profile={worldProfile}');
     expect(component).toContain('data-music-landscape={musicLiquidProof ? musicLandscape : \'off\'}');
     expect(component).toContain("musicLandscapeAccent: 'nacre-terraces'");
-    expect(component).toContain("musicLandscapeAccent: 'resonant-archipelago'");
+    expect(component).toContain("musicLandscapeAccent: 'combined-material-ecology'");
     expect(component).toContain("musicLandscapeAccent: 'spring-petal-study'");
     expect(component).toContain("musicLandscapeAccent: 'harmonic-dunes'");
     expect(component).toContain('function MusicWorldAirborneMatter');
     expect(component).toContain("fire-embers");
     expect(component).toContain("spring-cherry-petals");
+    expect(component).toContain("combined-petals-and-embers");
     expect(component).toContain('float scoreA = pow');
     expect(component).toContain('float scoreC = pow');
     expect(component).toContain('vec3 flameColor = mix');
@@ -172,5 +183,8 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain("onQualityChange(tier.current >= 2 ? 'calm' : 'balanced')");
     expect(component).toContain("canvas.addEventListener('webglcontextlost'");
     expect(component).not.toContain('EffectComposer');
+    expect(component).not.toContain("musicWorldForm: 'suspended-archipelago'");
+    expect(component).not.toContain("musicLandscapeAccent: 'resonant-archipelago'");
+    expect(component).toContain("useState<MusicLiquidLandscapeId>('combined-world')");
   });
 });

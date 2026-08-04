@@ -199,7 +199,7 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain('shadowMap');
     expect(component).toContain('musicLiquidProof = false');
     expect(component).toContain("data-music-liquid-proof={musicLiquidProof ? 'terrain-conforming-organic' : 'off'}");
-    expect(component).toContain('Music world gallery MW1-A');
+    expect(component).toContain('Music world composition MW1-C');
     expect(component).toContain('MUSIC_WORLD_PROFILES[musicLandscape]');
     expect(component).toContain('<DistantLandscape profile={worldProfile} />');
     expect(component).toContain('profile={worldProfile}');
@@ -207,9 +207,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('aria-label="Music landscape review selector"');
     expect(component).toContain('function WorldInstances');
     expect(component).toContain('<instancedMesh');
+    expect(component).toContain("musicWorldForm: 'combined-living-score'");
     expect(component).toContain("musicWorldForm: 'terrain-wide-tidal-material'");
     expect(component).toContain("musicWorldForm: 'monumental-nacre-terraces'");
-    expect(component).toContain("musicWorldForm: 'suspended-archipelago'");
+    expect(component).not.toContain("musicWorldForm: 'suspended-archipelago'");
     expect(component).toContain("musicWorldForm: 'spring-petal-field'");
     expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
   });

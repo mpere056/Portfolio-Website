@@ -26,6 +26,7 @@ import {
   pianoClearingTreeAllowed,
 } from '@/lib/artDirection/pianoClearing';
 import {
+  MUSIC_ARCHIPELAGO_GRASS_PALETTE,
   MUSIC_LIQUID_LANDSCAPES,
   MUSIC_LIQUID_PROOF,
   MUSIC_WORLD_PROFILES,
@@ -143,6 +144,7 @@ const MUSIC_LANDSCAPE_MASK_GLSL = `
         liquidBlob(point, vec2(0.5, 0.16), vec2(0.36, 0.4), 0.3)
       )
     );
+    if (mode > 4.5) return max(tidal, max(terraces, max(delta, dunes)));
     if (mode < 0.5) return tidal;
     if (mode < 1.5) return terraces;
     if (mode < 2.5) return archipelago;
@@ -446,6 +448,9 @@ function GrassField({
       varying float vVariation;
       varying float vPianoShadow;
       varying float vLiquid;
+      varying float vFire;
+      varying float vHarmonic;
+      varying float vCoolCurrent;
       varying vec2 vWorldRoot;
       ${MUSIC_LANDSCAPE_MASK_GLSL}
       void main() {
@@ -469,11 +474,11 @@ function GrassField({
         float liquidRiverCenter = 0.7 - clamp((root.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
         float elevatedMeadow = smoothstep(liquidRiverCenter + 4.8, liquidRiverCenter + 8.6, root.x);
         float tidalMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode));
-        float archipelagoMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 2.0));
+        float combinedMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 5.0));
         float authoredTerritory = musicLandscapeMask(territoryLocal, uLandscapeMode)
           * elevatedMeadow;
         // Tidal Meadow is a terrain material, not a puddle: every authored hill can liquefy.
-        float territory = mix(authoredTerritory, 1.0, tidalMode) * uLiquidWeight;
+        float territory = mix(authoredTerritory, 1.0, max(tidalMode, combinedMode)) * uLiquidWeight;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
         vec2 pressureUv = territoryLocal;
         pressureUv.x -= liquidTime * 0.11;
@@ -489,12 +494,30 @@ function GrassField({
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
         float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
         float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
+        float compositionNoise = sin(root.x * 0.105 - root.z * 0.073 - liquidTime * 0.14);
+        compositionNoise += sin(root.x * 0.041 + root.z * 0.122 + liquidTime * 0.09) * 0.62;
+        float combinedLiquid = combinedMode * smoothstep(0.3, 1.05, compositionNoise);
+        float fireTerritory = smoothstep(0.08, 0.74,
+          sin(root.x * 0.083 + root.z * 0.061 - 0.8)
+          + sin(root.z * 0.17 - root.x * 0.035) * 0.42
+        );
+        fireTerritory *= 1.0 - smoothstep(-4.0, 7.0, root.z);
+        float combinedFire = combinedMode * fireTerritory * (1.0 - combinedLiquid * 0.82);
+        float harmonicTerritory = 0.45 + 0.55 * smoothstep(-0.5, 0.85,
+          sin(root.x * 0.12 - root.z * 0.09 + 1.7)
+        );
+        float combinedHarmonic = combinedMode * harmonicTerritory * (1.0 - combinedFire * 0.74);
+        float coolCurrent = combinedMode * smoothstep(0.2, 0.92,
+          sin(root.x * 0.16 + root.z * 0.11 - liquidTime * 0.08)
+        ) * (1.0 - combinedFire);
+        fireMode = max(fireMode, combinedFire);
+        harmonicMode = max(harmonicMode, combinedHarmonic);
         float liquidState = territory * clamp(
           0.78 + pressureBody * 0.2 + crossPressure * 0.12
           + trailingMemory * 0.1 + localAttention * 0.16,
           0.0,
           1.0
-        ) * max(tidalMode, archipelagoMode);
+        ) * max(tidalMode, combinedLiquid);
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
@@ -572,6 +595,9 @@ function GrassField({
         vVariation = variation;
         vPianoShadow = iStatic.w;
         vLiquid = liquidState;
+        vFire = fireMode;
+        vHarmonic = harmonicMode;
+        vCoolCurrent = coolCurrent;
         vWorldRoot = root.xz;
         vec4 worldPosition = modelMatrix * vec4(root + oriented, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
@@ -592,6 +618,9 @@ function GrassField({
       varying float vVariation;
       varying float vPianoShadow;
       varying float vLiquid;
+      varying float vFire;
+      varying float vHarmonic;
+      varying float vCoolCurrent;
       varying vec2 vWorldRoot;
       uniform float uTime;
       uniform float uLiquidMotion;
@@ -616,7 +645,7 @@ function GrassField({
         color = mix(color, sheenColor, vBend * smoothstep(0.18, 0.86, vUv.y) * 0.26);
         color = mix(color, vec3(0.045, 0.04, 0.14), vPianoShadow * 0.7);
         color = mix(color, vec3(0.4, 0.68, 0.86), vLiquid * 0.7);
-        float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
+        float fireMode = vFire;
         float flamePulse = 0.5 + 0.5 * sin(
           uTime * (2.1 + vVariation * 1.7) + vWorldRoot.x * 1.7 - vWorldRoot.y * 1.1
         );
@@ -636,7 +665,10 @@ function GrassField({
           * (0.3 + flamePulse * 0.76 + vVariation * 0.24);
         if (fireMode > 0.5 && flameBreakup < flameDissolve * 0.86) discard;
         color = mix(color, flameColor, fireMode * 0.96);
-        float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+        vec3 coolLow = vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[0]).toArray().map(value => value.toFixed(4)).join(', ')});
+        vec3 coolHigh = vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[3]).toArray().map(value => value.toFixed(4)).join(', ')});
+        color = mix(color, mix(coolLow, coolHigh, vUv.y), vCoolCurrent * 0.52);
+        float harmonicMode = vHarmonic;
         vec2 fromInstrument = vWorldRoot - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
         float scoreRadius = length(fromInstrument);
         float scoreAngle = atan(fromInstrument.y, fromInstrument.x);
@@ -947,12 +979,12 @@ function Ground({
             float elevatedMeadow = smoothstep(riverCenter + 4.8, riverCenter + 8.6, vWorld.x)
               * smoothstep(-1.5, 1.2, vHeight);
             float tidalMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode));
-            float archipelagoMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 2.0));
+            float combinedMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 5.0));
             float authoredTerritory = musicLandscapeMask(territoryLocal, uLandscapeMode)
               * elevatedMeadow;
             float hillMaterial = smoothstep(-3.4, -0.15, vHeight);
             // Preserve the ravine while allowing every visible hill to become painted liquid.
-            float territory = mix(authoredTerritory, hillMaterial, tidalMode) * uLiquidWeight;
+            float territory = mix(authoredTerritory, hillMaterial, max(tidalMode, combinedMode)) * uLiquidWeight;
             float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
             vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
             pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
@@ -969,17 +1001,41 @@ function Ground({
               * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
             float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
             float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
+            float compositionNoise = sin(vWorld.x * 0.105 - vWorld.z * 0.073 - liquidTime * 0.14);
+            compositionNoise += sin(vWorld.x * 0.041 + vWorld.z * 0.122 + liquidTime * 0.09) * 0.62;
+            float combinedLiquid = combinedMode * smoothstep(0.3, 1.05, compositionNoise);
+            float fireTerritory = smoothstep(0.08, 0.74,
+              sin(vWorld.x * 0.083 + vWorld.z * 0.061 - 0.8)
+              + sin(vWorld.z * 0.17 - vWorld.x * 0.035) * 0.42
+            );
+            fireTerritory *= 1.0 - smoothstep(-4.0, 7.0, vWorld.z);
+            float combinedFire = combinedMode * fireTerritory * (1.0 - combinedLiquid * 0.82);
+            float harmonicTerritory = 0.45 + 0.55 * smoothstep(-0.5, 0.85,
+              sin(vWorld.x * 0.12 - vWorld.z * 0.09 + 1.7)
+            );
+            float combinedHarmonic = combinedMode * harmonicTerritory * (1.0 - combinedFire * 0.74);
+            float coolCurrent = combinedMode * smoothstep(0.2, 0.92,
+              sin(vWorld.x * 0.16 + vWorld.z * 0.11 - liquidTime * 0.08)
+            ) * (1.0 - combinedFire);
+            fireMode = max(fireMode, combinedFire);
+            harmonicMode = max(harmonicMode, combinedHarmonic);
             float liquidState = territory * clamp(
               0.78 + pressureBody * 0.2 + crossPressure * 0.12 + localAttention * 0.18,
               0.0,
               1.0
-            ) * max(tidalMode, archipelagoMode);
+            ) * max(tidalMode, combinedLiquid);
             liquidState = mix(liquidState, hillMaterial, tidalMode);
             float emberVein = smoothstep(0.7, 0.96, liquidFbm(
               vWorld.xz * 0.34 + vec2(-uTime * 0.08 * uMotion, uTime * 0.035 * uMotion)
             ));
             vec3 emberGround = mix(vec3(0.035, 0.008, 0.006), vec3(0.92, 0.12, 0.018), emberVein);
             color = mix(color, emberGround, fireMode * (0.62 + emberVein * 0.3));
+            vec3 coolGround = mix(
+              vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[0]).toArray().map(value => value.toFixed(4)).join(', ')}),
+              vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[2]).toArray().map(value => value.toFixed(4)).join(', ')}),
+              smoothstep(-1.4, 1.2, vHeight)
+            );
+            color = mix(color, coolGround, coolCurrent * 0.46);
             vec3 liquidDeep = vec3(0.1, 0.16, 0.42);
             vec3 liquidNacre = vec3(0.42, 0.62, 0.82);
             vec3 liquidPearl = vec3(0.89, 0.66, 0.88);
@@ -987,17 +1043,13 @@ function Ground({
               liquidDeep = vec3(0.22, 0.12, 0.35);
               liquidNacre = vec3(0.82, 0.58, 0.68);
               liquidPearl = vec3(1.0, 0.84, 0.68);
-            } else if (uLandscapeMode > 1.5 && uLandscapeMode < 2.5) {
-              liquidDeep = vec3(0.07, 0.22, 0.34);
-              liquidNacre = vec3(0.28, 0.8, 0.75);
-              liquidPearl = vec3(0.78, 0.76, 1.0);
             } else if (uLandscapeMode > 2.5 && uLandscapeMode < 3.5) {
               liquidDeep = vec3(0.08, 0.2, 0.38);
               liquidNacre = vec3(0.16, 0.78, 0.9);
               liquidPearl = vec3(1.0, 0.66, 0.36);
             } else if (uLandscapeMode > 3.5) {
-              liquidDeep = vec3(0.2, 0.08, 0.44);
-              liquidNacre = vec3(0.56, 0.34, 0.86);
+              liquidDeep = mix(vec3(0.08, 0.18, 0.4), vec3(0.08, 0.3, 0.34), combinedMode * 0.55);
+              liquidNacre = mix(vec3(0.56, 0.34, 0.86), vec3(0.28, 0.76, 0.74), combinedMode * 0.44);
               liquidPearl = vec3(0.98, 0.62, 0.88);
             }
             float liquidVein = 1.0 - abs(
@@ -1029,6 +1081,14 @@ function Ground({
             vec3 terrainLitLiquid = color * 0.34 + liquidColor * 0.76;
             terrainLitLiquid += liquidPearl * terrainCaustic * tidalMode * hillMaterial * 0.14;
             color = mix(color, terrainLitLiquid, liquidState * mix(0.72, 0.96, tidalMode));
+            vec2 scoreFromPiano = vWorld.xz - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
+            float scoreRadius = length(scoreFromPiano);
+            float scoreRing = pow(0.5 + 0.5 * cos(
+              scoreRadius * 1.12 - uTime * 1.7 * uMotion
+            ), 15.0) * (1.0 - smoothstep(4.0, 34.0, scoreRadius));
+            vec3 scoreColor = mix(vec3(0.38, 0.35, 1.0), vec3(1.0, 0.5, 0.83),
+              0.5 + 0.5 * sin(scoreRadius * 0.24));
+            color += scoreColor * scoreRing * harmonicMode * 0.42;
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, uWorldFog, fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
@@ -1315,7 +1375,8 @@ function MusicWorldAirborneMatter({
   landscape: MusicLiquidLandscapeId;
   reducedMotion: boolean;
 }) {
-  const visible = landscape === 'nacre-terraces' || landscape === 'glass-delta';
+  const combined = landscape === 'combined-world';
+  const visible = combined || landscape === 'nacre-terraces' || landscape === 'glass-delta';
   const fire = landscape === 'nacre-terraces';
   const count = fire ? 180 : 220;
   const geometry = useMemo(() => {
@@ -1343,11 +1404,13 @@ function MusicWorldAirborneMatter({
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
       uFire: { value: fire ? 1 : 0 },
+      uCombined: { value: combined ? 1 : 0 },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
       uniform float uFire;
+      uniform float uCombined;
       attribute vec4 aSeed;
       varying float vLife;
       varying float vFire;
@@ -1355,7 +1418,8 @@ function MusicWorldAirborneMatter({
       void main() {
         vec3 transformed = position;
         float time = uTime * uMotion;
-        if (uFire > 0.5) {
+        float particleFire = max(uFire, uCombined * step(0.62, aSeed.x));
+        if (particleFire > 0.5) {
           float rise = fract(aSeed.w + time * mix(0.045, 0.11, aSeed.y));
           transformed.y += 0.2 + rise * mix(2.0, 7.0, aSeed.z);
           transformed.x += sin(time * 1.2 + aSeed.x * 31.0 + rise * 6.0) * (0.16 + rise * 0.55);
@@ -1371,8 +1435,8 @@ function MusicWorldAirborneMatter({
         vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         gl_Position = projectionMatrix * viewPosition;
         float projectedSize = mix(1.4, 4.2, aSeed.y) * (28.0 / max(4.0, -viewPosition.z));
-        gl_PointSize = min(mix(14.0, 10.0, uFire), projectedSize);
-        vFire = uFire;
+        gl_PointSize = min(mix(14.0, 10.0, particleFire), projectedSize);
+        vFire = particleFire;
         vTurn = fract(aSeed.x + time * mix(0.18, 0.46, aSeed.z));
       }
     `,
@@ -1393,12 +1457,13 @@ function MusicWorldAirborneMatter({
         gl_FragColor = vec4(mix(petalColor, emberColor, vFire), shape * vLife * 0.76);
       }
     `,
-  }), [fire, reducedMotion]);
+  }), [combined, fire, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     material.uniforms.uFire.value = fire ? 1 : 0;
+    material.uniforms.uCombined.value = combined ? 1 : 0;
   });
 
   if (!visible) return null;
@@ -1409,7 +1474,9 @@ function MusicWorldAirborneMatter({
       frustumCulled={false}
       renderOrder={6}
       userData={{
-        worldEcology: fire ? 'fire-embers' : 'spring-cherry-petals',
+        worldEcology: combined
+          ? 'combined-petals-and-embers'
+          : fire ? 'fire-embers' : 'spring-cherry-petals',
       }}
     />
   );
@@ -1418,11 +1485,13 @@ function MusicWorldAirborneMatter({
 function DistantFireSmoke({
   visible,
   reducedMotion,
+  combined = false,
 }: {
   visible: boolean;
   reducedMotion: boolean;
+  combined?: boolean;
 }) {
-  const count = 104;
+  const count = 72;
   const geometry = useMemo(() => {
     const result = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
@@ -1453,28 +1522,32 @@ function DistantFireSmoke({
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    depthTest: false,
+    depthTest: true,
     blending: THREE.NormalBlending,
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uCombined: { value: combined ? 1 : 0 },
     },
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform float uCombined;
       attribute vec4 aSeed;
       varying float vLife;
       varying float vShade;
       void main() {
         float time = uTime * uMotion;
         float rise = fract(aSeed.w + time * mix(0.012, 0.025, aSeed.y));
+        float ecologyScale = mix(1.0, 0.55, uCombined);
         vec3 transformed = position;
-        transformed.y += rise * mix(14.0, 25.0, aSeed.z);
-        transformed.x += sin(time * 0.17 + rise * 5.4 + aSeed.x * 19.0) * (0.45 + rise * 4.6);
+        transformed.y += rise * mix(14.0, 25.0, aSeed.z) * ecologyScale;
+        transformed.x += sin(time * 0.17 + rise * 5.4 + aSeed.x * 19.0) * (0.45 + rise * 4.6) * mix(1.0, 0.32, uCombined);
         transformed.z += cos(time * 0.11 + rise * 3.2 + aSeed.y * 17.0) * (0.2 + rise * 1.5);
         vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         gl_Position = projectionMatrix * viewPosition;
-        gl_PointSize = min(88.0, mix(38.0, 70.0, aSeed.x) * (42.0 / max(8.0, -viewPosition.z)));
+        float pointScale = mix(1.0, 0.46, uCombined);
+        gl_PointSize = min(58.0, mix(24.0, 48.0, aSeed.x) * pointScale * (42.0 / max(8.0, -viewPosition.z)));
         vLife = sin(rise * 3.14159265) * (1.0 - smoothstep(0.68, 1.0, rise));
         vShade = aSeed.z;
       }
@@ -1482,13 +1555,15 @@ function DistantFireSmoke({
     fragmentShader: `
       varying float vLife;
       varying float vShade;
+      uniform float uCombined;
       void main() {
         vec2 point = gl_PointCoord - 0.5;
         float radial = length(point * vec2(0.82, 1.0));
         float body = 1.0 - smoothstep(0.12, 0.5, radial);
         float softNoise = 0.78 + sin(point.x * 18.0 + point.y * 13.0 + vShade * 21.0) * 0.12;
         vec3 smoke = mix(vec3(0.055, 0.035, 0.06), vec3(0.2, 0.09, 0.08), vShade);
-        gl_FragColor = vec4(smoke, body * softNoise * vLife * 0.64);
+        float ecologyOpacity = mix(0.52, 0.13, uCombined);
+        gl_FragColor = vec4(smoke, body * softNoise * vLife * ecologyOpacity);
       }
     `,
   }), [reducedMotion]);
@@ -1496,6 +1571,7 @@ function DistantFireSmoke({
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
     material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    material.uniforms.uCombined.value = combined ? 1 : 0;
   });
 
   if (!visible) return null;
@@ -1550,36 +1626,12 @@ function MusicLandscapeAccents({
     );
   }
 
-  if (landscape === 'resonant-archipelago') {
-    const islands = [
-      [7.2, 5.6, 0.48, 0.74],
-      [10.8, 2.8, 0.72, 1.04],
-      [14.7, 7.4, 0.54, 0.82],
-      [18.4, 4.1, 0.9, 1.28],
-      [22.3, 7.9, 0.42, 0.64],
-      [15.6, 10.8, 0.36, 0.56],
-    ] as const;
+  if (landscape === 'combined-world') {
     return (
-      <group ref={group} userData={{ musicLandscapeAccent: 'resonant-archipelago' }}>
-        {islands.map(([x, z, radius, lift], index) => (
-          <group key={index} position={landscapePoint(x, z, lift)}>
-            <mesh scale={[1.5, 0.52, 1.1]} renderOrder={3}>
-              <sphereGeometry args={[radius, 24, 12]} />
-              <meshBasicMaterial
-                color={index % 2 === 0 ? '#73f4df' : '#bcb5ff'}
-                transparent
-                opacity={0.32}
-                depthWrite={false}
-                blending={THREE.AdditiveBlending}
-              />
-            </mesh>
-            <mesh rotation={[Math.PI / 2, 0, 0]} renderOrder={4}>
-              <torusGeometry args={[radius * 1.2, 0.025, 6, 32]} />
-              <meshBasicMaterial color="#d8fff8" transparent opacity={0.42} depthWrite={false} />
-            </mesh>
-          </group>
-        ))}
-      </group>
+      <group
+        ref={group}
+        userData={{ musicLandscapeAccent: 'combined-material-ecology' }}
+      />
     );
   }
 
@@ -1714,6 +1766,15 @@ function WorldScaleMusicForms({
     group.current.rotation.y = Math.sin(time * 0.075) * 0.012;
   });
 
+  if (landscape === 'combined-world') {
+    return (
+      <group
+        ref={group}
+        userData={{ musicWorldForm: 'combined-living-score' }}
+      />
+    );
+  }
+
   if (landscape === 'tidal-meadow') {
     return (
       <group ref={group} userData={{ musicWorldForm: 'terrain-wide-tidal-material' }} />
@@ -1760,54 +1821,6 @@ function WorldScaleMusicForms({
               <meshBasicMaterial color="#7f3e68" transparent opacity={0.2} depthWrite={false} />
           </WorldInstances>
         ))}
-      </group>
-    );
-  }
-
-  if (landscape === 'resonant-archipelago') {
-    const islands = Array.from({ length: 14 }, (_, index) => {
-      const scale = 2.4 + (index % 4) * 0.75;
-      return {
-        position: [-31 + (index % 7) * 10.5 + (index % 2) * 2.2, 2.5 + Math.floor(index / 7) * 7 + (index % 3) * 1.4, -18 - Math.floor(index / 7) * 25 - (index % 4) * 3] as [number, number, number],
-        scale,
-        palette: index % 2,
-      };
-    });
-    const islandTops = islands.map(island => ({
-      position: island.position,
-      scale: [island.scale * 1.7, island.scale * 0.34, island.scale] as [number, number, number],
-      palette: island.palette,
-    }));
-    const islandRoots = islands.map(island => ({
-      position: [island.position[0], island.position[1] - island.scale * 0.8, island.position[2]] as [number, number, number],
-      scale: [island.scale, island.scale * 1.6, island.scale * 0.7] as [number, number, number],
-    }));
-    const islandRings = islands.map(island => ({
-      position: island.position,
-      rotation: [Math.PI / 2, 0, 0] as [number, number, number],
-      scale: [island.scale * 1.35, island.scale * 1.35, island.scale * 1.35] as [number, number, number],
-    }));
-    return (
-      <group ref={group} userData={{ musicWorldForm: 'suspended-archipelago' }}>
-        {[0, 1].map(palette => (
-          <WorldInstances key={palette} items={islandTops.filter(item => item.palette === palette)}>
-              <dodecahedronGeometry args={[1, 1]} />
-              <meshStandardMaterial
-                color={palette ? '#58c8b0' : '#82d8ce'}
-                emissive="#1b716f"
-                emissiveIntensity={0.3}
-                roughness={0.52}
-              />
-          </WorldInstances>
-        ))}
-        <WorldInstances items={islandRoots}>
-              <coneGeometry args={[1, 1.7, 7]} />
-              <meshToonMaterial color="#173d56" />
-        </WorldInstances>
-        <WorldInstances items={islandRings}>
-              <torusGeometry args={[1, 0.026, 5, 32]} />
-              <meshBasicMaterial color="#b9fff0" transparent opacity={0.62} depthWrite={false} />
-        </WorldInstances>
       </group>
     );
   }
@@ -2773,7 +2786,10 @@ function SkyDome({
         vec3 wispColor = mix(uWisp, uUpper, height);
         color = mix(color, wispColor, wisps * skyWindow * 0.28);
 
-        float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
+        float harmonicMode = max(
+          1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0)),
+          (1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 5.0))) * 0.72
+        );
         float auroraCenter = 0.43
           + sin(x * 7.0 - uTime * 0.11 * uMotion) * 0.07
           + sin(x * 15.0 + uTime * 0.07 * uMotion) * 0.025;
@@ -2871,7 +2887,7 @@ function Clouds({
           key={cloudIndex}
           ref={groups[cloudIndex]}
           position={[...cloud.position]}
-          scale={cloud.scale * (profile.worldForm === 'terraces' ? 1.35 : profile.worldForm === 'islands' ? 0.76 : 1)}
+          scale={cloud.scale * (profile.worldForm === 'terraces' ? 1.35 : 1)}
         >
           {[
             [-1.5, -0.05, 0, 1.35],
@@ -3263,8 +3279,9 @@ const PianoClearingScene = memo(function PianoClearingScene({
             reducedMotion={reducedMotion}
           />
           <DistantFireSmoke
-            visible={musicLandscape === 'nacre-terraces'}
+            visible={musicLandscape === 'nacre-terraces' || musicLandscape === 'combined-world'}
             reducedMotion={reducedMotion}
+            combined={musicLandscape === 'combined-world'}
           />
         </>
       ) : null}
@@ -3524,7 +3541,7 @@ export default function PianoClearingProof({
   const [pageVisible, setPageVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [liquidQuality, setLiquidQuality] = useState<MusicLiquidQuality>('full');
-  const [musicLandscape, setMusicLandscape] = useState<MusicLiquidLandscapeId>('tidal-meadow');
+  const [musicLandscape, setMusicLandscape] = useState<MusicLiquidLandscapeId>('combined-world');
 
   const handleContextLost = useCallback(() => setLiquidQuality('failure'), []);
   // Keep the expensive optional territory disabled after a context recovery.
@@ -3620,7 +3637,7 @@ export default function PianoClearingProof({
         <MusicLandscapeReview active={musicLandscape} onChange={setMusicLandscape} />
       ) : null}
       <p className={styles.proofLabel}>
-        {musicLiquidProof ? 'Music world gallery MW1-A' : 'Environmental proof 84'}
+        {musicLiquidProof ? 'Music world composition MW1-C' : 'Environmental proof 84'}
         <strong>
           {musicLiquidProof
             ? MUSIC_LIQUID_LANDSCAPES.find(landscape => landscape.id === musicLandscape)?.title

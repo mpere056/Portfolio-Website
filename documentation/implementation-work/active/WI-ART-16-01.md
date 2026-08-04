@@ -44,8 +44,9 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `ML6-R1` review: revise. The expanded territory is visible and its calmer granular state is promising, but its bright periodic phase becomes uniformly striped.
 - `ML6-R2` review: revise. Organic currents removed the uniform lanes, but the broad liquid mask crossed the ravine, suppressed bridge-adjacent grass, and flattened the hill's material depth.
 - `MW1-A` review: rejected. Five local material grammars were useful experiments, but they changed the same foreground territory and did not create five different worlds.
-- `MW1-B` candidate: each selector now owns a complete atmosphere profile plus a unique world-scale topology. The implementation uses one canvas and one active world, with lower-cost standard materials for the new large forms.
-- Next exact action: deploy the optimized `MW1-B` candidate to staging, inspect all five states at one viewport, and reject any pair that cannot be distinguished without reading its label.
+- `MW1-B` comparison is complete. Resonant Archipelago is rejected as a Music world; only its teal grass palette remains available as a material color.
+- `MW1-C` candidate: `The Living Score` composes liquid terrain, regional fire, petals, piano-origin harmonic light, smoke, and teal countercurrents inside one shared runtime. Four isolate controls remain for diagnosis.
+- Next exact action: visually inspect the combined default state, tune the spatial balance of its material regions, and keep hover derivation blocked until the selected Music world is accepted.
 
 ## Ordered Checkpoints
 
@@ -57,7 +58,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 | `D` Practice instruments | accepted-for-sequencing | Three instruments establish the controlled taxonomy and semantic inputs |
 | `E0` Transition foundation | verified | `b0018cb`: one dominant owner, lazy world contract, opt-in diagnostics, deterministic retreat/disposal, zero hidden runtimes, and unchanged neutral rendering |
 | `E1` Music material direction | accepted-for-prototype | Liquid Landscape and its simulation-free, one-territory proof sequence are documented in Plan `24` |
-| `E2` Music material and world comparison | in-progress | Local material gates are retained; `MW1-A` was rejected for changing only one foreground patch; full-world `MW1-B` is implemented on `/music-liquid-proof` and awaits visual/performance review |
+| `E2` Music material composition | in-progress | `MW1-B` comparison is complete; `MW1-C` combined candidate is implemented on `/music-liquid-proof` with four diagnostic isolates and awaits visual/performance review |
 | `F` Music selected environment | blocked by accepted `E2` | Consolidate one reviewed whole-world direction without regressing continuity or runtime bounds |
 | `G` Three practices | not-started | All three categories have distinct, cohesive preview and selected states |
 | `H` Project/navigation depth | not-started | Project reveal, routes, history, return, AI, and tour pass |
@@ -93,7 +94,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 ### 2026-08-02 Five-Landscape Music Review Gallery
 
 - Mark requested a broader Music-world batch so the next review can compare substantially different landscape directions at once.
-- Private `/music-liquid-proof` now offers Tidal Meadow, Nacre Terraces, Resonant Archipelago, Petal Delta, and Harmonic Dunes through one shared scene with only one active study.
+- Private `/music-liquid-proof` now opens on `The Living Score`, followed by Tidal, Fire, Petal, and Harmonic diagnostic isolates. Resonant Archipelago is removed.
 - Each study changes territory silhouette, displacement, palette, and sparse 3D landmarks while preserving the accepted terrain, ravine, bridge, piano, camera, and all 260,000 grass blades.
 - Local browser review caught and fixed invalid R3F diagnostic attributes and terrain-projects Glass Delta tributaries. The exact resume point is user classification of each study as keep, revise, combine, or reject.
 
@@ -230,6 +231,12 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Local Production visual review confirms that Tidal now reads across the complete visible hill system while preserving the ravine; Nacre shows independently moving flame blades, embers, and four legible distant smoke columns; Petal contains blossoms over intact grass with no liquid or glass leakage; Harmonic keeps piano-origin score light and adds sky-scale RGB-separated refraction.
 - Commit `7a73f07` is pushed to `main`; Production deployment `dpl_Dx7ihGMSpyo12Ri5Yev1M8MGaM55` is Ready and aliased to `www.marknperera.ca`. Public browser inspection confirms the terrain-wide Tidal state, current material selector, and zero console errors.
 - Exact resume point: preserve these four interoperable material boundaries while composing the first combined Music-world state. Do not restore glass monuments to Music; reconsider that grammar only when Play & Community planning begins.
+
+### 2026-08-03 Combined Music World Candidate
+
+- Mark rejected Resonant Archipelago as a Music-world topology but retained its teal grass color as a possible ingredient.
+- `The Living Score` becomes the default proof state. It spatially composes terrain-wide liquid pressure, bounded fire regions, mixed petals and embers, distant smoke, piano-origin score light, sky refraction, and teal countercurrents without adding a second scene runtime or post-processing pass.
+- The four remaining studies are diagnostics, not competing final worlds. Exact resume point is visual tuning of the combined state's regional balance and transitions before any Home hover derivation.
 
 ### 2026-07-26
 
