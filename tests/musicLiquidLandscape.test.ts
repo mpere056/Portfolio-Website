@@ -63,6 +63,9 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(MUSIC_LIQUID_PROOF.attentionRadius).toBeLessThanOrEqual(0.5);
     expect(MUSIC_LIQUID_PROOF.riverResponseDamping)
       .toBeLessThan(MUSIC_LIQUID_PROOF.attentionDamping);
+    expect(MUSIC_LIQUID_PROOF.travelSpeed).toBeGreaterThanOrEqual(0.9);
+    expect(MUSIC_LIQUID_PROOF.combinedMaterialSpeed).toBeGreaterThanOrEqual(1.5);
+    expect(MUSIC_LIQUID_PROOF.airborneSpeed).toBeGreaterThanOrEqual(1.5);
   });
 
   it('keeps attention local and strongest under the pointer', () => {
@@ -83,7 +86,8 @@ describe('Music Liquid Landscape proof contract', () => {
 
   it('uses a repeatable silent pressure clock and stable quality ladder', () => {
     expect(musicLiquidPressurePhase(0)).toBe(0);
-    expect(musicLiquidPressurePhase(1 / MUSIC_LIQUID_PROOF.travelSpeed)).toBe(0);
+    const wrappedPhase = musicLiquidPressurePhase(1 / MUSIC_LIQUID_PROOF.travelSpeed);
+    expect(Math.min(wrappedPhase, 1 - wrappedPhase)).toBeLessThan(1e-10);
     expect(musicLiquidQualityWeight('full')).toBeGreaterThan(
       musicLiquidQualityWeight('balanced'),
     );
@@ -91,7 +95,7 @@ describe('Music Liquid Landscape proof contract', () => {
       musicLiquidQualityWeight('calm'),
     );
     expect(musicLiquidQualityWeight('failure')).toBe(0);
-    expect(musicLiquidMotionScale('full')).toBe(1);
+    expect(musicLiquidMotionScale('full')).toBeGreaterThan(1);
     expect(musicLiquidMotionScale('calm')).toBeLessThan(
       musicLiquidMotionScale('balanced'),
     );
@@ -172,6 +176,9 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain('uniform float uLiquidReflection');
     expect(component).toContain('uniform float uLiquidReply');
     expect(component).toContain('float liquidFbm(vec2 point)');
+    expect(component).toContain('for (int octave = 0; octave < 2; octave++)');
+    expect(component).toContain('float flowPrimary = liquidFbm');
+    expect(component).toContain('float compositionTime = liquidTime');
     expect(component).toContain('vec2 organicUv = pressureUv + warp * 1.05');
     expect(component).toContain('float liquidVein = 1.0 - abs(');
     expect(component).toContain('attribute float aMeadowMask');

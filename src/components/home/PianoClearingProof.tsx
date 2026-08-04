@@ -481,9 +481,9 @@ function GrassField({
         float territory = mix(authoredTerritory, 1.0, max(tidalMode, combinedMode)) * uLiquidWeight;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
         vec2 pressureUv = territoryLocal;
-        pressureUv.x -= liquidTime * 0.11;
-        pressureUv.y += sin(territoryLocal.x * 5.1 + liquidTime * 0.19) * 0.17;
-        pressureUv.x += sin(territoryLocal.y * 6.7 - liquidTime * 0.13) * 0.09;
+        pressureUv.x -= liquidTime * 0.24;
+        pressureUv.y += sin(territoryLocal.x * 5.1 + liquidTime * 0.42) * 0.17;
+        pressureUv.x += sin(territoryLocal.y * 6.7 - liquidTime * 0.31) * 0.09;
         float pressureField = sin(pressureUv.x * 4.3 + sin(pressureUv.y * 5.7) * 1.15) * 0.5;
         pressureField += sin(pressureUv.y * 7.1 - pressureUv.x * 2.4 + liquidTime * 0.17) * 0.3;
         pressureField += sin((pressureUv.x + pressureUv.y) * 10.9 - liquidTime * 0.09) * 0.2;
@@ -494,21 +494,22 @@ function GrassField({
           * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
         float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
         float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
-        float compositionNoise = sin(root.x * 0.105 - root.z * 0.073 - liquidTime * 0.14);
-        compositionNoise += sin(root.x * 0.041 + root.z * 0.122 + liquidTime * 0.09) * 0.62;
+        float compositionTime = liquidTime * ${MUSIC_LIQUID_PROOF.combinedMaterialSpeed};
+        float compositionNoise = sin(root.x * 0.105 - root.z * 0.073 - compositionTime * 0.42);
+        compositionNoise += sin(root.x * 0.041 + root.z * 0.122 + compositionTime * 0.28) * 0.62;
         float combinedLiquid = combinedMode * smoothstep(0.3, 1.05, compositionNoise);
         float fireTerritory = smoothstep(0.08, 0.74,
-          sin(root.x * 0.083 + root.z * 0.061 - 0.8)
-          + sin(root.z * 0.17 - root.x * 0.035) * 0.42
+          sin(root.x * 0.083 + root.z * 0.061 - 0.8 - compositionTime * 0.22)
+          + sin(root.z * 0.17 - root.x * 0.035 + compositionTime * 0.16) * 0.42
         );
         fireTerritory *= 1.0 - smoothstep(-4.0, 7.0, root.z);
         float combinedFire = combinedMode * fireTerritory * (1.0 - combinedLiquid * 0.82);
         float harmonicTerritory = 0.45 + 0.55 * smoothstep(-0.5, 0.85,
-          sin(root.x * 0.12 - root.z * 0.09 + 1.7)
+          sin(root.x * 0.12 - root.z * 0.09 + 1.7 + compositionTime * 0.18)
         );
         float combinedHarmonic = combinedMode * harmonicTerritory * (1.0 - combinedFire * 0.74);
         float coolCurrent = combinedMode * smoothstep(0.2, 0.92,
-          sin(root.x * 0.16 + root.z * 0.11 - liquidTime * 0.08)
+          sin(root.x * 0.16 + root.z * 0.11 - compositionTime * 0.34)
         ) * (1.0 - combinedFire);
         fireMode = max(fireMode, combinedFire);
         harmonicMode = max(harmonicMode, combinedHarmonic);
@@ -866,11 +867,11 @@ function Ground({
           }
           float liquidFbm(vec2 point) {
             float value = 0.0;
-            float amplitude = 0.56;
-            for (int octave = 0; octave < 3; octave++) {
+            float amplitude = 0.62;
+            for (int octave = 0; octave < 2; octave++) {
               value += liquidNoise(point) * amplitude;
               point = mat2(1.6, 1.2, -1.2, 1.6) * point + vec2(1.7, 3.1);
-              amplitude *= 0.48;
+              amplitude *= 0.44;
             }
             return value;
           }
@@ -916,11 +917,11 @@ function Ground({
           }
           float liquidFbm(vec2 point) {
             float value = 0.0;
-            float amplitude = 0.56;
-            for (int octave = 0; octave < 3; octave++) {
+            float amplitude = 0.62;
+            for (int octave = 0; octave < 2; octave++) {
               value += liquidNoise(point) * amplitude;
               point = mat2(1.6, 1.2, -1.2, 1.6) * point + vec2(1.7, 3.1);
-              amplitude *= 0.48;
+              amplitude *= 0.44;
             }
             return value;
           }
@@ -987,35 +988,39 @@ function Ground({
             float territory = mix(authoredTerritory, hillMaterial, max(tidalMode, combinedMode)) * uLiquidWeight;
             float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
             vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
-            pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
-            vec2 warp = vec2(
-              liquidFbm(pressureUv * 0.72 + vec2(0.0, liquidTime * 0.06)),
-              liquidFbm(pressureUv * 0.72 + vec2(4.6, -liquidTime * 0.045))
-            ) - 0.5;
+            pressureUv += vec2(-liquidTime * 0.3, liquidTime * 0.075);
+            float flowPrimary = liquidFbm(
+              pressureUv * 0.72 + vec2(0.0, liquidTime * 0.14)
+            );
+            float flowSecondary = liquidFbm(
+              pressureUv * 1.18 + vec2(4.6, -liquidTime * 0.11)
+            );
+            vec2 warp = vec2(flowPrimary, flowSecondary) - 0.5;
             vec2 organicUv = pressureUv + warp * 1.05;
             float pressureField = liquidFbm(organicUv);
-            float detailField = liquidFbm(organicUv * 1.9 + vec2(-liquidTime * 0.08, 7.3));
+            float detailField = mix(flowSecondary, pressureField, 0.38);
             float pressureBody = smoothstep(0.43, 0.77, pressureField * 0.76 + detailField * 0.24);
-            float crossPressure = smoothstep(0.52, 0.82, liquidFbm(organicUv * 1.27 + vec2(8.1, -3.4)));
+            float crossPressure = smoothstep(0.18, 0.72, 1.0 - abs(flowPrimary - flowSecondary));
             float localAttention = uLiquidAttention
               * (1.0 - smoothstep(0.05, ${MUSIC_LIQUID_PROOF.attentionRadius}, distance(territoryLocal, uLiquidPointer)));
             float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
             float fireMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 1.0));
-            float compositionNoise = sin(vWorld.x * 0.105 - vWorld.z * 0.073 - liquidTime * 0.14);
-            compositionNoise += sin(vWorld.x * 0.041 + vWorld.z * 0.122 + liquidTime * 0.09) * 0.62;
+            float compositionTime = liquidTime * ${MUSIC_LIQUID_PROOF.combinedMaterialSpeed};
+            float compositionNoise = sin(vWorld.x * 0.105 - vWorld.z * 0.073 - compositionTime * 0.42);
+            compositionNoise += sin(vWorld.x * 0.041 + vWorld.z * 0.122 + compositionTime * 0.28) * 0.62;
             float combinedLiquid = combinedMode * smoothstep(0.3, 1.05, compositionNoise);
             float fireTerritory = smoothstep(0.08, 0.74,
-              sin(vWorld.x * 0.083 + vWorld.z * 0.061 - 0.8)
-              + sin(vWorld.z * 0.17 - vWorld.x * 0.035) * 0.42
+              sin(vWorld.x * 0.083 + vWorld.z * 0.061 - 0.8 - compositionTime * 0.22)
+              + sin(vWorld.z * 0.17 - vWorld.x * 0.035 + compositionTime * 0.16) * 0.42
             );
             fireTerritory *= 1.0 - smoothstep(-4.0, 7.0, vWorld.z);
             float combinedFire = combinedMode * fireTerritory * (1.0 - combinedLiquid * 0.82);
             float harmonicTerritory = 0.45 + 0.55 * smoothstep(-0.5, 0.85,
-              sin(vWorld.x * 0.12 - vWorld.z * 0.09 + 1.7)
+              sin(vWorld.x * 0.12 - vWorld.z * 0.09 + 1.7 + compositionTime * 0.18)
             );
             float combinedHarmonic = combinedMode * harmonicTerritory * (1.0 - combinedFire * 0.74);
             float coolCurrent = combinedMode * smoothstep(0.2, 0.92,
-              sin(vWorld.x * 0.16 + vWorld.z * 0.11 - liquidTime * 0.08)
+              sin(vWorld.x * 0.16 + vWorld.z * 0.11 - compositionTime * 0.34)
             ) * (1.0 - combinedFire);
             fireMode = max(fireMode, combinedFire);
             harmonicMode = max(harmonicMode, combinedHarmonic);
@@ -1025,9 +1030,12 @@ function Ground({
               1.0
             ) * max(tidalMode, combinedLiquid);
             liquidState = mix(liquidState, hillMaterial, tidalMode);
-            float emberVein = smoothstep(0.7, 0.96, liquidFbm(
-              vWorld.xz * 0.34 + vec2(-uTime * 0.08 * uMotion, uTime * 0.035 * uMotion)
-            ));
+            float emberVein = smoothstep(0.62, 0.94,
+              0.5 + 0.5 * sin(
+                vWorld.x * 0.31 + vWorld.z * 0.23 - compositionTime * 0.46
+                + pressureField * 3.2
+              )
+            );
             vec3 emberGround = mix(vec3(0.035, 0.008, 0.006), vec3(0.92, 0.12, 0.018), emberVein);
             color = mix(color, emberGround, fireMode * (0.62 + emberVein * 0.3));
             vec3 coolGround = mix(
@@ -1053,7 +1061,7 @@ function Ground({
               liquidPearl = vec3(0.98, 0.62, 0.88);
             }
             float liquidVein = 1.0 - abs(
-              liquidFbm(organicUv * 2.35 + vec2(liquidTime * 0.06, -liquidTime * 0.1)) * 2.0 - 1.0
+              mix(detailField, flowPrimary, 0.42) * 2.0 - 1.0
             );
             vec3 liquidColor = mix(
               liquidDeep,
@@ -1069,11 +1077,8 @@ function Ground({
             );
             vec2 terrainFlowUv = vWorld.xz * vec2(0.095, 0.13);
             terrainFlowUv += vec2(-liquidTime * 0.09, liquidTime * 0.035);
-            vec2 terrainWarp = vec2(
-              liquidFbm(terrainFlowUv * 1.35 + vec2(2.1, -1.7)),
-              liquidFbm(terrainFlowUv * 1.18 + vec2(-3.4, 5.2))
-            ) - 0.5;
-            float terrainCurrent = liquidFbm(terrainFlowUv + terrainWarp * 1.4);
+            vec2 terrainWarp = vec2(flowPrimary, flowSecondary) - 0.5;
+            float terrainCurrent = liquidFbm(terrainFlowUv + terrainWarp * 1.2);
             float terrainCaustic = pow(1.0 - abs(terrainCurrent * 2.0 - 1.0), 5.5);
             float movingPearl = smoothstep(0.58, 0.94, terrainCurrent)
               * (0.42 + terrainCaustic * 0.58);
@@ -1378,7 +1383,7 @@ function MusicWorldAirborneMatter({
   const combined = landscape === 'combined-world';
   const visible = combined || landscape === 'nacre-terraces' || landscape === 'glass-delta';
   const fire = landscape === 'nacre-terraces';
-  const count = fire ? 180 : 220;
+  const count = fire ? 160 : combined ? 168 : 200;
   const geometry = useMemo(() => {
     const result = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
@@ -1417,16 +1422,16 @@ function MusicWorldAirborneMatter({
       varying float vTurn;
       void main() {
         vec3 transformed = position;
-        float time = uTime * uMotion;
+        float time = uTime * uMotion * ${MUSIC_LIQUID_PROOF.airborneSpeed};
         float particleFire = max(uFire, uCombined * step(0.62, aSeed.x));
         if (particleFire > 0.5) {
-          float rise = fract(aSeed.w + time * mix(0.045, 0.11, aSeed.y));
+          float rise = fract(aSeed.w + time * mix(0.052, 0.105, aSeed.y));
           transformed.y += 0.2 + rise * mix(2.0, 7.0, aSeed.z);
           transformed.x += sin(time * 1.2 + aSeed.x * 31.0 + rise * 6.0) * (0.16 + rise * 0.55);
           transformed.z += cos(time * 0.8 + aSeed.y * 27.0) * 0.2;
           vLife = sin(rise * 3.14159265);
         } else {
-          float drift = fract(aSeed.w + time * mix(0.018, 0.038, aSeed.y));
+          float drift = fract(aSeed.w + time * mix(0.035, 0.068, aSeed.y));
           transformed.x += drift * 13.0 - 6.5;
           transformed.y += 1.2 + sin(time * 0.34 + aSeed.x * 18.0) * 1.35 + aSeed.y * 5.0;
           transformed.z += sin(time * 0.21 + aSeed.z * 22.0 + drift * 4.0) * 2.1;
@@ -1566,7 +1571,7 @@ function DistantFireSmoke({
         gl_FragColor = vec4(smoke, body * softNoise * vLife * ecologyOpacity);
       }
     `,
-  }), [reducedMotion]);
+  }), [combined, reducedMotion]);
 
   useFrame(({ clock }) => {
     material.uniforms.uTime.value = clock.elapsedTime;
@@ -2763,7 +2768,7 @@ function SkyDome({
       varying vec3 vWorld;
 
       float cloudWisp(float x, float y, float center, float width, float phase) {
-        float drift = uTime * 0.006 * uMotion;
+        float drift = uTime * 0.014 * uMotion;
         float bend = sin((x + phase + drift) * 8.0) * 0.018
           + sin((x * 17.0) - drift * 0.7 + phase) * 0.006;
         float band = 1.0 - smoothstep(width * 0.16, width, abs(y - center - bend));
@@ -2791,29 +2796,29 @@ function SkyDome({
           (1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 5.0))) * 0.72
         );
         float auroraCenter = 0.43
-          + sin(x * 7.0 - uTime * 0.11 * uMotion) * 0.07
-          + sin(x * 15.0 + uTime * 0.07 * uMotion) * 0.025;
+          + sin(x * 7.0 - uTime * 0.2 * uMotion) * 0.07
+          + sin(x * 15.0 + uTime * 0.13 * uMotion) * 0.025;
         float auroraBand = exp(-pow((y - auroraCenter) * 7.6, 2.0));
         float auroraCurtain = 0.46 + 0.54 * sin(
-          x * 29.0 + sin(x * 8.0 - uTime * 0.08 * uMotion) * 2.2
+          x * 29.0 + sin(x * 8.0 - uTime * 0.16 * uMotion) * 2.2
         );
         auroraCurtain = smoothstep(0.12, 0.94, auroraCurtain);
         float auroraVeil = auroraBand * (0.38 + auroraCurtain * 0.62) * skyWindow;
         vec3 auroraColor = mix(
           vec3(0.16, 0.68, 0.9),
           vec3(0.94, 0.28, 0.86),
-          0.5 + 0.5 * sin(x * 8.0 + uTime * 0.045 * uMotion)
+          0.5 + 0.5 * sin(x * 8.0 + uTime * 0.09 * uMotion)
         );
         // Three phase-shifted lenses create atmospheric refraction without a full-screen pass.
-        float refractiveWarp = sin(x * 17.0 - uTime * 0.16 * uMotion)
-          * sin(y * 13.0 + uTime * 0.09 * uMotion);
+        float refractiveWarp = sin(x * 17.0 - uTime * 0.27 * uMotion)
+          * sin(y * 13.0 + uTime * 0.16 * uMotion);
         float lensR = exp(-pow((y - auroraCenter - refractiveWarp * 0.035) * 9.2, 2.0));
         float lensG = exp(-pow((y - auroraCenter) * 9.2, 2.0));
         float lensB = exp(-pow((y - auroraCenter + refractiveWarp * 0.035) * 9.2, 2.0));
         vec3 chromaticRefraction = vec3(lensR, lensG, lensB)
           * (0.18 + auroraCurtain * 0.34) * skyWindow;
         float spatialLens = pow(0.5 + 0.5 * sin(
-          x * 22.0 + sin(y * 10.0 - uTime * 0.08 * uMotion) * 2.8
+          x * 22.0 + sin(y * 10.0 - uTime * 0.15 * uMotion) * 2.8
         ), 8.0);
         color += auroraColor * auroraVeil * harmonicMode * 0.34;
         color += chromaticRefraction * harmonicMode * (0.5 + spatialLens * 0.58);
@@ -3165,13 +3170,13 @@ function AdaptivePixelRatio({
     if (delta > 0.2) return;
     elapsed.current += delta;
     frames.current += 1;
-    if (elapsed.current < 2) return;
+    if (elapsed.current < 1.25) return;
 
     const fps = frames.current / elapsed.current;
     elapsed.current = 0;
     frames.current = 0;
 
-    if (fps < 47 && tier.current < dprTiers.length - 1) {
+    if (fps < 53 && tier.current < dprTiers.length - 1) {
       tier.current += 1;
       recoveryWindows.current = 0;
       setDpr(dprTiers[tier.current]);
@@ -3179,9 +3184,9 @@ function AdaptivePixelRatio({
       return;
     }
 
-    if (fps > 57 && tier.current > 0) {
+    if (fps > 58 && tier.current > 0) {
       recoveryWindows.current += 1;
-      if (recoveryWindows.current >= 4) {
+      if (recoveryWindows.current >= 8) {
         tier.current -= 1;
         recoveryWindows.current = 0;
         setDpr(dprTiers[tier.current]);

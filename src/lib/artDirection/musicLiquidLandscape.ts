@@ -5,7 +5,9 @@ export const MUSIC_LIQUID_PROOF = {
   axes: [15.5, 7.2] as const,
   rotation: -0.18,
   edgeSoftness: 0.24,
-  travelSpeed: 0.55,
+  travelSpeed: 0.95,
+  combinedMaterialSpeed: 1.85,
+  airborneSpeed: 1.7,
   pressureWidth: 0.22,
   recoveryTail: 0.34,
   attentionRadius: 0.32,
@@ -168,9 +170,11 @@ export function musicLiquidInitialQuality({
 
 export function musicLiquidMotionScale(quality: MusicLiquidQuality): number {
   if (quality === 'failure' || quality === 'reduced') return 0;
-  if (quality === 'calm') return 0.2;
-  if (quality === 'balanced') return 0.68;
-  return 1;
+  // Quality controls detail and resolution, not storytelling pace. Keeping
+  // motion legible avoids making slower devices wait longer to see the world.
+  if (quality === 'calm') return 1;
+  if (quality === 'balanced') return 1.12;
+  return 1.25;
 }
 
 export function musicLiquidTerritoryCoordinates(x: number, z: number) {

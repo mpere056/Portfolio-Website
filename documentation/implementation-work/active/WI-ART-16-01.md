@@ -10,7 +10,7 @@
 | Supporting packages | `ARC-06`, `KG-07`, `EXP-08`, `PRJ-09`, `QA-07` |
 | Capabilities | `CAP-ART-017`, `CAP-ART-018`, `CAP-ART-019`, `CAP-KG-008`, `CAP-PRJ-009` |
 | Created | 2026-07-24 |
-| Last update | 2026-08-03 |
+| Last update | 2026-08-04 |
 | Decision | [Three-Practice Taxonomy](../../implementation-plans/2026-07-30-Three-Practice-Taxonomy-Decision.md) and [Piano Clearing Home Reset](../../implementation-plans/2026-07-26-Piano-Clearing-Home-Reset-Decision.md) |
 | Execution plan | [Piano Clearing Home](../../implementation-plans/22-Piano-Clearing-Home-World.md) and [Home Practice Worlds And Transitions](../../implementation-plans/23-Home-Practice-Worlds-And-Transitions.md) |
 
@@ -34,7 +34,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Current implementation: canonical Home renders the `Dusk Refrain` independent-blade viaduct view with a geometry-grounded pearl particle piano, seated silhouette player, and three suspended practice instruments; its doorway links to the 10-slide About presentation at `/presentation`.
 - Review route: canonical `https://www.marknperera.ca/`; rollback route `https://www.marknperera.ca/home-world-proof`.
 - Verification: all 59 test files / 251 tests, TypeScript, targeted lifecycle/Home lint with no errors, 61-node / 28-relationship content validation, and the clean 41-page production build. The accepted `5313e93` neutral visual baseline is unchanged because no world module is registered or mounted.
-- Performance boundary: one canvas, DPR at most `1.25` with sustained-pressure tiers down to `0.75`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. Static blade shape/variation/shadow work is packed into normalized 16-bit attributes; idle cursor raycasts stop after the response settles; stencil is disabled. No scene count is reduced. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
+- Performance boundary: one canvas, DPR at most `1.0` with sustained-pressure tiers down to `0.75`, at most 9,000 piano points in one draw, 260,000 independent two-triangle grass blades in one instanced draw, 58 trees in three instanced draws, five fixed rocks, 160 wildflower points, 180 motes, five bridge arches, seven distant birds in one instanced draw, one water shader, no post-processing or real-time shadows, animation paused for hidden/reduced-motion states. Static blade shape/variation/shadow work is packed into normalized 16-bit attributes; idle cursor raycasts stop after the response settles; stencil is disabled. The combined ground shader shares two-octave flow fields instead of repeatedly evaluating separate three-octave fields, and the DPR governor reacts sooner while recovering conservatively. No grass count or scene-defining object is reduced. The three practice instruments are lightweight HTML/CSS/SVG surfaces outside the WebGL runtime.
 - Safe exposure: provisional canonical Home; no-index proof rollback route; no-index About presentation; Projects unchanged.
 - Deployment: canonical Home and `/presentation` return the expected dusk-doorway and `about-mark` presentation content in Git-connected Production.
 - Loading correction: the piano now owns an isolated Suspense boundary, so a slow GLTF no longer blanks the environmental world.
@@ -46,7 +46,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `MW1-A` review: rejected. Five local material grammars were useful experiments, but they changed the same foreground territory and did not create five different worlds.
 - `MW1-B` comparison is complete. Resonant Archipelago is rejected as a Music world; only its teal grass palette remains available as a material color.
 - `MW1-C` candidate: `The Living Score` composes liquid terrain, regional fire, petals, piano-origin harmonic light, smoke, and teal countercurrents inside one shared runtime. Four isolate controls remain for diagnosis.
-- Next exact action: visually inspect the combined default state, tune the spatial balance of its material regions, and keep hover derivation blocked until the selected Music world is accepted.
+- Next exact action: review the accelerated, fill-rate-reduced combined state on a previously laggy computer; then tune spatial balance while keeping hover derivation blocked until the selected Music world is accepted.
 
 ## Ordered Checkpoints
 
@@ -97,6 +97,13 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Private `/music-liquid-proof` now opens on `The Living Score`, followed by Tidal, Fire, Petal, and Harmonic diagnostic isolates. Resonant Archipelago is removed.
 - Each study changes territory silhouette, displacement, palette, and sparse 3D landmarks while preserving the accepted terrain, ravine, bridge, piano, camera, and all 260,000 grass blades.
 - Local browser review caught and fixed invalid R3F diagnostic attributes and terrain-projects Glass Delta tributaries. The exact resume point is user classification of each study as keep, revise, combine, or reject.
+
+### 2026-08-04 Combined-World Performance And Motion Pass
+
+- Preserves all 260,000 grass blades and the accepted composition while limiting the drawing buffer to native pixel density.
+- Reduces the dominant full-screen ground shader from repeated three-octave fields to shared two-octave fields, with no simulation texture, render target, or post-processing pass.
+- Makes material-region migration, airborne petals/embers, sky wisps, aurora, and chromatic lenses visibly progress within a short review window. Quality tiers may lower detail and resolution but no longer slow the world score.
+- The sustained-frame governor samples sooner and downshifts before the scene becomes visibly unresponsive; recovery remains deliberately slow to avoid oscillation.
 
 ### 2026-07-31 Practice-World Architecture
 

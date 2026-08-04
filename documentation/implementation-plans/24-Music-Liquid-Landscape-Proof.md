@@ -1,6 +1,6 @@
 # Music Liquid Landscape Proof Plan
 
-Last updated: 2026-08-03
+Last updated: 2026-08-04
 
 ## Purpose
 
@@ -148,9 +148,9 @@ Measure against the same machine and viewport before and after each gate. Do not
 
 | Tier | Territory behavior | Surface cues | Update policy |
 | --- | --- | --- | --- |
-| Full | one territory, pressure passage, recovery memory, two surface meshes, local piano/river response | all bounded effects | every rendered frame |
-| Balanced | same silhouette and metamorphosis, one surface mesh, cheaper highlights, no true refraction | preserve the idea, reduce optical cost | existing adaptive DPR plus throttled distant clocks |
-| Calm | stable transformed territory with very slow pressure and recovery | no broad refraction or rapid highlight travel | low temporal amplitude |
+| Full | one territory, pressure passage, recovery memory, two surface meshes, local piano/river response | all bounded effects | every rendered frame at the authored score pace |
+| Balanced | same silhouette and metamorphosis, one surface mesh, cheaper highlights, no true refraction | preserve the idea, reduce optical cost | adaptive DPR and reduced detail; preserve the authored score pace |
+| Calm | same readable material migration with reduced optical detail | no broad refraction or rapid micro-detail | preserve narrative pace while reducing GPU cost |
 | Reduced | authored stable liquid/grass boundary | no travel; semantic controls unchanged | static material state |
 | Failure | neutral meadow plus subtle Music tint near the piano | no selected geometry | controls and retreat remain available |
 
@@ -196,7 +196,7 @@ For `ML0`, `ML3`, and `ML5`, record:
 | Current gate | `MW1-C` first combined Music-world candidate; implementation and visual review in progress |
 | Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` mounts one selected study at a time; Music registry remains empty |
-| Next exact action | Inspect `The Living Score` first, then use the four retained isolate controls only to diagnose liquid, fire, petal, or harmonic failures; tune spatial balance before deriving any hover state |
+| Next exact action | Review the accelerated performance candidate on a previously laggy computer, then use the four retained isolate controls only to diagnose liquid, fire, petal, or harmonic failures; tune spatial balance before deriving any hover state |
 | Do not begin | Production selected-world registration, hover derivation, other practice worlds, or project landmarks before the comparison outcome |
 | Review packet | One route with five compact selectors and five whole-world states; no long document review required |
 

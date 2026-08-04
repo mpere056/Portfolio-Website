@@ -19,7 +19,7 @@ describe('piano clearing Home proof', () => {
     expect(PIANO_CLEARING_PERFORMANCE.grassInstances).toBeLessThanOrEqual(220000);
     expect(PIANO_CLEARING_PERFORMANCE.foregroundGrassInstances).toBeLessThanOrEqual(60000);
     expect(PIANO_CLEARING_PERFORMANCE.pianoParticles).toBeLessThanOrEqual(9000);
-    expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1.25);
+    expect(PIANO_CLEARING_PERFORMANCE.maxDpr).toBeLessThanOrEqual(1);
     expect(PIANO_CLEARING_PERFORMANCE.horizonTrees).toBeLessThanOrEqual(60);
     expect(PIANO_CLEARING_PERFORMANCE.valleyRocks).toBeLessThanOrEqual(24);
     expect(PIANO_CLEARING_PERFORMANCE.wildflowers).toBeLessThanOrEqual(160);
@@ -146,7 +146,7 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('vPianoShadow = iStatic.w');
     expect(component).toContain('<AdaptivePixelRatio');
     expect(component).toContain('onQualityChange={onLiquidQualityChange}');
-    expect(component).toContain('fps < 47');
+    expect(component).toContain('fps < 53');
     expect(component).toContain('stencil: false');
     expect(component).not.toContain('pianoGap');
     expect(component).toContain('steepRavineEdge');

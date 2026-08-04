@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 
 export const PIANO_CLEARING_PERFORMANCE = {
-  maxDpr: 1.25,
+  // The scene is fill-rate bound long before it is geometry bound. A 1:1
+  // drawing buffer keeps the dense grass intact without overshading pixels.
+  maxDpr: 1,
   grassInstances: 200000,
   foregroundGrassInstances: 60000,
   pianoParticles: 9000,
