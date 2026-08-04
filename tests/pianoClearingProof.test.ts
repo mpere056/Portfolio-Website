@@ -120,7 +120,9 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('cursorImpulse.current = Math.max(cursorImpulse.current, movementEnergy)');
     expect(component).toContain('data-grass-wind="0.34"');
     expect(component).toContain('data-cloud-streaks="procedural-wisps"');
-    expect(component).toContain('<SkyDome reducedMotion={reducedMotion} profile={worldProfile} />');
+    expect(component).toContain('<SkyDome');
+    expect(component).toContain('profile={worldProfile}');
+    expect(component).toContain('landscapeIndex={landscapeIndex}');
     expect(component).toContain('className={styles.cloudStreaks}');
     expect(component).toContain('className={styles.dramaticLight}');
     expect(component).toContain('float contactDistance');
@@ -205,10 +207,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('aria-label="Music landscape review selector"');
     expect(component).toContain('function WorldInstances');
     expect(component).toContain('<instancedMesh');
-    expect(component).toContain("musicWorldForm: 'ocean-bloom'");
+    expect(component).toContain("musicWorldForm: 'terrain-wide-tidal-material'");
     expect(component).toContain("musicWorldForm: 'monumental-nacre-terraces'");
     expect(component).toContain("musicWorldForm: 'suspended-archipelago'");
-    expect(component).toContain("musicWorldForm: 'prismatic-glass-delta'");
+    expect(component).toContain("musicWorldForm: 'spring-petal-field'");
     expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
   });
 

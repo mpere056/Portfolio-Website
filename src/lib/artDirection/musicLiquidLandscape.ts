@@ -38,8 +38,8 @@ export const MUSIC_LIQUID_LANDSCAPES = [
   },
   {
     id: 'glass-delta',
-    title: 'Glass Delta',
-    note: 'Spring petals move among reflective crystal growths.',
+    title: 'Petal Delta',
+    note: 'Spring petals remain a combinable airborne layer for the Music world.',
   },
   {
     id: 'harmonic-dunes',

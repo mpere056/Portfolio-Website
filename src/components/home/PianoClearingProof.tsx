@@ -468,8 +468,12 @@ function GrassField({
         );
         float liquidRiverCenter = 0.7 - clamp((root.z + 32.0) / 42.0, 0.0, 1.0) * 8.2;
         float elevatedMeadow = smoothstep(liquidRiverCenter + 4.8, liquidRiverCenter + 8.6, root.x);
-        float territory = musicLandscapeMask(territoryLocal, uLandscapeMode)
-          * elevatedMeadow * uLiquidWeight;
+        float tidalMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode));
+        float archipelagoMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 2.0));
+        float authoredTerritory = musicLandscapeMask(territoryLocal, uLandscapeMode)
+          * elevatedMeadow;
+        // Tidal Meadow is a terrain material, not a puddle: every authored hill can liquefy.
+        float territory = mix(authoredTerritory, 1.0, tidalMode) * uLiquidWeight;
         float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uLiquidMotion;
         vec2 pressureUv = territoryLocal;
         pressureUv.x -= liquidTime * 0.11;
@@ -490,7 +494,7 @@ function GrassField({
           + trailingMemory * 0.1 + localAttention * 0.16,
           0.0,
           1.0
-        ) * (1.0 - harmonicMode) * (1.0 - fireMode);
+        ) * max(tidalMode, archipelagoMode);
         float rightField = smoothstep(-0.5, 10.5, root.x);
         float nearField = smoothstep(-14.0, 7.0, root.z);
         vWarm = rightField * nearField;
@@ -521,7 +525,8 @@ function GrassField({
         blade.y *= bladeHeight
           * (0.84 + clump * 0.24 + variation * 0.08)
           * mix(1.0, 0.82 + flameLick * 0.94, fireMode)
-          * mix(1.0, 0.045, liquidState);
+          * mix(1.0, 0.045, liquidState)
+          * mix(1.0, 0.008, tidalMode);
         vec3 oriented = vec3(
           blade.x * angleCos,
           blade.y,
@@ -619,13 +624,17 @@ function GrassField({
         flameColor = mix(flameColor, vec3(1.0, 0.9, 0.32), smoothstep(0.64, 1.0, vUv.y));
         flameColor *= 0.78 + flamePulse * 0.52 * smoothstep(0.18, 1.0, vUv.y);
         float flameBreakup = 0.5 + 0.5 * sin(
-          vWorldRoot.x * 12.73
-          + vWorldRoot.y * 19.31
-          + floor(vUv.y * 9.0) * 7.17
-          - uTime * (4.2 + vVariation * 2.4)
+          vWorldRoot.x * 13.7 + vWorldRoot.y * 17.9
+          + vUv.y * (11.0 + vVariation * 8.0)
+          - uTime * (4.4 + vVariation * 2.8)
         );
-        float flameDissolve = smoothstep(0.68, 1.0, vUv.y) * (0.32 + flamePulse * 0.7);
-        if (fireMode > 0.5 && flameBreakup < flameDissolve * 0.72) discard;
+        flameBreakup *= 0.58 + 0.42 * (0.5 + 0.5 * sin(
+          vWorldRoot.x * 29.1 - vWorldRoot.y * 23.7
+          + vUv.y * 21.0 + uTime * 2.7
+        ));
+        float flameDissolve = smoothstep(0.56, 1.0, vUv.y)
+          * (0.3 + flamePulse * 0.76 + vVariation * 0.24);
+        if (fireMode > 0.5 && flameBreakup < flameDissolve * 0.86) discard;
         color = mix(color, flameColor, fireMode * 0.96);
         float harmonicMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 4.0));
         vec2 fromInstrument = vWorldRoot - vec2(${PIANO_X.toFixed(1)}, ${PIANO_Z.toFixed(1)});
@@ -937,8 +946,13 @@ function Ground({
             );
             float elevatedMeadow = smoothstep(riverCenter + 4.8, riverCenter + 8.6, vWorld.x)
               * smoothstep(-1.5, 1.2, vHeight);
-            float territory = musicLandscapeMask(territoryLocal, uLandscapeMode)
-              * elevatedMeadow * uLiquidWeight;
+            float tidalMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode));
+            float archipelagoMode = 1.0 - smoothstep(0.08, 0.18, abs(uLandscapeMode - 2.0));
+            float authoredTerritory = musicLandscapeMask(territoryLocal, uLandscapeMode)
+              * elevatedMeadow;
+            float hillMaterial = smoothstep(-3.4, -0.15, vHeight);
+            // Preserve the ravine while allowing every visible hill to become painted liquid.
+            float territory = mix(authoredTerritory, hillMaterial, tidalMode) * uLiquidWeight;
             float liquidTime = uTime * ${MUSIC_LIQUID_PROOF.travelSpeed} * uMotion;
             vec2 pressureUv = territoryLocal * vec2(2.15, 2.65);
             pressureUv += vec2(-liquidTime * 0.16, liquidTime * 0.035);
@@ -959,7 +973,8 @@ function Ground({
               0.78 + pressureBody * 0.2 + crossPressure * 0.12 + localAttention * 0.18,
               0.0,
               1.0
-            ) * (1.0 - harmonicMode) * (1.0 - fireMode);
+            ) * max(tidalMode, archipelagoMode);
+            liquidState = mix(liquidState, hillMaterial, tidalMode);
             float emberVein = smoothstep(0.7, 0.96, liquidFbm(
               vWorld.xz * 0.34 + vec2(-uTime * 0.08 * uMotion, uTime * 0.035 * uMotion)
             ));
@@ -1000,8 +1015,20 @@ function Ground({
                 * (pressureBody * 0.34 + crossPressure * 0.2)
                 + localAttention * 0.26
             );
+            vec2 terrainFlowUv = vWorld.xz * vec2(0.095, 0.13);
+            terrainFlowUv += vec2(-liquidTime * 0.09, liquidTime * 0.035);
+            vec2 terrainWarp = vec2(
+              liquidFbm(terrainFlowUv * 1.35 + vec2(2.1, -1.7)),
+              liquidFbm(terrainFlowUv * 1.18 + vec2(-3.4, 5.2))
+            ) - 0.5;
+            float terrainCurrent = liquidFbm(terrainFlowUv + terrainWarp * 1.4);
+            float terrainCaustic = pow(1.0 - abs(terrainCurrent * 2.0 - 1.0), 5.5);
+            float movingPearl = smoothstep(0.58, 0.94, terrainCurrent)
+              * (0.42 + terrainCaustic * 0.58);
+            liquidColor = mix(liquidColor, liquidPearl, movingPearl * tidalMode * 0.52);
             vec3 terrainLitLiquid = color * 0.34 + liquidColor * 0.76;
-            color = mix(color, terrainLitLiquid, liquidState * 0.72);
+            terrainLitLiquid += liquidPearl * terrainCaustic * tidalMode * hillMaterial * 0.14;
+            color = mix(color, terrainLitLiquid, liquidState * mix(0.72, 0.96, tidalMode));
             float fog = smoothstep(31.0, 78.0, vDepth);
             color = mix(color, uWorldFog, fog * 0.78);
             gl_FragColor = vec4(color, 1.0);
@@ -1395,26 +1422,27 @@ function DistantFireSmoke({
   visible: boolean;
   reducedMotion: boolean;
 }) {
-  const count = 64;
+  const count = 104;
   const geometry = useMemo(() => {
     const result = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const seeds = new Float32Array(count * 4);
     const sources = [
-      [-19, -38],
-      [2, -46],
-      [23, -42],
-      [33, -55],
+      [-18, -29],
+      [-3, -34],
+      [14, -31],
+      [27, -38],
     ] as const;
     for (let index = 0; index < count; index += 1) {
       const source = sources[index % sources.length];
       const seed = (index * 0.61803398875) % 1;
       const crossSeed = (index * 0.41421356237 + 0.17) % 1;
       const depthSeed = (index * 0.73205080756 + 0.31) % 1;
+      const sourceY = GROUND_Y + pianoClearingTerrainHeight(source[0], source[1]);
       positions.set([
-        source[0] + (crossSeed - 0.5) * 5.5,
-        0.2 + depthSeed * 1.4,
-        source[1] + (seed - 0.5) * 4.2,
+        source[0] + (crossSeed - 0.5) * 4.2,
+        sourceY + 1.8 + depthSeed * 2.4,
+        source[1] + (seed - 0.5) * 3.2,
       ], index * 3);
       seeds.set([seed, crossSeed, depthSeed, (index * 0.27182818284) % 1], index * 4);
     }
@@ -1425,6 +1453,7 @@ function DistantFireSmoke({
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
+    depthTest: false,
     blending: THREE.NormalBlending,
     uniforms: {
       uTime: { value: 0 },
@@ -1440,12 +1469,12 @@ function DistantFireSmoke({
         float time = uTime * uMotion;
         float rise = fract(aSeed.w + time * mix(0.012, 0.025, aSeed.y));
         vec3 transformed = position;
-        transformed.y += rise * mix(10.0, 19.0, aSeed.z);
-        transformed.x += sin(time * 0.17 + rise * 5.4 + aSeed.x * 19.0) * (0.5 + rise * 3.8);
+        transformed.y += rise * mix(14.0, 25.0, aSeed.z);
+        transformed.x += sin(time * 0.17 + rise * 5.4 + aSeed.x * 19.0) * (0.45 + rise * 4.6);
         transformed.z += cos(time * 0.11 + rise * 3.2 + aSeed.y * 17.0) * (0.2 + rise * 1.5);
         vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         gl_Position = projectionMatrix * viewPosition;
-        gl_PointSize = min(54.0, mix(18.0, 42.0, aSeed.x) * (34.0 / max(8.0, -viewPosition.z)));
+        gl_PointSize = min(88.0, mix(38.0, 70.0, aSeed.x) * (42.0 / max(8.0, -viewPosition.z)));
         vLife = sin(rise * 3.14159265) * (1.0 - smoothstep(0.68, 1.0, rise));
         vShade = aSeed.z;
       }
@@ -1458,8 +1487,8 @@ function DistantFireSmoke({
         float radial = length(point * vec2(0.82, 1.0));
         float body = 1.0 - smoothstep(0.12, 0.5, radial);
         float softNoise = 0.78 + sin(point.x * 18.0 + point.y * 13.0 + vShade * 21.0) * 0.12;
-        vec3 smoke = mix(vec3(0.12, 0.07, 0.09), vec3(0.28, 0.16, 0.14), vShade);
-        gl_FragColor = vec4(smoke, body * softNoise * vLife * 0.34);
+        vec3 smoke = mix(vec3(0.055, 0.035, 0.06), vec3(0.2, 0.09, 0.08), vShade);
+        gl_FragColor = vec4(smoke, body * softNoise * vLife * 0.64);
       }
     `,
   }), [reducedMotion]);
@@ -1489,26 +1518,6 @@ function MusicLandscapeAccents({
   reducedMotion: boolean;
 }) {
   const group = useRef<THREE.Group>(null);
-  const deltaCurves = useMemo(() => [
-    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
-      new THREE.Vector3(...landscapePoint(2.5, 4.2, 0.24)),
-      new THREE.Vector3(...landscapePoint(8.2, 5.4, 0.3)),
-      new THREE.Vector3(...landscapePoint(14.2, 6.7, 0.2)),
-      new THREE.Vector3(...landscapePoint(22.8, 8.3, 0.28)),
-    ]), 48, 0.065, 5, false),
-    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
-      new THREE.Vector3(...landscapePoint(5.2, 8.9, 0.21)),
-      new THREE.Vector3(...landscapePoint(10.8, 7.6, 0.28)),
-      new THREE.Vector3(...landscapePoint(15.4, 5.9, 0.22)),
-      new THREE.Vector3(...landscapePoint(21.4, 3.8, 0.26)),
-    ]), 48, 0.046, 5, false),
-    new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
-      new THREE.Vector3(...landscapePoint(7.4, 1.8, 0.2)),
-      new THREE.Vector3(...landscapePoint(11.8, 3.2, 0.25)),
-      new THREE.Vector3(...landscapePoint(16.7, 4.6, 0.2)),
-      new THREE.Vector3(...landscapePoint(24.2, 4.1, 0.24)),
-    ]), 48, 0.038, 5, false),
-  ], []);
 
   useFrame(({ clock }) => {
     if (!group.current || reducedMotion) return;
@@ -1578,20 +1587,8 @@ function MusicLandscapeAccents({
     return (
       <group
         ref={group}
-        userData={{ musicLandscapeAccent: 'glass-delta' }}
-      >
-        {deltaCurves.map((geometry, index) => (
-          <mesh key={index} geometry={geometry} renderOrder={4}>
-            <meshBasicMaterial
-              color={index === 0 ? '#c4e7ff' : index === 1 ? '#ffd0e7' : '#e2d5ff'}
-              transparent
-              opacity={index === 0 ? 0.58 : 0.38}
-              depthWrite={false}
-              blending={THREE.AdditiveBlending}
-            />
-          </mesh>
-        ))}
-      </group>
+        userData={{ musicLandscapeAccent: 'spring-petal-study' }}
+      />
     );
   }
 
@@ -1705,11 +1702,6 @@ function WorldScaleMusicForms({
   reducedMotion: boolean;
 }) {
   const group = useRef<THREE.Group>(null);
-  const deltaRoutes = useMemo(() => [
-    musicWorldTube([[-24, 0.4, -47], [-15, -0.4, -30], [-3, 0.2, -16], [9, 1.1, -2], [25, 0.4, 12]], 0.18),
-    musicWorldTube([[-16, 2.2, -43], [-7, 1.2, -27], [5, 0.7, -14], [16, 1.7, 1], [29, 1.1, 10]], 0.1),
-    musicWorldTube([[26, 1.4, -42], [15, 0.4, -26], [8, 1.5, -13], [-4, 0.2, 2], [-18, -0.2, 11]], 0.12),
-  ], []);
   const skyWaves = useMemo(() => [
     musicWorldTube([[-38, 14, -47], [-18, 18, -52], [2, 13, -48], [22, 19, -55], [42, 15, -50]], 0.22),
     musicWorldTube([[-42, 10, -52], [-20, 13, -48], [0, 9, -54], [21, 14, -49], [45, 11, -55]], 0.12),
@@ -1723,55 +1715,8 @@ function WorldScaleMusicForms({
   });
 
   if (landscape === 'tidal-meadow') {
-    const blooms = Array.from({ length: 15 }, (_, index): WorldInstanceTransform & { palette: number } => {
-      const angle = (index / 15) * Math.PI * 2;
-      const radius = index < 8 ? 13 : 24;
-      return {
-        position: [
-          Math.cos(angle) * radius + (index % 3) * 2,
-          index < 8 ? 1.1 + (index % 2) * 0.7 : 4.2 + (index % 3),
-          Math.sin(angle) * radius - 14,
-        ],
-        scale: [index < 8 ? 4.8 : 7.2, 0.28, (index < 8 ? 4.8 : 7.2) * 0.56],
-        rotation: [0, angle, 0],
-        palette: index % 3,
-      };
-    });
-    const bloomPalette = [
-      ['#f49ac5', '#b83c78'],
-      ['#88d9dc', '#357ba1'],
-      ['#8a78dc', '#357ba1'],
-    ] as const;
     return (
-      <group ref={group} userData={{ musicWorldForm: 'ocean-bloom' }}>
-        <mesh position={[0, -0.7, -20]} rotation={[-Math.PI / 2, 0, 0]} scale={[58, 62, 1]}>
-          <circleGeometry args={[1, 72]} />
-          <meshStandardMaterial
-            color="#315d9f"
-            emissive="#294f91"
-            emissiveIntensity={0.34}
-            transparent
-            opacity={0.32}
-            roughness={0.16}
-            metalness={0.08}
-            depthWrite={false}
-          />
-        </mesh>
-        {bloomPalette.map(([color, emissive], palette) => (
-          <WorldInstances key={color} items={blooms.filter(bloom => bloom.palette === palette)}>
-            <sphereGeometry args={[1, 20, 8]} />
-              <meshStandardMaterial
-                color={color}
-                emissive={emissive}
-                emissiveIntensity={0.32}
-                transparent
-                opacity={0.42}
-                roughness={0.34}
-                depthWrite={false}
-              />
-          </WorldInstances>
-        ))}
-      </group>
+      <group ref={group} userData={{ musicWorldForm: 'terrain-wide-tidal-material' }} />
     );
   }
 
@@ -1868,117 +1813,8 @@ function WorldScaleMusicForms({
   }
 
   if (landscape === 'glass-delta') {
-    const spires = Array.from({ length: 20 }, (_, index) => ({
-      x: -32 + (index % 10) * 7.2,
-      y: -0.2 + (index % 3) * 0.7,
-      z: -14 - Math.floor(index / 10) * 27 - (index % 4) * 2,
-      height: 2.8 + (index % 5) * 1.7,
-    }));
-    const spireTransforms = spires.map((spire, index) => ({
-      position: [spire.x, spire.y + spire.height / 2, spire.z] as [number, number, number],
-      scale: [0.65, spire.height, 0.65] as [number, number, number],
-      palette: index % 3,
-    }));
-    const spirePalette = [
-      ['#5be9e5', '#176f9e'],
-      ['#ff8c65', '#b43b24'],
-      ['#8aa8ff', '#176f9e'],
-    ] as const;
-    const glassSculptures = [
-      { position: [17, 15, -39] as [number, number, number], scale: [5.8, 7.8, 5.8] as [number, number, number], rotation: [0.28, 0.18, -0.2] as [number, number, number] },
-      { position: [-20, 8.5, -31] as [number, number, number], scale: [4.4, 6.2, 4.4] as [number, number, number], rotation: [-0.2, 0.7, 0.38] as [number, number, number] },
-      { position: [33, 6.8, -27] as [number, number, number], scale: [3.7, 5.4, 3.7] as [number, number, number], rotation: [0.42, -0.38, 0.18] as [number, number, number] },
-    ];
     return (
-      <group ref={group} userData={{ musicWorldForm: 'prismatic-glass-delta' }}>
-        {deltaRoutes.map((geometry, index) => (
-          <mesh key={index} geometry={geometry}>
-            <meshBasicMaterial
-              color={index === 0 ? '#53f5ff' : index === 1 ? '#ff9a62' : '#a8f8ff'}
-              transparent
-              opacity={0.72}
-              blending={THREE.AdditiveBlending}
-              depthWrite={false}
-            />
-          </mesh>
-        ))}
-        {glassSculptures.map((sculpture, index) => (
-          <group
-            key={`glass-sculpture-${index}`}
-            position={sculpture.position}
-            rotation={sculpture.rotation}
-            scale={sculpture.scale}
-            userData={{ musicWorldForm: 'reflective-glass-sculpture' }}
-          >
-            <mesh renderOrder={2}>
-              <torusKnotGeometry args={[1.05, 0.22, 96, 12, 2, 3]} />
-              <meshPhysicalMaterial
-                color={index === 1 ? '#ffd5ef' : '#c9d9ff'}
-                emissive={index === 2 ? '#c660b7' : '#6d72db'}
-                emissiveIntensity={0.2}
-                transmission={0.72}
-                thickness={1.5}
-                ior={1.46}
-                roughness={0.035}
-                metalness={0.03}
-                iridescence={0.72}
-                iridescenceIOR={1.58}
-                clearcoat={1}
-                clearcoatRoughness={0.04}
-                reflectivity={1}
-                envMapIntensity={2.1}
-                attenuationColor={index === 1 ? '#ffc9e8' : '#a8d7ff'}
-                attenuationDistance={3.4}
-                transparent
-                opacity={0.74}
-                depthWrite={false}
-              />
-            </mesh>
-            <mesh scale={1.035} renderOrder={4}>
-              <torusKnotGeometry args={[1.05, 0.22, 96, 12, 2, 3]} />
-              <meshBasicMaterial
-                color={index === 1 ? '#fff0fa' : '#e4e8ff'}
-                wireframe
-                transparent
-                opacity={0.065}
-                blending={THREE.AdditiveBlending}
-                depthWrite={false}
-              />
-            </mesh>
-            {[0.38, 0.68, 0.96].map((radius, ringIndex) => (
-              <mesh
-                key={radius}
-                rotation={[Math.PI / 2 + ringIndex * 0.31, ringIndex * 0.46, 0]}
-                renderOrder={4}
-              >
-                <torusGeometry args={[radius, 0.012, 5, 48]} />
-                <meshBasicMaterial
-                  color={ringIndex === 1 ? '#ffc9ec' : '#d9f5ff'}
-                  transparent
-                  opacity={0.46}
-                  blending={THREE.AdditiveBlending}
-                  depthWrite={false}
-                />
-              </mesh>
-            ))}
-          </group>
-        ))}
-        {spirePalette.map(([color, emissive], palette) => (
-          <WorldInstances key={color} items={spireTransforms.filter(item => item.palette === palette)}>
-            <octahedronGeometry args={[1, 0]} />
-            <meshStandardMaterial
-              color={color}
-              emissive={emissive}
-              emissiveIntensity={0.46}
-              transparent
-              opacity={0.68}
-              roughness={0.18}
-              metalness={0.22}
-              depthWrite={false}
-            />
-          </WorldInstances>
-        ))}
-      </group>
+      <group ref={group} userData={{ musicWorldForm: 'spring-petal-field' }} />
     );
   }
 
@@ -2952,7 +2788,24 @@ function SkyDome({
           vec3(0.94, 0.28, 0.86),
           0.5 + 0.5 * sin(x * 8.0 + uTime * 0.045 * uMotion)
         );
-        color += auroraColor * auroraVeil * harmonicMode * 0.56;
+        // Three phase-shifted lenses create atmospheric refraction without a full-screen pass.
+        float refractiveWarp = sin(x * 17.0 - uTime * 0.16 * uMotion)
+          * sin(y * 13.0 + uTime * 0.09 * uMotion);
+        float lensR = exp(-pow((y - auroraCenter - refractiveWarp * 0.035) * 9.2, 2.0));
+        float lensG = exp(-pow((y - auroraCenter) * 9.2, 2.0));
+        float lensB = exp(-pow((y - auroraCenter + refractiveWarp * 0.035) * 9.2, 2.0));
+        vec3 chromaticRefraction = vec3(lensR, lensG, lensB)
+          * (0.18 + auroraCurtain * 0.34) * skyWindow;
+        float spatialLens = pow(0.5 + 0.5 * sin(
+          x * 22.0 + sin(y * 10.0 - uTime * 0.08 * uMotion) * 2.8
+        ), 8.0);
+        color += auroraColor * auroraVeil * harmonicMode * 0.34;
+        color += chromaticRefraction * harmonicMode * (0.5 + spatialLens * 0.58);
+        color = mix(
+          color,
+          color.brg * vec3(0.82, 0.9, 1.08),
+          harmonicMode * spatialLens * 0.075
+        );
 
         vec3 sunDirection = normalize(vec3(-0.04, 0.16, -0.99));
         float sunFacing = max(dot(vWorld, sunDirection), 0.0);
@@ -3396,13 +3249,6 @@ const PianoClearingScene = memo(function PianoClearingScene({
       />
       {liquidEnabled ? (
         <>
-          {musicLandscape !== 'harmonic-dunes' && musicLandscape !== 'nacre-terraces' ? (
-            <LiquidTerritorySurface
-              reducedMotion={reducedMotion}
-              musicLandscapeIndex={landscapeIndex}
-              liquidRuntime={liquidRuntime}
-            />
-          ) : null}
           <MusicLandscapeAccents
             landscape={musicLandscape}
             reducedMotion={reducedMotion}

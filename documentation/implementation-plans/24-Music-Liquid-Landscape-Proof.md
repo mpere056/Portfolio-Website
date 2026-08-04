@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Purpose
 
-Prove that the selected Music world can feel like a landscape changing state without running a fluid simulation or rebuilding Home. The accepted prototype direction is **Liquid Landscape**: small territories of the existing meadow soften, flow, carry light, and reform while the piano, camera, valley, river, and navigation remain spatially continuous.
+Prove that the selected Music world can feel like a landscape changing state without running a fluid simulation or rebuilding Home. The accepted prototype direction is **Liquid Landscape**, now treated as one interoperable material layer: every authored hill can soften, flow, carry light, and reform while the piano, camera, valley, river, and navigation remain spatially continuous.
 
 This is accepted for prototype only. It is not final creative acceptance of the full Music world.
 
@@ -19,7 +19,7 @@ The visitor should read one continuous transformation:
 5. The region carries displaced highlights and restrained refraction.
 6. The pressure leaves; blades reform behind it with a short memory delay.
 
-The first proof happens beside the piano, not across the entire viewport. It must remain alive without audio or pointer input. Pointer attention may locally intensify the nearest territory. Future optional audio can modulate the same parameters, but audio is not a dependency.
+The proof began beside the piano, but review established that this is too local for the final Music world. Tidal material must be capable of claiming every hill while preserving the ravine. It must remain alive without audio or pointer input. Pointer attention may locally intensify the nearest region. Future optional audio can modulate the same parameters, but audio is not a dependency.
 
 ## Non-Goals
 
@@ -96,9 +96,18 @@ Gallery studies must not read as one liquid mask with recolored accents. Each se
 
 | Study | Primary physical rule | Explicitly absent |
 | --- | --- | --- |
-| Nacre Terraces | independently timed blades rise, curl, and dissolve like flame; charred terrain carries ember veins while bounded distant smoke identifies a wider wildfire | synchronized meadow rows and liquid patch |
-| Glass Delta | world-scale transmissive sculptures and illuminated rings coexist with reflective routes, spring meadow, and drifting cherry petals | decorative spires as the only glass signal |
-| Harmonic Dunes | several curved musical-light fronts radiate from the piano through intact grass beneath a slowly warped aurora sky | off-center light patches, liquid hill patch, and collapsed blades |
+| Nacre Terraces | independently timed blades rise, curl, and dissolve at their tips like flame; charred terrain carries ember veins while bounded distant smoke identifies a wider wildfire | synchronized meadow rows and liquid patch |
+| Petal Delta | drifting cherry petals remain an independent airborne Music material that can combine with liquid, fire, and harmonic states | liquid routes and glass monuments |
+| Harmonic Dunes | several curved musical-light fronts radiate from the piano through intact grass while RGB-separated atmospheric lenses create subtle spatial refraction | off-center light patches, liquid hill patch, collapsed blades, and ordinary sky glow |
+
+### Interoperable material ownership
+
+- `Tidal`: owns terrain-wide hill liquefaction, painted pressure fields, and optional local surface thickness.
+- `Fire`: owns blade deformation, tip breakup, embers, charred terrain, and distant smoke.
+- `Petals`: owns the spring airborne layer only; it does not imply glass or liquid.
+- `Harmonic`: owns piano-origin grass illumination and lightweight atmospheric chromatic refraction.
+- Each layer must be independently weightable so the final Music world can combine them without mounting separate scenes.
+- Reflective glass landmarks are removed from Music and retained only as a future Play & Community art-direction consideration.
 
 Airborne ecology must remain GPU-authored and bounded to one draw call per selected world. Harmonic grass light belongs in the existing grass shader and aurora belongs in the existing sky shader, so neither adds a surface mesh or full-screen pass. Refractive landmarks may add geometry, but must stay few, large, and silhouette-led rather than multiplying small decorative meshes.
 

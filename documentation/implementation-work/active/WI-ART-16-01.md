@@ -93,7 +93,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 ### 2026-08-02 Five-Landscape Music Review Gallery
 
 - Mark requested a broader Music-world batch so the next review can compare substantially different landscape directions at once.
-- Private `/music-liquid-proof` now offers Tidal Meadow, Nacre Terraces, Resonant Archipelago, Glass Delta, and Harmonic Dunes through one shared scene with only one active study.
+- Private `/music-liquid-proof` now offers Tidal Meadow, Nacre Terraces, Resonant Archipelago, Petal Delta, and Harmonic Dunes through one shared scene with only one active study.
 - Each study changes territory silhouette, displacement, palette, and sparse 3D landmarks while preserving the accepted terrain, ravine, bridge, piano, camera, and all 260,000 grass blades.
 - Local browser review caught and fixed invalid R3F diagnostic attributes and terrain-projects Glass Delta tributaries. The exact resume point is user classification of each study as keep, revise, combine, or reject.
 
@@ -219,6 +219,16 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `Harmonic Dunes` now calculates its score field from the piano's actual world position, sends several phase-offset rings through the grass, and adds a slowly warped cyan/rose aurora to the existing sky shader.
 - Focused regression checks now name all five mechanisms. Visual acceptance remains open for flame chaos/readability, smoke restraint, sculpture silhouette and transparency, score-field origin, and aurora prominence.
 - Exact resume point: visually inspect all three studies on `/music-liquid-proof`, tune only failed readings, then build, commit, push, and deploy the accepted candidate.
+
+### 2026-08-03 Interoperable Music Materials Revision
+
+- Mark clarified that the gallery studies are review isolates, not five final environments. Their physical systems must eventually combine inside one Music world.
+- Tidal Meadow now owns terrain-wide hill material conversion rather than one piano-side ellipse. The ravine remains spatially legible while all grass-bearing hills can lose blade definition and inherit painted liquid pressure.
+- Fire remains inside the existing instanced grass draw: continuous two-frequency breakup now dissipates uneven flame tips, and one bounded 104-point GPU system creates more legible smoke columns from distant terrain sources.
+- Glass landmarks and routes are removed from Music. Cherry blossoms remain as an independent spring material. The reflective-crystal grammar moves to a future Play & Community consideration and receives no additional planning scope yet.
+- Harmonic keeps piano-origin grass score fields and replaces the brighter aurora treatment with procedural RGB-separated atmospheric lenses and moving spatial refraction, without adding a full-screen pass.
+- Local Production visual review confirms that Tidal now reads across the complete visible hill system while preserving the ravine; Nacre shows independently moving flame blades, embers, and four legible distant smoke columns; Petal contains blossoms over intact grass with no liquid or glass leakage; Harmonic keeps piano-origin score light and adds sky-scale RGB-separated refraction.
+- Exact resume point: preserve these four interoperable material boundaries while composing the first combined Music-world state. Do not restore glass monuments to Music; reconsider that grammar only when Play & Community planning begins.
 
 ### 2026-07-26
 

@@ -200,7 +200,7 @@ This section is intentionally selective. The capability ledger remains the compl
 | Evidence status | Count | Notes |
 | --- | ---: | --- |
 | Accepted | 98 | Includes the Liquid Landscape prototype direction and hard performance boundary; full-world creative acceptance remains open |
-| Candidate | 22 | Includes the provisional canonical Home promotion, About presentation, earlier Liquid Landscape technical candidates, terrain-conforming `ML6-R3`, and the `MW1-A` comparison gallery; none is final creative acceptance |
+| Candidate | 23 | Includes the provisional canonical Home promotion, About presentation, earlier Liquid Landscape technical candidates, terrain-conforming `ML6-R3`, and the interoperable Music-material comparison gallery; none is final creative acceptance |
 | In-review | 0 | No packet currently awaits review; the next review occurs after the bounded `ML0-ML6` prototype |
 | Revision-requested | 11 | Eleven earlier `ART-16` clearings remain technical evidence but no longer represent the current requested composition |
 | Superseded | 1 | Quiet Phrase Fields is retained as a superseded hover-first sequencing study |
