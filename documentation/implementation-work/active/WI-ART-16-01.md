@@ -228,6 +228,7 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - Glass landmarks and routes are removed from Music. Cherry blossoms remain as an independent spring material. The reflective-crystal grammar moves to a future Play & Community consideration and receives no additional planning scope yet.
 - Harmonic keeps piano-origin grass score fields and replaces the brighter aurora treatment with procedural RGB-separated atmospheric lenses and moving spatial refraction, without adding a full-screen pass.
 - Local Production visual review confirms that Tidal now reads across the complete visible hill system while preserving the ravine; Nacre shows independently moving flame blades, embers, and four legible distant smoke columns; Petal contains blossoms over intact grass with no liquid or glass leakage; Harmonic keeps piano-origin score light and adds sky-scale RGB-separated refraction.
+- Commit `7a73f07` is pushed to `main`; Production deployment `dpl_Dx7ihGMSpyo12Ri5Yev1M8MGaM55` is Ready and aliased to `www.marknperera.ca`. Public browser inspection confirms the terrain-wide Tidal state, current material selector, and zero console errors.
 - Exact resume point: preserve these four interoperable material boundaries while composing the first combined Music-world state. Do not restore glass monuments to Music; reconsider that grammar only when Play & Community planning begins.
 
 ### 2026-07-26
