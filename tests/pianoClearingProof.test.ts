@@ -188,7 +188,9 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('function layeredPlayingMotion');
     expect(component).toContain('const musicArmRange = musicWorldActive ? 1.38 : 1');
     expect(component).toContain('const performerLean = musicWorldActive && !reducedMotion');
-    expect(component).toContain('player.current.position.z = performerLean * -0.055');
+    expect(component).toContain('player.current.position.z = 0');
+    expect(component).toContain('torso.current.rotation.x = -0.08 - performerLean * 1.35');
+    expect(component).toContain('head.current.position.z = 1.2 - performerLean * 0.82');
     expect(component).toContain('const leftTravel = layeredPlayingMotion');
     expect(component).toContain('const rightTravel = layeredPlayingMotion');
     expect(component).toContain('joints.leftElbow.x = -0.3 + leftTravel * 0.42');
@@ -218,6 +220,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
     expect(component).toContain('float musicalSkyWeight = combinedMode * (0.2 + scorePulse * 0.3)');
     expect(component).toContain('vec3 teal = vec3(0.08, 0.72, 0.76)');
+    expect(component).toContain('function MirroredScoreCanopy');
+    expect(component).toContain("musicWorldForm: 'mirrored-score-canopy'");
+    expect(component).toContain("musicLandscape === 'combined-world' ? (");
+    expect(component).toContain('float travelingPhrase = pow');
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {

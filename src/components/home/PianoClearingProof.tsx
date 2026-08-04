@@ -1872,6 +1872,292 @@ function WorldScaleMusicForms({
   );
 }
 
+type ScoreLineData = {
+  positions: number[];
+  phases: number[];
+  colors: number[];
+};
+
+function appendScorePolyline(
+  data: ScoreLineData,
+  points: THREE.Vector3[],
+  color: THREE.Color,
+  phaseOffset: number,
+) {
+  for (let index = 1; index < points.length; index += 1) {
+    const phase = phaseOffset + index / points.length;
+    [points[index - 1], points[index]].forEach((point, endpoint) => {
+      data.positions.push(point.x, point.y, point.z);
+      data.phases.push(phase + endpoint * 0.018);
+      data.colors.push(color.r, color.g, color.b);
+    });
+  }
+}
+
+function createMirroredScoreLines() {
+  const data: ScoreLineData = { positions: [], phases: [], colors: [] };
+  const origin = new THREE.Vector3(
+    PIANO_POSITION.x - 0.15,
+    PIANO_POSITION.y + 1.65,
+    PIANO_POSITION.z - 0.5,
+  );
+  const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
+  const palette = [
+    new THREE.Color('#70e7ff'),
+    new THREE.Color('#a783ff'),
+    new THREE.Color('#ff83df'),
+    new THREE.Color('#f8d4ff'),
+  ];
+
+  for (let strand = 0; strand < 15; strand += 1) {
+    const phase = (strand / 15) * Math.PI * 2;
+    const points = Array.from({ length: 36 }, (_, index) => {
+      const progress = index / 35;
+      const opening = 0.16 + Math.pow(progress, 1.72) * 3.5;
+      const coil = phase + progress * (8.4 + (strand % 3) * 0.7);
+      return new THREE.Vector3(
+        THREE.MathUtils.lerp(origin.x, canopyCenter.x, progress)
+          + Math.sin(coil) * opening,
+        origin.y + progress * 12.5 + Math.sin(progress * 11 + phase) * 0.34,
+        THREE.MathUtils.lerp(origin.z, canopyCenter.z, progress)
+          + Math.cos(coil) * opening * 0.48,
+      );
+    });
+    appendScorePolyline(data, points, palette[strand % palette.length], strand * 0.13);
+  }
+
+  for (let branch = 0; branch < 27; branch += 1) {
+    const angle = (branch / 27) * Math.PI * 2 + (branch % 2) * 0.08;
+    const reach = 15 + (branch % 5) * 2.15;
+    const points = Array.from({ length: 34 }, (_, index) => {
+      const progress = index / 33;
+      const radius = Math.pow(progress, 0.82) * reach;
+      const ripple = Math.sin(progress * 13 + branch * 1.7) * (0.22 + progress * 0.72);
+      return new THREE.Vector3(
+        canopyCenter.x + Math.cos(angle) * radius * 1.42 + Math.sin(angle * 2) * ripple,
+        canopyCenter.y + 1.8 - progress * 2.15
+          + Math.sin(progress * 8.5 + branch) * (0.2 + progress * 0.85),
+        canopyCenter.z + Math.sin(angle) * radius * 0.56 + ripple,
+      );
+    });
+    appendScorePolyline(data, points, palette[(branch + 1) % palette.length], branch * 0.21);
+  }
+
+  for (let ring = 1; ring <= 7; ring += 1) {
+    const points = Array.from({ length: 65 }, (_, index) => {
+      const angle = (index / 64) * Math.PI * 2;
+      const radius = ring * 2.75 + Math.sin(angle * 5 + ring) * 0.55;
+      return new THREE.Vector3(
+        canopyCenter.x + Math.cos(angle) * radius * 1.42,
+        canopyCenter.y + 1.45 - ring * 0.22 + Math.sin(angle * 3 + ring) * 0.46,
+        canopyCenter.z + Math.sin(angle) * radius * 0.56,
+      );
+    });
+    appendScorePolyline(data, points, palette[(ring + 2) % palette.length], ring * 0.37);
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(data.positions, 3));
+  geometry.setAttribute('aPhase', new THREE.Float32BufferAttribute(data.phases, 1));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(data.colors, 3));
+  geometry.computeBoundingSphere();
+  return geometry;
+}
+
+function createMirroredScoreTrees() {
+  const positions: number[] = [];
+  const treeSites = [
+    [-13.5, 1.1, -2.4, 3], [-10.2, 1.8, 0.8, 3.65], [-6.8, 0.9, -1.1, 3.15],
+    [-3.5, 2.2, 0, 4.35], [0, 1.35, 1.2, 3.55], [3.8, 2.35, -0.7, 3.95],
+    [7.5, 0.95, 1.4, 3.05], [11.3, 1.7, -1.8, 3.6], [14.7, 0.8, 0.3, 2.85],
+  ] as const;
+  const center = new THREE.Vector3(
+    PIANO_POSITION.x - 1.2,
+    PIANO_POSITION.y + 11.35,
+    PIANO_POSITION.z - 15,
+  );
+  const addTriangle = (a: THREE.Vector3, b: THREE.Vector3, c: THREE.Vector3) => {
+    positions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+  };
+
+  treeSites.forEach(([xOffset, yOffset, zOffset, height], treeIndex) => {
+    const root = new THREE.Vector3(
+      center.x + xOffset,
+      center.y + yOffset,
+      center.z + zOffset,
+    );
+    const tip = root.clone().add(new THREE.Vector3(0, -height, 0));
+    const trunkWidth = 0.055 + height * 0.012;
+    addTriangle(
+      new THREE.Vector3(root.x - trunkWidth, root.y, root.z),
+      new THREE.Vector3(root.x + trunkWidth, root.y, root.z),
+      new THREE.Vector3(tip.x + trunkWidth * 0.5, tip.y, tip.z),
+    );
+    addTriangle(
+      new THREE.Vector3(root.x - trunkWidth, root.y, root.z),
+      new THREE.Vector3(tip.x + trunkWidth * 0.5, tip.y, tip.z),
+      new THREE.Vector3(tip.x - trunkWidth * 0.5, tip.y, tip.z),
+    );
+    for (let tier = 1; tier <= 7; tier += 1) {
+      const progress = tier / 8;
+      const y = root.y - progress * height;
+      const width = (0.17 + Math.pow(progress, 0.78) * 0.84)
+        * (0.9 + (treeIndex % 3) * 0.08);
+      const branchZ = Math.sin(treeIndex * 1.7 + tier) * 0.28;
+      addTriangle(
+        new THREE.Vector3(root.x, y - 0.62, root.z),
+        new THREE.Vector3(root.x - width, y + 0.2, root.z + branchZ),
+        new THREE.Vector3(root.x + width, y + 0.2, root.z - branchZ),
+      );
+    }
+  });
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.computeBoundingSphere();
+  return geometry;
+}
+
+function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
+  const lineGeometry = useMemo(() => createMirroredScoreLines(), []);
+  const treeGeometry = useMemo(() => createMirroredScoreTrees(), []);
+  const particleGeometry = useMemo(() => {
+    const source = lineGeometry.getAttribute('position');
+    const count = Math.min(1500, Math.floor(source.count / 2));
+    const positions = new Float32Array(count * 3);
+    const seeds = new Float32Array(count * 3);
+    for (let index = 0; index < count; index += 1) {
+      const sourceIndex = Math.floor((index / count) * source.count);
+      positions.set([
+        source.getX(sourceIndex),
+        source.getY(sourceIndex),
+        source.getZ(sourceIndex),
+      ], index * 3);
+      seeds.set([
+        (index * 0.61803398875) % 1,
+        (index * 0.41421356237 + 0.21) % 1,
+        (index * 0.73205080756 + 0.47) % 1,
+      ], index * 3);
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 3));
+    geometry.computeBoundingSphere();
+    return geometry;
+  }, [lineGeometry]);
+  const lineMaterial = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      attribute float aPhase;
+      attribute vec3 color;
+      varying vec3 vColor;
+      varying float vPulse;
+      void main() {
+        vec3 transformed = position;
+        float time = uTime * uMotion;
+        float altitude = smoothstep(${(PIANO_POSITION.y + 2).toFixed(2)}, ${(PIANO_POSITION.y + 13).toFixed(2)}, transformed.y);
+        transformed.x += sin(time * 0.58 + aPhase * 18.0 + transformed.y * 0.11) * (0.025 + altitude * 0.16);
+        transformed.z += cos(time * 0.41 + aPhase * 14.0 + transformed.x * 0.05) * (0.018 + altitude * 0.11);
+        vPulse = 0.32 + 0.68 * pow(0.5 + 0.5 * sin(aPhase * 31.0 - time * 2.35), 5.0);
+        vColor = color;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vPulse;
+      void main() {
+        gl_FragColor = vec4(vColor * (0.58 + vPulse * 1.25), 0.2 + vPulse * 0.52);
+      }
+    `,
+  }), [reducedMotion]);
+  const particleMaterial = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      attribute vec3 aSeed;
+      varying float vLife;
+      varying vec3 vColor;
+      void main() {
+        float time = uTime * uMotion;
+        vec3 transformed = position;
+        float travel = fract(aSeed.x + time * mix(0.055, 0.13, aSeed.y));
+        transformed.y += sin(time * 0.7 + aSeed.x * 31.0) * 0.12;
+        transformed.x += sin(time * 0.43 + aSeed.z * 19.0) * 0.16;
+        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
+        gl_Position = projectionMatrix * viewPosition;
+        gl_PointSize = min(6.5, mix(1.4, 4.8, aSeed.z) * (35.0 / max(6.0, -viewPosition.z)));
+        vLife = 0.28 + pow(0.5 + 0.5 * sin(travel * 6.2831853), 4.0) * 0.72;
+        vColor = mix(vec3(0.28, 0.8, 1.0), vec3(1.0, 0.38, 0.92), aSeed.y);
+      }
+    `,
+    fragmentShader: `
+      varying float vLife;
+      varying vec3 vColor;
+      void main() {
+        float core = 1.0 - smoothstep(0.05, 0.5, length(gl_PointCoord - 0.5));
+        gl_FragColor = vec4(vColor * (0.75 + vLife), core * vLife * 0.86);
+      }
+    `,
+  }), [reducedMotion]);
+
+  useFrame(({ clock }) => {
+    lineMaterial.uniforms.uTime.value = clock.elapsedTime;
+    lineMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    particleMaterial.uniforms.uTime.value = clock.elapsedTime;
+    particleMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
+  useEffect(() => () => {
+    lineGeometry.dispose();
+    treeGeometry.dispose();
+    particleGeometry.dispose();
+    lineMaterial.dispose();
+    particleMaterial.dispose();
+  }, [lineGeometry, lineMaterial, particleGeometry, particleMaterial, treeGeometry]);
+
+  return (
+    <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
+      <lineSegments
+        geometry={lineGeometry}
+        material={lineMaterial}
+        frustumCulled={false}
+        renderOrder={5}
+      />
+      <points
+        geometry={particleGeometry}
+        material={particleMaterial}
+        frustumCulled={false}
+        renderOrder={6}
+      />
+      <mesh geometry={treeGeometry} frustumCulled={false} renderOrder={4}>
+        <meshBasicMaterial
+          color="#261443"
+          transparent
+          opacity={0.58}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </group>
+  );
+}
+
 function createStreamGeometry() {
   const geometry = new THREE.BufferGeometry();
   const positions: number[] = [];
@@ -2159,6 +2445,7 @@ function PianistAndBench({
   musicWorldActive: boolean;
 }) {
   const player = useRef<THREE.Group>(null);
+  const torso = useRef<THREE.Mesh>(null);
   const head = useRef<THREE.Group>(null);
   const leftUpperArm = useRef<THREE.Mesh>(null);
   const leftForearm = useRef<THREE.Mesh>(null);
@@ -2202,15 +2489,26 @@ function PianistAndBench({
     const breath = Math.sin(time * 0.58) * 0.007;
 
     if (player.current) {
-      player.current.rotation.x = -0.055 + phrase * 0.005 - performerLean;
-      player.current.position.y = -0.105 + breath * 0.12 - performerLean * 0.035;
-      player.current.position.z = performerLean * -0.055;
+      player.current.rotation.x = -0.055;
+      player.current.position.y = -0.105 + breath * 0.12;
+      player.current.position.z = 0;
+    }
+    if (torso.current) {
+      torso.current.rotation.x = -0.08 - performerLean * 1.35 + phrase * 0.004;
+      torso.current.position.y = 0.82 - performerLean * 0.12;
+      torso.current.position.z = 1.25 - performerLean * 0.72;
     }
     if (head.current) {
       head.current.rotation.x = 0.12 + layeredPlayingMotion(time, 1.2) * 0.014;
       head.current.rotation.y = layeredPlayingMotion(time, 4.3) * 0.016;
+      head.current.position.y = 1.28 - performerLean * 0.18;
+      head.current.position.z = 1.2 - performerLean * 0.82;
     }
 
+    joints.leftShoulder.y = 1.04 - performerLean * 0.14;
+    joints.leftShoulder.z = 1.2 - performerLean * 0.7;
+    joints.rightShoulder.y = 1.04 - performerLean * 0.14;
+    joints.rightShoulder.z = 1.2 - performerLean * 0.7;
     joints.leftElbow.x = -0.3 + leftTravel * 0.42;
     joints.leftElbow.y = 0.86 + leftPress * 0.42;
     joints.leftWrist.x = -0.27 + leftTravel;
@@ -2254,7 +2552,7 @@ function PianistAndBench({
       </group>
 
       <group ref={player}>
-        <mesh position={[0, 0.82, 1.25]} rotation={[-0.08, 0, 0]}>
+        <mesh ref={torso} position={[0, 0.82, 1.25]} rotation={[-0.08, 0, 0]}>
           <capsuleGeometry args={[0.13, 0.38, 4, 8]} />
           <meshStandardMaterial
             color="#151225"
@@ -2803,18 +3101,18 @@ function SkyDome({
         );
         float musicalTime = uTime * uMotion;
         float cobaltPhrase = 0.5 + 0.5 * sin(
-          x * 4.8 - musicalTime * 0.38 + sin(musicalTime * 0.13) * 1.7
+          x * 4.8 - musicalTime * 0.62 + sin(musicalTime * 0.21) * 1.7
         );
         float tealPhrase = 0.5 + 0.5 * sin(
-          x * -3.2 + y * 6.4 + musicalTime * 0.29
+          x * -3.2 + y * 6.4 + musicalTime * 0.48
         );
         float warmPhrase = 0.5 + 0.5 * sin(
-          x * 7.1 - y * 4.2 - musicalTime * 0.21 + 1.8
+          x * 7.1 - y * 4.2 - musicalTime * 0.36 + 1.8
         );
         float scorePulse = pow(
           0.5 + 0.5 * sin(
-            x * 8.4 - y * 5.6 - musicalTime * 0.52
-            + sin(musicalTime * 0.17) * 1.4
+            x * 8.4 - y * 5.6 - musicalTime * 0.82
+            + sin(musicalTime * 0.27) * 1.4
           ),
           2.0
         );
@@ -2831,6 +3129,14 @@ function SkyDome({
           * combinedMode
           * scorePulse
           * (0.045 + height * 0.045);
+        float travelingPhrase = pow(0.5 + 0.5 * sin(
+          x * 13.0 + y * 8.0 - musicalTime * 1.06
+          + sin(x * 4.0 + musicalTime * 0.31) * 1.8
+        ), 6.0);
+        color += mix(teal, peach, warmPhrase)
+          * combinedMode
+          * travelingPhrase
+          * (0.055 + height * 0.085);
         float wisps = 0.0;
         wisps += cloudWisp(x, y, 0.29, 0.045, 0.12) * 0.46;
         wisps += cloudWisp(x, y, 0.36, 0.034, 0.52) * 0.34;
@@ -3327,6 +3633,9 @@ const PianoClearingScene = memo(function PianoClearingScene({
             profile={worldProfile}
             reducedMotion={reducedMotion}
           />
+          {musicLandscape === 'combined-world' ? (
+            <MirroredScoreCanopy reducedMotion={reducedMotion} />
+          ) : null}
           <MusicWorldAirborneMatter
             landscape={musicLandscape}
             reducedMotion={reducedMotion}
