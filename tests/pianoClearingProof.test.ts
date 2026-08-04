@@ -221,6 +221,10 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('float musicalSkyWeight = combinedMode * (0.2 + scorePulse * 0.3)');
     expect(component).toContain('vec3 teal = vec3(0.08, 0.72, 0.76)');
     expect(component).toContain('function MirroredScoreCanopy');
+    expect(component).toContain('function createRefractiveScoreGeometry');
+    expect(component).toContain('<MeshTransmissionMaterial');
+    expect(component).toContain('chromaticAberration={0.13}');
+    expect(component).toContain('temporalDistortion={reducedMotion ? 0 : 0.34}');
     expect(component).toContain("musicWorldForm: 'mirrored-score-canopy'");
     expect(component).toContain("musicLandscape === 'combined-world' ? (");
     expect(component).toContain('float travelingPhrase = pow');

@@ -2,7 +2,7 @@
 
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import {
   Component,
   memo,
@@ -1872,104 +1872,121 @@ function WorldScaleMusicForms({
   );
 }
 
-type ScoreLineData = {
-  positions: number[];
-  phases: number[];
-  colors: number[];
-};
-
-function appendScorePolyline(
-  data: ScoreLineData,
-  points: THREE.Vector3[],
-  color: THREE.Color,
-  phaseOffset: number,
-) {
-  for (let index = 1; index < points.length; index += 1) {
-    const phase = phaseOffset + index / points.length;
-    [points[index - 1], points[index]].forEach((point, endpoint) => {
-      data.positions.push(point.x, point.y, point.z);
-      data.phases.push(phase + endpoint * 0.018);
-      data.colors.push(color.r, color.g, color.b);
-    });
-  }
-}
-
-function createMirroredScoreLines() {
-  const data: ScoreLineData = { positions: [], phases: [], colors: [] };
+function createRefractiveScoreGeometry() {
+  const positions: number[] = [];
+  const uvs: number[] = [];
+  const indices: number[] = [];
   const origin = new THREE.Vector3(
     PIANO_POSITION.x - 0.15,
     PIANO_POSITION.y + 1.65,
     PIANO_POSITION.z - 0.5,
   );
   const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
-  const palette = [
-    new THREE.Color('#70e7ff'),
-    new THREE.Color('#a783ff'),
-    new THREE.Color('#ff83df'),
-    new THREE.Color('#f8d4ff'),
-  ];
 
-  for (let strand = 0; strand < 15; strand += 1) {
-    const phase = (strand / 15) * Math.PI * 2;
-    const points = Array.from({ length: 36 }, (_, index) => {
-      const progress = index / 35;
-      const opening = 0.16 + Math.pow(progress, 1.72) * 3.5;
-      const coil = phase + progress * (8.4 + (strand % 3) * 0.7);
-      return new THREE.Vector3(
-        THREE.MathUtils.lerp(origin.x, canopyCenter.x, progress)
-          + Math.sin(coil) * opening,
-        origin.y + progress * 12.5 + Math.sin(progress * 11 + phase) * 0.34,
-        THREE.MathUtils.lerp(origin.z, canopyCenter.z, progress)
-          + Math.cos(coil) * opening * 0.48,
+  const trunkRings = 34;
+  const trunkSides = 32;
+  for (let ring = 0; ring <= trunkRings; ring += 1) {
+    const progress = ring / trunkRings;
+    const bloom = THREE.MathUtils.smoothstep(progress, 0.42, 1);
+    const radiusX = 0.22 + progress * 0.34 + Math.pow(bloom, 1.45) * 8.8;
+    const radiusZ = 0.16 + progress * 0.2 + Math.pow(bloom, 1.55) * 3.55;
+    const centerX = THREE.MathUtils.lerp(origin.x, canopyCenter.x, progress)
+      + Math.sin(progress * 8.3) * (0.12 + progress * 0.42);
+    const centerZ = THREE.MathUtils.lerp(origin.z, canopyCenter.z, progress)
+      + Math.sin(progress * 5.2 + 0.7) * progress * 0.38;
+    for (let side = 0; side <= trunkSides; side += 1) {
+      const around = (side / trunkSides) * Math.PI * 2;
+      const twist = around + progress * 6.4;
+      const lobe = 1 + Math.sin(around * 3 - progress * 11) * (0.06 + bloom * 0.12);
+      positions.push(
+        centerX + Math.cos(twist) * radiusX * lobe,
+        origin.y + progress * 12.5 + Math.sin(around * 2 + progress * 9) * bloom * 0.28,
+        centerZ + Math.sin(twist) * radiusZ * lobe,
       );
-    });
-    appendScorePolyline(data, points, palette[strand % palette.length], strand * 0.13);
+      uvs.push(side / trunkSides, progress);
+    }
+  }
+  for (let ring = 0; ring < trunkRings; ring += 1) {
+    for (let side = 0; side < trunkSides; side += 1) {
+      const row = trunkSides + 1;
+      const a = ring * row + side;
+      const b = a + row;
+      indices.push(a, b, a + 1, b, b + 1, a + 1);
+    }
   }
 
-  for (let branch = 0; branch < 27; branch += 1) {
-    const angle = (branch / 27) * Math.PI * 2 + (branch % 2) * 0.08;
-    const reach = 15 + (branch % 5) * 2.15;
-    const points = Array.from({ length: 34 }, (_, index) => {
-      const progress = index / 33;
-      const radius = Math.pow(progress, 0.82) * reach;
-      const ripple = Math.sin(progress * 13 + branch * 1.7) * (0.22 + progress * 0.72);
-      return new THREE.Vector3(
-        canopyCenter.x + Math.cos(angle) * radius * 1.42 + Math.sin(angle * 2) * ripple,
-        canopyCenter.y + 1.8 - progress * 2.15
-          + Math.sin(progress * 8.5 + branch) * (0.2 + progress * 0.85),
-        canopyCenter.z + Math.sin(angle) * radius * 0.56 + ripple,
+  const canopyOffset = positions.length / 3;
+  const canopyRings = 14;
+  const canopySides = 56;
+  for (let ring = 0; ring <= canopyRings; ring += 1) {
+    const progress = ring / canopyRings;
+    const radiusX = progress * 18.5;
+    const radiusZ = progress * 8.5;
+    for (let side = 0; side <= canopySides; side += 1) {
+      const around = (side / canopySides) * Math.PI * 2;
+      const ripple = Math.sin(around * 3 + progress * 8) * progress * 0.52;
+      positions.push(
+        canopyCenter.x + Math.cos(around) * radiusX + Math.sin(around * 2) * progress * 0.7,
+        canopyCenter.y + 1.05 - Math.pow(progress, 1.35) * 1.85 + ripple,
+        canopyCenter.z + Math.sin(around) * radiusZ,
       );
-    });
-    appendScorePolyline(data, points, palette[(branch + 1) % palette.length], branch * 0.21);
+      uvs.push(side / canopySides, 1 + progress);
+    }
   }
-
-  for (let ring = 1; ring <= 7; ring += 1) {
-    const points = Array.from({ length: 65 }, (_, index) => {
-      const angle = (index / 64) * Math.PI * 2;
-      const radius = ring * 2.75 + Math.sin(angle * 5 + ring) * 0.55;
-      return new THREE.Vector3(
-        canopyCenter.x + Math.cos(angle) * radius * 1.42,
-        canopyCenter.y + 1.45 - ring * 0.22 + Math.sin(angle * 3 + ring) * 0.46,
-        canopyCenter.z + Math.sin(angle) * radius * 0.56,
-      );
-    });
-    appendScorePolyline(data, points, palette[(ring + 2) % palette.length], ring * 0.37);
+  for (let ring = 0; ring < canopyRings; ring += 1) {
+    for (let side = 0; side < canopySides; side += 1) {
+      const row = canopySides + 1;
+      const a = canopyOffset + ring * row + side;
+      const b = a + row;
+      indices.push(a, b, a + 1, b, b + 1, a + 1);
+    }
   }
 
   const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(data.positions, 3));
-  geometry.setAttribute('aPhase', new THREE.Float32BufferAttribute(data.phases, 1));
-  geometry.setAttribute('color', new THREE.Float32BufferAttribute(data.colors, 3));
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
   geometry.computeBoundingSphere();
   return geometry;
+}
+
+function createScoreFlowMask() {
+  const size = 128;
+  const pixels = new Uint8Array(size * size * 4);
+  for (let y = 0; y < size; y += 1) {
+    for (let x = 0; x < size; x += 1) {
+      const u = x / (size - 1);
+      const v = y / (size - 1);
+      const warpedU = u + Math.sin(v * Math.PI * 4.1) * 0.085;
+      const warpedV = v + Math.sin(u * Math.PI * 3.3) * 0.07;
+      const broad = Math.sin((warpedU * 2.1 + warpedV * 1.35) * Math.PI * 2);
+      const cross = Math.sin((warpedU * 1.25 - warpedV * 2.7) * Math.PI * 2 + 1.4);
+      const cells = Math.sin((warpedU * 4.2 + warpedV * 3.1) * Math.PI * 2) * 0.22;
+      const field = broad * 0.52 + cross * 0.32 + cells;
+      const alpha = THREE.MathUtils.smoothstep(Math.abs(field), 0.08, 0.78);
+      const offset = (y * size + x) * 4;
+      pixels[offset] = 255;
+      pixels[offset + 1] = Math.round(alpha * 255);
+      pixels[offset + 2] = 255;
+      pixels[offset + 3] = 255;
+    }
+  }
+  const texture = new THREE.DataTexture(pixels, size, size, THREE.RGBAFormat);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.minFilter = THREE.LinearFilter;
+  texture.magFilter = THREE.LinearFilter;
+  texture.needsUpdate = true;
+  return texture;
 }
 
 function createMirroredScoreTrees() {
   const positions: number[] = [];
   const treeSites = [
-    [-13.5, 1.1, -2.4, 3], [-10.2, 1.8, 0.8, 3.65], [-6.8, 0.9, -1.1, 3.15],
-    [-3.5, 2.2, 0, 4.35], [0, 1.35, 1.2, 3.55], [3.8, 2.35, -0.7, 3.95],
-    [7.5, 0.95, 1.4, 3.05], [11.3, 1.7, -1.8, 3.6], [14.7, 0.8, 0.3, 2.85],
+    [-5.8, 1.4, -1.6, 2.7], [-3.7, 3.1, 0.8, 3.35], [-2.1, 0.7, -0.4, 2.25],
+    [-0.8, 4.2, 0.2, 4.15], [0.5, 2.2, -1.1, 3.2], [1.8, 0.45, 1.1, 2.2],
+    [3.1, 3.45, -0.5, 3.7], [4.8, 1.2, 1.35, 2.65], [6.3, 2.7, -1.8, 3.15],
   ] as const;
   const center = new THREE.Vector3(
     PIANO_POSITION.x - 1.2,
@@ -2019,15 +2036,16 @@ function createMirroredScoreTrees() {
 }
 
 function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
-  const lineGeometry = useMemo(() => createMirroredScoreLines(), []);
+  const flowGeometry = useMemo(() => createRefractiveScoreGeometry(), []);
+  const flowMask = useMemo(() => createScoreFlowMask(), []);
   const treeGeometry = useMemo(() => createMirroredScoreTrees(), []);
   const particleGeometry = useMemo(() => {
-    const source = lineGeometry.getAttribute('position');
-    const count = Math.min(1500, Math.floor(source.count / 2));
+    const source = flowGeometry.getAttribute('position');
+    const count = Math.min(1050, source.count);
     const positions = new Float32Array(count * 3);
     const seeds = new Float32Array(count * 3);
     for (let index = 0; index < count; index += 1) {
-      const sourceIndex = Math.floor((index / count) * source.count);
+      const sourceIndex = (index * 17) % source.count;
       positions.set([
         source.getX(sourceIndex),
         source.getY(sourceIndex),
@@ -2044,11 +2062,13 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
     geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 3));
     geometry.computeBoundingSphere();
     return geometry;
-  }, [lineGeometry]);
-  const lineMaterial = useMemo(() => new THREE.ShaderMaterial({
+  }, [flowGeometry]);
+  const flowRef = useRef<THREE.Mesh>(null);
+  const wispMaterial = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
+    side: THREE.DoubleSide,
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
@@ -2056,26 +2076,36 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
     vertexShader: `
       uniform float uTime;
       uniform float uMotion;
-      attribute float aPhase;
-      attribute vec3 color;
-      varying vec3 vColor;
-      varying float vPulse;
+      varying vec2 vUv;
+      varying float vFresnel;
       void main() {
         vec3 transformed = position;
         float time = uTime * uMotion;
-        float altitude = smoothstep(${(PIANO_POSITION.y + 2).toFixed(2)}, ${(PIANO_POSITION.y + 13).toFixed(2)}, transformed.y);
-        transformed.x += sin(time * 0.58 + aPhase * 18.0 + transformed.y * 0.11) * (0.025 + altitude * 0.16);
-        transformed.z += cos(time * 0.41 + aPhase * 14.0 + transformed.x * 0.05) * (0.018 + altitude * 0.11);
-        vPulse = 0.32 + 0.68 * pow(0.5 + 0.5 * sin(aPhase * 31.0 - time * 2.35), 5.0);
-        vColor = color;
+        float altitude = smoothstep(${(PIANO_POSITION.y + 2).toFixed(2)}, ${(PIANO_POSITION.y + 14).toFixed(2)}, transformed.y);
+        transformed.x += sin(time * 0.42 + transformed.y * 0.28 + uv.x * 6.283) * (0.035 + altitude * 0.13);
+        transformed.z += cos(time * 0.31 + transformed.x * 0.17) * (0.025 + altitude * 0.09);
+        vec3 viewNormal = normalize(normalMatrix * normal);
+        vec3 viewDirection = normalize(-(modelViewMatrix * vec4(transformed, 1.0)).xyz);
+        vFresnel = pow(1.0 - abs(dot(viewNormal, viewDirection)), 1.8);
+        vUv = uv;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
       }
     `,
     fragmentShader: `
-      varying vec3 vColor;
-      varying float vPulse;
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec2 vUv;
+      varying float vFresnel;
       void main() {
-        gl_FragColor = vec4(vColor * (0.58 + vPulse * 1.25), 0.2 + vPulse * 0.52);
+        float time = uTime * uMotion;
+        float broadCurrent = 0.5 + 0.5 * sin(vUv.y * 10.0 - time * 1.35 + sin(vUv.x * 6.283 + time * 0.22) * 2.2);
+        float crossCurrent = 0.5 + 0.5 * sin(vUv.x * 12.566 + vUv.y * 4.3 + time * 0.56);
+        float wisp = smoothstep(0.58, 0.96, broadCurrent * 0.78 + crossCurrent * 0.22);
+        vec3 cyan = vec3(0.2, 0.78, 1.0);
+        vec3 magenta = vec3(1.0, 0.3, 0.86);
+        vec3 color = mix(cyan, magenta, 0.5 + 0.5 * sin(vUv.y * 4.0 - time * 0.32));
+        float alpha = wisp * 0.18 + vFresnel * 0.16;
+        gl_FragColor = vec4(color * (0.52 + wisp * 0.65), alpha);
       }
     `,
   }), [reducedMotion]);
@@ -2117,39 +2147,70 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
   }), [reducedMotion]);
 
   useFrame(({ clock }) => {
-    lineMaterial.uniforms.uTime.value = clock.elapsedTime;
-    lineMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    wispMaterial.uniforms.uTime.value = clock.elapsedTime;
+    wispMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     particleMaterial.uniforms.uTime.value = clock.elapsedTime;
     particleMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    if (flowRef.current && !reducedMotion) {
+      flowRef.current.rotation.y = Math.sin(clock.elapsedTime * 0.16) * 0.018;
+    }
   });
 
   useEffect(() => () => {
-    lineGeometry.dispose();
+    flowGeometry.dispose();
+    flowMask.dispose();
     treeGeometry.dispose();
     particleGeometry.dispose();
-    lineMaterial.dispose();
+    wispMaterial.dispose();
     particleMaterial.dispose();
-  }, [lineGeometry, lineMaterial, particleGeometry, particleMaterial, treeGeometry]);
+  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, treeGeometry, wispMaterial]);
 
   return (
     <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
-      <lineSegments
-        geometry={lineGeometry}
-        material={lineMaterial}
+      <mesh
+        ref={flowRef}
+        geometry={flowGeometry}
         frustumCulled={false}
-        renderOrder={5}
+        renderOrder={3}
+      >
+        <MeshTransmissionMaterial
+          color="#b5ddff"
+          transmission={1}
+          roughness={0.035}
+          thickness={0.82}
+          ior={1.24}
+          chromaticAberration={0.13}
+          anisotropicBlur={0.08}
+          distortion={0.68}
+          distortionScale={0.84}
+          temporalDistortion={reducedMotion ? 0 : 0.34}
+          samples={3}
+          resolution={256}
+          backside={false}
+          side={THREE.DoubleSide}
+          alphaMap={flowMask}
+          alphaTest={0.08}
+          transparent
+          opacity={0.42}
+        />
+      </mesh>
+      <mesh
+        geometry={flowGeometry}
+        material={wispMaterial}
+        frustumCulled={false}
+        renderOrder={4}
       />
       <points
         geometry={particleGeometry}
         material={particleMaterial}
         frustumCulled={false}
-        renderOrder={6}
+        renderOrder={5}
       />
-      <mesh geometry={treeGeometry} frustumCulled={false} renderOrder={4}>
+      <mesh geometry={treeGeometry} frustumCulled={false} renderOrder={5}>
         <meshBasicMaterial
-          color="#261443"
+          color="#21133d"
           transparent
-          opacity={0.58}
+          opacity={0.26}
           depthWrite={false}
           side={THREE.DoubleSide}
         />
