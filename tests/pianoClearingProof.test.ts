@@ -183,9 +183,12 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('practiceWorldDiagnosticsEnabled(');
     expect(component).toContain('data-world-diagnostics=""');
     expect(component).toContain('<PracticeGlyph practice={practice} />');
-    expect(component).toContain('<PianistAndBench reducedMotion={reducedMotion} />');
+    expect(component).toContain("musicWorldActive={musicLiquidProof && musicLandscape === 'combined-world'}");
     expect(component).toContain("userData={{ role: 'piano-player' }}");
     expect(component).toContain('function layeredPlayingMotion');
+    expect(component).toContain('const musicArmRange = musicWorldActive ? 1.38 : 1');
+    expect(component).toContain('const performerLean = musicWorldActive && !reducedMotion');
+    expect(component).toContain('player.current.position.z = performerLean * -0.055');
     expect(component).toContain('const leftTravel = layeredPlayingMotion');
     expect(component).toContain('const rightTravel = layeredPlayingMotion');
     expect(component).toContain('joints.leftElbow.x = -0.3 + leftTravel * 0.42');
@@ -213,6 +216,8 @@ describe('piano clearing Home proof', () => {
     expect(component).not.toContain("musicWorldForm: 'suspended-archipelago'");
     expect(component).toContain("musicWorldForm: 'spring-petal-field'");
     expect(component).toContain("musicWorldForm: 'harmonic-wave-cathedral'");
+    expect(component).toContain('float musicalSkyWeight = combinedMode * (0.2 + scorePulse * 0.3)');
+    expect(component).toContain('vec3 teal = vec3(0.08, 0.72, 0.76)');
   });
 
   it('promotes the clearing to canonical Home while retaining the review route', async () => {

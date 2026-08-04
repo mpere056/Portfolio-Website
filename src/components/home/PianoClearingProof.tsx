@@ -2151,7 +2151,13 @@ function layeredPlayingMotion(time: number, seed: number) {
   );
 }
 
-function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
+function PianistAndBench({
+  reducedMotion,
+  musicWorldActive,
+}: {
+  reducedMotion: boolean;
+  musicWorldActive: boolean;
+}) {
   const player = useRef<THREE.Group>(null);
   const head = useRef<THREE.Group>(null);
   const leftUpperArm = useRef<THREE.Mesh>(null);
@@ -2173,8 +2179,18 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
   useFrame(({ clock }) => {
     const time = reducedMotion ? 0 : clock.elapsedTime;
     const phrase = layeredPlayingMotion(time, 0.8);
-    const leftTravel = layeredPlayingMotion(time, 2.15) * 0.105;
-    const rightTravel = layeredPlayingMotion(time, 5.4) * 0.11;
+    const musicArmRange = musicWorldActive ? 1.38 : 1;
+    const leftTravel = layeredPlayingMotion(time, 2.15) * 0.105 * musicArmRange;
+    const rightTravel = layeredPlayingMotion(time, 5.4) * 0.11 * musicArmRange;
+    const leanPhrase = THREE.MathUtils.smoothstep(
+      layeredPlayingMotion(time * 0.68, 6.7),
+      -0.28,
+      0.72,
+    );
+    const secondaryLean = 0.5 + 0.5 * layeredPlayingMotion(time * 0.31, 9.2);
+    const performerLean = musicWorldActive && !reducedMotion
+      ? leanPhrase * (0.026 + secondaryLean * 0.038)
+      : 0;
     const leftPress = (
       Math.sin(time * 2.64 + Math.sin(time * 0.43) * 1.35) * 0.006
       + Math.sin(time * 1.31 + 2.2) * 0.0035
@@ -2186,8 +2202,9 @@ function PianistAndBench({ reducedMotion }: { reducedMotion: boolean }) {
     const breath = Math.sin(time * 0.58) * 0.007;
 
     if (player.current) {
-      player.current.rotation.x = -0.055 + phrase * 0.005;
-      player.current.position.y = -0.105 + breath * 0.12;
+      player.current.rotation.x = -0.055 + phrase * 0.005 - performerLean;
+      player.current.position.y = -0.105 + breath * 0.12 - performerLean * 0.035;
+      player.current.position.z = performerLean * -0.055;
     }
     if (head.current) {
       head.current.rotation.x = 0.12 + layeredPlayingMotion(time, 1.2) * 0.014;
@@ -2779,6 +2796,41 @@ function SkyDome({
 
         float x = atan(vWorld.x, -vWorld.z) / 3.14159265;
         float y = vWorld.y;
+        float combinedMode = 1.0 - smoothstep(
+          0.08,
+          0.18,
+          abs(uLandscapeMode - 5.0)
+        );
+        float musicalTime = uTime * uMotion;
+        float cobaltPhrase = 0.5 + 0.5 * sin(
+          x * 4.8 - musicalTime * 0.38 + sin(musicalTime * 0.13) * 1.7
+        );
+        float tealPhrase = 0.5 + 0.5 * sin(
+          x * -3.2 + y * 6.4 + musicalTime * 0.29
+        );
+        float warmPhrase = 0.5 + 0.5 * sin(
+          x * 7.1 - y * 4.2 - musicalTime * 0.21 + 1.8
+        );
+        float scorePulse = pow(
+          0.5 + 0.5 * sin(
+            x * 8.4 - y * 5.6 - musicalTime * 0.52
+            + sin(musicalTime * 0.17) * 1.4
+          ),
+          2.0
+        );
+        vec3 cobalt = vec3(0.16, 0.29, 0.88);
+        vec3 teal = vec3(0.08, 0.72, 0.76);
+        vec3 violet = vec3(0.58, 0.22, 0.86);
+        vec3 peach = vec3(1.0, 0.46, 0.48);
+        vec3 musicalColor = mix(cobalt, teal, smoothstep(0.12, 0.88, tealPhrase));
+        musicalColor = mix(musicalColor, violet, smoothstep(0.22, 0.92, cobaltPhrase) * 0.58);
+        musicalColor = mix(musicalColor, peach, pow(warmPhrase, 3.0) * 0.42);
+        float musicalSkyWeight = combinedMode * (0.2 + scorePulse * 0.3);
+        color = mix(color, musicalColor, musicalSkyWeight);
+        color += mix(teal, violet, cobaltPhrase)
+          * combinedMode
+          * scorePulse
+          * (0.045 + height * 0.045);
         float wisps = 0.0;
         wisps += cloudWisp(x, y, 0.29, 0.045, 0.12) * 0.46;
         wisps += cloudWisp(x, y, 0.36, 0.034, 0.52) * 0.34;
@@ -3308,7 +3360,10 @@ const PianoClearingScene = memo(function PianoClearingScene({
           liquidRuntime={liquidRuntime}
         />
       </Suspense>
-      <PianistAndBench reducedMotion={reducedMotion} />
+      <PianistAndBench
+        reducedMotion={reducedMotion}
+        musicWorldActive={musicLiquidProof && musicLandscape === 'combined-world'}
+      />
       <Clouds reducedMotion={reducedMotion} profile={worldProfile} />
       <DistantBirds reducedMotion={reducedMotion} />
       <DistantSkyForms reducedMotion={reducedMotion} />
