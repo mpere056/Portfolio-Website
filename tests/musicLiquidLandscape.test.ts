@@ -160,6 +160,9 @@ describe('Music Liquid Landscape proof contract', () => {
     expect(component).toContain('vec3 flameColor = mix');
     expect(component).toContain('float flameDissolve = smoothstep');
     expect(component).toContain("worldEcology: 'distant-wildfire-smoke'");
+    expect(component).toContain('vec3 charredGround = color * vec3(0.34, 0.29, 0.42)');
+    expect(component).not.toContain('vec3 emberGround');
+    expect(component).not.toContain('vec3(0.92, 0.12, 0.018)');
     expect(component).not.toContain("musicWorldForm: 'reflective-glass-sculpture'");
     expect(component).not.toContain('transmission={0.72}');
     expect(component).toContain('vec2 fromInstrument = vWorldRoot');

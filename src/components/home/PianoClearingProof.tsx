@@ -1030,14 +1030,10 @@ function Ground({
               1.0
             ) * max(tidalMode, combinedLiquid);
             liquidState = mix(liquidState, hillMaterial, tidalMode);
-            float emberVein = smoothstep(0.62, 0.94,
-              0.5 + 0.5 * sin(
-                vWorld.x * 0.31 + vWorld.z * 0.23 - compositionTime * 0.46
-                + pressureField * 3.2
-              )
-            );
-            vec3 emberGround = mix(vec3(0.035, 0.008, 0.006), vec3(0.92, 0.12, 0.018), emberVein);
-            color = mix(color, emberGround, fireMode * (0.62 + emberVein * 0.3));
+            // Fire belongs to the animated blades and airborne ecology, not a red
+            // light band travelling through the terrain beneath them.
+            vec3 charredGround = color * vec3(0.34, 0.29, 0.42);
+            color = mix(color, charredGround, fireMode * 0.48);
             vec3 coolGround = mix(
               vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[0]).toArray().map(value => value.toFixed(4)).join(', ')}),
               vec3(${new THREE.Color(MUSIC_ARCHIPELAGO_GRASS_PALETTE[2]).toArray().map(value => value.toFixed(4)).join(', ')}),
