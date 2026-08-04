@@ -1878,8 +1878,8 @@ function createRefractiveScoreGeometry() {
   const indices: number[] = [];
   const origin = new THREE.Vector3(
     PIANO_POSITION.x - 0.15,
-    PIANO_POSITION.y + 1.65,
-    PIANO_POSITION.z - 0.5,
+    PIANO_POSITION.y + 0.5,
+    PIANO_POSITION.z - 0.35,
   );
   const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
 
@@ -1887,11 +1887,18 @@ function createRefractiveScoreGeometry() {
   const trunkSides = 32;
   for (let ring = 0; ring <= trunkRings; ring += 1) {
     const progress = ring / trunkRings;
+    const pianoCradle = 1 - THREE.MathUtils.smoothstep(progress, 0.02, 0.22);
     const bloom = THREE.MathUtils.smoothstep(progress, 0.42, 1);
-    const radiusX = 0.22 + progress * 0.34 + Math.pow(bloom, 1.45) * 8.8;
-    const radiusZ = 0.16 + progress * 0.2 + Math.pow(bloom, 1.55) * 3.55;
+    const radiusX = 0.24
+      + Math.pow(pianoCradle, 1.25) * 2.55
+      + progress * 0.3
+      + Math.pow(bloom, 1.45) * 8.8;
+    const radiusZ = 0.17
+      + Math.pow(pianoCradle, 1.35) * 1.05
+      + progress * 0.18
+      + Math.pow(bloom, 1.55) * 3.55;
     const centerX = THREE.MathUtils.lerp(origin.x, canopyCenter.x, progress)
-      + Math.sin(progress * 8.3) * (0.12 + progress * 0.42);
+      + Math.sin(progress * 8.3) * (0.08 + progress * 0.42);
     const centerZ = THREE.MathUtils.lerp(origin.z, canopyCenter.z, progress)
       + Math.sin(progress * 5.2 + 0.7) * progress * 0.38;
     for (let side = 0; side <= trunkSides; side += 1) {
