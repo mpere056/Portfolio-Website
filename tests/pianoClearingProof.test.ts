@@ -227,10 +227,15 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('Chromatic currents carry the four material states');
     expect(component).toContain('const worldEchoMaterial = useMemo');
     expect(component).toContain('float slowSheen');
-    expect(component).toContain('const pianoCradle = 1 - THREE.MathUtils.smoothstep');
-    expect(component).toContain('const sourceLip = 1 + Math.sin');
+    expect(component).toContain('const pianoOutline = 1 - THREE.MathUtils.smoothstep');
+    expect(component).toContain('function pianoPortalOutlinePoint');
+    expect(component).toContain('function createPianoPortalOutlineGeometry');
+    expect(component).toContain('const outlineRadiusX = 1.48');
+    expect(component).toContain('const outlineRadiusZ = front * 0.62 + tail * 1.08');
+    expect(component).toContain('<lineLoop geometry={pianoOutlineGeometry}');
     expect(component).toContain('const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.2, 1)');
     expect(component).toContain("reflectedWorld: 'terrain-river-viaduct-piano-fire-petal-harmonic-currents'");
+    expect(component).not.toContain('const treeSites = [');
     expect(component).toContain('<MeshTransmissionMaterial');
     expect(component).toContain('chromaticAberration={0.13}');
     expect(component).toContain('reflectivity={0.78}');

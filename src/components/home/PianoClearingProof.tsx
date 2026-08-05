@@ -1872,14 +1872,47 @@ function WorldScaleMusicForms({
   );
 }
 
+function pianoPortalOutlinePoint(around: number) {
+  const front = Math.max(0, Math.sin(around));
+  const tail = Math.max(0, -Math.sin(around));
+  const outlineRadiusX = 1.48 + front * 0.08 - tail * 0.3;
+  const outlineRadiusZ = front * 0.62 + tail * 1.08;
+  const localX = Math.cos(around) * outlineRadiusX + tail * 0.14;
+  const localZ = Math.sin(around) * outlineRadiusZ + front * 0.04;
+  const rotation = -0.42;
+
+  return new THREE.Vector2(
+    localX * Math.cos(rotation) - localZ * Math.sin(rotation),
+    localX * Math.sin(rotation) + localZ * Math.cos(rotation),
+  );
+}
+
+function createPianoPortalOutlineGeometry() {
+  const positions: number[] = [];
+  const segments = 64;
+  for (let segment = 0; segment < segments; segment += 1) {
+    const around = (segment / segments) * Math.PI * 2;
+    const point = pianoPortalOutlinePoint(around);
+    positions.push(
+      PIANO_POSITION.x + point.x,
+      PIANO_POSITION.y + 0.56,
+      PIANO_POSITION.z + point.y,
+    );
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.computeBoundingSphere();
+  return geometry;
+}
+
 function createRefractiveScoreGeometry() {
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
   const origin = new THREE.Vector3(
-    PIANO_POSITION.x - 0.15,
-    PIANO_POSITION.y + 0.35,
-    PIANO_POSITION.z + 0.4,
+    PIANO_POSITION.x,
+    PIANO_POSITION.y + 0.48,
+    PIANO_POSITION.z,
   );
   const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
 
@@ -1887,16 +1920,13 @@ function createRefractiveScoreGeometry() {
   const trunkSides = 32;
   for (let ring = 0; ring <= trunkRings; ring += 1) {
     const progress = ring / trunkRings;
-    const pianoCradle = 1 - THREE.MathUtils.smoothstep(progress, 0.01, 0.19);
-    const sourceLip = 1 + Math.sin(Math.min(progress / 0.09, 1) * Math.PI) * 0.18;
+    const pianoOutline = 1 - THREE.MathUtils.smoothstep(progress, 0, 0.04);
     const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.2, 1);
     const bloom = THREE.MathUtils.smoothstep(progress, 0.42, 1);
     const radiusX = 0.24
-      + Math.pow(pianoCradle, 1.55) * 1.45 * sourceLip
       + progress * 0.3
       + Math.pow(bloom, 1.45) * 8.8;
     const radiusZ = 0.17
-      + Math.pow(pianoCradle, 1.65) * 0.52 * sourceLip
       + progress * 0.18
       + Math.pow(bloom, 1.55) * 3.55;
     const centerX = THREE.MathUtils.lerp(origin.x, canopyCenter.x, canopyTravel)
@@ -1907,10 +1937,13 @@ function createRefractiveScoreGeometry() {
       const around = (side / trunkSides) * Math.PI * 2;
       const twist = around + progress * 6.4;
       const lobe = 1 + Math.sin(around * 3 - progress * 11) * (0.06 + bloom * 0.12);
+      const outline = pianoPortalOutlinePoint(around);
+      const neckX = Math.cos(twist) * radiusX * lobe;
+      const neckZ = Math.sin(twist) * radiusZ * lobe;
       positions.push(
-        centerX + Math.cos(twist) * radiusX * lobe,
+        centerX + THREE.MathUtils.lerp(neckX, outline.x, pianoOutline),
         origin.y + progress * 12.5 + Math.sin(around * 2 + progress * 9) * bloom * 0.28,
-        centerZ + Math.sin(twist) * radiusZ * lobe,
+        centerZ + THREE.MathUtils.lerp(neckZ, outline.y, pianoOutline),
       );
       uvs.push(side / trunkSides, progress);
     }
@@ -2003,7 +2036,6 @@ function createMirroredWorldEchoGeometry() {
     river: new THREE.Color('#e3f7ff'),
     architecture: new THREE.Color('#45336f'),
     piano: new THREE.Color('#db91d5'),
-    trees: new THREE.Color('#30214f'),
     fire: new THREE.Color('#ff7b46'),
     teal: new THREE.Color('#4ee6e0'),
     petal: new THREE.Color('#ff9ee1'),
@@ -2185,52 +2217,6 @@ function createMirroredWorldEchoGeometry() {
     );
   });
 
-  const treeSites = [
-    [-10.4, 1.08, -1.25, 2.1], [-8.9, 1.15, -1.1, 2.65],
-    [-7.4, 1.3, 0.3, 2.25], [-6.1, 1.4, 0.82, 3.25],
-    [-4.3, 1.05, -0.35, 2.4], [-2.5, 1.25, 0.65, 1.95],
-    [1.1, 1.12, 0.4, 2.1], [2.7, 1.2, -0.7, 2.9],
-    [4.3, 1.32, 0.62, 2.35], [5.7, 1.45, 1.0, 3.45],
-    [7.2, 1.15, -1.25, 2.5], [9.1, 1.25, 0.15, 2.05],
-  ] as const;
-
-  treeSites.forEach(([xOffset, yOffset, zOffset, height], treeIndex) => {
-    const root = new THREE.Vector3(
-      center.x + xOffset,
-      center.y + yOffset,
-      center.z + zOffset,
-    );
-    const tip = root.clone().add(new THREE.Vector3(0, -height, 0));
-    const trunkWidth = 0.055 + height * 0.012;
-    addTriangle(
-      new THREE.Vector3(root.x - trunkWidth, root.y, root.z),
-      new THREE.Vector3(root.x + trunkWidth, root.y, root.z),
-      new THREE.Vector3(tip.x + trunkWidth * 0.5, tip.y, tip.z),
-      echoColors.trees,
-    );
-    addTriangle(
-      new THREE.Vector3(root.x - trunkWidth, root.y, root.z),
-      new THREE.Vector3(tip.x + trunkWidth * 0.5, tip.y, tip.z),
-      new THREE.Vector3(tip.x - trunkWidth * 0.5, tip.y, tip.z),
-      echoColors.trees,
-    );
-    // Layered tapering boughs create organic inverted conifers without extra draw calls.
-    const boughCount = 6;
-    for (let bough = 0; bough < boughCount; bough += 1) {
-      const progress = bough / boughCount;
-      const boughY = root.y - height * (0.12 + progress * 0.7);
-      const nextY = root.y - height * (0.34 + progress * 0.7);
-      const irregularity = 0.88 + Math.sin(treeIndex * 2.4 + bough * 1.9) * 0.12;
-      const halfWidth = (0.34 + height * 0.12) * (1 - progress * 0.72) * irregularity;
-      addTriangle(
-        new THREE.Vector3(root.x - halfWidth, boughY, root.z),
-        new THREE.Vector3(root.x + halfWidth, boughY, root.z),
-        new THREE.Vector3(root.x + Math.sin(treeIndex + bough) * 0.05, nextY, root.z),
-        echoColors.trees,
-      );
-    }
-  });
-
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
   geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
@@ -2241,6 +2227,7 @@ function createMirroredWorldEchoGeometry() {
 
 function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
   const flowGeometry = useMemo(() => createRefractiveScoreGeometry(), []);
+  const pianoOutlineGeometry = useMemo(() => createPianoPortalOutlineGeometry(), []);
   const flowMask = useMemo(() => createScoreFlowMask(), []);
   const worldEchoGeometry = useMemo(() => createMirroredWorldEchoGeometry(), []);
   const particleGeometry = useMemo(() => {
@@ -2419,16 +2406,26 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
 
   useEffect(() => () => {
     flowGeometry.dispose();
+    pianoOutlineGeometry.dispose();
     flowMask.dispose();
     worldEchoGeometry.dispose();
     particleGeometry.dispose();
     wispMaterial.dispose();
     particleMaterial.dispose();
     worldEchoMaterial.dispose();
-  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
+  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, pianoOutlineGeometry, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
 
   return (
     <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
+      <lineLoop geometry={pianoOutlineGeometry} frustumCulled={false} renderOrder={6}>
+        <lineBasicMaterial
+          color="#dff7ff"
+          transparent
+          opacity={0.78}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </lineLoop>
       <mesh
         ref={flowRef}
         geometry={flowGeometry}
