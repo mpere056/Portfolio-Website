@@ -223,12 +223,17 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('function MirroredScoreCanopy');
     expect(component).toContain('function createRefractiveScoreGeometry');
     expect(component).toContain('function createMirroredWorldEchoGeometry');
+    expect(component).toContain('const currentColors = [');
+    expect(component).toContain('Chromatic currents carry the four material states');
+    expect(component).toContain('const worldEchoMaterial = useMemo');
+    expect(component).toContain('float slowSheen');
     expect(component).toContain('const pianoCradle = 1 - THREE.MathUtils.smoothstep');
     expect(component).toContain('const sourceLip = 1 + Math.sin');
     expect(component).toContain('const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.2, 1)');
-    expect(component).toContain("reflectedWorld: 'terrain-river-viaduct-piano'");
+    expect(component).toContain("reflectedWorld: 'terrain-river-viaduct-piano-fire-petal-harmonic-currents'");
     expect(component).toContain('<MeshTransmissionMaterial');
     expect(component).toContain('chromaticAberration={0.13}');
+    expect(component).toContain('reflectivity={0.78}');
     expect(component).toContain('temporalDistortion={reducedMotion ? 0 : 0.34}');
     expect(component).toContain("musicWorldForm: 'mirrored-score-canopy'");
     expect(component).toContain("musicLandscape === 'combined-world' ? (");

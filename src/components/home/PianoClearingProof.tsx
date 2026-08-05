@@ -1198,7 +1198,7 @@ function LiquidTerritorySurface({
     depthWrite: false,
     depthTest: true,
     side: THREE.DoubleSide,
-    blending: THREE.NormalBlending,
+    blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
@@ -1400,7 +1400,7 @@ function MusicWorldAirborneMatter({
   const material = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
@@ -2004,6 +2004,10 @@ function createMirroredWorldEchoGeometry() {
     architecture: new THREE.Color('#45336f'),
     piano: new THREE.Color('#db91d5'),
     trees: new THREE.Color('#30214f'),
+    fire: new THREE.Color('#ff7b46'),
+    teal: new THREE.Color('#4ee6e0'),
+    petal: new THREE.Color('#ff9ee1'),
+    harmonic: new THREE.Color('#c9b7ff'),
   };
   const addTriangle = (
     a: THREE.Vector3,
@@ -2079,6 +2083,43 @@ function createMirroredWorldEchoGeometry() {
     );
   }
 
+  // Chromatic currents carry the four material states through the narrow neck,
+  // so the reflected world remains legible between the piano and canopy.
+  const currentColors = [
+    echoColors.teal,
+    echoColors.fire,
+    echoColors.petal,
+    echoColors.harmonic,
+  ];
+  currentColors.forEach((color, currentIndex) => {
+    const segments = 34;
+    const phase = currentIndex * 1.73;
+    for (let segment = 0; segment < segments; segment += 1) {
+      const start = segment / segments;
+      const end = (segment + 1) / segments;
+      const currentPoint = (progress: number, side: number) => {
+        const travel = THREE.MathUtils.smoothstep(progress, 0.06, 1);
+        const neck = Math.sin(progress * Math.PI);
+        const sourceBloom = 1 - THREE.MathUtils.smoothstep(progress, 0.02, 0.22);
+        const canopyBloom = THREE.MathUtils.smoothstep(progress, 0.62, 1);
+        const centerX = THREE.MathUtils.lerp(PIANO_POSITION.x - 0.15, center.x, travel)
+          + Math.sin(progress * 9.2 + phase) * (0.12 + neck * 0.42);
+        const centerY = THREE.MathUtils.lerp(PIANO_POSITION.y + 0.52, center.y + 0.82, progress);
+        const centerZ = THREE.MathUtils.lerp(PIANO_POSITION.z + 0.34, center.z + 0.3, travel)
+          + Math.cos(progress * 7.4 + phase) * neck * 0.3;
+        const width = 0.035 + sourceBloom * 0.18 + canopyBloom * (0.34 + currentIndex * 0.035);
+        return new THREE.Vector3(centerX + side * width, centerY, centerZ);
+      };
+      addQuad(
+        currentPoint(start, -1),
+        currentPoint(end, -1),
+        currentPoint(end, 1),
+        currentPoint(start, 1),
+        color,
+      );
+    }
+  });
+
   // The viaduct is echoed as a filled architectural silhouette with recognizable arches.
   const bridgeY = center.y + 0.92;
   const bridgeZ = center.z - 0.15;
@@ -2145,8 +2186,12 @@ function createMirroredWorldEchoGeometry() {
   });
 
   const treeSites = [
-    [-8.9, 1.15, -1.1, 2.4], [-6.7, 1.4, 0.7, 3.0], [-4.2, 1.1, -0.2, 2.25],
-    [2.7, 1.2, -0.7, 2.7], [4.8, 1.45, 0.95, 3.25], [6.7, 1.15, -1.25, 2.35],
+    [-10.4, 1.08, -1.25, 2.1], [-8.9, 1.15, -1.1, 2.65],
+    [-7.4, 1.3, 0.3, 2.25], [-6.1, 1.4, 0.82, 3.25],
+    [-4.3, 1.05, -0.35, 2.4], [-2.5, 1.25, 0.65, 1.95],
+    [1.1, 1.12, 0.4, 2.1], [2.7, 1.2, -0.7, 2.9],
+    [4.3, 1.32, 0.62, 2.35], [5.7, 1.45, 1.0, 3.45],
+    [7.2, 1.15, -1.25, 2.5], [9.1, 1.25, 0.15, 2.05],
   ] as const;
 
   treeSites.forEach(([xOffset, yOffset, zOffset, height], treeIndex) => {
@@ -2169,27 +2214,18 @@ function createMirroredWorldEchoGeometry() {
       new THREE.Vector3(tip.x - trunkWidth * 0.5, tip.y, tip.z),
       echoColors.trees,
     );
-    const crownCenter = new THREE.Vector3(
-      root.x + Math.sin(treeIndex * 1.7) * 0.11,
-      root.y - height * 0.56,
-      root.z,
-    );
-    const crownPoints = 9;
-    for (let point = 0; point < crownPoints; point += 1) {
-      const start = (point / crownPoints) * Math.PI * 2;
-      const end = ((point + 1) / crownPoints) * Math.PI * 2;
-      const crownPoint = (angle: number, pointIndex: number) => {
-        const irregularity = 0.88 + Math.sin(treeIndex * 2.4 + pointIndex * 1.9) * 0.12;
-        return new THREE.Vector3(
-          crownCenter.x + Math.cos(angle) * (0.48 + height * 0.11) * irregularity,
-          crownCenter.y + Math.sin(angle) * height * 0.38 * irregularity,
-          root.z,
-        );
-      };
+    // Layered tapering boughs create organic inverted conifers without extra draw calls.
+    const boughCount = 6;
+    for (let bough = 0; bough < boughCount; bough += 1) {
+      const progress = bough / boughCount;
+      const boughY = root.y - height * (0.12 + progress * 0.7);
+      const nextY = root.y - height * (0.34 + progress * 0.7);
+      const irregularity = 0.88 + Math.sin(treeIndex * 2.4 + bough * 1.9) * 0.12;
+      const halfWidth = (0.34 + height * 0.12) * (1 - progress * 0.72) * irregularity;
       addTriangle(
-        crownCenter,
-        crownPoint(start, point),
-        crownPoint(end, point + 1),
+        new THREE.Vector3(root.x - halfWidth, boughY, root.z),
+        new THREE.Vector3(root.x + halfWidth, boughY, root.z),
+        new THREE.Vector3(root.x + Math.sin(treeIndex + bough) * 0.05, nextY, root.z),
         echoColors.trees,
       );
     }
@@ -2198,6 +2234,7 @@ function createMirroredWorldEchoGeometry() {
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
   geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  geometry.computeVertexNormals();
   geometry.computeBoundingSphere();
   return geometry;
 }
@@ -2232,6 +2269,56 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
   }, [flowGeometry]);
   const flowRef = useRef<THREE.Mesh>(null);
   const worldEchoRef = useRef<THREE.Mesh>(null);
+  const worldEchoMaterial = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+    blending: THREE.NormalBlending,
+    vertexColors: true,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec3 vColor;
+      varying vec3 vWorldPosition;
+      varying float vFacing;
+      void main() {
+        vec3 transformed = position;
+        float time = uTime * uMotion;
+        transformed.x += sin(time * 0.28 + position.y * 0.43 + position.z * 0.18) * 0.035;
+        vec4 worldPosition = modelMatrix * vec4(transformed, 1.0);
+        vec3 viewNormal = normalize(normalMatrix * normal);
+        vec3 viewDirection = normalize(-(modelViewMatrix * vec4(transformed, 1.0)).xyz);
+        vFacing = 1.0 - abs(dot(viewNormal, viewDirection));
+        vColor = color;
+        vWorldPosition = worldPosition.xyz;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(transformed, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec3 vColor;
+      varying vec3 vWorldPosition;
+      varying float vFacing;
+      void main() {
+        float time = uTime * uMotion;
+        float slowSheen = 0.5 + 0.5 * sin(vWorldPosition.y * 1.15 + vWorldPosition.x * 0.24 - time * 0.72);
+        float fineSheen = pow(0.5 + 0.5 * sin(vWorldPosition.z * 2.4 - vWorldPosition.x * 0.7 + time * 0.38), 5.0);
+        float edge = pow(clamp(vFacing, 0.0, 1.0), 1.7);
+        float luminance = dot(vColor, vec3(0.2126, 0.7152, 0.0722));
+        float silhouette = 1.0 - smoothstep(0.16, 0.4, luminance);
+        float reflectionLight = fineSheen * 0.38 + edge * 0.2;
+        vec3 spectral = mix(vColor, vec3(0.86, 0.95, 1.0), reflectionLight * (1.0 - silhouette * 0.74));
+        spectral *= mix(0.62 + slowSheen * 0.38, 0.72 + slowSheen * 0.12, silhouette);
+        float alpha = 0.18 + slowSheen * 0.13 + fineSheen * 0.1 + edge * 0.08 + silhouette * 0.34;
+        gl_FragColor = vec4(spectral, alpha);
+      }
+    `,
+  }), [reducedMotion]);
   const wispMaterial = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
@@ -2319,6 +2406,8 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
     wispMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     particleMaterial.uniforms.uTime.value = clock.elapsedTime;
     particleMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    worldEchoMaterial.uniforms.uTime.value = clock.elapsedTime;
+    worldEchoMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     if (flowRef.current && !reducedMotion) {
       flowRef.current.rotation.y = Math.sin(clock.elapsedTime * 0.16) * 0.018;
     }
@@ -2335,7 +2424,8 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
     particleGeometry.dispose();
     wispMaterial.dispose();
     particleMaterial.dispose();
-  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, worldEchoGeometry, wispMaterial]);
+    worldEchoMaterial.dispose();
+  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
 
   return (
     <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
@@ -2351,6 +2441,7 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
           roughness={0.035}
           thickness={0.82}
           ior={1.24}
+          reflectivity={0.78}
           chromaticAberration={0.13}
           anisotropicBlur={0.08}
           distortion={0.68}
@@ -2383,16 +2474,9 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
         geometry={worldEchoGeometry}
         frustumCulled={false}
         renderOrder={5}
-        userData={{ reflectedWorld: 'terrain-river-viaduct-piano' }}
-      >
-        <meshBasicMaterial
-          vertexColors
-          transparent
-          opacity={0.24}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
+        userData={{ reflectedWorld: 'terrain-river-viaduct-piano-fire-petal-harmonic-currents' }}
+        material={worldEchoMaterial}
+      />
     </group>
   );
 }
