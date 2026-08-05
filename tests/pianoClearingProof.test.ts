@@ -224,6 +224,8 @@ describe('piano clearing Home proof', () => {
     expect(component).toContain('function createRefractiveScoreGeometry');
     expect(component).toContain('function createMirroredWorldEchoGeometry');
     expect(component).toContain('const pianoCradle = 1 - THREE.MathUtils.smoothstep');
+    expect(component).toContain('const sourceLip = 1 + Math.sin');
+    expect(component).toContain('const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.2, 1)');
     expect(component).toContain("reflectedWorld: 'terrain-river-viaduct-piano'");
     expect(component).toContain('<MeshTransmissionMaterial');
     expect(component).toContain('chromaticAberration={0.13}');
