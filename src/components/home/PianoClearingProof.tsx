@@ -1887,24 +1887,6 @@ function pianoPortalOutlinePoint(around: number) {
   );
 }
 
-function createPianoPortalOutlineGeometry() {
-  const positions: number[] = [];
-  const segments = 64;
-  for (let segment = 0; segment < segments; segment += 1) {
-    const around = (segment / segments) * Math.PI * 2;
-    const point = pianoPortalOutlinePoint(around);
-    positions.push(
-      PIANO_POSITION.x + point.x,
-      PIANO_POSITION.y + 0.56,
-      PIANO_POSITION.z + point.y,
-    );
-  }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  geometry.computeBoundingSphere();
-  return geometry;
-}
-
 function createRefractiveScoreGeometry() {
   const positions: number[] = [];
   const uvs: number[] = [];
@@ -1991,6 +1973,97 @@ function createRefractiveScoreGeometry() {
   geometry.computeVertexNormals();
   geometry.computeBoundingSphere();
   return geometry;
+}
+
+function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
+  const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
+  const material = useMemo(() => new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+    blending: THREE.NormalBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uMotion: { value: reducedMotion ? 0 : 1 },
+    },
+    vertexShader: `
+      varying vec3 vLocalPosition;
+      varying vec3 vViewNormal;
+      varying vec3 vViewPosition;
+      void main() {
+        vLocalPosition = position;
+        vViewNormal = normalize(normalMatrix * normal);
+        vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+        vViewPosition = viewPosition.xyz;
+        gl_Position = projectionMatrix * viewPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      varying vec3 vLocalPosition;
+      varying vec3 vViewNormal;
+      varying vec3 vViewPosition;
+      void main() {
+        float time = uTime * uMotion;
+        vec3 viewDirection = normalize(-vViewPosition);
+        float fresnel = pow(1.0 - abs(dot(normalize(vViewNormal), viewDirection)), 1.55);
+        float broadCurrent = 0.5 + 0.5 * sin(
+          vLocalPosition.x * 2.6
+          + vLocalPosition.z * 1.9
+          - time * 1.15
+          + sin(vLocalPosition.y * 4.2 + time * 0.34) * 1.15
+        );
+        float fineCurrent = pow(0.5 + 0.5 * sin(
+          vLocalPosition.x * 8.2
+          - vLocalPosition.z * 5.4
+          + vLocalPosition.y * 3.8
+          + time * 1.7
+        ), 6.0);
+        vec3 cyan = vec3(0.22, 0.86, 1.0);
+        vec3 magenta = vec3(1.0, 0.36, 0.9);
+        vec3 spectral = mix(cyan, magenta, broadCurrent);
+        spectral = mix(spectral, vec3(0.92, 0.98, 1.0), fresnel * 0.72 + fineCurrent * 0.42);
+        float body = 0.16 + broadCurrent * 0.07;
+        float alpha = body + fresnel * 0.5 + fineCurrent * 0.13;
+        gl_FragColor = vec4(spectral * (0.72 + fresnel * 0.65 + fineCurrent * 0.38), alpha);
+      }
+    `,
+  }), [reducedMotion]);
+  const modelOffset = useMemo(() => {
+    scene.updateMatrixWorld(true);
+    const bounds = new THREE.Box3().setFromObject(scene);
+    const center = bounds.getCenter(new THREE.Vector3());
+    return new THREE.Vector3(-center.x, -bounds.min.y, -center.z);
+  }, [scene]);
+  const portalPiano = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((child) => {
+      if (!(child instanceof THREE.Mesh)) return;
+      child.material = material;
+      child.renderOrder = 6;
+      child.frustumCulled = false;
+    });
+    return clone;
+  }, [material, scene]);
+
+  useFrame(({ clock }) => {
+    material.uniforms.uTime.value = clock.elapsedTime;
+    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+  });
+
+  useEffect(() => () => material.dispose(), [material]);
+
+  return (
+    <group
+      position={PIANO_POSITION}
+      rotation={[0, -0.42, 0]}
+      scale={1.42}
+      userData={{ portalSource: 'full-piano-shell' }}
+    >
+      <primitive object={portalPiano} position={modelOffset} />
+    </group>
+  );
 }
 
 function createScoreFlowMask() {
@@ -2227,7 +2300,6 @@ function createMirroredWorldEchoGeometry() {
 
 function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
   const flowGeometry = useMemo(() => createRefractiveScoreGeometry(), []);
-  const pianoOutlineGeometry = useMemo(() => createPianoPortalOutlineGeometry(), []);
   const flowMask = useMemo(() => createScoreFlowMask(), []);
   const worldEchoGeometry = useMemo(() => createMirroredWorldEchoGeometry(), []);
   const particleGeometry = useMemo(() => {
@@ -2406,26 +2478,17 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
 
   useEffect(() => () => {
     flowGeometry.dispose();
-    pianoOutlineGeometry.dispose();
     flowMask.dispose();
     worldEchoGeometry.dispose();
     particleGeometry.dispose();
     wispMaterial.dispose();
     particleMaterial.dispose();
     worldEchoMaterial.dispose();
-  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, pianoOutlineGeometry, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
+  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
 
   return (
     <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
-      <lineLoop geometry={pianoOutlineGeometry} frustumCulled={false} renderOrder={6}>
-        <lineBasicMaterial
-          color="#dff7ff"
-          transparent
-          opacity={0.78}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
-      </lineLoop>
+      <RefractivePianoSource reducedMotion={reducedMotion} />
       <mesh
         ref={flowRef}
         geometry={flowGeometry}
