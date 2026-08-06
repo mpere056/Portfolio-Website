@@ -38,3 +38,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env*
+!.env.example
+
+# local development and agent artifacts
+/.pnpm-store/
+/.tmp-*
+/.tmp-repos/
+/.tools/

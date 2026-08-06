@@ -1,0 +1,8 @@
+My personal productivity system uses Todoist, Notion, Google Calendar, and Google Gemini, all working together, multiple APIs involved, and managed by a Hetzner VPS.
+It starts on Todoist.
+I use Todoist just for input, because it's so light and frictionless to open up on my phone and use to enter items into.
+I created 6 labels in Todoist - Journal, Project, Task, Notes, Calendar, and Copied.
+Whenever I create a task in Todoist, I assign it a label.
+My VPS periodically checks my Todoist for new tasks to determine how the task should be organized, based on the label I gave it, and if it finds a task that doesn't have the label Copied assigned to it then it assigns that task the label Copied.
+My VPS removes copied tasks are from Todoist after about 24h.
+Now based on the label of the task, my VPS will either sort it somewhere into Notion, or if it's a Calendar event, it'll use AI to extract info like content, date, duration, and if it's a recurring or not, then it'll appropriately add it into my Google Calendar.

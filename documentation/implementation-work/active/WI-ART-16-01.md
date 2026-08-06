@@ -245,6 +245,15 @@ The next architecture treats the clearing as one persistent substrate rather tha
 - `The Living Score` becomes the default proof state. It spatially composes terrain-wide liquid pressure, bounded fire regions, mixed petals and embers, distant smoke, piano-origin score light, sky refraction, and teal countercurrents without adding a second scene runtime or post-processing pass.
 - The four remaining studies are diagnostics, not competing final worlds. Exact resume point is visual tuning of the combined state's regional balance and transitions before any Home hover derivation.
 
+### 2026-08-06 Piano-Origin Portal Refinement And Cloud Handoff
+
+- Commits `4ad86c2` through `d30c9dd` evolve the piano-origin effect from a mirrored score canopy into a continuous refractive source, column, and sky reflection while preserving the optimized combined-world runtime.
+- Mark rejected line-heavy portal treatments, unrelated reflected trees, broad ground apertures, center-only source lines, piano reskinning, uniform color stripes, and decorative portal particles.
+- Known-good implementation commit `d30c9dd` restores the original piano rendering and adds only an edge-derived refractive shell plus a continuous footprint loft into the portal. Portal-only particles and artificial moving piano stripes are removed.
+- Focused tests, TypeScript, lint, content validation, and the Vercel Production build pass. Production is live at `/music-liquid-proof?world=combined-world`.
+- Exact resume point: visually review `d30c9dd` for unchanged piano appearance, full edge-shell coverage, continuous piano-to-column flow, reflective canopy quality, and slower-device smoothness. Tune only failed portal readings; do not reskin the piano or reintroduce portal particles.
+- Hover derivation, selected-world registration, other practice worlds, and project landmarks remain blocked until Mark accepts the combined Music world and its performance evidence.
+
 ### 2026-07-26
 
 - Mark rejected the full-world compositor and selected a single outdoor piano clearing as the new Home foundation.

@@ -193,10 +193,10 @@ For `ML0`, `ML3`, and `ML5`, record:
 
 | Field | Current value |
 | --- | --- |
-| Current gate | `MW1-C` first combined Music-world candidate; implementation and visual review in progress |
-| Known-good code | `b0018cb` transition foundation; `5313e93` optimized visual baseline |
+| Current gate | `MW1-C` combined Music-world candidate; piano-origin portal visual acceptance and slower-device review in progress |
+| Known-good code | `8e13b35` accelerated combined world; `d30c9dd` original piano plus edge-only refractive portal source |
 | Safe public state | Canonical neutral Home unchanged; private no-index `/music-liquid-proof` mounts one selected study at a time; Music registry remains empty |
-| Next exact action | Review the accelerated performance candidate on a previously laggy computer, then use the four retained isolate controls only to diagnose liquid, fire, petal, or harmonic failures; tune spatial balance before deriving any hover state |
+| Next exact action | Visually review `d30c9dd` on `/music-liquid-proof?world=combined-world`: confirm the original piano is unchanged, the refractive edge shell covers it completely, the shell flows continuously into the column/canopy, no artificial stripes or portal particles remain, and the accepted motion stays smooth on a previously laggy computer |
 | Do not begin | Production selected-world registration, hover derivation, other practice worlds, or project landmarks before the comparison outcome |
 | Review packet | One route with five compact selectors and five whole-world states; no long document review required |
 
