@@ -1875,10 +1875,12 @@ function WorldScaleMusicForms({
 function pianoPortalOutlinePoint(around: number) {
   const front = Math.max(0, Math.sin(around));
   const tail = Math.max(0, -Math.sin(around));
-  const outlineRadiusX = 1.48 + front * 0.08 - tail * 0.3;
-  const outlineRadiusZ = front * 0.62 + tail * 1.08;
-  const localX = Math.cos(around) * outlineRadiusX + tail * 0.14;
-  const localZ = Math.sin(around) * outlineRadiusZ + front * 0.04;
+  // This is the footprint of the wrapped grand piano, not a circular emitter.
+  // The long tail follows the lid while the tighter front cups the keyboard.
+  const outlineRadiusX = 2.08 + front * 0.14 - tail * 0.28;
+  const outlineRadiusZ = front * 0.92 + tail * 1.5;
+  const localX = Math.cos(around) * outlineRadiusX + tail * 0.22;
+  const localZ = Math.sin(around) * outlineRadiusZ + front * 0.08;
   const rotation = -0.42;
 
   return new THREE.Vector2(
@@ -1893,22 +1895,26 @@ function createRefractiveScoreGeometry() {
   const indices: number[] = [];
   const origin = new THREE.Vector3(
     PIANO_POSITION.x,
-    PIANO_POSITION.y + 0.48,
+    PIANO_POSITION.y + 0.18,
     PIANO_POSITION.z,
   );
   const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
 
-  const trunkRings = 34;
+  const trunkRings = 44;
   const trunkSides = 32;
   for (let ring = 0; ring <= trunkRings; ring += 1) {
     const progress = ring / trunkRings;
-    const pianoOutline = 1 - THREE.MathUtils.smoothstep(progress, 0, 0.04);
-    const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.2, 1);
+    // Keep the portal piano-wide through the source zone, then let every side
+    // of that silhouette converge into the waist. Previously this transition
+    // completed in one ring, which made the canopy look like a detached beam.
+    const pianoOutline = 1 - THREE.MathUtils.smoothstep(progress, 0.075, 0.34);
+    const sourceLift = THREE.MathUtils.smoothstep(progress, 0, 0.18);
+    const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.34, 1);
     const bloom = THREE.MathUtils.smoothstep(progress, 0.42, 1);
-    const radiusX = 0.24
+    const radiusX = 0.31
       + progress * 0.3
       + Math.pow(bloom, 1.45) * 8.8;
-    const radiusZ = 0.17
+    const radiusZ = 0.23
       + progress * 0.18
       + Math.pow(bloom, 1.55) * 3.55;
     const centerX = THREE.MathUtils.lerp(origin.x, canopyCenter.x, canopyTravel)
@@ -1922,10 +1928,14 @@ function createRefractiveScoreGeometry() {
       const outline = pianoPortalOutlinePoint(around);
       const neckX = Math.cos(twist) * radiusX * lobe;
       const neckZ = Math.sin(twist) * radiusZ * lobe;
+      const sourceBreath = 1 + Math.sin(around * 2.0 - progress * 8.0) * pianoOutline * 0.035;
       positions.push(
-        centerX + THREE.MathUtils.lerp(neckX, outline.x, pianoOutline),
-        origin.y + progress * 12.5 + Math.sin(around * 2 + progress * 9) * bloom * 0.28,
-        centerZ + THREE.MathUtils.lerp(neckZ, outline.y, pianoOutline),
+        centerX + THREE.MathUtils.lerp(neckX, outline.x * sourceBreath, pianoOutline),
+        origin.y
+          + progress * 12.5
+          + Math.sin(around + 0.35) * pianoOutline * (0.14 + sourceLift * 0.08)
+          + Math.sin(around * 2 + progress * 9) * bloom * 0.28,
+        centerZ + THREE.MathUtils.lerp(neckZ, outline.y * sourceBreath, pianoOutline),
       );
       uvs.push(side / trunkSides, progress);
     }
