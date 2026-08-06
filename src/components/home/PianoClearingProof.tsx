@@ -1872,44 +1872,28 @@ function WorldScaleMusicForms({
   );
 }
 
-function pianoPortalOutlinePoint(around: number) {
-  const front = Math.max(0, Math.sin(around));
-  const tail = Math.max(0, -Math.sin(around));
-  // This is the footprint of the wrapped grand piano, not a circular emitter.
-  // The long tail follows the lid while the tighter front cups the keyboard.
-  const outlineRadiusX = 2.08 + front * 0.14 - tail * 0.28;
-  const outlineRadiusZ = front * 0.92 + tail * 1.5;
-  const localX = Math.cos(around) * outlineRadiusX + tail * 0.22;
-  const localZ = Math.sin(around) * outlineRadiusZ + front * 0.08;
-  const rotation = -0.42;
-
-  return new THREE.Vector2(
-    localX * Math.cos(rotation) - localZ * Math.sin(rotation),
-    localX * Math.sin(rotation) + localZ * Math.cos(rotation),
-  );
-}
-
 function createRefractiveScoreGeometry() {
   const positions: number[] = [];
   const uvs: number[] = [];
   const indices: number[] = [];
   const origin = new THREE.Vector3(
     PIANO_POSITION.x,
-    PIANO_POSITION.y + 0.18,
+    PIANO_POSITION.y + 2.48,
     PIANO_POSITION.z,
   );
-  const canopyCenter = new THREE.Vector3(origin.x - 1.2, origin.y + 12.5, origin.z - 14.5);
+  const canopyCenter = new THREE.Vector3(
+    PIANO_POSITION.x - 1.2,
+    PIANO_POSITION.y + 12.68,
+    PIANO_POSITION.z - 14.5,
+  );
 
   const trunkRings = 44;
   const trunkSides = 32;
   for (let ring = 0; ring <= trunkRings; ring += 1) {
     const progress = ring / trunkRings;
-    // Keep the portal piano-wide through the source zone, then let every side
-    // of that silhouette converge into the waist. Previously this transition
-    // completed in one ring, which made the canopy look like a detached beam.
-    const pianoOutline = 1 - THREE.MathUtils.smoothstep(progress, 0.075, 0.34);
-    const sourceLift = THREE.MathUtils.smoothstep(progress, 0, 0.18);
-    const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.34, 1);
+    // The real piano shell performs the source transition. This mesh starts
+    // only after that shell has converged, so it cannot form a separate halo.
+    const canopyTravel = THREE.MathUtils.smoothstep(progress, 0.16, 1);
     const bloom = THREE.MathUtils.smoothstep(progress, 0.42, 1);
     const radiusX = 0.31
       + progress * 0.3
@@ -1925,17 +1909,13 @@ function createRefractiveScoreGeometry() {
       const around = (side / trunkSides) * Math.PI * 2;
       const twist = around + progress * 6.4;
       const lobe = 1 + Math.sin(around * 3 - progress * 11) * (0.06 + bloom * 0.12);
-      const outline = pianoPortalOutlinePoint(around);
       const neckX = Math.cos(twist) * radiusX * lobe;
       const neckZ = Math.sin(twist) * radiusZ * lobe;
-      const sourceBreath = 1 + Math.sin(around * 2.0 - progress * 8.0) * pianoOutline * 0.035;
       positions.push(
-        centerX + THREE.MathUtils.lerp(neckX, outline.x * sourceBreath, pianoOutline),
-        origin.y
-          + progress * 12.5
-          + Math.sin(around + 0.35) * pianoOutline * (0.14 + sourceLift * 0.08)
+        centerX + neckX,
+        THREE.MathUtils.lerp(origin.y, canopyCenter.y, progress)
           + Math.sin(around * 2 + progress * 9) * bloom * 0.28,
-        centerZ + THREE.MathUtils.lerp(neckZ, outline.y * sourceBreath, pianoOutline),
+        centerZ + neckZ,
       );
       uvs.push(side / trunkSides, progress);
     }
@@ -1985,9 +1965,23 @@ function createRefractiveScoreGeometry() {
   return geometry;
 }
 
-function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
-  const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
-  const material = useMemo(() => new THREE.ShaderMaterial({
+const PIANO_PORTAL_SHELL_STAGES = [
+  { lift: 0, horizontalScale: 1, verticalScale: 1, opacity: 1 },
+  { lift: 0.22, horizontalScale: 0.96, verticalScale: 0.96, opacity: 0.46 },
+  { lift: 0.48, horizontalScale: 0.88, verticalScale: 0.88, opacity: 0.4 },
+  { lift: 0.78, horizontalScale: 0.77, verticalScale: 0.78, opacity: 0.34 },
+  { lift: 1.12, horizontalScale: 0.64, verticalScale: 0.67, opacity: 0.29 },
+  { lift: 1.5, horizontalScale: 0.5, verticalScale: 0.55, opacity: 0.25 },
+  { lift: 1.9, horizontalScale: 0.35, verticalScale: 0.44, opacity: 0.21 },
+  { lift: 2.28, horizontalScale: 0.2, verticalScale: 0.34, opacity: 0.18 },
+] as const;
+
+function createRefractivePianoMaterial(
+  reducedMotion: boolean,
+  layerOpacity: number,
+  phase: number,
+) {
+  return new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
     side: THREE.DoubleSide,
@@ -1995,15 +1989,23 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
     uniforms: {
       uTime: { value: 0 },
       uMotion: { value: reducedMotion ? 0 : 1 },
+      uLayerOpacity: { value: layerOpacity },
+      uPhase: { value: phase },
     },
     vertexShader: `
+      uniform float uTime;
+      uniform float uMotion;
+      uniform float uPhase;
       varying vec3 vLocalPosition;
       varying vec3 vViewNormal;
       varying vec3 vViewPosition;
       void main() {
         vLocalPosition = position;
         vViewNormal = normalize(normalMatrix * normal);
-        vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+        vec3 transformed = position;
+        float current = sin(position.y * 4.8 + position.x * 2.1 - uTime * 0.72 + uPhase);
+        transformed.xz += normal.xz * current * 0.008 * uMotion;
+        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
         vViewPosition = viewPosition.xyz;
         gl_Position = projectionMatrix * viewPosition;
       }
@@ -2011,6 +2013,8 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
     fragmentShader: `
       uniform float uTime;
       uniform float uMotion;
+      uniform float uLayerOpacity;
+      uniform float uPhase;
       varying vec3 vLocalPosition;
       varying vec3 vViewNormal;
       varying vec3 vViewPosition;
@@ -2022,6 +2026,7 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
           vLocalPosition.x * 2.6
           + vLocalPosition.z * 1.9
           - time * 1.15
+          + uPhase
           + sin(vLocalPosition.y * 4.2 + time * 0.34) * 1.15
         );
         float fineCurrent = pow(0.5 + 0.5 * sin(
@@ -2029,40 +2034,54 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
           - vLocalPosition.z * 5.4
           + vLocalPosition.y * 3.8
           + time * 1.7
+          + uPhase * 1.7
         ), 6.0);
         vec3 cyan = vec3(0.22, 0.86, 1.0);
         vec3 magenta = vec3(1.0, 0.36, 0.9);
         vec3 spectral = mix(cyan, magenta, broadCurrent);
         spectral = mix(spectral, vec3(0.92, 0.98, 1.0), fresnel * 0.72 + fineCurrent * 0.42);
         float body = 0.16 + broadCurrent * 0.07;
-        float alpha = body + fresnel * 0.5 + fineCurrent * 0.13;
+        float alpha = (body + fresnel * 0.5 + fineCurrent * 0.13) * uLayerOpacity;
         gl_FragColor = vec4(spectral * (0.72 + fresnel * 0.65 + fineCurrent * 0.38), alpha);
       }
     `,
-  }), [reducedMotion]);
+  });
+}
+
+function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
+  const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
   const modelOffset = useMemo(() => {
     scene.updateMatrixWorld(true);
     const bounds = new THREE.Box3().setFromObject(scene);
     const center = bounds.getCenter(new THREE.Vector3());
     return new THREE.Vector3(-center.x, -bounds.min.y, -center.z);
   }, [scene]);
-  const portalPiano = useMemo(() => {
-    const clone = scene.clone(true);
-    clone.traverse((child) => {
+  const shellLayers = useMemo(() => PIANO_PORTAL_SHELL_STAGES.map((stage, index) => {
+    const material = createRefractivePianoMaterial(
+      reducedMotion,
+      stage.opacity,
+      index * 0.73,
+    );
+    const object = scene.clone(true);
+    object.traverse((child) => {
       if (!(child instanceof THREE.Mesh)) return;
       child.material = material;
-      child.renderOrder = 6;
+      child.renderOrder = 6 + index;
       child.frustumCulled = false;
     });
-    return clone;
-  }, [material, scene]);
+    return { material, object, stage };
+  }), [reducedMotion, scene]);
 
   useFrame(({ clock }) => {
-    material.uniforms.uTime.value = clock.elapsedTime;
-    material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    shellLayers.forEach(({ material }) => {
+      material.uniforms.uTime.value = clock.elapsedTime;
+      material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
+    });
   });
 
-  useEffect(() => () => material.dispose(), [material]);
+  useEffect(() => () => {
+    shellLayers.forEach(({ material }) => material.dispose());
+  }, [shellLayers]);
 
   return (
     <group
@@ -2071,7 +2090,15 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
       scale={1.42}
       userData={{ portalSource: 'full-piano-shell' }}
     >
-      <primitive object={portalPiano} position={modelOffset} />
+      {shellLayers.map(({ object, stage }, index) => (
+        <group
+          key={`portal-shell-stage-${index}`}
+          position={[0, stage.lift, 0]}
+          scale={[stage.horizontalScale, stage.verticalScale, stage.horizontalScale]}
+        >
+          <primitive object={object} position={modelOffset} />
+        </group>
+      ))}
     </group>
   );
 }
