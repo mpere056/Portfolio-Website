@@ -1965,90 +1965,149 @@ function createRefractiveScoreGeometry() {
   return geometry;
 }
 
-const PIANO_PORTAL_SHELL_STAGES = [
-  { lift: 0, horizontalScale: 1, verticalScale: 1, opacity: 1 },
-  { lift: 0.22, horizontalScale: 0.96, verticalScale: 0.96, opacity: 0.46 },
-  { lift: 0.48, horizontalScale: 0.88, verticalScale: 0.88, opacity: 0.4 },
-  { lift: 0.78, horizontalScale: 0.77, verticalScale: 0.78, opacity: 0.34 },
-  { lift: 1.12, horizontalScale: 0.64, verticalScale: 0.67, opacity: 0.29 },
-  { lift: 1.5, horizontalScale: 0.5, verticalScale: 0.55, opacity: 0.25 },
-  { lift: 1.9, horizontalScale: 0.35, verticalScale: 0.44, opacity: 0.21 },
-  { lift: 2.28, horizontalScale: 0.2, verticalScale: 0.34, opacity: 0.18 },
-] as const;
-
-function createRefractivePianoMaterial(
-  reducedMotion: boolean,
-  layerOpacity: number,
-  phase: number,
-) {
-  return new THREE.ShaderMaterial({
+function createRefractivePianoOutline(scene: THREE.Group) {
+  const material = new THREE.LineBasicMaterial({
+    color: '#e7f3ff',
     transparent: true,
+    opacity: 0.24,
     depthWrite: false,
-    side: THREE.DoubleSide,
-    blending: THREE.NormalBlending,
-    uniforms: {
-      uTime: { value: 0 },
-      uMotion: { value: reducedMotion ? 0 : 1 },
-      uLayerOpacity: { value: layerOpacity },
-      uPhase: { value: phase },
-    },
-    vertexShader: `
-      uniform float uTime;
-      uniform float uMotion;
-      uniform float uPhase;
-      varying vec3 vLocalPosition;
-      varying vec3 vViewNormal;
-      varying vec3 vViewPosition;
-      void main() {
-        vLocalPosition = position;
-        vViewNormal = normalize(normalMatrix * normal);
-        vec3 transformed = position;
-        float current = sin(position.y * 4.8 + position.x * 2.1 - uTime * 0.72 + uPhase);
-        transformed.xz += normal.xz * current * 0.008 * uMotion;
-        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
-        vViewPosition = viewPosition.xyz;
-        gl_Position = projectionMatrix * viewPosition;
-      }
-    `,
-    fragmentShader: `
-      uniform float uTime;
-      uniform float uMotion;
-      uniform float uLayerOpacity;
-      uniform float uPhase;
-      varying vec3 vLocalPosition;
-      varying vec3 vViewNormal;
-      varying vec3 vViewPosition;
-      void main() {
-        float time = uTime * uMotion;
-        vec3 viewDirection = normalize(-vViewPosition);
-        float fresnel = pow(1.0 - abs(dot(normalize(vViewNormal), viewDirection)), 1.55);
-        float broadCurrent = 0.5 + 0.5 * sin(
-          vLocalPosition.x * 2.6
-          + vLocalPosition.z * 1.9
-          - time * 1.15
-          + uPhase
-          + sin(vLocalPosition.y * 4.2 + time * 0.34) * 1.15
-        );
-        float fineCurrent = pow(0.5 + 0.5 * sin(
-          vLocalPosition.x * 8.2
-          - vLocalPosition.z * 5.4
-          + vLocalPosition.y * 3.8
-          + time * 1.7
-          + uPhase * 1.7
-        ), 6.0);
-        vec3 cyan = vec3(0.22, 0.86, 1.0);
-        vec3 magenta = vec3(1.0, 0.36, 0.9);
-        vec3 spectral = mix(cyan, magenta, broadCurrent);
-        spectral = mix(spectral, vec3(0.92, 0.98, 1.0), fresnel * 0.72 + fineCurrent * 0.42);
-        float body = 0.16 + broadCurrent * 0.07;
-        float alpha = (body + fresnel * 0.5 + fineCurrent * 0.13) * uLayerOpacity;
-        gl_FragColor = vec4(spectral * (0.72 + fresnel * 0.65 + fineCurrent * 0.38), alpha);
-      }
-    `,
+    depthTest: true,
+    blending: THREE.AdditiveBlending,
   });
+  const object = new THREE.Group();
+  const outlineGeometries: THREE.EdgesGeometry[] = [];
+  scene.updateMatrixWorld(true);
+  const rootInverse = scene.matrixWorld.clone().invert();
+
+  scene.traverse((child) => {
+    if (!(child instanceof THREE.Mesh)) return;
+    const geometry = new THREE.EdgesGeometry(child.geometry, 32);
+    const outline = new THREE.LineSegments(geometry, material);
+    outline.matrix.copy(rootInverse).multiply(child.matrixWorld);
+    outline.matrixAutoUpdate = false;
+    outline.renderOrder = 6;
+    outline.frustumCulled = false;
+    outlineGeometries.push(geometry);
+    object.add(outline);
+  });
+
+  return { material, object, outlineGeometries };
 }
 
-function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
+type PianoFootprintPoint = { x: number; y: number; z: number };
+
+function footprintCross(
+  origin: PianoFootprintPoint,
+  a: PianoFootprintPoint,
+  b: PianoFootprintPoint,
+) {
+  return (a.x - origin.x) * (b.z - origin.z)
+    - (a.z - origin.z) * (b.x - origin.x);
+}
+
+function createPianoPortalTransitionGeometry(
+  scene: THREE.Group,
+  modelOffset: THREE.Vector3,
+) {
+  scene.updateMatrixWorld(true);
+  const rootInverse = scene.matrixWorld.clone().invert();
+  const pianoRotation = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -0.42, 0));
+  const pianoTransform = new THREE.Matrix4().compose(
+    PIANO_POSITION,
+    pianoRotation,
+    new THREE.Vector3(1.42, 1.42, 1.42),
+  );
+  const projected: PianoFootprintPoint[] = [];
+  const point = new THREE.Vector3();
+
+  scene.traverse((child) => {
+    if (!(child instanceof THREE.Mesh)) return;
+    const positions = child.geometry.getAttribute('position');
+    for (let index = 0; index < positions.count; index += 3) {
+      point.fromBufferAttribute(positions, index)
+        .applyMatrix4(child.matrixWorld)
+        .applyMatrix4(rootInverse)
+        .add(modelOffset)
+        .applyMatrix4(pianoTransform);
+      projected.push({ x: point.x, y: point.y, z: point.z });
+    }
+  });
+
+  if (projected.length < 3) return new THREE.BufferGeometry();
+  projected.sort((a, b) => a.x - b.x || a.z - b.z);
+  const lower: PianoFootprintPoint[] = [];
+  for (const candidate of projected) {
+    while (lower.length >= 2 && footprintCross(lower.at(-2)!, lower.at(-1)!, candidate) <= 0) {
+      lower.pop();
+    }
+    lower.push(candidate);
+  }
+  const upper: PianoFootprintPoint[] = [];
+  for (let index = projected.length - 1; index >= 0; index -= 1) {
+    const candidate = projected[index];
+    while (upper.length >= 2 && footprintCross(upper.at(-2)!, upper.at(-1)!, candidate) <= 0) {
+      upper.pop();
+    }
+    upper.push(candidate);
+  }
+  const hull = lower.slice(0, -1).concat(upper.slice(0, -1));
+  const perimeterSamples = 44;
+  const footprint = Array.from({ length: perimeterSamples }, (_, index) => (
+    hull[Math.floor((index / perimeterSamples) * hull.length)]
+  ));
+  const center = new THREE.Vector3();
+  footprint.forEach((candidate) => {
+    center.x += candidate.x;
+    center.z += candidate.z;
+  });
+  center.multiplyScalar(1 / footprint.length);
+  const baseY = Math.max(...projected.map((candidate) => candidate.y)) - 0.08;
+  const throat = new THREE.Vector3(
+    PIANO_POSITION.x,
+    PIANO_POSITION.y + 2.5,
+    PIANO_POSITION.z,
+  );
+  const rings = 22;
+  const positions: number[] = [];
+  const indices: number[] = [];
+
+  for (let ring = 0; ring <= rings; ring += 1) {
+    const progress = ring / rings;
+    const convergence = THREE.MathUtils.smoothstep(progress, 0.08, 1);
+    const footprintScale = THREE.MathUtils.lerp(1, 0.055, Math.pow(convergence, 1.16));
+    const ringCenterX = THREE.MathUtils.lerp(center.x, throat.x, convergence);
+    const ringCenterZ = THREE.MathUtils.lerp(center.z, throat.z, convergence);
+    const ringY = THREE.MathUtils.lerp(baseY, throat.y, progress)
+      + Math.sin(progress * Math.PI) * 0.16;
+    for (const candidate of footprint) {
+      positions.push(
+        ringCenterX + (candidate.x - center.x) * footprintScale,
+        ringY,
+        ringCenterZ + (candidate.z - center.z) * footprintScale,
+      );
+    }
+  }
+
+  for (let ring = 0; ring < rings; ring += 1) {
+    for (let side = 0; side < perimeterSamples; side += 1) {
+      const next = (side + 1) % perimeterSamples;
+      const a = ring * perimeterSamples + side;
+      const b = ring * perimeterSamples + next;
+      const c = (ring + 1) * perimeterSamples + side;
+      const d = (ring + 1) * perimeterSamples + next;
+      indices.push(a, c, b, b, c, d);
+    }
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  geometry.computeBoundingSphere();
+  return geometry;
+}
+
+function RefractivePianoSource() {
   const { scene } = useGLTF('/models/grand_piano/grand_piano_(GLB).gltf');
   const modelOffset = useMemo(() => {
     scene.updateMatrixWorld(true);
@@ -2056,50 +2115,56 @@ function RefractivePianoSource({ reducedMotion }: { reducedMotion: boolean }) {
     const center = bounds.getCenter(new THREE.Vector3());
     return new THREE.Vector3(-center.x, -bounds.min.y, -center.z);
   }, [scene]);
-  const shellLayers = useMemo(() => PIANO_PORTAL_SHELL_STAGES.map((stage, index) => {
-    const material = createRefractivePianoMaterial(
-      reducedMotion,
-      stage.opacity,
-      index * 0.73,
-    );
-    const object = scene.clone(true);
-    object.traverse((child) => {
-      if (!(child instanceof THREE.Mesh)) return;
-      child.material = material;
-      child.renderOrder = 6 + index;
-      child.frustumCulled = false;
-    });
-    return { material, object, stage };
-  }), [reducedMotion, scene]);
-
-  useFrame(({ clock }) => {
-    shellLayers.forEach(({ material }) => {
-      material.uniforms.uTime.value = clock.elapsedTime;
-      material.uniforms.uMotion.value = reducedMotion ? 0 : 1;
-    });
-  });
+  const sourceShell = useMemo(() => {
+    return createRefractivePianoOutline(scene);
+  }, [scene]);
+  const transitionGeometry = useMemo(
+    () => createPianoPortalTransitionGeometry(scene, modelOffset),
+    [modelOffset, scene],
+  );
 
   useEffect(() => () => {
-    shellLayers.forEach(({ material }) => material.dispose());
-  }, [shellLayers]);
+    sourceShell.material.dispose();
+    sourceShell.outlineGeometries.forEach(geometry => geometry.dispose());
+    transitionGeometry.dispose();
+  }, [sourceShell, transitionGeometry]);
 
   return (
-    <group
-      position={PIANO_POSITION}
-      rotation={[0, -0.42, 0]}
-      scale={1.42}
-      userData={{ portalSource: 'full-piano-shell' }}
-    >
-      {shellLayers.map(({ object, stage }, index) => (
-        <group
-          key={`portal-shell-stage-${index}`}
-          position={[0, stage.lift, 0]}
-          scale={[stage.horizontalScale, stage.verticalScale, stage.horizontalScale]}
-        >
-          <primitive object={object} position={modelOffset} />
-        </group>
-      ))}
-    </group>
+    <>
+      <group
+        position={PIANO_POSITION}
+        rotation={[0, -0.42, 0]}
+        scale={1.42}
+        userData={{ portalSource: 'piano-edge-outline' }}
+      >
+        <primitive object={sourceShell.object} position={modelOffset} scale={1.001} />
+      </group>
+      <mesh
+        geometry={transitionGeometry}
+        frustumCulled={false}
+        renderOrder={5}
+        userData={{ portalTransition: 'continuous-piano-footprint-loft' }}
+      >
+        <MeshTransmissionMaterial
+          color="#d8edff"
+          transmission={1}
+          roughness={0.08}
+          thickness={0.24}
+          ior={1.18}
+          chromaticAberration={0.018}
+          anisotropicBlur={0.08}
+          distortion={0.12}
+          distortionScale={0.12}
+          temporalDistortion={0.035}
+          samples={3}
+          resolution={192}
+          transparent
+          opacity={0.24}
+          backside
+          backsideThickness={0.08}
+        />
+      </mesh>
+    </>
   );
 }
 
@@ -2339,30 +2404,6 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
   const flowGeometry = useMemo(() => createRefractiveScoreGeometry(), []);
   const flowMask = useMemo(() => createScoreFlowMask(), []);
   const worldEchoGeometry = useMemo(() => createMirroredWorldEchoGeometry(), []);
-  const particleGeometry = useMemo(() => {
-    const source = flowGeometry.getAttribute('position');
-    const count = Math.min(1050, source.count);
-    const positions = new Float32Array(count * 3);
-    const seeds = new Float32Array(count * 3);
-    for (let index = 0; index < count; index += 1) {
-      const sourceIndex = (index * 17) % source.count;
-      positions.set([
-        source.getX(sourceIndex),
-        source.getY(sourceIndex),
-        source.getZ(sourceIndex),
-      ], index * 3);
-      seeds.set([
-        (index * 0.61803398875) % 1,
-        (index * 0.41421356237 + 0.21) % 1,
-        (index * 0.73205080756 + 0.47) % 1,
-      ], index * 3);
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 3));
-    geometry.computeBoundingSphere();
-    return geometry;
-  }, [flowGeometry]);
   const flowRef = useRef<THREE.Mesh>(null);
   const worldEchoRef = useRef<THREE.Mesh>(null);
   const worldEchoMaterial = useMemo(() => new THREE.ShaderMaterial({
@@ -2460,48 +2501,9 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
       }
     `,
   }), [reducedMotion]);
-  const particleMaterial = useMemo(() => new THREE.ShaderMaterial({
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    uniforms: {
-      uTime: { value: 0 },
-      uMotion: { value: reducedMotion ? 0 : 1 },
-    },
-    vertexShader: `
-      uniform float uTime;
-      uniform float uMotion;
-      attribute vec3 aSeed;
-      varying float vLife;
-      varying vec3 vColor;
-      void main() {
-        float time = uTime * uMotion;
-        vec3 transformed = position;
-        float travel = fract(aSeed.x + time * mix(0.055, 0.13, aSeed.y));
-        transformed.y += sin(time * 0.7 + aSeed.x * 31.0) * 0.12;
-        transformed.x += sin(time * 0.43 + aSeed.z * 19.0) * 0.16;
-        vec4 viewPosition = modelViewMatrix * vec4(transformed, 1.0);
-        gl_Position = projectionMatrix * viewPosition;
-        gl_PointSize = min(6.5, mix(1.4, 4.8, aSeed.z) * (35.0 / max(6.0, -viewPosition.z)));
-        vLife = 0.28 + pow(0.5 + 0.5 * sin(travel * 6.2831853), 4.0) * 0.72;
-        vColor = mix(vec3(0.28, 0.8, 1.0), vec3(1.0, 0.38, 0.92), aSeed.y);
-      }
-    `,
-    fragmentShader: `
-      varying float vLife;
-      varying vec3 vColor;
-      void main() {
-        float core = 1.0 - smoothstep(0.05, 0.5, length(gl_PointCoord - 0.5));
-        gl_FragColor = vec4(vColor * (0.75 + vLife), core * vLife * 0.86);
-      }
-    `,
-  }), [reducedMotion]);
-
   useFrame(({ clock }) => {
     wispMaterial.uniforms.uTime.value = clock.elapsedTime;
     wispMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
-    particleMaterial.uniforms.uTime.value = clock.elapsedTime;
-    particleMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     worldEchoMaterial.uniforms.uTime.value = clock.elapsedTime;
     worldEchoMaterial.uniforms.uMotion.value = reducedMotion ? 0 : 1;
     if (flowRef.current && !reducedMotion) {
@@ -2517,15 +2519,13 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
     flowGeometry.dispose();
     flowMask.dispose();
     worldEchoGeometry.dispose();
-    particleGeometry.dispose();
     wispMaterial.dispose();
-    particleMaterial.dispose();
     worldEchoMaterial.dispose();
-  }, [flowGeometry, flowMask, particleGeometry, particleMaterial, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
+  }, [flowGeometry, flowMask, worldEchoGeometry, worldEchoMaterial, wispMaterial]);
 
   return (
     <group userData={{ musicWorldForm: 'mirrored-score-canopy' }}>
-      <RefractivePianoSource reducedMotion={reducedMotion} />
+      <RefractivePianoSource />
       <mesh
         ref={flowRef}
         geometry={flowGeometry}
@@ -2559,12 +2559,6 @@ function MirroredScoreCanopy({ reducedMotion }: { reducedMotion: boolean }) {
         material={wispMaterial}
         frustumCulled={false}
         renderOrder={4}
-      />
-      <points
-        geometry={particleGeometry}
-        material={particleMaterial}
-        frustumCulled={false}
-        renderOrder={5}
       />
       <mesh
         ref={worldEchoRef}
